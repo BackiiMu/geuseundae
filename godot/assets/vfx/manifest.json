@@ -1,0 +1,985 @@
+{
+  "slash-1": {
+    "id": "melee/sword-slash",
+    "name": "Sword slash",
+    "fps": 25,
+    "loop": false,
+    "frames": 19,
+    "frameSize": [
+      136,
+      104
+    ],
+    "pivot": [
+      44,
+      92
+    ],
+    "columns": 4,
+    "path": "res://assets/vfx/slash-1.png",
+    "source": "melee/sword-slash",
+    "anchor": [
+      0,
+      0
+    ]
+  },
+  "bloom-1": {
+    "id": "geuseundae/equipment-strike",
+    "name": "Ghost equipment strike",
+    "fps": 25,
+    "loop": false,
+    "frames": 19,
+    "frameSize": [
+      256,
+      192
+    ],
+    "pivot": [
+      128,
+      128
+    ],
+    "columns": 4,
+    "act": {
+      "windup": 0.22,
+      "recovery": 0,
+      "onBody": false,
+      "targets": [],
+      "hits": [
+        {
+          "t": 0.04,
+          "freeze": 0.04,
+          "shake": 0.1,
+          "amp": 1,
+          "push": 1
+        }
+      ],
+      "poses": [
+        {
+          "t": -0.22,
+          "how": "smooth",
+          "pose": {
+            "crouch": 3,
+            "fx": 11,
+            "fy": -21,
+            "bx": 9,
+            "by": -21,
+            "ffx": 7,
+            "fbx": -7,
+            "lean": -4
+          }
+        },
+        {
+          "t": 0,
+          "how": "snap",
+          "pose": {
+            "crouch": 3,
+            "fx": 19,
+            "fy": -24,
+            "bx": 9,
+            "by": -21,
+            "ffx": 7,
+            "fbx": -7,
+            "lean": 4
+          }
+        },
+        {
+          "t": 0.5,
+          "how": "smooth",
+          "pose": {
+            "crouch": 3,
+            "fx": 11,
+            "fy": -21,
+            "bx": 9,
+            "by": -21,
+            "ffx": 7,
+            "fbx": -7
+          }
+        }
+      ]
+    },
+    "path": "res://assets/vfx/bloom-1.png"
+  },
+  "impact-1": {
+    "id": "impacts/hit-spark",
+    "name": "Hit spark",
+    "fps": 25,
+    "loop": false,
+    "frames": 19,
+    "frameSize": [
+      136,
+      80
+    ],
+    "pivot": [
+      44,
+      64
+    ],
+    "columns": 4,
+    "path": "res://assets/vfx/impact-1.png",
+    "source": "impacts/hit-spark",
+    "anchor": [
+      0,
+      -20
+    ]
+  },
+  "seal-1": {
+    "id": "geuseundae/equipment-strike",
+    "name": "Ghost equipment strike",
+    "fps": 25,
+    "loop": false,
+    "frames": 19,
+    "frameSize": [
+      256,
+      192
+    ],
+    "pivot": [
+      128,
+      128
+    ],
+    "columns": 4,
+    "act": {
+      "windup": 0.22,
+      "recovery": 0,
+      "onBody": false,
+      "targets": [],
+      "hits": [
+        {
+          "t": 0.04,
+          "freeze": 0.04,
+          "shake": 0.1,
+          "amp": 1,
+          "push": 1
+        }
+      ],
+      "poses": [
+        {
+          "t": -0.22,
+          "how": "smooth",
+          "pose": {
+            "crouch": 3,
+            "fx": 11,
+            "fy": -21,
+            "bx": 9,
+            "by": -21,
+            "ffx": 7,
+            "fbx": -7,
+            "lean": -4
+          }
+        },
+        {
+          "t": 0,
+          "how": "snap",
+          "pose": {
+            "crouch": 3,
+            "fx": 19,
+            "fy": -24,
+            "bx": 9,
+            "by": -21,
+            "ffx": 7,
+            "fbx": -7,
+            "lean": 4
+          }
+        },
+        {
+          "t": 0.5,
+          "how": "smooth",
+          "pose": {
+            "crouch": 3,
+            "fx": 11,
+            "fy": -21,
+            "bx": 9,
+            "by": -21,
+            "ffx": 7,
+            "fbx": -7
+          }
+        }
+      ]
+    },
+    "path": "res://assets/vfx/seal-1.png"
+  },
+  "orb-1": {
+    "id": "geuseundae/equipment-strike",
+    "name": "Ghost equipment strike",
+    "fps": 25,
+    "loop": false,
+    "frames": 19,
+    "frameSize": [
+      256,
+      192
+    ],
+    "pivot": [
+      128,
+      128
+    ],
+    "columns": 4,
+    "act": {
+      "windup": 0.22,
+      "recovery": 0,
+      "onBody": false,
+      "targets": [],
+      "hits": [
+        {
+          "t": 0.04,
+          "freeze": 0.04,
+          "shake": 0.1,
+          "amp": 1,
+          "push": 1
+        }
+      ],
+      "poses": [
+        {
+          "t": -0.22,
+          "how": "smooth",
+          "pose": {
+            "crouch": 3,
+            "fx": 11,
+            "fy": -21,
+            "bx": 9,
+            "by": -21,
+            "ffx": 7,
+            "fbx": -7,
+            "lean": -4
+          }
+        },
+        {
+          "t": 0,
+          "how": "snap",
+          "pose": {
+            "crouch": 3,
+            "fx": 19,
+            "fy": -24,
+            "bx": 9,
+            "by": -21,
+            "ffx": 7,
+            "fbx": -7,
+            "lean": 4
+          }
+        },
+        {
+          "t": 0.5,
+          "how": "smooth",
+          "pose": {
+            "crouch": 3,
+            "fx": 11,
+            "fy": -21,
+            "bx": 9,
+            "by": -21,
+            "ffx": 7,
+            "fbx": -7
+          }
+        }
+      ]
+    },
+    "path": "res://assets/vfx/orb-1.png"
+  },
+  "slash-2": {
+    "id": "melee/double-slash",
+    "name": "Double slash",
+    "fps": 25,
+    "loop": false,
+    "frames": 19,
+    "frameSize": [
+      164,
+      108
+    ],
+    "pivot": [
+      44,
+      92
+    ],
+    "columns": 4,
+    "path": "res://assets/vfx/slash-2.png",
+    "source": "melee/double-slash",
+    "anchor": [
+      0,
+      0
+    ]
+  },
+  "bloom-2": {
+    "id": "geuseundae/equipment-strike",
+    "name": "Ghost equipment strike",
+    "fps": 25,
+    "loop": false,
+    "frames": 19,
+    "frameSize": [
+      256,
+      192
+    ],
+    "pivot": [
+      128,
+      128
+    ],
+    "columns": 4,
+    "act": {
+      "windup": 0.22,
+      "recovery": 0,
+      "onBody": false,
+      "targets": [],
+      "hits": [
+        {
+          "t": 0.04,
+          "freeze": 0.04,
+          "shake": 0.1,
+          "amp": 1,
+          "push": 1
+        }
+      ],
+      "poses": [
+        {
+          "t": -0.22,
+          "how": "smooth",
+          "pose": {
+            "crouch": 3,
+            "fx": 11,
+            "fy": -21,
+            "bx": 9,
+            "by": -21,
+            "ffx": 7,
+            "fbx": -7,
+            "lean": -4
+          }
+        },
+        {
+          "t": 0,
+          "how": "snap",
+          "pose": {
+            "crouch": 3,
+            "fx": 19,
+            "fy": -24,
+            "bx": 9,
+            "by": -21,
+            "ffx": 7,
+            "fbx": -7,
+            "lean": 4
+          }
+        },
+        {
+          "t": 0.5,
+          "how": "smooth",
+          "pose": {
+            "crouch": 3,
+            "fx": 11,
+            "fy": -21,
+            "bx": 9,
+            "by": -21,
+            "ffx": 7,
+            "fbx": -7
+          }
+        }
+      ]
+    },
+    "path": "res://assets/vfx/bloom-2.png"
+  },
+  "impact-2": {
+    "id": "impacts/blunt-hit",
+    "name": "Blunt hit",
+    "fps": 25,
+    "loop": false,
+    "frames": 19,
+    "frameSize": [
+      128,
+      88
+    ],
+    "pivot": [
+      64,
+      72
+    ],
+    "columns": 4,
+    "path": "res://assets/vfx/impact-2.png",
+    "source": "impacts/blunt-hit",
+    "anchor": [
+      0,
+      -24
+    ]
+  },
+  "seal-2": {
+    "id": "geuseundae/equipment-strike",
+    "name": "Ghost equipment strike",
+    "fps": 25,
+    "loop": false,
+    "frames": 19,
+    "frameSize": [
+      256,
+      192
+    ],
+    "pivot": [
+      128,
+      128
+    ],
+    "columns": 4,
+    "act": {
+      "windup": 0.22,
+      "recovery": 0,
+      "onBody": false,
+      "targets": [],
+      "hits": [
+        {
+          "t": 0.04,
+          "freeze": 0.04,
+          "shake": 0.1,
+          "amp": 1,
+          "push": 1
+        }
+      ],
+      "poses": [
+        {
+          "t": -0.22,
+          "how": "smooth",
+          "pose": {
+            "crouch": 3,
+            "fx": 11,
+            "fy": -21,
+            "bx": 9,
+            "by": -21,
+            "ffx": 7,
+            "fbx": -7,
+            "lean": -4
+          }
+        },
+        {
+          "t": 0,
+          "how": "snap",
+          "pose": {
+            "crouch": 3,
+            "fx": 19,
+            "fy": -24,
+            "bx": 9,
+            "by": -21,
+            "ffx": 7,
+            "fbx": -7,
+            "lean": 4
+          }
+        },
+        {
+          "t": 0.5,
+          "how": "smooth",
+          "pose": {
+            "crouch": 3,
+            "fx": 11,
+            "fy": -21,
+            "bx": 9,
+            "by": -21,
+            "ffx": 7,
+            "fbx": -7
+          }
+        }
+      ]
+    },
+    "path": "res://assets/vfx/seal-2.png"
+  },
+  "orb-2": {
+    "id": "geuseundae/equipment-strike",
+    "name": "Ghost equipment strike",
+    "fps": 25,
+    "loop": false,
+    "frames": 19,
+    "frameSize": [
+      256,
+      192
+    ],
+    "pivot": [
+      128,
+      128
+    ],
+    "columns": 4,
+    "act": {
+      "windup": 0.22,
+      "recovery": 0,
+      "onBody": false,
+      "targets": [],
+      "hits": [
+        {
+          "t": 0.04,
+          "freeze": 0.04,
+          "shake": 0.1,
+          "amp": 1,
+          "push": 1
+        }
+      ],
+      "poses": [
+        {
+          "t": -0.22,
+          "how": "smooth",
+          "pose": {
+            "crouch": 3,
+            "fx": 11,
+            "fy": -21,
+            "bx": 9,
+            "by": -21,
+            "ffx": 7,
+            "fbx": -7,
+            "lean": -4
+          }
+        },
+        {
+          "t": 0,
+          "how": "snap",
+          "pose": {
+            "crouch": 3,
+            "fx": 19,
+            "fy": -24,
+            "bx": 9,
+            "by": -21,
+            "ffx": 7,
+            "fbx": -7,
+            "lean": 4
+          }
+        },
+        {
+          "t": 0.5,
+          "how": "smooth",
+          "pose": {
+            "crouch": 3,
+            "fx": 11,
+            "fy": -21,
+            "bx": 9,
+            "by": -21,
+            "ffx": 7,
+            "fbx": -7
+          }
+        }
+      ]
+    },
+    "path": "res://assets/vfx/orb-2.png"
+  },
+  "slash-3": {
+    "id": "melee/scythe-reap",
+    "name": "Scythe reap",
+    "fps": 25,
+    "loop": false,
+    "frames": 19,
+    "frameSize": [
+      184,
+      116
+    ],
+    "pivot": [
+      84,
+      98
+    ],
+    "columns": 4,
+    "path": "res://assets/vfx/slash-3.png",
+    "source": "melee/scythe-reap",
+    "anchor": [
+      0,
+      0
+    ]
+  },
+  "bloom-3": {
+    "id": "shadow/dark-explosion",
+    "name": "Dark explosion",
+    "fps": 25,
+    "loop": false,
+    "frames": 19,
+    "frameSize": [
+      280,
+      248
+    ],
+    "pivot": [
+      140,
+      206
+    ],
+    "columns": 5,
+    "path": "res://assets/vfx/bloom-3.png",
+    "source": "shadow/dark-explosion",
+    "anchor": [
+      0,
+      -54
+    ]
+  },
+  "impact-3": {
+    "id": "impacts/crit-hit",
+    "name": "Critical hit",
+    "fps": 25,
+    "loop": false,
+    "frames": 19,
+    "frameSize": [
+      216,
+      136
+    ],
+    "pivot": [
+      84,
+      106
+    ],
+    "columns": 4,
+    "path": "res://assets/vfx/impact-3.png",
+    "source": "impacts/crit-hit",
+    "anchor": [
+      0,
+      -26
+    ]
+  },
+  "seal-3": {
+    "id": "shadow/hex-sigil",
+    "name": "Hex sigil",
+    "fps": 25,
+    "loop": false,
+    "frames": 19,
+    "frameSize": [
+      168,
+      128
+    ],
+    "pivot": [
+      84,
+      112
+    ],
+    "columns": 4,
+    "path": "res://assets/vfx/seal-3.png",
+    "source": "shadow/hex-sigil",
+    "anchor": [
+      0,
+      -50
+    ]
+  },
+  "orb-3": {
+    "id": "geuseundae/equipment-strike",
+    "name": "Ghost equipment strike",
+    "fps": 25,
+    "loop": false,
+    "frames": 19,
+    "frameSize": [
+      256,
+      192
+    ],
+    "pivot": [
+      128,
+      128
+    ],
+    "columns": 4,
+    "act": {
+      "windup": 0.22,
+      "recovery": 0,
+      "onBody": false,
+      "targets": [],
+      "hits": [
+        {
+          "t": 0.04,
+          "freeze": 0.04,
+          "shake": 0.1,
+          "amp": 1,
+          "push": 1
+        }
+      ],
+      "poses": [
+        {
+          "t": -0.22,
+          "how": "smooth",
+          "pose": {
+            "crouch": 3,
+            "fx": 11,
+            "fy": -21,
+            "bx": 9,
+            "by": -21,
+            "ffx": 7,
+            "fbx": -7,
+            "lean": -4
+          }
+        },
+        {
+          "t": 0,
+          "how": "snap",
+          "pose": {
+            "crouch": 3,
+            "fx": 19,
+            "fy": -24,
+            "bx": 9,
+            "by": -21,
+            "ffx": 7,
+            "fbx": -7,
+            "lean": 4
+          }
+        },
+        {
+          "t": 0.5,
+          "how": "smooth",
+          "pose": {
+            "crouch": 3,
+            "fx": 11,
+            "fy": -21,
+            "bx": 9,
+            "by": -21,
+            "ffx": 7,
+            "fbx": -7
+          }
+        }
+      ]
+    },
+    "path": "res://assets/vfx/orb-3.png"
+  },
+  "slash-4": {
+    "id": "melee/heavy-cleave",
+    "name": "Heavy cleave",
+    "fps": 25,
+    "loop": false,
+    "frames": 19,
+    "frameSize": [
+      208,
+      116
+    ],
+    "pivot": [
+      68,
+      96
+    ],
+    "columns": 4,
+    "path": "res://assets/vfx/slash-4.png",
+    "source": "melee/heavy-cleave",
+    "anchor": [
+      0,
+      0
+    ]
+  },
+  "bloom-4": {
+    "id": "shadow/dark-explosion",
+    "name": "Dark explosion",
+    "fps": 25,
+    "loop": false,
+    "frames": 19,
+    "frameSize": [
+      280,
+      248
+    ],
+    "pivot": [
+      140,
+      206
+    ],
+    "columns": 5,
+    "path": "res://assets/vfx/bloom-4.png",
+    "source": "shadow/dark-explosion",
+    "anchor": [
+      0,
+      -54
+    ]
+  },
+  "impact-4": {
+    "id": "impacts/crit-hit",
+    "name": "Critical hit",
+    "fps": 25,
+    "loop": false,
+    "frames": 19,
+    "frameSize": [
+      216,
+      136
+    ],
+    "pivot": [
+      84,
+      106
+    ],
+    "columns": 4,
+    "path": "res://assets/vfx/impact-4.png",
+    "source": "impacts/crit-hit",
+    "anchor": [
+      0,
+      -26
+    ]
+  },
+  "seal-4": {
+    "id": "shadow/hex-sigil",
+    "name": "Hex sigil",
+    "fps": 25,
+    "loop": false,
+    "frames": 19,
+    "frameSize": [
+      168,
+      128
+    ],
+    "pivot": [
+      84,
+      112
+    ],
+    "columns": 4,
+    "path": "res://assets/vfx/seal-4.png",
+    "source": "shadow/hex-sigil",
+    "anchor": [
+      0,
+      -50
+    ]
+  },
+  "orb-4": {
+    "id": "geuseundae/equipment-strike",
+    "name": "Ghost equipment strike",
+    "fps": 25,
+    "loop": false,
+    "frames": 19,
+    "frameSize": [
+      256,
+      192
+    ],
+    "pivot": [
+      128,
+      128
+    ],
+    "columns": 4,
+    "act": {
+      "windup": 0.22,
+      "recovery": 0,
+      "onBody": false,
+      "targets": [],
+      "hits": [
+        {
+          "t": 0.04,
+          "freeze": 0.04,
+          "shake": 0.1,
+          "amp": 1,
+          "push": 1
+        }
+      ],
+      "poses": [
+        {
+          "t": -0.22,
+          "how": "smooth",
+          "pose": {
+            "crouch": 3,
+            "fx": 11,
+            "fy": -21,
+            "bx": 9,
+            "by": -21,
+            "ffx": 7,
+            "fbx": -7,
+            "lean": -4
+          }
+        },
+        {
+          "t": 0,
+          "how": "snap",
+          "pose": {
+            "crouch": 3,
+            "fx": 19,
+            "fy": -24,
+            "bx": 9,
+            "by": -21,
+            "ffx": 7,
+            "fbx": -7,
+            "lean": 4
+          }
+        },
+        {
+          "t": 0.5,
+          "how": "smooth",
+          "pose": {
+            "crouch": 3,
+            "fx": 11,
+            "fy": -21,
+            "bx": 9,
+            "by": -21,
+            "ffx": 7,
+            "fbx": -7
+          }
+        }
+      ]
+    },
+    "path": "res://assets/vfx/orb-4.png"
+  },
+  "fist-4": {
+    "id": "geuseundae/shadow-fist",
+    "name": "Duo shadow fist",
+    "fps": 25,
+    "loop": false,
+    "frames": 19,
+    "frameSize": [
+      288,
+      176
+    ],
+    "pivot": [
+      116,
+      132
+    ],
+    "columns": 4,
+    "path": "res://assets/vfx/fist-4.png",
+    "source": "geuseundae/shadow-fist",
+    "anchor": [
+      0,
+      0
+    ]
+  },
+  "tiger-4": {
+    "id": "geuseundae/equipment-strike",
+    "name": "Ghost equipment strike",
+    "fps": 25,
+    "loop": false,
+    "frames": 19,
+    "frameSize": [
+      256,
+      192
+    ],
+    "pivot": [
+      128,
+      128
+    ],
+    "columns": 4,
+    "act": {
+      "windup": 0.22,
+      "recovery": 0,
+      "onBody": false,
+      "targets": [],
+      "hits": [
+        {
+          "t": 0.04,
+          "freeze": 0.04,
+          "shake": 0.1,
+          "amp": 1,
+          "push": 1
+        }
+      ],
+      "poses": [
+        {
+          "t": -0.22,
+          "how": "smooth",
+          "pose": {
+            "crouch": 3,
+            "fx": 11,
+            "fy": -21,
+            "bx": 9,
+            "by": -21,
+            "ffx": 7,
+            "fbx": -7,
+            "lean": -4
+          }
+        },
+        {
+          "t": 0,
+          "how": "snap",
+          "pose": {
+            "crouch": 3,
+            "fx": 19,
+            "fy": -24,
+            "bx": 9,
+            "by": -21,
+            "ffx": 7,
+            "fbx": -7,
+            "lean": 4
+          }
+        },
+        {
+          "t": 0.5,
+          "how": "smooth",
+          "pose": {
+            "crouch": 3,
+            "fx": 11,
+            "fy": -21,
+            "bx": 9,
+            "by": -21,
+            "ffx": 7,
+            "fbx": -7
+          }
+        }
+      ]
+    },
+    "path": "res://assets/vfx/tiger-4.png"
+  },
+  "beam-3": {
+    "id": "arcane/arcane-beam",
+    "name": "Arcane beam",
+    "fps": 25,
+    "loop": false,
+    "frames": 19,
+    "frameSize": [
+      264,
+      100
+    ],
+    "pivot": [
+      26,
+      84
+    ],
+    "columns": 3,
+    "path": "res://assets/vfx/beam-3.png",
+    "source": "arcane/arcane-beam",
+    "anchor": [
+      15,
+      -24
+    ]
+  }
+}

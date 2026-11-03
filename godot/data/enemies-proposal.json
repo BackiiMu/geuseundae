@@ -1,0 +1,11 @@
+{
+  "status": "proposal_not_implemented",
+  "balance_version": 1,
+  "baseline": {"songaksi_hp":60,"comparison_heart_hp":100,"player_attack_damage":10,"player_attack_interval_seconds":0.45,"player_attack_range_px":128,"hurt_invulnerability_seconds":0.65},
+  "enemies": {
+    "exorcist_warrior":{"name":"퇴마 무사","phase":1,"hp":30,"attack_damage":8,"move_speed":105,"attack_range_px":48,"windup_seconds":0.45,"active_seconds":0.12,"recovery_seconds":0.6,"min_attack_start_interval_seconds":1.6,"behavior":"Approach on reachable terrain, stop and telegraph a single locked-direction swing. Avoid edges. No contact damage."},
+    "talisman_adept":{"name":"부적 도사","phase":1,"hp":20,"attack_damage":6,"move_speed":80,"preferred_distance_px":[220,320],"projectile_speed":220,"projectile_lifetime_seconds":2.0,"windup_seconds":0.7,"recovery_seconds":0.5,"min_attack_start_interval_seconds":2.4,"behavior":"Keep distance where terrain permits; fire one non-homing talisman at the aim position locked at release. Require line of sight and visible warning. No contact damage."},
+    "monk":{"name":"목탁 승려","phase":2,"hp":60,"attack_damage":12,"move_speed":65,"attack_range_px":70,"windup_seconds":0.9,"active_seconds":0.15,"recovery_seconds":1.0,"min_attack_start_interval_seconds":2.8,"behavior":"Slow approach and heavy close-range strike; no frontal immunity in first test."},
+    "bell_shaman":{"name":"방울 무당","phase":2,"hp":30,"attack_damage":0,"move_speed":70,"support_radius_px":220,"windup_seconds":1.2,"support_interval_seconds":6,"ally_shield_hp":10,"shield_duration_seconds":6,"shield_stacking":false,"behavior":"Stay behind allies and apply a small non-stacking shield after an interruptible chant; no summoning in first test."}
+  }
+}

@@ -1,0 +1,15 @@
+.DS_Store
+builds/
+playtest/
+.godot/
+**/node_modules/
+vendor/pixelfx/records/
+*.log
+*.tmp
+.env
+.env.*
+export_credentials.cfg
+*.keystore
+*.jks
+*.p12
+*.mobileprovision

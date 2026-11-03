@@ -1,0 +1,13 @@
+# 맵 시안 002
+
+내장 이미지 생성 도구로 기존 맵의 디테일을 줄이고, 넓고 높은 횡스크롤 공간으로 재설계했다.
+
+- 이미지: assets/maps/haunted-courtyard-v2.png
+- 카메라 미리보기: map-preview.html
+- 대문 → 앞마당과 우물 → 본채 하층 및 위층 → 뒤뜰과 신당.
+- 미리보기는 맵 너비의 1/3을 표시한다. 3:1 맵 비율 기준 세계 크기는 약 화면 가로 3개, 세로 1.78개다.
+- 캐릭터와 몹은 포함하지 않는다. 충돌 및 점프 가능성 검증 전의 시각 시안이다.
+
+## 생성 프롬프트
+
+Use case: stylized-concept. Create a NEW revised map design using attached image only as Korean haunted courtyard mood reference. User says prior art far too detailed: wants simple chunky readable low-resolution pixel art comparable to a modest indie side-scrolling roguelite, NOT an elaborate illustration. ENVIRONMENT ONLY, no characters or enemies. Generate a VERY WIDE panoramic 3:1 complete side-scrolling level overview (not a single fixed-camera courtyard composition). This map is several camera screens long, and roughly two camera screens high. Different connected spaces left to right: ruined Korean gate, open fighting courtyard with stone well, CUTAWAY interior of abandoned Korean hanok with lower floor and upper wood balcony, raised rear garden and exit shrine. Strict orthographic SIDE VIEW platform game tiles, not isometric or 3D perspective. Repeated 16x16 looking tiles, visibly chunky pixel clusters, limited 20-24 colors, 2-3 hard color shades per material, minimal texturing. Think actual 480x160-ish native game art scaled nearest-neighbor, square pixels throughout, no fine line illustration. Small repetitive roof-tile shapes, chunky beams, flat simple walls and dark openings. Environment architecture must be proportionally SMALL relative to the whole map so several encounter spaces fit across image. Strong immediately readable collision silhouettes: long walkable lower route at ~75% image height with a few short jumps, staggered platforms at middle height with plausible jump gaps, upper balcony reached from courtyard ledges. Dark solid earth/stone below platforms; lighter crisp gray-green top edge on walkable tiles. Ample dark negative space for movement and combat across TWO vertical tiers. Foreground opaque collision tiles clearly distinct from dimmer background hanok walls. Distant mountain/pine silhouettes very simple and subdued. Preserve Korean dark folklore atmosphere, indigo-charcoal and muted jade, sparse amber lanterns and tiny faded vermilion talismans. No central hero building filling the whole image; this is a traversable long level with multiple connected rooms and camera panning, not a postcard. No HUD, text, camera boxes, labels, people, monsters, animals, realistic detailed foliage, soft painterly shading, gradients, microtexture, watermarks. Fill the whole extra-wide frame with map art.

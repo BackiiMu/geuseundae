@@ -1,0 +1,78 @@
+{
+  "frames": {
+    "mudang_0": {
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "w": 64,
+        "h": 64
+      },
+      "duration": 125
+    },
+    "mudang_1": {
+      "frame": {
+        "x": 64,
+        "y": 0,
+        "w": 64,
+        "h": 64
+      },
+      "duration": 125
+    },
+    "mudang_2": {
+      "frame": {
+        "x": 128,
+        "y": 0,
+        "w": 64,
+        "h": 64
+      },
+      "duration": 125
+    },
+    "mudang_3": {
+      "frame": {
+        "x": 192,
+        "y": 0,
+        "w": 64,
+        "h": 64
+      },
+      "duration": 125
+    },
+    "mudang_4": {
+      "frame": {
+        "x": 256,
+        "y": 0,
+        "w": 64,
+        "h": 64
+      },
+      "duration": 125
+    },
+    "mudang_5": {
+      "frame": {
+        "x": 320,
+        "y": 0,
+        "w": 64,
+        "h": 64
+      },
+      "duration": 125
+    }
+  },
+  "meta": {
+    "image": "mudang.png",
+    "size": {
+      "w": 384,
+      "h": 64
+    },
+    "scale": "1",
+    "frameTags": [
+      {
+        "name": "idle",
+        "from": 0,
+        "to": 5,
+        "direction": "forward"
+      }
+    ],
+    "pivot": {
+      "x": 32,
+      "y": 55
+    }
+  }
+}

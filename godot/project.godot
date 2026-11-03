@@ -1,0 +1,28 @@
+config_version=5
+
+[application]
+config/name="그슨대 — 흉가 탐색"
+run/main_scene="res://scenes/village.tscn"
+config/features=PackedStringArray("4.3", "GL Compatibility")
+
+[display]
+window/size/viewport_width=768
+window/size/viewport_height=432
+window/size/window_width_override=640
+window/size/window_height_override=360
+window/stretch/mode="canvas_items"
+window/handheld/orientation=0
+
+[rendering]
+textures/vram_compression/import_etc2_astc=true
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"
+textures/default_filters/use_nearest_mipmap_filter=false
+textures/canvas_textures/default_texture_filter=1
+environment/defaults/default_clear_color=Color(0.055, 0.07, 0.10, 1)
+
+[gui]
+theme/custom="res://assets/ui_theme.tres"
+
+[input_devices]
+pointing/emulate_mouse_from_touch=true

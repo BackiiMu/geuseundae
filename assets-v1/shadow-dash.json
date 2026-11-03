@@ -1,0 +1,132 @@
+{
+  "frames": {
+    "shadow-dash_0": {
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "w": 128,
+        "h": 96
+      },
+      "duration": 56
+    },
+    "shadow-dash_1": {
+      "frame": {
+        "x": 128,
+        "y": 0,
+        "w": 128,
+        "h": 96
+      },
+      "duration": 56
+    },
+    "shadow-dash_2": {
+      "frame": {
+        "x": 256,
+        "y": 0,
+        "w": 128,
+        "h": 96
+      },
+      "duration": 56
+    },
+    "shadow-dash_3": {
+      "frame": {
+        "x": 384,
+        "y": 0,
+        "w": 128,
+        "h": 96
+      },
+      "duration": 56
+    },
+    "shadow-dash_4": {
+      "frame": {
+        "x": 512,
+        "y": 0,
+        "w": 128,
+        "h": 96
+      },
+      "duration": 56
+    },
+    "shadow-dash_5": {
+      "frame": {
+        "x": 640,
+        "y": 0,
+        "w": 128,
+        "h": 96
+      },
+      "duration": 56
+    },
+    "shadow-dash_6": {
+      "frame": {
+        "x": 768,
+        "y": 0,
+        "w": 128,
+        "h": 96
+      },
+      "duration": 56
+    },
+    "shadow-dash_7": {
+      "frame": {
+        "x": 896,
+        "y": 0,
+        "w": 128,
+        "h": 96
+      },
+      "duration": 56
+    },
+    "shadow-dash_8": {
+      "frame": {
+        "x": 1024,
+        "y": 0,
+        "w": 128,
+        "h": 96
+      },
+      "duration": 56
+    },
+    "shadow-dash_9": {
+      "frame": {
+        "x": 1152,
+        "y": 0,
+        "w": 128,
+        "h": 96
+      },
+      "duration": 56
+    },
+    "shadow-dash_10": {
+      "frame": {
+        "x": 1280,
+        "y": 0,
+        "w": 128,
+        "h": 96
+      },
+      "duration": 56
+    },
+    "shadow-dash_11": {
+      "frame": {
+        "x": 1408,
+        "y": 0,
+        "w": 128,
+        "h": 96
+      },
+      "duration": 56
+    }
+  },
+  "meta": {
+    "image": "shadow-dash.png",
+    "size": {
+      "w": 1536,
+      "h": 96
+    },
+    "scale": "1",
+    "frameTags": [
+      {
+        "name": "effect",
+        "from": 0,
+        "to": 11,
+        "direction": "forward"
+      }
+    ],
+    "pivot": {
+      "x": 64,
+      "y": 68
+    }
+  }
+}

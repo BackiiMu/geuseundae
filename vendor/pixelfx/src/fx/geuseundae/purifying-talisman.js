@@ -1,0 +1,6 @@
+import {fit,clamp,ease,sparkle,READY} from '../../core/index.js';
+export const meta={name:'Purifying paper',desc:'A vermilion seal is thrown on folded rice paper, flaring and shedding warm ash.',tags:['holy','projectile','paper'],size:[224,128],origin:[58,104],duration:1.6,fps:30,loop:false,bg:'ground',options:{palette:['#391e2c','#743841','#b9504e','#d89965','#dfc58b','#f3e7c2','#fff9e2'],seed:3}};
+export const act={target:{x:92},poses:[[-.35,{...READY,fx:-7,fy:-30,lean:-4}],[0,{...READY,fx:18,fy:-25,lean:5},'snap'],[.5,READY],[1.6,READY]],hits:[{t:.5,stop:.08,shake:.12,amp:1,push:2,skin:'holy'}]};
+export function draw(p,t,o){if(t>=1.55)return;const C=fit(o.palette,7),q=clamp(t/.5),x=10+q*82,y=-26-Math.sin(q*Math.PI)*8,fade=1-clamp((t-.55));
+if(t<.52){p.poly([[x-4,y-8],[x+4,y-7],[x+3,y+7],[x-4,y+8]],C[5]);p.line(x,y-5,x,y+5,C[2]);p.line(x-2,y-2,x+2,y-2,C[2]);p.line(x-2,y+2,x+2,y+2,C[2]);p.glow(x,y,16,C[4],.24);for(let j=1;j<6;j++)p.line(x-j*5,y+3,x-j*5-2,y+3,C[3],1-j/6);}
+if(t>=.5){const a=t-.5,r=5+ease.outExpo(clamp(a/.35))*24;p.glow(92,-26,30,C[4],.3*fade);if(a<.12)sparkle(p,92,-26,14*(1-a/.12),C[6],C[3],.3);p.ring(92,-26,r,1,C[4],fade*fade*.45);for(let j=0;j<18;j++){const ang=j*2.399,xx=92+Math.cos(ang)*a*36,yy=-26+Math.sin(ang)*a*30+a*a*26;p.rect(xx,yy,j%3===0?2:1,j%4===0?3:1,C[3+j%3],fade*fade);}}}

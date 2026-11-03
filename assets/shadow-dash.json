@@ -1,0 +1,999 @@
+{
+ "frames": [
+  {
+   "filename": "shadow-dash 0",
+   "frame": {
+    "x": 0,
+    "y": 0,
+    "w": 248,
+    "h": 112
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 248,
+    "h": 112
+   },
+   "sourceSize": {
+    "w": 248,
+    "h": 112
+   },
+   "duration": 33
+  },
+  {
+   "filename": "shadow-dash 1",
+   "frame": {
+    "x": 248,
+    "y": 0,
+    "w": 248,
+    "h": 112
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 248,
+    "h": 112
+   },
+   "sourceSize": {
+    "w": 248,
+    "h": 112
+   },
+   "duration": 33
+  },
+  {
+   "filename": "shadow-dash 2",
+   "frame": {
+    "x": 496,
+    "y": 0,
+    "w": 248,
+    "h": 112
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 248,
+    "h": 112
+   },
+   "sourceSize": {
+    "w": 248,
+    "h": 112
+   },
+   "duration": 33
+  },
+  {
+   "filename": "shadow-dash 3",
+   "frame": {
+    "x": 744,
+    "y": 0,
+    "w": 248,
+    "h": 112
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 248,
+    "h": 112
+   },
+   "sourceSize": {
+    "w": 248,
+    "h": 112
+   },
+   "duration": 33
+  },
+  {
+   "filename": "shadow-dash 4",
+   "frame": {
+    "x": 992,
+    "y": 0,
+    "w": 248,
+    "h": 112
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 248,
+    "h": 112
+   },
+   "sourceSize": {
+    "w": 248,
+    "h": 112
+   },
+   "duration": 33
+  },
+  {
+   "filename": "shadow-dash 5",
+   "frame": {
+    "x": 0,
+    "y": 112,
+    "w": 248,
+    "h": 112
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 248,
+    "h": 112
+   },
+   "sourceSize": {
+    "w": 248,
+    "h": 112
+   },
+   "duration": 33
+  },
+  {
+   "filename": "shadow-dash 6",
+   "frame": {
+    "x": 248,
+    "y": 112,
+    "w": 248,
+    "h": 112
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 248,
+    "h": 112
+   },
+   "sourceSize": {
+    "w": 248,
+    "h": 112
+   },
+   "duration": 33
+  },
+  {
+   "filename": "shadow-dash 7",
+   "frame": {
+    "x": 496,
+    "y": 112,
+    "w": 248,
+    "h": 112
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 248,
+    "h": 112
+   },
+   "sourceSize": {
+    "w": 248,
+    "h": 112
+   },
+   "duration": 33
+  },
+  {
+   "filename": "shadow-dash 8",
+   "frame": {
+    "x": 744,
+    "y": 112,
+    "w": 248,
+    "h": 112
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 248,
+    "h": 112
+   },
+   "sourceSize": {
+    "w": 248,
+    "h": 112
+   },
+   "duration": 33
+  },
+  {
+   "filename": "shadow-dash 9",
+   "frame": {
+    "x": 992,
+    "y": 112,
+    "w": 248,
+    "h": 112
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 248,
+    "h": 112
+   },
+   "sourceSize": {
+    "w": 248,
+    "h": 112
+   },
+   "duration": 33
+  },
+  {
+   "filename": "shadow-dash 10",
+   "frame": {
+    "x": 0,
+    "y": 224,
+    "w": 248,
+    "h": 112
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 248,
+    "h": 112
+   },
+   "sourceSize": {
+    "w": 248,
+    "h": 112
+   },
+   "duration": 33
+  },
+  {
+   "filename": "shadow-dash 11",
+   "frame": {
+    "x": 248,
+    "y": 224,
+    "w": 248,
+    "h": 112
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 248,
+    "h": 112
+   },
+   "sourceSize": {
+    "w": 248,
+    "h": 112
+   },
+   "duration": 33
+  },
+  {
+   "filename": "shadow-dash 12",
+   "frame": {
+    "x": 496,
+    "y": 224,
+    "w": 248,
+    "h": 112
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 248,
+    "h": 112
+   },
+   "sourceSize": {
+    "w": 248,
+    "h": 112
+   },
+   "duration": 33
+  },
+  {
+   "filename": "shadow-dash 13",
+   "frame": {
+    "x": 744,
+    "y": 224,
+    "w": 248,
+    "h": 112
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 248,
+    "h": 112
+   },
+   "sourceSize": {
+    "w": 248,
+    "h": 112
+   },
+   "duration": 33
+  },
+  {
+   "filename": "shadow-dash 14",
+   "frame": {
+    "x": 992,
+    "y": 224,
+    "w": 248,
+    "h": 112
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 248,
+    "h": 112
+   },
+   "sourceSize": {
+    "w": 248,
+    "h": 112
+   },
+   "duration": 33
+  },
+  {
+   "filename": "shadow-dash 15",
+   "frame": {
+    "x": 0,
+    "y": 336,
+    "w": 248,
+    "h": 112
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 248,
+    "h": 112
+   },
+   "sourceSize": {
+    "w": 248,
+    "h": 112
+   },
+   "duration": 33
+  },
+  {
+   "filename": "shadow-dash 16",
+   "frame": {
+    "x": 248,
+    "y": 336,
+    "w": 248,
+    "h": 112
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 248,
+    "h": 112
+   },
+   "sourceSize": {
+    "w": 248,
+    "h": 112
+   },
+   "duration": 33
+  },
+  {
+   "filename": "shadow-dash 17",
+   "frame": {
+    "x": 496,
+    "y": 336,
+    "w": 248,
+    "h": 112
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 248,
+    "h": 112
+   },
+   "sourceSize": {
+    "w": 248,
+    "h": 112
+   },
+   "duration": 33
+  },
+  {
+   "filename": "shadow-dash 18",
+   "frame": {
+    "x": 744,
+    "y": 336,
+    "w": 248,
+    "h": 112
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 248,
+    "h": 112
+   },
+   "sourceSize": {
+    "w": 248,
+    "h": 112
+   },
+   "duration": 33
+  },
+  {
+   "filename": "shadow-dash 19",
+   "frame": {
+    "x": 992,
+    "y": 336,
+    "w": 248,
+    "h": 112
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 248,
+    "h": 112
+   },
+   "sourceSize": {
+    "w": 248,
+    "h": 112
+   },
+   "duration": 33
+  },
+  {
+   "filename": "shadow-dash 20",
+   "frame": {
+    "x": 0,
+    "y": 448,
+    "w": 248,
+    "h": 112
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 248,
+    "h": 112
+   },
+   "sourceSize": {
+    "w": 248,
+    "h": 112
+   },
+   "duration": 33
+  },
+  {
+   "filename": "shadow-dash 21",
+   "frame": {
+    "x": 248,
+    "y": 448,
+    "w": 248,
+    "h": 112
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 248,
+    "h": 112
+   },
+   "sourceSize": {
+    "w": 248,
+    "h": 112
+   },
+   "duration": 33
+  },
+  {
+   "filename": "shadow-dash 22",
+   "frame": {
+    "x": 496,
+    "y": 448,
+    "w": 248,
+    "h": 112
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 248,
+    "h": 112
+   },
+   "sourceSize": {
+    "w": 248,
+    "h": 112
+   },
+   "duration": 33
+  },
+  {
+   "filename": "shadow-dash 23",
+   "frame": {
+    "x": 744,
+    "y": 448,
+    "w": 248,
+    "h": 112
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 248,
+    "h": 112
+   },
+   "sourceSize": {
+    "w": 248,
+    "h": 112
+   },
+   "duration": 33
+  },
+  {
+   "filename": "shadow-dash 24",
+   "frame": {
+    "x": 992,
+    "y": 448,
+    "w": 248,
+    "h": 112
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 248,
+    "h": 112
+   },
+   "sourceSize": {
+    "w": 248,
+    "h": 112
+   },
+   "duration": 33
+  },
+  {
+   "filename": "shadow-dash 25",
+   "frame": {
+    "x": 0,
+    "y": 560,
+    "w": 248,
+    "h": 112
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 248,
+    "h": 112
+   },
+   "sourceSize": {
+    "w": 248,
+    "h": 112
+   },
+   "duration": 33
+  },
+  {
+   "filename": "shadow-dash 26",
+   "frame": {
+    "x": 248,
+    "y": 560,
+    "w": 248,
+    "h": 112
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 248,
+    "h": 112
+   },
+   "sourceSize": {
+    "w": 248,
+    "h": 112
+   },
+   "duration": 33
+  },
+  {
+   "filename": "shadow-dash 27",
+   "frame": {
+    "x": 496,
+    "y": 560,
+    "w": 248,
+    "h": 112
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 248,
+    "h": 112
+   },
+   "sourceSize": {
+    "w": 248,
+    "h": 112
+   },
+   "duration": 33
+  },
+  {
+   "filename": "shadow-dash 28",
+   "frame": {
+    "x": 744,
+    "y": 560,
+    "w": 248,
+    "h": 112
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 248,
+    "h": 112
+   },
+   "sourceSize": {
+    "w": 248,
+    "h": 112
+   },
+   "duration": 33
+  },
+  {
+   "filename": "shadow-dash 29",
+   "frame": {
+    "x": 992,
+    "y": 560,
+    "w": 248,
+    "h": 112
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 248,
+    "h": 112
+   },
+   "sourceSize": {
+    "w": 248,
+    "h": 112
+   },
+   "duration": 33
+  },
+  {
+   "filename": "shadow-dash 30",
+   "frame": {
+    "x": 0,
+    "y": 672,
+    "w": 248,
+    "h": 112
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 248,
+    "h": 112
+   },
+   "sourceSize": {
+    "w": 248,
+    "h": 112
+   },
+   "duration": 33
+  },
+  {
+   "filename": "shadow-dash 31",
+   "frame": {
+    "x": 248,
+    "y": 672,
+    "w": 248,
+    "h": 112
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 248,
+    "h": 112
+   },
+   "sourceSize": {
+    "w": 248,
+    "h": 112
+   },
+   "duration": 33
+  },
+  {
+   "filename": "shadow-dash 32",
+   "frame": {
+    "x": 496,
+    "y": 672,
+    "w": 248,
+    "h": 112
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 248,
+    "h": 112
+   },
+   "sourceSize": {
+    "w": 248,
+    "h": 112
+   },
+   "duration": 33
+  },
+  {
+   "filename": "shadow-dash 33",
+   "frame": {
+    "x": 744,
+    "y": 672,
+    "w": 248,
+    "h": 112
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 248,
+    "h": 112
+   },
+   "sourceSize": {
+    "w": 248,
+    "h": 112
+   },
+   "duration": 33
+  },
+  {
+   "filename": "shadow-dash 34",
+   "frame": {
+    "x": 992,
+    "y": 672,
+    "w": 248,
+    "h": 112
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 248,
+    "h": 112
+   },
+   "sourceSize": {
+    "w": 248,
+    "h": 112
+   },
+   "duration": 33
+  },
+  {
+   "filename": "shadow-dash 35",
+   "frame": {
+    "x": 0,
+    "y": 784,
+    "w": 248,
+    "h": 112
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 248,
+    "h": 112
+   },
+   "sourceSize": {
+    "w": 248,
+    "h": 112
+   },
+   "duration": 33
+  },
+  {
+   "filename": "shadow-dash 36",
+   "frame": {
+    "x": 248,
+    "y": 784,
+    "w": 248,
+    "h": 112
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 248,
+    "h": 112
+   },
+   "sourceSize": {
+    "w": 248,
+    "h": 112
+   },
+   "duration": 33
+  },
+  {
+   "filename": "shadow-dash 37",
+   "frame": {
+    "x": 496,
+    "y": 784,
+    "w": 248,
+    "h": 112
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 248,
+    "h": 112
+   },
+   "sourceSize": {
+    "w": 248,
+    "h": 112
+   },
+   "duration": 33
+  },
+  {
+   "filename": "shadow-dash 38",
+   "frame": {
+    "x": 744,
+    "y": 784,
+    "w": 248,
+    "h": 112
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 248,
+    "h": 112
+   },
+   "sourceSize": {
+    "w": 248,
+    "h": 112
+   },
+   "duration": 33
+  },
+  {
+   "filename": "shadow-dash 39",
+   "frame": {
+    "x": 992,
+    "y": 784,
+    "w": 248,
+    "h": 112
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 248,
+    "h": 112
+   },
+   "sourceSize": {
+    "w": 248,
+    "h": 112
+   },
+   "duration": 33
+  }
+ ],
+ "meta": {
+  "app": "https://github.com/patch-gg/pixelfx",
+  "version": "1",
+  "image": "shadow-dash.png",
+  "format": "RGBA8888",
+  "size": {
+   "w": 1240,
+   "h": 896
+  },
+  "scale": "1",
+  "frameTags": [
+   {
+    "name": "shadow-dash",
+    "from": 0,
+    "to": 39,
+    "direction": "forward"
+   }
+  ],
+  "pixelfx": {
+   "id": "geuseundae/shadow-dash",
+   "name": "Shadow seep",
+   "fps": 30,
+   "loop": false,
+   "frames": 40,
+   "frameSize": [
+    248,
+    112
+   ],
+   "pivot": [
+    90,
+    94
+   ],
+   "columns": 5,
+   "act": {
+    "windup": 0.25,
+    "recovery": 0,
+    "onBody": false,
+    "targets": [],
+    "hits": [],
+    "poses": [
+     {
+      "t": -0.25,
+      "how": "smooth",
+      "pose": {
+       "crouch": 6,
+       "fx": 11,
+       "fy": -21,
+       "bx": 9,
+       "by": -21,
+       "ffx": 7,
+       "fbx": -7,
+       "lean": -5
+      }
+     },
+     {
+      "t": 0,
+      "how": "snap",
+      "pose": {
+       "crouch": 12,
+       "fx": 11,
+       "fy": -21,
+       "bx": 9,
+       "by": -21,
+       "ffx": 7,
+       "fbx": -7,
+       "lean": 9
+      }
+     },
+     {
+      "t": 0.3,
+      "how": "smooth",
+      "pose": {
+       "crouch": 10,
+       "fx": 11,
+       "fy": -21,
+       "bx": 9,
+       "by": -21,
+       "ffx": 7,
+       "fbx": -7,
+       "x": 60,
+       "lean": 8
+      }
+     },
+     {
+      "t": 0.7,
+      "how": "smooth",
+      "pose": {
+       "crouch": 3,
+       "fx": 11,
+       "fy": -21,
+       "bx": 9,
+       "by": -21,
+       "ffx": 7,
+       "fbx": -7,
+       "x": 65
+      }
+     },
+     {
+      "t": 1.3,
+      "how": "smooth",
+      "pose": {
+       "crouch": 3,
+       "fx": 11,
+       "fy": -21,
+       "bx": 9,
+       "by": -21,
+       "ffx": 7,
+       "fbx": -7,
+       "x": 65
+      }
+     }
+    ]
+   }
+  }
+ }
+}

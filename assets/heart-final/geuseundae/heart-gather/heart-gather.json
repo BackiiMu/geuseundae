@@ -1,0 +1,2529 @@
+{
+ "frames": [
+  {
+   "filename": "heart-gather 0",
+   "frame": {
+    "x": 0,
+    "y": 0,
+    "w": 480,
+    "h": 260
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 480,
+    "h": 260
+   },
+   "sourceSize": {
+    "w": 480,
+    "h": 260
+   },
+   "duration": 33
+  },
+  {
+   "filename": "heart-gather 1",
+   "frame": {
+    "x": 480,
+    "y": 0,
+    "w": 480,
+    "h": 260
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 480,
+    "h": 260
+   },
+   "sourceSize": {
+    "w": 480,
+    "h": 260
+   },
+   "duration": 33
+  },
+  {
+   "filename": "heart-gather 2",
+   "frame": {
+    "x": 960,
+    "y": 0,
+    "w": 480,
+    "h": 260
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 480,
+    "h": 260
+   },
+   "sourceSize": {
+    "w": 480,
+    "h": 260
+   },
+   "duration": 33
+  },
+  {
+   "filename": "heart-gather 3",
+   "frame": {
+    "x": 1440,
+    "y": 0,
+    "w": 480,
+    "h": 260
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 480,
+    "h": 260
+   },
+   "sourceSize": {
+    "w": 480,
+    "h": 260
+   },
+   "duration": 33
+  },
+  {
+   "filename": "heart-gather 4",
+   "frame": {
+    "x": 1920,
+    "y": 0,
+    "w": 480,
+    "h": 260
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 480,
+    "h": 260
+   },
+   "sourceSize": {
+    "w": 480,
+    "h": 260
+   },
+   "duration": 33
+  },
+  {
+   "filename": "heart-gather 5",
+   "frame": {
+    "x": 2400,
+    "y": 0,
+    "w": 480,
+    "h": 260
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 480,
+    "h": 260
+   },
+   "sourceSize": {
+    "w": 480,
+    "h": 260
+   },
+   "duration": 33
+  },
+  {
+   "filename": "heart-gather 6",
+   "frame": {
+    "x": 2880,
+    "y": 0,
+    "w": 480,
+    "h": 260
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 480,
+    "h": 260
+   },
+   "sourceSize": {
+    "w": 480,
+    "h": 260
+   },
+   "duration": 33
+  },
+  {
+   "filename": "heart-gather 7",
+   "frame": {
+    "x": 3360,
+    "y": 0,
+    "w": 480,
+    "h": 260
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 480,
+    "h": 260
+   },
+   "sourceSize": {
+    "w": 480,
+    "h": 260
+   },
+   "duration": 33
+  },
+  {
+   "filename": "heart-gather 8",
+   "frame": {
+    "x": 0,
+    "y": 260,
+    "w": 480,
+    "h": 260
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 480,
+    "h": 260
+   },
+   "sourceSize": {
+    "w": 480,
+    "h": 260
+   },
+   "duration": 33
+  },
+  {
+   "filename": "heart-gather 9",
+   "frame": {
+    "x": 480,
+    "y": 260,
+    "w": 480,
+    "h": 260
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 480,
+    "h": 260
+   },
+   "sourceSize": {
+    "w": 480,
+    "h": 260
+   },
+   "duration": 33
+  },
+  {
+   "filename": "heart-gather 10",
+   "frame": {
+    "x": 960,
+    "y": 260,
+    "w": 480,
+    "h": 260
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 480,
+    "h": 260
+   },
+   "sourceSize": {
+    "w": 480,
+    "h": 260
+   },
+   "duration": 33
+  },
+  {
+   "filename": "heart-gather 11",
+   "frame": {
+    "x": 1440,
+    "y": 260,
+    "w": 480,
+    "h": 260
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 480,
+    "h": 260
+   },
+   "sourceSize": {
+    "w": 480,
+    "h": 260
+   },
+   "duration": 33
+  },
+  {
+   "filename": "heart-gather 12",
+   "frame": {
+    "x": 1920,
+    "y": 260,
+    "w": 480,
+    "h": 260
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 480,
+    "h": 260
+   },
+   "sourceSize": {
+    "w": 480,
+    "h": 260
+   },
+   "duration": 33
+  },
+  {
+   "filename": "heart-gather 13",
+   "frame": {
+    "x": 2400,
+    "y": 260,
+    "w": 480,
+    "h": 260
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 480,
+    "h": 260
+   },
+   "sourceSize": {
+    "w": 480,
+    "h": 260
+   },
+   "duration": 33
+  },
+  {
+   "filename": "heart-gather 14",
+   "frame": {
+    "x": 2880,
+    "y": 260,
+    "w": 480,
+    "h": 260
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 480,
+    "h": 260
+   },
+   "sourceSize": {
+    "w": 480,
+    "h": 260
+   },
+   "duration": 33
+  },
+  {
+   "filename": "heart-gather 15",
+   "frame": {
+    "x": 3360,
+    "y": 260,
+    "w": 480,
+    "h": 260
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 480,
+    "h": 260
+   },
+   "sourceSize": {
+    "w": 480,
+    "h": 260
+   },
+   "duration": 33
+  },
+  {
+   "filename": "heart-gather 16",
+   "frame": {
+    "x": 0,
+    "y": 520,
+    "w": 480,
+    "h": 260
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 480,
+    "h": 260
+   },
+   "sourceSize": {
+    "w": 480,
+    "h": 260
+   },
+   "duration": 33
+  },
+  {
+   "filename": "heart-gather 17",
+   "frame": {
+    "x": 480,
+    "y": 520,
+    "w": 480,
+    "h": 260
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 480,
+    "h": 260
+   },
+   "sourceSize": {
+    "w": 480,
+    "h": 260
+   },
+   "duration": 33
+  },
+  {
+   "filename": "heart-gather 18",
+   "frame": {
+    "x": 960,
+    "y": 520,
+    "w": 480,
+    "h": 260
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 480,
+    "h": 260
+   },
+   "sourceSize": {
+    "w": 480,
+    "h": 260
+   },
+   "duration": 33
+  },
+  {
+   "filename": "heart-gather 19",
+   "frame": {
+    "x": 1440,
+    "y": 520,
+    "w": 480,
+    "h": 260
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 480,
+    "h": 260
+   },
+   "sourceSize": {
+    "w": 480,
+    "h": 260
+   },
+   "duration": 33
+  },
+  {
+   "filename": "heart-gather 20",
+   "frame": {
+    "x": 1920,
+    "y": 520,
+    "w": 480,
+    "h": 260
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 480,
+    "h": 260
+   },
+   "sourceSize": {
+    "w": 480,
+    "h": 260
+   },
+   "duration": 33
+  },
+  {
+   "filename": "heart-gather 21",
+   "frame": {
+    "x": 2400,
+    "y": 520,
+    "w": 480,
+    "h": 260
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 480,
+    "h": 260
+   },
+   "sourceSize": {
+    "w": 480,
+    "h": 260
+   },
+   "duration": 33
+  },
+  {
+   "filename": "heart-gather 22",
+   "frame": {
+    "x": 2880,
+    "y": 520,
+    "w": 480,
+    "h": 260
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 480,
+    "h": 260
+   },
+   "sourceSize": {
+    "w": 480,
+    "h": 260
+   },
+   "duration": 33
+  },
+  {
+   "filename": "heart-gather 23",
+   "frame": {
+    "x": 3360,
+    "y": 520,
+    "w": 480,
+    "h": 260
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 480,
+    "h": 260
+   },
+   "sourceSize": {
+    "w": 480,
+    "h": 260
+   },
+   "duration": 33
+  },
+  {
+   "filename": "heart-gather 24",
+   "frame": {
+    "x": 0,
+    "y": 780,
+    "w": 480,
+    "h": 260
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 480,
+    "h": 260
+   },
+   "sourceSize": {
+    "w": 480,
+    "h": 260
+   },
+   "duration": 33
+  },
+  {
+   "filename": "heart-gather 25",
+   "frame": {
+    "x": 480,
+    "y": 780,
+    "w": 480,
+    "h": 260
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 480,
+    "h": 260
+   },
+   "sourceSize": {
+    "w": 480,
+    "h": 260
+   },
+   "duration": 33
+  },
+  {
+   "filename": "heart-gather 26",
+   "frame": {
+    "x": 960,
+    "y": 780,
+    "w": 480,
+    "h": 260
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 480,
+    "h": 260
+   },
+   "sourceSize": {
+    "w": 480,
+    "h": 260
+   },
+   "duration": 33
+  },
+  {
+   "filename": "heart-gather 27",
+   "frame": {
+    "x": 1440,
+    "y": 780,
+    "w": 480,
+    "h": 260
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 480,
+    "h": 260
+   },
+   "sourceSize": {
+    "w": 480,
+    "h": 260
+   },
+   "duration": 33
+  },
+  {
+   "filename": "heart-gather 28",
+   "frame": {
+    "x": 1920,
+    "y": 780,
+    "w": 480,
+    "h": 260
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 480,
+    "h": 260
+   },
+   "sourceSize": {
+    "w": 480,
+    "h": 260
+   },
+   "duration": 33
+  },
+  {
+   "filename": "heart-gather 29",
+   "frame": {
+    "x": 2400,
+    "y": 780,
+    "w": 480,
+    "h": 260
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 480,
+    "h": 260
+   },
+   "sourceSize": {
+    "w": 480,
+    "h": 260
+   },
+   "duration": 33
+  },
+  {
+   "filename": "heart-gather 30",
+   "frame": {
+    "x": 2880,
+    "y": 780,
+    "w": 480,
+    "h": 260
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 480,
+    "h": 260
+   },
+   "sourceSize": {
+    "w": 480,
+    "h": 260
+   },
+   "duration": 33
+  },
+  {
+   "filename": "heart-gather 31",
+   "frame": {
+    "x": 3360,
+    "y": 780,
+    "w": 480,
+    "h": 260
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 480,
+    "h": 260
+   },
+   "sourceSize": {
+    "w": 480,
+    "h": 260
+   },
+   "duration": 33
+  },
+  {
+   "filename": "heart-gather 32",
+   "frame": {
+    "x": 0,
+    "y": 1040,
+    "w": 480,
+    "h": 260
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 480,
+    "h": 260
+   },
+   "sourceSize": {
+    "w": 480,
+    "h": 260
+   },
+   "duration": 33
+  },
+  {
+   "filename": "heart-gather 33",
+   "frame": {
+    "x": 480,
+    "y": 1040,
+    "w": 480,
+    "h": 260
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 480,
+    "h": 260
+   },
+   "sourceSize": {
+    "w": 480,
+    "h": 260
+   },
+   "duration": 33
+  },
+  {
+   "filename": "heart-gather 34",
+   "frame": {
+    "x": 960,
+    "y": 1040,
+    "w": 480,
+    "h": 260
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 480,
+    "h": 260
+   },
+   "sourceSize": {
+    "w": 480,
+    "h": 260
+   },
+   "duration": 33
+  },
+  {
+   "filename": "heart-gather 35",
+   "frame": {
+    "x": 1440,
+    "y": 1040,
+    "w": 480,
+    "h": 260
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 480,
+    "h": 260
+   },
+   "sourceSize": {
+    "w": 480,
+    "h": 260
+   },
+   "duration": 33
+  },
+  {
+   "filename": "heart-gather 36",
+   "frame": {
+    "x": 1920,
+    "y": 1040,
+    "w": 480,
+    "h": 260
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 480,
+    "h": 260
+   },
+   "sourceSize": {
+    "w": 480,
+    "h": 260
+   },
+   "duration": 33
+  },
+  {
+   "filename": "heart-gather 37",
+   "frame": {
+    "x": 2400,
+    "y": 1040,
+    "w": 480,
+    "h": 260
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 480,
+    "h": 260
+   },
+   "sourceSize": {
+    "w": 480,
+    "h": 260
+   },
+   "duration": 33
+  },
+  {
+   "filename": "heart-gather 38",
+   "frame": {
+    "x": 2880,
+    "y": 1040,
+    "w": 480,
+    "h": 260
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 480,
+    "h": 260
+   },
+   "sourceSize": {
+    "w": 480,
+    "h": 260
+   },
+   "duration": 33
+  },
+  {
+   "filename": "heart-gather 39",
+   "frame": {
+    "x": 3360,
+    "y": 1040,
+    "w": 480,
+    "h": 260
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 480,
+    "h": 260
+   },
+   "sourceSize": {
+    "w": 480,
+    "h": 260
+   },
+   "duration": 33
+  },
+  {
+   "filename": "heart-gather 40",
+   "frame": {
+    "x": 0,
+    "y": 1300,
+    "w": 480,
+    "h": 260
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 480,
+    "h": 260
+   },
+   "sourceSize": {
+    "w": 480,
+    "h": 260
+   },
+   "duration": 33
+  },
+  {
+   "filename": "heart-gather 41",
+   "frame": {
+    "x": 480,
+    "y": 1300,
+    "w": 480,
+    "h": 260
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 480,
+    "h": 260
+   },
+   "sourceSize": {
+    "w": 480,
+    "h": 260
+   },
+   "duration": 33
+  },
+  {
+   "filename": "heart-gather 42",
+   "frame": {
+    "x": 960,
+    "y": 1300,
+    "w": 480,
+    "h": 260
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 480,
+    "h": 260
+   },
+   "sourceSize": {
+    "w": 480,
+    "h": 260
+   },
+   "duration": 33
+  },
+  {
+   "filename": "heart-gather 43",
+   "frame": {
+    "x": 1440,
+    "y": 1300,
+    "w": 480,
+    "h": 260
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 480,
+    "h": 260
+   },
+   "sourceSize": {
+    "w": 480,
+    "h": 260
+   },
+   "duration": 33
+  },
+  {
+   "filename": "heart-gather 44",
+   "frame": {
+    "x": 1920,
+    "y": 1300,
+    "w": 480,
+    "h": 260
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 480,
+    "h": 260
+   },
+   "sourceSize": {
+    "w": 480,
+    "h": 260
+   },
+   "duration": 33
+  },
+  {
+   "filename": "heart-gather 45",
+   "frame": {
+    "x": 2400,
+    "y": 1300,
+    "w": 480,
+    "h": 260
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 480,
+    "h": 260
+   },
+   "sourceSize": {
+    "w": 480,
+    "h": 260
+   },
+   "duration": 33
+  },
+  {
+   "filename": "heart-gather 46",
+   "frame": {
+    "x": 2880,
+    "y": 1300,
+    "w": 480,
+    "h": 260
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 480,
+    "h": 260
+   },
+   "sourceSize": {
+    "w": 480,
+    "h": 260
+   },
+   "duration": 33
+  },
+  {
+   "filename": "heart-gather 47",
+   "frame": {
+    "x": 3360,
+    "y": 1300,
+    "w": 480,
+    "h": 260
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 480,
+    "h": 260
+   },
+   "sourceSize": {
+    "w": 480,
+    "h": 260
+   },
+   "duration": 33
+  },
+  {
+   "filename": "heart-gather 48",
+   "frame": {
+    "x": 0,
+    "y": 1560,
+    "w": 480,
+    "h": 260
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 480,
+    "h": 260
+   },
+   "sourceSize": {
+    "w": 480,
+    "h": 260
+   },
+   "duration": 33
+  },
+  {
+   "filename": "heart-gather 49",
+   "frame": {
+    "x": 480,
+    "y": 1560,
+    "w": 480,
+    "h": 260
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 480,
+    "h": 260
+   },
+   "sourceSize": {
+    "w": 480,
+    "h": 260
+   },
+   "duration": 33
+  },
+  {
+   "filename": "heart-gather 50",
+   "frame": {
+    "x": 960,
+    "y": 1560,
+    "w": 480,
+    "h": 260
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 480,
+    "h": 260
+   },
+   "sourceSize": {
+    "w": 480,
+    "h": 260
+   },
+   "duration": 33
+  },
+  {
+   "filename": "heart-gather 51",
+   "frame": {
+    "x": 1440,
+    "y": 1560,
+    "w": 480,
+    "h": 260
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 480,
+    "h": 260
+   },
+   "sourceSize": {
+    "w": 480,
+    "h": 260
+   },
+   "duration": 33
+  },
+  {
+   "filename": "heart-gather 52",
+   "frame": {
+    "x": 1920,
+    "y": 1560,
+    "w": 480,
+    "h": 260
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 480,
+    "h": 260
+   },
+   "sourceSize": {
+    "w": 480,
+    "h": 260
+   },
+   "duration": 33
+  },
+  {
+   "filename": "heart-gather 53",
+   "frame": {
+    "x": 2400,
+    "y": 1560,
+    "w": 480,
+    "h": 260
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 480,
+    "h": 260
+   },
+   "sourceSize": {
+    "w": 480,
+    "h": 260
+   },
+   "duration": 33
+  },
+  {
+   "filename": "heart-gather 54",
+   "frame": {
+    "x": 2880,
+    "y": 1560,
+    "w": 480,
+    "h": 260
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 480,
+    "h": 260
+   },
+   "sourceSize": {
+    "w": 480,
+    "h": 260
+   },
+   "duration": 33
+  },
+  {
+   "filename": "heart-gather 55",
+   "frame": {
+    "x": 3360,
+    "y": 1560,
+    "w": 480,
+    "h": 260
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 480,
+    "h": 260
+   },
+   "sourceSize": {
+    "w": 480,
+    "h": 260
+   },
+   "duration": 33
+  },
+  {
+   "filename": "heart-gather 56",
+   "frame": {
+    "x": 0,
+    "y": 1820,
+    "w": 480,
+    "h": 260
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 480,
+    "h": 260
+   },
+   "sourceSize": {
+    "w": 480,
+    "h": 260
+   },
+   "duration": 33
+  },
+  {
+   "filename": "heart-gather 57",
+   "frame": {
+    "x": 480,
+    "y": 1820,
+    "w": 480,
+    "h": 260
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 480,
+    "h": 260
+   },
+   "sourceSize": {
+    "w": 480,
+    "h": 260
+   },
+   "duration": 33
+  },
+  {
+   "filename": "heart-gather 58",
+   "frame": {
+    "x": 960,
+    "y": 1820,
+    "w": 480,
+    "h": 260
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 480,
+    "h": 260
+   },
+   "sourceSize": {
+    "w": 480,
+    "h": 260
+   },
+   "duration": 33
+  },
+  {
+   "filename": "heart-gather 59",
+   "frame": {
+    "x": 1440,
+    "y": 1820,
+    "w": 480,
+    "h": 260
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 480,
+    "h": 260
+   },
+   "sourceSize": {
+    "w": 480,
+    "h": 260
+   },
+   "duration": 33
+  },
+  {
+   "filename": "heart-gather 60",
+   "frame": {
+    "x": 1920,
+    "y": 1820,
+    "w": 480,
+    "h": 260
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 480,
+    "h": 260
+   },
+   "sourceSize": {
+    "w": 480,
+    "h": 260
+   },
+   "duration": 33
+  },
+  {
+   "filename": "heart-gather 61",
+   "frame": {
+    "x": 2400,
+    "y": 1820,
+    "w": 480,
+    "h": 260
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 480,
+    "h": 260
+   },
+   "sourceSize": {
+    "w": 480,
+    "h": 260
+   },
+   "duration": 33
+  },
+  {
+   "filename": "heart-gather 62",
+   "frame": {
+    "x": 2880,
+    "y": 1820,
+    "w": 480,
+    "h": 260
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 480,
+    "h": 260
+   },
+   "sourceSize": {
+    "w": 480,
+    "h": 260
+   },
+   "duration": 33
+  },
+  {
+   "filename": "heart-gather 63",
+   "frame": {
+    "x": 3360,
+    "y": 1820,
+    "w": 480,
+    "h": 260
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 480,
+    "h": 260
+   },
+   "sourceSize": {
+    "w": 480,
+    "h": 260
+   },
+   "duration": 33
+  },
+  {
+   "filename": "heart-gather 64",
+   "frame": {
+    "x": 0,
+    "y": 2080,
+    "w": 480,
+    "h": 260
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 480,
+    "h": 260
+   },
+   "sourceSize": {
+    "w": 480,
+    "h": 260
+   },
+   "duration": 33
+  },
+  {
+   "filename": "heart-gather 65",
+   "frame": {
+    "x": 480,
+    "y": 2080,
+    "w": 480,
+    "h": 260
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 480,
+    "h": 260
+   },
+   "sourceSize": {
+    "w": 480,
+    "h": 260
+   },
+   "duration": 33
+  },
+  {
+   "filename": "heart-gather 66",
+   "frame": {
+    "x": 960,
+    "y": 2080,
+    "w": 480,
+    "h": 260
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 480,
+    "h": 260
+   },
+   "sourceSize": {
+    "w": 480,
+    "h": 260
+   },
+   "duration": 33
+  },
+  {
+   "filename": "heart-gather 67",
+   "frame": {
+    "x": 1440,
+    "y": 2080,
+    "w": 480,
+    "h": 260
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 480,
+    "h": 260
+   },
+   "sourceSize": {
+    "w": 480,
+    "h": 260
+   },
+   "duration": 33
+  },
+  {
+   "filename": "heart-gather 68",
+   "frame": {
+    "x": 1920,
+    "y": 2080,
+    "w": 480,
+    "h": 260
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 480,
+    "h": 260
+   },
+   "sourceSize": {
+    "w": 480,
+    "h": 260
+   },
+   "duration": 33
+  },
+  {
+   "filename": "heart-gather 69",
+   "frame": {
+    "x": 2400,
+    "y": 2080,
+    "w": 480,
+    "h": 260
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 480,
+    "h": 260
+   },
+   "sourceSize": {
+    "w": 480,
+    "h": 260
+   },
+   "duration": 33
+  },
+  {
+   "filename": "heart-gather 70",
+   "frame": {
+    "x": 2880,
+    "y": 2080,
+    "w": 480,
+    "h": 260
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 480,
+    "h": 260
+   },
+   "sourceSize": {
+    "w": 480,
+    "h": 260
+   },
+   "duration": 33
+  },
+  {
+   "filename": "heart-gather 71",
+   "frame": {
+    "x": 3360,
+    "y": 2080,
+    "w": 480,
+    "h": 260
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 480,
+    "h": 260
+   },
+   "sourceSize": {
+    "w": 480,
+    "h": 260
+   },
+   "duration": 33
+  },
+  {
+   "filename": "heart-gather 72",
+   "frame": {
+    "x": 0,
+    "y": 2340,
+    "w": 480,
+    "h": 260
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 480,
+    "h": 260
+   },
+   "sourceSize": {
+    "w": 480,
+    "h": 260
+   },
+   "duration": 33
+  },
+  {
+   "filename": "heart-gather 73",
+   "frame": {
+    "x": 480,
+    "y": 2340,
+    "w": 480,
+    "h": 260
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 480,
+    "h": 260
+   },
+   "sourceSize": {
+    "w": 480,
+    "h": 260
+   },
+   "duration": 33
+  },
+  {
+   "filename": "heart-gather 74",
+   "frame": {
+    "x": 960,
+    "y": 2340,
+    "w": 480,
+    "h": 260
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 480,
+    "h": 260
+   },
+   "sourceSize": {
+    "w": 480,
+    "h": 260
+   },
+   "duration": 33
+  },
+  {
+   "filename": "heart-gather 75",
+   "frame": {
+    "x": 1440,
+    "y": 2340,
+    "w": 480,
+    "h": 260
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 480,
+    "h": 260
+   },
+   "sourceSize": {
+    "w": 480,
+    "h": 260
+   },
+   "duration": 33
+  },
+  {
+   "filename": "heart-gather 76",
+   "frame": {
+    "x": 1920,
+    "y": 2340,
+    "w": 480,
+    "h": 260
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 480,
+    "h": 260
+   },
+   "sourceSize": {
+    "w": 480,
+    "h": 260
+   },
+   "duration": 33
+  },
+  {
+   "filename": "heart-gather 77",
+   "frame": {
+    "x": 2400,
+    "y": 2340,
+    "w": 480,
+    "h": 260
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 480,
+    "h": 260
+   },
+   "sourceSize": {
+    "w": 480,
+    "h": 260
+   },
+   "duration": 33
+  },
+  {
+   "filename": "heart-gather 78",
+   "frame": {
+    "x": 2880,
+    "y": 2340,
+    "w": 480,
+    "h": 260
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 480,
+    "h": 260
+   },
+   "sourceSize": {
+    "w": 480,
+    "h": 260
+   },
+   "duration": 33
+  },
+  {
+   "filename": "heart-gather 79",
+   "frame": {
+    "x": 3360,
+    "y": 2340,
+    "w": 480,
+    "h": 260
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 480,
+    "h": 260
+   },
+   "sourceSize": {
+    "w": 480,
+    "h": 260
+   },
+   "duration": 33
+  },
+  {
+   "filename": "heart-gather 80",
+   "frame": {
+    "x": 0,
+    "y": 2600,
+    "w": 480,
+    "h": 260
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 480,
+    "h": 260
+   },
+   "sourceSize": {
+    "w": 480,
+    "h": 260
+   },
+   "duration": 33
+  },
+  {
+   "filename": "heart-gather 81",
+   "frame": {
+    "x": 480,
+    "y": 2600,
+    "w": 480,
+    "h": 260
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 480,
+    "h": 260
+   },
+   "sourceSize": {
+    "w": 480,
+    "h": 260
+   },
+   "duration": 33
+  },
+  {
+   "filename": "heart-gather 82",
+   "frame": {
+    "x": 960,
+    "y": 2600,
+    "w": 480,
+    "h": 260
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 480,
+    "h": 260
+   },
+   "sourceSize": {
+    "w": 480,
+    "h": 260
+   },
+   "duration": 33
+  },
+  {
+   "filename": "heart-gather 83",
+   "frame": {
+    "x": 1440,
+    "y": 2600,
+    "w": 480,
+    "h": 260
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 480,
+    "h": 260
+   },
+   "sourceSize": {
+    "w": 480,
+    "h": 260
+   },
+   "duration": 33
+  },
+  {
+   "filename": "heart-gather 84",
+   "frame": {
+    "x": 1920,
+    "y": 2600,
+    "w": 480,
+    "h": 260
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 480,
+    "h": 260
+   },
+   "sourceSize": {
+    "w": 480,
+    "h": 260
+   },
+   "duration": 33
+  },
+  {
+   "filename": "heart-gather 85",
+   "frame": {
+    "x": 2400,
+    "y": 2600,
+    "w": 480,
+    "h": 260
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 480,
+    "h": 260
+   },
+   "sourceSize": {
+    "w": 480,
+    "h": 260
+   },
+   "duration": 33
+  },
+  {
+   "filename": "heart-gather 86",
+   "frame": {
+    "x": 2880,
+    "y": 2600,
+    "w": 480,
+    "h": 260
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 480,
+    "h": 260
+   },
+   "sourceSize": {
+    "w": 480,
+    "h": 260
+   },
+   "duration": 33
+  },
+  {
+   "filename": "heart-gather 87",
+   "frame": {
+    "x": 3360,
+    "y": 2600,
+    "w": 480,
+    "h": 260
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 480,
+    "h": 260
+   },
+   "sourceSize": {
+    "w": 480,
+    "h": 260
+   },
+   "duration": 33
+  },
+  {
+   "filename": "heart-gather 88",
+   "frame": {
+    "x": 0,
+    "y": 2860,
+    "w": 480,
+    "h": 260
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 480,
+    "h": 260
+   },
+   "sourceSize": {
+    "w": 480,
+    "h": 260
+   },
+   "duration": 33
+  },
+  {
+   "filename": "heart-gather 89",
+   "frame": {
+    "x": 480,
+    "y": 2860,
+    "w": 480,
+    "h": 260
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 480,
+    "h": 260
+   },
+   "sourceSize": {
+    "w": 480,
+    "h": 260
+   },
+   "duration": 33
+  },
+  {
+   "filename": "heart-gather 90",
+   "frame": {
+    "x": 960,
+    "y": 2860,
+    "w": 480,
+    "h": 260
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 480,
+    "h": 260
+   },
+   "sourceSize": {
+    "w": 480,
+    "h": 260
+   },
+   "duration": 33
+  },
+  {
+   "filename": "heart-gather 91",
+   "frame": {
+    "x": 1440,
+    "y": 2860,
+    "w": 480,
+    "h": 260
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 480,
+    "h": 260
+   },
+   "sourceSize": {
+    "w": 480,
+    "h": 260
+   },
+   "duration": 33
+  },
+  {
+   "filename": "heart-gather 92",
+   "frame": {
+    "x": 1920,
+    "y": 2860,
+    "w": 480,
+    "h": 260
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 480,
+    "h": 260
+   },
+   "sourceSize": {
+    "w": 480,
+    "h": 260
+   },
+   "duration": 33
+  },
+  {
+   "filename": "heart-gather 93",
+   "frame": {
+    "x": 2400,
+    "y": 2860,
+    "w": 480,
+    "h": 260
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 480,
+    "h": 260
+   },
+   "sourceSize": {
+    "w": 480,
+    "h": 260
+   },
+   "duration": 33
+  },
+  {
+   "filename": "heart-gather 94",
+   "frame": {
+    "x": 2880,
+    "y": 2860,
+    "w": 480,
+    "h": 260
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 480,
+    "h": 260
+   },
+   "sourceSize": {
+    "w": 480,
+    "h": 260
+   },
+   "duration": 33
+  },
+  {
+   "filename": "heart-gather 95",
+   "frame": {
+    "x": 3360,
+    "y": 2860,
+    "w": 480,
+    "h": 260
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 480,
+    "h": 260
+   },
+   "sourceSize": {
+    "w": 480,
+    "h": 260
+   },
+   "duration": 33
+  },
+  {
+   "filename": "heart-gather 96",
+   "frame": {
+    "x": 0,
+    "y": 3120,
+    "w": 480,
+    "h": 260
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 480,
+    "h": 260
+   },
+   "sourceSize": {
+    "w": 480,
+    "h": 260
+   },
+   "duration": 33
+  },
+  {
+   "filename": "heart-gather 97",
+   "frame": {
+    "x": 480,
+    "y": 3120,
+    "w": 480,
+    "h": 260
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 480,
+    "h": 260
+   },
+   "sourceSize": {
+    "w": 480,
+    "h": 260
+   },
+   "duration": 33
+  },
+  {
+   "filename": "heart-gather 98",
+   "frame": {
+    "x": 960,
+    "y": 3120,
+    "w": 480,
+    "h": 260
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 480,
+    "h": 260
+   },
+   "sourceSize": {
+    "w": 480,
+    "h": 260
+   },
+   "duration": 33
+  },
+  {
+   "filename": "heart-gather 99",
+   "frame": {
+    "x": 1440,
+    "y": 3120,
+    "w": 480,
+    "h": 260
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 480,
+    "h": 260
+   },
+   "sourceSize": {
+    "w": 480,
+    "h": 260
+   },
+   "duration": 33
+  },
+  {
+   "filename": "heart-gather 100",
+   "frame": {
+    "x": 1920,
+    "y": 3120,
+    "w": 480,
+    "h": 260
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 480,
+    "h": 260
+   },
+   "sourceSize": {
+    "w": 480,
+    "h": 260
+   },
+   "duration": 33
+  },
+  {
+   "filename": "heart-gather 101",
+   "frame": {
+    "x": 2400,
+    "y": 3120,
+    "w": 480,
+    "h": 260
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 480,
+    "h": 260
+   },
+   "sourceSize": {
+    "w": 480,
+    "h": 260
+   },
+   "duration": 33
+  },
+  {
+   "filename": "heart-gather 102",
+   "frame": {
+    "x": 2880,
+    "y": 3120,
+    "w": 480,
+    "h": 260
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 480,
+    "h": 260
+   },
+   "sourceSize": {
+    "w": 480,
+    "h": 260
+   },
+   "duration": 33
+  },
+  {
+   "filename": "heart-gather 103",
+   "frame": {
+    "x": 3360,
+    "y": 3120,
+    "w": 480,
+    "h": 260
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 480,
+    "h": 260
+   },
+   "sourceSize": {
+    "w": 480,
+    "h": 260
+   },
+   "duration": 33
+  },
+  {
+   "filename": "heart-gather 104",
+   "frame": {
+    "x": 0,
+    "y": 3380,
+    "w": 480,
+    "h": 260
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 480,
+    "h": 260
+   },
+   "sourceSize": {
+    "w": 480,
+    "h": 260
+   },
+   "duration": 33
+  },
+  {
+   "filename": "heart-gather 105",
+   "frame": {
+    "x": 480,
+    "y": 3380,
+    "w": 480,
+    "h": 260
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 480,
+    "h": 260
+   },
+   "sourceSize": {
+    "w": 480,
+    "h": 260
+   },
+   "duration": 33
+  },
+  {
+   "filename": "heart-gather 106",
+   "frame": {
+    "x": 960,
+    "y": 3380,
+    "w": 480,
+    "h": 260
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 480,
+    "h": 260
+   },
+   "sourceSize": {
+    "w": 480,
+    "h": 260
+   },
+   "duration": 33
+  },
+  {
+   "filename": "heart-gather 107",
+   "frame": {
+    "x": 1440,
+    "y": 3380,
+    "w": 480,
+    "h": 260
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 480,
+    "h": 260
+   },
+   "sourceSize": {
+    "w": 480,
+    "h": 260
+   },
+   "duration": 33
+  },
+  {
+   "filename": "heart-gather 108",
+   "frame": {
+    "x": 1920,
+    "y": 3380,
+    "w": 480,
+    "h": 260
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 480,
+    "h": 260
+   },
+   "sourceSize": {
+    "w": 480,
+    "h": 260
+   },
+   "duration": 33
+  }
+ ],
+ "meta": {
+  "app": "https://github.com/patch-gg/pixelfx",
+  "version": "1",
+  "image": "heart-gather.png",
+  "format": "RGBA8888",
+  "size": {
+   "w": 3840,
+   "h": 3640
+  },
+  "scale": "1",
+  "frameTags": [
+   {
+    "name": "heart-gather",
+    "from": 0,
+    "to": 108,
+    "direction": "forward"
+   }
+  ],
+  "pixelfx": {
+   "id": "geuseundae/heart-gather",
+   "name": "Come to me / 이리 오너라",
+   "fps": 30,
+   "loop": false,
+   "frames": 109,
+   "frameSize": [
+    480,
+    260
+   ],
+   "pivot": [
+    170,
+    210
+   ],
+   "columns": 8,
+   "act": {
+    "windup": 0.3,
+    "recovery": 0,
+    "onBody": false,
+    "targets": [
+     -115,
+     -60,
+     100,
+     190,
+     245
+    ],
+    "hits": [
+     {
+      "t": 2.22,
+      "freeze": 0.12,
+      "shake": 0.12,
+      "amp": 1,
+      "push": 0
+     }
+    ],
+    "poses": [
+     {
+      "t": -0.3,
+      "how": "smooth",
+      "pose": {
+       "crouch": 4,
+       "fx": 11,
+       "fy": -21,
+       "bx": 9,
+       "by": -21,
+       "ffx": 7,
+       "fbx": -7,
+       "lean": -5
+      }
+     },
+     {
+      "t": 0.3,
+      "how": "snap",
+      "pose": {
+       "crouch": 3,
+       "fx": 11,
+       "fy": -21,
+       "bx": 9,
+       "by": -21,
+       "ffx": 7,
+       "fbx": -7,
+       "lean": 3
+      }
+     },
+     {
+      "t": 1.35,
+      "how": "snap",
+      "pose": {
+       "crouch": 7,
+       "fx": 11,
+       "fy": -21,
+       "bx": 9,
+       "by": -21,
+       "ffx": 7,
+       "fbx": -7,
+       "lean": -6
+      }
+     },
+     {
+      "t": 2.22,
+      "how": "smooth",
+      "pose": {
+       "crouch": 5,
+       "fx": 11,
+       "fy": -21,
+       "bx": 9,
+       "by": -21,
+       "ffx": 7,
+       "fbx": -7,
+       "lean": -3
+      }
+     },
+     {
+      "t": 3.6,
+      "how": "smooth",
+      "pose": {
+       "crouch": 3,
+       "fx": 11,
+       "fy": -21,
+       "bx": 9,
+       "by": -21,
+       "ffx": 7,
+       "fbx": -7
+      }
+     }
+    ]
+   }
+  }
+ }
+}

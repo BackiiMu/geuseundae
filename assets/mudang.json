@@ -1,0 +1,120 @@
+{
+  "frames": {
+    "mudang_0": {
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "w": 64,
+        "h": 64
+      },
+      "duration": 125
+    },
+    "mudang_1": {
+      "frame": {
+        "x": 64,
+        "y": 0,
+        "w": 64,
+        "h": 64
+      },
+      "duration": 125
+    },
+    "mudang_2": {
+      "frame": {
+        "x": 128,
+        "y": 0,
+        "w": 64,
+        "h": 64
+      },
+      "duration": 125
+    },
+    "mudang_3": {
+      "frame": {
+        "x": 192,
+        "y": 0,
+        "w": 64,
+        "h": 64
+      },
+      "duration": 125
+    },
+    "mudang_4": {
+      "frame": {
+        "x": 256,
+        "y": 0,
+        "w": 64,
+        "h": 64
+      },
+      "duration": 125
+    },
+    "mudang_5": {
+      "frame": {
+        "x": 320,
+        "y": 0,
+        "w": 64,
+        "h": 64
+      },
+      "duration": 125
+    },
+    "mudang_6": {
+      "frame": {
+        "x": 384,
+        "y": 0,
+        "w": 64,
+        "h": 64
+      },
+      "duration": 180
+    },
+    "mudang_7": {
+      "frame": {
+        "x": 448,
+        "y": 0,
+        "w": 64,
+        "h": 64
+      },
+      "duration": 80
+    },
+    "mudang_8": {
+      "frame": {
+        "x": 512,
+        "y": 0,
+        "w": 64,
+        "h": 64
+      },
+      "duration": 100
+    },
+    "mudang_9": {
+      "frame": {
+        "x": 576,
+        "y": 0,
+        "w": 64,
+        "h": 64
+      },
+      "duration": 180
+    }
+  },
+  "meta": {
+    "image": "mudang.png",
+    "size": {
+      "w": 640,
+      "h": 64
+    },
+    "scale": "1",
+    "frameTags": [
+      {
+        "name": "idle",
+        "from": 0,
+        "to": 5,
+        "direction": "forward"
+      },
+      {
+        "name": "attack",
+        "from": 6,
+        "to": 9,
+        "direction": "forward"
+      }
+    ],
+    "pivot": {
+      "x": 32,
+      "y": 55
+    }
+  }
+}

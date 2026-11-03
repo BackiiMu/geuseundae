@@ -1,0 +1,432 @@
+[
+  {
+    "goal": 8,
+    "rooms": [
+      {
+        "decor_seed": 3092282731,
+        "grid": [
+          0,
+          0
+        ],
+        "id": 0,
+        "links": [
+          1,
+          7
+        ],
+        "peaceful": false,
+        "template": "forest",
+        "visited": false
+      },
+      {
+        "decor_seed": 1249647332,
+        "grid": [
+          1,
+          0
+        ],
+        "id": 1,
+        "links": [
+          0,
+          2,
+          3,
+          6
+        ],
+        "peaceful": false,
+        "template": "shrine",
+        "visited": false
+      },
+      {
+        "decor_seed": 137788908,
+        "grid": [
+          2,
+          0
+        ],
+        "id": 2,
+        "links": [
+          1,
+          5
+        ],
+        "peaceful": false,
+        "template": "gate",
+        "visited": false
+      },
+      {
+        "decor_seed": 1898907330,
+        "grid": [
+          1,
+          -1
+        ],
+        "id": 3,
+        "links": [
+          1,
+          4,
+          7
+        ],
+        "peaceful": true,
+        "template": "store",
+        "visited": false
+      },
+      {
+        "decor_seed": 3541869760,
+        "grid": [
+          2,
+          -1
+        ],
+        "id": 4,
+        "links": [
+          3,
+          8
+        ],
+        "peaceful": false,
+        "template": "gallery",
+        "visited": false
+      },
+      {
+        "decor_seed": 4093418464,
+        "grid": [
+          2,
+          1
+        ],
+        "id": 5,
+        "links": [
+          2,
+          6
+        ],
+        "peaceful": false,
+        "template": "well",
+        "visited": false
+      },
+      {
+        "decor_seed": 4078461230,
+        "grid": [
+          1,
+          1
+        ],
+        "id": 6,
+        "links": [
+          1,
+          5
+        ],
+        "peaceful": false,
+        "template": "hall",
+        "visited": false
+      },
+      {
+        "decor_seed": 1581004154,
+        "grid": [
+          0,
+          -1
+        ],
+        "id": 7,
+        "links": [
+          3,
+          0
+        ],
+        "peaceful": false,
+        "template": "courtyard",
+        "visited": false
+      },
+      {
+        "decor_seed": 3826345915,
+        "grid": [
+          2,
+          -2
+        ],
+        "id": 8,
+        "links": [
+          4
+        ],
+        "peaceful": false,
+        "template": "sanctum",
+        "visited": false
+      }
+    ],
+    "seed": 1103,
+    "shop_room": 3,
+    "start": 0,
+    "version": 5
+  },
+  {
+    "goal": 8,
+    "rooms": [
+      {
+        "decor_seed": 936671119,
+        "grid": [
+          0,
+          0
+        ],
+        "id": 0,
+        "links": [
+          1,
+          6
+        ],
+        "peaceful": false,
+        "template": "hall",
+        "visited": false
+      },
+      {
+        "decor_seed": 802982916,
+        "grid": [
+          -1,
+          0
+        ],
+        "id": 1,
+        "links": [
+          0,
+          2,
+          3
+        ],
+        "peaceful": true,
+        "template": "store",
+        "visited": false
+      },
+      {
+        "decor_seed": 3718963636,
+        "grid": [
+          -1,
+          -1
+        ],
+        "id": 2,
+        "links": [
+          1,
+          5,
+          7
+        ],
+        "peaceful": false,
+        "template": "gate",
+        "visited": false
+      },
+      {
+        "decor_seed": 3555078574,
+        "grid": [
+          -2,
+          0
+        ],
+        "id": 3,
+        "links": [
+          1,
+          4
+        ],
+        "peaceful": false,
+        "template": "shrine",
+        "visited": false
+      },
+      {
+        "decor_seed": 1737324792,
+        "grid": [
+          -2,
+          1
+        ],
+        "id": 4,
+        "links": [
+          3,
+          8
+        ],
+        "peaceful": false,
+        "template": "courtyard",
+        "visited": false
+      },
+      {
+        "decor_seed": 1896497595,
+        "grid": [
+          -1,
+          -2
+        ],
+        "id": 5,
+        "links": [
+          2
+        ],
+        "peaceful": false,
+        "template": "forest",
+        "visited": false
+      },
+      {
+        "decor_seed": 1319262958,
+        "grid": [
+          0,
+          -1
+        ],
+        "id": 6,
+        "links": [
+          0
+        ],
+        "peaceful": false,
+        "template": "gallery",
+        "visited": false
+      },
+      {
+        "decor_seed": 1861699358,
+        "grid": [
+          -2,
+          -1
+        ],
+        "id": 7,
+        "links": [
+          2
+        ],
+        "peaceful": false,
+        "template": "well",
+        "visited": false
+      },
+      {
+        "decor_seed": 704633942,
+        "grid": [
+          -3,
+          1
+        ],
+        "id": 8,
+        "links": [
+          4
+        ],
+        "peaceful": false,
+        "template": "sanctum",
+        "visited": false
+      }
+    ],
+    "seed": 1104,
+    "shop_room": 1,
+    "start": 0,
+    "version": 5
+  },
+  {
+    "goal": 6,
+    "rooms": [
+      {
+        "decor_seed": 1358549916,
+        "grid": [
+          0,
+          0
+        ],
+        "id": 0,
+        "links": [
+          1,
+          3
+        ],
+        "peaceful": false,
+        "template": "store",
+        "visited": false
+      },
+      {
+        "decor_seed": 588551530,
+        "grid": [
+          0,
+          -1
+        ],
+        "id": 1,
+        "links": [
+          0,
+          2
+        ],
+        "peaceful": true,
+        "template": "shrine",
+        "visited": false
+      },
+      {
+        "decor_seed": 1519982766,
+        "grid": [
+          -1,
+          -1
+        ],
+        "id": 2,
+        "links": [
+          1,
+          4
+        ],
+        "peaceful": false,
+        "template": "forest",
+        "visited": false
+      },
+      {
+        "decor_seed": 1887659523,
+        "grid": [
+          0,
+          1
+        ],
+        "id": 3,
+        "links": [
+          0,
+          7
+        ],
+        "peaceful": false,
+        "template": "gate",
+        "visited": false
+      },
+      {
+        "decor_seed": 2553175886,
+        "grid": [
+          -1,
+          -2
+        ],
+        "id": 4,
+        "links": [
+          2,
+          5,
+          8
+        ],
+        "peaceful": false,
+        "template": "well",
+        "visited": false
+      },
+      {
+        "decor_seed": 2619233610,
+        "grid": [
+          -1,
+          -3
+        ],
+        "id": 5,
+        "links": [
+          4,
+          6
+        ],
+        "peaceful": false,
+        "template": "sanctum",
+        "visited": false
+      },
+      {
+        "decor_seed": 543809871,
+        "grid": [
+          0,
+          -3
+        ],
+        "id": 6,
+        "links": [
+          5
+        ],
+        "peaceful": false,
+        "template": "gallery",
+        "visited": false
+      },
+      {
+        "decor_seed": 1355145065,
+        "grid": [
+          1,
+          1
+        ],
+        "id": 7,
+        "links": [
+          3
+        ],
+        "peaceful": false,
+        "template": "hall",
+        "visited": false
+      },
+      {
+        "decor_seed": 2521290665,
+        "grid": [
+          -2,
+          -2
+        ],
+        "id": 8,
+        "links": [
+          4
+        ],
+        "peaceful": false,
+        "template": "courtyard",
+        "visited": false
+      }
+    ],
+    "seed": 1105,
+    "shop_room": 1,
+    "start": 0,
+    "version": 5
+  }
+]

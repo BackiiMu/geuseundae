@@ -1,0 +1,86 @@
+{
+  "songaksi": {
+    "file": "songaksi.png",
+    "frameWidth": 64,
+    "frameHeight": 64,
+    "frames": 6,
+    "fps": 8,
+    "loop": true,
+    "pivot": {
+      "x": 32,
+      "y": 55
+    }
+  },
+  "dosa": {
+    "file": "dosa.png",
+    "frameWidth": 64,
+    "frameHeight": 64,
+    "frames": 6,
+    "fps": 8,
+    "loop": true,
+    "pivot": {
+      "x": 32,
+      "y": 55
+    }
+  },
+  "mudang": {
+    "file": "mudang.png",
+    "frameWidth": 64,
+    "frameHeight": 64,
+    "frames": 6,
+    "fps": 8,
+    "loop": true,
+    "pivot": {
+      "x": 32,
+      "y": 55
+    }
+  },
+  "hair-whip": {
+    "file": "hair-whip.png",
+    "frameWidth": 128,
+    "frameHeight": 96,
+    "frames": 12,
+    "fps": 18,
+    "loop": false,
+    "pivot": {
+      "x": 64,
+      "y": 68
+    }
+  },
+  "shadow-dash": {
+    "file": "shadow-dash.png",
+    "frameWidth": 128,
+    "frameHeight": 96,
+    "frames": 12,
+    "fps": 18,
+    "loop": false,
+    "pivot": {
+      "x": 64,
+      "y": 68
+    }
+  },
+  "corruption": {
+    "file": "corruption.png",
+    "frameWidth": 128,
+    "frameHeight": 96,
+    "frames": 12,
+    "fps": 18,
+    "loop": false,
+    "pivot": {
+      "x": 64,
+      "y": 68
+    }
+  },
+  "purifying-talisman": {
+    "file": "purifying-talisman.png",
+    "frameWidth": 128,
+    "frameHeight": 96,
+    "frames": 12,
+    "fps": 18,
+    "loop": false,
+    "pivot": {
+      "x": 64,
+      "y": 68
+    }
+  }
+}
