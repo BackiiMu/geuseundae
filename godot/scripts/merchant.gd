@@ -133,7 +133,8 @@ func refresh() -> void:
 		line.add_child(icon)
 		var labels:=VBoxContainer.new()
 		labels.mouse_filter=Control.MOUSE_FILTER_IGNORE
-		var name_label:=text_label(str(item["name"]),15,COLORS[int(item["tier"])-1])
+		var type_badge := " [근접]" if item.get("kind","")=="melee" else " [원거리]" if item.get("kind","")=="ranged" else ""
+		var name_label:=text_label(str(item["name"])+type_badge,15,COLORS[int(item["tier"])-1])
 		name_label.custom_minimum_size.x=196
 		name_label.clip_text=true
 		labels.add_child(name_label)

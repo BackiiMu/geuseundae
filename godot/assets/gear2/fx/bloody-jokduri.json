@@ -1,0 +1,877 @@
+{
+ "frames": [
+  {
+   "filename": "bloody-jokduri 0",
+   "frame": {
+    "x": 0,
+    "y": 0,
+    "w": 164,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 164,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 164,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "bloody-jokduri 1",
+   "frame": {
+    "x": 164,
+    "y": 0,
+    "w": 164,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 164,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 164,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "bloody-jokduri 2",
+   "frame": {
+    "x": 328,
+    "y": 0,
+    "w": 164,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 164,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 164,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "bloody-jokduri 3",
+   "frame": {
+    "x": 492,
+    "y": 0,
+    "w": 164,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 164,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 164,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "bloody-jokduri 4",
+   "frame": {
+    "x": 656,
+    "y": 0,
+    "w": 164,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 164,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 164,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "bloody-jokduri 5",
+   "frame": {
+    "x": 0,
+    "y": 96,
+    "w": 164,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 164,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 164,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "bloody-jokduri 6",
+   "frame": {
+    "x": 164,
+    "y": 96,
+    "w": 164,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 164,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 164,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "bloody-jokduri 7",
+   "frame": {
+    "x": 328,
+    "y": 96,
+    "w": 164,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 164,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 164,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "bloody-jokduri 8",
+   "frame": {
+    "x": 492,
+    "y": 96,
+    "w": 164,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 164,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 164,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "bloody-jokduri 9",
+   "frame": {
+    "x": 656,
+    "y": 96,
+    "w": 164,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 164,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 164,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "bloody-jokduri 10",
+   "frame": {
+    "x": 0,
+    "y": 192,
+    "w": 164,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 164,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 164,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "bloody-jokduri 11",
+   "frame": {
+    "x": 164,
+    "y": 192,
+    "w": 164,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 164,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 164,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "bloody-jokduri 12",
+   "frame": {
+    "x": 328,
+    "y": 192,
+    "w": 164,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 164,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 164,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "bloody-jokduri 13",
+   "frame": {
+    "x": 492,
+    "y": 192,
+    "w": 164,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 164,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 164,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "bloody-jokduri 14",
+   "frame": {
+    "x": 656,
+    "y": 192,
+    "w": 164,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 164,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 164,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "bloody-jokduri 15",
+   "frame": {
+    "x": 0,
+    "y": 288,
+    "w": 164,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 164,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 164,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "bloody-jokduri 16",
+   "frame": {
+    "x": 164,
+    "y": 288,
+    "w": 164,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 164,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 164,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "bloody-jokduri 17",
+   "frame": {
+    "x": 328,
+    "y": 288,
+    "w": 164,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 164,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 164,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "bloody-jokduri 18",
+   "frame": {
+    "x": 492,
+    "y": 288,
+    "w": 164,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 164,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 164,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "bloody-jokduri 19",
+   "frame": {
+    "x": 656,
+    "y": 288,
+    "w": 164,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 164,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 164,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "bloody-jokduri 20",
+   "frame": {
+    "x": 0,
+    "y": 384,
+    "w": 164,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 164,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 164,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "bloody-jokduri 21",
+   "frame": {
+    "x": 164,
+    "y": 384,
+    "w": 164,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 164,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 164,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "bloody-jokduri 22",
+   "frame": {
+    "x": 328,
+    "y": 384,
+    "w": 164,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 164,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 164,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "bloody-jokduri 23",
+   "frame": {
+    "x": 492,
+    "y": 384,
+    "w": 164,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 164,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 164,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "bloody-jokduri 24",
+   "frame": {
+    "x": 656,
+    "y": 384,
+    "w": 164,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 164,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 164,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "bloody-jokduri 25",
+   "frame": {
+    "x": 0,
+    "y": 480,
+    "w": 164,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 164,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 164,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "bloody-jokduri 26",
+   "frame": {
+    "x": 164,
+    "y": 480,
+    "w": 164,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 164,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 164,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "bloody-jokduri 27",
+   "frame": {
+    "x": 328,
+    "y": 480,
+    "w": 164,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 164,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 164,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "bloody-jokduri 28",
+   "frame": {
+    "x": 492,
+    "y": 480,
+    "w": 164,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 164,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 164,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "bloody-jokduri 29",
+   "frame": {
+    "x": 656,
+    "y": 480,
+    "w": 164,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 164,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 164,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "bloody-jokduri 30",
+   "frame": {
+    "x": 0,
+    "y": 576,
+    "w": 164,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 164,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 164,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "bloody-jokduri 31",
+   "frame": {
+    "x": 164,
+    "y": 576,
+    "w": 164,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 164,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 164,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "bloody-jokduri 32",
+   "frame": {
+    "x": 328,
+    "y": 576,
+    "w": 164,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 164,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 164,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "bloody-jokduri 33",
+   "frame": {
+    "x": 492,
+    "y": 576,
+    "w": 164,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 164,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 164,
+    "h": 96
+   },
+   "duration": 33
+  }
+ ],
+ "meta": {
+  "app": "https://github.com/patch-gg/pixelfx",
+  "version": "1",
+  "image": "bloody-jokduri.png",
+  "format": "RGBA8888",
+  "size": {
+   "w": 820,
+   "h": 672
+  },
+  "scale": "1",
+  "frameTags": [
+   {
+    "name": "bloody-jokduri",
+    "from": 0,
+    "to": 33,
+    "direction": "forward"
+   }
+  ],
+  "pixelfx": {
+   "id": "geuseundae/bloody-jokduri",
+   "name": "피 묻은 족두리",
+   "fps": 30,
+   "loop": false,
+   "frames": 34,
+   "frameSize": [
+    164,
+    96
+   ],
+   "pivot": [
+    30,
+    80
+   ],
+   "columns": 5,
+   "act": {
+    "windup": 0.3,
+    "recovery": 0,
+    "onBody": false,
+    "targets": [
+     96
+    ],
+    "hits": [
+     {
+      "t": 0.2653846153846154,
+      "freeze": 0.06,
+      "shake": 0.12,
+      "amp": 1.5,
+      "push": 1.6
+     }
+    ],
+    "poses": [
+     {
+      "t": -0.3,
+      "how": "smooth",
+      "pose": {
+       "crouch": 3,
+       "fx": 10,
+       "fy": -22,
+       "bx": 7,
+       "by": -20,
+       "ffx": 7,
+       "fbx": -7
+      }
+     },
+     {
+      "t": -0.1,
+      "how": "smooth",
+      "pose": {
+       "crouch": 4,
+       "fx": 10,
+       "fy": -22,
+       "bx": 7,
+       "by": -20,
+       "ffx": 7,
+       "fbx": -7,
+       "lean": -3
+      }
+     },
+     {
+      "t": 0,
+      "how": "snap",
+      "pose": {
+       "crouch": 3,
+       "fx": 18,
+       "fy": -27,
+       "bx": -6,
+       "by": -22,
+       "ffx": 11,
+       "fbx": -8,
+       "lean": 5,
+       "toeB": true,
+       "ghost": 1
+      }
+     },
+     {
+      "t": 0.4,
+      "how": "smooth",
+      "pose": {
+       "crouch": 3,
+       "fx": 18,
+       "fy": -27,
+       "bx": -6,
+       "by": -22,
+       "ffx": 11,
+       "fbx": -8,
+       "lean": 5,
+       "toeB": true
+      }
+     },
+     {
+      "t": 0.85,
+      "how": "smooth",
+      "pose": {
+       "crouch": 3,
+       "fx": 10,
+       "fy": -22,
+       "bx": 7,
+       "by": -20,
+       "ffx": 7,
+       "fbx": -7
+      }
+     }
+    ]
+   }
+  }
+ }
+}

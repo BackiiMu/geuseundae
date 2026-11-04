@@ -21,6 +21,8 @@ func run_checks() -> void:
 	var p=world.player
 	p.set_physics_process(false)
 	var visual=p.visual
+	var adept=c.living()[1]
+	if not require(is_equal_approx(adept.windup_duration(),1.1) and is_equal_approx(adept.recovery_duration(),1.5),"Early ranged enemy cycle doubles to 2.6 seconds with a longer telegraph"): return
 	for actor in [p]+c.living():
 		var texture:Texture2D=actor.visual.texture
 		if not require(texture!=null and texture.get_width()==1536 and texture.get_height()==1024,"32-frame raster atlas loads: "+actor.visual.role): return
@@ -28,7 +30,17 @@ func run_checks() -> void:
 	visual.action_time=0
 	visual._physics_process(.1)
 	if not require(visual.frame_index<8,"Player idle chooses breathing row"): return
-	p.velocity.x=200
+	p.position=Vector2(650,500)
+	p.velocity=Vector2(0,-100)
+	p.move_and_slide()
+	visual._physics_process(.1)
+	if not require(visual.frame_index==25,"Jump ascent holds the tucked-leg pose"): return
+	p.velocity.y=100
+	visual._physics_process(.1)
+	if not require(visual.frame_index==25,"Jump descent keeps the same tucked-leg pose"): return
+	p.position=Vector2(650,704)
+	p.velocity=Vector2(200,10)
+	p.move_and_slide()
 	visual._physics_process(.1)
 	if not require(visual.frame_index>=8 and visual.frame_index<16,"Player movement chooses run row"): return
 	p.velocity=Vector2.ZERO
@@ -42,6 +54,7 @@ func run_checks() -> void:
 	p.dash_time=.1
 	visual._physics_process(.01)
 	if not require(visual.frame_index in [28,29],"Eight-direction dash uses its own pose"): return
+	if not require(visual.dash_fx_texture!=null and visual.dash_fx_age<.1 and visual.dash_trail_time>0,"Dash starts the pixelfx trail and translucent body echoes"): return
 	p.dash_time=0
 	c.paused=true
 	var before:float=visual.clock

@@ -15,7 +15,7 @@ var hurt_timer := 0.0
 var heart_cd := 0.0
 var skill_cd := {"main":0.0,"off":0.0}
 var attack_cd := {"main":0.0,"off":0.0}
-var equipment: Dictionary = {"heart":"songaksi","main":"hair","off":"","head":"","legs":"","feet":"","a0":"","a1":"","a2":"","a3":""}
+var equipment: Dictionary = {"heart":"songaksi","main":"songaksi_hand","off":"","head":"","legs":"","feet":"","a0":"","a1":"","a2":"","a3":""}
 var enemies: Array = []
 var projectiles: Array = []
 var pickups: Array = []
@@ -47,6 +47,11 @@ var tooth_ammo := 8
 var tooth_reload := 0.0
 var hit_pause := 0.0
 var attack_serial := 0
+var visual_clock := 0.0
+var drop_textures := {}
+var drop_info := {}
+const PROVIDED_DROPS = {"hair":"hair","pin":"hairpin","water_bucket":"gourd","fox_bead":"foxbead","claws":"claw","goblin_fire":"ghostfire","plague":"jar","fist":"fist"}
+const GEAR2_DROPS = {"songaksi_hand":"songakHand","ribbon":"ribbon","mirror":"jokduri","eggshell":"eggshell","blank_face":"blankface","gaze":"hollowgaze","wig":"wig","duo_head":"mask","bent_leg":"brokenLeg","mongdal_legs":"leg","wet_shoes":"shoe","single_shoe":"oneShoe","stomach":"stomach","duo_curse":"curse"}
 func _ready() -> void:
 	arsenal.c=self
 	vfx=PixelVFX.new()
@@ -235,7 +240,13 @@ func duo_set() -> bool:
 	for slot in equipment:
 		if equipped(slot).get("set","")=="duo": count+=1
 	return count>=3
+func keyboard_attack_direction() -> Vector2:
+	return Vector2(Input.get_axis("attack_left","attack_right"),Input.get_axis("attack_up","attack_down"))
+func attack_input_held() -> bool:
+	return Input.is_action_pressed("attack") or keyboard_attack_direction().length_squared()>.01
 func aim() -> Vector2:
+	var keyboard_direction:=keyboard_attack_direction()
+	if keyboard_direction.length_squared()>.01: return keyboard_direction.normalized()
 	if OS.has_feature("mobile") or OS.get_cmdline_user_args().has("--touch"):
 		var direction:=Vector2(Input.get_axis("move_left","move_right"),Input.get_axis("aim_up","aim_down"))
 		return direction.normalized() if direction.length_squared()>.01 else Vector2(world.player.facing,0)
@@ -310,6 +321,9 @@ func inv_label(text: String,size:=14,color:=Color("dce4d4")) -> Label:
 	label.add_theme_font_size_override("font_size",size)
 	label.add_theme_color_override("font_color",color)
 	return label
+func attack_type_label(item: Dictionary) -> String:
+	if not item.has("kind"): return ""
+	return "[근접]" if item["kind"]=="melee" else "[원거리]"
 func refresh_inventory() -> void:
 	for child in inv_rows.get_children():
 		inv_rows.remove_child(child)
@@ -337,7 +351,7 @@ func refresh_inventory() -> void:
 		var item:=equipped(slot)
 		var button:=Button.new()
 		button.text=DB.slot_name(slot)+" · "+str(item.get("name","비어 있음"))
-		button.tooltip_text=str(item.get("effect",""))+" / 클릭하면 해제"
+		button.tooltip_text=attack_type_label(item)+" "+str(item.get("effect",""))+" / 클릭하면 해제"
 		button.add_theme_font_size_override("font_size",13)
 		button.custom_minimum_size=Vector2(286,22)
 		button.clip_text=true
@@ -370,7 +384,7 @@ func refresh_inventory() -> void:
 			icon.item=bag[i]
 			icon.position=Vector2(6,6)
 			button.add_child(icon)
-			button.tooltip_text=str(bag[i]["name"])+" / "+str(bag[i].get("effect",""))
+			button.tooltip_text=str(bag[i]["name"])+" "+attack_type_label(bag[i])+" / "+str(bag[i].get("effect",""))
 			button.pressed.connect(func():inventory_selection=i;refresh_inventory())
 		else: button.disabled=true
 		grid.add_child(button)
@@ -383,7 +397,7 @@ func refresh_inventory() -> void:
 	description.custom_minimum_size.x=460
 	if not bag.is_empty():
 		var item: Dictionary=bag[inventory_selection]
-		description.add_child(inv_label(str(item["name"])+" · "+DB.slot_name(item["slot"])+" · "+str(item.get("tier",1))+"단계",16,Color("d8c7a3")))
+		description.add_child(inv_label(str(item["name"])+" · "+DB.slot_name(item["slot"])+" · "+str(item.get("tier",1))+"단계 "+attack_type_label(item),16,Color("d8c7a3")))
 		var effect_label:=inv_label(str(item.get("effect","")),13)
 		effect_label.custom_minimum_size.x=450
 		effect_label.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART
@@ -531,9 +545,10 @@ func try_open_chest() -> bool:
 	return false
 func _physics_process(delta: float) -> void:
 	if not enabled or not is_instance_valid(world.player): return
+	visual_clock += delta
 	if Input.is_action_just_pressed("inventory") and not confirm.visible and not (is_instance_valid(world.merchant) and world.merchant.opened): toggle_inventory()
 	hit_pause=maxf(0,hit_pause-delta)
-	paused=vfx_preview_paused or inventory.visible or (is_instance_valid(world.merchant) and world.merchant.opened) or world.seed_input.has_focus() or hit_pause>0
+	paused=vfx_preview_paused or inventory.visible or world.floor_map_open or world.traveling or (is_instance_valid(world.merchant) and world.merchant.opened) or world.seed_input.has_focus() or hit_pause>0
 	if paused: return
 	hurt_timer=maxf(0,hurt_timer-delta)
 	heart_cd=maxf(0,heart_cd-delta)
@@ -555,7 +570,7 @@ func _physics_process(delta: float) -> void:
 	for slot in ["main","off"]:
 		attack_cd[slot]=maxf(0,float(attack_cd[slot])-delta)
 		skill_cd[slot]=maxf(0,float(skill_cd[slot])-delta)
-	if Input.is_action_pressed("attack") and not world.in_village:
+	if attack_input_held() and not world.in_village:
 		for slot in ["main","off"]:
 			if float(attack_cd[slot])<=0: perform_attack(slot)
 	if Input.is_action_just_pressed("heart_skill") and not world.in_village: use_heart()
@@ -584,7 +599,7 @@ func _physics_process(delta: float) -> void:
 	for slot in ["main","off"]:
 		if not str(equipped(slot).get("skill","")).is_empty() or (slot=="off" and duo_set()):
 			skills+="  |  "+("F 주무기 " if slot=="main" else "G 보조 ")+("준비" if float(skill_cd[slot])<=0 else str(int(ceil(skill_cd[slot])))+"초")
-	skill_bar.text=skills+"  |  J 방향공격 · 좌클릭 조준 · F6 장비시험"
+	skill_bar.text=skills+"  |  방향키 공격 · J/좌클릭 공격 · F6 장비시험"
 	for enemy in living():
 		if enemy.boss: hud.text+="\n선봉대장 "+str(int(enemy.hp))+" / "+str(int(enemy.max_hp))
 	queue_redraw()
@@ -613,7 +628,8 @@ func _draw() -> void:
 			draw_rect(Rect2(pos-Vector2(16,12),Vector2(32,24)),Color("9d7750"))
 			draw_rect(Rect2(pos-Vector2(3,12),Vector2(6,24)),Color("d5b16d"))
 		else:
-			draw_circle(pos,8,[Color("c2ccbe"),Color("7fadd0"),Color("b39dd1"),Color("e4c178")][mini(3,int(pickup["item"].get("tier",1))-1)])
+			if not draw_provided_drop(pickup):
+				draw_circle(pos,8,[Color("c2ccbe"),Color("7fadd0"),Color("b39dd1"),Color("e4c178")][mini(3,int(pickup["item"].get("tier",1))-1)])
 	if heart_animation>0 and is_instance_valid(world.player):
 		var from: Vector2=world.player.position+Vector2(0,-36)
 		for enemy in living():
@@ -626,3 +642,39 @@ func _draw() -> void:
 						points.append(from.lerp(to,u)+Vector2(0,sin(u*PI)*(-18+j*2)))
 					draw_polyline(points,Color("3b414e") if j!=1 else Color("a5bfb6"),2)
 				draw_arc(to,18*enemy.size_factor,0,TAU,24,Color("879f96"),2)
+
+func draw_provided_drop(pickup: Dictionary) -> bool:
+	var item: Dictionary = pickup.get("item", {})
+	var id := str(item.get("id", ""))
+	if GEAR2_DROPS.has(id): return draw_gear2_drop(pickup, str(GEAR2_DROPS[id]))
+	if not PROVIDED_DROPS.has(id): return false
+	# Drops use the neutral sheet at every rarity; tier is communicated in UI,
+	# without escalating sparkle pillars or motes around the item itself.
+	var key: String = str(PROVIDED_DROPS[id]) + "_tier0"
+	if not drop_info.has(key):
+		var base := "res://assets/provided_vfx/items/" + key
+		drop_info[key] = JSON.parse_string(FileAccess.get_file_as_string(base + ".json"))["meta"]["pixelfx"]
+		drop_textures[key] = load(base + ".png")
+	var info: Dictionary = drop_info[key]
+	var frame := int(visual_clock * float(info["fps"])) % int(info["frames"])
+	var size := Vector2(info["frameSize"][0], info["frameSize"][1])
+	var pivot := Vector2(info["pivot"][0], info["pivot"][1])
+	var columns := int(info["columns"])
+	var source := Rect2(Vector2(frame % columns, frame / columns) * size, size)
+	draw_texture_rect_region(drop_textures[key], Rect2(Vector2(pickup["pos"]) + Vector2(0, 18) - pivot, size), source)
+	return true
+
+func draw_gear2_drop(pickup: Dictionary, name: String) -> bool:
+	var key := "gear2_" + name
+	if not drop_info.has(key):
+		var base := "res://assets/gear2/drop/" + name
+		drop_info[key] = JSON.parse_string(FileAccess.get_file_as_string(base + ".json"))["meta"]["pixelfx"]
+		drop_textures[key] = load(base + ".png")
+	var info: Dictionary = drop_info[key]
+	var frame := int(visual_clock * float(info["fps"])) % int(info["frames"])
+	var size := Vector2(info["frameSize"][0], info["frameSize"][1])
+	var pivot := Vector2(info["pivot"][0], info["pivot"][1])
+	var columns := int(info["columns"])
+	var source := Rect2(Vector2(frame % columns, frame / columns) * size, size)
+	draw_texture_rect_region(drop_textures[key], Rect2(Vector2(pickup["pos"]) + Vector2(0,18) - pivot, size), source)
+	return true

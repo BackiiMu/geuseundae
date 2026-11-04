@@ -63,7 +63,11 @@ func attack(slot: String) -> void:
 	var id:String=item["id"]
 	if id=="tooth" and c.tooth_reload>0: return
 	var origin:Vector2=c.world.player.position+Vector2(0,-28)
+	c.world.player.face_mouse_for_attack()
 	var direction:Vector2=c.aim()
+	if absf(direction.x)>.01:
+		c.world.player.facing=signf(direction.x)
+		c.world.player.queue_redraw()
 	var reach:float=item["range"]
 	if item["kind"]=="melee" and c.has_passive("reach"): reach*=1.5
 	if id=="hair" and c.has_passive("hair_range"): reach*=1.2

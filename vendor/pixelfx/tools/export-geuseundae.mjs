@@ -29,6 +29,12 @@ async function library(key,id,palette,start=0,span=.72,anchor=[0,0],extra={}){
  manifest[key]={...s.json.meta.pixelfx,path:`res://assets/vfx/${key}.png`,source:id,anchor};
  if(key==='fist-4')save(join(output,'fist-4-review.png'),contactSheet(adapted,r,{max:9,zoom:2}));
 }
+async function dedicated(key,id){
+ const effect=await loadEffect(id),r=renderFrames(effect,{actor:false}),s=spriteSheet(effect,r,key);
+ save(join(output,key+'.png'),s.png);save(join(output,key+'.json'),JSON.stringify(s.json));
+ manifest[key]={...s.json.meta.pixelfx,path:`res://assets/vfx/${key}.png`,source:id};
+ save(join(output,key+'-review.png'),contactSheet(effect,r,{max:15,zoom:2}));
+}
 const pale=['#18202b','#35424c','#5c727a','#9bb2b1','#c3d2c2','#e0e5cf','#f1f1db'];
 const ink=['#080910','#11131e','#222637','#3f465d','#656d8b','#959fb9','#c6d0e4','#edf0fa'];
 await library('slash-1','melee/sword-slash',pale,0,.72);
@@ -45,5 +51,6 @@ await library('seal-3','shadow/hex-sigil',null,1.4,1.6,[0,-50]);
 await library('seal-4','shadow/hex-sigil',ink,1.4,1.6,[0,-50]);
 await library('fist-4','geuseundae/shadow-fist',null,0,.72);
 await library('beam-3','arcane/arcane-beam',null,0,1.2,[15,-24]);
+await dedicated('dash-2','geuseundae/shadow-dash');
 writeFileSync(join(output,'manifest.json'),JSON.stringify(manifest,null,2));
-console.log('13 profiles now use the original layered recipes / dedicated shadow fist');
+console.log('13 profiles now use the original layered recipes, dedicated shadow fist and ghost dash');

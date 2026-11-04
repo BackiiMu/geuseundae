@@ -1,0 +1,1191 @@
+{
+ "frames": [
+  {
+   "filename": "fox-bead 0",
+   "frame": {
+    "x": 0,
+    "y": 0,
+    "w": 176,
+    "h": 104
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 176,
+    "h": 104
+   },
+   "sourceSize": {
+    "w": 176,
+    "h": 104
+   },
+   "duration": 33
+  },
+  {
+   "filename": "fox-bead 1",
+   "frame": {
+    "x": 176,
+    "y": 0,
+    "w": 176,
+    "h": 104
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 176,
+    "h": 104
+   },
+   "sourceSize": {
+    "w": 176,
+    "h": 104
+   },
+   "duration": 33
+  },
+  {
+   "filename": "fox-bead 2",
+   "frame": {
+    "x": 352,
+    "y": 0,
+    "w": 176,
+    "h": 104
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 176,
+    "h": 104
+   },
+   "sourceSize": {
+    "w": 176,
+    "h": 104
+   },
+   "duration": 33
+  },
+  {
+   "filename": "fox-bead 3",
+   "frame": {
+    "x": 528,
+    "y": 0,
+    "w": 176,
+    "h": 104
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 176,
+    "h": 104
+   },
+   "sourceSize": {
+    "w": 176,
+    "h": 104
+   },
+   "duration": 33
+  },
+  {
+   "filename": "fox-bead 4",
+   "frame": {
+    "x": 704,
+    "y": 0,
+    "w": 176,
+    "h": 104
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 176,
+    "h": 104
+   },
+   "sourceSize": {
+    "w": 176,
+    "h": 104
+   },
+   "duration": 33
+  },
+  {
+   "filename": "fox-bead 5",
+   "frame": {
+    "x": 880,
+    "y": 0,
+    "w": 176,
+    "h": 104
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 176,
+    "h": 104
+   },
+   "sourceSize": {
+    "w": 176,
+    "h": 104
+   },
+   "duration": 33
+  },
+  {
+   "filename": "fox-bead 6",
+   "frame": {
+    "x": 0,
+    "y": 104,
+    "w": 176,
+    "h": 104
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 176,
+    "h": 104
+   },
+   "sourceSize": {
+    "w": 176,
+    "h": 104
+   },
+   "duration": 33
+  },
+  {
+   "filename": "fox-bead 7",
+   "frame": {
+    "x": 176,
+    "y": 104,
+    "w": 176,
+    "h": 104
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 176,
+    "h": 104
+   },
+   "sourceSize": {
+    "w": 176,
+    "h": 104
+   },
+   "duration": 33
+  },
+  {
+   "filename": "fox-bead 8",
+   "frame": {
+    "x": 352,
+    "y": 104,
+    "w": 176,
+    "h": 104
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 176,
+    "h": 104
+   },
+   "sourceSize": {
+    "w": 176,
+    "h": 104
+   },
+   "duration": 33
+  },
+  {
+   "filename": "fox-bead 9",
+   "frame": {
+    "x": 528,
+    "y": 104,
+    "w": 176,
+    "h": 104
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 176,
+    "h": 104
+   },
+   "sourceSize": {
+    "w": 176,
+    "h": 104
+   },
+   "duration": 33
+  },
+  {
+   "filename": "fox-bead 10",
+   "frame": {
+    "x": 704,
+    "y": 104,
+    "w": 176,
+    "h": 104
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 176,
+    "h": 104
+   },
+   "sourceSize": {
+    "w": 176,
+    "h": 104
+   },
+   "duration": 33
+  },
+  {
+   "filename": "fox-bead 11",
+   "frame": {
+    "x": 880,
+    "y": 104,
+    "w": 176,
+    "h": 104
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 176,
+    "h": 104
+   },
+   "sourceSize": {
+    "w": 176,
+    "h": 104
+   },
+   "duration": 33
+  },
+  {
+   "filename": "fox-bead 12",
+   "frame": {
+    "x": 0,
+    "y": 208,
+    "w": 176,
+    "h": 104
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 176,
+    "h": 104
+   },
+   "sourceSize": {
+    "w": 176,
+    "h": 104
+   },
+   "duration": 33
+  },
+  {
+   "filename": "fox-bead 13",
+   "frame": {
+    "x": 176,
+    "y": 208,
+    "w": 176,
+    "h": 104
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 176,
+    "h": 104
+   },
+   "sourceSize": {
+    "w": 176,
+    "h": 104
+   },
+   "duration": 33
+  },
+  {
+   "filename": "fox-bead 14",
+   "frame": {
+    "x": 352,
+    "y": 208,
+    "w": 176,
+    "h": 104
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 176,
+    "h": 104
+   },
+   "sourceSize": {
+    "w": 176,
+    "h": 104
+   },
+   "duration": 33
+  },
+  {
+   "filename": "fox-bead 15",
+   "frame": {
+    "x": 528,
+    "y": 208,
+    "w": 176,
+    "h": 104
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 176,
+    "h": 104
+   },
+   "sourceSize": {
+    "w": 176,
+    "h": 104
+   },
+   "duration": 33
+  },
+  {
+   "filename": "fox-bead 16",
+   "frame": {
+    "x": 704,
+    "y": 208,
+    "w": 176,
+    "h": 104
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 176,
+    "h": 104
+   },
+   "sourceSize": {
+    "w": 176,
+    "h": 104
+   },
+   "duration": 33
+  },
+  {
+   "filename": "fox-bead 17",
+   "frame": {
+    "x": 880,
+    "y": 208,
+    "w": 176,
+    "h": 104
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 176,
+    "h": 104
+   },
+   "sourceSize": {
+    "w": 176,
+    "h": 104
+   },
+   "duration": 33
+  },
+  {
+   "filename": "fox-bead 18",
+   "frame": {
+    "x": 0,
+    "y": 312,
+    "w": 176,
+    "h": 104
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 176,
+    "h": 104
+   },
+   "sourceSize": {
+    "w": 176,
+    "h": 104
+   },
+   "duration": 33
+  },
+  {
+   "filename": "fox-bead 19",
+   "frame": {
+    "x": 176,
+    "y": 312,
+    "w": 176,
+    "h": 104
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 176,
+    "h": 104
+   },
+   "sourceSize": {
+    "w": 176,
+    "h": 104
+   },
+   "duration": 33
+  },
+  {
+   "filename": "fox-bead 20",
+   "frame": {
+    "x": 352,
+    "y": 312,
+    "w": 176,
+    "h": 104
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 176,
+    "h": 104
+   },
+   "sourceSize": {
+    "w": 176,
+    "h": 104
+   },
+   "duration": 33
+  },
+  {
+   "filename": "fox-bead 21",
+   "frame": {
+    "x": 528,
+    "y": 312,
+    "w": 176,
+    "h": 104
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 176,
+    "h": 104
+   },
+   "sourceSize": {
+    "w": 176,
+    "h": 104
+   },
+   "duration": 33
+  },
+  {
+   "filename": "fox-bead 22",
+   "frame": {
+    "x": 704,
+    "y": 312,
+    "w": 176,
+    "h": 104
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 176,
+    "h": 104
+   },
+   "sourceSize": {
+    "w": 176,
+    "h": 104
+   },
+   "duration": 33
+  },
+  {
+   "filename": "fox-bead 23",
+   "frame": {
+    "x": 880,
+    "y": 312,
+    "w": 176,
+    "h": 104
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 176,
+    "h": 104
+   },
+   "sourceSize": {
+    "w": 176,
+    "h": 104
+   },
+   "duration": 33
+  },
+  {
+   "filename": "fox-bead 24",
+   "frame": {
+    "x": 0,
+    "y": 416,
+    "w": 176,
+    "h": 104
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 176,
+    "h": 104
+   },
+   "sourceSize": {
+    "w": 176,
+    "h": 104
+   },
+   "duration": 33
+  },
+  {
+   "filename": "fox-bead 25",
+   "frame": {
+    "x": 176,
+    "y": 416,
+    "w": 176,
+    "h": 104
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 176,
+    "h": 104
+   },
+   "sourceSize": {
+    "w": 176,
+    "h": 104
+   },
+   "duration": 33
+  },
+  {
+   "filename": "fox-bead 26",
+   "frame": {
+    "x": 352,
+    "y": 416,
+    "w": 176,
+    "h": 104
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 176,
+    "h": 104
+   },
+   "sourceSize": {
+    "w": 176,
+    "h": 104
+   },
+   "duration": 33
+  },
+  {
+   "filename": "fox-bead 27",
+   "frame": {
+    "x": 528,
+    "y": 416,
+    "w": 176,
+    "h": 104
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 176,
+    "h": 104
+   },
+   "sourceSize": {
+    "w": 176,
+    "h": 104
+   },
+   "duration": 33
+  },
+  {
+   "filename": "fox-bead 28",
+   "frame": {
+    "x": 704,
+    "y": 416,
+    "w": 176,
+    "h": 104
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 176,
+    "h": 104
+   },
+   "sourceSize": {
+    "w": 176,
+    "h": 104
+   },
+   "duration": 33
+  },
+  {
+   "filename": "fox-bead 29",
+   "frame": {
+    "x": 880,
+    "y": 416,
+    "w": 176,
+    "h": 104
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 176,
+    "h": 104
+   },
+   "sourceSize": {
+    "w": 176,
+    "h": 104
+   },
+   "duration": 33
+  },
+  {
+   "filename": "fox-bead 30",
+   "frame": {
+    "x": 0,
+    "y": 520,
+    "w": 176,
+    "h": 104
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 176,
+    "h": 104
+   },
+   "sourceSize": {
+    "w": 176,
+    "h": 104
+   },
+   "duration": 33
+  },
+  {
+   "filename": "fox-bead 31",
+   "frame": {
+    "x": 176,
+    "y": 520,
+    "w": 176,
+    "h": 104
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 176,
+    "h": 104
+   },
+   "sourceSize": {
+    "w": 176,
+    "h": 104
+   },
+   "duration": 33
+  },
+  {
+   "filename": "fox-bead 32",
+   "frame": {
+    "x": 352,
+    "y": 520,
+    "w": 176,
+    "h": 104
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 176,
+    "h": 104
+   },
+   "sourceSize": {
+    "w": 176,
+    "h": 104
+   },
+   "duration": 33
+  },
+  {
+   "filename": "fox-bead 33",
+   "frame": {
+    "x": 528,
+    "y": 520,
+    "w": 176,
+    "h": 104
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 176,
+    "h": 104
+   },
+   "sourceSize": {
+    "w": 176,
+    "h": 104
+   },
+   "duration": 33
+  },
+  {
+   "filename": "fox-bead 34",
+   "frame": {
+    "x": 704,
+    "y": 520,
+    "w": 176,
+    "h": 104
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 176,
+    "h": 104
+   },
+   "sourceSize": {
+    "w": 176,
+    "h": 104
+   },
+   "duration": 33
+  },
+  {
+   "filename": "fox-bead 35",
+   "frame": {
+    "x": 880,
+    "y": 520,
+    "w": 176,
+    "h": 104
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 176,
+    "h": 104
+   },
+   "sourceSize": {
+    "w": 176,
+    "h": 104
+   },
+   "duration": 33
+  },
+  {
+   "filename": "fox-bead 36",
+   "frame": {
+    "x": 0,
+    "y": 624,
+    "w": 176,
+    "h": 104
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 176,
+    "h": 104
+   },
+   "sourceSize": {
+    "w": 176,
+    "h": 104
+   },
+   "duration": 33
+  },
+  {
+   "filename": "fox-bead 37",
+   "frame": {
+    "x": 176,
+    "y": 624,
+    "w": 176,
+    "h": 104
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 176,
+    "h": 104
+   },
+   "sourceSize": {
+    "w": 176,
+    "h": 104
+   },
+   "duration": 33
+  },
+  {
+   "filename": "fox-bead 38",
+   "frame": {
+    "x": 352,
+    "y": 624,
+    "w": 176,
+    "h": 104
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 176,
+    "h": 104
+   },
+   "sourceSize": {
+    "w": 176,
+    "h": 104
+   },
+   "duration": 33
+  },
+  {
+   "filename": "fox-bead 39",
+   "frame": {
+    "x": 528,
+    "y": 624,
+    "w": 176,
+    "h": 104
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 176,
+    "h": 104
+   },
+   "sourceSize": {
+    "w": 176,
+    "h": 104
+   },
+   "duration": 33
+  },
+  {
+   "filename": "fox-bead 40",
+   "frame": {
+    "x": 704,
+    "y": 624,
+    "w": 176,
+    "h": 104
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 176,
+    "h": 104
+   },
+   "sourceSize": {
+    "w": 176,
+    "h": 104
+   },
+   "duration": 33
+  },
+  {
+   "filename": "fox-bead 41",
+   "frame": {
+    "x": 880,
+    "y": 624,
+    "w": 176,
+    "h": 104
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 176,
+    "h": 104
+   },
+   "sourceSize": {
+    "w": 176,
+    "h": 104
+   },
+   "duration": 33
+  },
+  {
+   "filename": "fox-bead 42",
+   "frame": {
+    "x": 0,
+    "y": 728,
+    "w": 176,
+    "h": 104
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 176,
+    "h": 104
+   },
+   "sourceSize": {
+    "w": 176,
+    "h": 104
+   },
+   "duration": 33
+  },
+  {
+   "filename": "fox-bead 43",
+   "frame": {
+    "x": 176,
+    "y": 728,
+    "w": 176,
+    "h": 104
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 176,
+    "h": 104
+   },
+   "sourceSize": {
+    "w": 176,
+    "h": 104
+   },
+   "duration": 33
+  },
+  {
+   "filename": "fox-bead 44",
+   "frame": {
+    "x": 352,
+    "y": 728,
+    "w": 176,
+    "h": 104
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 176,
+    "h": 104
+   },
+   "sourceSize": {
+    "w": 176,
+    "h": 104
+   },
+   "duration": 33
+  },
+  {
+   "filename": "fox-bead 45",
+   "frame": {
+    "x": 528,
+    "y": 728,
+    "w": 176,
+    "h": 104
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 176,
+    "h": 104
+   },
+   "sourceSize": {
+    "w": 176,
+    "h": 104
+   },
+   "duration": 33
+  }
+ ],
+ "meta": {
+  "app": "https://github.com/patch-gg/pixelfx",
+  "version": "1",
+  "image": "fox-bead.png",
+  "format": "RGBA8888",
+  "size": {
+   "w": 1056,
+   "h": 832
+  },
+  "scale": "1",
+  "frameTags": [
+   {
+    "name": "fox-bead",
+    "from": 0,
+    "to": 45,
+    "direction": "forward"
+   }
+  ],
+  "pixelfx": {
+   "id": "geuseundae/fox-bead",
+   "name": "여우구슬",
+   "fps": 30,
+   "loop": false,
+   "frames": 46,
+   "frameSize": [
+    176,
+    104
+   ],
+   "pivot": [
+    26,
+    84
+   ],
+   "columns": 6,
+   "act": {
+    "windup": 0.42,
+    "recovery": 0,
+    "onBody": false,
+    "targets": [
+     108
+    ],
+    "hits": [
+     {
+      "t": 0.42000000000000004,
+      "freeze": 0.03,
+      "shake": 0.05,
+      "amp": 1,
+      "push": 0.8
+     },
+     {
+      "t": 0.5,
+      "freeze": 0.03,
+      "shake": 0.05,
+      "amp": 1,
+      "push": 0.8
+     },
+     {
+      "t": 0.5800000000000001,
+      "freeze": 0.07,
+      "shake": 0.12,
+      "amp": 2,
+      "push": 1.8
+     }
+    ],
+    "poses": [
+     {
+      "t": -0.42,
+      "how": "smooth",
+      "pose": {
+       "crouch": 3,
+       "fx": 11,
+       "fy": -21,
+       "bx": 7,
+       "by": -19,
+       "ffx": 7,
+       "fbx": -7
+      }
+     },
+     {
+      "t": -0.16,
+      "how": "smooth",
+      "pose": {
+       "crouch": 3,
+       "fx": -7,
+       "fy": -33,
+       "bx": 10,
+       "by": -24,
+       "ffx": 9,
+       "fbx": -7,
+       "x": -3,
+       "lean": -4,
+       "armsFront": true
+      }
+     },
+     {
+      "t": -0.03,
+      "how": "smooth",
+      "pose": {
+       "crouch": 3,
+       "fx": -7,
+       "fy": -33,
+       "bx": 10,
+       "by": -24,
+       "ffx": 9,
+       "fbx": -7,
+       "x": -3,
+       "lean": -5,
+       "armsFront": true
+      }
+     },
+     {
+      "t": 0,
+      "how": "snap",
+      "pose": {
+       "crouch": 4,
+       "fx": 17,
+       "fy": -27,
+       "bx": -6,
+       "by": -22,
+       "ffx": 12,
+       "fbx": -9,
+       "x": 2,
+       "lean": 5,
+       "toeB": true,
+       "ghost": 1
+      }
+     },
+     {
+      "t": 0.08,
+      "how": "snap",
+      "pose": {
+       "crouch": 4,
+       "fx": 17,
+       "fy": -27,
+       "bx": -6,
+       "by": -22,
+       "ffx": 12,
+       "fbx": -9,
+       "x": 2,
+       "lean": 5,
+       "toeB": true
+      }
+     },
+     {
+      "t": 0.32,
+      "how": "smooth",
+      "pose": {
+       "crouch": 4,
+       "fx": 15,
+       "fy": -24,
+       "bx": -6,
+       "by": -22,
+       "ffx": 12,
+       "fbx": -9,
+       "x": 2,
+       "lean": 3,
+       "toeB": true
+      }
+     },
+     {
+      "t": 1,
+      "how": "smooth",
+      "pose": {
+       "crouch": 3,
+       "fx": 11,
+       "fy": -21,
+       "bx": 7,
+       "by": -19,
+       "ffx": 7,
+       "fbx": -7
+      }
+     }
+    ]
+   }
+  }
+ }
+}

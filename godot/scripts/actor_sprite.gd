@@ -14,14 +14,24 @@ var action_mode := "attack"
 var shader_material: ShaderMaterial
 var animation := "idle"
 var paused_last := false
+var dash_trail_time := 0.0
+var dash_trail_direction := Vector2.RIGHT
+var was_dashing := false
+var dash_fx_texture: Texture2D
+var dash_fx_info: Dictionary = {}
+var dash_fx_age := 1.0
 func _ready() -> void:
 	texture_filter=CanvasItem.TEXTURE_FILTER_NEAREST
 	var key: String="warrior" if role=="boss" else role
 	var path: String="res://assets/actors/source/"+key+"-v1.png"
 	if not texture_cache.has(key) and ResourceLoader.exists(path): texture_cache[key]=load(path)
 	texture=texture_cache.get(key)
+	if role=="songaksi":
+		var vfx_manifest:Dictionary=JSON.parse_string(FileAccess.get_file_as_string("res://assets/vfx/manifest.json"))
+		dash_fx_info=vfx_manifest.get("dash-2",{})
+		if not dash_fx_info.is_empty(): dash_fx_texture=load(dash_fx_info["path"])
 	var shader:=Shader.new()
-	shader.code="shader_type canvas_item; uniform float flash=0.; uniform vec4 tint:source_color=vec4(1.); void fragment(){vec4 p=texture(TEXTURE,UV);if(p.a<0.02){discard;}COLOR=vec4(mix(p.rgb*tint.rgb,vec3(1.),flash),p.a*tint.a);}"
+	shader.code="shader_type canvas_item; uniform float flash=0.; uniform vec4 tint:source_color=vec4(1.); varying vec4 draw_color; void vertex(){draw_color=COLOR;} void fragment(){vec4 p=texture(TEXTURE,UV);if(p.a<0.02){discard;}COLOR=vec4(mix(p.rgb*tint.rgb,vec3(1.),flash),p.a*tint.a)*draw_color;}"
 	shader_material=ShaderMaterial.new()
 	shader_material.shader=shader
 	material=shader_material
@@ -41,6 +51,14 @@ func _physics_process(delta: float) -> void:
 	paused_last=false
 	clock+=delta
 	action_time=maxf(0,action_time-delta)
+	dash_trail_time=maxf(0,dash_trail_time-delta)
+	dash_fx_age+=delta
+	var dashing: bool=role=="songaksi" and actor.dash_time>0
+	if dashing and not was_dashing:
+		dash_trail_time=.18
+		dash_trail_direction=actor.dash_direction.normalized()
+		dash_fx_age=.015
+	was_dashing=dashing
 	var tint:=Color.WHITE
 	var flash:=0.0
 	if role=="songaksi":
@@ -56,8 +74,9 @@ func _physics_process(delta: float) -> void:
 			var phase:=1-action_time/action_duration
 			frame_index=16+(mini(1,int(phase*2)) if action_mode=="windup" else 2+mini(5,int(phase*6)) if action_mode=="release" else mini(7,int(phase*8)))
 		elif not actor.is_on_floor():
-			animation="jump" if actor.velocity.y<0 else "fall"
-			frame_index=(24 if actor.velocity.y<0 else 26)+int(clock*8)%2
+			# A single tucked-leg silhouette keeps the jump readable and calm.
+			animation="jump"
+			frame_index=25
 		elif absf(actor.velocity.x)>15:
 			animation="run"
 			frame_index=8+int(clock*12)%8
@@ -79,11 +98,11 @@ func _physics_process(delta: float) -> void:
 			frame_index=28+int(clock*10)%4
 		elif actor.state=="windup":
 			animation="windup"
-			var duration:float=1.2 if actor.boss else .9 if actor.kind=="monk" else .7 if actor.kind=="adept" else .45
+			var duration:float=actor.windup_duration()
 			frame_index=16+clampi(int((1-actor.timer/duration)*4),0,3)
 		elif actor.state=="recover":
 			animation="recover"
-			frame_index=20+clampi(int((1-actor.timer/(1.0 if actor.kind=="monk" else .9 if actor.boss else .6))*4),0,3)
+			frame_index=20+clampi(int((1-actor.timer/actor.recovery_duration())*4),0,3)
 		elif absf(actor.velocity.x)>8:
 			animation="run"
 			frame_index=8+int(clock*(8 if role=="monk" else 11))%8
@@ -99,6 +118,27 @@ func _draw() -> void:
 	var direction:float=actor.facing
 	var source_size:=Vector2(texture.get_width()/8.0,texture.get_height()/4.0)
 	var source:=Rect2(Vector2(frame_index%8,frame_index/8)*source_size,source_size)
+	if role=="songaksi" and dash_fx_texture!=null and not dash_fx_info.is_empty():
+		var dash_frames:int=int(dash_fx_info["frames"])
+		var dash_fps:float=float(dash_fx_info["fps"])
+		if dash_fx_age<float(dash_frames)/dash_fps:
+			var dash_frame:=clampi(int(dash_fx_age*dash_fps),0,dash_frames-1)
+			var dash_size:=Vector2(dash_fx_info["frameSize"][0],dash_fx_info["frameSize"][1])
+			var dash_pivot:=Vector2(dash_fx_info["pivot"][0],dash_fx_info["pivot"][1])
+			var dash_source:=Rect2(Vector2(dash_frame%int(dash_fx_info["columns"]),dash_frame/int(dash_fx_info["columns"]))*dash_size,dash_size)
+			var dash_angle:=dash_trail_direction.angle()
+			var dash_flip:=cos(dash_angle)<0
+			var dash_rotation:=dash_angle-PI if dash_flip else dash_angle
+			draw_set_transform(Vector2.ZERO,dash_rotation,Vector2(-.7 if dash_flip else .7,.7))
+			draw_texture_rect_region(dash_fx_texture,Rect2(-dash_pivot,dash_size),dash_source,Color(0.72,0.84,0.8,.72))
+	if role=="songaksi" and dash_trail_time>0:
+		var life:=dash_trail_time/.18
+		var spread:=(1.0-life)*10.0
+		for i in range(2,0,-1):
+			var offset:=-dash_trail_direction*(float(i)*12.0+spread)
+			var alpha:=life*(.07+float(3-i)*.055)
+			draw_set_transform(offset.round(),0,Vector2(direction*scale_factor,scale_factor))
+			draw_texture_rect_region(texture,Rect2(-24,-62,48,64),source,Color(0.18,0.36,0.4,alpha))
 	draw_set_transform(Vector2.ZERO,0,Vector2(direction*scale_factor,scale_factor))
 	draw_texture_rect_region(texture,Rect2(-24,-62,48,64),source)
 	draw_set_transform(Vector2.ZERO)

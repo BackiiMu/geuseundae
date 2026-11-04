@@ -43,4 +43,55 @@ func run_checks() -> void:
 		quit(1)
 		return
 	print("PASS neutral dash uses facing direction")
+	Input.action_release("dash")
+	await step(2)
+	for entry in [["move_left",Vector2.LEFT],["move_right",Vector2.RIGHT],["aim_up",Vector2.UP],["aim_down",Vector2.DOWN]]:
+		p.dash_cooldown=0
+		p.dash_time=0
+		for action in p.tap_windows: p.tap_windows[action]=0.0
+		Input.action_press(entry[0])
+		await step(1)
+		Input.action_release(entry[0])
+		await step(3)
+		Input.action_press(entry[0])
+		await step(2)
+		if p.velocity.distance_to(Vector2(entry[1])*680)>1:
+			push_error("Double-tap dash failed: "+str(entry[0])+" actual "+str(p.velocity))
+			quit(1)
+			return
+		Input.action_release(entry[0])
+		await step(2)
+	print("PASS directional double taps trigger four-way dash")
+	p.dash_cooldown=0
+	p.dash_time=0
+	for action in p.tap_windows: p.tap_windows[action]=0.0
+	Input.action_press("jump")
+	await step(1)
+	Input.action_release("jump")
+	await step(3)
+	Input.action_press("jump")
+	await step(2)
+	Input.action_release("jump")
+	if p.velocity.distance_to(Vector2.UP*680)>1 or p.buffered_jump>0:
+		push_error("Double jump-key dash failed or also buffered a jump: "+str(p.velocity))
+		quit(1)
+		return
+	print("PASS double jump key dashes upward without extra jump")
+	p.dash_cooldown=0
+	p.dash_time=0
+	for action in p.tap_windows: p.tap_windows[action]=0.0
+	Input.action_press("move_right")
+	Input.action_press("jump")
+	await step(1)
+	Input.action_release("jump")
+	await step(3)
+	Input.action_press("jump")
+	await step(2)
+	Input.action_release("jump")
+	Input.action_release("move_right")
+	if p.velocity.distance_to(Vector2(1,-1).normalized()*680)>1:
+		push_error("Moving double jump-key dash must go diagonally upward: "+str(p.velocity))
+		quit(1)
+		return
+	print("PASS held movement plus double jump key dashes diagonally upward")
 	quit(0)

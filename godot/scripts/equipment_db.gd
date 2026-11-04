@@ -3,7 +3,8 @@ static var _catalog: Array = []
 # Prototype numerical tuning; item concepts follow geuseundae_equipment.md.
 static func weapons() -> Array:
 	return [
-	["hair","손각시의 머리카락","main","melee",1,10,.45,128,"","songaksi"],
+	["songaksi_hand","손각시의 손","main","melee",1,7,.32,84,"","songaksi"],
+	["hair","손각시의 머리카락","main","melee",2,10,.45,128,"","songaksi"],
 	["pin","녹슨 비녀","main","ranged",2,12,.6,440,"","songaksi"],
 	["ribbon","끊어진 댕기","off","melee",2,0,1,180,"pull","songaksi"],
 	["mirror","피 묻은 족두리","off","ranged",3,0,1,240,"shotgun","songaksi"],
@@ -58,6 +59,7 @@ static func skill_cooldown(skill: String) -> float:
 	return {"pull":8.0,"shotgun":10.0,"fear":12.0,"mass_fear":16.0,"rush":10.0,"lure":10.0,"tiger":18.0,"well":14.0,"mines":10.0,"decoy":14.0,"slam":12.0,"drain":10.0,"confuse":16.0,"spit":12.0,"crush":18.0}.get(skill,0.0)
 static func description(id: String) -> String:
 	return {
+	"songaksi_hand":"빠른 손톱 할퀴기 · 손각시를 빌리면 지급되는 기본 무기",
 	"hair":"중거리 채찍 · 세 번째 공격 적중 시 0.4초 속박",
 	"pin":"비녀 투척 · 벽에 꽂힌 머리카락 줄은 3초간 접촉 피해",
 	"ribbon":"G · 전방 적 하나를 0.5초에 걸쳐 앞으로 끌기 (8초)",

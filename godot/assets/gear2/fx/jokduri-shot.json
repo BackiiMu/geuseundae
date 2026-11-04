@@ -1,0 +1,303 @@
+{
+ "frames": [
+  {
+   "filename": "jokduri-shot 0",
+   "frame": {
+    "x": 0,
+    "y": 0,
+    "w": 20,
+    "h": 12
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 20,
+    "h": 12
+   },
+   "sourceSize": {
+    "w": 20,
+    "h": 12
+   },
+   "duration": 33
+  },
+  {
+   "filename": "jokduri-shot 1",
+   "frame": {
+    "x": 20,
+    "y": 0,
+    "w": 20,
+    "h": 12
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 20,
+    "h": 12
+   },
+   "sourceSize": {
+    "w": 20,
+    "h": 12
+   },
+   "duration": 33
+  },
+  {
+   "filename": "jokduri-shot 2",
+   "frame": {
+    "x": 40,
+    "y": 0,
+    "w": 20,
+    "h": 12
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 20,
+    "h": 12
+   },
+   "sourceSize": {
+    "w": 20,
+    "h": 12
+   },
+   "duration": 33
+  },
+  {
+   "filename": "jokduri-shot 3",
+   "frame": {
+    "x": 0,
+    "y": 12,
+    "w": 20,
+    "h": 12
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 20,
+    "h": 12
+   },
+   "sourceSize": {
+    "w": 20,
+    "h": 12
+   },
+   "duration": 33
+  },
+  {
+   "filename": "jokduri-shot 4",
+   "frame": {
+    "x": 20,
+    "y": 12,
+    "w": 20,
+    "h": 12
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 20,
+    "h": 12
+   },
+   "sourceSize": {
+    "w": 20,
+    "h": 12
+   },
+   "duration": 33
+  },
+  {
+   "filename": "jokduri-shot 5",
+   "frame": {
+    "x": 40,
+    "y": 12,
+    "w": 20,
+    "h": 12
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 20,
+    "h": 12
+   },
+   "sourceSize": {
+    "w": 20,
+    "h": 12
+   },
+   "duration": 33
+  },
+  {
+   "filename": "jokduri-shot 6",
+   "frame": {
+    "x": 0,
+    "y": 24,
+    "w": 20,
+    "h": 12
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 20,
+    "h": 12
+   },
+   "sourceSize": {
+    "w": 20,
+    "h": 12
+   },
+   "duration": 33
+  },
+  {
+   "filename": "jokduri-shot 7",
+   "frame": {
+    "x": 20,
+    "y": 24,
+    "w": 20,
+    "h": 12
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 20,
+    "h": 12
+   },
+   "sourceSize": {
+    "w": 20,
+    "h": 12
+   },
+   "duration": 33
+  },
+  {
+   "filename": "jokduri-shot 8",
+   "frame": {
+    "x": 40,
+    "y": 24,
+    "w": 20,
+    "h": 12
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 20,
+    "h": 12
+   },
+   "sourceSize": {
+    "w": 20,
+    "h": 12
+   },
+   "duration": 33
+  },
+  {
+   "filename": "jokduri-shot 9",
+   "frame": {
+    "x": 0,
+    "y": 36,
+    "w": 20,
+    "h": 12
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 20,
+    "h": 12
+   },
+   "sourceSize": {
+    "w": 20,
+    "h": 12
+   },
+   "duration": 33
+  },
+  {
+   "filename": "jokduri-shot 10",
+   "frame": {
+    "x": 20,
+    "y": 36,
+    "w": 20,
+    "h": 12
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 20,
+    "h": 12
+   },
+   "sourceSize": {
+    "w": 20,
+    "h": 12
+   },
+   "duration": 33
+  },
+  {
+   "filename": "jokduri-shot 11",
+   "frame": {
+    "x": 40,
+    "y": 36,
+    "w": 20,
+    "h": 12
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 20,
+    "h": 12
+   },
+   "sourceSize": {
+    "w": 20,
+    "h": 12
+   },
+   "duration": 33
+  }
+ ],
+ "meta": {
+  "app": "https://github.com/patch-gg/pixelfx",
+  "version": "1",
+  "image": "jokduri-shot.png",
+  "format": "RGBA8888",
+  "size": {
+   "w": 60,
+   "h": 48
+  },
+  "scale": "1",
+  "frameTags": [
+   {
+    "name": "jokduri-shot",
+    "from": 0,
+    "to": 11,
+    "direction": "forward"
+   }
+  ],
+  "pixelfx": {
+   "id": "geuseundae/jokduri-shot",
+   "name": "피 묻은 족두리 · 구슬",
+   "fps": 30,
+   "loop": true,
+   "frames": 12,
+   "frameSize": [
+    20,
+    12
+   ],
+   "pivot": [
+    14,
+    6
+   ],
+   "columns": 3
+  }
+ }
+}

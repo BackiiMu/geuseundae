@@ -6,6 +6,11 @@ var textures := {}
 var bursts: Array = []
 var gates := {}
 var clock := 0.0
+var provided_info := {}
+var provided_textures := {}
+var gear2_info := {}
+var gear2_textures := {}
+const PROVIDED_ATTACKS = {"hair":"hair-lash","pin":"rusted-hairpin","water_bucket":"water-gourd","fox_bead":"fox-bead","claws":"tiger-claw","goblin_fire":"dokkaebi-fire","plague":"plague-jar"}
 const GRADE_COLORS=[Color("c9d8bb"),Color("9bdbd0"),Color("d4a9dc"),Color("f3d294")]
 func _ready() -> void:
 	texture_filter=CanvasItem.TEXTURE_FILTER_NEAREST
@@ -22,15 +27,30 @@ func emit(mode: String,tier: int,pos: Vector2,direction := Vector2.RIGHT,size :=
 	if not manifest.has(key): key="bloom-"+str(clampi(tier,1,4))
 	if bursts.size()>=40: bursts.pop_front()
 	bursts.append({"key":key,"pos":pos,"angle":direction.angle(),"size":size,"tint":tint,"age":.04,"speed":speed})
+
+func attach_last_to_player() -> void:
+	if bursts.is_empty() or not is_instance_valid(combat) or not is_instance_valid(combat.world.player): return
+	bursts[-1]["follow_player"] = true
+	bursts[-1]["player_offset"] = Vector2(bursts[-1]["pos"]) - combat.world.player.position
 func attack(item: Dictionary,pos: Vector2,direction: Vector2,reach: float) -> void:
 	var id:String=item["id"]
 	var tier:int=item["tier"]
 	if id in ["fist","tiger_fang","gaze"]: return
+	if id=="eggshell":
+		emit_gear2("eggshell-cast",pos,direction)
+		attach_last_to_player()
+		return
+	if PROVIDED_ATTACKS.has(id):
+		emit_provided(str(PROVIDED_ATTACKS[id]), pos + Vector2(0, 28), direction)
+		if item["kind"]=="melee": attach_last_to_player()
+		return
 	var tint:=item_tint(item)
 	if item["kind"]=="melee":
 		var size:=clampf(reach/105.0,.55,1.6)
 		emit("slash",tier,pos+Vector2(0,28-size*20)+direction*reach*.35,direction,size,tint,1.6 if tier==1 else 1.35)
+		attach_last_to_player()
 		if id=="claws": emit("slash",tier,pos+Vector2(0,16),direction.rotated(-.14),size*.85,tint,1.5)
+		if id=="claws": attach_last_to_player()
 	else:
 		emit("impact",tier,pos+direction*12,direction,.22 if tier==1 else .3,tint,2.2)
 func impact(enemy: Node,item: Dictionary) -> void:
@@ -38,22 +58,81 @@ func impact(enemy: Node,item: Dictionary) -> void:
 	var key:=str(enemy.get_instance_id())
 	if float(gates.get(key,0))>0: return
 	gates[key]=.09
+	if item.get("id","")=="eggshell":
+		emit_gear2("eggshell-hit",enemy.position+Vector2(0,-25*enemy.size_factor),Vector2.RIGHT)
+		return
+	if item.get("id","")=="mirror":
+		emit_gear2("jokduri-hit",enemy.position+Vector2(0,-25*enemy.size_factor),Vector2.RIGHT)
+		return
 	emit("impact",tier,enemy.position+Vector2(0,-28*enemy.size_factor),Vector2.RIGHT,.4+float(tier)*.1,item_tint(item),1.7)
 func cast(item: Dictionary,pos: Vector2,direction: Vector2,skill: String) -> void:
+	var gear2_name: String = {"ribbon":"broken-ribbon","blank_face":"blank-face","mirror":"jokduri-cast"}.get(str(item.get("id","")),"")
+	if not gear2_name.is_empty():
+		var cast_pos := pos + (direction*14 if item.get("id","")=="mirror" else Vector2(0,24))
+		emit_gear2(gear2_name,cast_pos,direction)
+		attach_last_to_player()
+		return
 	var tier:int=4 if skill=="crush" else int(item.get("tier",3))
 	emit("seal",tier,pos,direction,.5+float(tier)*.1,item_tint(item),1.25)
 	if skill in ["fear","mass_fear","confuse","shotgun","spit"]:
 		emit("bloom",tier,pos+direction*65,direction,.7+float(tier)*.12,item_tint(item),1.2)
 func heavy(pos: Vector2,direction: Vector2,kind: String) -> void:
 	emit("fist" if kind=="fist" else "slash",4,pos+Vector2(0,28),direction,1.35 if kind=="fist" else 1.2,Color.WHITE,1.0)
+	attach_last_to_player()
 func _physics_process(delta: float) -> void:
 	if not is_instance_valid(combat) or combat.paused: return
 	clock+=delta
 	for key in gates: gates[key]=maxf(0,float(gates[key])-delta)
 	for i in range(bursts.size()-1,-1,-1):
+		if bursts[i].get("follow_player",false) and is_instance_valid(combat.world.player):
+			bursts[i]["pos"] = combat.world.player.position + Vector2(bursts[i]["player_offset"])
 		bursts[i]["age"]+=delta*bursts[i]["speed"]
-		if bursts[i]["age"]>=.72: bursts.remove_at(i)
+		if bursts[i]["age"]>=float(bursts[i].get("duration",.72)): bursts.remove_at(i)
 	queue_redraw()
+
+func emit_provided(name: String, pos: Vector2, direction: Vector2) -> void:
+	if not provided_info.has(name):
+		var base := "res://assets/provided_vfx/attacks/" + name
+		provided_info[name] = JSON.parse_string(FileAccess.get_file_as_string(base + ".json"))["meta"]["pixelfx"]
+		provided_textures[name] = load(base + ".png")
+	var info: Dictionary = provided_info[name]
+	bursts.append({"provided":name,"pos":pos,"angle":direction.angle(),"size":1.0,"tint":Color.WHITE,"age":0.0,"speed":1.0,"duration":float(info["frames"])/float(info["fps"])})
+
+func load_gear2(name: String) -> Dictionary:
+	if not gear2_info.has(name):
+		var base := "res://assets/gear2/fx/" + name
+		gear2_info[name] = JSON.parse_string(FileAccess.get_file_as_string(base + ".json"))["meta"]["pixelfx"]
+		gear2_textures[name] = load(base + ".png")
+	return gear2_info[name]
+
+func emit_gear2(name: String, pos: Vector2, direction: Vector2) -> void:
+	var info := load_gear2(name)
+	bursts.append({"gear2":name,"pos":pos,"angle":direction.angle(),"size":1.0,"tint":Color.WHITE,"age":0.0,"speed":1.0,"duration":float(info["frames"])/float(info["fps"])})
+
+func gear2_sheet(name: String,pos: Vector2,age: float,angle: float,size := 1.0,loop := false) -> void:
+	var info := load_gear2(name)
+	var frame := int(age*float(info["fps"]))
+	frame = posmod(frame,int(info["frames"])) if loop else mini(frame,int(info["frames"])-1)
+	var frame_size:=Vector2(info["frameSize"][0],info["frameSize"][1])
+	var pivot:=Vector2(info["pivot"][0],info["pivot"][1])
+	var columns:=int(info["columns"])
+	var source:=Rect2(Vector2(frame%columns,frame/columns)*frame_size,frame_size)
+	var flip:=cos(angle)<0
+	draw_set_transform(pos.round(),0,Vector2(-size if flip else size,size))
+	draw_texture_rect_region(gear2_textures[name],Rect2(-pivot,frame_size),source)
+	draw_set_transform(Vector2.ZERO)
+
+func provided_sheet(name: String, pos: Vector2, age: float, angle: float) -> void:
+	var info: Dictionary = provided_info[name]
+	var frame := mini(int(age * float(info["fps"])), int(info["frames"]) - 1)
+	var frame_size := Vector2(info["frameSize"][0], info["frameSize"][1])
+	var pivot := Vector2(info["pivot"][0], info["pivot"][1])
+	var columns := int(info["columns"])
+	var source := Rect2(Vector2(frame % columns, frame / columns) * frame_size, frame_size)
+	var flip := cos(angle) < 0
+	draw_set_transform(pos.round(), 0, Vector2(-1 if flip else 1, 1))
+	draw_texture_rect_region(provided_textures[name], Rect2(-pivot, frame_size), source)
+	draw_set_transform(Vector2.ZERO)
 func sheet(key: String,pos: Vector2,age: float,size: float,tint: Color,angle := 0.0) -> void:
 	if not manifest.has(key): return
 	var info:Dictionary=manifest[key]
@@ -69,12 +148,19 @@ func sheet(key: String,pos: Vector2,age: float,size: float,tint: Color,angle := 
 	draw_set_transform(Vector2.ZERO)
 func draw_projectile(p: Dictionary) -> void:
 	var item:Dictionary=combat.DB.get_item(p.get("weapon",""))
+	if PROVIDED_ATTACKS.has(str(item.get("id", ""))): return
 	var tier:int=item.get("tier",1)
 	var pos:Vector2=p["pos"]
 	var velocity:Vector2=p["velocity"]
 	var direction:=velocity.normalized()
 	var color:Color=GRADE_COLORS[tier-1]*item_tint(item)
 	var kind:String=p["kind"]
+	if item.get("id","")=="eggshell":
+		gear2_sheet("eggshell-shot",pos,float(p["age"]),velocity.angle(),float(p.get("size",1)),true)
+		return
+	if item.get("id","")=="mirror":
+		gear2_sheet("jokduri-shot",pos,float(p["age"]),velocity.angle(),float(p.get("size",1)),true)
+		return
 	if kind=="tiger":
 		sheet("tiger-4",pos,.08+fmod(float(p["age"]),.3),1.2,Color.WHITE,velocity.angle())
 	elif kind in ["pin","spit","boomerang","whistle"]:
@@ -110,17 +196,20 @@ func draw_zone(zone: Dictionary) -> void:
 	if kind=="pin":
 		for i in range(3): draw_line(pos+Vector2(i*3,-40),pos+Vector2(-10+i*5,16),Color(color,.8),1)
 func draw_beam(from: Vector2,to: Vector2) -> void:
-	var info:Dictionary=manifest["beam-3"]
-	var frame:=clampi(int(fmod(clock,.64)*25),0,17)
+	var info:Dictionary=load_gear2("hollow-gaze-beam")
+	var frame:=int(clock*float(info["fps"]))%int(info["frames"])
 	var frame_size:=Vector2(info["frameSize"][0],info["frameSize"][1])
 	var pivot:=Vector2(info["pivot"][0],info["pivot"][1])
 	var source:=Rect2(Vector2(frame%int(info["columns"]),frame/int(info["columns"]))*frame_size,frame_size)
-	draw_set_transform(from.round(),(to-from).angle(),Vector2(from.distance_to(to)/168.0,1))
-	draw_texture_rect_region(textures["beam-3"],Rect2(-pivot-Vector2(15,-24),frame_size),source)
+	draw_set_transform(from.round(),(to-from).angle(),Vector2(from.distance_to(to)/96.0,1))
+	draw_texture_rect_region(gear2_textures["hollow-gaze-beam"],Rect2(-pivot,frame_size),source)
 	draw_set_transform(Vector2.ZERO)
 func _draw() -> void:
 	for zone in combat.zones: draw_zone(zone)
 	for p in combat.projectiles:
 		if p["friendly"]: draw_projectile(p)
-	for burst in bursts: sheet(burst["key"],burst["pos"],burst["age"],burst["size"],burst["tint"],burst["angle"])
+	for burst in bursts:
+		if burst.has("gear2"): gear2_sheet(burst["gear2"],burst["pos"],burst["age"],burst["angle"])
+		elif burst.has("provided"): provided_sheet(burst["provided"],burst["pos"],burst["age"],burst["angle"])
+		else: sheet(burst["key"],burst["pos"],burst["age"],burst["size"],burst["tint"],burst["angle"])
 	if combat.arsenal.beam_time>0: draw_beam(combat.arsenal.beam_from,combat.arsenal.beam_to)

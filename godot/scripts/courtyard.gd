@@ -17,9 +17,9 @@ func bind_action(action: String, codes: Array) -> void:
 		InputMap.action_add_event(action, event)
 
 func _ready() -> void:
-	bind_action("move_left", [KEY_A, KEY_LEFT])
-	bind_action("move_right", [KEY_D, KEY_RIGHT])
-	bind_action("jump", [KEY_SPACE])
+	bind_action("move_left", [KEY_A])
+	bind_action("move_right", [KEY_D])
+	bind_action("jump", [KEY_W, KEY_SPACE])
 	bind_action("dash", [KEY_SHIFT])
 	bind_action("restart", [KEY_R])
 	bind_action("collision_view", [KEY_F1])
@@ -81,7 +81,7 @@ func build_hud() -> void:
 	layer.add_child(panel)
 	var text := Label.new()
 	text.position = Vector2(24, 16)
-	text.text = "흉가 탐색 · 이동과 카메라 테스트\nA/D · 방향키 이동   Space 점프   Shift 대시   R 처음으로   F1 발판 표시"
+	text.text = "흉가 탐색 · 이동과 카메라 테스트\nA/D 이동   W/Space 점프   S 발판 내려가기   Shift 대시   R 처음으로"
 	text.add_theme_font_size_override("font_size", 14)
 	layer.add_child(text)
 	status = Label.new()

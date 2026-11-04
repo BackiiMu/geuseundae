@@ -6,6 +6,7 @@ var floor_y := 704
 var rects: Array[Rect2] = []
 var platforms: Array[Rect2] = []
 var door_positions: Array[Vector2] = []
+var boss_door_positions: Array[Vector2] = []
 var debug_visible := false
 
 func _ready() -> void:
@@ -149,7 +150,7 @@ func _draw() -> void:
 	for rect in platforms:
 		# Tight atlas bounds put the visible plank directly on the collision top.
 		tile_band(3,rect,Vector2(96,16))
-	for pos in door_positions:
+	for pos in boss_door_positions:
 		paint_fill(Rect2(pos.x-28,pos.y-102,56,102),Color("0c1520"))
 		stamp(7,Rect2(pos.x-38,pos.y-116,76,116))
 		stamp(15,Rect2(pos.x+38,pos.y-102,28,52))

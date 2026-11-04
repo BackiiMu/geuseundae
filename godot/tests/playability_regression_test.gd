@@ -28,7 +28,7 @@ func run_checks() -> void:
 	combat.heart_windup=.01
 	combat._physics_process(.02)
 	if not check(a.pull_remaining>0 and b.pull_remaining>0 and combat.heart_pending.is_empty(),"Heart pull releases every queued target"): return
-	# One-way drop works through the platform without disabling solid-floor jumping.
+	# Down alone drops through a one-way platform without disabling solid floors.
 	world.combat_enabled=false
 	world.change_room(world.run["shop_room"],-1)
 	var p=world.player
@@ -37,17 +37,33 @@ func run_checks() -> void:
 	p.velocity=Vector2.ZERO
 	await frames(4)
 	Input.action_press("aim_down")
-	Input.action_press("jump")
 	await frames(5)
-	Input.action_release("jump")
 	Input.action_release("aim_down")
-	if not check(p.position.y>platform.position.y+8,"Down + jump drops through an upper platform"): return
+	if not check(p.position.y>platform.position.y+8,"Down drops through an upper platform"): return
 	await frames(45)
 	if not check(p.is_on_floor() and p.position.y<710,"Collision restores and catches the solid ground"): return
 	Input.action_press("aim_down")
-	Input.action_press("jump")
 	await frames(4)
-	Input.action_release("jump")
 	Input.action_release("aim_down")
-	if not check(p.position.y<690 and p.drop_timer==0,"Down + jump never disables a solid floor"): return
+	if not check(p.is_on_floor() and p.position.y>690 and p.drop_timer==0,"Down never disables a solid floor"): return
+	p.face_horizontal_toward(p.global_position.x-100)
+	if not check(p.facing<0,"Player can face left toward the mouse attack position"): return
+	p.face_horizontal_toward(p.global_position.x+100)
+	if not check(p.facing>0,"Player can face right toward the mouse attack position"): return
+	Input.action_press("attack_left")
+	if not check(combat.attack_input_held() and combat.aim().is_equal_approx(Vector2.LEFT),"Left arrow attacks left without a mouse"): return
+	Input.action_press("move_right")
+	p.facing=1
+	p._physics_process(.016)
+	Input.action_release("move_right")
+	if not check(p.facing<0,"Attack direction takes priority over movement when turning the character"): return
+	Input.action_release("attack_left")
+	Input.action_press("attack_up")
+	if not check(combat.attack_input_held() and combat.aim().is_equal_approx(Vector2.UP),"Up arrow attacks upward without a mouse"): return
+	Input.action_release("attack_up")
+	Input.action_press("attack_right")
+	Input.action_press("attack_down")
+	if not check(combat.aim().is_equal_approx(Vector2(1,1).normalized()),"Two arrow keys support diagonal attacks"): return
+	Input.action_release("attack_right")
+	Input.action_release("attack_down")
 	quit(0)

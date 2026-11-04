@@ -1,0 +1,1244 @@
+{
+ "frames": [
+  {
+   "filename": "dokkaebi-fire 0",
+   "frame": {
+    "x": 0,
+    "y": 0,
+    "w": 188,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 188,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 188,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "dokkaebi-fire 1",
+   "frame": {
+    "x": 188,
+    "y": 0,
+    "w": 188,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 188,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 188,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "dokkaebi-fire 2",
+   "frame": {
+    "x": 376,
+    "y": 0,
+    "w": 188,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 188,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 188,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "dokkaebi-fire 3",
+   "frame": {
+    "x": 564,
+    "y": 0,
+    "w": 188,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 188,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 188,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "dokkaebi-fire 4",
+   "frame": {
+    "x": 752,
+    "y": 0,
+    "w": 188,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 188,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 188,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "dokkaebi-fire 5",
+   "frame": {
+    "x": 940,
+    "y": 0,
+    "w": 188,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 188,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 188,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "dokkaebi-fire 6",
+   "frame": {
+    "x": 0,
+    "y": 96,
+    "w": 188,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 188,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 188,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "dokkaebi-fire 7",
+   "frame": {
+    "x": 188,
+    "y": 96,
+    "w": 188,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 188,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 188,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "dokkaebi-fire 8",
+   "frame": {
+    "x": 376,
+    "y": 96,
+    "w": 188,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 188,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 188,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "dokkaebi-fire 9",
+   "frame": {
+    "x": 564,
+    "y": 96,
+    "w": 188,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 188,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 188,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "dokkaebi-fire 10",
+   "frame": {
+    "x": 752,
+    "y": 96,
+    "w": 188,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 188,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 188,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "dokkaebi-fire 11",
+   "frame": {
+    "x": 940,
+    "y": 96,
+    "w": 188,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 188,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 188,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "dokkaebi-fire 12",
+   "frame": {
+    "x": 0,
+    "y": 192,
+    "w": 188,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 188,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 188,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "dokkaebi-fire 13",
+   "frame": {
+    "x": 188,
+    "y": 192,
+    "w": 188,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 188,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 188,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "dokkaebi-fire 14",
+   "frame": {
+    "x": 376,
+    "y": 192,
+    "w": 188,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 188,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 188,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "dokkaebi-fire 15",
+   "frame": {
+    "x": 564,
+    "y": 192,
+    "w": 188,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 188,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 188,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "dokkaebi-fire 16",
+   "frame": {
+    "x": 752,
+    "y": 192,
+    "w": 188,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 188,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 188,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "dokkaebi-fire 17",
+   "frame": {
+    "x": 940,
+    "y": 192,
+    "w": 188,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 188,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 188,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "dokkaebi-fire 18",
+   "frame": {
+    "x": 0,
+    "y": 288,
+    "w": 188,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 188,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 188,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "dokkaebi-fire 19",
+   "frame": {
+    "x": 188,
+    "y": 288,
+    "w": 188,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 188,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 188,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "dokkaebi-fire 20",
+   "frame": {
+    "x": 376,
+    "y": 288,
+    "w": 188,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 188,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 188,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "dokkaebi-fire 21",
+   "frame": {
+    "x": 564,
+    "y": 288,
+    "w": 188,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 188,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 188,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "dokkaebi-fire 22",
+   "frame": {
+    "x": 752,
+    "y": 288,
+    "w": 188,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 188,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 188,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "dokkaebi-fire 23",
+   "frame": {
+    "x": 940,
+    "y": 288,
+    "w": 188,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 188,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 188,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "dokkaebi-fire 24",
+   "frame": {
+    "x": 0,
+    "y": 384,
+    "w": 188,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 188,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 188,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "dokkaebi-fire 25",
+   "frame": {
+    "x": 188,
+    "y": 384,
+    "w": 188,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 188,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 188,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "dokkaebi-fire 26",
+   "frame": {
+    "x": 376,
+    "y": 384,
+    "w": 188,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 188,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 188,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "dokkaebi-fire 27",
+   "frame": {
+    "x": 564,
+    "y": 384,
+    "w": 188,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 188,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 188,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "dokkaebi-fire 28",
+   "frame": {
+    "x": 752,
+    "y": 384,
+    "w": 188,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 188,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 188,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "dokkaebi-fire 29",
+   "frame": {
+    "x": 940,
+    "y": 384,
+    "w": 188,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 188,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 188,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "dokkaebi-fire 30",
+   "frame": {
+    "x": 0,
+    "y": 480,
+    "w": 188,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 188,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 188,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "dokkaebi-fire 31",
+   "frame": {
+    "x": 188,
+    "y": 480,
+    "w": 188,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 188,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 188,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "dokkaebi-fire 32",
+   "frame": {
+    "x": 376,
+    "y": 480,
+    "w": 188,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 188,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 188,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "dokkaebi-fire 33",
+   "frame": {
+    "x": 564,
+    "y": 480,
+    "w": 188,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 188,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 188,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "dokkaebi-fire 34",
+   "frame": {
+    "x": 752,
+    "y": 480,
+    "w": 188,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 188,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 188,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "dokkaebi-fire 35",
+   "frame": {
+    "x": 940,
+    "y": 480,
+    "w": 188,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 188,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 188,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "dokkaebi-fire 36",
+   "frame": {
+    "x": 0,
+    "y": 576,
+    "w": 188,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 188,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 188,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "dokkaebi-fire 37",
+   "frame": {
+    "x": 188,
+    "y": 576,
+    "w": 188,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 188,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 188,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "dokkaebi-fire 38",
+   "frame": {
+    "x": 376,
+    "y": 576,
+    "w": 188,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 188,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 188,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "dokkaebi-fire 39",
+   "frame": {
+    "x": 564,
+    "y": 576,
+    "w": 188,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 188,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 188,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "dokkaebi-fire 40",
+   "frame": {
+    "x": 752,
+    "y": 576,
+    "w": 188,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 188,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 188,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "dokkaebi-fire 41",
+   "frame": {
+    "x": 940,
+    "y": 576,
+    "w": 188,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 188,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 188,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "dokkaebi-fire 42",
+   "frame": {
+    "x": 0,
+    "y": 672,
+    "w": 188,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 188,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 188,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "dokkaebi-fire 43",
+   "frame": {
+    "x": 188,
+    "y": 672,
+    "w": 188,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 188,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 188,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "dokkaebi-fire 44",
+   "frame": {
+    "x": 376,
+    "y": 672,
+    "w": 188,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 188,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 188,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "dokkaebi-fire 45",
+   "frame": {
+    "x": 564,
+    "y": 672,
+    "w": 188,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 188,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 188,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "dokkaebi-fire 46",
+   "frame": {
+    "x": 752,
+    "y": 672,
+    "w": 188,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 188,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 188,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "dokkaebi-fire 47",
+   "frame": {
+    "x": 940,
+    "y": 672,
+    "w": 188,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 188,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 188,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "dokkaebi-fire 48",
+   "frame": {
+    "x": 0,
+    "y": 768,
+    "w": 188,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 188,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 188,
+    "h": 96
+   },
+   "duration": 33
+  }
+ ],
+ "meta": {
+  "app": "https://github.com/patch-gg/pixelfx",
+  "version": "1",
+  "image": "dokkaebi-fire.png",
+  "format": "RGBA8888",
+  "size": {
+   "w": 1128,
+   "h": 864
+  },
+  "scale": "1",
+  "frameTags": [
+   {
+    "name": "dokkaebi-fire",
+    "from": 0,
+    "to": 48,
+    "direction": "forward"
+   }
+  ],
+  "pixelfx": {
+   "id": "geuseundae/dokkaebi-fire",
+   "name": "도깨비불",
+   "fps": 30,
+   "loop": false,
+   "frames": 49,
+   "frameSize": [
+    188,
+    96
+   ],
+   "pivot": [
+    26,
+    78
+   ],
+   "columns": 6,
+   "act": {
+    "windup": 0.42,
+    "recovery": 0,
+    "onBody": false,
+    "targets": [
+     120
+    ],
+    "hits": [
+     {
+      "t": 0.42,
+      "freeze": 0.06,
+      "shake": 0.12,
+      "amp": 1,
+      "push": 1.8,
+      "skin": "ice"
+     }
+    ],
+    "poses": [
+     {
+      "t": -0.42,
+      "how": "smooth",
+      "pose": {
+       "crouch": 3,
+       "fx": 11,
+       "fy": -21,
+       "bx": 7,
+       "by": -19,
+       "ffx": 7,
+       "fbx": -7
+      }
+     },
+     {
+      "t": -0.16,
+      "how": "smooth",
+      "pose": {
+       "crouch": 3,
+       "fx": -7,
+       "fy": -33,
+       "bx": 10,
+       "by": -24,
+       "ffx": 9,
+       "fbx": -7,
+       "x": -3,
+       "lean": -4,
+       "armsFront": true
+      }
+     },
+     {
+      "t": -0.03,
+      "how": "smooth",
+      "pose": {
+       "crouch": 3,
+       "fx": -7,
+       "fy": -33,
+       "bx": 10,
+       "by": -24,
+       "ffx": 9,
+       "fbx": -7,
+       "x": -3,
+       "lean": -5,
+       "armsFront": true
+      }
+     },
+     {
+      "t": 0,
+      "how": "snap",
+      "pose": {
+       "crouch": 4,
+       "fx": 17,
+       "fy": -27,
+       "bx": -6,
+       "by": -22,
+       "ffx": 12,
+       "fbx": -9,
+       "x": 2,
+       "lean": 5,
+       "toeB": true,
+       "ghost": 1
+      }
+     },
+     {
+      "t": 0.08,
+      "how": "snap",
+      "pose": {
+       "crouch": 4,
+       "fx": 17,
+       "fy": -27,
+       "bx": -6,
+       "by": -22,
+       "ffx": 12,
+       "fbx": -9,
+       "x": 2,
+       "lean": 5,
+       "toeB": true
+      }
+     },
+     {
+      "t": 0.32,
+      "how": "smooth",
+      "pose": {
+       "crouch": 4,
+       "fx": 15,
+       "fy": -24,
+       "bx": -6,
+       "by": -22,
+       "ffx": 12,
+       "fbx": -9,
+       "x": 2,
+       "lean": 3,
+       "toeB": true
+      }
+     },
+     {
+      "t": 0.9,
+      "how": "smooth",
+      "pose": {
+       "crouch": 3,
+       "fx": 11,
+       "fy": -21,
+       "bx": 7,
+       "by": -19,
+       "ffx": 7,
+       "fbx": -7
+      }
+     }
+    ]
+   }
+  }
+ }
+}

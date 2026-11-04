@@ -1,0 +1,413 @@
+{
+ "frames": [
+  {
+   "filename": "eggshell-hit 0",
+   "frame": {
+    "x": 0,
+    "y": 0,
+    "w": 36,
+    "h": 44
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 36,
+    "h": 44
+   },
+   "sourceSize": {
+    "w": 36,
+    "h": 44
+   },
+   "duration": 33
+  },
+  {
+   "filename": "eggshell-hit 1",
+   "frame": {
+    "x": 36,
+    "y": 0,
+    "w": 36,
+    "h": 44
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 36,
+    "h": 44
+   },
+   "sourceSize": {
+    "w": 36,
+    "h": 44
+   },
+   "duration": 33
+  },
+  {
+   "filename": "eggshell-hit 2",
+   "frame": {
+    "x": 72,
+    "y": 0,
+    "w": 36,
+    "h": 44
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 36,
+    "h": 44
+   },
+   "sourceSize": {
+    "w": 36,
+    "h": 44
+   },
+   "duration": 33
+  },
+  {
+   "filename": "eggshell-hit 3",
+   "frame": {
+    "x": 108,
+    "y": 0,
+    "w": 36,
+    "h": 44
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 36,
+    "h": 44
+   },
+   "sourceSize": {
+    "w": 36,
+    "h": 44
+   },
+   "duration": 33
+  },
+  {
+   "filename": "eggshell-hit 4",
+   "frame": {
+    "x": 144,
+    "y": 0,
+    "w": 36,
+    "h": 44
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 36,
+    "h": 44
+   },
+   "sourceSize": {
+    "w": 36,
+    "h": 44
+   },
+   "duration": 33
+  },
+  {
+   "filename": "eggshell-hit 5",
+   "frame": {
+    "x": 0,
+    "y": 44,
+    "w": 36,
+    "h": 44
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 36,
+    "h": 44
+   },
+   "sourceSize": {
+    "w": 36,
+    "h": 44
+   },
+   "duration": 33
+  },
+  {
+   "filename": "eggshell-hit 6",
+   "frame": {
+    "x": 36,
+    "y": 44,
+    "w": 36,
+    "h": 44
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 36,
+    "h": 44
+   },
+   "sourceSize": {
+    "w": 36,
+    "h": 44
+   },
+   "duration": 33
+  },
+  {
+   "filename": "eggshell-hit 7",
+   "frame": {
+    "x": 72,
+    "y": 44,
+    "w": 36,
+    "h": 44
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 36,
+    "h": 44
+   },
+   "sourceSize": {
+    "w": 36,
+    "h": 44
+   },
+   "duration": 33
+  },
+  {
+   "filename": "eggshell-hit 8",
+   "frame": {
+    "x": 108,
+    "y": 44,
+    "w": 36,
+    "h": 44
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 36,
+    "h": 44
+   },
+   "sourceSize": {
+    "w": 36,
+    "h": 44
+   },
+   "duration": 33
+  },
+  {
+   "filename": "eggshell-hit 9",
+   "frame": {
+    "x": 144,
+    "y": 44,
+    "w": 36,
+    "h": 44
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 36,
+    "h": 44
+   },
+   "sourceSize": {
+    "w": 36,
+    "h": 44
+   },
+   "duration": 33
+  },
+  {
+   "filename": "eggshell-hit 10",
+   "frame": {
+    "x": 0,
+    "y": 88,
+    "w": 36,
+    "h": 44
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 36,
+    "h": 44
+   },
+   "sourceSize": {
+    "w": 36,
+    "h": 44
+   },
+   "duration": 33
+  },
+  {
+   "filename": "eggshell-hit 11",
+   "frame": {
+    "x": 36,
+    "y": 88,
+    "w": 36,
+    "h": 44
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 36,
+    "h": 44
+   },
+   "sourceSize": {
+    "w": 36,
+    "h": 44
+   },
+   "duration": 33
+  },
+  {
+   "filename": "eggshell-hit 12",
+   "frame": {
+    "x": 72,
+    "y": 88,
+    "w": 36,
+    "h": 44
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 36,
+    "h": 44
+   },
+   "sourceSize": {
+    "w": 36,
+    "h": 44
+   },
+   "duration": 33
+  },
+  {
+   "filename": "eggshell-hit 13",
+   "frame": {
+    "x": 108,
+    "y": 88,
+    "w": 36,
+    "h": 44
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 36,
+    "h": 44
+   },
+   "sourceSize": {
+    "w": 36,
+    "h": 44
+   },
+   "duration": 33
+  },
+  {
+   "filename": "eggshell-hit 14",
+   "frame": {
+    "x": 144,
+    "y": 88,
+    "w": 36,
+    "h": 44
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 36,
+    "h": 44
+   },
+   "sourceSize": {
+    "w": 36,
+    "h": 44
+   },
+   "duration": 33
+  },
+  {
+   "filename": "eggshell-hit 15",
+   "frame": {
+    "x": 0,
+    "y": 132,
+    "w": 36,
+    "h": 44
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 36,
+    "h": 44
+   },
+   "sourceSize": {
+    "w": 36,
+    "h": 44
+   },
+   "duration": 33
+  },
+  {
+   "filename": "eggshell-hit 16",
+   "frame": {
+    "x": 36,
+    "y": 132,
+    "w": 36,
+    "h": 44
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 36,
+    "h": 44
+   },
+   "sourceSize": {
+    "w": 36,
+    "h": 44
+   },
+   "duration": 33
+  }
+ ],
+ "meta": {
+  "app": "https://github.com/patch-gg/pixelfx",
+  "version": "1",
+  "image": "eggshell-hit.png",
+  "format": "RGBA8888",
+  "size": {
+   "w": 180,
+   "h": 176
+  },
+  "scale": "1",
+  "frameTags": [
+   {
+    "name": "eggshell-hit",
+    "from": 0,
+    "to": 16,
+    "direction": "forward"
+   }
+  ],
+  "pixelfx": {
+   "id": "geuseundae/eggshell-hit",
+   "name": "깨진 달걀껍데기 · 명중",
+   "fps": 30,
+   "loop": false,
+   "frames": 17,
+   "frameSize": [
+    36,
+    44
+   ],
+   "pivot": [
+    18,
+    18
+   ],
+   "columns": 5
+  }
+ }
+}

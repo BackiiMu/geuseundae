@@ -1,0 +1,207 @@
+{
+  "hair": {
+    "name": "손각시의 머리카락",
+    "tier": 1,
+    "path": "res://assets/equipment/icons/hair.png"
+  },
+  "pin": {
+    "name": "녹슨 비녀",
+    "tier": 2,
+    "path": "res://assets/equipment/icons/pin.png"
+  },
+  "ribbon": {
+    "name": "끊어진 댕기",
+    "tier": 2,
+    "path": "res://assets/equipment/icons/ribbon.png"
+  },
+  "mirror": {
+    "name": "피 묻은 족두리",
+    "tier": 3,
+    "path": "res://assets/equipment/icons/mirror.png"
+  },
+  "eggshell": {
+    "name": "깨진 달걀껍데기",
+    "tier": 1,
+    "path": "res://assets/equipment/icons/eggshell.png"
+  },
+  "blank_face": {
+    "name": "민얼굴",
+    "tier": 2,
+    "path": "res://assets/equipment/icons/blank_face.png"
+  },
+  "gaze": {
+    "name": "텅 빈 응시",
+    "tier": 3,
+    "path": "res://assets/equipment/icons/gaze.png"
+  },
+  "nails": {
+    "name": "몽달의 손톱",
+    "tier": 1,
+    "path": "res://assets/equipment/icons/nails.png"
+  },
+  "goose": {
+    "name": "부러진 나무기러기",
+    "tier": 2,
+    "path": "res://assets/equipment/icons/goose.png"
+  },
+  "mongdal_rush": {
+    "name": "몽달의 한",
+    "tier": 3,
+    "path": "res://assets/equipment/icons/mongdal_rush.png"
+  },
+  "claws": {
+    "name": "범의 발톱",
+    "tier": 2,
+    "path": "res://assets/equipment/icons/claws.png"
+  },
+  "call": {
+    "name": "창귀의 부름",
+    "tier": 2,
+    "path": "res://assets/equipment/icons/call.png"
+  },
+  "tiger_soul": {
+    "name": "홀린 넋",
+    "tier": 3,
+    "path": "res://assets/equipment/icons/tiger_soul.png"
+  },
+  "tiger_fang": {
+    "name": "범의 송곳니",
+    "tier": 4,
+    "path": "res://assets/equipment/icons/tiger_fang.png"
+  },
+  "water_bucket": {
+    "name": "젖은 바가지",
+    "tier": 1,
+    "path": "res://assets/equipment/icons/water_bucket.png"
+  },
+  "water_hand": {
+    "name": "물귀신의 손",
+    "tier": 2,
+    "path": "res://assets/equipment/icons/water_hand.png"
+  },
+  "well_bucket": {
+    "name": "우물 두레박",
+    "tier": 3,
+    "path": "res://assets/equipment/icons/well_bucket.png"
+  },
+  "fox_bead": {
+    "name": "여우구슬",
+    "tier": 2,
+    "path": "res://assets/equipment/icons/fox_bead.png"
+  },
+  "tails": {
+    "name": "구미호의 꼬리",
+    "tier": 3,
+    "path": "res://assets/equipment/icons/tails.png"
+  },
+  "fox_fire": {
+    "name": "여우불",
+    "tier": 1,
+    "path": "res://assets/equipment/icons/fox_fire.png"
+  },
+  "fox_mirror": {
+    "name": "둔갑 거울",
+    "tier": 4,
+    "path": "res://assets/equipment/icons/fox_mirror.png"
+  },
+  "club": {
+    "name": "도깨비방망이",
+    "tier": 2,
+    "path": "res://assets/equipment/icons/club.png"
+  },
+  "goblin_fire": {
+    "name": "도깨비불",
+    "tier": 1,
+    "path": "res://assets/equipment/icons/goblin_fire.png"
+  },
+  "broom": {
+    "name": "낡은 빗자루",
+    "tier": 2,
+    "path": "res://assets/equipment/icons/broom.png"
+  },
+  "belt": {
+    "name": "씨름 샅바",
+    "tier": 3,
+    "path": "res://assets/equipment/icons/belt.png"
+  },
+  "tooth": {
+    "name": "아귀의 이빨",
+    "tier": 1,
+    "path": "res://assets/equipment/icons/tooth.png"
+  },
+  "tongue": {
+    "name": "아귀의 혀",
+    "tier": 2,
+    "path": "res://assets/equipment/icons/tongue.png"
+  },
+  "shadow": {
+    "name": "어둑한 그림자",
+    "tier": 3,
+    "path": "res://assets/equipment/icons/shadow.png"
+  },
+  "voice": {
+    "name": "흉내 내는 목소리",
+    "tier": 3,
+    "path": "res://assets/equipment/icons/voice.png"
+  },
+  "plague": {
+    "name": "역병 항아리",
+    "tier": 2,
+    "path": "res://assets/equipment/icons/plague.png"
+  },
+  "whistle": {
+    "name": "가는 휘파람",
+    "tier": 3,
+    "path": "res://assets/equipment/icons/whistle.png"
+  },
+  "mouth": {
+    "name": "거구귀의 입",
+    "tier": 4,
+    "path": "res://assets/equipment/icons/mouth.png"
+  },
+  "fist": {
+    "name": "두억시니의 주먹",
+    "tier": 4,
+    "path": "res://assets/equipment/icons/fist.png"
+  },
+  "wig": {
+    "name": "헝클어진 가발",
+    "tier": 1,
+    "path": "res://assets/equipment/icons/wig.png"
+  },
+  "duo_head": {
+    "name": "두??니??의 XX??",
+    "tier": 4,
+    "path": "res://assets/equipment/icons/duo_head.png"
+  },
+  "bent_leg": {
+    "name": "꺾인 다리",
+    "tier": 1,
+    "path": "res://assets/equipment/icons/bent_leg.png"
+  },
+  "mongdal_legs": {
+    "name": "몽달의 다리",
+    "tier": 2,
+    "path": "res://assets/equipment/icons/mongdal_legs.png"
+  },
+  "wet_shoes": {
+    "name": "젖은 꽃신",
+    "tier": 2,
+    "path": "res://assets/equipment/icons/wet_shoes.png"
+  },
+  "single_shoe": {
+    "name": "한쪽 꽃신",
+    "tier": 1,
+    "path": "res://assets/equipment/icons/single_shoe.png"
+  },
+  "stomach": {
+    "name": "아귀의 위장",
+    "tier": 3,
+    "path": "res://assets/equipment/icons/stomach.png"
+  },
+  "duo_curse": {
+    "name": "??의 짙은 저주",
+    "tier": 3,
+    "path": "res://assets/equipment/icons/duo_curse.png"
+  }
+}

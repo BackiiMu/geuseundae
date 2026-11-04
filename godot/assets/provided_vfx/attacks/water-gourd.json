@@ -1,0 +1,1968 @@
+{
+ "frames": [
+  {
+   "filename": "water-gourd 0",
+   "frame": {
+    "x": 0,
+    "y": 0,
+    "w": 160,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 160,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 160,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "water-gourd 1",
+   "frame": {
+    "x": 160,
+    "y": 0,
+    "w": 160,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 160,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 160,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "water-gourd 2",
+   "frame": {
+    "x": 320,
+    "y": 0,
+    "w": 160,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 160,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 160,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "water-gourd 3",
+   "frame": {
+    "x": 480,
+    "y": 0,
+    "w": 160,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 160,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 160,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "water-gourd 4",
+   "frame": {
+    "x": 640,
+    "y": 0,
+    "w": 160,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 160,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 160,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "water-gourd 5",
+   "frame": {
+    "x": 800,
+    "y": 0,
+    "w": 160,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 160,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 160,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "water-gourd 6",
+   "frame": {
+    "x": 960,
+    "y": 0,
+    "w": 160,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 160,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 160,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "water-gourd 7",
+   "frame": {
+    "x": 1120,
+    "y": 0,
+    "w": 160,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 160,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 160,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "water-gourd 8",
+   "frame": {
+    "x": 0,
+    "y": 96,
+    "w": 160,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 160,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 160,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "water-gourd 9",
+   "frame": {
+    "x": 160,
+    "y": 96,
+    "w": 160,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 160,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 160,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "water-gourd 10",
+   "frame": {
+    "x": 320,
+    "y": 96,
+    "w": 160,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 160,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 160,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "water-gourd 11",
+   "frame": {
+    "x": 480,
+    "y": 96,
+    "w": 160,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 160,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 160,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "water-gourd 12",
+   "frame": {
+    "x": 640,
+    "y": 96,
+    "w": 160,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 160,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 160,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "water-gourd 13",
+   "frame": {
+    "x": 800,
+    "y": 96,
+    "w": 160,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 160,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 160,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "water-gourd 14",
+   "frame": {
+    "x": 960,
+    "y": 96,
+    "w": 160,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 160,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 160,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "water-gourd 15",
+   "frame": {
+    "x": 1120,
+    "y": 96,
+    "w": 160,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 160,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 160,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "water-gourd 16",
+   "frame": {
+    "x": 0,
+    "y": 192,
+    "w": 160,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 160,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 160,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "water-gourd 17",
+   "frame": {
+    "x": 160,
+    "y": 192,
+    "w": 160,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 160,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 160,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "water-gourd 18",
+   "frame": {
+    "x": 320,
+    "y": 192,
+    "w": 160,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 160,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 160,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "water-gourd 19",
+   "frame": {
+    "x": 480,
+    "y": 192,
+    "w": 160,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 160,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 160,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "water-gourd 20",
+   "frame": {
+    "x": 640,
+    "y": 192,
+    "w": 160,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 160,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 160,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "water-gourd 21",
+   "frame": {
+    "x": 800,
+    "y": 192,
+    "w": 160,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 160,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 160,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "water-gourd 22",
+   "frame": {
+    "x": 960,
+    "y": 192,
+    "w": 160,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 160,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 160,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "water-gourd 23",
+   "frame": {
+    "x": 1120,
+    "y": 192,
+    "w": 160,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 160,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 160,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "water-gourd 24",
+   "frame": {
+    "x": 0,
+    "y": 288,
+    "w": 160,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 160,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 160,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "water-gourd 25",
+   "frame": {
+    "x": 160,
+    "y": 288,
+    "w": 160,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 160,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 160,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "water-gourd 26",
+   "frame": {
+    "x": 320,
+    "y": 288,
+    "w": 160,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 160,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 160,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "water-gourd 27",
+   "frame": {
+    "x": 480,
+    "y": 288,
+    "w": 160,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 160,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 160,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "water-gourd 28",
+   "frame": {
+    "x": 640,
+    "y": 288,
+    "w": 160,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 160,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 160,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "water-gourd 29",
+   "frame": {
+    "x": 800,
+    "y": 288,
+    "w": 160,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 160,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 160,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "water-gourd 30",
+   "frame": {
+    "x": 960,
+    "y": 288,
+    "w": 160,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 160,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 160,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "water-gourd 31",
+   "frame": {
+    "x": 1120,
+    "y": 288,
+    "w": 160,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 160,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 160,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "water-gourd 32",
+   "frame": {
+    "x": 0,
+    "y": 384,
+    "w": 160,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 160,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 160,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "water-gourd 33",
+   "frame": {
+    "x": 160,
+    "y": 384,
+    "w": 160,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 160,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 160,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "water-gourd 34",
+   "frame": {
+    "x": 320,
+    "y": 384,
+    "w": 160,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 160,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 160,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "water-gourd 35",
+   "frame": {
+    "x": 480,
+    "y": 384,
+    "w": 160,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 160,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 160,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "water-gourd 36",
+   "frame": {
+    "x": 640,
+    "y": 384,
+    "w": 160,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 160,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 160,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "water-gourd 37",
+   "frame": {
+    "x": 800,
+    "y": 384,
+    "w": 160,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 160,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 160,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "water-gourd 38",
+   "frame": {
+    "x": 960,
+    "y": 384,
+    "w": 160,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 160,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 160,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "water-gourd 39",
+   "frame": {
+    "x": 1120,
+    "y": 384,
+    "w": 160,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 160,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 160,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "water-gourd 40",
+   "frame": {
+    "x": 0,
+    "y": 480,
+    "w": 160,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 160,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 160,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "water-gourd 41",
+   "frame": {
+    "x": 160,
+    "y": 480,
+    "w": 160,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 160,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 160,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "water-gourd 42",
+   "frame": {
+    "x": 320,
+    "y": 480,
+    "w": 160,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 160,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 160,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "water-gourd 43",
+   "frame": {
+    "x": 480,
+    "y": 480,
+    "w": 160,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 160,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 160,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "water-gourd 44",
+   "frame": {
+    "x": 640,
+    "y": 480,
+    "w": 160,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 160,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 160,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "water-gourd 45",
+   "frame": {
+    "x": 800,
+    "y": 480,
+    "w": 160,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 160,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 160,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "water-gourd 46",
+   "frame": {
+    "x": 960,
+    "y": 480,
+    "w": 160,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 160,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 160,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "water-gourd 47",
+   "frame": {
+    "x": 1120,
+    "y": 480,
+    "w": 160,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 160,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 160,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "water-gourd 48",
+   "frame": {
+    "x": 0,
+    "y": 576,
+    "w": 160,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 160,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 160,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "water-gourd 49",
+   "frame": {
+    "x": 160,
+    "y": 576,
+    "w": 160,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 160,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 160,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "water-gourd 50",
+   "frame": {
+    "x": 320,
+    "y": 576,
+    "w": 160,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 160,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 160,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "water-gourd 51",
+   "frame": {
+    "x": 480,
+    "y": 576,
+    "w": 160,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 160,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 160,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "water-gourd 52",
+   "frame": {
+    "x": 640,
+    "y": 576,
+    "w": 160,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 160,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 160,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "water-gourd 53",
+   "frame": {
+    "x": 800,
+    "y": 576,
+    "w": 160,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 160,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 160,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "water-gourd 54",
+   "frame": {
+    "x": 960,
+    "y": 576,
+    "w": 160,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 160,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 160,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "water-gourd 55",
+   "frame": {
+    "x": 1120,
+    "y": 576,
+    "w": 160,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 160,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 160,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "water-gourd 56",
+   "frame": {
+    "x": 0,
+    "y": 672,
+    "w": 160,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 160,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 160,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "water-gourd 57",
+   "frame": {
+    "x": 160,
+    "y": 672,
+    "w": 160,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 160,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 160,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "water-gourd 58",
+   "frame": {
+    "x": 320,
+    "y": 672,
+    "w": 160,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 160,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 160,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "water-gourd 59",
+   "frame": {
+    "x": 480,
+    "y": 672,
+    "w": 160,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 160,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 160,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "water-gourd 60",
+   "frame": {
+    "x": 640,
+    "y": 672,
+    "w": 160,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 160,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 160,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "water-gourd 61",
+   "frame": {
+    "x": 800,
+    "y": 672,
+    "w": 160,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 160,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 160,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "water-gourd 62",
+   "frame": {
+    "x": 960,
+    "y": 672,
+    "w": 160,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 160,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 160,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "water-gourd 63",
+   "frame": {
+    "x": 1120,
+    "y": 672,
+    "w": 160,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 160,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 160,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "water-gourd 64",
+   "frame": {
+    "x": 0,
+    "y": 768,
+    "w": 160,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 160,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 160,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "water-gourd 65",
+   "frame": {
+    "x": 160,
+    "y": 768,
+    "w": 160,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 160,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 160,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "water-gourd 66",
+   "frame": {
+    "x": 320,
+    "y": 768,
+    "w": 160,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 160,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 160,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "water-gourd 67",
+   "frame": {
+    "x": 480,
+    "y": 768,
+    "w": 160,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 160,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 160,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "water-gourd 68",
+   "frame": {
+    "x": 640,
+    "y": 768,
+    "w": 160,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 160,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 160,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "water-gourd 69",
+   "frame": {
+    "x": 800,
+    "y": 768,
+    "w": 160,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 160,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 160,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "water-gourd 70",
+   "frame": {
+    "x": 960,
+    "y": 768,
+    "w": 160,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 160,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 160,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "water-gourd 71",
+   "frame": {
+    "x": 1120,
+    "y": 768,
+    "w": 160,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 160,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 160,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "water-gourd 72",
+   "frame": {
+    "x": 0,
+    "y": 864,
+    "w": 160,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 160,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 160,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "water-gourd 73",
+   "frame": {
+    "x": 160,
+    "y": 864,
+    "w": 160,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 160,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 160,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "water-gourd 74",
+   "frame": {
+    "x": 320,
+    "y": 864,
+    "w": 160,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 160,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 160,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "water-gourd 75",
+   "frame": {
+    "x": 480,
+    "y": 864,
+    "w": 160,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 160,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 160,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "water-gourd 76",
+   "frame": {
+    "x": 640,
+    "y": 864,
+    "w": 160,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 160,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 160,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "water-gourd 77",
+   "frame": {
+    "x": 800,
+    "y": 864,
+    "w": 160,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 160,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 160,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "water-gourd 78",
+   "frame": {
+    "x": 960,
+    "y": 864,
+    "w": 160,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 160,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 160,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "water-gourd 79",
+   "frame": {
+    "x": 1120,
+    "y": 864,
+    "w": 160,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 160,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 160,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "water-gourd 80",
+   "frame": {
+    "x": 0,
+    "y": 960,
+    "w": 160,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 160,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 160,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "water-gourd 81",
+   "frame": {
+    "x": 160,
+    "y": 960,
+    "w": 160,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 160,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 160,
+    "h": 96
+   },
+   "duration": 33
+  }
+ ],
+ "meta": {
+  "app": "https://github.com/patch-gg/pixelfx",
+  "version": "1",
+  "image": "water-gourd.png",
+  "format": "RGBA8888",
+  "size": {
+   "w": 1280,
+   "h": 1056
+  },
+  "scale": "1",
+  "frameTags": [
+   {
+    "name": "water-gourd",
+    "from": 0,
+    "to": 81,
+    "direction": "forward"
+   }
+  ],
+  "pixelfx": {
+   "id": "geuseundae/water-gourd",
+   "name": "젖은 바가지",
+   "fps": 30,
+   "loop": false,
+   "frames": 82,
+   "frameSize": [
+    160,
+    96
+   ],
+   "pivot": [
+    26,
+    82
+   ],
+   "columns": 8,
+   "act": {
+    "windup": 0.44,
+    "recovery": 0,
+    "onBody": false,
+    "targets": [
+     78
+    ],
+    "hits": [
+     {
+      "t": 0.36,
+      "freeze": 0.05,
+      "shake": 0.1,
+      "amp": 1,
+      "push": 1.2,
+      "skin": "ice"
+     }
+    ],
+    "poses": [
+     {
+      "t": -0.44,
+      "how": "smooth",
+      "pose": {
+       "crouch": 3,
+       "fx": 11,
+       "fy": -21,
+       "bx": 7,
+       "by": -19,
+       "ffx": 7,
+       "fbx": -7
+      }
+     },
+     {
+      "t": -0.18,
+      "how": "smooth",
+      "pose": {
+       "crouch": 5,
+       "fx": -6,
+       "fy": -14,
+       "bx": 9,
+       "by": -25,
+       "ffx": 9,
+       "fbx": -8,
+       "x": -3,
+       "lean": -3
+      }
+     },
+     {
+      "t": -0.04,
+      "how": "smooth",
+      "pose": {
+       "crouch": 6,
+       "fx": -6,
+       "fy": -14,
+       "bx": 9,
+       "by": -25,
+       "ffx": 9,
+       "fbx": -8,
+       "x": -3,
+       "lean": -3
+      }
+     },
+     {
+      "t": 0,
+      "how": "snap",
+      "pose": {
+       "crouch": 1,
+       "fx": 15,
+       "fy": -36,
+       "bx": -5,
+       "by": -22,
+       "ffx": 11,
+       "fbx": -8,
+       "x": 2,
+       "lean": 3,
+       "toeB": true,
+       "ghost": 1
+      }
+     },
+     {
+      "t": 0.08,
+      "how": "snap",
+      "pose": {
+       "crouch": 1,
+       "fx": 15,
+       "fy": -36,
+       "bx": -5,
+       "by": -22,
+       "ffx": 11,
+       "fbx": -8,
+       "x": 2,
+       "lean": 3,
+       "toeB": true
+      }
+     },
+     {
+      "t": 0.36,
+      "how": "smooth",
+      "pose": {
+       "crouch": 2,
+       "fx": 15,
+       "fy": -30,
+       "bx": -5,
+       "by": -22,
+       "ffx": 11,
+       "fbx": -8,
+       "x": 2,
+       "lean": 3,
+       "toeB": true
+      }
+     },
+     {
+      "t": 0.95,
+      "how": "smooth",
+      "pose": {
+       "crouch": 3,
+       "fx": 11,
+       "fy": -21,
+       "bx": 7,
+       "by": -19,
+       "ffx": 7,
+       "fbx": -7
+      }
+     }
+    ]
+   }
+  }
+ }
+}

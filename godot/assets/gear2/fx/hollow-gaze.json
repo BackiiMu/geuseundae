@@ -1,0 +1,1359 @@
+{
+ "frames": [
+  {
+   "filename": "hollow-gaze 0",
+   "frame": {
+    "x": 0,
+    "y": 0,
+    "w": 170,
+    "h": 84
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 170,
+    "h": 84
+   },
+   "sourceSize": {
+    "w": 170,
+    "h": 84
+   },
+   "duration": 33
+  },
+  {
+   "filename": "hollow-gaze 1",
+   "frame": {
+    "x": 170,
+    "y": 0,
+    "w": 170,
+    "h": 84
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 170,
+    "h": 84
+   },
+   "sourceSize": {
+    "w": 170,
+    "h": 84
+   },
+   "duration": 33
+  },
+  {
+   "filename": "hollow-gaze 2",
+   "frame": {
+    "x": 340,
+    "y": 0,
+    "w": 170,
+    "h": 84
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 170,
+    "h": 84
+   },
+   "sourceSize": {
+    "w": 170,
+    "h": 84
+   },
+   "duration": 33
+  },
+  {
+   "filename": "hollow-gaze 3",
+   "frame": {
+    "x": 510,
+    "y": 0,
+    "w": 170,
+    "h": 84
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 170,
+    "h": 84
+   },
+   "sourceSize": {
+    "w": 170,
+    "h": 84
+   },
+   "duration": 33
+  },
+  {
+   "filename": "hollow-gaze 4",
+   "frame": {
+    "x": 680,
+    "y": 0,
+    "w": 170,
+    "h": 84
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 170,
+    "h": 84
+   },
+   "sourceSize": {
+    "w": 170,
+    "h": 84
+   },
+   "duration": 33
+  },
+  {
+   "filename": "hollow-gaze 5",
+   "frame": {
+    "x": 850,
+    "y": 0,
+    "w": 170,
+    "h": 84
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 170,
+    "h": 84
+   },
+   "sourceSize": {
+    "w": 170,
+    "h": 84
+   },
+   "duration": 33
+  },
+  {
+   "filename": "hollow-gaze 6",
+   "frame": {
+    "x": 0,
+    "y": 84,
+    "w": 170,
+    "h": 84
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 170,
+    "h": 84
+   },
+   "sourceSize": {
+    "w": 170,
+    "h": 84
+   },
+   "duration": 33
+  },
+  {
+   "filename": "hollow-gaze 7",
+   "frame": {
+    "x": 170,
+    "y": 84,
+    "w": 170,
+    "h": 84
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 170,
+    "h": 84
+   },
+   "sourceSize": {
+    "w": 170,
+    "h": 84
+   },
+   "duration": 33
+  },
+  {
+   "filename": "hollow-gaze 8",
+   "frame": {
+    "x": 340,
+    "y": 84,
+    "w": 170,
+    "h": 84
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 170,
+    "h": 84
+   },
+   "sourceSize": {
+    "w": 170,
+    "h": 84
+   },
+   "duration": 33
+  },
+  {
+   "filename": "hollow-gaze 9",
+   "frame": {
+    "x": 510,
+    "y": 84,
+    "w": 170,
+    "h": 84
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 170,
+    "h": 84
+   },
+   "sourceSize": {
+    "w": 170,
+    "h": 84
+   },
+   "duration": 33
+  },
+  {
+   "filename": "hollow-gaze 10",
+   "frame": {
+    "x": 680,
+    "y": 84,
+    "w": 170,
+    "h": 84
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 170,
+    "h": 84
+   },
+   "sourceSize": {
+    "w": 170,
+    "h": 84
+   },
+   "duration": 33
+  },
+  {
+   "filename": "hollow-gaze 11",
+   "frame": {
+    "x": 850,
+    "y": 84,
+    "w": 170,
+    "h": 84
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 170,
+    "h": 84
+   },
+   "sourceSize": {
+    "w": 170,
+    "h": 84
+   },
+   "duration": 33
+  },
+  {
+   "filename": "hollow-gaze 12",
+   "frame": {
+    "x": 0,
+    "y": 168,
+    "w": 170,
+    "h": 84
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 170,
+    "h": 84
+   },
+   "sourceSize": {
+    "w": 170,
+    "h": 84
+   },
+   "duration": 33
+  },
+  {
+   "filename": "hollow-gaze 13",
+   "frame": {
+    "x": 170,
+    "y": 168,
+    "w": 170,
+    "h": 84
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 170,
+    "h": 84
+   },
+   "sourceSize": {
+    "w": 170,
+    "h": 84
+   },
+   "duration": 33
+  },
+  {
+   "filename": "hollow-gaze 14",
+   "frame": {
+    "x": 340,
+    "y": 168,
+    "w": 170,
+    "h": 84
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 170,
+    "h": 84
+   },
+   "sourceSize": {
+    "w": 170,
+    "h": 84
+   },
+   "duration": 33
+  },
+  {
+   "filename": "hollow-gaze 15",
+   "frame": {
+    "x": 510,
+    "y": 168,
+    "w": 170,
+    "h": 84
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 170,
+    "h": 84
+   },
+   "sourceSize": {
+    "w": 170,
+    "h": 84
+   },
+   "duration": 33
+  },
+  {
+   "filename": "hollow-gaze 16",
+   "frame": {
+    "x": 680,
+    "y": 168,
+    "w": 170,
+    "h": 84
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 170,
+    "h": 84
+   },
+   "sourceSize": {
+    "w": 170,
+    "h": 84
+   },
+   "duration": 33
+  },
+  {
+   "filename": "hollow-gaze 17",
+   "frame": {
+    "x": 850,
+    "y": 168,
+    "w": 170,
+    "h": 84
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 170,
+    "h": 84
+   },
+   "sourceSize": {
+    "w": 170,
+    "h": 84
+   },
+   "duration": 33
+  },
+  {
+   "filename": "hollow-gaze 18",
+   "frame": {
+    "x": 0,
+    "y": 252,
+    "w": 170,
+    "h": 84
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 170,
+    "h": 84
+   },
+   "sourceSize": {
+    "w": 170,
+    "h": 84
+   },
+   "duration": 33
+  },
+  {
+   "filename": "hollow-gaze 19",
+   "frame": {
+    "x": 170,
+    "y": 252,
+    "w": 170,
+    "h": 84
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 170,
+    "h": 84
+   },
+   "sourceSize": {
+    "w": 170,
+    "h": 84
+   },
+   "duration": 33
+  },
+  {
+   "filename": "hollow-gaze 20",
+   "frame": {
+    "x": 340,
+    "y": 252,
+    "w": 170,
+    "h": 84
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 170,
+    "h": 84
+   },
+   "sourceSize": {
+    "w": 170,
+    "h": 84
+   },
+   "duration": 33
+  },
+  {
+   "filename": "hollow-gaze 21",
+   "frame": {
+    "x": 510,
+    "y": 252,
+    "w": 170,
+    "h": 84
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 170,
+    "h": 84
+   },
+   "sourceSize": {
+    "w": 170,
+    "h": 84
+   },
+   "duration": 33
+  },
+  {
+   "filename": "hollow-gaze 22",
+   "frame": {
+    "x": 680,
+    "y": 252,
+    "w": 170,
+    "h": 84
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 170,
+    "h": 84
+   },
+   "sourceSize": {
+    "w": 170,
+    "h": 84
+   },
+   "duration": 33
+  },
+  {
+   "filename": "hollow-gaze 23",
+   "frame": {
+    "x": 850,
+    "y": 252,
+    "w": 170,
+    "h": 84
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 170,
+    "h": 84
+   },
+   "sourceSize": {
+    "w": 170,
+    "h": 84
+   },
+   "duration": 33
+  },
+  {
+   "filename": "hollow-gaze 24",
+   "frame": {
+    "x": 0,
+    "y": 336,
+    "w": 170,
+    "h": 84
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 170,
+    "h": 84
+   },
+   "sourceSize": {
+    "w": 170,
+    "h": 84
+   },
+   "duration": 33
+  },
+  {
+   "filename": "hollow-gaze 25",
+   "frame": {
+    "x": 170,
+    "y": 336,
+    "w": 170,
+    "h": 84
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 170,
+    "h": 84
+   },
+   "sourceSize": {
+    "w": 170,
+    "h": 84
+   },
+   "duration": 33
+  },
+  {
+   "filename": "hollow-gaze 26",
+   "frame": {
+    "x": 340,
+    "y": 336,
+    "w": 170,
+    "h": 84
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 170,
+    "h": 84
+   },
+   "sourceSize": {
+    "w": 170,
+    "h": 84
+   },
+   "duration": 33
+  },
+  {
+   "filename": "hollow-gaze 27",
+   "frame": {
+    "x": 510,
+    "y": 336,
+    "w": 170,
+    "h": 84
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 170,
+    "h": 84
+   },
+   "sourceSize": {
+    "w": 170,
+    "h": 84
+   },
+   "duration": 33
+  },
+  {
+   "filename": "hollow-gaze 28",
+   "frame": {
+    "x": 680,
+    "y": 336,
+    "w": 170,
+    "h": 84
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 170,
+    "h": 84
+   },
+   "sourceSize": {
+    "w": 170,
+    "h": 84
+   },
+   "duration": 33
+  },
+  {
+   "filename": "hollow-gaze 29",
+   "frame": {
+    "x": 850,
+    "y": 336,
+    "w": 170,
+    "h": 84
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 170,
+    "h": 84
+   },
+   "sourceSize": {
+    "w": 170,
+    "h": 84
+   },
+   "duration": 33
+  },
+  {
+   "filename": "hollow-gaze 30",
+   "frame": {
+    "x": 0,
+    "y": 420,
+    "w": 170,
+    "h": 84
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 170,
+    "h": 84
+   },
+   "sourceSize": {
+    "w": 170,
+    "h": 84
+   },
+   "duration": 33
+  },
+  {
+   "filename": "hollow-gaze 31",
+   "frame": {
+    "x": 170,
+    "y": 420,
+    "w": 170,
+    "h": 84
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 170,
+    "h": 84
+   },
+   "sourceSize": {
+    "w": 170,
+    "h": 84
+   },
+   "duration": 33
+  },
+  {
+   "filename": "hollow-gaze 32",
+   "frame": {
+    "x": 340,
+    "y": 420,
+    "w": 170,
+    "h": 84
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 170,
+    "h": 84
+   },
+   "sourceSize": {
+    "w": 170,
+    "h": 84
+   },
+   "duration": 33
+  },
+  {
+   "filename": "hollow-gaze 33",
+   "frame": {
+    "x": 510,
+    "y": 420,
+    "w": 170,
+    "h": 84
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 170,
+    "h": 84
+   },
+   "sourceSize": {
+    "w": 170,
+    "h": 84
+   },
+   "duration": 33
+  },
+  {
+   "filename": "hollow-gaze 34",
+   "frame": {
+    "x": 680,
+    "y": 420,
+    "w": 170,
+    "h": 84
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 170,
+    "h": 84
+   },
+   "sourceSize": {
+    "w": 170,
+    "h": 84
+   },
+   "duration": 33
+  },
+  {
+   "filename": "hollow-gaze 35",
+   "frame": {
+    "x": 850,
+    "y": 420,
+    "w": 170,
+    "h": 84
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 170,
+    "h": 84
+   },
+   "sourceSize": {
+    "w": 170,
+    "h": 84
+   },
+   "duration": 33
+  },
+  {
+   "filename": "hollow-gaze 36",
+   "frame": {
+    "x": 0,
+    "y": 504,
+    "w": 170,
+    "h": 84
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 170,
+    "h": 84
+   },
+   "sourceSize": {
+    "w": 170,
+    "h": 84
+   },
+   "duration": 33
+  },
+  {
+   "filename": "hollow-gaze 37",
+   "frame": {
+    "x": 170,
+    "y": 504,
+    "w": 170,
+    "h": 84
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 170,
+    "h": 84
+   },
+   "sourceSize": {
+    "w": 170,
+    "h": 84
+   },
+   "duration": 33
+  },
+  {
+   "filename": "hollow-gaze 38",
+   "frame": {
+    "x": 340,
+    "y": 504,
+    "w": 170,
+    "h": 84
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 170,
+    "h": 84
+   },
+   "sourceSize": {
+    "w": 170,
+    "h": 84
+   },
+   "duration": 33
+  },
+  {
+   "filename": "hollow-gaze 39",
+   "frame": {
+    "x": 510,
+    "y": 504,
+    "w": 170,
+    "h": 84
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 170,
+    "h": 84
+   },
+   "sourceSize": {
+    "w": 170,
+    "h": 84
+   },
+   "duration": 33
+  },
+  {
+   "filename": "hollow-gaze 40",
+   "frame": {
+    "x": 680,
+    "y": 504,
+    "w": 170,
+    "h": 84
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 170,
+    "h": 84
+   },
+   "sourceSize": {
+    "w": 170,
+    "h": 84
+   },
+   "duration": 33
+  },
+  {
+   "filename": "hollow-gaze 41",
+   "frame": {
+    "x": 850,
+    "y": 504,
+    "w": 170,
+    "h": 84
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 170,
+    "h": 84
+   },
+   "sourceSize": {
+    "w": 170,
+    "h": 84
+   },
+   "duration": 33
+  },
+  {
+   "filename": "hollow-gaze 42",
+   "frame": {
+    "x": 0,
+    "y": 588,
+    "w": 170,
+    "h": 84
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 170,
+    "h": 84
+   },
+   "sourceSize": {
+    "w": 170,
+    "h": 84
+   },
+   "duration": 33
+  },
+  {
+   "filename": "hollow-gaze 43",
+   "frame": {
+    "x": 170,
+    "y": 588,
+    "w": 170,
+    "h": 84
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 170,
+    "h": 84
+   },
+   "sourceSize": {
+    "w": 170,
+    "h": 84
+   },
+   "duration": 33
+  },
+  {
+   "filename": "hollow-gaze 44",
+   "frame": {
+    "x": 340,
+    "y": 588,
+    "w": 170,
+    "h": 84
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 170,
+    "h": 84
+   },
+   "sourceSize": {
+    "w": 170,
+    "h": 84
+   },
+   "duration": 33
+  },
+  {
+   "filename": "hollow-gaze 45",
+   "frame": {
+    "x": 510,
+    "y": 588,
+    "w": 170,
+    "h": 84
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 170,
+    "h": 84
+   },
+   "sourceSize": {
+    "w": 170,
+    "h": 84
+   },
+   "duration": 33
+  },
+  {
+   "filename": "hollow-gaze 46",
+   "frame": {
+    "x": 680,
+    "y": 588,
+    "w": 170,
+    "h": 84
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 170,
+    "h": 84
+   },
+   "sourceSize": {
+    "w": 170,
+    "h": 84
+   },
+   "duration": 33
+  },
+  {
+   "filename": "hollow-gaze 47",
+   "frame": {
+    "x": 850,
+    "y": 588,
+    "w": 170,
+    "h": 84
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 170,
+    "h": 84
+   },
+   "sourceSize": {
+    "w": 170,
+    "h": 84
+   },
+   "duration": 33
+  },
+  {
+   "filename": "hollow-gaze 48",
+   "frame": {
+    "x": 0,
+    "y": 672,
+    "w": 170,
+    "h": 84
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 170,
+    "h": 84
+   },
+   "sourceSize": {
+    "w": 170,
+    "h": 84
+   },
+   "duration": 33
+  },
+  {
+   "filename": "hollow-gaze 49",
+   "frame": {
+    "x": 170,
+    "y": 672,
+    "w": 170,
+    "h": 84
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 170,
+    "h": 84
+   },
+   "sourceSize": {
+    "w": 170,
+    "h": 84
+   },
+   "duration": 33
+  },
+  {
+   "filename": "hollow-gaze 50",
+   "frame": {
+    "x": 340,
+    "y": 672,
+    "w": 170,
+    "h": 84
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 170,
+    "h": 84
+   },
+   "sourceSize": {
+    "w": 170,
+    "h": 84
+   },
+   "duration": 33
+  },
+  {
+   "filename": "hollow-gaze 51",
+   "frame": {
+    "x": 510,
+    "y": 672,
+    "w": 170,
+    "h": 84
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 170,
+    "h": 84
+   },
+   "sourceSize": {
+    "w": 170,
+    "h": 84
+   },
+   "duration": 33
+  },
+  {
+   "filename": "hollow-gaze 52",
+   "frame": {
+    "x": 680,
+    "y": 672,
+    "w": 170,
+    "h": 84
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 170,
+    "h": 84
+   },
+   "sourceSize": {
+    "w": 170,
+    "h": 84
+   },
+   "duration": 33
+  },
+  {
+   "filename": "hollow-gaze 53",
+   "frame": {
+    "x": 850,
+    "y": 672,
+    "w": 170,
+    "h": 84
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 170,
+    "h": 84
+   },
+   "sourceSize": {
+    "w": 170,
+    "h": 84
+   },
+   "duration": 33
+  },
+  {
+   "filename": "hollow-gaze 54",
+   "frame": {
+    "x": 0,
+    "y": 756,
+    "w": 170,
+    "h": 84
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 170,
+    "h": 84
+   },
+   "sourceSize": {
+    "w": 170,
+    "h": 84
+   },
+   "duration": 33
+  }
+ ],
+ "meta": {
+  "app": "https://github.com/patch-gg/pixelfx",
+  "version": "1",
+  "image": "hollow-gaze.png",
+  "format": "RGBA8888",
+  "size": {
+   "w": 1020,
+   "h": 840
+  },
+  "scale": "1",
+  "frameTags": [
+   {
+    "name": "hollow-gaze",
+    "from": 0,
+    "to": 54,
+    "direction": "forward"
+   }
+  ],
+  "pixelfx": {
+   "id": "geuseundae/hollow-gaze",
+   "name": "텅 빈 응시",
+   "fps": 30,
+   "loop": false,
+   "frames": 55,
+   "frameSize": [
+    170,
+    84
+   ],
+   "pivot": [
+    26,
+    72
+   ],
+   "columns": 6,
+   "act": {
+    "windup": 0.3,
+    "recovery": 0,
+    "onBody": false,
+    "targets": [
+     100
+    ],
+    "hits": [
+     {
+      "t": 0.38,
+      "freeze": 0.04,
+      "shake": 0,
+      "amp": 0,
+      "push": 0.25
+     },
+     {
+      "t": 0.54,
+      "freeze": 0,
+      "shake": 0,
+      "amp": 0,
+      "push": 0.25
+     },
+     {
+      "t": 0.7,
+      "freeze": 0,
+      "shake": 0,
+      "amp": 0,
+      "push": 0.25
+     },
+     {
+      "t": 0.86,
+      "freeze": 0,
+      "shake": 0,
+      "amp": 0,
+      "push": 0.25
+     },
+     {
+      "t": 1.02,
+      "freeze": 0,
+      "shake": 0,
+      "amp": 0,
+      "push": 0.25
+     },
+     {
+      "t": 1.1800000000000002,
+      "freeze": 0,
+      "shake": 0,
+      "amp": 0,
+      "push": 0.25
+     }
+    ],
+    "poses": [
+     {
+      "t": -0.3,
+      "how": "smooth",
+      "pose": {
+       "crouch": 3,
+       "fx": 10,
+       "fy": -22,
+       "bx": 7,
+       "by": -20,
+       "ffx": 7,
+       "fbx": -7
+      }
+     },
+     {
+      "t": 0,
+      "how": "snap",
+      "pose": {
+       "crouch": 3,
+       "fx": 17,
+       "fy": -27,
+       "bx": 15,
+       "by": -26,
+       "ffx": 7,
+       "fbx": -7,
+       "lean": 3,
+       "armsFront": true
+      }
+     },
+     {
+      "t": 1.3,
+      "how": "smooth",
+      "pose": {
+       "crouch": 3,
+       "fx": 17,
+       "fy": -27,
+       "bx": 15,
+       "by": -26,
+       "ffx": 7,
+       "fbx": -7,
+       "lean": 3,
+       "armsFront": true
+      }
+     },
+     {
+      "t": 1.7000000000000002,
+      "how": "smooth",
+      "pose": {
+       "crouch": 3,
+       "fx": 10,
+       "fy": -22,
+       "bx": 7,
+       "by": -20,
+       "ffx": 7,
+       "fbx": -7
+      }
+     }
+    ]
+   }
+  }
+ }
+}

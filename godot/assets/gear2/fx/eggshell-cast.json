@@ -1,0 +1,281 @@
+{
+ "frames": [
+  {
+   "filename": "eggshell-cast 0",
+   "frame": {
+    "x": 0,
+    "y": 0,
+    "w": 32,
+    "h": 36
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 32,
+    "h": 36
+   },
+   "sourceSize": {
+    "w": 32,
+    "h": 36
+   },
+   "duration": 33
+  },
+  {
+   "filename": "eggshell-cast 1",
+   "frame": {
+    "x": 32,
+    "y": 0,
+    "w": 32,
+    "h": 36
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 32,
+    "h": 36
+   },
+   "sourceSize": {
+    "w": 32,
+    "h": 36
+   },
+   "duration": 33
+  },
+  {
+   "filename": "eggshell-cast 2",
+   "frame": {
+    "x": 64,
+    "y": 0,
+    "w": 32,
+    "h": 36
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 32,
+    "h": 36
+   },
+   "sourceSize": {
+    "w": 32,
+    "h": 36
+   },
+   "duration": 33
+  },
+  {
+   "filename": "eggshell-cast 3",
+   "frame": {
+    "x": 96,
+    "y": 0,
+    "w": 32,
+    "h": 36
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 32,
+    "h": 36
+   },
+   "sourceSize": {
+    "w": 32,
+    "h": 36
+   },
+   "duration": 33
+  },
+  {
+   "filename": "eggshell-cast 4",
+   "frame": {
+    "x": 0,
+    "y": 36,
+    "w": 32,
+    "h": 36
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 32,
+    "h": 36
+   },
+   "sourceSize": {
+    "w": 32,
+    "h": 36
+   },
+   "duration": 33
+  },
+  {
+   "filename": "eggshell-cast 5",
+   "frame": {
+    "x": 32,
+    "y": 36,
+    "w": 32,
+    "h": 36
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 32,
+    "h": 36
+   },
+   "sourceSize": {
+    "w": 32,
+    "h": 36
+   },
+   "duration": 33
+  },
+  {
+   "filename": "eggshell-cast 6",
+   "frame": {
+    "x": 64,
+    "y": 36,
+    "w": 32,
+    "h": 36
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 32,
+    "h": 36
+   },
+   "sourceSize": {
+    "w": 32,
+    "h": 36
+   },
+   "duration": 33
+  },
+  {
+   "filename": "eggshell-cast 7",
+   "frame": {
+    "x": 96,
+    "y": 36,
+    "w": 32,
+    "h": 36
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 32,
+    "h": 36
+   },
+   "sourceSize": {
+    "w": 32,
+    "h": 36
+   },
+   "duration": 33
+  },
+  {
+   "filename": "eggshell-cast 8",
+   "frame": {
+    "x": 0,
+    "y": 72,
+    "w": 32,
+    "h": 36
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 32,
+    "h": 36
+   },
+   "sourceSize": {
+    "w": 32,
+    "h": 36
+   },
+   "duration": 33
+  },
+  {
+   "filename": "eggshell-cast 9",
+   "frame": {
+    "x": 32,
+    "y": 72,
+    "w": 32,
+    "h": 36
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 32,
+    "h": 36
+   },
+   "sourceSize": {
+    "w": 32,
+    "h": 36
+   },
+   "duration": 33
+  },
+  {
+   "filename": "eggshell-cast 10",
+   "frame": {
+    "x": 64,
+    "y": 72,
+    "w": 32,
+    "h": 36
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 32,
+    "h": 36
+   },
+   "sourceSize": {
+    "w": 32,
+    "h": 36
+   },
+   "duration": 33
+  }
+ ],
+ "meta": {
+  "app": "https://github.com/patch-gg/pixelfx",
+  "version": "1",
+  "image": "eggshell-cast.png",
+  "format": "RGBA8888",
+  "size": {
+   "w": 128,
+   "h": 108
+  },
+  "scale": "1",
+  "frameTags": [
+   {
+    "name": "eggshell-cast",
+    "from": 0,
+    "to": 10,
+    "direction": "forward"
+   }
+  ],
+  "pixelfx": {
+   "id": "geuseundae/eggshell-cast",
+   "name": "깨진 달걀껍데기 · 발사",
+   "fps": 30,
+   "loop": false,
+   "frames": 11,
+   "frameSize": [
+    32,
+    36
+   ],
+   "pivot": [
+    16,
+    16
+   ],
+   "columns": 4
+  }
+ }
+}

@@ -1,0 +1,1441 @@
+{
+ "frames": [
+  {
+   "filename": "giant-fist 0",
+   "frame": {
+    "x": 0,
+    "y": 0,
+    "w": 220,
+    "h": 112
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 220,
+    "h": 112
+   },
+   "sourceSize": {
+    "w": 220,
+    "h": 112
+   },
+   "duration": 33
+  },
+  {
+   "filename": "giant-fist 1",
+   "frame": {
+    "x": 220,
+    "y": 0,
+    "w": 220,
+    "h": 112
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 220,
+    "h": 112
+   },
+   "sourceSize": {
+    "w": 220,
+    "h": 112
+   },
+   "duration": 33
+  },
+  {
+   "filename": "giant-fist 2",
+   "frame": {
+    "x": 440,
+    "y": 0,
+    "w": 220,
+    "h": 112
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 220,
+    "h": 112
+   },
+   "sourceSize": {
+    "w": 220,
+    "h": 112
+   },
+   "duration": 33
+  },
+  {
+   "filename": "giant-fist 3",
+   "frame": {
+    "x": 660,
+    "y": 0,
+    "w": 220,
+    "h": 112
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 220,
+    "h": 112
+   },
+   "sourceSize": {
+    "w": 220,
+    "h": 112
+   },
+   "duration": 33
+  },
+  {
+   "filename": "giant-fist 4",
+   "frame": {
+    "x": 880,
+    "y": 0,
+    "w": 220,
+    "h": 112
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 220,
+    "h": 112
+   },
+   "sourceSize": {
+    "w": 220,
+    "h": 112
+   },
+   "duration": 33
+  },
+  {
+   "filename": "giant-fist 5",
+   "frame": {
+    "x": 1100,
+    "y": 0,
+    "w": 220,
+    "h": 112
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 220,
+    "h": 112
+   },
+   "sourceSize": {
+    "w": 220,
+    "h": 112
+   },
+   "duration": 33
+  },
+  {
+   "filename": "giant-fist 6",
+   "frame": {
+    "x": 0,
+    "y": 112,
+    "w": 220,
+    "h": 112
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 220,
+    "h": 112
+   },
+   "sourceSize": {
+    "w": 220,
+    "h": 112
+   },
+   "duration": 33
+  },
+  {
+   "filename": "giant-fist 7",
+   "frame": {
+    "x": 220,
+    "y": 112,
+    "w": 220,
+    "h": 112
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 220,
+    "h": 112
+   },
+   "sourceSize": {
+    "w": 220,
+    "h": 112
+   },
+   "duration": 33
+  },
+  {
+   "filename": "giant-fist 8",
+   "frame": {
+    "x": 440,
+    "y": 112,
+    "w": 220,
+    "h": 112
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 220,
+    "h": 112
+   },
+   "sourceSize": {
+    "w": 220,
+    "h": 112
+   },
+   "duration": 33
+  },
+  {
+   "filename": "giant-fist 9",
+   "frame": {
+    "x": 660,
+    "y": 112,
+    "w": 220,
+    "h": 112
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 220,
+    "h": 112
+   },
+   "sourceSize": {
+    "w": 220,
+    "h": 112
+   },
+   "duration": 33
+  },
+  {
+   "filename": "giant-fist 10",
+   "frame": {
+    "x": 880,
+    "y": 112,
+    "w": 220,
+    "h": 112
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 220,
+    "h": 112
+   },
+   "sourceSize": {
+    "w": 220,
+    "h": 112
+   },
+   "duration": 33
+  },
+  {
+   "filename": "giant-fist 11",
+   "frame": {
+    "x": 1100,
+    "y": 112,
+    "w": 220,
+    "h": 112
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 220,
+    "h": 112
+   },
+   "sourceSize": {
+    "w": 220,
+    "h": 112
+   },
+   "duration": 33
+  },
+  {
+   "filename": "giant-fist 12",
+   "frame": {
+    "x": 0,
+    "y": 224,
+    "w": 220,
+    "h": 112
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 220,
+    "h": 112
+   },
+   "sourceSize": {
+    "w": 220,
+    "h": 112
+   },
+   "duration": 33
+  },
+  {
+   "filename": "giant-fist 13",
+   "frame": {
+    "x": 220,
+    "y": 224,
+    "w": 220,
+    "h": 112
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 220,
+    "h": 112
+   },
+   "sourceSize": {
+    "w": 220,
+    "h": 112
+   },
+   "duration": 33
+  },
+  {
+   "filename": "giant-fist 14",
+   "frame": {
+    "x": 440,
+    "y": 224,
+    "w": 220,
+    "h": 112
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 220,
+    "h": 112
+   },
+   "sourceSize": {
+    "w": 220,
+    "h": 112
+   },
+   "duration": 33
+  },
+  {
+   "filename": "giant-fist 15",
+   "frame": {
+    "x": 660,
+    "y": 224,
+    "w": 220,
+    "h": 112
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 220,
+    "h": 112
+   },
+   "sourceSize": {
+    "w": 220,
+    "h": 112
+   },
+   "duration": 33
+  },
+  {
+   "filename": "giant-fist 16",
+   "frame": {
+    "x": 880,
+    "y": 224,
+    "w": 220,
+    "h": 112
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 220,
+    "h": 112
+   },
+   "sourceSize": {
+    "w": 220,
+    "h": 112
+   },
+   "duration": 33
+  },
+  {
+   "filename": "giant-fist 17",
+   "frame": {
+    "x": 1100,
+    "y": 224,
+    "w": 220,
+    "h": 112
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 220,
+    "h": 112
+   },
+   "sourceSize": {
+    "w": 220,
+    "h": 112
+   },
+   "duration": 33
+  },
+  {
+   "filename": "giant-fist 18",
+   "frame": {
+    "x": 0,
+    "y": 336,
+    "w": 220,
+    "h": 112
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 220,
+    "h": 112
+   },
+   "sourceSize": {
+    "w": 220,
+    "h": 112
+   },
+   "duration": 33
+  },
+  {
+   "filename": "giant-fist 19",
+   "frame": {
+    "x": 220,
+    "y": 336,
+    "w": 220,
+    "h": 112
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 220,
+    "h": 112
+   },
+   "sourceSize": {
+    "w": 220,
+    "h": 112
+   },
+   "duration": 33
+  },
+  {
+   "filename": "giant-fist 20",
+   "frame": {
+    "x": 440,
+    "y": 336,
+    "w": 220,
+    "h": 112
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 220,
+    "h": 112
+   },
+   "sourceSize": {
+    "w": 220,
+    "h": 112
+   },
+   "duration": 33
+  },
+  {
+   "filename": "giant-fist 21",
+   "frame": {
+    "x": 660,
+    "y": 336,
+    "w": 220,
+    "h": 112
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 220,
+    "h": 112
+   },
+   "sourceSize": {
+    "w": 220,
+    "h": 112
+   },
+   "duration": 33
+  },
+  {
+   "filename": "giant-fist 22",
+   "frame": {
+    "x": 880,
+    "y": 336,
+    "w": 220,
+    "h": 112
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 220,
+    "h": 112
+   },
+   "sourceSize": {
+    "w": 220,
+    "h": 112
+   },
+   "duration": 33
+  },
+  {
+   "filename": "giant-fist 23",
+   "frame": {
+    "x": 1100,
+    "y": 336,
+    "w": 220,
+    "h": 112
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 220,
+    "h": 112
+   },
+   "sourceSize": {
+    "w": 220,
+    "h": 112
+   },
+   "duration": 33
+  },
+  {
+   "filename": "giant-fist 24",
+   "frame": {
+    "x": 0,
+    "y": 448,
+    "w": 220,
+    "h": 112
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 220,
+    "h": 112
+   },
+   "sourceSize": {
+    "w": 220,
+    "h": 112
+   },
+   "duration": 33
+  },
+  {
+   "filename": "giant-fist 25",
+   "frame": {
+    "x": 220,
+    "y": 448,
+    "w": 220,
+    "h": 112
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 220,
+    "h": 112
+   },
+   "sourceSize": {
+    "w": 220,
+    "h": 112
+   },
+   "duration": 33
+  },
+  {
+   "filename": "giant-fist 26",
+   "frame": {
+    "x": 440,
+    "y": 448,
+    "w": 220,
+    "h": 112
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 220,
+    "h": 112
+   },
+   "sourceSize": {
+    "w": 220,
+    "h": 112
+   },
+   "duration": 33
+  },
+  {
+   "filename": "giant-fist 27",
+   "frame": {
+    "x": 660,
+    "y": 448,
+    "w": 220,
+    "h": 112
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 220,
+    "h": 112
+   },
+   "sourceSize": {
+    "w": 220,
+    "h": 112
+   },
+   "duration": 33
+  },
+  {
+   "filename": "giant-fist 28",
+   "frame": {
+    "x": 880,
+    "y": 448,
+    "w": 220,
+    "h": 112
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 220,
+    "h": 112
+   },
+   "sourceSize": {
+    "w": 220,
+    "h": 112
+   },
+   "duration": 33
+  },
+  {
+   "filename": "giant-fist 29",
+   "frame": {
+    "x": 1100,
+    "y": 448,
+    "w": 220,
+    "h": 112
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 220,
+    "h": 112
+   },
+   "sourceSize": {
+    "w": 220,
+    "h": 112
+   },
+   "duration": 33
+  },
+  {
+   "filename": "giant-fist 30",
+   "frame": {
+    "x": 0,
+    "y": 560,
+    "w": 220,
+    "h": 112
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 220,
+    "h": 112
+   },
+   "sourceSize": {
+    "w": 220,
+    "h": 112
+   },
+   "duration": 33
+  },
+  {
+   "filename": "giant-fist 31",
+   "frame": {
+    "x": 220,
+    "y": 560,
+    "w": 220,
+    "h": 112
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 220,
+    "h": 112
+   },
+   "sourceSize": {
+    "w": 220,
+    "h": 112
+   },
+   "duration": 33
+  },
+  {
+   "filename": "giant-fist 32",
+   "frame": {
+    "x": 440,
+    "y": 560,
+    "w": 220,
+    "h": 112
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 220,
+    "h": 112
+   },
+   "sourceSize": {
+    "w": 220,
+    "h": 112
+   },
+   "duration": 33
+  },
+  {
+   "filename": "giant-fist 33",
+   "frame": {
+    "x": 660,
+    "y": 560,
+    "w": 220,
+    "h": 112
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 220,
+    "h": 112
+   },
+   "sourceSize": {
+    "w": 220,
+    "h": 112
+   },
+   "duration": 33
+  },
+  {
+   "filename": "giant-fist 34",
+   "frame": {
+    "x": 880,
+    "y": 560,
+    "w": 220,
+    "h": 112
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 220,
+    "h": 112
+   },
+   "sourceSize": {
+    "w": 220,
+    "h": 112
+   },
+   "duration": 33
+  },
+  {
+   "filename": "giant-fist 35",
+   "frame": {
+    "x": 1100,
+    "y": 560,
+    "w": 220,
+    "h": 112
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 220,
+    "h": 112
+   },
+   "sourceSize": {
+    "w": 220,
+    "h": 112
+   },
+   "duration": 33
+  },
+  {
+   "filename": "giant-fist 36",
+   "frame": {
+    "x": 0,
+    "y": 672,
+    "w": 220,
+    "h": 112
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 220,
+    "h": 112
+   },
+   "sourceSize": {
+    "w": 220,
+    "h": 112
+   },
+   "duration": 33
+  },
+  {
+   "filename": "giant-fist 37",
+   "frame": {
+    "x": 220,
+    "y": 672,
+    "w": 220,
+    "h": 112
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 220,
+    "h": 112
+   },
+   "sourceSize": {
+    "w": 220,
+    "h": 112
+   },
+   "duration": 33
+  },
+  {
+   "filename": "giant-fist 38",
+   "frame": {
+    "x": 440,
+    "y": 672,
+    "w": 220,
+    "h": 112
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 220,
+    "h": 112
+   },
+   "sourceSize": {
+    "w": 220,
+    "h": 112
+   },
+   "duration": 33
+  },
+  {
+   "filename": "giant-fist 39",
+   "frame": {
+    "x": 660,
+    "y": 672,
+    "w": 220,
+    "h": 112
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 220,
+    "h": 112
+   },
+   "sourceSize": {
+    "w": 220,
+    "h": 112
+   },
+   "duration": 33
+  },
+  {
+   "filename": "giant-fist 40",
+   "frame": {
+    "x": 880,
+    "y": 672,
+    "w": 220,
+    "h": 112
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 220,
+    "h": 112
+   },
+   "sourceSize": {
+    "w": 220,
+    "h": 112
+   },
+   "duration": 33
+  },
+  {
+   "filename": "giant-fist 41",
+   "frame": {
+    "x": 1100,
+    "y": 672,
+    "w": 220,
+    "h": 112
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 220,
+    "h": 112
+   },
+   "sourceSize": {
+    "w": 220,
+    "h": 112
+   },
+   "duration": 33
+  },
+  {
+   "filename": "giant-fist 42",
+   "frame": {
+    "x": 0,
+    "y": 784,
+    "w": 220,
+    "h": 112
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 220,
+    "h": 112
+   },
+   "sourceSize": {
+    "w": 220,
+    "h": 112
+   },
+   "duration": 33
+  },
+  {
+   "filename": "giant-fist 43",
+   "frame": {
+    "x": 220,
+    "y": 784,
+    "w": 220,
+    "h": 112
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 220,
+    "h": 112
+   },
+   "sourceSize": {
+    "w": 220,
+    "h": 112
+   },
+   "duration": 33
+  },
+  {
+   "filename": "giant-fist 44",
+   "frame": {
+    "x": 440,
+    "y": 784,
+    "w": 220,
+    "h": 112
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 220,
+    "h": 112
+   },
+   "sourceSize": {
+    "w": 220,
+    "h": 112
+   },
+   "duration": 33
+  },
+  {
+   "filename": "giant-fist 45",
+   "frame": {
+    "x": 660,
+    "y": 784,
+    "w": 220,
+    "h": 112
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 220,
+    "h": 112
+   },
+   "sourceSize": {
+    "w": 220,
+    "h": 112
+   },
+   "duration": 33
+  },
+  {
+   "filename": "giant-fist 46",
+   "frame": {
+    "x": 880,
+    "y": 784,
+    "w": 220,
+    "h": 112
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 220,
+    "h": 112
+   },
+   "sourceSize": {
+    "w": 220,
+    "h": 112
+   },
+   "duration": 33
+  },
+  {
+   "filename": "giant-fist 47",
+   "frame": {
+    "x": 1100,
+    "y": 784,
+    "w": 220,
+    "h": 112
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 220,
+    "h": 112
+   },
+   "sourceSize": {
+    "w": 220,
+    "h": 112
+   },
+   "duration": 33
+  },
+  {
+   "filename": "giant-fist 48",
+   "frame": {
+    "x": 0,
+    "y": 896,
+    "w": 220,
+    "h": 112
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 220,
+    "h": 112
+   },
+   "sourceSize": {
+    "w": 220,
+    "h": 112
+   },
+   "duration": 33
+  },
+  {
+   "filename": "giant-fist 49",
+   "frame": {
+    "x": 220,
+    "y": 896,
+    "w": 220,
+    "h": 112
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 220,
+    "h": 112
+   },
+   "sourceSize": {
+    "w": 220,
+    "h": 112
+   },
+   "duration": 33
+  },
+  {
+   "filename": "giant-fist 50",
+   "frame": {
+    "x": 440,
+    "y": 896,
+    "w": 220,
+    "h": 112
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 220,
+    "h": 112
+   },
+   "sourceSize": {
+    "w": 220,
+    "h": 112
+   },
+   "duration": 33
+  },
+  {
+   "filename": "giant-fist 51",
+   "frame": {
+    "x": 660,
+    "y": 896,
+    "w": 220,
+    "h": 112
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 220,
+    "h": 112
+   },
+   "sourceSize": {
+    "w": 220,
+    "h": 112
+   },
+   "duration": 33
+  },
+  {
+   "filename": "giant-fist 52",
+   "frame": {
+    "x": 880,
+    "y": 896,
+    "w": 220,
+    "h": 112
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 220,
+    "h": 112
+   },
+   "sourceSize": {
+    "w": 220,
+    "h": 112
+   },
+   "duration": 33
+  },
+  {
+   "filename": "giant-fist 53",
+   "frame": {
+    "x": 1100,
+    "y": 896,
+    "w": 220,
+    "h": 112
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 220,
+    "h": 112
+   },
+   "sourceSize": {
+    "w": 220,
+    "h": 112
+   },
+   "duration": 33
+  },
+  {
+   "filename": "giant-fist 54",
+   "frame": {
+    "x": 0,
+    "y": 1008,
+    "w": 220,
+    "h": 112
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 220,
+    "h": 112
+   },
+   "sourceSize": {
+    "w": 220,
+    "h": 112
+   },
+   "duration": 33
+  },
+  {
+   "filename": "giant-fist 55",
+   "frame": {
+    "x": 220,
+    "y": 1008,
+    "w": 220,
+    "h": 112
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 220,
+    "h": 112
+   },
+   "sourceSize": {
+    "w": 220,
+    "h": 112
+   },
+   "duration": 33
+  },
+  {
+   "filename": "giant-fist 56",
+   "frame": {
+    "x": 440,
+    "y": 1008,
+    "w": 220,
+    "h": 112
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 220,
+    "h": 112
+   },
+   "sourceSize": {
+    "w": 220,
+    "h": 112
+   },
+   "duration": 33
+  },
+  {
+   "filename": "giant-fist 57",
+   "frame": {
+    "x": 660,
+    "y": 1008,
+    "w": 220,
+    "h": 112
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 220,
+    "h": 112
+   },
+   "sourceSize": {
+    "w": 220,
+    "h": 112
+   },
+   "duration": 33
+  }
+ ],
+ "meta": {
+  "app": "https://github.com/patch-gg/pixelfx",
+  "version": "1",
+  "image": "giant-fist.png",
+  "format": "RGBA8888",
+  "size": {
+   "w": 1320,
+   "h": 1120
+  },
+  "scale": "1",
+  "frameTags": [
+   {
+    "name": "giant-fist",
+    "from": 0,
+    "to": 57,
+    "direction": "forward"
+   }
+  ],
+  "pixelfx": {
+   "id": "geuseundae/giant-fist",
+   "name": "두억시니의 주먹",
+   "fps": 30,
+   "loop": false,
+   "frames": 58,
+   "frameSize": [
+    220,
+    112
+   ],
+   "pivot": [
+    36,
+    96
+   ],
+   "columns": 6,
+   "act": {
+    "windup": 0.42,
+    "recovery": 0,
+    "onBody": false,
+    "targets": [
+     90
+    ],
+    "hits": [
+     {
+      "t": 0.13,
+      "freeze": 0.16,
+      "shake": 0.26,
+      "amp": 3,
+      "push": 4.2
+     }
+    ],
+    "poses": [
+     {
+      "t": -0.42,
+      "how": "smooth",
+      "pose": {
+       "crouch": 3,
+       "fx": 12,
+       "fy": -25,
+       "bx": 9,
+       "by": -27,
+       "ffx": 7,
+       "fbx": -7,
+       "lean": 1
+      }
+     },
+     {
+      "t": -0.18,
+      "how": "smooth",
+      "pose": {
+       "crouch": 6,
+       "fx": 3,
+       "fy": -27,
+       "bx": 11,
+       "by": -24,
+       "ffx": 9,
+       "fbx": -8,
+       "lean": -4,
+       "x": -3
+      }
+     },
+     {
+      "t": -0.04,
+      "how": "smooth",
+      "pose": {
+       "crouch": 6,
+       "fx": 3,
+       "fy": -27,
+       "bx": 11,
+       "by": -24,
+       "ffx": 9,
+       "fbx": -8,
+       "lean": -5,
+       "x": -3
+      }
+     },
+     {
+      "t": 0,
+      "how": "snap",
+      "pose": {
+       "crouch": 4,
+       "fx": 19,
+       "fy": -26,
+       "bx": -5,
+       "by": -23,
+       "ffx": 12,
+       "fbx": -9,
+       "lean": 6,
+       "x": 2,
+       "toeB": true,
+       "ghost": 1
+      }
+     },
+     {
+      "t": 0.13,
+      "how": "snap",
+      "pose": {
+       "crouch": 4,
+       "fx": 19,
+       "fy": -26,
+       "bx": -5,
+       "by": -23,
+       "ffx": 12,
+       "fbx": -9,
+       "lean": 6,
+       "x": 2,
+       "toeB": true
+      }
+     },
+     {
+      "t": 0.45,
+      "how": "smooth",
+      "pose": {
+       "crouch": 3,
+       "fx": 17,
+       "fy": -26,
+       "bx": -5,
+       "by": -23,
+       "ffx": 12,
+       "fbx": -9,
+       "lean": 6,
+       "x": 2,
+       "toeB": true
+      }
+     },
+     {
+      "t": 1.05,
+      "how": "smooth",
+      "pose": {
+       "crouch": 3,
+       "fx": 12,
+       "fy": -25,
+       "bx": 9,
+       "by": -27,
+       "ffx": 7,
+       "fbx": -7,
+       "lean": 1
+      }
+     }
+    ]
+   }
+  }
+ }
+}

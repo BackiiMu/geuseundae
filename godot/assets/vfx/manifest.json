@@ -981,5 +981,23 @@
       15,
       -24
     ]
+  },
+  "dash-2": {
+    "id": "geuseundae/shadow-dash",
+    "name": "Ghost dash",
+    "fps": 30,
+    "loop": false,
+    "frames": 14,
+    "frameSize": [
+      168,
+      96
+    ],
+    "pivot": [
+      112,
+      72
+    ],
+    "columns": 3,
+    "path": "res://assets/vfx/dash-2.png",
+    "source": "geuseundae/shadow-dash"
   }
 }

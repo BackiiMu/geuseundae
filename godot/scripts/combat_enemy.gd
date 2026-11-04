@@ -32,6 +32,19 @@ var thrown_velocity := Vector2.ZERO
 var throw_remaining := 0.0
 var throw_damage := 0.0
 var throw_hits: Array = []
+
+func windup_duration() -> float:
+	if boss: return [0.85,1.05,1.2][pattern]
+	if kind=="monk": return .9
+	if kind=="adept": return 1.1
+	return .45
+
+func recovery_duration() -> float:
+	if boss and pattern==2: return 1.3
+	if kind=="monk": return 1.0
+	if boss: return .9
+	if kind=="adept": return 1.5
+	return .6
 func _ready() -> void:
 	boss = kind=="boss"
 	size_factor = 1.5 if boss else 1.0
@@ -137,7 +150,7 @@ func _physics_process(delta: float) -> void:
 		if timer<=0:
 			release_attack(target)
 			state="recover"
-			timer=1.3 if boss and pattern==2 else 1.0 if kind=="monk" else .9 if boss else .6
+			timer=recovery_duration()
 	elif state=="recover":
 		velocity.x=0
 		if timer<=0: state="approach"
@@ -155,7 +168,7 @@ func _physics_process(delta: float) -> void:
 				if pattern==0 and distance>150: pattern=1
 			attack_direction=difference.normalized()
 			state="windup"
-			timer=([.85,1.05,1.2][pattern] if boss else .9 if kind=="monk" else .7 if kind=="adept" else .45)
+			timer=windup_duration()
 		else:
 			var direction:=facing
 			if kind=="adept" and distance<200: direction=-facing
