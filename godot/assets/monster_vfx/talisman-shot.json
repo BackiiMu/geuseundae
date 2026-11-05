@@ -1,0 +1,237 @@
+{
+ "frames": [
+  {
+   "filename": "talisman-shot 0",
+   "frame": {
+    "x": 0,
+    "y": 0,
+    "w": 28,
+    "h": 14
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 28,
+    "h": 14
+   },
+   "sourceSize": {
+    "w": 28,
+    "h": 14
+   },
+   "duration": 33
+  },
+  {
+   "filename": "talisman-shot 1",
+   "frame": {
+    "x": 28,
+    "y": 0,
+    "w": 28,
+    "h": 14
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 28,
+    "h": 14
+   },
+   "sourceSize": {
+    "w": 28,
+    "h": 14
+   },
+   "duration": 33
+  },
+  {
+   "filename": "talisman-shot 2",
+   "frame": {
+    "x": 56,
+    "y": 0,
+    "w": 28,
+    "h": 14
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 28,
+    "h": 14
+   },
+   "sourceSize": {
+    "w": 28,
+    "h": 14
+   },
+   "duration": 33
+  },
+  {
+   "filename": "talisman-shot 3",
+   "frame": {
+    "x": 0,
+    "y": 14,
+    "w": 28,
+    "h": 14
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 28,
+    "h": 14
+   },
+   "sourceSize": {
+    "w": 28,
+    "h": 14
+   },
+   "duration": 33
+  },
+  {
+   "filename": "talisman-shot 4",
+   "frame": {
+    "x": 28,
+    "y": 14,
+    "w": 28,
+    "h": 14
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 28,
+    "h": 14
+   },
+   "sourceSize": {
+    "w": 28,
+    "h": 14
+   },
+   "duration": 33
+  },
+  {
+   "filename": "talisman-shot 5",
+   "frame": {
+    "x": 56,
+    "y": 14,
+    "w": 28,
+    "h": 14
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 28,
+    "h": 14
+   },
+   "sourceSize": {
+    "w": 28,
+    "h": 14
+   },
+   "duration": 33
+  },
+  {
+   "filename": "talisman-shot 6",
+   "frame": {
+    "x": 0,
+    "y": 28,
+    "w": 28,
+    "h": 14
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 28,
+    "h": 14
+   },
+   "sourceSize": {
+    "w": 28,
+    "h": 14
+   },
+   "duration": 33
+  },
+  {
+   "filename": "talisman-shot 7",
+   "frame": {
+    "x": 28,
+    "y": 28,
+    "w": 28,
+    "h": 14
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 28,
+    "h": 14
+   },
+   "sourceSize": {
+    "w": 28,
+    "h": 14
+   },
+   "duration": 33
+  },
+  {
+   "filename": "talisman-shot 8",
+   "frame": {
+    "x": 56,
+    "y": 28,
+    "w": 28,
+    "h": 14
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 28,
+    "h": 14
+   },
+   "sourceSize": {
+    "w": 28,
+    "h": 14
+   },
+   "duration": 33
+  }
+ ],
+ "meta": {
+  "app": "https://github.com/patch-gg/pixelfx",
+  "version": "1",
+  "image": "talisman-shot.png",
+  "format": "RGBA8888",
+  "size": {
+   "w": 84,
+   "h": 42
+  },
+  "scale": "1",
+  "frameTags": [
+   {
+    "name": "talisman-shot",
+    "from": 0,
+    "to": 8,
+    "direction": "forward"
+   }
+  ],
+  "pixelfx": {
+   "id": "monsters/talisman-shot",
+   "name": "부적 도사 · 부적",
+   "fps": 30,
+   "loop": true,
+   "frames": 9,
+   "frameSize": [
+    28,
+    14
+   ],
+   "pivot": [
+    18,
+    7
+   ],
+   "columns": 3
+  }
+ }
+}

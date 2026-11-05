@@ -1,0 +1,904 @@
+{
+ "frames": [
+  {
+   "filename": "agwi-teeth 0",
+   "frame": {
+    "x": 0,
+    "y": 0,
+    "w": 140,
+    "h": 80
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 140,
+    "h": 80
+   },
+   "sourceSize": {
+    "w": 140,
+    "h": 80
+   },
+   "duration": 33
+  },
+  {
+   "filename": "agwi-teeth 1",
+   "frame": {
+    "x": 140,
+    "y": 0,
+    "w": 140,
+    "h": 80
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 140,
+    "h": 80
+   },
+   "sourceSize": {
+    "w": 140,
+    "h": 80
+   },
+   "duration": 33
+  },
+  {
+   "filename": "agwi-teeth 2",
+   "frame": {
+    "x": 280,
+    "y": 0,
+    "w": 140,
+    "h": 80
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 140,
+    "h": 80
+   },
+   "sourceSize": {
+    "w": 140,
+    "h": 80
+   },
+   "duration": 33
+  },
+  {
+   "filename": "agwi-teeth 3",
+   "frame": {
+    "x": 420,
+    "y": 0,
+    "w": 140,
+    "h": 80
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 140,
+    "h": 80
+   },
+   "sourceSize": {
+    "w": 140,
+    "h": 80
+   },
+   "duration": 33
+  },
+  {
+   "filename": "agwi-teeth 4",
+   "frame": {
+    "x": 560,
+    "y": 0,
+    "w": 140,
+    "h": 80
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 140,
+    "h": 80
+   },
+   "sourceSize": {
+    "w": 140,
+    "h": 80
+   },
+   "duration": 33
+  },
+  {
+   "filename": "agwi-teeth 5",
+   "frame": {
+    "x": 0,
+    "y": 80,
+    "w": 140,
+    "h": 80
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 140,
+    "h": 80
+   },
+   "sourceSize": {
+    "w": 140,
+    "h": 80
+   },
+   "duration": 33
+  },
+  {
+   "filename": "agwi-teeth 6",
+   "frame": {
+    "x": 140,
+    "y": 80,
+    "w": 140,
+    "h": 80
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 140,
+    "h": 80
+   },
+   "sourceSize": {
+    "w": 140,
+    "h": 80
+   },
+   "duration": 33
+  },
+  {
+   "filename": "agwi-teeth 7",
+   "frame": {
+    "x": 280,
+    "y": 80,
+    "w": 140,
+    "h": 80
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 140,
+    "h": 80
+   },
+   "sourceSize": {
+    "w": 140,
+    "h": 80
+   },
+   "duration": 33
+  },
+  {
+   "filename": "agwi-teeth 8",
+   "frame": {
+    "x": 420,
+    "y": 80,
+    "w": 140,
+    "h": 80
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 140,
+    "h": 80
+   },
+   "sourceSize": {
+    "w": 140,
+    "h": 80
+   },
+   "duration": 33
+  },
+  {
+   "filename": "agwi-teeth 9",
+   "frame": {
+    "x": 560,
+    "y": 80,
+    "w": 140,
+    "h": 80
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 140,
+    "h": 80
+   },
+   "sourceSize": {
+    "w": 140,
+    "h": 80
+   },
+   "duration": 33
+  },
+  {
+   "filename": "agwi-teeth 10",
+   "frame": {
+    "x": 0,
+    "y": 160,
+    "w": 140,
+    "h": 80
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 140,
+    "h": 80
+   },
+   "sourceSize": {
+    "w": 140,
+    "h": 80
+   },
+   "duration": 33
+  },
+  {
+   "filename": "agwi-teeth 11",
+   "frame": {
+    "x": 140,
+    "y": 160,
+    "w": 140,
+    "h": 80
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 140,
+    "h": 80
+   },
+   "sourceSize": {
+    "w": 140,
+    "h": 80
+   },
+   "duration": 33
+  },
+  {
+   "filename": "agwi-teeth 12",
+   "frame": {
+    "x": 280,
+    "y": 160,
+    "w": 140,
+    "h": 80
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 140,
+    "h": 80
+   },
+   "sourceSize": {
+    "w": 140,
+    "h": 80
+   },
+   "duration": 33
+  },
+  {
+   "filename": "agwi-teeth 13",
+   "frame": {
+    "x": 420,
+    "y": 160,
+    "w": 140,
+    "h": 80
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 140,
+    "h": 80
+   },
+   "sourceSize": {
+    "w": 140,
+    "h": 80
+   },
+   "duration": 33
+  },
+  {
+   "filename": "agwi-teeth 14",
+   "frame": {
+    "x": 560,
+    "y": 160,
+    "w": 140,
+    "h": 80
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 140,
+    "h": 80
+   },
+   "sourceSize": {
+    "w": 140,
+    "h": 80
+   },
+   "duration": 33
+  },
+  {
+   "filename": "agwi-teeth 15",
+   "frame": {
+    "x": 0,
+    "y": 240,
+    "w": 140,
+    "h": 80
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 140,
+    "h": 80
+   },
+   "sourceSize": {
+    "w": 140,
+    "h": 80
+   },
+   "duration": 33
+  },
+  {
+   "filename": "agwi-teeth 16",
+   "frame": {
+    "x": 140,
+    "y": 240,
+    "w": 140,
+    "h": 80
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 140,
+    "h": 80
+   },
+   "sourceSize": {
+    "w": 140,
+    "h": 80
+   },
+   "duration": 33
+  },
+  {
+   "filename": "agwi-teeth 17",
+   "frame": {
+    "x": 280,
+    "y": 240,
+    "w": 140,
+    "h": 80
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 140,
+    "h": 80
+   },
+   "sourceSize": {
+    "w": 140,
+    "h": 80
+   },
+   "duration": 33
+  },
+  {
+   "filename": "agwi-teeth 18",
+   "frame": {
+    "x": 420,
+    "y": 240,
+    "w": 140,
+    "h": 80
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 140,
+    "h": 80
+   },
+   "sourceSize": {
+    "w": 140,
+    "h": 80
+   },
+   "duration": 33
+  },
+  {
+   "filename": "agwi-teeth 19",
+   "frame": {
+    "x": 560,
+    "y": 240,
+    "w": 140,
+    "h": 80
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 140,
+    "h": 80
+   },
+   "sourceSize": {
+    "w": 140,
+    "h": 80
+   },
+   "duration": 33
+  },
+  {
+   "filename": "agwi-teeth 20",
+   "frame": {
+    "x": 0,
+    "y": 320,
+    "w": 140,
+    "h": 80
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 140,
+    "h": 80
+   },
+   "sourceSize": {
+    "w": 140,
+    "h": 80
+   },
+   "duration": 33
+  },
+  {
+   "filename": "agwi-teeth 21",
+   "frame": {
+    "x": 140,
+    "y": 320,
+    "w": 140,
+    "h": 80
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 140,
+    "h": 80
+   },
+   "sourceSize": {
+    "w": 140,
+    "h": 80
+   },
+   "duration": 33
+  },
+  {
+   "filename": "agwi-teeth 22",
+   "frame": {
+    "x": 280,
+    "y": 320,
+    "w": 140,
+    "h": 80
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 140,
+    "h": 80
+   },
+   "sourceSize": {
+    "w": 140,
+    "h": 80
+   },
+   "duration": 33
+  },
+  {
+   "filename": "agwi-teeth 23",
+   "frame": {
+    "x": 420,
+    "y": 320,
+    "w": 140,
+    "h": 80
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 140,
+    "h": 80
+   },
+   "sourceSize": {
+    "w": 140,
+    "h": 80
+   },
+   "duration": 33
+  },
+  {
+   "filename": "agwi-teeth 24",
+   "frame": {
+    "x": 560,
+    "y": 320,
+    "w": 140,
+    "h": 80
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 140,
+    "h": 80
+   },
+   "sourceSize": {
+    "w": 140,
+    "h": 80
+   },
+   "duration": 33
+  },
+  {
+   "filename": "agwi-teeth 25",
+   "frame": {
+    "x": 0,
+    "y": 400,
+    "w": 140,
+    "h": 80
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 140,
+    "h": 80
+   },
+   "sourceSize": {
+    "w": 140,
+    "h": 80
+   },
+   "duration": 33
+  },
+  {
+   "filename": "agwi-teeth 26",
+   "frame": {
+    "x": 140,
+    "y": 400,
+    "w": 140,
+    "h": 80
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 140,
+    "h": 80
+   },
+   "sourceSize": {
+    "w": 140,
+    "h": 80
+   },
+   "duration": 33
+  },
+  {
+   "filename": "agwi-teeth 27",
+   "frame": {
+    "x": 280,
+    "y": 400,
+    "w": 140,
+    "h": 80
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 140,
+    "h": 80
+   },
+   "sourceSize": {
+    "w": 140,
+    "h": 80
+   },
+   "duration": 33
+  },
+  {
+   "filename": "agwi-teeth 28",
+   "frame": {
+    "x": 420,
+    "y": 400,
+    "w": 140,
+    "h": 80
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 140,
+    "h": 80
+   },
+   "sourceSize": {
+    "w": 140,
+    "h": 80
+   },
+   "duration": 33
+  },
+  {
+   "filename": "agwi-teeth 29",
+   "frame": {
+    "x": 560,
+    "y": 400,
+    "w": 140,
+    "h": 80
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 140,
+    "h": 80
+   },
+   "sourceSize": {
+    "w": 140,
+    "h": 80
+   },
+   "duration": 33
+  },
+  {
+   "filename": "agwi-teeth 30",
+   "frame": {
+    "x": 0,
+    "y": 480,
+    "w": 140,
+    "h": 80
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 140,
+    "h": 80
+   },
+   "sourceSize": {
+    "w": 140,
+    "h": 80
+   },
+   "duration": 33
+  }
+ ],
+ "meta": {
+  "app": "https://github.com/patch-gg/pixelfx",
+  "version": "1",
+  "image": "agwi-teeth.png",
+  "format": "RGBA8888",
+  "size": {
+   "w": 700,
+   "h": 560
+  },
+  "scale": "1",
+  "frameTags": [
+   {
+    "name": "agwi-teeth",
+    "from": 0,
+    "to": 30,
+    "direction": "forward"
+   }
+  ],
+  "pixelfx": {
+   "id": "geuseundae/agwi-teeth",
+   "name": "아귀의 이빨",
+   "fps": 30,
+   "loop": false,
+   "frames": 31,
+   "frameSize": [
+    140,
+    80
+   ],
+   "pivot": [
+    26,
+    70
+   ],
+   "columns": 5,
+   "act": {
+    "windup": 0.2,
+    "recovery": 0,
+    "onBody": false,
+    "targets": [
+     96
+    ],
+    "hits": [
+     {
+      "t": 0.215625,
+      "freeze": 0.02,
+      "shake": 0,
+      "amp": 0,
+      "push": 0.5
+     },
+     {
+      "t": 0.275625,
+      "freeze": 0.02,
+      "shake": 0,
+      "amp": 0,
+      "push": 0.5
+     },
+     {
+      "t": 0.335625,
+      "freeze": 0.02,
+      "shake": 0,
+      "amp": 0,
+      "push": 0.5
+     },
+     {
+      "t": 0.395625,
+      "freeze": 0.02,
+      "shake": 0,
+      "amp": 0,
+      "push": 0.5
+     },
+     {
+      "t": 0.455625,
+      "freeze": 0.02,
+      "shake": 0,
+      "amp": 0,
+      "push": 0.5
+     },
+     {
+      "t": 0.515625,
+      "freeze": 0.02,
+      "shake": 0,
+      "amp": 0,
+      "push": 0.5
+     }
+    ],
+    "poses": [
+     {
+      "t": -0.2,
+      "how": "smooth",
+      "pose": {
+       "crouch": 3,
+       "fx": 10,
+       "fy": -22,
+       "bx": 7,
+       "by": -20,
+       "ffx": 7,
+       "fbx": -7
+      }
+     },
+     {
+      "t": 0,
+      "how": "snap",
+      "pose": {
+       "crouch": 3,
+       "fx": 18,
+       "fy": -27,
+       "bx": 4,
+       "by": -24,
+       "ffx": 7,
+       "fbx": -7,
+       "lean": 4
+      }
+     },
+     {
+      "t": 0.06,
+      "how": "snap",
+      "pose": {
+       "crouch": 3,
+       "fx": 18,
+       "fy": -27,
+       "bx": 4,
+       "by": -24,
+       "ffx": 7,
+       "fbx": -7,
+       "lean": 4,
+       "x": -1
+      }
+     },
+     {
+      "t": 0.12,
+      "how": "snap",
+      "pose": {
+       "crouch": 3,
+       "fx": 18,
+       "fy": -27,
+       "bx": 4,
+       "by": -24,
+       "ffx": 7,
+       "fbx": -7,
+       "lean": 4,
+       "x": 0
+      }
+     },
+     {
+      "t": 0.18,
+      "how": "snap",
+      "pose": {
+       "crouch": 3,
+       "fx": 18,
+       "fy": -27,
+       "bx": 4,
+       "by": -24,
+       "ffx": 7,
+       "fbx": -7,
+       "lean": 4,
+       "x": -1
+      }
+     },
+     {
+      "t": 0.24,
+      "how": "snap",
+      "pose": {
+       "crouch": 3,
+       "fx": 18,
+       "fy": -27,
+       "bx": 4,
+       "by": -24,
+       "ffx": 7,
+       "fbx": -7,
+       "lean": 4,
+       "x": 0
+      }
+     },
+     {
+      "t": 0.3,
+      "how": "snap",
+      "pose": {
+       "crouch": 3,
+       "fx": 18,
+       "fy": -27,
+       "bx": 4,
+       "by": -24,
+       "ffx": 7,
+       "fbx": -7,
+       "lean": 4,
+       "x": -1
+      }
+     },
+     {
+      "t": 0.6,
+      "how": "smooth",
+      "pose": {
+       "crouch": 3,
+       "fx": 18,
+       "fy": -27,
+       "bx": 4,
+       "by": -24,
+       "ffx": 7,
+       "fbx": -7,
+       "lean": 4
+      }
+     },
+     {
+      "t": 0.9,
+      "how": "smooth",
+      "pose": {
+       "crouch": 3,
+       "fx": 10,
+       "fy": -22,
+       "bx": 7,
+       "by": -20,
+       "ffx": 7,
+       "fbx": -7
+      }
+     }
+    ]
+   }
+  }
+ }
+}

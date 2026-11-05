@@ -10,7 +10,16 @@ var provided_info := {}
 var provided_textures := {}
 var gear2_info := {}
 var gear2_textures := {}
+var gear3_info := {}
+var gear3_textures := {}
+var monster_info := {}
+var monster_textures := {}
 const PROVIDED_ATTACKS = {"hair":"hair-lash","pin":"rusted-hairpin","water_bucket":"water-gourd","fox_bead":"fox-bead","claws":"tiger-claw","goblin_fire":"dokkaebi-fire","plague":"plague-jar"}
+# Songaksi Hand retains the original slash renderer below; every other entry
+# here uses a supplied gear2 sheet.
+const GEAR2_ATTACKS = {"ribbon":"broken-ribbon","mirror":"bloody-jokduri"}
+const GEAR3_ATTACKS = {"nails":"mongdal-nail","goose":"wood-goose","mongdal_rush":"mongdal-han","call":"changgwi-call","tiger_soul":"bound-soul","water_hand":"drowned-grab","well_bucket":"well-bucket","fox_fire":"fox-fire","fox_mirror":"shape-mirror","club":"dokkaebi-club","broom":"old-broom","belt":"ssireum-sash","tooth":"agwi-teeth","tongue":"agwi-tongue","shadow":"murk-shadow","voice":"mimic-voice","whistle":"thin-whistle","mouth":"giant-mouth"}
+const SIGNATURE_MELEE = {"songaksi_hand":"slash","mongdal_rush":"dash","tiger_soul":"seal","water_hand":"bloom","club":"fist","broom":"slash","belt":"fist","tongue":"beam","shadow":"seal","ribbon":"slash","fox_mirror":"seal"}
 const GRADE_COLORS=[Color("c9d8bb"),Color("9bdbd0"),Color("d4a9dc"),Color("f3d294")]
 func _ready() -> void:
 	texture_filter=CanvasItem.TEXTURE_FILTER_NEAREST
@@ -35,6 +44,26 @@ func attach_last_to_player() -> void:
 func attack(item: Dictionary,pos: Vector2,direction: Vector2,reach: float) -> void:
 	var id:String=item["id"]
 	var tier:int=item["tier"]
+	if id=="jangsan_paw":
+		emit_gear3("jangsan-paw",pos+Vector2(0,28),direction,1.0)
+		attach_last_to_player()
+		return
+	if GEAR2_ATTACKS.has(id):
+		emit_gear2(str(GEAR2_ATTACKS[id]),pos+Vector2(0,28),direction)
+		if item["kind"]=="melee": attach_last_to_player()
+		return
+	if GEAR3_ATTACKS.has(id):
+		var effect_pos:=pos+Vector2(0,28)
+		var effect_size:=1.0
+		if id=="water_hand":
+			# The source sheet is only 64 px wide, while the grab's real melee
+			# reach is 140 px. Centre the enlarged sheet across that forward
+			# reach so the rising hands communicate the actual hit area.
+			effect_size=maxf(1.0,reach/64.0)
+			effect_pos+=direction*reach*.5
+		emit_gear3(str(GEAR3_ATTACKS[id]),effect_pos,direction,effect_size)
+		if item["kind"]=="melee": attach_last_to_player()
+		return
 	if id in ["fist","tiger_fang","gaze"]: return
 	if id=="eggshell":
 		emit_gear2("eggshell-cast",pos,direction)
@@ -47,7 +76,20 @@ func attack(item: Dictionary,pos: Vector2,direction: Vector2,reach: float) -> vo
 	var tint:=item_tint(item)
 	if item["kind"]=="melee":
 		var size:=clampf(reach/105.0,.55,1.6)
-		emit("slash",tier,pos+Vector2(0,28-size*20)+direction*reach*.35,direction,size,tint,1.6 if tier==1 else 1.35)
+		var signature := str(SIGNATURE_MELEE.get(id,"slash"))
+		var effect_pos := pos+Vector2(0,28-size*20)+direction*reach*.35
+		if signature=="dash":
+			emit("dash",2,effect_pos,direction,size*.78,Color("b9d7ca"),1.8)
+		elif signature=="fist":
+			emit("fist",4,effect_pos,direction,size*.9,Color("d9c28b"),1.55)
+		elif signature=="seal":
+			emit("seal",tier,effect_pos,direction,size*.8,tint,1.7)
+		elif signature=="bloom":
+			emit("bloom",tier,effect_pos,direction,size*.72,Color("93d7e2"),1.9)
+		elif signature=="beam":
+			emit("beam",3,effect_pos,direction,size*.8,Color("d9898d"),1.85)
+		else:
+			emit("slash",tier,effect_pos,direction,size,tint,1.6 if tier==1 else 1.35)
 		attach_last_to_player()
 		if id=="claws": emit("slash",tier,pos+Vector2(0,16),direction.rotated(-.14),size*.85,tint,1.5)
 		if id=="claws": attach_last_to_player()
@@ -79,6 +121,31 @@ func cast(item: Dictionary,pos: Vector2,direction: Vector2,skill: String) -> voi
 func heavy(pos: Vector2,direction: Vector2,kind: String) -> void:
 	emit("fist" if kind=="fist" else "slash",4,pos+Vector2(0,28),direction,1.35 if kind=="fist" else 1.2,Color.WHITE,1.0)
 	attach_last_to_player()
+
+# Chapter 1 enemies use dedicated Pixelfx sheets. Enemy art is kept on the
+# same renderer as player VFX so timing, nearest filtering and cleanup match.
+func enemy(name: String, pos: Vector2, direction := Vector2.RIGHT, size := 1.0) -> void:
+	if not manifest.has(name):
+		return
+	if bursts.size() >= 40:
+		bursts.pop_front()
+	bursts.append({"key":name,"pos":pos,"angle":direction.angle(),"size":size,"tint":Color.WHITE,"age":0.0,"speed":1.0})
+
+func load_monster(name: String) -> Dictionary:
+	if not monster_info.has(name):
+		var base := "res://assets/monster_vfx/"+name
+		monster_info[name]=JSON.parse_string(FileAccess.get_file_as_string(base+".json"))["meta"]["pixelfx"]
+		monster_textures[name]=load(base+".png")
+	return monster_info[name]
+
+func emit_monster(name: String, owner: Node, offset := Vector2.ZERO, direction := Vector2.RIGHT, size := 1.0) -> void:
+	var info:=load_monster(name)
+	if bursts.size()>=40: bursts.pop_front()
+	bursts.append({"monster":name,"owner":owner,"offset":offset,"pos":owner.position+offset,"angle":direction.angle(),"size":size,"age":0.0,"speed":1.0,"duration":float(info["frames"])/float(info["fps"])})
+
+func monster_impact(name: String,pos: Vector2,direction := Vector2.RIGHT,size := 1.0) -> void:
+	var info:=load_monster(name)
+	bursts.append({"monster":name,"pos":pos,"angle":direction.angle(),"size":size,"age":0.0,"speed":1.0,"duration":float(info["frames"])/float(info["fps"]),"rotate":true})
 func _physics_process(delta: float) -> void:
 	if not is_instance_valid(combat) or combat.paused: return
 	clock+=delta
@@ -86,6 +153,9 @@ func _physics_process(delta: float) -> void:
 	for i in range(bursts.size()-1,-1,-1):
 		if bursts[i].get("follow_player",false) and is_instance_valid(combat.world.player):
 			bursts[i]["pos"] = combat.world.player.position + Vector2(bursts[i]["player_offset"])
+		if bursts[i].has("owner"):
+			if is_instance_valid(bursts[i]["owner"]): bursts[i]["pos"]=bursts[i]["owner"].position+Vector2(bursts[i]["offset"])
+			else: bursts[i].erase("owner")
 		bursts[i]["age"]+=delta*bursts[i]["speed"]
 		if bursts[i]["age"]>=float(bursts[i].get("duration",.72)): bursts.remove_at(i)
 	queue_redraw()
@@ -109,6 +179,28 @@ func emit_gear2(name: String, pos: Vector2, direction: Vector2) -> void:
 	var info := load_gear2(name)
 	bursts.append({"gear2":name,"pos":pos,"angle":direction.angle(),"size":1.0,"tint":Color.WHITE,"age":0.0,"speed":1.0,"duration":float(info["frames"])/float(info["fps"])})
 
+func emit_gear3(name: String,pos: Vector2,direction: Vector2,size := 1.0) -> void:
+	if not gear3_info.has(name):
+		var base := "res://assets/gear3/fx/"+name
+		gear3_info[name] = JSON.parse_string(FileAccess.get_file_as_string(base+".json"))["meta"]["pixelfx"]
+		gear3_textures[name] = load(base+".png")
+	var info: Dictionary = gear3_info[name]
+	bursts.append({"gear3":name,"pos":pos,"angle":direction.angle(),"size":size,"age":0.0,"speed":1.0,"duration":float(info["frames"])/float(info["fps"])})
+
+func gear3_sheet(name: String,pos: Vector2,age: float,angle: float,size := 1.0) -> void:
+	var info: Dictionary = gear3_info[name]
+	var frame := mini(int(age*float(info["fps"])),int(info["frames"])-1)
+	var frame_size := Vector2(info["frameSize"][0],info["frameSize"][1])
+	var pivot := Vector2(info["pivot"][0],info["pivot"][1])
+	var source := Rect2(Vector2(frame%int(info["columns"]),frame/int(info["columns"]))*frame_size,frame_size)
+	# The supplied claw sprite faces right.  Flip the left half, then rotate it so
+	# mouse aim and the eight keyboard aim directions share the same attack arc.
+	var flip := cos(angle)<0
+	var rotation := angle-PI if flip else angle
+	draw_set_transform(pos.round(),rotation,Vector2(-size if flip else size,size))
+	draw_texture_rect_region(gear3_textures[name],Rect2(-pivot,frame_size),source)
+	draw_set_transform(Vector2.ZERO)
+
 func gear2_sheet(name: String,pos: Vector2,age: float,angle: float,size := 1.0,loop := false) -> void:
 	var info := load_gear2(name)
 	var frame := int(age*float(info["fps"]))
@@ -118,7 +210,8 @@ func gear2_sheet(name: String,pos: Vector2,age: float,angle: float,size := 1.0,l
 	var columns:=int(info["columns"])
 	var source:=Rect2(Vector2(frame%columns,frame/columns)*frame_size,frame_size)
 	var flip:=cos(angle)<0
-	draw_set_transform(pos.round(),0,Vector2(-size if flip else size,size))
+	var rotation:=angle-PI if flip else angle
+	draw_set_transform(pos.round(),rotation,Vector2(-size if flip else size,size))
 	draw_texture_rect_region(gear2_textures[name],Rect2(-pivot,frame_size),source)
 	draw_set_transform(Vector2.ZERO)
 
@@ -130,8 +223,23 @@ func provided_sheet(name: String, pos: Vector2, age: float, angle: float) -> voi
 	var columns := int(info["columns"])
 	var source := Rect2(Vector2(frame % columns, frame / columns) * frame_size, frame_size)
 	var flip := cos(angle) < 0
-	draw_set_transform(pos.round(), 0, Vector2(-1 if flip else 1, 1))
+	var rotation := angle-PI if flip else angle
+	draw_set_transform(pos.round(), rotation, Vector2(-1 if flip else 1, 1))
 	draw_texture_rect_region(provided_textures[name], Rect2(-pivot, frame_size), source)
+	draw_set_transform(Vector2.ZERO)
+
+func monster_sheet(name: String,pos: Vector2,age: float,angle: float,size := 1.0,loop := false,rotate := false) -> void:
+	var info:=load_monster(name)
+	var frame:=int(age*float(info["fps"]))
+	frame=posmod(frame,int(info["frames"])) if loop else mini(frame,int(info["frames"])-1)
+	var frame_size:=Vector2(info["frameSize"][0],info["frameSize"][1])
+	var pivot:=Vector2(info["pivot"][0],info["pivot"][1])
+	var columns:=int(info["columns"])
+	var source:=Rect2(Vector2(frame%columns,frame/columns)*frame_size,frame_size)
+	var flip:=cos(angle)<0
+	var rotation:float=(angle-PI if flip else angle) if rotate else 0.0
+	draw_set_transform(pos.round(),rotation,Vector2(-size if flip else size,size))
+	draw_texture_rect_region(monster_textures[name],Rect2(-pivot,frame_size),source)
 	draw_set_transform(Vector2.ZERO)
 func sheet(key: String,pos: Vector2,age: float,size: float,tint: Color,angle := 0.0) -> void:
 	if not manifest.has(key): return
@@ -147,6 +255,9 @@ func sheet(key: String,pos: Vector2,age: float,size: float,tint: Color,angle := 
 	draw_texture_rect_region(textures[key],Rect2(-pivot-Vector2(info.get("anchor",[0,0])[0],info.get("anchor",[0,0])[1]),frame_size),source,tint)
 	draw_set_transform(Vector2.ZERO)
 func draw_projectile(p: Dictionary) -> void:
+	if not p["friendly"]:
+		if p["kind"]=="talisman": monster_sheet("talisman-shot",p["pos"],float(p["age"]),Vector2(p["velocity"]).angle(),1.0,true,true)
+		return
 	var item:Dictionary=combat.DB.get_item(p.get("weapon",""))
 	if PROVIDED_ATTACKS.has(str(item.get("id", ""))): return
 	var tier:int=item.get("tier",1)
@@ -207,9 +318,11 @@ func draw_beam(from: Vector2,to: Vector2) -> void:
 func _draw() -> void:
 	for zone in combat.zones: draw_zone(zone)
 	for p in combat.projectiles:
-		if p["friendly"]: draw_projectile(p)
+		draw_projectile(p)
 	for burst in bursts:
-		if burst.has("gear2"): gear2_sheet(burst["gear2"],burst["pos"],burst["age"],burst["angle"])
+		if burst.has("monster"): monster_sheet(burst["monster"],burst["pos"],burst["age"],burst["angle"],burst["size"],false,bool(burst.get("rotate",false)))
+		elif burst.has("gear3"): gear3_sheet(burst["gear3"],burst["pos"],burst["age"],burst["angle"],burst["size"])
+		elif burst.has("gear2"): gear2_sheet(burst["gear2"],burst["pos"],burst["age"],burst["angle"])
 		elif burst.has("provided"): provided_sheet(burst["provided"],burst["pos"],burst["age"],burst["angle"])
 		else: sheet(burst["key"],burst["pos"],burst["age"],burst["size"],burst["tint"],burst["angle"])
 	if combat.arsenal.beam_time>0: draw_beam(combat.arsenal.beam_from,combat.arsenal.beam_to)

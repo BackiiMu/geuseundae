@@ -1,0 +1,501 @@
+{
+ "frames": [
+  {
+   "filename": "talisman-cast 0",
+   "frame": {
+    "x": 0,
+    "y": 0,
+    "w": 44,
+    "h": 40
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 44,
+    "h": 40
+   },
+   "sourceSize": {
+    "w": 44,
+    "h": 40
+   },
+   "duration": 33
+  },
+  {
+   "filename": "talisman-cast 1",
+   "frame": {
+    "x": 44,
+    "y": 0,
+    "w": 44,
+    "h": 40
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 44,
+    "h": 40
+   },
+   "sourceSize": {
+    "w": 44,
+    "h": 40
+   },
+   "duration": 33
+  },
+  {
+   "filename": "talisman-cast 2",
+   "frame": {
+    "x": 88,
+    "y": 0,
+    "w": 44,
+    "h": 40
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 44,
+    "h": 40
+   },
+   "sourceSize": {
+    "w": 44,
+    "h": 40
+   },
+   "duration": 33
+  },
+  {
+   "filename": "talisman-cast 3",
+   "frame": {
+    "x": 132,
+    "y": 0,
+    "w": 44,
+    "h": 40
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 44,
+    "h": 40
+   },
+   "sourceSize": {
+    "w": 44,
+    "h": 40
+   },
+   "duration": 33
+  },
+  {
+   "filename": "talisman-cast 4",
+   "frame": {
+    "x": 176,
+    "y": 0,
+    "w": 44,
+    "h": 40
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 44,
+    "h": 40
+   },
+   "sourceSize": {
+    "w": 44,
+    "h": 40
+   },
+   "duration": 33
+  },
+  {
+   "filename": "talisman-cast 5",
+   "frame": {
+    "x": 0,
+    "y": 40,
+    "w": 44,
+    "h": 40
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 44,
+    "h": 40
+   },
+   "sourceSize": {
+    "w": 44,
+    "h": 40
+   },
+   "duration": 33
+  },
+  {
+   "filename": "talisman-cast 6",
+   "frame": {
+    "x": 44,
+    "y": 40,
+    "w": 44,
+    "h": 40
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 44,
+    "h": 40
+   },
+   "sourceSize": {
+    "w": 44,
+    "h": 40
+   },
+   "duration": 33
+  },
+  {
+   "filename": "talisman-cast 7",
+   "frame": {
+    "x": 88,
+    "y": 40,
+    "w": 44,
+    "h": 40
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 44,
+    "h": 40
+   },
+   "sourceSize": {
+    "w": 44,
+    "h": 40
+   },
+   "duration": 33
+  },
+  {
+   "filename": "talisman-cast 8",
+   "frame": {
+    "x": 132,
+    "y": 40,
+    "w": 44,
+    "h": 40
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 44,
+    "h": 40
+   },
+   "sourceSize": {
+    "w": 44,
+    "h": 40
+   },
+   "duration": 33
+  },
+  {
+   "filename": "talisman-cast 9",
+   "frame": {
+    "x": 176,
+    "y": 40,
+    "w": 44,
+    "h": 40
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 44,
+    "h": 40
+   },
+   "sourceSize": {
+    "w": 44,
+    "h": 40
+   },
+   "duration": 33
+  },
+  {
+   "filename": "talisman-cast 10",
+   "frame": {
+    "x": 0,
+    "y": 80,
+    "w": 44,
+    "h": 40
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 44,
+    "h": 40
+   },
+   "sourceSize": {
+    "w": 44,
+    "h": 40
+   },
+   "duration": 33
+  },
+  {
+   "filename": "talisman-cast 11",
+   "frame": {
+    "x": 44,
+    "y": 80,
+    "w": 44,
+    "h": 40
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 44,
+    "h": 40
+   },
+   "sourceSize": {
+    "w": 44,
+    "h": 40
+   },
+   "duration": 33
+  },
+  {
+   "filename": "talisman-cast 12",
+   "frame": {
+    "x": 88,
+    "y": 80,
+    "w": 44,
+    "h": 40
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 44,
+    "h": 40
+   },
+   "sourceSize": {
+    "w": 44,
+    "h": 40
+   },
+   "duration": 33
+  },
+  {
+   "filename": "talisman-cast 13",
+   "frame": {
+    "x": 132,
+    "y": 80,
+    "w": 44,
+    "h": 40
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 44,
+    "h": 40
+   },
+   "sourceSize": {
+    "w": 44,
+    "h": 40
+   },
+   "duration": 33
+  },
+  {
+   "filename": "talisman-cast 14",
+   "frame": {
+    "x": 176,
+    "y": 80,
+    "w": 44,
+    "h": 40
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 44,
+    "h": 40
+   },
+   "sourceSize": {
+    "w": 44,
+    "h": 40
+   },
+   "duration": 33
+  },
+  {
+   "filename": "talisman-cast 15",
+   "frame": {
+    "x": 0,
+    "y": 120,
+    "w": 44,
+    "h": 40
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 44,
+    "h": 40
+   },
+   "sourceSize": {
+    "w": 44,
+    "h": 40
+   },
+   "duration": 33
+  },
+  {
+   "filename": "talisman-cast 16",
+   "frame": {
+    "x": 44,
+    "y": 120,
+    "w": 44,
+    "h": 40
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 44,
+    "h": 40
+   },
+   "sourceSize": {
+    "w": 44,
+    "h": 40
+   },
+   "duration": 33
+  },
+  {
+   "filename": "talisman-cast 17",
+   "frame": {
+    "x": 88,
+    "y": 120,
+    "w": 44,
+    "h": 40
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 44,
+    "h": 40
+   },
+   "sourceSize": {
+    "w": 44,
+    "h": 40
+   },
+   "duration": 33
+  },
+  {
+   "filename": "talisman-cast 18",
+   "frame": {
+    "x": 132,
+    "y": 120,
+    "w": 44,
+    "h": 40
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 44,
+    "h": 40
+   },
+   "sourceSize": {
+    "w": 44,
+    "h": 40
+   },
+   "duration": 33
+  },
+  {
+   "filename": "talisman-cast 19",
+   "frame": {
+    "x": 176,
+    "y": 120,
+    "w": 44,
+    "h": 40
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 44,
+    "h": 40
+   },
+   "sourceSize": {
+    "w": 44,
+    "h": 40
+   },
+   "duration": 33
+  },
+  {
+   "filename": "talisman-cast 20",
+   "frame": {
+    "x": 0,
+    "y": 160,
+    "w": 44,
+    "h": 40
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 44,
+    "h": 40
+   },
+   "sourceSize": {
+    "w": 44,
+    "h": 40
+   },
+   "duration": 33
+  }
+ ],
+ "meta": {
+  "app": "https://github.com/patch-gg/pixelfx",
+  "version": "1",
+  "image": "talisman-cast.png",
+  "format": "RGBA8888",
+  "size": {
+   "w": 220,
+   "h": 200
+  },
+  "scale": "1",
+  "frameTags": [
+   {
+    "name": "talisman-cast",
+    "from": 0,
+    "to": 20,
+    "direction": "forward"
+   }
+  ],
+  "pixelfx": {
+   "id": "monsters/talisman-cast",
+   "name": "부적 도사 · 선딜",
+   "fps": 30,
+   "loop": false,
+   "frames": 21,
+   "frameSize": [
+    44,
+    40
+   ],
+   "pivot": [
+    22,
+    20
+   ],
+   "columns": 5
+  }
+ }
+}

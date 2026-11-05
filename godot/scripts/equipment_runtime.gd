@@ -89,7 +89,8 @@ func attack(slot: String) -> void:
 		pending.append({"kind":"fist","delay":.3,"direction":direction,"reach":reach,"damage":damage})
 		mark(origin+direction*reach*.6,28,Color("dfbf84"),.3)
 	elif id=="tiger_fang":
-		c.world.player.velocity=Vector2(direction.x*360,-230)
+		# The pounce follows the actual aim vector instead of snapping sideways.
+		c.world.player.velocity=direction*360
 		pending.append({"kind":"bite","delay":.18,"direction":direction,"reach":reach,"damage":damage})
 	elif id=="gaze":
 		var query:=PhysicsRayQueryParameters2D.create(origin,origin+direction*reach,1)
@@ -113,7 +114,7 @@ func attack(slot: String) -> void:
 		if id=="mouth":
 			for enemy in struck:
 				if enemy.dead: swallowed=mini(6,swallowed+1)
-				elif not enemy.boss: enemy.pull_to(c.safe_ground(c.world.player.position.x+direction.x*35),.25)
+				elif not enemy.boss: enemy.pull_to(c.world.player.position+direction*35,.25)
 	else:
 		var kind:String={"goose":"boomerang","water_bucket":"water","plague":"poison","whistle":"whistle","pin":"pin","goblin_fire":"goblin"}.get(id,"shot")
 		if id=="eggshell":
@@ -136,7 +137,7 @@ func throw_enemy(enemy: Node,direction: Vector2,damage: float) -> void:
 	if enemy.boss:
 		enemy.stun=maxf(enemy.stun,.25)
 		return
-	enemy.thrown_velocity=Vector2(direction.x*540,-230)
+	enemy.thrown_velocity=direction*540
 	enemy.throw_damage=damage
 	enemy.throw_remaining=.65
 	enemy.throw_hits=[]
@@ -152,7 +153,7 @@ func skill(slot: String) -> void:
 	var found:=targets(origin,direction,360,.35)
 	if name=="pull":
 		if found.is_empty(): return
-		found[0].pull_to(c.safe_ground(c.world.player.position.x+direction.x*65),.5)
+		found[0].pull_to(c.world.player.position+direction*65,.5)
 		mark(found[0].position,24)
 	elif name in ["well","lure"]:
 		c.zones.append({"kind":name,"pos":c.safe_ground(c.world.player.position.x+direction.x*(200 if name=="lure" else 90)),"life":3.0,"tick":0.0})
@@ -189,7 +190,7 @@ func skill(slot: String) -> void:
 		if found.is_empty(): return
 		var enemy=found[0]
 		var dealt:=hit(enemy,18,"tongue")
-		if not enemy.dead: enemy.pull_to(c.safe_ground(c.world.player.position.x+direction.x*60),.4)
+		if not enemy.dead: enemy.pull_to(c.world.player.position+direction*60,.4)
 		c.health=minf(60,c.health+dealt*.35)
 		mark(enemy.position,30,Color("c08d96"))
 	elif name=="slam":

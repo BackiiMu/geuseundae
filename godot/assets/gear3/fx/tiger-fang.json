@@ -1,0 +1,1210 @@
+{
+ "frames": [
+  {
+   "filename": "tiger-fang 0",
+   "frame": {
+    "x": 0,
+    "y": 0,
+    "w": 156,
+    "h": 112
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 156,
+    "h": 112
+   },
+   "sourceSize": {
+    "w": 156,
+    "h": 112
+   },
+   "duration": 33
+  },
+  {
+   "filename": "tiger-fang 1",
+   "frame": {
+    "x": 156,
+    "y": 0,
+    "w": 156,
+    "h": 112
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 156,
+    "h": 112
+   },
+   "sourceSize": {
+    "w": 156,
+    "h": 112
+   },
+   "duration": 33
+  },
+  {
+   "filename": "tiger-fang 2",
+   "frame": {
+    "x": 312,
+    "y": 0,
+    "w": 156,
+    "h": 112
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 156,
+    "h": 112
+   },
+   "sourceSize": {
+    "w": 156,
+    "h": 112
+   },
+   "duration": 33
+  },
+  {
+   "filename": "tiger-fang 3",
+   "frame": {
+    "x": 468,
+    "y": 0,
+    "w": 156,
+    "h": 112
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 156,
+    "h": 112
+   },
+   "sourceSize": {
+    "w": 156,
+    "h": 112
+   },
+   "duration": 33
+  },
+  {
+   "filename": "tiger-fang 4",
+   "frame": {
+    "x": 624,
+    "y": 0,
+    "w": 156,
+    "h": 112
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 156,
+    "h": 112
+   },
+   "sourceSize": {
+    "w": 156,
+    "h": 112
+   },
+   "duration": 33
+  },
+  {
+   "filename": "tiger-fang 5",
+   "frame": {
+    "x": 780,
+    "y": 0,
+    "w": 156,
+    "h": 112
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 156,
+    "h": 112
+   },
+   "sourceSize": {
+    "w": 156,
+    "h": 112
+   },
+   "duration": 33
+  },
+  {
+   "filename": "tiger-fang 6",
+   "frame": {
+    "x": 0,
+    "y": 112,
+    "w": 156,
+    "h": 112
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 156,
+    "h": 112
+   },
+   "sourceSize": {
+    "w": 156,
+    "h": 112
+   },
+   "duration": 33
+  },
+  {
+   "filename": "tiger-fang 7",
+   "frame": {
+    "x": 156,
+    "y": 112,
+    "w": 156,
+    "h": 112
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 156,
+    "h": 112
+   },
+   "sourceSize": {
+    "w": 156,
+    "h": 112
+   },
+   "duration": 33
+  },
+  {
+   "filename": "tiger-fang 8",
+   "frame": {
+    "x": 312,
+    "y": 112,
+    "w": 156,
+    "h": 112
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 156,
+    "h": 112
+   },
+   "sourceSize": {
+    "w": 156,
+    "h": 112
+   },
+   "duration": 33
+  },
+  {
+   "filename": "tiger-fang 9",
+   "frame": {
+    "x": 468,
+    "y": 112,
+    "w": 156,
+    "h": 112
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 156,
+    "h": 112
+   },
+   "sourceSize": {
+    "w": 156,
+    "h": 112
+   },
+   "duration": 33
+  },
+  {
+   "filename": "tiger-fang 10",
+   "frame": {
+    "x": 624,
+    "y": 112,
+    "w": 156,
+    "h": 112
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 156,
+    "h": 112
+   },
+   "sourceSize": {
+    "w": 156,
+    "h": 112
+   },
+   "duration": 33
+  },
+  {
+   "filename": "tiger-fang 11",
+   "frame": {
+    "x": 780,
+    "y": 112,
+    "w": 156,
+    "h": 112
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 156,
+    "h": 112
+   },
+   "sourceSize": {
+    "w": 156,
+    "h": 112
+   },
+   "duration": 33
+  },
+  {
+   "filename": "tiger-fang 12",
+   "frame": {
+    "x": 0,
+    "y": 224,
+    "w": 156,
+    "h": 112
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 156,
+    "h": 112
+   },
+   "sourceSize": {
+    "w": 156,
+    "h": 112
+   },
+   "duration": 33
+  },
+  {
+   "filename": "tiger-fang 13",
+   "frame": {
+    "x": 156,
+    "y": 224,
+    "w": 156,
+    "h": 112
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 156,
+    "h": 112
+   },
+   "sourceSize": {
+    "w": 156,
+    "h": 112
+   },
+   "duration": 33
+  },
+  {
+   "filename": "tiger-fang 14",
+   "frame": {
+    "x": 312,
+    "y": 224,
+    "w": 156,
+    "h": 112
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 156,
+    "h": 112
+   },
+   "sourceSize": {
+    "w": 156,
+    "h": 112
+   },
+   "duration": 33
+  },
+  {
+   "filename": "tiger-fang 15",
+   "frame": {
+    "x": 468,
+    "y": 224,
+    "w": 156,
+    "h": 112
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 156,
+    "h": 112
+   },
+   "sourceSize": {
+    "w": 156,
+    "h": 112
+   },
+   "duration": 33
+  },
+  {
+   "filename": "tiger-fang 16",
+   "frame": {
+    "x": 624,
+    "y": 224,
+    "w": 156,
+    "h": 112
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 156,
+    "h": 112
+   },
+   "sourceSize": {
+    "w": 156,
+    "h": 112
+   },
+   "duration": 33
+  },
+  {
+   "filename": "tiger-fang 17",
+   "frame": {
+    "x": 780,
+    "y": 224,
+    "w": 156,
+    "h": 112
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 156,
+    "h": 112
+   },
+   "sourceSize": {
+    "w": 156,
+    "h": 112
+   },
+   "duration": 33
+  },
+  {
+   "filename": "tiger-fang 18",
+   "frame": {
+    "x": 0,
+    "y": 336,
+    "w": 156,
+    "h": 112
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 156,
+    "h": 112
+   },
+   "sourceSize": {
+    "w": 156,
+    "h": 112
+   },
+   "duration": 33
+  },
+  {
+   "filename": "tiger-fang 19",
+   "frame": {
+    "x": 156,
+    "y": 336,
+    "w": 156,
+    "h": 112
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 156,
+    "h": 112
+   },
+   "sourceSize": {
+    "w": 156,
+    "h": 112
+   },
+   "duration": 33
+  },
+  {
+   "filename": "tiger-fang 20",
+   "frame": {
+    "x": 312,
+    "y": 336,
+    "w": 156,
+    "h": 112
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 156,
+    "h": 112
+   },
+   "sourceSize": {
+    "w": 156,
+    "h": 112
+   },
+   "duration": 33
+  },
+  {
+   "filename": "tiger-fang 21",
+   "frame": {
+    "x": 468,
+    "y": 336,
+    "w": 156,
+    "h": 112
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 156,
+    "h": 112
+   },
+   "sourceSize": {
+    "w": 156,
+    "h": 112
+   },
+   "duration": 33
+  },
+  {
+   "filename": "tiger-fang 22",
+   "frame": {
+    "x": 624,
+    "y": 336,
+    "w": 156,
+    "h": 112
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 156,
+    "h": 112
+   },
+   "sourceSize": {
+    "w": 156,
+    "h": 112
+   },
+   "duration": 33
+  },
+  {
+   "filename": "tiger-fang 23",
+   "frame": {
+    "x": 780,
+    "y": 336,
+    "w": 156,
+    "h": 112
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 156,
+    "h": 112
+   },
+   "sourceSize": {
+    "w": 156,
+    "h": 112
+   },
+   "duration": 33
+  },
+  {
+   "filename": "tiger-fang 24",
+   "frame": {
+    "x": 0,
+    "y": 448,
+    "w": 156,
+    "h": 112
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 156,
+    "h": 112
+   },
+   "sourceSize": {
+    "w": 156,
+    "h": 112
+   },
+   "duration": 33
+  },
+  {
+   "filename": "tiger-fang 25",
+   "frame": {
+    "x": 156,
+    "y": 448,
+    "w": 156,
+    "h": 112
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 156,
+    "h": 112
+   },
+   "sourceSize": {
+    "w": 156,
+    "h": 112
+   },
+   "duration": 33
+  },
+  {
+   "filename": "tiger-fang 26",
+   "frame": {
+    "x": 312,
+    "y": 448,
+    "w": 156,
+    "h": 112
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 156,
+    "h": 112
+   },
+   "sourceSize": {
+    "w": 156,
+    "h": 112
+   },
+   "duration": 33
+  },
+  {
+   "filename": "tiger-fang 27",
+   "frame": {
+    "x": 468,
+    "y": 448,
+    "w": 156,
+    "h": 112
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 156,
+    "h": 112
+   },
+   "sourceSize": {
+    "w": 156,
+    "h": 112
+   },
+   "duration": 33
+  },
+  {
+   "filename": "tiger-fang 28",
+   "frame": {
+    "x": 624,
+    "y": 448,
+    "w": 156,
+    "h": 112
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 156,
+    "h": 112
+   },
+   "sourceSize": {
+    "w": 156,
+    "h": 112
+   },
+   "duration": 33
+  },
+  {
+   "filename": "tiger-fang 29",
+   "frame": {
+    "x": 780,
+    "y": 448,
+    "w": 156,
+    "h": 112
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 156,
+    "h": 112
+   },
+   "sourceSize": {
+    "w": 156,
+    "h": 112
+   },
+   "duration": 33
+  },
+  {
+   "filename": "tiger-fang 30",
+   "frame": {
+    "x": 0,
+    "y": 560,
+    "w": 156,
+    "h": 112
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 156,
+    "h": 112
+   },
+   "sourceSize": {
+    "w": 156,
+    "h": 112
+   },
+   "duration": 33
+  },
+  {
+   "filename": "tiger-fang 31",
+   "frame": {
+    "x": 156,
+    "y": 560,
+    "w": 156,
+    "h": 112
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 156,
+    "h": 112
+   },
+   "sourceSize": {
+    "w": 156,
+    "h": 112
+   },
+   "duration": 33
+  },
+  {
+   "filename": "tiger-fang 32",
+   "frame": {
+    "x": 312,
+    "y": 560,
+    "w": 156,
+    "h": 112
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 156,
+    "h": 112
+   },
+   "sourceSize": {
+    "w": 156,
+    "h": 112
+   },
+   "duration": 33
+  },
+  {
+   "filename": "tiger-fang 33",
+   "frame": {
+    "x": 468,
+    "y": 560,
+    "w": 156,
+    "h": 112
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 156,
+    "h": 112
+   },
+   "sourceSize": {
+    "w": 156,
+    "h": 112
+   },
+   "duration": 33
+  },
+  {
+   "filename": "tiger-fang 34",
+   "frame": {
+    "x": 624,
+    "y": 560,
+    "w": 156,
+    "h": 112
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 156,
+    "h": 112
+   },
+   "sourceSize": {
+    "w": 156,
+    "h": 112
+   },
+   "duration": 33
+  },
+  {
+   "filename": "tiger-fang 35",
+   "frame": {
+    "x": 780,
+    "y": 560,
+    "w": 156,
+    "h": 112
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 156,
+    "h": 112
+   },
+   "sourceSize": {
+    "w": 156,
+    "h": 112
+   },
+   "duration": 33
+  },
+  {
+   "filename": "tiger-fang 36",
+   "frame": {
+    "x": 0,
+    "y": 672,
+    "w": 156,
+    "h": 112
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 156,
+    "h": 112
+   },
+   "sourceSize": {
+    "w": 156,
+    "h": 112
+   },
+   "duration": 33
+  },
+  {
+   "filename": "tiger-fang 37",
+   "frame": {
+    "x": 156,
+    "y": 672,
+    "w": 156,
+    "h": 112
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 156,
+    "h": 112
+   },
+   "sourceSize": {
+    "w": 156,
+    "h": 112
+   },
+   "duration": 33
+  },
+  {
+   "filename": "tiger-fang 38",
+   "frame": {
+    "x": 312,
+    "y": 672,
+    "w": 156,
+    "h": 112
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 156,
+    "h": 112
+   },
+   "sourceSize": {
+    "w": 156,
+    "h": 112
+   },
+   "duration": 33
+  },
+  {
+   "filename": "tiger-fang 39",
+   "frame": {
+    "x": 468,
+    "y": 672,
+    "w": 156,
+    "h": 112
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 156,
+    "h": 112
+   },
+   "sourceSize": {
+    "w": 156,
+    "h": 112
+   },
+   "duration": 33
+  },
+  {
+   "filename": "tiger-fang 40",
+   "frame": {
+    "x": 624,
+    "y": 672,
+    "w": 156,
+    "h": 112
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 156,
+    "h": 112
+   },
+   "sourceSize": {
+    "w": 156,
+    "h": 112
+   },
+   "duration": 33
+  },
+  {
+   "filename": "tiger-fang 41",
+   "frame": {
+    "x": 780,
+    "y": 672,
+    "w": 156,
+    "h": 112
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 156,
+    "h": 112
+   },
+   "sourceSize": {
+    "w": 156,
+    "h": 112
+   },
+   "duration": 33
+  },
+  {
+   "filename": "tiger-fang 42",
+   "frame": {
+    "x": 0,
+    "y": 784,
+    "w": 156,
+    "h": 112
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 156,
+    "h": 112
+   },
+   "sourceSize": {
+    "w": 156,
+    "h": 112
+   },
+   "duration": 33
+  },
+  {
+   "filename": "tiger-fang 43",
+   "frame": {
+    "x": 156,
+    "y": 784,
+    "w": 156,
+    "h": 112
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 156,
+    "h": 112
+   },
+   "sourceSize": {
+    "w": 156,
+    "h": 112
+   },
+   "duration": 33
+  },
+  {
+   "filename": "tiger-fang 44",
+   "frame": {
+    "x": 312,
+    "y": 784,
+    "w": 156,
+    "h": 112
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 156,
+    "h": 112
+   },
+   "sourceSize": {
+    "w": 156,
+    "h": 112
+   },
+   "duration": 33
+  },
+  {
+   "filename": "tiger-fang 45",
+   "frame": {
+    "x": 468,
+    "y": 784,
+    "w": 156,
+    "h": 112
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 156,
+    "h": 112
+   },
+   "sourceSize": {
+    "w": 156,
+    "h": 112
+   },
+   "duration": 33
+  },
+  {
+   "filename": "tiger-fang 46",
+   "frame": {
+    "x": 624,
+    "y": 784,
+    "w": 156,
+    "h": 112
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 156,
+    "h": 112
+   },
+   "sourceSize": {
+    "w": 156,
+    "h": 112
+   },
+   "duration": 33
+  },
+  {
+   "filename": "tiger-fang 47",
+   "frame": {
+    "x": 780,
+    "y": 784,
+    "w": 156,
+    "h": 112
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 156,
+    "h": 112
+   },
+   "sourceSize": {
+    "w": 156,
+    "h": 112
+   },
+   "duration": 33
+  },
+  {
+   "filename": "tiger-fang 48",
+   "frame": {
+    "x": 0,
+    "y": 896,
+    "w": 156,
+    "h": 112
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 156,
+    "h": 112
+   },
+   "sourceSize": {
+    "w": 156,
+    "h": 112
+   },
+   "duration": 33
+  }
+ ],
+ "meta": {
+  "app": "https://github.com/patch-gg/pixelfx",
+  "version": "1",
+  "image": "tiger-fang.png",
+  "format": "RGBA8888",
+  "size": {
+   "w": 936,
+   "h": 1008
+  },
+  "scale": "1",
+  "frameTags": [
+   {
+    "name": "tiger-fang",
+    "from": 0,
+    "to": 48,
+    "direction": "forward"
+   }
+  ],
+  "pixelfx": {
+   "id": "geuseundae/tiger-fang",
+   "name": "범의 송곳니",
+   "fps": 30,
+   "loop": false,
+   "frames": 49,
+   "frameSize": [
+    156,
+    112
+   ],
+   "pivot": [
+    24,
+    92
+   ],
+   "columns": 6,
+   "act": {
+    "windup": 0.3,
+    "recovery": 0,
+    "onBody": false,
+    "targets": [
+     72
+    ],
+    "hits": [
+     {
+      "t": 0.19,
+      "freeze": 0.09,
+      "shake": 0.22,
+      "amp": 3,
+      "push": 2.4,
+      "skin": "ice"
+     }
+    ],
+    "poses": [
+     {
+      "t": -0.3,
+      "how": "smooth",
+      "pose": {
+       "crouch": 3,
+       "fx": 10,
+       "fy": -22,
+       "bx": 7,
+       "by": -20,
+       "ffx": 7,
+       "fbx": -7
+      }
+     },
+     {
+      "t": -0.1,
+      "how": "smooth",
+      "pose": {
+       "crouch": 6,
+       "fx": 10,
+       "fy": -22,
+       "bx": 7,
+       "by": -20,
+       "ffx": 7,
+       "fbx": -7,
+       "lean": -3
+      }
+     },
+     {
+      "t": 0,
+      "how": "snap",
+      "pose": {
+       "crouch": 5,
+       "fx": 20,
+       "fy": -27,
+       "bx": 16,
+       "by": -25,
+       "ffx": 12,
+       "fbx": -10,
+       "lean": 7,
+       "armsFront": true,
+       "toeB": true,
+       "ghost": 1
+      }
+     },
+     {
+      "t": 0.5,
+      "how": "smooth",
+      "pose": {
+       "crouch": 5,
+       "fx": 20,
+       "fy": -27,
+       "bx": 16,
+       "by": -25,
+       "ffx": 12,
+       "fbx": -10,
+       "lean": 7,
+       "armsFront": true,
+       "toeB": true
+      }
+     },
+     {
+      "t": 0.95,
+      "how": "smooth",
+      "pose": {
+       "crouch": 3,
+       "fx": 10,
+       "fy": -22,
+       "bx": 7,
+       "by": -20,
+       "ffx": 7,
+       "fbx": -7
+      }
+     }
+    ]
+   }
+  }
+ }
+}

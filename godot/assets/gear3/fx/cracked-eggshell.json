@@ -1,0 +1,812 @@
+{
+ "frames": [
+  {
+   "filename": "cracked-eggshell 0",
+   "frame": {
+    "x": 0,
+    "y": 0,
+    "w": 164,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 164,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 164,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "cracked-eggshell 1",
+   "frame": {
+    "x": 164,
+    "y": 0,
+    "w": 164,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 164,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 164,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "cracked-eggshell 2",
+   "frame": {
+    "x": 328,
+    "y": 0,
+    "w": 164,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 164,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 164,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "cracked-eggshell 3",
+   "frame": {
+    "x": 492,
+    "y": 0,
+    "w": 164,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 164,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 164,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "cracked-eggshell 4",
+   "frame": {
+    "x": 656,
+    "y": 0,
+    "w": 164,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 164,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 164,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "cracked-eggshell 5",
+   "frame": {
+    "x": 0,
+    "y": 96,
+    "w": 164,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 164,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 164,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "cracked-eggshell 6",
+   "frame": {
+    "x": 164,
+    "y": 96,
+    "w": 164,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 164,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 164,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "cracked-eggshell 7",
+   "frame": {
+    "x": 328,
+    "y": 96,
+    "w": 164,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 164,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 164,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "cracked-eggshell 8",
+   "frame": {
+    "x": 492,
+    "y": 96,
+    "w": 164,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 164,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 164,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "cracked-eggshell 9",
+   "frame": {
+    "x": 656,
+    "y": 96,
+    "w": 164,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 164,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 164,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "cracked-eggshell 10",
+   "frame": {
+    "x": 0,
+    "y": 192,
+    "w": 164,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 164,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 164,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "cracked-eggshell 11",
+   "frame": {
+    "x": 164,
+    "y": 192,
+    "w": 164,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 164,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 164,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "cracked-eggshell 12",
+   "frame": {
+    "x": 328,
+    "y": 192,
+    "w": 164,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 164,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 164,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "cracked-eggshell 13",
+   "frame": {
+    "x": 492,
+    "y": 192,
+    "w": 164,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 164,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 164,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "cracked-eggshell 14",
+   "frame": {
+    "x": 656,
+    "y": 192,
+    "w": 164,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 164,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 164,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "cracked-eggshell 15",
+   "frame": {
+    "x": 0,
+    "y": 288,
+    "w": 164,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 164,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 164,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "cracked-eggshell 16",
+   "frame": {
+    "x": 164,
+    "y": 288,
+    "w": 164,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 164,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 164,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "cracked-eggshell 17",
+   "frame": {
+    "x": 328,
+    "y": 288,
+    "w": 164,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 164,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 164,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "cracked-eggshell 18",
+   "frame": {
+    "x": 492,
+    "y": 288,
+    "w": 164,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 164,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 164,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "cracked-eggshell 19",
+   "frame": {
+    "x": 656,
+    "y": 288,
+    "w": 164,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 164,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 164,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "cracked-eggshell 20",
+   "frame": {
+    "x": 0,
+    "y": 384,
+    "w": 164,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 164,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 164,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "cracked-eggshell 21",
+   "frame": {
+    "x": 164,
+    "y": 384,
+    "w": 164,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 164,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 164,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "cracked-eggshell 22",
+   "frame": {
+    "x": 328,
+    "y": 384,
+    "w": 164,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 164,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 164,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "cracked-eggshell 23",
+   "frame": {
+    "x": 492,
+    "y": 384,
+    "w": 164,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 164,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 164,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "cracked-eggshell 24",
+   "frame": {
+    "x": 656,
+    "y": 384,
+    "w": 164,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 164,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 164,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "cracked-eggshell 25",
+   "frame": {
+    "x": 0,
+    "y": 480,
+    "w": 164,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 164,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 164,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "cracked-eggshell 26",
+   "frame": {
+    "x": 164,
+    "y": 480,
+    "w": 164,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 164,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 164,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "cracked-eggshell 27",
+   "frame": {
+    "x": 328,
+    "y": 480,
+    "w": 164,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 164,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 164,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "cracked-eggshell 28",
+   "frame": {
+    "x": 492,
+    "y": 480,
+    "w": 164,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 164,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 164,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "cracked-eggshell 29",
+   "frame": {
+    "x": 656,
+    "y": 480,
+    "w": 164,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 164,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 164,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "cracked-eggshell 30",
+   "frame": {
+    "x": 0,
+    "y": 576,
+    "w": 164,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 164,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 164,
+    "h": 96
+   },
+   "duration": 33
+  }
+ ],
+ "meta": {
+  "app": "https://github.com/patch-gg/pixelfx",
+  "version": "1",
+  "image": "cracked-eggshell.png",
+  "format": "RGBA8888",
+  "size": {
+   "w": 820,
+   "h": 672
+  },
+  "scale": "1",
+  "frameTags": [
+   {
+    "name": "cracked-eggshell",
+    "from": 0,
+    "to": 30,
+    "direction": "forward"
+   }
+  ],
+  "pixelfx": {
+   "id": "geuseundae/cracked-eggshell",
+   "name": "깨진 달걀껍데기",
+   "fps": 30,
+   "loop": false,
+   "frames": 31,
+   "frameSize": [
+    164,
+    96
+   ],
+   "pivot": [
+    30,
+    80
+   ],
+   "columns": 5,
+   "act": {
+    "windup": 0.3,
+    "recovery": 0,
+    "onBody": false,
+    "targets": [
+     100
+    ],
+    "hits": [
+     {
+      "t": 0.32333333333333336,
+      "freeze": 0.05,
+      "shake": 0.1,
+      "amp": 1,
+      "push": 1.4
+     }
+    ],
+    "poses": [
+     {
+      "t": -0.3,
+      "how": "smooth",
+      "pose": {
+       "crouch": 3,
+       "fx": 10,
+       "fy": -22,
+       "bx": 7,
+       "by": -20,
+       "ffx": 7,
+       "fbx": -7
+      }
+     },
+     {
+      "t": -0.12,
+      "how": "smooth",
+      "pose": {
+       "crouch": 3,
+       "fx": -2,
+       "fy": -32,
+       "bx": 7,
+       "by": -20,
+       "ffx": 7,
+       "fbx": -7,
+       "lean": -4,
+       "armsFront": true
+      }
+     },
+     {
+      "t": 0,
+      "how": "snap",
+      "pose": {
+       "crouch": 3,
+       "fx": 18,
+       "fy": -28,
+       "bx": -6,
+       "by": -22,
+       "ffx": 11,
+       "fbx": -8,
+       "lean": 5,
+       "toeB": true,
+       "ghost": 1
+      }
+     },
+     {
+      "t": 0.4,
+      "how": "smooth",
+      "pose": {
+       "crouch": 3,
+       "fx": 18,
+       "fy": -28,
+       "bx": -6,
+       "by": -22,
+       "ffx": 11,
+       "fbx": -8,
+       "lean": 5,
+       "toeB": true
+      }
+     },
+     {
+      "t": 0.85,
+      "how": "smooth",
+      "pose": {
+       "crouch": 3,
+       "fx": 10,
+       "fy": -22,
+       "bx": 7,
+       "by": -20,
+       "ffx": 7,
+       "fbx": -7
+      }
+     }
+    ]
+   }
+  }
+ }
+}

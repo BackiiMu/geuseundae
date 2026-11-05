@@ -1,5 +1,6 @@
 extends Node2D
 const DB = preload("res://scripts/equipment_db.gd")
+const Progression = preload("res://scripts/progression.gd")
 const PixelVFX = preload("res://scripts/pixel_vfx.gd")
 var vfx: Node2D
 const Arsenal = preload("res://scripts/equipment_runtime.gd")
@@ -15,7 +16,7 @@ var hurt_timer := 0.0
 var heart_cd := 0.0
 var skill_cd := {"main":0.0,"off":0.0}
 var attack_cd := {"main":0.0,"off":0.0}
-var equipment: Dictionary = {"heart":"songaksi","main":"songaksi_hand","off":"","head":"","legs":"","feet":"","a0":"","a1":"","a2":"","a3":""}
+var equipment: Dictionary = {"heart":"","main":"","off":"","head":"","legs":"","feet":"","a0":"","a1":"","a2":"","a3":""}
 var enemies: Array = []
 var projectiles: Array = []
 var pickups: Array = []
@@ -214,6 +215,14 @@ func hurt(amount: float) -> void:
 func enemy_killed(enemy: Node) -> void:
 	arsenal.killed(enemy)
 	frenzy=3
+	if enemy.boss:
+		# The Chapter 2 reward pool starts with the finished legendary paw. Keeping
+		# it as an array makes later Jangsan set pieces a drop-in addition.
+		var jangsan_rewards := ["jangsan_paw"]
+		var reward: Dictionary = DB.get_item(jangsan_rewards[rng.randi_range(0,jangsan_rewards.size()-1)])
+		world.wallet["bag"].append(reward)
+		var newly_unlocked := Progression.unlock_changgui_and_jangsan()
+		message("장산범 처치 · "+str(reward["name"])+" 획득"+(" · 장산범 장비·창귀 심장 해금" if newly_unlocked else ""))
 	if has_passive("heal") and regen_cd<=0:
 		health=minf(60,health+3)
 		regen_cd=.6
@@ -345,7 +354,8 @@ func refresh_inventory() -> void:
 	var equipped_list:=VBoxContainer.new()
 	equipped_list.custom_minimum_size.x=286
 	equipped_list.add_theme_constant_override("separation",2)
-	equipped_list.add_child(inv_label("심장 · 손각시  /  HP 60",15,Color("b8d5c2")))
+	var heart_name := "손각시" if equipment.get("heart","")=="songaksi" else "없음"
+	equipped_list.add_child(inv_label("심장 · "+heart_name+"  /  HP "+str(int(health)),15,Color("b8d5c2")))
 	for slot in equipment:
 		if slot=="heart": continue
 		var item:=equipped(slot)
@@ -431,6 +441,7 @@ func tick_projectiles(delta: float) -> void:
 		p["life"]-=delta
 		p["age"]+=delta
 		if p["life"]<=0:
+			if p["kind"]=="talisman": vfx.monster_impact("talisman-hit",p["pos"],Vector2(p["velocity"]).normalized())
 			projectiles.remove_at(i)
 			continue
 		var from:Vector2=p["pos"]
@@ -487,7 +498,9 @@ func tick_projectiles(delta: float) -> void:
 				if Geometry2D.get_closest_point_to_segment(center,from,to).distance_to(center)<17:
 					hurt(p["damage"])
 					p["life"]=0
-		if p["life"]<=0: projectiles.remove_at(i)
+		if p["life"]<=0:
+			if p["kind"]=="talisman": vfx.monster_impact("talisman-hit",p["pos"],Vector2(p["velocity"]).normalized())
+			projectiles.remove_at(i)
 func tick_zones(delta: float) -> void:
 	for i in range(zones.size()-1,-1,-1):
 		var zone:Dictionary=zones[i]
@@ -615,7 +628,7 @@ func _draw() -> void:
 				var side:=direction.orthogonal()
 				draw_polygon(PackedVector2Array([point+direction*10,point-direction*5+side*6,point-direction*5-side*6]),PackedColorArray([Color("e2a78b")]))
 	for p in projectiles:
-		if not p["friendly"]: draw_line(p["pos"]-Vector2(p["velocity"]).normalized()*10,p["pos"],Color("e1b17c"),3)
+		if not p["friendly"] and p["kind"]!="talisman": draw_line(p["pos"]-Vector2(p["velocity"]).normalized()*10,p["pos"],Color("e1b17c"),3)
 	for zone in zones:
 		if zone["kind"]=="decoy": draw_rect(Rect2(zone["pos"]-Vector2(13,46),Vector2(26,46)),Color(.6,.8,.75,.5))
 	for effect in effects:

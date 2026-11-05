@@ -1,0 +1,1338 @@
+{
+ "frames": [
+  {
+   "filename": "mimic-voice 0",
+   "frame": {
+    "x": 0,
+    "y": 0,
+    "w": 156,
+    "h": 88
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 156,
+    "h": 88
+   },
+   "sourceSize": {
+    "w": 156,
+    "h": 88
+   },
+   "duration": 33
+  },
+  {
+   "filename": "mimic-voice 1",
+   "frame": {
+    "x": 156,
+    "y": 0,
+    "w": 156,
+    "h": 88
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 156,
+    "h": 88
+   },
+   "sourceSize": {
+    "w": 156,
+    "h": 88
+   },
+   "duration": 33
+  },
+  {
+   "filename": "mimic-voice 2",
+   "frame": {
+    "x": 312,
+    "y": 0,
+    "w": 156,
+    "h": 88
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 156,
+    "h": 88
+   },
+   "sourceSize": {
+    "w": 156,
+    "h": 88
+   },
+   "duration": 33
+  },
+  {
+   "filename": "mimic-voice 3",
+   "frame": {
+    "x": 468,
+    "y": 0,
+    "w": 156,
+    "h": 88
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 156,
+    "h": 88
+   },
+   "sourceSize": {
+    "w": 156,
+    "h": 88
+   },
+   "duration": 33
+  },
+  {
+   "filename": "mimic-voice 4",
+   "frame": {
+    "x": 624,
+    "y": 0,
+    "w": 156,
+    "h": 88
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 156,
+    "h": 88
+   },
+   "sourceSize": {
+    "w": 156,
+    "h": 88
+   },
+   "duration": 33
+  },
+  {
+   "filename": "mimic-voice 5",
+   "frame": {
+    "x": 780,
+    "y": 0,
+    "w": 156,
+    "h": 88
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 156,
+    "h": 88
+   },
+   "sourceSize": {
+    "w": 156,
+    "h": 88
+   },
+   "duration": 33
+  },
+  {
+   "filename": "mimic-voice 6",
+   "frame": {
+    "x": 0,
+    "y": 88,
+    "w": 156,
+    "h": 88
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 156,
+    "h": 88
+   },
+   "sourceSize": {
+    "w": 156,
+    "h": 88
+   },
+   "duration": 33
+  },
+  {
+   "filename": "mimic-voice 7",
+   "frame": {
+    "x": 156,
+    "y": 88,
+    "w": 156,
+    "h": 88
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 156,
+    "h": 88
+   },
+   "sourceSize": {
+    "w": 156,
+    "h": 88
+   },
+   "duration": 33
+  },
+  {
+   "filename": "mimic-voice 8",
+   "frame": {
+    "x": 312,
+    "y": 88,
+    "w": 156,
+    "h": 88
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 156,
+    "h": 88
+   },
+   "sourceSize": {
+    "w": 156,
+    "h": 88
+   },
+   "duration": 33
+  },
+  {
+   "filename": "mimic-voice 9",
+   "frame": {
+    "x": 468,
+    "y": 88,
+    "w": 156,
+    "h": 88
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 156,
+    "h": 88
+   },
+   "sourceSize": {
+    "w": 156,
+    "h": 88
+   },
+   "duration": 33
+  },
+  {
+   "filename": "mimic-voice 10",
+   "frame": {
+    "x": 624,
+    "y": 88,
+    "w": 156,
+    "h": 88
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 156,
+    "h": 88
+   },
+   "sourceSize": {
+    "w": 156,
+    "h": 88
+   },
+   "duration": 33
+  },
+  {
+   "filename": "mimic-voice 11",
+   "frame": {
+    "x": 780,
+    "y": 88,
+    "w": 156,
+    "h": 88
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 156,
+    "h": 88
+   },
+   "sourceSize": {
+    "w": 156,
+    "h": 88
+   },
+   "duration": 33
+  },
+  {
+   "filename": "mimic-voice 12",
+   "frame": {
+    "x": 0,
+    "y": 176,
+    "w": 156,
+    "h": 88
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 156,
+    "h": 88
+   },
+   "sourceSize": {
+    "w": 156,
+    "h": 88
+   },
+   "duration": 33
+  },
+  {
+   "filename": "mimic-voice 13",
+   "frame": {
+    "x": 156,
+    "y": 176,
+    "w": 156,
+    "h": 88
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 156,
+    "h": 88
+   },
+   "sourceSize": {
+    "w": 156,
+    "h": 88
+   },
+   "duration": 33
+  },
+  {
+   "filename": "mimic-voice 14",
+   "frame": {
+    "x": 312,
+    "y": 176,
+    "w": 156,
+    "h": 88
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 156,
+    "h": 88
+   },
+   "sourceSize": {
+    "w": 156,
+    "h": 88
+   },
+   "duration": 33
+  },
+  {
+   "filename": "mimic-voice 15",
+   "frame": {
+    "x": 468,
+    "y": 176,
+    "w": 156,
+    "h": 88
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 156,
+    "h": 88
+   },
+   "sourceSize": {
+    "w": 156,
+    "h": 88
+   },
+   "duration": 33
+  },
+  {
+   "filename": "mimic-voice 16",
+   "frame": {
+    "x": 624,
+    "y": 176,
+    "w": 156,
+    "h": 88
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 156,
+    "h": 88
+   },
+   "sourceSize": {
+    "w": 156,
+    "h": 88
+   },
+   "duration": 33
+  },
+  {
+   "filename": "mimic-voice 17",
+   "frame": {
+    "x": 780,
+    "y": 176,
+    "w": 156,
+    "h": 88
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 156,
+    "h": 88
+   },
+   "sourceSize": {
+    "w": 156,
+    "h": 88
+   },
+   "duration": 33
+  },
+  {
+   "filename": "mimic-voice 18",
+   "frame": {
+    "x": 0,
+    "y": 264,
+    "w": 156,
+    "h": 88
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 156,
+    "h": 88
+   },
+   "sourceSize": {
+    "w": 156,
+    "h": 88
+   },
+   "duration": 33
+  },
+  {
+   "filename": "mimic-voice 19",
+   "frame": {
+    "x": 156,
+    "y": 264,
+    "w": 156,
+    "h": 88
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 156,
+    "h": 88
+   },
+   "sourceSize": {
+    "w": 156,
+    "h": 88
+   },
+   "duration": 33
+  },
+  {
+   "filename": "mimic-voice 20",
+   "frame": {
+    "x": 312,
+    "y": 264,
+    "w": 156,
+    "h": 88
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 156,
+    "h": 88
+   },
+   "sourceSize": {
+    "w": 156,
+    "h": 88
+   },
+   "duration": 33
+  },
+  {
+   "filename": "mimic-voice 21",
+   "frame": {
+    "x": 468,
+    "y": 264,
+    "w": 156,
+    "h": 88
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 156,
+    "h": 88
+   },
+   "sourceSize": {
+    "w": 156,
+    "h": 88
+   },
+   "duration": 33
+  },
+  {
+   "filename": "mimic-voice 22",
+   "frame": {
+    "x": 624,
+    "y": 264,
+    "w": 156,
+    "h": 88
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 156,
+    "h": 88
+   },
+   "sourceSize": {
+    "w": 156,
+    "h": 88
+   },
+   "duration": 33
+  },
+  {
+   "filename": "mimic-voice 23",
+   "frame": {
+    "x": 780,
+    "y": 264,
+    "w": 156,
+    "h": 88
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 156,
+    "h": 88
+   },
+   "sourceSize": {
+    "w": 156,
+    "h": 88
+   },
+   "duration": 33
+  },
+  {
+   "filename": "mimic-voice 24",
+   "frame": {
+    "x": 0,
+    "y": 352,
+    "w": 156,
+    "h": 88
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 156,
+    "h": 88
+   },
+   "sourceSize": {
+    "w": 156,
+    "h": 88
+   },
+   "duration": 33
+  },
+  {
+   "filename": "mimic-voice 25",
+   "frame": {
+    "x": 156,
+    "y": 352,
+    "w": 156,
+    "h": 88
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 156,
+    "h": 88
+   },
+   "sourceSize": {
+    "w": 156,
+    "h": 88
+   },
+   "duration": 33
+  },
+  {
+   "filename": "mimic-voice 26",
+   "frame": {
+    "x": 312,
+    "y": 352,
+    "w": 156,
+    "h": 88
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 156,
+    "h": 88
+   },
+   "sourceSize": {
+    "w": 156,
+    "h": 88
+   },
+   "duration": 33
+  },
+  {
+   "filename": "mimic-voice 27",
+   "frame": {
+    "x": 468,
+    "y": 352,
+    "w": 156,
+    "h": 88
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 156,
+    "h": 88
+   },
+   "sourceSize": {
+    "w": 156,
+    "h": 88
+   },
+   "duration": 33
+  },
+  {
+   "filename": "mimic-voice 28",
+   "frame": {
+    "x": 624,
+    "y": 352,
+    "w": 156,
+    "h": 88
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 156,
+    "h": 88
+   },
+   "sourceSize": {
+    "w": 156,
+    "h": 88
+   },
+   "duration": 33
+  },
+  {
+   "filename": "mimic-voice 29",
+   "frame": {
+    "x": 780,
+    "y": 352,
+    "w": 156,
+    "h": 88
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 156,
+    "h": 88
+   },
+   "sourceSize": {
+    "w": 156,
+    "h": 88
+   },
+   "duration": 33
+  },
+  {
+   "filename": "mimic-voice 30",
+   "frame": {
+    "x": 0,
+    "y": 440,
+    "w": 156,
+    "h": 88
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 156,
+    "h": 88
+   },
+   "sourceSize": {
+    "w": 156,
+    "h": 88
+   },
+   "duration": 33
+  },
+  {
+   "filename": "mimic-voice 31",
+   "frame": {
+    "x": 156,
+    "y": 440,
+    "w": 156,
+    "h": 88
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 156,
+    "h": 88
+   },
+   "sourceSize": {
+    "w": 156,
+    "h": 88
+   },
+   "duration": 33
+  },
+  {
+   "filename": "mimic-voice 32",
+   "frame": {
+    "x": 312,
+    "y": 440,
+    "w": 156,
+    "h": 88
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 156,
+    "h": 88
+   },
+   "sourceSize": {
+    "w": 156,
+    "h": 88
+   },
+   "duration": 33
+  },
+  {
+   "filename": "mimic-voice 33",
+   "frame": {
+    "x": 468,
+    "y": 440,
+    "w": 156,
+    "h": 88
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 156,
+    "h": 88
+   },
+   "sourceSize": {
+    "w": 156,
+    "h": 88
+   },
+   "duration": 33
+  },
+  {
+   "filename": "mimic-voice 34",
+   "frame": {
+    "x": 624,
+    "y": 440,
+    "w": 156,
+    "h": 88
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 156,
+    "h": 88
+   },
+   "sourceSize": {
+    "w": 156,
+    "h": 88
+   },
+   "duration": 33
+  },
+  {
+   "filename": "mimic-voice 35",
+   "frame": {
+    "x": 780,
+    "y": 440,
+    "w": 156,
+    "h": 88
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 156,
+    "h": 88
+   },
+   "sourceSize": {
+    "w": 156,
+    "h": 88
+   },
+   "duration": 33
+  },
+  {
+   "filename": "mimic-voice 36",
+   "frame": {
+    "x": 0,
+    "y": 528,
+    "w": 156,
+    "h": 88
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 156,
+    "h": 88
+   },
+   "sourceSize": {
+    "w": 156,
+    "h": 88
+   },
+   "duration": 33
+  },
+  {
+   "filename": "mimic-voice 37",
+   "frame": {
+    "x": 156,
+    "y": 528,
+    "w": 156,
+    "h": 88
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 156,
+    "h": 88
+   },
+   "sourceSize": {
+    "w": 156,
+    "h": 88
+   },
+   "duration": 33
+  },
+  {
+   "filename": "mimic-voice 38",
+   "frame": {
+    "x": 312,
+    "y": 528,
+    "w": 156,
+    "h": 88
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 156,
+    "h": 88
+   },
+   "sourceSize": {
+    "w": 156,
+    "h": 88
+   },
+   "duration": 33
+  },
+  {
+   "filename": "mimic-voice 39",
+   "frame": {
+    "x": 468,
+    "y": 528,
+    "w": 156,
+    "h": 88
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 156,
+    "h": 88
+   },
+   "sourceSize": {
+    "w": 156,
+    "h": 88
+   },
+   "duration": 33
+  },
+  {
+   "filename": "mimic-voice 40",
+   "frame": {
+    "x": 624,
+    "y": 528,
+    "w": 156,
+    "h": 88
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 156,
+    "h": 88
+   },
+   "sourceSize": {
+    "w": 156,
+    "h": 88
+   },
+   "duration": 33
+  },
+  {
+   "filename": "mimic-voice 41",
+   "frame": {
+    "x": 780,
+    "y": 528,
+    "w": 156,
+    "h": 88
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 156,
+    "h": 88
+   },
+   "sourceSize": {
+    "w": 156,
+    "h": 88
+   },
+   "duration": 33
+  },
+  {
+   "filename": "mimic-voice 42",
+   "frame": {
+    "x": 0,
+    "y": 616,
+    "w": 156,
+    "h": 88
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 156,
+    "h": 88
+   },
+   "sourceSize": {
+    "w": 156,
+    "h": 88
+   },
+   "duration": 33
+  },
+  {
+   "filename": "mimic-voice 43",
+   "frame": {
+    "x": 156,
+    "y": 616,
+    "w": 156,
+    "h": 88
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 156,
+    "h": 88
+   },
+   "sourceSize": {
+    "w": 156,
+    "h": 88
+   },
+   "duration": 33
+  },
+  {
+   "filename": "mimic-voice 44",
+   "frame": {
+    "x": 312,
+    "y": 616,
+    "w": 156,
+    "h": 88
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 156,
+    "h": 88
+   },
+   "sourceSize": {
+    "w": 156,
+    "h": 88
+   },
+   "duration": 33
+  },
+  {
+   "filename": "mimic-voice 45",
+   "frame": {
+    "x": 468,
+    "y": 616,
+    "w": 156,
+    "h": 88
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 156,
+    "h": 88
+   },
+   "sourceSize": {
+    "w": 156,
+    "h": 88
+   },
+   "duration": 33
+  },
+  {
+   "filename": "mimic-voice 46",
+   "frame": {
+    "x": 624,
+    "y": 616,
+    "w": 156,
+    "h": 88
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 156,
+    "h": 88
+   },
+   "sourceSize": {
+    "w": 156,
+    "h": 88
+   },
+   "duration": 33
+  },
+  {
+   "filename": "mimic-voice 47",
+   "frame": {
+    "x": 780,
+    "y": 616,
+    "w": 156,
+    "h": 88
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 156,
+    "h": 88
+   },
+   "sourceSize": {
+    "w": 156,
+    "h": 88
+   },
+   "duration": 33
+  },
+  {
+   "filename": "mimic-voice 48",
+   "frame": {
+    "x": 0,
+    "y": 704,
+    "w": 156,
+    "h": 88
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 156,
+    "h": 88
+   },
+   "sourceSize": {
+    "w": 156,
+    "h": 88
+   },
+   "duration": 33
+  },
+  {
+   "filename": "mimic-voice 49",
+   "frame": {
+    "x": 156,
+    "y": 704,
+    "w": 156,
+    "h": 88
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 156,
+    "h": 88
+   },
+   "sourceSize": {
+    "w": 156,
+    "h": 88
+   },
+   "duration": 33
+  },
+  {
+   "filename": "mimic-voice 50",
+   "frame": {
+    "x": 312,
+    "y": 704,
+    "w": 156,
+    "h": 88
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 156,
+    "h": 88
+   },
+   "sourceSize": {
+    "w": 156,
+    "h": 88
+   },
+   "duration": 33
+  },
+  {
+   "filename": "mimic-voice 51",
+   "frame": {
+    "x": 468,
+    "y": 704,
+    "w": 156,
+    "h": 88
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 156,
+    "h": 88
+   },
+   "sourceSize": {
+    "w": 156,
+    "h": 88
+   },
+   "duration": 33
+  },
+  {
+   "filename": "mimic-voice 52",
+   "frame": {
+    "x": 624,
+    "y": 704,
+    "w": 156,
+    "h": 88
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 156,
+    "h": 88
+   },
+   "sourceSize": {
+    "w": 156,
+    "h": 88
+   },
+   "duration": 33
+  },
+  {
+   "filename": "mimic-voice 53",
+   "frame": {
+    "x": 780,
+    "y": 704,
+    "w": 156,
+    "h": 88
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 156,
+    "h": 88
+   },
+   "sourceSize": {
+    "w": 156,
+    "h": 88
+   },
+   "duration": 33
+  },
+  {
+   "filename": "mimic-voice 54",
+   "frame": {
+    "x": 0,
+    "y": 792,
+    "w": 156,
+    "h": 88
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 156,
+    "h": 88
+   },
+   "sourceSize": {
+    "w": 156,
+    "h": 88
+   },
+   "duration": 33
+  }
+ ],
+ "meta": {
+  "app": "https://github.com/patch-gg/pixelfx",
+  "version": "1",
+  "image": "mimic-voice.png",
+  "format": "RGBA8888",
+  "size": {
+   "w": 936,
+   "h": 880
+  },
+  "scale": "1",
+  "frameTags": [
+   {
+    "name": "mimic-voice",
+    "from": 0,
+    "to": 54,
+    "direction": "forward"
+   }
+  ],
+  "pixelfx": {
+   "id": "geuseundae/mimic-voice",
+   "name": "흉내 내는 목소리",
+   "fps": 30,
+   "loop": false,
+   "frames": 55,
+   "frameSize": [
+    156,
+    88
+   ],
+   "pivot": [
+    26,
+    78
+   ],
+   "columns": 6,
+   "act": {
+    "windup": 0.3,
+    "recovery": 0,
+    "onBody": false,
+    "targets": [
+     94
+    ],
+    "hits": [
+     {
+      "t": 0.4666666666666667,
+      "freeze": 0,
+      "shake": 0,
+      "amp": 0,
+      "push": 0.8
+     },
+     {
+      "t": 0.5866666666666667,
+      "freeze": 0,
+      "shake": 0,
+      "amp": 0,
+      "push": 0.8
+     },
+     {
+      "t": 0.7066666666666667,
+      "freeze": 0,
+      "shake": 0,
+      "amp": 0,
+      "push": 0.8
+     }
+    ],
+    "poses": [
+     {
+      "t": -0.3,
+      "how": "smooth",
+      "pose": {
+       "crouch": 3,
+       "fx": 10,
+       "fy": -22,
+       "bx": 7,
+       "by": -20,
+       "ffx": 7,
+       "fbx": -7
+      }
+     },
+     {
+      "t": 0,
+      "how": "snap",
+      "pose": {
+       "crouch": 2,
+       "fx": 14,
+       "fy": -34,
+       "bx": 12,
+       "by": -32,
+       "ffx": 7,
+       "fbx": -7,
+       "lean": 4,
+       "armsFront": true
+      }
+     },
+     {
+      "t": 0.5,
+      "how": "smooth",
+      "pose": {
+       "crouch": 2,
+       "fx": 14,
+       "fy": -34,
+       "bx": 12,
+       "by": -32,
+       "ffx": 7,
+       "fbx": -7,
+       "lean": 4,
+       "armsFront": true
+      }
+     },
+     {
+      "t": 0.9,
+      "how": "smooth",
+      "pose": {
+       "crouch": 3,
+       "fx": 10,
+       "fy": -22,
+       "bx": 7,
+       "by": -20,
+       "ffx": 7,
+       "fbx": -7
+      }
+     }
+    ]
+   }
+  }
+ }
+}

@@ -35,7 +35,7 @@ func run_checks() -> void:
 	var original_bag=world.wallet["bag"].duplicate(true)
 	world.toggle_equipment_lab()
 	c=world.combat
-	if not check(DB.weapons().size()==34 and DB.items().size()==42 and world.wallet["bag"].size()==42,"All 34 weapons and 8 passive items are available in lab"): return
+	if not check(DB.weapons().size()==34 and DB.items().size()==43 and world.wallet["bag"].size()==43,"All 34 weapons and 9 passive items are available in lab"): return
 	var ids={}
 	for item in DB.items():
 		if not check(not ids.has(item["id"]) and not str(item["effect"]).is_empty(),"Unique item and effect: "+item["name"]): return
@@ -43,6 +43,7 @@ func run_checks() -> void:
 	for w in DB.weapons():
 		prepare(w[0])
 		var slot="off" if w[2]=="off" else "main"
+		if w[2]=="off" and not check(float(w[5])>0,"Off-hand weapon has a visible basic attack: "+w[0]): return
 		if float(w[5])>0:
 			c.perform_attack(slot)
 			c.arsenal.tick(.31)

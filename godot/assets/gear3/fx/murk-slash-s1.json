@@ -1,0 +1,655 @@
+{
+ "frames": [
+  {
+   "filename": "murk-slash-s1 0",
+   "frame": {
+    "x": 0,
+    "y": 0,
+    "w": 110,
+    "h": 84
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 110,
+    "h": 84
+   },
+   "sourceSize": {
+    "w": 110,
+    "h": 84
+   },
+   "duration": 33
+  },
+  {
+   "filename": "murk-slash-s1 1",
+   "frame": {
+    "x": 110,
+    "y": 0,
+    "w": 110,
+    "h": 84
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 110,
+    "h": 84
+   },
+   "sourceSize": {
+    "w": 110,
+    "h": 84
+   },
+   "duration": 33
+  },
+  {
+   "filename": "murk-slash-s1 2",
+   "frame": {
+    "x": 220,
+    "y": 0,
+    "w": 110,
+    "h": 84
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 110,
+    "h": 84
+   },
+   "sourceSize": {
+    "w": 110,
+    "h": 84
+   },
+   "duration": 33
+  },
+  {
+   "filename": "murk-slash-s1 3",
+   "frame": {
+    "x": 330,
+    "y": 0,
+    "w": 110,
+    "h": 84
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 110,
+    "h": 84
+   },
+   "sourceSize": {
+    "w": 110,
+    "h": 84
+   },
+   "duration": 33
+  },
+  {
+   "filename": "murk-slash-s1 4",
+   "frame": {
+    "x": 440,
+    "y": 0,
+    "w": 110,
+    "h": 84
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 110,
+    "h": 84
+   },
+   "sourceSize": {
+    "w": 110,
+    "h": 84
+   },
+   "duration": 33
+  },
+  {
+   "filename": "murk-slash-s1 5",
+   "frame": {
+    "x": 0,
+    "y": 84,
+    "w": 110,
+    "h": 84
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 110,
+    "h": 84
+   },
+   "sourceSize": {
+    "w": 110,
+    "h": 84
+   },
+   "duration": 33
+  },
+  {
+   "filename": "murk-slash-s1 6",
+   "frame": {
+    "x": 110,
+    "y": 84,
+    "w": 110,
+    "h": 84
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 110,
+    "h": 84
+   },
+   "sourceSize": {
+    "w": 110,
+    "h": 84
+   },
+   "duration": 33
+  },
+  {
+   "filename": "murk-slash-s1 7",
+   "frame": {
+    "x": 220,
+    "y": 84,
+    "w": 110,
+    "h": 84
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 110,
+    "h": 84
+   },
+   "sourceSize": {
+    "w": 110,
+    "h": 84
+   },
+   "duration": 33
+  },
+  {
+   "filename": "murk-slash-s1 8",
+   "frame": {
+    "x": 330,
+    "y": 84,
+    "w": 110,
+    "h": 84
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 110,
+    "h": 84
+   },
+   "sourceSize": {
+    "w": 110,
+    "h": 84
+   },
+   "duration": 33
+  },
+  {
+   "filename": "murk-slash-s1 9",
+   "frame": {
+    "x": 440,
+    "y": 84,
+    "w": 110,
+    "h": 84
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 110,
+    "h": 84
+   },
+   "sourceSize": {
+    "w": 110,
+    "h": 84
+   },
+   "duration": 33
+  },
+  {
+   "filename": "murk-slash-s1 10",
+   "frame": {
+    "x": 0,
+    "y": 168,
+    "w": 110,
+    "h": 84
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 110,
+    "h": 84
+   },
+   "sourceSize": {
+    "w": 110,
+    "h": 84
+   },
+   "duration": 33
+  },
+  {
+   "filename": "murk-slash-s1 11",
+   "frame": {
+    "x": 110,
+    "y": 168,
+    "w": 110,
+    "h": 84
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 110,
+    "h": 84
+   },
+   "sourceSize": {
+    "w": 110,
+    "h": 84
+   },
+   "duration": 33
+  },
+  {
+   "filename": "murk-slash-s1 12",
+   "frame": {
+    "x": 220,
+    "y": 168,
+    "w": 110,
+    "h": 84
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 110,
+    "h": 84
+   },
+   "sourceSize": {
+    "w": 110,
+    "h": 84
+   },
+   "duration": 33
+  },
+  {
+   "filename": "murk-slash-s1 13",
+   "frame": {
+    "x": 330,
+    "y": 168,
+    "w": 110,
+    "h": 84
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 110,
+    "h": 84
+   },
+   "sourceSize": {
+    "w": 110,
+    "h": 84
+   },
+   "duration": 33
+  },
+  {
+   "filename": "murk-slash-s1 14",
+   "frame": {
+    "x": 440,
+    "y": 168,
+    "w": 110,
+    "h": 84
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 110,
+    "h": 84
+   },
+   "sourceSize": {
+    "w": 110,
+    "h": 84
+   },
+   "duration": 33
+  },
+  {
+   "filename": "murk-slash-s1 15",
+   "frame": {
+    "x": 0,
+    "y": 252,
+    "w": 110,
+    "h": 84
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 110,
+    "h": 84
+   },
+   "sourceSize": {
+    "w": 110,
+    "h": 84
+   },
+   "duration": 33
+  },
+  {
+   "filename": "murk-slash-s1 16",
+   "frame": {
+    "x": 110,
+    "y": 252,
+    "w": 110,
+    "h": 84
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 110,
+    "h": 84
+   },
+   "sourceSize": {
+    "w": 110,
+    "h": 84
+   },
+   "duration": 33
+  },
+  {
+   "filename": "murk-slash-s1 17",
+   "frame": {
+    "x": 220,
+    "y": 252,
+    "w": 110,
+    "h": 84
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 110,
+    "h": 84
+   },
+   "sourceSize": {
+    "w": 110,
+    "h": 84
+   },
+   "duration": 33
+  },
+  {
+   "filename": "murk-slash-s1 18",
+   "frame": {
+    "x": 330,
+    "y": 252,
+    "w": 110,
+    "h": 84
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 110,
+    "h": 84
+   },
+   "sourceSize": {
+    "w": 110,
+    "h": 84
+   },
+   "duration": 33
+  },
+  {
+   "filename": "murk-slash-s1 19",
+   "frame": {
+    "x": 440,
+    "y": 252,
+    "w": 110,
+    "h": 84
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 110,
+    "h": 84
+   },
+   "sourceSize": {
+    "w": 110,
+    "h": 84
+   },
+   "duration": 33
+  },
+  {
+   "filename": "murk-slash-s1 20",
+   "frame": {
+    "x": 0,
+    "y": 336,
+    "w": 110,
+    "h": 84
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 110,
+    "h": 84
+   },
+   "sourceSize": {
+    "w": 110,
+    "h": 84
+   },
+   "duration": 33
+  },
+  {
+   "filename": "murk-slash-s1 21",
+   "frame": {
+    "x": 110,
+    "y": 336,
+    "w": 110,
+    "h": 84
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 110,
+    "h": 84
+   },
+   "sourceSize": {
+    "w": 110,
+    "h": 84
+   },
+   "duration": 33
+  },
+  {
+   "filename": "murk-slash-s1 22",
+   "frame": {
+    "x": 220,
+    "y": 336,
+    "w": 110,
+    "h": 84
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 110,
+    "h": 84
+   },
+   "sourceSize": {
+    "w": 110,
+    "h": 84
+   },
+   "duration": 33
+  },
+  {
+   "filename": "murk-slash-s1 23",
+   "frame": {
+    "x": 330,
+    "y": 336,
+    "w": 110,
+    "h": 84
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 110,
+    "h": 84
+   },
+   "sourceSize": {
+    "w": 110,
+    "h": 84
+   },
+   "duration": 33
+  },
+  {
+   "filename": "murk-slash-s1 24",
+   "frame": {
+    "x": 440,
+    "y": 336,
+    "w": 110,
+    "h": 84
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 110,
+    "h": 84
+   },
+   "sourceSize": {
+    "w": 110,
+    "h": 84
+   },
+   "duration": 33
+  },
+  {
+   "filename": "murk-slash-s1 25",
+   "frame": {
+    "x": 0,
+    "y": 420,
+    "w": 110,
+    "h": 84
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 110,
+    "h": 84
+   },
+   "sourceSize": {
+    "w": 110,
+    "h": 84
+   },
+   "duration": 33
+  },
+  {
+   "filename": "murk-slash-s1 26",
+   "frame": {
+    "x": 110,
+    "y": 420,
+    "w": 110,
+    "h": 84
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 110,
+    "h": 84
+   },
+   "sourceSize": {
+    "w": 110,
+    "h": 84
+   },
+   "duration": 33
+  },
+  {
+   "filename": "murk-slash-s1 27",
+   "frame": {
+    "x": 220,
+    "y": 420,
+    "w": 110,
+    "h": 84
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 110,
+    "h": 84
+   },
+   "sourceSize": {
+    "w": 110,
+    "h": 84
+   },
+   "duration": 33
+  }
+ ],
+ "meta": {
+  "app": "https://github.com/patch-gg/pixelfx",
+  "version": "1",
+  "image": "murk-slash-s1.png",
+  "format": "RGBA8888",
+  "size": {
+   "w": 550,
+   "h": 504
+  },
+  "scale": "1",
+  "frameTags": [
+   {
+    "name": "murk-slash-s1",
+    "from": 0,
+    "to": 27,
+    "direction": "forward"
+   }
+  ],
+  "pixelfx": {
+   "id": "geuseundae/murk-slash-s1",
+   "name": "어둑한 그림자 · 크기 1",
+   "fps": 30,
+   "loop": false,
+   "frames": 28,
+   "frameSize": [
+    110,
+    84
+   ],
+   "pivot": [
+    30,
+    76
+   ],
+   "columns": 5
+  }
+ }
+}

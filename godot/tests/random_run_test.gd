@@ -12,12 +12,17 @@ func require(ok: bool,message: String) -> bool:
 		quit(1)
 	return ok
 func run_checks() -> void:
+	if not require(Catalog.templates().size()==20,"Chapter 1 must provide exactly twenty room types"): return
 	var signatures: Dictionary = {}
 	var counts: Dictionary = {}
 	for seed_value in range(200):
 		var generated := Generator.generate(seed_value)
 		if not require(Generator.validate(generated),"Invalid graph seed %s"%seed_value): return
 		if not require(JSON.stringify(generated)==JSON.stringify(Generator.generate(seed_value)),"Non-deterministic seed"): return
+		var selected_templates: Dictionary = {}
+		for data in generated["rooms"]: selected_templates[data["template"]]=true
+		if not require(selected_templates.size()==generated["rooms"].size(),"A floor must sample unique room types"): return
+		if not require(generated["rooms"][generated["goal"]]["template"]=="sanctum","Boss room must reserve the sanctum"): return
 		for data in generated["rooms"]:
 			var n: int = data["links"].size()
 			counts[n] = int(counts.get(n,0))+1
@@ -40,7 +45,7 @@ func run_checks() -> void:
 			for next in data["links"]:
 				var point: Vector2 = main.portal_position(data["id"],next)
 				for other in points:
-					if not require(point.distance_to(other)>=320,"Portals too close"): return
+					if not require(point.distance_to(other)>=320,"Portals too close in "+str(data["template"])+" seed "+str(value)+": "+str(point)+" / "+str(other)): return
 				points.append(point)
 	print("PASS: every portal pair separated by at least 320 pixels across 200 seeds")
 	if not require(main.player.is_on_floor(),"Spawn settles on safe floor"): return

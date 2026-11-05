@@ -1,6 +1,6 @@
 extends RefCounted
 const Catalog = preload("res://scripts/room_catalog.gd")
-const VERSION := 5
+const VERSION := 6
 const DEFAULT_ROOM_COUNT := 9
 const MIN_PORTALS := 1
 const MAX_PORTALS := 4
@@ -9,7 +9,9 @@ static func generate(run_seed: int, room_count: int = DEFAULT_ROOM_COUNT) -> Dic
 	var rng := RandomNumberGenerator.new()
 	rng.seed = run_seed
 	var count := maxi(2,room_count)
-	var bag: Array = ["gate","courtyard","well","hall","gallery","forest","store","shrine","sanctum"]
+	# Chapter 1 owns twenty authored room types. The boss sanctum is reserved for
+	# the remote goal; each seed samples eight of the other nineteen rooms.
+	var bag: Array = Catalog.templates().keys().filter(func(key): return key != "sanctum")
 	for i in range(bag.size()-1,0,-1):
 		var j := rng.randi_range(0,i)
 		var temp = bag[i]
@@ -45,6 +47,7 @@ static func generate(run_seed: int, room_count: int = DEFAULT_ROOM_COUNT) -> Dic
 			if not distances.has(next):
 				distances[next] = distances[id]+1
 				pending.append(next)
+	rooms[goal]["template"] = "sanctum"
 	# Seeded optional loops between neighboring cells, one portal per direction.
 	for room in rooms:
 		var at := Vector2i(room["grid"][0],room["grid"][1])
@@ -91,4 +94,4 @@ static func validate(run: Dictionary) -> bool:
 	var peaceful_count := 0
 	for room in rooms:
 		if bool(room.get("peaceful",false)): peaceful_count+=1
-	return seen.size()==rooms.size() and seen.has(run["goal"]) and peaceful_count==1
+	return seen.size()==rooms.size() and seen.has(run["goal"]) and peaceful_count==1 and int(run.get("shop_room",-1))>=0 and bool(rooms[int(run["shop_room"])].get("peaceful",false)) and rooms[int(run["goal"])]["template"]=="sanctum"

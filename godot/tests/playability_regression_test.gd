@@ -58,6 +58,12 @@ func run_checks() -> void:
 	Input.action_release("move_right")
 	if not check(p.facing<0,"Attack direction takes priority over movement when turning the character"): return
 	Input.action_release("attack_left")
+	Input.action_press("attack")
+	Input.action_press("move_right")
+	p._physics_process(.016)
+	Input.action_release("move_right")
+	Input.action_release("attack")
+	if not check(p.facing<0,"Vertical attack aim preserves the last attack-facing direction"): return
 	Input.action_press("attack_up")
 	if not check(combat.attack_input_held() and combat.aim().is_equal_approx(Vector2.UP),"Up arrow attacks upward without a mouse"): return
 	Input.action_release("attack_up")
@@ -66,4 +72,14 @@ func run_checks() -> void:
 	if not check(combat.aim().is_equal_approx(Vector2(1,1).normalized()),"Two arrow keys support diagonal attacks"): return
 	Input.action_release("attack_right")
 	Input.action_release("attack_down")
+	# Jump remains a normal jump on the first press, then becomes a directional
+	# dash when the same button is pressed again inside the double-tap window.
+	p.set_physics_process(false)
+	p.dash_cooldown=0.0
+	p.dash_time=0.0
+	p.tap_windows["jump"]=0.0
+	var first_jump_dash=p.register_tap("jump",Vector2.RIGHT)
+	if not check(not first_jump_dash and p.dash_time==0.0,"First jump-button press remains a normal jump"): return
+	var second_jump_dash=p.register_tap("jump",Vector2(-1,-1))
+	if not check(second_jump_dash and p.dash_time>0.0 and p.dash_direction.is_equal_approx(Vector2(-1,-1).normalized()),"Second jump-button press dashes in the held movement direction"): return
 	quit(0)

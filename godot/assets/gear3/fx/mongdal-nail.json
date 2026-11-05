@@ -1,0 +1,724 @@
+{
+ "frames": [
+  {
+   "filename": "mongdal-nail 0",
+   "frame": {
+    "x": 0,
+    "y": 0,
+    "w": 112,
+    "h": 88
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 112,
+    "h": 88
+   },
+   "sourceSize": {
+    "w": 112,
+    "h": 88
+   },
+   "duration": 33
+  },
+  {
+   "filename": "mongdal-nail 1",
+   "frame": {
+    "x": 112,
+    "y": 0,
+    "w": 112,
+    "h": 88
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 112,
+    "h": 88
+   },
+   "sourceSize": {
+    "w": 112,
+    "h": 88
+   },
+   "duration": 33
+  },
+  {
+   "filename": "mongdal-nail 2",
+   "frame": {
+    "x": 224,
+    "y": 0,
+    "w": 112,
+    "h": 88
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 112,
+    "h": 88
+   },
+   "sourceSize": {
+    "w": 112,
+    "h": 88
+   },
+   "duration": 33
+  },
+  {
+   "filename": "mongdal-nail 3",
+   "frame": {
+    "x": 336,
+    "y": 0,
+    "w": 112,
+    "h": 88
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 112,
+    "h": 88
+   },
+   "sourceSize": {
+    "w": 112,
+    "h": 88
+   },
+   "duration": 33
+  },
+  {
+   "filename": "mongdal-nail 4",
+   "frame": {
+    "x": 448,
+    "y": 0,
+    "w": 112,
+    "h": 88
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 112,
+    "h": 88
+   },
+   "sourceSize": {
+    "w": 112,
+    "h": 88
+   },
+   "duration": 33
+  },
+  {
+   "filename": "mongdal-nail 5",
+   "frame": {
+    "x": 0,
+    "y": 88,
+    "w": 112,
+    "h": 88
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 112,
+    "h": 88
+   },
+   "sourceSize": {
+    "w": 112,
+    "h": 88
+   },
+   "duration": 33
+  },
+  {
+   "filename": "mongdal-nail 6",
+   "frame": {
+    "x": 112,
+    "y": 88,
+    "w": 112,
+    "h": 88
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 112,
+    "h": 88
+   },
+   "sourceSize": {
+    "w": 112,
+    "h": 88
+   },
+   "duration": 33
+  },
+  {
+   "filename": "mongdal-nail 7",
+   "frame": {
+    "x": 224,
+    "y": 88,
+    "w": 112,
+    "h": 88
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 112,
+    "h": 88
+   },
+   "sourceSize": {
+    "w": 112,
+    "h": 88
+   },
+   "duration": 33
+  },
+  {
+   "filename": "mongdal-nail 8",
+   "frame": {
+    "x": 336,
+    "y": 88,
+    "w": 112,
+    "h": 88
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 112,
+    "h": 88
+   },
+   "sourceSize": {
+    "w": 112,
+    "h": 88
+   },
+   "duration": 33
+  },
+  {
+   "filename": "mongdal-nail 9",
+   "frame": {
+    "x": 448,
+    "y": 88,
+    "w": 112,
+    "h": 88
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 112,
+    "h": 88
+   },
+   "sourceSize": {
+    "w": 112,
+    "h": 88
+   },
+   "duration": 33
+  },
+  {
+   "filename": "mongdal-nail 10",
+   "frame": {
+    "x": 0,
+    "y": 176,
+    "w": 112,
+    "h": 88
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 112,
+    "h": 88
+   },
+   "sourceSize": {
+    "w": 112,
+    "h": 88
+   },
+   "duration": 33
+  },
+  {
+   "filename": "mongdal-nail 11",
+   "frame": {
+    "x": 112,
+    "y": 176,
+    "w": 112,
+    "h": 88
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 112,
+    "h": 88
+   },
+   "sourceSize": {
+    "w": 112,
+    "h": 88
+   },
+   "duration": 33
+  },
+  {
+   "filename": "mongdal-nail 12",
+   "frame": {
+    "x": 224,
+    "y": 176,
+    "w": 112,
+    "h": 88
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 112,
+    "h": 88
+   },
+   "sourceSize": {
+    "w": 112,
+    "h": 88
+   },
+   "duration": 33
+  },
+  {
+   "filename": "mongdal-nail 13",
+   "frame": {
+    "x": 336,
+    "y": 176,
+    "w": 112,
+    "h": 88
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 112,
+    "h": 88
+   },
+   "sourceSize": {
+    "w": 112,
+    "h": 88
+   },
+   "duration": 33
+  },
+  {
+   "filename": "mongdal-nail 14",
+   "frame": {
+    "x": 448,
+    "y": 176,
+    "w": 112,
+    "h": 88
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 112,
+    "h": 88
+   },
+   "sourceSize": {
+    "w": 112,
+    "h": 88
+   },
+   "duration": 33
+  },
+  {
+   "filename": "mongdal-nail 15",
+   "frame": {
+    "x": 0,
+    "y": 264,
+    "w": 112,
+    "h": 88
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 112,
+    "h": 88
+   },
+   "sourceSize": {
+    "w": 112,
+    "h": 88
+   },
+   "duration": 33
+  },
+  {
+   "filename": "mongdal-nail 16",
+   "frame": {
+    "x": 112,
+    "y": 264,
+    "w": 112,
+    "h": 88
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 112,
+    "h": 88
+   },
+   "sourceSize": {
+    "w": 112,
+    "h": 88
+   },
+   "duration": 33
+  },
+  {
+   "filename": "mongdal-nail 17",
+   "frame": {
+    "x": 224,
+    "y": 264,
+    "w": 112,
+    "h": 88
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 112,
+    "h": 88
+   },
+   "sourceSize": {
+    "w": 112,
+    "h": 88
+   },
+   "duration": 33
+  },
+  {
+   "filename": "mongdal-nail 18",
+   "frame": {
+    "x": 336,
+    "y": 264,
+    "w": 112,
+    "h": 88
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 112,
+    "h": 88
+   },
+   "sourceSize": {
+    "w": 112,
+    "h": 88
+   },
+   "duration": 33
+  },
+  {
+   "filename": "mongdal-nail 19",
+   "frame": {
+    "x": 448,
+    "y": 264,
+    "w": 112,
+    "h": 88
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 112,
+    "h": 88
+   },
+   "sourceSize": {
+    "w": 112,
+    "h": 88
+   },
+   "duration": 33
+  },
+  {
+   "filename": "mongdal-nail 20",
+   "frame": {
+    "x": 0,
+    "y": 352,
+    "w": 112,
+    "h": 88
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 112,
+    "h": 88
+   },
+   "sourceSize": {
+    "w": 112,
+    "h": 88
+   },
+   "duration": 33
+  },
+  {
+   "filename": "mongdal-nail 21",
+   "frame": {
+    "x": 112,
+    "y": 352,
+    "w": 112,
+    "h": 88
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 112,
+    "h": 88
+   },
+   "sourceSize": {
+    "w": 112,
+    "h": 88
+   },
+   "duration": 33
+  },
+  {
+   "filename": "mongdal-nail 22",
+   "frame": {
+    "x": 224,
+    "y": 352,
+    "w": 112,
+    "h": 88
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 112,
+    "h": 88
+   },
+   "sourceSize": {
+    "w": 112,
+    "h": 88
+   },
+   "duration": 33
+  },
+  {
+   "filename": "mongdal-nail 23",
+   "frame": {
+    "x": 336,
+    "y": 352,
+    "w": 112,
+    "h": 88
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 112,
+    "h": 88
+   },
+   "sourceSize": {
+    "w": 112,
+    "h": 88
+   },
+   "duration": 33
+  },
+  {
+   "filename": "mongdal-nail 24",
+   "frame": {
+    "x": 448,
+    "y": 352,
+    "w": 112,
+    "h": 88
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 112,
+    "h": 88
+   },
+   "sourceSize": {
+    "w": 112,
+    "h": 88
+   },
+   "duration": 33
+  }
+ ],
+ "meta": {
+  "app": "https://github.com/patch-gg/pixelfx",
+  "version": "1",
+  "image": "mongdal-nail.png",
+  "format": "RGBA8888",
+  "size": {
+   "w": 560,
+   "h": 440
+  },
+  "scale": "1",
+  "frameTags": [
+   {
+    "name": "mongdal-nail",
+    "from": 0,
+    "to": 24,
+    "direction": "forward"
+   }
+  ],
+  "pixelfx": {
+   "id": "geuseundae/mongdal-nail",
+   "name": "몽달의 손톱",
+   "fps": 30,
+   "loop": false,
+   "frames": 25,
+   "frameSize": [
+    112,
+    88
+   ],
+   "pivot": [
+    30,
+    78
+   ],
+   "columns": 5,
+   "act": {
+    "windup": 0.22,
+    "recovery": 0,
+    "onBody": false,
+    "targets": [
+     54
+    ],
+    "hits": [
+     {
+      "t": 0.03,
+      "freeze": 0.025,
+      "shake": 0,
+      "amp": 1,
+      "push": 0.6
+     },
+     {
+      "t": 0.1,
+      "freeze": 0.025,
+      "shake": 0,
+      "amp": 1,
+      "push": 0.6
+     },
+     {
+      "t": 0.17,
+      "freeze": 0.06,
+      "shake": 0.1,
+      "amp": 1,
+      "push": 1.2
+     }
+    ],
+    "poses": [
+     {
+      "t": -0.22,
+      "how": "smooth",
+      "pose": {
+       "crouch": 4,
+       "fx": 11,
+       "fy": -23,
+       "bx": 8,
+       "by": -21,
+       "ffx": 7,
+       "fbx": -7,
+       "lean": 4
+      }
+     },
+     {
+      "t": -0.06,
+      "how": "smooth",
+      "pose": {
+       "crouch": 4,
+       "fx": 4,
+       "fy": -20,
+       "bx": 8,
+       "by": -21,
+       "ffx": 7,
+       "fbx": -7,
+       "lean": 0
+      }
+     },
+     {
+      "t": 0,
+      "how": "snap",
+      "pose": {
+       "crouch": 4,
+       "fx": 20,
+       "fy": -34,
+       "bx": -4,
+       "by": -22,
+       "ffx": 11,
+       "fbx": -8,
+       "lean": 6,
+       "toeB": true
+      }
+     },
+     {
+      "t": 0.07,
+      "how": "snap",
+      "pose": {
+       "crouch": 6,
+       "fx": 20,
+       "fy": -16,
+       "bx": 8,
+       "by": -30,
+       "ffx": 12,
+       "fbx": -8,
+       "lean": 7,
+       "toeB": true
+      }
+     },
+     {
+      "t": 0.14,
+      "how": "snap",
+      "pose": {
+       "crouch": 4,
+       "fx": 20,
+       "fy": -34,
+       "bx": -4,
+       "by": -22,
+       "ffx": 11,
+       "fbx": -8,
+       "lean": 6,
+       "toeB": true
+      }
+     },
+     {
+      "t": 0.4,
+      "how": "smooth",
+      "pose": {
+       "crouch": 4,
+       "fx": 20,
+       "fy": -30,
+       "bx": -4,
+       "by": -22,
+       "ffx": 11,
+       "fbx": -8,
+       "lean": 6,
+       "toeB": true
+      }
+     },
+     {
+      "t": 0.75,
+      "how": "smooth",
+      "pose": {
+       "crouch": 4,
+       "fx": 11,
+       "fy": -23,
+       "bx": 8,
+       "by": -21,
+       "ffx": 7,
+       "fbx": -7,
+       "lean": 4
+      }
+     }
+    ]
+   }
+  }
+ }
+}

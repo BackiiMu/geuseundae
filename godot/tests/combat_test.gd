@@ -86,8 +86,10 @@ func run_checks() -> void:
 	for pattern in range(3):
 		boss.pattern=pattern
 		boss.attack_direction=Vector2.LEFT
+		boss.begin_attack_vfx()
+		if not check(combat.vfx.bursts[-1]["monster"]==["captain-sweep","captain-cleave","captain-charge-fx"][pattern],"Boss pattern "+str(pattern)+" uses its supplied effect-only sheet"): return
 		boss.release_attack(world.player.position+Vector2(0,-23))
-	if not check(combat.projectiles.size()>=5,"Boss ranged fan and shockwave patterns emit attacks"): return
+	if not check(boss.charge_remaining>0,"Boss third pattern performs the supplied charge attack"): return
 	combat.heart_cd=0
 	boss.state="approach"
 	combat.use_heart()

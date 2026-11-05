@@ -3,8 +3,9 @@ const ActorSprite=preload("res://scripts/actor_sprite.gd")
 var visual: Node2D
 
 const SPEED = 280.0
-const JUMP = -760.0
-const GRAVITY = 1700.0
+# Slightly gentler jump arc: the old launch was too snappy for platform control.
+const JUMP = -450.0
+const GRAVITY = 700.0
 const DASH_SPEED = 680.0
 var coyote := 0.0
 var buffered_jump := 0.0
@@ -19,7 +20,9 @@ var drop_timer := 0.0
 var attack_pose := 0.0
 var attack_lean := 0.0
 var camera: Camera2D
-const DOUBLE_TAP_WINDOW := .24
+# A quarter-second window was too tight for a jump-release-jump gesture,
+# especially on touch screens. This still requires a deliberate quick double tap.
+const DOUBLE_TAP_WINDOW := .4
 var tap_windows := {"move_left":0.0,"move_right":0.0,"aim_up":0.0,"aim_down":0.0,"jump":0.0}
 
 func _ready() -> void:
@@ -74,6 +77,9 @@ func start_dash(direction: Vector2) -> void:
 
 func register_double_tap(action: String,direction: Vector2) -> bool:
 	if not Input.is_action_just_pressed(action): return false
+	return register_tap(action,direction)
+
+func register_tap(action: String,direction: Vector2) -> bool:
 	if float(tap_windows[action])>0 and dash_cooldown<=0:
 		start_dash(direction)
 		return true
@@ -131,22 +137,23 @@ func _physics_process(delta: float) -> void:
 	elif attack_axis != 0:
 		facing = signf(attack_axis)
 		queue_redraw()
-	elif axis != 0:
+	# While an attack stick/button is held, keep its last horizontal facing.
+	# A nearly vertical aim must not let movement flip the character underneath it.
+	elif not Input.is_action_pressed("attack") and axis != 0:
 		facing = signf(axis)
 		queue_redraw()
 	dash_cooldown = maxf(0.0, dash_cooldown - delta)
 	for action in tap_windows: tap_windows[action]=maxf(0,float(tap_windows[action])-delta)
 	var input_direction := Vector2(axis,Input.get_axis("aim_up","aim_down"))
-	var double_dash := false
+	# The dedicated jump button can double-tap into an upward (or running
+	# diagonal) dash on both desktop and mobile.
+	var double_dash := register_double_tap("jump",Vector2(axis,-1))
 	var mobile_mode := OS.has_feature("mobile") or OS.get_cmdline_user_args().has("--touch")
 	if not mobile_mode:
 		double_dash = register_double_tap("move_left",Vector2.LEFT) or double_dash
 		double_dash = register_double_tap("move_right",Vector2.RIGHT) or double_dash
 		double_dash = register_double_tap("aim_up",Vector2.UP) or double_dash
 		double_dash = register_double_tap("aim_down",Vector2.DOWN) or double_dash
-		# A double jump-key press dashes along the jump arc: straight up at rest,
-		# or diagonally upward while a horizontal movement key is held.
-		double_dash = register_double_tap("jump",Vector2(axis,-1)) or double_dash
 	if Input.is_action_just_pressed("dash") and dash_cooldown<=0:
 		start_dash(input_direction)
 		double_dash = true

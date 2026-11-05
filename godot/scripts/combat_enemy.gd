@@ -32,19 +32,30 @@ var thrown_velocity := Vector2.ZERO
 var throw_remaining := 0.0
 var throw_damage := 0.0
 var throw_hits: Array = []
+var charge_remaining := 0.0
 
 func windup_duration() -> float:
-	if boss: return [0.85,1.05,1.2][pattern]
+	if boss: return [.56,.92,.75][pattern]
 	if kind=="monk": return .9
 	if kind=="adept": return 1.1
-	return .45
+	return .8
 
 func recovery_duration() -> float:
-	if boss and pattern==2: return 1.3
-	if kind=="monk": return 1.0
-	if boss: return .9
+	if boss: return [.59,.68,.52][pattern]
+	if kind=="monk": return 1.35
 	if kind=="adept": return 1.5
-	return .6
+	return 1.2
+
+func begin_attack_vfx() -> void:
+	var direction:=Vector2(facing,0)
+	if boss:
+		if pattern==0: director.vfx.emit_monster("captain-sweep",self,Vector2.ZERO,direction,1.5)
+		elif pattern==1: director.vfx.emit_monster("captain-cleave",self,Vector2.ZERO,direction,1.5)
+		else: director.vfx.emit_monster("captain-charge-fx",self,Vector2.ZERO,direction,1.5)
+	# The monk deliberately keeps the original unadorned moktak attack.
+	elif kind=="monk": pass
+	elif kind=="adept": director.vfx.emit_monster("talisman-cast",self,Vector2(facing*10,-42),attack_direction)
+	else: director.vfx.emit_monster("musa-slash",self,Vector2.ZERO,direction)
 func _ready() -> void:
 	boss = kind=="boss"
 	size_factor = 1.5 if boss else 1.0
@@ -75,6 +86,7 @@ func take_damage(amount: float) -> void:
 	hp-=amount
 	flash=.1
 	if hp<=0:
+		director.vfx.enemy("enemy-spirit-death",global_position+Vector2(0,-8*size_factor),Vector2(facing,0),size_factor)
 		dead=true
 		hide()
 		collision_layer=0
@@ -141,6 +153,13 @@ func _physics_process(delta: float) -> void:
 		move_and_slide()
 		queue_redraw()
 		return
+	if charge_remaining>0:
+		charge_remaining=maxf(0,charge_remaining-delta)
+		velocity.x=facing*430
+		director.area_effect(global_position+Vector2(facing*34,-22),42,attack,self)
+		move_and_slide()
+		queue_redraw()
+		return
 	var target: Vector2 = director.enemy_target(self)
 	var difference:=target-(global_position+Vector2(0,-23*size_factor))
 	var distance:=difference.length()
@@ -169,6 +188,7 @@ func _physics_process(delta: float) -> void:
 			attack_direction=difference.normalized()
 			state="windup"
 			timer=windup_duration()
+			begin_attack_vfx()
 		else:
 			var direction:=facing
 			if kind=="adept" and distance<200: direction=-facing
@@ -182,12 +202,13 @@ func _physics_process(delta: float) -> void:
 func release_attack(target: Vector2) -> void:
 	var origin:=global_position+Vector2(0,-25*size_factor)
 	if boss and pattern==2:
-		director.area_effect(global_position+Vector2(0,-12),110,12,self)
-		director.fire_projectile(origin,Vector2.LEFT,12,false,"wave",self)
-		director.fire_projectile(origin,Vector2.RIGHT,12,false,"wave",self)
+		charge_remaining=.28
+		velocity.x=facing*430
+	elif boss and pattern==1:
+		director.area_effect(origin+Vector2(facing*54,14),105,12,self)
 	elif kind=="monk":
 		director.area_effect(origin+Vector2(facing*40,0),55,attack,self)
-	elif kind=="adept" or (boss and pattern==1):
+	elif kind=="adept":
 		for angle in ([-.3,0.0,.3] if boss else [0.0]):
 			director.fire_projectile(origin,attack_direction.rotated(angle),6,false,"talisman",self)
 	else:
@@ -202,8 +223,8 @@ func _draw() -> void:
 		draw_arc(Vector2(0,-30*s),42*s,0,TAU,24,Color("e5a86c"),2)
 		if boss:
 			var font=preload("res://assets/fonts/NotoSansKR-Semibold.ttf")
-			draw_string(font,Vector2(-48,-115),["베기 · 거리 벌리기","부적 · 점프 회피","충격파 · 점프 회피"][pattern],HORIZONTAL_ALIGNMENT_LEFT,-1,16,Color("fff0c4"))
-		if boss and pattern==2: draw_line(Vector2(-110,0),Vector2(110,0),Color("d76b60"),3)
+			draw_string(font,Vector2(-48,-115),["넓은 베기 · 거리 벌리기","내려베기 · 뒤로 회피","돌진 · 점프 회피"][pattern],HORIZONTAL_ALIGNMENT_LEFT,-1,16,Color("fff0c4"))
+		if boss and pattern==1: draw_line(Vector2(-110,0),Vector2(110,0),Color("d76b60"),3)
 	if pull_remaining>0 or stun>0: draw_arc(Vector2(0,-28*s),20*s,0,TAU,24,Color("9dcbb8"),2)
 	draw_rect(Rect2(-21*s,-69*s,42*s,4),Color("292f39"))
 	draw_rect(Rect2(-21*s,-69*s,42*s*maxf(0,hp)/max_hp,4),Color("d68070"))

@@ -8,7 +8,7 @@ func run_checks() -> void:
 	world.toggle_equipment_lab()
 	var c=world.combat
 	var fx=c.vfx
-	assert(fx.manifest.size()==24)
+	assert(fx.manifest.size()==30)
 	assert(fx.manifest.has("dash-2"))
 	for key in fx.manifest:
 		var info:Dictionary=fx.manifest[key]
@@ -18,7 +18,27 @@ func run_checks() -> void:
 		else:
 			assert(int(info["frames"])==19 and int(info["fps"])==25)
 		assert(fx.textures[key].get_width()>=int(info["frameSize"][0])*int(info["columns"]))
-	print("PASS: all 24 pixelfx sheets load with valid frame sizes and pivots")
+	for key in ["enemy-warrior-cleave","enemy-adept-talisman","enemy-monk-bell","enemy-captain-cleave","enemy-captain-quake","enemy-spirit-death"]:
+		assert(fx.manifest.has(key))
+	fx.enemy("enemy-warrior-cleave",Vector2(650,676),Vector2.LEFT)
+	assert(fx.bursts[0]["key"]=="enemy-warrior-cleave" and is_equal_approx(fx.bursts[0]["angle"],PI))
+	fx.clear()
+	print("PASS: all 30 pixelfx sheets load with valid frame sizes and Chapter 1 enemy tells")
+	for name in ["musa-slash","talisman-cast","talisman-shot","talisman-hit","monk-moktak","captain-sweep","captain-cleave","captain-charge-fx"]:
+		var monster_info:Dictionary=fx.load_monster(name)
+		assert(not monster_info.is_empty() and fx.monster_textures[name]!=null)
+		assert(fx.monster_textures[name].get_width()>=int(monster_info["frameSize"][0])*int(monster_info["columns"]))
+	var warrior=c.living().filter(func(enemy): return enemy.kind=="warrior")[0]
+	fx.clear()
+	warrior.begin_attack_vfx()
+	assert(fx.bursts[0]["monster"]=="musa-slash" and fx.bursts[0]["owner"]==warrior)
+	fx.clear()
+	var adept=c.living().filter(func(enemy): return enemy.kind=="adept")[0]
+	adept.begin_attack_vfx()
+	assert(fx.bursts[0]["monster"]=="talisman-cast")
+	fx.monster_impact("talisman-hit",Vector2(700,676),Vector2.LEFT)
+	assert(fx.bursts[-1]["monster"]=="talisman-hit" and fx.bursts[-1]["rotate"])
+	print("PASS: supplied monster-only sheets load and bind to warrior, adept, projectile and hit paths")
 	for tier in range(1,5):
 		fx.clear()
 		fx.attack({"id":"songaksi_hand","tier":tier,"kind":"melee","set":"songaksi"},Vector2(650,676),Vector2.RIGHT,84)
@@ -51,6 +71,14 @@ func run_checks() -> void:
 	assert(c.GEAR2_DROPS.size()==14)
 	assert(preload("res://scripts/item_icon.gd").GEAR2_ITEMS.size()==14)
 	print("PASS: gear2 icons/drops and split cast-shot-hit sheets load; Songaksi hand keeps old attack VFX")
+	fx.clear()
+	var water_origin:=Vector2(650,676)
+	fx.attack({"id":"water_hand","tier":2,"kind":"melee","set":"water"},water_origin,Vector2.RIGHT,140)
+	assert(fx.bursts[0]["gear3"]=="drowned-grab")
+	assert(is_equal_approx(float(fx.bursts[0]["size"]),140.0/64.0))
+	assert(Vector2(fx.bursts[0]["pos"]).is_equal_approx(water_origin+Vector2(70,28)))
+	assert(fx.bursts[0]["follow_player"])
+	print("PASS: Water Hand VFX expands and centres across its full melee reach")
 	fx.clear()
 	fx.heavy(Vector2(650,676),Vector2.LEFT,"fist")
 	assert(fx.bursts[0]["key"]=="fist-4" and is_equal_approx(fx.bursts[0]["angle"],PI))

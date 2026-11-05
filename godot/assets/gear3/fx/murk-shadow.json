@@ -1,0 +1,759 @@
+{
+ "frames": [
+  {
+   "filename": "murk-shadow 0",
+   "frame": {
+    "x": 0,
+    "y": 0,
+    "w": 150,
+    "h": 120
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 150,
+    "h": 120
+   },
+   "sourceSize": {
+    "w": 150,
+    "h": 120
+   },
+   "duration": 33
+  },
+  {
+   "filename": "murk-shadow 1",
+   "frame": {
+    "x": 150,
+    "y": 0,
+    "w": 150,
+    "h": 120
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 150,
+    "h": 120
+   },
+   "sourceSize": {
+    "w": 150,
+    "h": 120
+   },
+   "duration": 33
+  },
+  {
+   "filename": "murk-shadow 2",
+   "frame": {
+    "x": 300,
+    "y": 0,
+    "w": 150,
+    "h": 120
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 150,
+    "h": 120
+   },
+   "sourceSize": {
+    "w": 150,
+    "h": 120
+   },
+   "duration": 33
+  },
+  {
+   "filename": "murk-shadow 3",
+   "frame": {
+    "x": 450,
+    "y": 0,
+    "w": 150,
+    "h": 120
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 150,
+    "h": 120
+   },
+   "sourceSize": {
+    "w": 150,
+    "h": 120
+   },
+   "duration": 33
+  },
+  {
+   "filename": "murk-shadow 4",
+   "frame": {
+    "x": 600,
+    "y": 0,
+    "w": 150,
+    "h": 120
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 150,
+    "h": 120
+   },
+   "sourceSize": {
+    "w": 150,
+    "h": 120
+   },
+   "duration": 33
+  },
+  {
+   "filename": "murk-shadow 5",
+   "frame": {
+    "x": 0,
+    "y": 120,
+    "w": 150,
+    "h": 120
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 150,
+    "h": 120
+   },
+   "sourceSize": {
+    "w": 150,
+    "h": 120
+   },
+   "duration": 33
+  },
+  {
+   "filename": "murk-shadow 6",
+   "frame": {
+    "x": 150,
+    "y": 120,
+    "w": 150,
+    "h": 120
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 150,
+    "h": 120
+   },
+   "sourceSize": {
+    "w": 150,
+    "h": 120
+   },
+   "duration": 33
+  },
+  {
+   "filename": "murk-shadow 7",
+   "frame": {
+    "x": 300,
+    "y": 120,
+    "w": 150,
+    "h": 120
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 150,
+    "h": 120
+   },
+   "sourceSize": {
+    "w": 150,
+    "h": 120
+   },
+   "duration": 33
+  },
+  {
+   "filename": "murk-shadow 8",
+   "frame": {
+    "x": 450,
+    "y": 120,
+    "w": 150,
+    "h": 120
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 150,
+    "h": 120
+   },
+   "sourceSize": {
+    "w": 150,
+    "h": 120
+   },
+   "duration": 33
+  },
+  {
+   "filename": "murk-shadow 9",
+   "frame": {
+    "x": 600,
+    "y": 120,
+    "w": 150,
+    "h": 120
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 150,
+    "h": 120
+   },
+   "sourceSize": {
+    "w": 150,
+    "h": 120
+   },
+   "duration": 33
+  },
+  {
+   "filename": "murk-shadow 10",
+   "frame": {
+    "x": 0,
+    "y": 240,
+    "w": 150,
+    "h": 120
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 150,
+    "h": 120
+   },
+   "sourceSize": {
+    "w": 150,
+    "h": 120
+   },
+   "duration": 33
+  },
+  {
+   "filename": "murk-shadow 11",
+   "frame": {
+    "x": 150,
+    "y": 240,
+    "w": 150,
+    "h": 120
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 150,
+    "h": 120
+   },
+   "sourceSize": {
+    "w": 150,
+    "h": 120
+   },
+   "duration": 33
+  },
+  {
+   "filename": "murk-shadow 12",
+   "frame": {
+    "x": 300,
+    "y": 240,
+    "w": 150,
+    "h": 120
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 150,
+    "h": 120
+   },
+   "sourceSize": {
+    "w": 150,
+    "h": 120
+   },
+   "duration": 33
+  },
+  {
+   "filename": "murk-shadow 13",
+   "frame": {
+    "x": 450,
+    "y": 240,
+    "w": 150,
+    "h": 120
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 150,
+    "h": 120
+   },
+   "sourceSize": {
+    "w": 150,
+    "h": 120
+   },
+   "duration": 33
+  },
+  {
+   "filename": "murk-shadow 14",
+   "frame": {
+    "x": 600,
+    "y": 240,
+    "w": 150,
+    "h": 120
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 150,
+    "h": 120
+   },
+   "sourceSize": {
+    "w": 150,
+    "h": 120
+   },
+   "duration": 33
+  },
+  {
+   "filename": "murk-shadow 15",
+   "frame": {
+    "x": 0,
+    "y": 360,
+    "w": 150,
+    "h": 120
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 150,
+    "h": 120
+   },
+   "sourceSize": {
+    "w": 150,
+    "h": 120
+   },
+   "duration": 33
+  },
+  {
+   "filename": "murk-shadow 16",
+   "frame": {
+    "x": 150,
+    "y": 360,
+    "w": 150,
+    "h": 120
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 150,
+    "h": 120
+   },
+   "sourceSize": {
+    "w": 150,
+    "h": 120
+   },
+   "duration": 33
+  },
+  {
+   "filename": "murk-shadow 17",
+   "frame": {
+    "x": 300,
+    "y": 360,
+    "w": 150,
+    "h": 120
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 150,
+    "h": 120
+   },
+   "sourceSize": {
+    "w": 150,
+    "h": 120
+   },
+   "duration": 33
+  },
+  {
+   "filename": "murk-shadow 18",
+   "frame": {
+    "x": 450,
+    "y": 360,
+    "w": 150,
+    "h": 120
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 150,
+    "h": 120
+   },
+   "sourceSize": {
+    "w": 150,
+    "h": 120
+   },
+   "duration": 33
+  },
+  {
+   "filename": "murk-shadow 19",
+   "frame": {
+    "x": 600,
+    "y": 360,
+    "w": 150,
+    "h": 120
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 150,
+    "h": 120
+   },
+   "sourceSize": {
+    "w": 150,
+    "h": 120
+   },
+   "duration": 33
+  },
+  {
+   "filename": "murk-shadow 20",
+   "frame": {
+    "x": 0,
+    "y": 480,
+    "w": 150,
+    "h": 120
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 150,
+    "h": 120
+   },
+   "sourceSize": {
+    "w": 150,
+    "h": 120
+   },
+   "duration": 33
+  },
+  {
+   "filename": "murk-shadow 21",
+   "frame": {
+    "x": 150,
+    "y": 480,
+    "w": 150,
+    "h": 120
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 150,
+    "h": 120
+   },
+   "sourceSize": {
+    "w": 150,
+    "h": 120
+   },
+   "duration": 33
+  },
+  {
+   "filename": "murk-shadow 22",
+   "frame": {
+    "x": 300,
+    "y": 480,
+    "w": 150,
+    "h": 120
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 150,
+    "h": 120
+   },
+   "sourceSize": {
+    "w": 150,
+    "h": 120
+   },
+   "duration": 33
+  },
+  {
+   "filename": "murk-shadow 23",
+   "frame": {
+    "x": 450,
+    "y": 480,
+    "w": 150,
+    "h": 120
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 150,
+    "h": 120
+   },
+   "sourceSize": {
+    "w": 150,
+    "h": 120
+   },
+   "duration": 33
+  },
+  {
+   "filename": "murk-shadow 24",
+   "frame": {
+    "x": 600,
+    "y": 480,
+    "w": 150,
+    "h": 120
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 150,
+    "h": 120
+   },
+   "sourceSize": {
+    "w": 150,
+    "h": 120
+   },
+   "duration": 33
+  },
+  {
+   "filename": "murk-shadow 25",
+   "frame": {
+    "x": 0,
+    "y": 600,
+    "w": 150,
+    "h": 120
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 150,
+    "h": 120
+   },
+   "sourceSize": {
+    "w": 150,
+    "h": 120
+   },
+   "duration": 33
+  },
+  {
+   "filename": "murk-shadow 26",
+   "frame": {
+    "x": 150,
+    "y": 600,
+    "w": 150,
+    "h": 120
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 150,
+    "h": 120
+   },
+   "sourceSize": {
+    "w": 150,
+    "h": 120
+   },
+   "duration": 33
+  },
+  {
+   "filename": "murk-shadow 27",
+   "frame": {
+    "x": 300,
+    "y": 600,
+    "w": 150,
+    "h": 120
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 150,
+    "h": 120
+   },
+   "sourceSize": {
+    "w": 150,
+    "h": 120
+   },
+   "duration": 33
+  }
+ ],
+ "meta": {
+  "app": "https://github.com/patch-gg/pixelfx",
+  "version": "1",
+  "image": "murk-shadow.png",
+  "format": "RGBA8888",
+  "size": {
+   "w": 750,
+   "h": 720
+  },
+  "scale": "1",
+  "frameTags": [
+   {
+    "name": "murk-shadow",
+    "from": 0,
+    "to": 27,
+    "direction": "forward"
+   }
+  ],
+  "pixelfx": {
+   "id": "geuseundae/murk-shadow",
+   "name": "어둑한 그림자",
+   "fps": 30,
+   "loop": false,
+   "frames": 28,
+   "frameSize": [
+    150,
+    120
+   ],
+   "pivot": [
+    36,
+    108
+   ],
+   "columns": 5,
+   "act": {
+    "windup": 0.3,
+    "recovery": 0,
+    "onBody": false,
+    "targets": [
+     60
+    ],
+    "hits": [
+     {
+      "t": 0.06999999999999999,
+      "freeze": 0.06,
+      "shake": 0.14,
+      "amp": 2,
+      "push": 1.8
+     }
+    ],
+    "poses": [
+     {
+      "t": -0.3,
+      "how": "smooth",
+      "pose": {
+       "crouch": 3,
+       "fx": 10,
+       "fy": -22,
+       "bx": 7,
+       "by": -20,
+       "ffx": 7,
+       "fbx": -7
+      }
+     },
+     {
+      "t": -0.1,
+      "how": "smooth",
+      "pose": {
+       "crouch": 3,
+       "fx": 4,
+       "fy": -40,
+       "bx": 6,
+       "by": -22,
+       "ffx": 7,
+       "fbx": -7,
+       "lean": -4
+      }
+     },
+     {
+      "t": 0,
+      "how": "snap",
+      "pose": {
+       "crouch": 3,
+       "fx": 4,
+       "fy": -40,
+       "bx": 6,
+       "by": -22,
+       "ffx": 7,
+       "fbx": -7,
+       "lean": -4,
+       "ghost": 1
+      }
+     },
+     {
+      "t": 0.1,
+      "how": "snap",
+      "pose": {
+       "crouch": 7,
+       "fx": 20,
+       "fy": -14,
+       "bx": -6,
+       "by": -24,
+       "ffx": 12,
+       "fbx": -10,
+       "lean": 8,
+       "toeB": true
+      }
+     },
+     {
+      "t": 0.4,
+      "how": "smooth",
+      "pose": {
+       "crouch": 7,
+       "fx": 20,
+       "fy": -14,
+       "bx": -6,
+       "by": -24,
+       "ffx": 12,
+       "fbx": -10,
+       "lean": 8,
+       "toeB": true
+      }
+     },
+     {
+      "t": 0.8,
+      "how": "smooth",
+      "pose": {
+       "crouch": 3,
+       "fx": 10,
+       "fy": -22,
+       "bx": 7,
+       "by": -20,
+       "ffx": 7,
+       "fbx": -7
+      }
+     }
+    ]
+   }
+  }
+ }
+}

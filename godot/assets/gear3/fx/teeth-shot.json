@@ -1,0 +1,171 @@
+{
+ "frames": [
+  {
+   "filename": "teeth-shot 0",
+   "frame": {
+    "x": 0,
+    "y": 0,
+    "w": 24,
+    "h": 16
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 24,
+    "h": 16
+   },
+   "sourceSize": {
+    "w": 24,
+    "h": 16
+   },
+   "duration": 33
+  },
+  {
+   "filename": "teeth-shot 1",
+   "frame": {
+    "x": 24,
+    "y": 0,
+    "w": 24,
+    "h": 16
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 24,
+    "h": 16
+   },
+   "sourceSize": {
+    "w": 24,
+    "h": 16
+   },
+   "duration": 33
+  },
+  {
+   "filename": "teeth-shot 2",
+   "frame": {
+    "x": 0,
+    "y": 16,
+    "w": 24,
+    "h": 16
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 24,
+    "h": 16
+   },
+   "sourceSize": {
+    "w": 24,
+    "h": 16
+   },
+   "duration": 33
+  },
+  {
+   "filename": "teeth-shot 3",
+   "frame": {
+    "x": 24,
+    "y": 16,
+    "w": 24,
+    "h": 16
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 24,
+    "h": 16
+   },
+   "sourceSize": {
+    "w": 24,
+    "h": 16
+   },
+   "duration": 33
+  },
+  {
+   "filename": "teeth-shot 4",
+   "frame": {
+    "x": 0,
+    "y": 32,
+    "w": 24,
+    "h": 16
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 24,
+    "h": 16
+   },
+   "sourceSize": {
+    "w": 24,
+    "h": 16
+   },
+   "duration": 33
+  },
+  {
+   "filename": "teeth-shot 5",
+   "frame": {
+    "x": 24,
+    "y": 32,
+    "w": 24,
+    "h": 16
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 24,
+    "h": 16
+   },
+   "sourceSize": {
+    "w": 24,
+    "h": 16
+   },
+   "duration": 33
+  }
+ ],
+ "meta": {
+  "app": "https://github.com/patch-gg/pixelfx",
+  "version": "1",
+  "image": "teeth-shot.png",
+  "format": "RGBA8888",
+  "size": {
+   "w": 48,
+   "h": 48
+  },
+  "scale": "1",
+  "frameTags": [
+   {
+    "name": "teeth-shot",
+    "from": 0,
+    "to": 5,
+    "direction": "forward"
+   }
+  ],
+  "pixelfx": {
+   "id": "geuseundae/teeth-shot",
+   "name": "아귀의 이빨 · 이빨",
+   "fps": 30,
+   "loop": true,
+   "frames": 6,
+   "frameSize": [
+    24,
+    16
+   ],
+   "pivot": [
+    14,
+    8
+   ],
+   "columns": 2
+  }
+ }
+}

@@ -18,6 +18,11 @@ func run_checks() -> void:
 	await frames(3)
 	var source: int = world.current_id
 	world.open_floor_map()
+	if not require(world.floor_map_panel.visible and world.floor_map_view.room_points.size()==world.run["rooms"].size(), "well interaction opens a connected room map instead of a text list"): return
+	var has_close := false
+	for child in world.floor_map_view.get_children():
+		if child is Button and child.text == "닫기 ×": has_close = true
+	if not require(has_close, "the floor map provides a visible close button"): return
 	world.close_floor_map()
 	if not require(world.current_id == source and not world.traveling, "closing the well map cancels without moving"): return
 	var destination: int = world.run["rooms"][source]["links"][0]

@@ -1,0 +1,281 @@
+{
+ "frames": [
+  {
+   "filename": "teeth-hit 0",
+   "frame": {
+    "x": 0,
+    "y": 0,
+    "w": 28,
+    "h": 32
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 28,
+    "h": 32
+   },
+   "sourceSize": {
+    "w": 28,
+    "h": 32
+   },
+   "duration": 33
+  },
+  {
+   "filename": "teeth-hit 1",
+   "frame": {
+    "x": 28,
+    "y": 0,
+    "w": 28,
+    "h": 32
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 28,
+    "h": 32
+   },
+   "sourceSize": {
+    "w": 28,
+    "h": 32
+   },
+   "duration": 33
+  },
+  {
+   "filename": "teeth-hit 2",
+   "frame": {
+    "x": 56,
+    "y": 0,
+    "w": 28,
+    "h": 32
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 28,
+    "h": 32
+   },
+   "sourceSize": {
+    "w": 28,
+    "h": 32
+   },
+   "duration": 33
+  },
+  {
+   "filename": "teeth-hit 3",
+   "frame": {
+    "x": 84,
+    "y": 0,
+    "w": 28,
+    "h": 32
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 28,
+    "h": 32
+   },
+   "sourceSize": {
+    "w": 28,
+    "h": 32
+   },
+   "duration": 33
+  },
+  {
+   "filename": "teeth-hit 4",
+   "frame": {
+    "x": 0,
+    "y": 32,
+    "w": 28,
+    "h": 32
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 28,
+    "h": 32
+   },
+   "sourceSize": {
+    "w": 28,
+    "h": 32
+   },
+   "duration": 33
+  },
+  {
+   "filename": "teeth-hit 5",
+   "frame": {
+    "x": 28,
+    "y": 32,
+    "w": 28,
+    "h": 32
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 28,
+    "h": 32
+   },
+   "sourceSize": {
+    "w": 28,
+    "h": 32
+   },
+   "duration": 33
+  },
+  {
+   "filename": "teeth-hit 6",
+   "frame": {
+    "x": 56,
+    "y": 32,
+    "w": 28,
+    "h": 32
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 28,
+    "h": 32
+   },
+   "sourceSize": {
+    "w": 28,
+    "h": 32
+   },
+   "duration": 33
+  },
+  {
+   "filename": "teeth-hit 7",
+   "frame": {
+    "x": 84,
+    "y": 32,
+    "w": 28,
+    "h": 32
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 28,
+    "h": 32
+   },
+   "sourceSize": {
+    "w": 28,
+    "h": 32
+   },
+   "duration": 33
+  },
+  {
+   "filename": "teeth-hit 8",
+   "frame": {
+    "x": 0,
+    "y": 64,
+    "w": 28,
+    "h": 32
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 28,
+    "h": 32
+   },
+   "sourceSize": {
+    "w": 28,
+    "h": 32
+   },
+   "duration": 33
+  },
+  {
+   "filename": "teeth-hit 9",
+   "frame": {
+    "x": 28,
+    "y": 64,
+    "w": 28,
+    "h": 32
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 28,
+    "h": 32
+   },
+   "sourceSize": {
+    "w": 28,
+    "h": 32
+   },
+   "duration": 33
+  },
+  {
+   "filename": "teeth-hit 10",
+   "frame": {
+    "x": 56,
+    "y": 64,
+    "w": 28,
+    "h": 32
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 28,
+    "h": 32
+   },
+   "sourceSize": {
+    "w": 28,
+    "h": 32
+   },
+   "duration": 33
+  }
+ ],
+ "meta": {
+  "app": "https://github.com/patch-gg/pixelfx",
+  "version": "1",
+  "image": "teeth-hit.png",
+  "format": "RGBA8888",
+  "size": {
+   "w": 112,
+   "h": 96
+  },
+  "scale": "1",
+  "frameTags": [
+   {
+    "name": "teeth-hit",
+    "from": 0,
+    "to": 10,
+    "direction": "forward"
+   }
+  ],
+  "pixelfx": {
+   "id": "geuseundae/teeth-hit",
+   "name": "아귀의 이빨 · 명중",
+   "fps": 30,
+   "loop": false,
+   "frames": 11,
+   "frameSize": [
+    28,
+    32
+   ],
+   "pivot": [
+    14,
+    12
+   ],
+   "columns": 4
+  }
+ }
+}

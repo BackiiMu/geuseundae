@@ -9,12 +9,13 @@ var move_stick := Vector2.ZERO
 var attack_stick := Vector2.ZERO
 var buttons: Array = []
 var hidden_for_ui := false
-const MOVE_ACTIONS = ["move_left", "move_right", "aim_up", "aim_down", "jump"]
+const MOVE_ACTIONS = ["move_left", "move_right"]
 const ATTACK_ACTIONS = ["attack_left", "attack_right", "attack_up", "attack_down"]
 const STICK_RADIUS := 52.0
 
 func _ready() -> void:
 	var specs = [
+		["jump", "점프", Vector2(686,324), 24.0],
 		["dash", "대시", Vector2(706,257), 24.0],
 		["heart_skill", "심장", Vector2(548,366), 23.0],
 		["main_skill", "주무기", Vector2(578,292), 21.0],
@@ -92,9 +93,6 @@ func update_move_stick(pos: Vector2) -> void:
 	move_stick = (pos - move_center).limit_length(STICK_RADIUS) / STICK_RADIUS
 	Input.action_press("move_left", absf(move_stick.x)) if move_stick.x < -0.18 else Input.action_release("move_left")
 	Input.action_press("move_right", absf(move_stick.x)) if move_stick.x > 0.18 else Input.action_release("move_right")
-	Input.action_press("aim_up", absf(move_stick.y)) if move_stick.y < -0.42 else Input.action_release("aim_up")
-	Input.action_press("aim_down", absf(move_stick.y)) if move_stick.y > 0.42 else Input.action_release("aim_down")
-	Input.action_press("jump", absf(move_stick.y)) if move_stick.y < -0.42 else Input.action_release("jump")
 
 func update_attack_stick(pos: Vector2) -> void:
 	attack_stick = (pos - attack_center).limit_length(STICK_RADIUS) / STICK_RADIUS

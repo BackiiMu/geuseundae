@@ -1,0 +1,1921 @@
+{
+ "frames": [
+  {
+   "filename": "monk-moktak 0",
+   "frame": {
+    "x": 0,
+    "y": 0,
+    "w": 112,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 112,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 112,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "monk-moktak 1",
+   "frame": {
+    "x": 112,
+    "y": 0,
+    "w": 112,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 112,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 112,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "monk-moktak 2",
+   "frame": {
+    "x": 224,
+    "y": 0,
+    "w": 112,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 112,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 112,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "monk-moktak 3",
+   "frame": {
+    "x": 336,
+    "y": 0,
+    "w": 112,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 112,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 112,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "monk-moktak 4",
+   "frame": {
+    "x": 448,
+    "y": 0,
+    "w": 112,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 112,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 112,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "monk-moktak 5",
+   "frame": {
+    "x": 560,
+    "y": 0,
+    "w": 112,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 112,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 112,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "monk-moktak 6",
+   "frame": {
+    "x": 672,
+    "y": 0,
+    "w": 112,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 112,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 112,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "monk-moktak 7",
+   "frame": {
+    "x": 784,
+    "y": 0,
+    "w": 112,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 112,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 112,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "monk-moktak 8",
+   "frame": {
+    "x": 896,
+    "y": 0,
+    "w": 112,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 112,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 112,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "monk-moktak 9",
+   "frame": {
+    "x": 0,
+    "y": 96,
+    "w": 112,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 112,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 112,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "monk-moktak 10",
+   "frame": {
+    "x": 112,
+    "y": 96,
+    "w": 112,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 112,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 112,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "monk-moktak 11",
+   "frame": {
+    "x": 224,
+    "y": 96,
+    "w": 112,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 112,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 112,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "monk-moktak 12",
+   "frame": {
+    "x": 336,
+    "y": 96,
+    "w": 112,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 112,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 112,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "monk-moktak 13",
+   "frame": {
+    "x": 448,
+    "y": 96,
+    "w": 112,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 112,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 112,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "monk-moktak 14",
+   "frame": {
+    "x": 560,
+    "y": 96,
+    "w": 112,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 112,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 112,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "monk-moktak 15",
+   "frame": {
+    "x": 672,
+    "y": 96,
+    "w": 112,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 112,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 112,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "monk-moktak 16",
+   "frame": {
+    "x": 784,
+    "y": 96,
+    "w": 112,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 112,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 112,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "monk-moktak 17",
+   "frame": {
+    "x": 896,
+    "y": 96,
+    "w": 112,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 112,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 112,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "monk-moktak 18",
+   "frame": {
+    "x": 0,
+    "y": 192,
+    "w": 112,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 112,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 112,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "monk-moktak 19",
+   "frame": {
+    "x": 112,
+    "y": 192,
+    "w": 112,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 112,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 112,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "monk-moktak 20",
+   "frame": {
+    "x": 224,
+    "y": 192,
+    "w": 112,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 112,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 112,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "monk-moktak 21",
+   "frame": {
+    "x": 336,
+    "y": 192,
+    "w": 112,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 112,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 112,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "monk-moktak 22",
+   "frame": {
+    "x": 448,
+    "y": 192,
+    "w": 112,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 112,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 112,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "monk-moktak 23",
+   "frame": {
+    "x": 560,
+    "y": 192,
+    "w": 112,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 112,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 112,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "monk-moktak 24",
+   "frame": {
+    "x": 672,
+    "y": 192,
+    "w": 112,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 112,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 112,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "monk-moktak 25",
+   "frame": {
+    "x": 784,
+    "y": 192,
+    "w": 112,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 112,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 112,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "monk-moktak 26",
+   "frame": {
+    "x": 896,
+    "y": 192,
+    "w": 112,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 112,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 112,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "monk-moktak 27",
+   "frame": {
+    "x": 0,
+    "y": 288,
+    "w": 112,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 112,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 112,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "monk-moktak 28",
+   "frame": {
+    "x": 112,
+    "y": 288,
+    "w": 112,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 112,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 112,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "monk-moktak 29",
+   "frame": {
+    "x": 224,
+    "y": 288,
+    "w": 112,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 112,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 112,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "monk-moktak 30",
+   "frame": {
+    "x": 336,
+    "y": 288,
+    "w": 112,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 112,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 112,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "monk-moktak 31",
+   "frame": {
+    "x": 448,
+    "y": 288,
+    "w": 112,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 112,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 112,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "monk-moktak 32",
+   "frame": {
+    "x": 560,
+    "y": 288,
+    "w": 112,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 112,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 112,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "monk-moktak 33",
+   "frame": {
+    "x": 672,
+    "y": 288,
+    "w": 112,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 112,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 112,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "monk-moktak 34",
+   "frame": {
+    "x": 784,
+    "y": 288,
+    "w": 112,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 112,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 112,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "monk-moktak 35",
+   "frame": {
+    "x": 896,
+    "y": 288,
+    "w": 112,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 112,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 112,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "monk-moktak 36",
+   "frame": {
+    "x": 0,
+    "y": 384,
+    "w": 112,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 112,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 112,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "monk-moktak 37",
+   "frame": {
+    "x": 112,
+    "y": 384,
+    "w": 112,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 112,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 112,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "monk-moktak 38",
+   "frame": {
+    "x": 224,
+    "y": 384,
+    "w": 112,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 112,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 112,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "monk-moktak 39",
+   "frame": {
+    "x": 336,
+    "y": 384,
+    "w": 112,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 112,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 112,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "monk-moktak 40",
+   "frame": {
+    "x": 448,
+    "y": 384,
+    "w": 112,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 112,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 112,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "monk-moktak 41",
+   "frame": {
+    "x": 560,
+    "y": 384,
+    "w": 112,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 112,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 112,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "monk-moktak 42",
+   "frame": {
+    "x": 672,
+    "y": 384,
+    "w": 112,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 112,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 112,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "monk-moktak 43",
+   "frame": {
+    "x": 784,
+    "y": 384,
+    "w": 112,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 112,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 112,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "monk-moktak 44",
+   "frame": {
+    "x": 896,
+    "y": 384,
+    "w": 112,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 112,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 112,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "monk-moktak 45",
+   "frame": {
+    "x": 0,
+    "y": 480,
+    "w": 112,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 112,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 112,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "monk-moktak 46",
+   "frame": {
+    "x": 112,
+    "y": 480,
+    "w": 112,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 112,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 112,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "monk-moktak 47",
+   "frame": {
+    "x": 224,
+    "y": 480,
+    "w": 112,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 112,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 112,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "monk-moktak 48",
+   "frame": {
+    "x": 336,
+    "y": 480,
+    "w": 112,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 112,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 112,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "monk-moktak 49",
+   "frame": {
+    "x": 448,
+    "y": 480,
+    "w": 112,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 112,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 112,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "monk-moktak 50",
+   "frame": {
+    "x": 560,
+    "y": 480,
+    "w": 112,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 112,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 112,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "monk-moktak 51",
+   "frame": {
+    "x": 672,
+    "y": 480,
+    "w": 112,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 112,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 112,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "monk-moktak 52",
+   "frame": {
+    "x": 784,
+    "y": 480,
+    "w": 112,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 112,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 112,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "monk-moktak 53",
+   "frame": {
+    "x": 896,
+    "y": 480,
+    "w": 112,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 112,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 112,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "monk-moktak 54",
+   "frame": {
+    "x": 0,
+    "y": 576,
+    "w": 112,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 112,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 112,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "monk-moktak 55",
+   "frame": {
+    "x": 112,
+    "y": 576,
+    "w": 112,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 112,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 112,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "monk-moktak 56",
+   "frame": {
+    "x": 224,
+    "y": 576,
+    "w": 112,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 112,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 112,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "monk-moktak 57",
+   "frame": {
+    "x": 336,
+    "y": 576,
+    "w": 112,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 112,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 112,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "monk-moktak 58",
+   "frame": {
+    "x": 448,
+    "y": 576,
+    "w": 112,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 112,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 112,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "monk-moktak 59",
+   "frame": {
+    "x": 560,
+    "y": 576,
+    "w": 112,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 112,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 112,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "monk-moktak 60",
+   "frame": {
+    "x": 672,
+    "y": 576,
+    "w": 112,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 112,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 112,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "monk-moktak 61",
+   "frame": {
+    "x": 784,
+    "y": 576,
+    "w": 112,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 112,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 112,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "monk-moktak 62",
+   "frame": {
+    "x": 896,
+    "y": 576,
+    "w": 112,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 112,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 112,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "monk-moktak 63",
+   "frame": {
+    "x": 0,
+    "y": 672,
+    "w": 112,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 112,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 112,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "monk-moktak 64",
+   "frame": {
+    "x": 112,
+    "y": 672,
+    "w": 112,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 112,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 112,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "monk-moktak 65",
+   "frame": {
+    "x": 224,
+    "y": 672,
+    "w": 112,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 112,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 112,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "monk-moktak 66",
+   "frame": {
+    "x": 336,
+    "y": 672,
+    "w": 112,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 112,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 112,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "monk-moktak 67",
+   "frame": {
+    "x": 448,
+    "y": 672,
+    "w": 112,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 112,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 112,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "monk-moktak 68",
+   "frame": {
+    "x": 560,
+    "y": 672,
+    "w": 112,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 112,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 112,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "monk-moktak 69",
+   "frame": {
+    "x": 672,
+    "y": 672,
+    "w": 112,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 112,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 112,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "monk-moktak 70",
+   "frame": {
+    "x": 784,
+    "y": 672,
+    "w": 112,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 112,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 112,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "monk-moktak 71",
+   "frame": {
+    "x": 896,
+    "y": 672,
+    "w": 112,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 112,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 112,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "monk-moktak 72",
+   "frame": {
+    "x": 0,
+    "y": 768,
+    "w": 112,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 112,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 112,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "monk-moktak 73",
+   "frame": {
+    "x": 112,
+    "y": 768,
+    "w": 112,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 112,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 112,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "monk-moktak 74",
+   "frame": {
+    "x": 224,
+    "y": 768,
+    "w": 112,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 112,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 112,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "monk-moktak 75",
+   "frame": {
+    "x": 336,
+    "y": 768,
+    "w": 112,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 112,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 112,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "monk-moktak 76",
+   "frame": {
+    "x": 448,
+    "y": 768,
+    "w": 112,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 112,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 112,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "monk-moktak 77",
+   "frame": {
+    "x": 560,
+    "y": 768,
+    "w": 112,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 112,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 112,
+    "h": 96
+   },
+   "duration": 33
+  },
+  {
+   "filename": "monk-moktak 78",
+   "frame": {
+    "x": 672,
+    "y": 768,
+    "w": 112,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 112,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 112,
+    "h": 96
+   },
+   "duration": 33
+  }
+ ],
+ "meta": {
+  "app": "https://github.com/patch-gg/pixelfx",
+  "version": "1",
+  "image": "monk-moktak.png",
+  "format": "RGBA8888",
+  "size": {
+   "w": 1008,
+   "h": 864
+  },
+  "scale": "1",
+  "frameTags": [
+   {
+    "name": "monk-moktak",
+    "from": 0,
+    "to": 78,
+    "direction": "forward"
+   }
+  ],
+  "pixelfx": {
+   "id": "monsters/monk-moktak",
+   "name": "목탁 승려 · 목탁 강타",
+   "fps": 30,
+   "loop": false,
+   "frames": 79,
+   "frameSize": [
+    112,
+    96
+   ],
+   "pivot": [
+    30,
+    86
+   ],
+   "columns": 9,
+   "act": {
+    "windup": 0,
+    "recovery": 0,
+    "onBody": false,
+    "targets": [
+     40
+    ],
+    "hits": [
+     {
+      "t": 1.22,
+      "freeze": 0.14,
+      "shake": 0.32,
+      "amp": 4,
+      "push": 3
+     }
+    ],
+    "poses": [
+     {
+      "t": 0,
+      "how": "smooth",
+      "pose": {
+       "crouch": 3,
+       "fx": 12,
+       "fy": -22,
+       "bx": 9,
+       "by": -22,
+       "ffx": 7,
+       "fbx": -7,
+       "armsFront": true
+      }
+     },
+     {
+      "t": 0.15,
+      "how": "smooth",
+      "pose": {
+       "crouch": 3,
+       "fx": 12,
+       "fy": -22,
+       "bx": 9,
+       "by": -22,
+       "ffx": 7,
+       "fbx": -7,
+       "armsFront": true
+      }
+     },
+     {
+      "t": 0.65,
+      "how": "smooth",
+      "pose": {
+       "crouch": 0,
+       "fx": 4,
+       "fy": -46,
+       "bx": 6,
+       "by": -46,
+       "ffx": 8,
+       "fbx": -6,
+       "armsFront": true,
+       "x": -2,
+       "lean": -5
+      }
+     },
+     {
+      "t": 1.15,
+      "how": "smooth",
+      "pose": {
+       "crouch": 0,
+       "fx": 4,
+       "fy": -48,
+       "bx": 6,
+       "by": -46,
+       "ffx": 8,
+       "fbx": -6,
+       "armsFront": true,
+       "x": -2,
+       "lean": -7
+      }
+     },
+     {
+      "t": 1.22,
+      "how": "snap",
+      "pose": {
+       "crouch": 9,
+       "fx": 22,
+       "fy": -10,
+       "bx": 20,
+       "by": -10,
+       "ffx": 12,
+       "fbx": -10,
+       "armsFront": true,
+       "x": 2,
+       "lean": 10,
+       "toeB": true
+      }
+     },
+     {
+      "t": 1.52,
+      "how": "smooth",
+      "pose": {
+       "crouch": 9,
+       "fx": 22,
+       "fy": -10,
+       "bx": 20,
+       "by": -10,
+       "ffx": 12,
+       "fbx": -10,
+       "armsFront": true,
+       "x": 2,
+       "lean": 10,
+       "toeB": true
+      }
+     },
+     {
+      "t": 2.2,
+      "how": "smooth",
+      "pose": {
+       "crouch": 8,
+       "fx": 22,
+       "fy": -10,
+       "bx": 20,
+       "by": -10,
+       "ffx": 12,
+       "fbx": -10,
+       "armsFront": true,
+       "x": 2,
+       "lean": 9,
+       "toeB": true
+      }
+     },
+     {
+      "t": 2.5,
+      "how": "smooth",
+      "pose": {
+       "crouch": 3,
+       "fx": 12,
+       "fy": -22,
+       "bx": 9,
+       "by": -22,
+       "ffx": 7,
+       "fbx": -7,
+       "armsFront": true
+      }
+     }
+    ]
+   }
+  }
+ }
+}

@@ -26,8 +26,8 @@ func run_checks() -> void:
 	controls.update_move_stick(Vector2(150,300))
 	if not require(Input.is_action_pressed("move_right") and not Input.is_action_pressed("move_left"), "Left dynamic stick drives movement only"):
 		return
-	controls.update_move_stick(Vector2(140,250))
-	if not require(Input.is_action_pressed("move_right") and Input.is_action_pressed("jump") and Input.is_action_pressed("aim_up"), "Pushing the movement stick upward jumps while preserving horizontal movement"):
+	controls.update_move_stick(Vector2(150,290))
+	if not require(Input.is_action_pressed("move_right") and not Input.is_action_pressed("jump") and not Input.is_action_pressed("aim_up"), "Upward movement-stick input stays movement-only; the separate jump button owns jumping"):
 		return
 	controls.attack_finger = 2
 	controls.attack_center = Vector2(650,300)

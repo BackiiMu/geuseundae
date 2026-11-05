@@ -23,6 +23,10 @@ func run_checks() -> void:
 	var visual=p.visual
 	var adept=c.living()[1]
 	if not require(is_equal_approx(adept.windup_duration(),1.1) and is_equal_approx(adept.recovery_duration(),1.5),"Early ranged enemy cycle doubles to 2.6 seconds with a longer telegraph"): return
+	var warrior=c.living().filter(func(enemy): return enemy.kind=="warrior")[0]
+	var early_monk=c.living().filter(func(enemy): return enemy.kind=="monk")[0]
+	if not require(is_equal_approx(warrior.windup_duration()+warrior.recovery_duration(),2.0),"Early warrior attack cycle leaves a readable two-second gap"): return
+	if not require(is_equal_approx(early_monk.windup_duration()+early_monk.recovery_duration(),2.25),"Early monk attack cycle leaves a readable recovery window"): return
 	for actor in [p]+c.living():
 		var texture:Texture2D=actor.visual.texture
 		if not require(texture!=null and texture.get_width()==1536 and texture.get_height()==1024,"32-frame raster atlas loads: "+actor.visual.role): return

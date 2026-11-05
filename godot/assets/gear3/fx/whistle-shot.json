@@ -1,0 +1,149 @@
+{
+ "frames": [
+  {
+   "filename": "whistle-shot 0",
+   "frame": {
+    "x": 0,
+    "y": 0,
+    "w": 24,
+    "h": 20
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 24,
+    "h": 20
+   },
+   "sourceSize": {
+    "w": 24,
+    "h": 20
+   },
+   "duration": 33
+  },
+  {
+   "filename": "whistle-shot 1",
+   "frame": {
+    "x": 24,
+    "y": 0,
+    "w": 24,
+    "h": 20
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 24,
+    "h": 20
+   },
+   "sourceSize": {
+    "w": 24,
+    "h": 20
+   },
+   "duration": 33
+  },
+  {
+   "filename": "whistle-shot 2",
+   "frame": {
+    "x": 48,
+    "y": 0,
+    "w": 24,
+    "h": 20
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 24,
+    "h": 20
+   },
+   "sourceSize": {
+    "w": 24,
+    "h": 20
+   },
+   "duration": 33
+  },
+  {
+   "filename": "whistle-shot 3",
+   "frame": {
+    "x": 0,
+    "y": 20,
+    "w": 24,
+    "h": 20
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 24,
+    "h": 20
+   },
+   "sourceSize": {
+    "w": 24,
+    "h": 20
+   },
+   "duration": 33
+  },
+  {
+   "filename": "whistle-shot 4",
+   "frame": {
+    "x": 24,
+    "y": 20,
+    "w": 24,
+    "h": 20
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 24,
+    "h": 20
+   },
+   "sourceSize": {
+    "w": 24,
+    "h": 20
+   },
+   "duration": 33
+  }
+ ],
+ "meta": {
+  "app": "https://github.com/patch-gg/pixelfx",
+  "version": "1",
+  "image": "whistle-shot.png",
+  "format": "RGBA8888",
+  "size": {
+   "w": 72,
+   "h": 40
+  },
+  "scale": "1",
+  "frameTags": [
+   {
+    "name": "whistle-shot",
+    "from": 0,
+    "to": 4,
+    "direction": "forward"
+   }
+  ],
+  "pixelfx": {
+   "id": "geuseundae/whistle-shot",
+   "name": "가는 휘파람 · 고리",
+   "fps": 30,
+   "loop": true,
+   "frames": 5,
+   "frameSize": [
+    24,
+    20
+   ],
+   "pivot": [
+    16,
+    10
+   ],
+   "columns": 3
+  }
+ }
+}

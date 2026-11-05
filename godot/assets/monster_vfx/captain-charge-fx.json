@@ -1,0 +1,1249 @@
+{
+ "frames": [
+  {
+   "filename": "captain-charge-fx 0",
+   "frame": {
+    "x": 0,
+    "y": 0,
+    "w": 190,
+    "h": 84
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 190,
+    "h": 84
+   },
+   "sourceSize": {
+    "w": 190,
+    "h": 84
+   },
+   "duration": 33
+  },
+  {
+   "filename": "captain-charge-fx 1",
+   "frame": {
+    "x": 190,
+    "y": 0,
+    "w": 190,
+    "h": 84
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 190,
+    "h": 84
+   },
+   "sourceSize": {
+    "w": 190,
+    "h": 84
+   },
+   "duration": 33
+  },
+  {
+   "filename": "captain-charge-fx 2",
+   "frame": {
+    "x": 380,
+    "y": 0,
+    "w": 190,
+    "h": 84
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 190,
+    "h": 84
+   },
+   "sourceSize": {
+    "w": 190,
+    "h": 84
+   },
+   "duration": 33
+  },
+  {
+   "filename": "captain-charge-fx 3",
+   "frame": {
+    "x": 570,
+    "y": 0,
+    "w": 190,
+    "h": 84
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 190,
+    "h": 84
+   },
+   "sourceSize": {
+    "w": 190,
+    "h": 84
+   },
+   "duration": 33
+  },
+  {
+   "filename": "captain-charge-fx 4",
+   "frame": {
+    "x": 760,
+    "y": 0,
+    "w": 190,
+    "h": 84
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 190,
+    "h": 84
+   },
+   "sourceSize": {
+    "w": 190,
+    "h": 84
+   },
+   "duration": 33
+  },
+  {
+   "filename": "captain-charge-fx 5",
+   "frame": {
+    "x": 0,
+    "y": 84,
+    "w": 190,
+    "h": 84
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 190,
+    "h": 84
+   },
+   "sourceSize": {
+    "w": 190,
+    "h": 84
+   },
+   "duration": 33
+  },
+  {
+   "filename": "captain-charge-fx 6",
+   "frame": {
+    "x": 190,
+    "y": 84,
+    "w": 190,
+    "h": 84
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 190,
+    "h": 84
+   },
+   "sourceSize": {
+    "w": 190,
+    "h": 84
+   },
+   "duration": 33
+  },
+  {
+   "filename": "captain-charge-fx 7",
+   "frame": {
+    "x": 380,
+    "y": 84,
+    "w": 190,
+    "h": 84
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 190,
+    "h": 84
+   },
+   "sourceSize": {
+    "w": 190,
+    "h": 84
+   },
+   "duration": 33
+  },
+  {
+   "filename": "captain-charge-fx 8",
+   "frame": {
+    "x": 570,
+    "y": 84,
+    "w": 190,
+    "h": 84
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 190,
+    "h": 84
+   },
+   "sourceSize": {
+    "w": 190,
+    "h": 84
+   },
+   "duration": 33
+  },
+  {
+   "filename": "captain-charge-fx 9",
+   "frame": {
+    "x": 760,
+    "y": 84,
+    "w": 190,
+    "h": 84
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 190,
+    "h": 84
+   },
+   "sourceSize": {
+    "w": 190,
+    "h": 84
+   },
+   "duration": 33
+  },
+  {
+   "filename": "captain-charge-fx 10",
+   "frame": {
+    "x": 0,
+    "y": 168,
+    "w": 190,
+    "h": 84
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 190,
+    "h": 84
+   },
+   "sourceSize": {
+    "w": 190,
+    "h": 84
+   },
+   "duration": 33
+  },
+  {
+   "filename": "captain-charge-fx 11",
+   "frame": {
+    "x": 190,
+    "y": 168,
+    "w": 190,
+    "h": 84
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 190,
+    "h": 84
+   },
+   "sourceSize": {
+    "w": 190,
+    "h": 84
+   },
+   "duration": 33
+  },
+  {
+   "filename": "captain-charge-fx 12",
+   "frame": {
+    "x": 380,
+    "y": 168,
+    "w": 190,
+    "h": 84
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 190,
+    "h": 84
+   },
+   "sourceSize": {
+    "w": 190,
+    "h": 84
+   },
+   "duration": 33
+  },
+  {
+   "filename": "captain-charge-fx 13",
+   "frame": {
+    "x": 570,
+    "y": 168,
+    "w": 190,
+    "h": 84
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 190,
+    "h": 84
+   },
+   "sourceSize": {
+    "w": 190,
+    "h": 84
+   },
+   "duration": 33
+  },
+  {
+   "filename": "captain-charge-fx 14",
+   "frame": {
+    "x": 760,
+    "y": 168,
+    "w": 190,
+    "h": 84
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 190,
+    "h": 84
+   },
+   "sourceSize": {
+    "w": 190,
+    "h": 84
+   },
+   "duration": 33
+  },
+  {
+   "filename": "captain-charge-fx 15",
+   "frame": {
+    "x": 0,
+    "y": 252,
+    "w": 190,
+    "h": 84
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 190,
+    "h": 84
+   },
+   "sourceSize": {
+    "w": 190,
+    "h": 84
+   },
+   "duration": 33
+  },
+  {
+   "filename": "captain-charge-fx 16",
+   "frame": {
+    "x": 190,
+    "y": 252,
+    "w": 190,
+    "h": 84
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 190,
+    "h": 84
+   },
+   "sourceSize": {
+    "w": 190,
+    "h": 84
+   },
+   "duration": 33
+  },
+  {
+   "filename": "captain-charge-fx 17",
+   "frame": {
+    "x": 380,
+    "y": 252,
+    "w": 190,
+    "h": 84
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 190,
+    "h": 84
+   },
+   "sourceSize": {
+    "w": 190,
+    "h": 84
+   },
+   "duration": 33
+  },
+  {
+   "filename": "captain-charge-fx 18",
+   "frame": {
+    "x": 570,
+    "y": 252,
+    "w": 190,
+    "h": 84
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 190,
+    "h": 84
+   },
+   "sourceSize": {
+    "w": 190,
+    "h": 84
+   },
+   "duration": 33
+  },
+  {
+   "filename": "captain-charge-fx 19",
+   "frame": {
+    "x": 760,
+    "y": 252,
+    "w": 190,
+    "h": 84
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 190,
+    "h": 84
+   },
+   "sourceSize": {
+    "w": 190,
+    "h": 84
+   },
+   "duration": 33
+  },
+  {
+   "filename": "captain-charge-fx 20",
+   "frame": {
+    "x": 0,
+    "y": 336,
+    "w": 190,
+    "h": 84
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 190,
+    "h": 84
+   },
+   "sourceSize": {
+    "w": 190,
+    "h": 84
+   },
+   "duration": 33
+  },
+  {
+   "filename": "captain-charge-fx 21",
+   "frame": {
+    "x": 190,
+    "y": 336,
+    "w": 190,
+    "h": 84
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 190,
+    "h": 84
+   },
+   "sourceSize": {
+    "w": 190,
+    "h": 84
+   },
+   "duration": 33
+  },
+  {
+   "filename": "captain-charge-fx 22",
+   "frame": {
+    "x": 380,
+    "y": 336,
+    "w": 190,
+    "h": 84
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 190,
+    "h": 84
+   },
+   "sourceSize": {
+    "w": 190,
+    "h": 84
+   },
+   "duration": 33
+  },
+  {
+   "filename": "captain-charge-fx 23",
+   "frame": {
+    "x": 570,
+    "y": 336,
+    "w": 190,
+    "h": 84
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 190,
+    "h": 84
+   },
+   "sourceSize": {
+    "w": 190,
+    "h": 84
+   },
+   "duration": 33
+  },
+  {
+   "filename": "captain-charge-fx 24",
+   "frame": {
+    "x": 760,
+    "y": 336,
+    "w": 190,
+    "h": 84
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 190,
+    "h": 84
+   },
+   "sourceSize": {
+    "w": 190,
+    "h": 84
+   },
+   "duration": 33
+  },
+  {
+   "filename": "captain-charge-fx 25",
+   "frame": {
+    "x": 0,
+    "y": 420,
+    "w": 190,
+    "h": 84
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 190,
+    "h": 84
+   },
+   "sourceSize": {
+    "w": 190,
+    "h": 84
+   },
+   "duration": 33
+  },
+  {
+   "filename": "captain-charge-fx 26",
+   "frame": {
+    "x": 190,
+    "y": 420,
+    "w": 190,
+    "h": 84
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 190,
+    "h": 84
+   },
+   "sourceSize": {
+    "w": 190,
+    "h": 84
+   },
+   "duration": 33
+  },
+  {
+   "filename": "captain-charge-fx 27",
+   "frame": {
+    "x": 380,
+    "y": 420,
+    "w": 190,
+    "h": 84
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 190,
+    "h": 84
+   },
+   "sourceSize": {
+    "w": 190,
+    "h": 84
+   },
+   "duration": 33
+  },
+  {
+   "filename": "captain-charge-fx 28",
+   "frame": {
+    "x": 570,
+    "y": 420,
+    "w": 190,
+    "h": 84
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 190,
+    "h": 84
+   },
+   "sourceSize": {
+    "w": 190,
+    "h": 84
+   },
+   "duration": 33
+  },
+  {
+   "filename": "captain-charge-fx 29",
+   "frame": {
+    "x": 760,
+    "y": 420,
+    "w": 190,
+    "h": 84
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 190,
+    "h": 84
+   },
+   "sourceSize": {
+    "w": 190,
+    "h": 84
+   },
+   "duration": 33
+  },
+  {
+   "filename": "captain-charge-fx 30",
+   "frame": {
+    "x": 0,
+    "y": 504,
+    "w": 190,
+    "h": 84
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 190,
+    "h": 84
+   },
+   "sourceSize": {
+    "w": 190,
+    "h": 84
+   },
+   "duration": 33
+  },
+  {
+   "filename": "captain-charge-fx 31",
+   "frame": {
+    "x": 190,
+    "y": 504,
+    "w": 190,
+    "h": 84
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 190,
+    "h": 84
+   },
+   "sourceSize": {
+    "w": 190,
+    "h": 84
+   },
+   "duration": 33
+  },
+  {
+   "filename": "captain-charge-fx 32",
+   "frame": {
+    "x": 380,
+    "y": 504,
+    "w": 190,
+    "h": 84
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 190,
+    "h": 84
+   },
+   "sourceSize": {
+    "w": 190,
+    "h": 84
+   },
+   "duration": 33
+  },
+  {
+   "filename": "captain-charge-fx 33",
+   "frame": {
+    "x": 570,
+    "y": 504,
+    "w": 190,
+    "h": 84
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 190,
+    "h": 84
+   },
+   "sourceSize": {
+    "w": 190,
+    "h": 84
+   },
+   "duration": 33
+  },
+  {
+   "filename": "captain-charge-fx 34",
+   "frame": {
+    "x": 760,
+    "y": 504,
+    "w": 190,
+    "h": 84
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 190,
+    "h": 84
+   },
+   "sourceSize": {
+    "w": 190,
+    "h": 84
+   },
+   "duration": 33
+  },
+  {
+   "filename": "captain-charge-fx 35",
+   "frame": {
+    "x": 0,
+    "y": 588,
+    "w": 190,
+    "h": 84
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 190,
+    "h": 84
+   },
+   "sourceSize": {
+    "w": 190,
+    "h": 84
+   },
+   "duration": 33
+  },
+  {
+   "filename": "captain-charge-fx 36",
+   "frame": {
+    "x": 190,
+    "y": 588,
+    "w": 190,
+    "h": 84
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 190,
+    "h": 84
+   },
+   "sourceSize": {
+    "w": 190,
+    "h": 84
+   },
+   "duration": 33
+  },
+  {
+   "filename": "captain-charge-fx 37",
+   "frame": {
+    "x": 380,
+    "y": 588,
+    "w": 190,
+    "h": 84
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 190,
+    "h": 84
+   },
+   "sourceSize": {
+    "w": 190,
+    "h": 84
+   },
+   "duration": 33
+  },
+  {
+   "filename": "captain-charge-fx 38",
+   "frame": {
+    "x": 570,
+    "y": 588,
+    "w": 190,
+    "h": 84
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 190,
+    "h": 84
+   },
+   "sourceSize": {
+    "w": 190,
+    "h": 84
+   },
+   "duration": 33
+  },
+  {
+   "filename": "captain-charge-fx 39",
+   "frame": {
+    "x": 760,
+    "y": 588,
+    "w": 190,
+    "h": 84
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 190,
+    "h": 84
+   },
+   "sourceSize": {
+    "w": 190,
+    "h": 84
+   },
+   "duration": 33
+  },
+  {
+   "filename": "captain-charge-fx 40",
+   "frame": {
+    "x": 0,
+    "y": 672,
+    "w": 190,
+    "h": 84
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 190,
+    "h": 84
+   },
+   "sourceSize": {
+    "w": 190,
+    "h": 84
+   },
+   "duration": 33
+  },
+  {
+   "filename": "captain-charge-fx 41",
+   "frame": {
+    "x": 190,
+    "y": 672,
+    "w": 190,
+    "h": 84
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 190,
+    "h": 84
+   },
+   "sourceSize": {
+    "w": 190,
+    "h": 84
+   },
+   "duration": 33
+  },
+  {
+   "filename": "captain-charge-fx 42",
+   "frame": {
+    "x": 380,
+    "y": 672,
+    "w": 190,
+    "h": 84
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 190,
+    "h": 84
+   },
+   "sourceSize": {
+    "w": 190,
+    "h": 84
+   },
+   "duration": 33
+  },
+  {
+   "filename": "captain-charge-fx 43",
+   "frame": {
+    "x": 570,
+    "y": 672,
+    "w": 190,
+    "h": 84
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 190,
+    "h": 84
+   },
+   "sourceSize": {
+    "w": 190,
+    "h": 84
+   },
+   "duration": 33
+  },
+  {
+   "filename": "captain-charge-fx 44",
+   "frame": {
+    "x": 760,
+    "y": 672,
+    "w": 190,
+    "h": 84
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 190,
+    "h": 84
+   },
+   "sourceSize": {
+    "w": 190,
+    "h": 84
+   },
+   "duration": 33
+  },
+  {
+   "filename": "captain-charge-fx 45",
+   "frame": {
+    "x": 0,
+    "y": 756,
+    "w": 190,
+    "h": 84
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 190,
+    "h": 84
+   },
+   "sourceSize": {
+    "w": 190,
+    "h": 84
+   },
+   "duration": 33
+  },
+  {
+   "filename": "captain-charge-fx 46",
+   "frame": {
+    "x": 190,
+    "y": 756,
+    "w": 190,
+    "h": 84
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 190,
+    "h": 84
+   },
+   "sourceSize": {
+    "w": 190,
+    "h": 84
+   },
+   "duration": 33
+  },
+  {
+   "filename": "captain-charge-fx 47",
+   "frame": {
+    "x": 380,
+    "y": 756,
+    "w": 190,
+    "h": 84
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 190,
+    "h": 84
+   },
+   "sourceSize": {
+    "w": 190,
+    "h": 84
+   },
+   "duration": 33
+  },
+  {
+   "filename": "captain-charge-fx 48",
+   "frame": {
+    "x": 570,
+    "y": 756,
+    "w": 190,
+    "h": 84
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 190,
+    "h": 84
+   },
+   "sourceSize": {
+    "w": 190,
+    "h": 84
+   },
+   "duration": 33
+  },
+  {
+   "filename": "captain-charge-fx 49",
+   "frame": {
+    "x": 760,
+    "y": 756,
+    "w": 190,
+    "h": 84
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 190,
+    "h": 84
+   },
+   "sourceSize": {
+    "w": 190,
+    "h": 84
+   },
+   "duration": 33
+  },
+  {
+   "filename": "captain-charge-fx 50",
+   "frame": {
+    "x": 0,
+    "y": 840,
+    "w": 190,
+    "h": 84
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 190,
+    "h": 84
+   },
+   "sourceSize": {
+    "w": 190,
+    "h": 84
+   },
+   "duration": 33
+  },
+  {
+   "filename": "captain-charge-fx 51",
+   "frame": {
+    "x": 190,
+    "y": 840,
+    "w": 190,
+    "h": 84
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 190,
+    "h": 84
+   },
+   "sourceSize": {
+    "w": 190,
+    "h": 84
+   },
+   "duration": 33
+  },
+  {
+   "filename": "captain-charge-fx 52",
+   "frame": {
+    "x": 380,
+    "y": 840,
+    "w": 190,
+    "h": 84
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 190,
+    "h": 84
+   },
+   "sourceSize": {
+    "w": 190,
+    "h": 84
+   },
+   "duration": 33
+  },
+  {
+   "filename": "captain-charge-fx 53",
+   "frame": {
+    "x": 570,
+    "y": 840,
+    "w": 190,
+    "h": 84
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 190,
+    "h": 84
+   },
+   "sourceSize": {
+    "w": 190,
+    "h": 84
+   },
+   "duration": 33
+  },
+  {
+   "filename": "captain-charge-fx 54",
+   "frame": {
+    "x": 760,
+    "y": 840,
+    "w": 190,
+    "h": 84
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 190,
+    "h": 84
+   },
+   "sourceSize": {
+    "w": 190,
+    "h": 84
+   },
+   "duration": 33
+  }
+ ],
+ "meta": {
+  "app": "https://github.com/patch-gg/pixelfx",
+  "version": "1",
+  "image": "captain-charge-fx.png",
+  "format": "RGBA8888",
+  "size": {
+   "w": 950,
+   "h": 924
+  },
+  "scale": "1",
+  "frameTags": [
+   {
+    "name": "captain-charge-fx",
+    "from": 0,
+    "to": 54,
+    "direction": "forward"
+   }
+  ],
+  "pixelfx": {
+   "id": "monsters/captain-charge-fx",
+   "name": "퇴마단 선봉대장 · 돌진 (몸에 붙는 연출)",
+   "fps": 30,
+   "loop": false,
+   "frames": 55,
+   "frameSize": [
+    190,
+    84
+   ],
+   "pivot": [
+    100,
+    74
+   ],
+   "columns": 5
+  }
+ }
+}

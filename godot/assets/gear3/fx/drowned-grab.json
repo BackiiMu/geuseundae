@@ -1,0 +1,1178 @@
+{
+ "frames": [
+  {
+   "filename": "drowned-grab 0",
+   "frame": {
+    "x": 0,
+    "y": 0,
+    "w": 64,
+    "h": 60
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 64,
+    "h": 60
+   },
+   "sourceSize": {
+    "w": 64,
+    "h": 60
+   },
+   "duration": 33
+  },
+  {
+   "filename": "drowned-grab 1",
+   "frame": {
+    "x": 64,
+    "y": 0,
+    "w": 64,
+    "h": 60
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 64,
+    "h": 60
+   },
+   "sourceSize": {
+    "w": 64,
+    "h": 60
+   },
+   "duration": 33
+  },
+  {
+   "filename": "drowned-grab 2",
+   "frame": {
+    "x": 128,
+    "y": 0,
+    "w": 64,
+    "h": 60
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 64,
+    "h": 60
+   },
+   "sourceSize": {
+    "w": 64,
+    "h": 60
+   },
+   "duration": 33
+  },
+  {
+   "filename": "drowned-grab 3",
+   "frame": {
+    "x": 192,
+    "y": 0,
+    "w": 64,
+    "h": 60
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 64,
+    "h": 60
+   },
+   "sourceSize": {
+    "w": 64,
+    "h": 60
+   },
+   "duration": 33
+  },
+  {
+   "filename": "drowned-grab 4",
+   "frame": {
+    "x": 256,
+    "y": 0,
+    "w": 64,
+    "h": 60
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 64,
+    "h": 60
+   },
+   "sourceSize": {
+    "w": 64,
+    "h": 60
+   },
+   "duration": 33
+  },
+  {
+   "filename": "drowned-grab 5",
+   "frame": {
+    "x": 320,
+    "y": 0,
+    "w": 64,
+    "h": 60
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 64,
+    "h": 60
+   },
+   "sourceSize": {
+    "w": 64,
+    "h": 60
+   },
+   "duration": 33
+  },
+  {
+   "filename": "drowned-grab 6",
+   "frame": {
+    "x": 384,
+    "y": 0,
+    "w": 64,
+    "h": 60
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 64,
+    "h": 60
+   },
+   "sourceSize": {
+    "w": 64,
+    "h": 60
+   },
+   "duration": 33
+  },
+  {
+   "filename": "drowned-grab 7",
+   "frame": {
+    "x": 0,
+    "y": 60,
+    "w": 64,
+    "h": 60
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 64,
+    "h": 60
+   },
+   "sourceSize": {
+    "w": 64,
+    "h": 60
+   },
+   "duration": 33
+  },
+  {
+   "filename": "drowned-grab 8",
+   "frame": {
+    "x": 64,
+    "y": 60,
+    "w": 64,
+    "h": 60
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 64,
+    "h": 60
+   },
+   "sourceSize": {
+    "w": 64,
+    "h": 60
+   },
+   "duration": 33
+  },
+  {
+   "filename": "drowned-grab 9",
+   "frame": {
+    "x": 128,
+    "y": 60,
+    "w": 64,
+    "h": 60
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 64,
+    "h": 60
+   },
+   "sourceSize": {
+    "w": 64,
+    "h": 60
+   },
+   "duration": 33
+  },
+  {
+   "filename": "drowned-grab 10",
+   "frame": {
+    "x": 192,
+    "y": 60,
+    "w": 64,
+    "h": 60
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 64,
+    "h": 60
+   },
+   "sourceSize": {
+    "w": 64,
+    "h": 60
+   },
+   "duration": 33
+  },
+  {
+   "filename": "drowned-grab 11",
+   "frame": {
+    "x": 256,
+    "y": 60,
+    "w": 64,
+    "h": 60
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 64,
+    "h": 60
+   },
+   "sourceSize": {
+    "w": 64,
+    "h": 60
+   },
+   "duration": 33
+  },
+  {
+   "filename": "drowned-grab 12",
+   "frame": {
+    "x": 320,
+    "y": 60,
+    "w": 64,
+    "h": 60
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 64,
+    "h": 60
+   },
+   "sourceSize": {
+    "w": 64,
+    "h": 60
+   },
+   "duration": 33
+  },
+  {
+   "filename": "drowned-grab 13",
+   "frame": {
+    "x": 384,
+    "y": 60,
+    "w": 64,
+    "h": 60
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 64,
+    "h": 60
+   },
+   "sourceSize": {
+    "w": 64,
+    "h": 60
+   },
+   "duration": 33
+  },
+  {
+   "filename": "drowned-grab 14",
+   "frame": {
+    "x": 0,
+    "y": 120,
+    "w": 64,
+    "h": 60
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 64,
+    "h": 60
+   },
+   "sourceSize": {
+    "w": 64,
+    "h": 60
+   },
+   "duration": 33
+  },
+  {
+   "filename": "drowned-grab 15",
+   "frame": {
+    "x": 64,
+    "y": 120,
+    "w": 64,
+    "h": 60
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 64,
+    "h": 60
+   },
+   "sourceSize": {
+    "w": 64,
+    "h": 60
+   },
+   "duration": 33
+  },
+  {
+   "filename": "drowned-grab 16",
+   "frame": {
+    "x": 128,
+    "y": 120,
+    "w": 64,
+    "h": 60
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 64,
+    "h": 60
+   },
+   "sourceSize": {
+    "w": 64,
+    "h": 60
+   },
+   "duration": 33
+  },
+  {
+   "filename": "drowned-grab 17",
+   "frame": {
+    "x": 192,
+    "y": 120,
+    "w": 64,
+    "h": 60
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 64,
+    "h": 60
+   },
+   "sourceSize": {
+    "w": 64,
+    "h": 60
+   },
+   "duration": 33
+  },
+  {
+   "filename": "drowned-grab 18",
+   "frame": {
+    "x": 256,
+    "y": 120,
+    "w": 64,
+    "h": 60
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 64,
+    "h": 60
+   },
+   "sourceSize": {
+    "w": 64,
+    "h": 60
+   },
+   "duration": 33
+  },
+  {
+   "filename": "drowned-grab 19",
+   "frame": {
+    "x": 320,
+    "y": 120,
+    "w": 64,
+    "h": 60
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 64,
+    "h": 60
+   },
+   "sourceSize": {
+    "w": 64,
+    "h": 60
+   },
+   "duration": 33
+  },
+  {
+   "filename": "drowned-grab 20",
+   "frame": {
+    "x": 384,
+    "y": 120,
+    "w": 64,
+    "h": 60
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 64,
+    "h": 60
+   },
+   "sourceSize": {
+    "w": 64,
+    "h": 60
+   },
+   "duration": 33
+  },
+  {
+   "filename": "drowned-grab 21",
+   "frame": {
+    "x": 0,
+    "y": 180,
+    "w": 64,
+    "h": 60
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 64,
+    "h": 60
+   },
+   "sourceSize": {
+    "w": 64,
+    "h": 60
+   },
+   "duration": 33
+  },
+  {
+   "filename": "drowned-grab 22",
+   "frame": {
+    "x": 64,
+    "y": 180,
+    "w": 64,
+    "h": 60
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 64,
+    "h": 60
+   },
+   "sourceSize": {
+    "w": 64,
+    "h": 60
+   },
+   "duration": 33
+  },
+  {
+   "filename": "drowned-grab 23",
+   "frame": {
+    "x": 128,
+    "y": 180,
+    "w": 64,
+    "h": 60
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 64,
+    "h": 60
+   },
+   "sourceSize": {
+    "w": 64,
+    "h": 60
+   },
+   "duration": 33
+  },
+  {
+   "filename": "drowned-grab 24",
+   "frame": {
+    "x": 192,
+    "y": 180,
+    "w": 64,
+    "h": 60
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 64,
+    "h": 60
+   },
+   "sourceSize": {
+    "w": 64,
+    "h": 60
+   },
+   "duration": 33
+  },
+  {
+   "filename": "drowned-grab 25",
+   "frame": {
+    "x": 256,
+    "y": 180,
+    "w": 64,
+    "h": 60
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 64,
+    "h": 60
+   },
+   "sourceSize": {
+    "w": 64,
+    "h": 60
+   },
+   "duration": 33
+  },
+  {
+   "filename": "drowned-grab 26",
+   "frame": {
+    "x": 320,
+    "y": 180,
+    "w": 64,
+    "h": 60
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 64,
+    "h": 60
+   },
+   "sourceSize": {
+    "w": 64,
+    "h": 60
+   },
+   "duration": 33
+  },
+  {
+   "filename": "drowned-grab 27",
+   "frame": {
+    "x": 384,
+    "y": 180,
+    "w": 64,
+    "h": 60
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 64,
+    "h": 60
+   },
+   "sourceSize": {
+    "w": 64,
+    "h": 60
+   },
+   "duration": 33
+  },
+  {
+   "filename": "drowned-grab 28",
+   "frame": {
+    "x": 0,
+    "y": 240,
+    "w": 64,
+    "h": 60
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 64,
+    "h": 60
+   },
+   "sourceSize": {
+    "w": 64,
+    "h": 60
+   },
+   "duration": 33
+  },
+  {
+   "filename": "drowned-grab 29",
+   "frame": {
+    "x": 64,
+    "y": 240,
+    "w": 64,
+    "h": 60
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 64,
+    "h": 60
+   },
+   "sourceSize": {
+    "w": 64,
+    "h": 60
+   },
+   "duration": 33
+  },
+  {
+   "filename": "drowned-grab 30",
+   "frame": {
+    "x": 128,
+    "y": 240,
+    "w": 64,
+    "h": 60
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 64,
+    "h": 60
+   },
+   "sourceSize": {
+    "w": 64,
+    "h": 60
+   },
+   "duration": 33
+  },
+  {
+   "filename": "drowned-grab 31",
+   "frame": {
+    "x": 192,
+    "y": 240,
+    "w": 64,
+    "h": 60
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 64,
+    "h": 60
+   },
+   "sourceSize": {
+    "w": 64,
+    "h": 60
+   },
+   "duration": 33
+  },
+  {
+   "filename": "drowned-grab 32",
+   "frame": {
+    "x": 256,
+    "y": 240,
+    "w": 64,
+    "h": 60
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 64,
+    "h": 60
+   },
+   "sourceSize": {
+    "w": 64,
+    "h": 60
+   },
+   "duration": 33
+  },
+  {
+   "filename": "drowned-grab 33",
+   "frame": {
+    "x": 320,
+    "y": 240,
+    "w": 64,
+    "h": 60
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 64,
+    "h": 60
+   },
+   "sourceSize": {
+    "w": 64,
+    "h": 60
+   },
+   "duration": 33
+  },
+  {
+   "filename": "drowned-grab 34",
+   "frame": {
+    "x": 384,
+    "y": 240,
+    "w": 64,
+    "h": 60
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 64,
+    "h": 60
+   },
+   "sourceSize": {
+    "w": 64,
+    "h": 60
+   },
+   "duration": 33
+  },
+  {
+   "filename": "drowned-grab 35",
+   "frame": {
+    "x": 0,
+    "y": 300,
+    "w": 64,
+    "h": 60
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 64,
+    "h": 60
+   },
+   "sourceSize": {
+    "w": 64,
+    "h": 60
+   },
+   "duration": 33
+  },
+  {
+   "filename": "drowned-grab 36",
+   "frame": {
+    "x": 64,
+    "y": 300,
+    "w": 64,
+    "h": 60
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 64,
+    "h": 60
+   },
+   "sourceSize": {
+    "w": 64,
+    "h": 60
+   },
+   "duration": 33
+  },
+  {
+   "filename": "drowned-grab 37",
+   "frame": {
+    "x": 128,
+    "y": 300,
+    "w": 64,
+    "h": 60
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 64,
+    "h": 60
+   },
+   "sourceSize": {
+    "w": 64,
+    "h": 60
+   },
+   "duration": 33
+  },
+  {
+   "filename": "drowned-grab 38",
+   "frame": {
+    "x": 192,
+    "y": 300,
+    "w": 64,
+    "h": 60
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 64,
+    "h": 60
+   },
+   "sourceSize": {
+    "w": 64,
+    "h": 60
+   },
+   "duration": 33
+  },
+  {
+   "filename": "drowned-grab 39",
+   "frame": {
+    "x": 256,
+    "y": 300,
+    "w": 64,
+    "h": 60
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 64,
+    "h": 60
+   },
+   "sourceSize": {
+    "w": 64,
+    "h": 60
+   },
+   "duration": 33
+  },
+  {
+   "filename": "drowned-grab 40",
+   "frame": {
+    "x": 320,
+    "y": 300,
+    "w": 64,
+    "h": 60
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 64,
+    "h": 60
+   },
+   "sourceSize": {
+    "w": 64,
+    "h": 60
+   },
+   "duration": 33
+  },
+  {
+   "filename": "drowned-grab 41",
+   "frame": {
+    "x": 384,
+    "y": 300,
+    "w": 64,
+    "h": 60
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 64,
+    "h": 60
+   },
+   "sourceSize": {
+    "w": 64,
+    "h": 60
+   },
+   "duration": 33
+  },
+  {
+   "filename": "drowned-grab 42",
+   "frame": {
+    "x": 0,
+    "y": 360,
+    "w": 64,
+    "h": 60
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 64,
+    "h": 60
+   },
+   "sourceSize": {
+    "w": 64,
+    "h": 60
+   },
+   "duration": 33
+  },
+  {
+   "filename": "drowned-grab 43",
+   "frame": {
+    "x": 64,
+    "y": 360,
+    "w": 64,
+    "h": 60
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 64,
+    "h": 60
+   },
+   "sourceSize": {
+    "w": 64,
+    "h": 60
+   },
+   "duration": 33
+  },
+  {
+   "filename": "drowned-grab 44",
+   "frame": {
+    "x": 128,
+    "y": 360,
+    "w": 64,
+    "h": 60
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 64,
+    "h": 60
+   },
+   "sourceSize": {
+    "w": 64,
+    "h": 60
+   },
+   "duration": 33
+  },
+  {
+   "filename": "drowned-grab 45",
+   "frame": {
+    "x": 192,
+    "y": 360,
+    "w": 64,
+    "h": 60
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 64,
+    "h": 60
+   },
+   "sourceSize": {
+    "w": 64,
+    "h": 60
+   },
+   "duration": 33
+  },
+  {
+   "filename": "drowned-grab 46",
+   "frame": {
+    "x": 256,
+    "y": 360,
+    "w": 64,
+    "h": 60
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 64,
+    "h": 60
+   },
+   "sourceSize": {
+    "w": 64,
+    "h": 60
+   },
+   "duration": 33
+  },
+  {
+   "filename": "drowned-grab 47",
+   "frame": {
+    "x": 320,
+    "y": 360,
+    "w": 64,
+    "h": 60
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 64,
+    "h": 60
+   },
+   "sourceSize": {
+    "w": 64,
+    "h": 60
+   },
+   "duration": 33
+  },
+  {
+   "filename": "drowned-grab 48",
+   "frame": {
+    "x": 384,
+    "y": 360,
+    "w": 64,
+    "h": 60
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 64,
+    "h": 60
+   },
+   "sourceSize": {
+    "w": 64,
+    "h": 60
+   },
+   "duration": 33
+  }
+ ],
+ "meta": {
+  "app": "https://github.com/patch-gg/pixelfx",
+  "version": "1",
+  "image": "drowned-grab.png",
+  "format": "RGBA8888",
+  "size": {
+   "w": 448,
+   "h": 420
+  },
+  "scale": "1",
+  "frameTags": [
+   {
+    "name": "drowned-grab",
+    "from": 0,
+    "to": 48,
+    "direction": "forward"
+   }
+  ],
+  "pixelfx": {
+   "id": "geuseundae/drowned-grab",
+   "name": "물귀신의 손",
+   "fps": 30,
+   "loop": false,
+   "frames": 49,
+   "frameSize": [
+    64,
+    60
+   ],
+   "pivot": [
+    32,
+    48
+   ],
+   "columns": 7,
+   "act": {
+    "windup": 0.4,
+    "recovery": 0,
+    "onBody": false,
+    "targets": [
+     0
+    ],
+    "hits": [
+     {
+      "t": 0.26,
+      "freeze": 0.05,
+      "shake": 0.1,
+      "amp": 1,
+      "push": 0.8
+     }
+    ],
+    "poses": [
+     {
+      "t": -0.4,
+      "how": "smooth",
+      "pose": {
+       "crouch": 3,
+       "fx": 11,
+       "fy": -21,
+       "bx": 9,
+       "by": -21,
+       "ffx": 7,
+       "fbx": -7,
+       "x": -46
+      }
+     },
+     {
+      "t": 0,
+      "how": "snap",
+      "pose": {
+       "crouch": 3,
+       "fx": 14,
+       "fy": -18,
+       "bx": 9,
+       "by": -21,
+       "ffx": 7,
+       "fbx": -7,
+       "x": -46
+      }
+     },
+     {
+      "t": 0.9,
+      "how": "smooth",
+      "pose": {
+       "crouch": 3,
+       "fx": 11,
+       "fy": -21,
+       "bx": 9,
+       "by": -21,
+       "ffx": 7,
+       "fbx": -7,
+       "x": -46
+      }
+     }
+    ]
+   }
+  }
+ }
+}

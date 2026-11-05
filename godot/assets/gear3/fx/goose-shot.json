@@ -1,0 +1,193 @@
+{
+ "frames": [
+  {
+   "filename": "goose-shot 0",
+   "frame": {
+    "x": 0,
+    "y": 0,
+    "w": 36,
+    "h": 36
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 36,
+    "h": 36
+   },
+   "sourceSize": {
+    "w": 36,
+    "h": 36
+   },
+   "duration": 33
+  },
+  {
+   "filename": "goose-shot 1",
+   "frame": {
+    "x": 36,
+    "y": 0,
+    "w": 36,
+    "h": 36
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 36,
+    "h": 36
+   },
+   "sourceSize": {
+    "w": 36,
+    "h": 36
+   },
+   "duration": 33
+  },
+  {
+   "filename": "goose-shot 2",
+   "frame": {
+    "x": 72,
+    "y": 0,
+    "w": 36,
+    "h": 36
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 36,
+    "h": 36
+   },
+   "sourceSize": {
+    "w": 36,
+    "h": 36
+   },
+   "duration": 33
+  },
+  {
+   "filename": "goose-shot 3",
+   "frame": {
+    "x": 0,
+    "y": 36,
+    "w": 36,
+    "h": 36
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 36,
+    "h": 36
+   },
+   "sourceSize": {
+    "w": 36,
+    "h": 36
+   },
+   "duration": 33
+  },
+  {
+   "filename": "goose-shot 4",
+   "frame": {
+    "x": 36,
+    "y": 36,
+    "w": 36,
+    "h": 36
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 36,
+    "h": 36
+   },
+   "sourceSize": {
+    "w": 36,
+    "h": 36
+   },
+   "duration": 33
+  },
+  {
+   "filename": "goose-shot 5",
+   "frame": {
+    "x": 72,
+    "y": 36,
+    "w": 36,
+    "h": 36
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 36,
+    "h": 36
+   },
+   "sourceSize": {
+    "w": 36,
+    "h": 36
+   },
+   "duration": 33
+  },
+  {
+   "filename": "goose-shot 6",
+   "frame": {
+    "x": 0,
+    "y": 72,
+    "w": 36,
+    "h": 36
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 36,
+    "h": 36
+   },
+   "sourceSize": {
+    "w": 36,
+    "h": 36
+   },
+   "duration": 33
+  }
+ ],
+ "meta": {
+  "app": "https://github.com/patch-gg/pixelfx",
+  "version": "1",
+  "image": "goose-shot.png",
+  "format": "RGBA8888",
+  "size": {
+   "w": 108,
+   "h": 108
+  },
+  "scale": "1",
+  "frameTags": [
+   {
+    "name": "goose-shot",
+    "from": 0,
+    "to": 6,
+    "direction": "forward"
+   }
+  ],
+  "pixelfx": {
+   "id": "geuseundae/goose-shot",
+   "name": "부러진 나무기러기 · 비행",
+   "fps": 30,
+   "loop": true,
+   "frames": 7,
+   "frameSize": [
+    36,
+    36
+   ],
+   "pivot": [
+    18,
+    18
+   ],
+   "columns": 3
+  }
+ }
+}

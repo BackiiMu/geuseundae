@@ -999,5 +999,137 @@
     "columns": 3,
     "path": "res://assets/vfx/dash-2.png",
     "source": "geuseundae/shadow-dash"
+  },
+  "enemy-warrior-cleave": {
+    "id": "melee/double-slash",
+    "name": "Double slash",
+    "fps": 25,
+    "loop": false,
+    "frames": 19,
+    "frameSize": [
+      164,
+      108
+    ],
+    "pivot": [
+      44,
+      92
+    ],
+    "columns": 4,
+    "path": "res://assets/vfx/enemy-warrior-cleave.png",
+    "source": "melee/double-slash",
+    "anchor": [
+      0,
+      -20
+    ]
+  },
+  "enemy-adept-talisman": {
+    "id": "geuseundae/purifying-talisman",
+    "name": "Purifying paper",
+    "fps": 25,
+    "loop": false,
+    "frames": 19,
+    "frameSize": [
+      224,
+      128
+    ],
+    "pivot": [
+      58,
+      104
+    ],
+    "columns": 4,
+    "path": "res://assets/vfx/enemy-adept-talisman.png",
+    "source": "geuseundae/purifying-talisman",
+    "anchor": [
+      0,
+      -26
+    ]
+  },
+  "enemy-monk-bell": {
+    "id": "impacts/ground-slam",
+    "name": "Ground slam",
+    "fps": 25,
+    "loop": false,
+    "frames": 19,
+    "frameSize": [
+      288,
+      208
+    ],
+    "pivot": [
+      144,
+      164
+    ],
+    "columns": 4,
+    "path": "res://assets/vfx/enemy-monk-bell.png",
+    "source": "impacts/ground-slam",
+    "anchor": [
+      0,
+      0
+    ]
+  },
+  "enemy-captain-cleave": {
+    "id": "melee/heavy-cleave",
+    "name": "Heavy cleave",
+    "fps": 25,
+    "loop": false,
+    "frames": 19,
+    "frameSize": [
+      208,
+      116
+    ],
+    "pivot": [
+      68,
+      96
+    ],
+    "columns": 4,
+    "path": "res://assets/vfx/enemy-captain-cleave.png",
+    "source": "melee/heavy-cleave",
+    "anchor": [
+      0,
+      -24
+    ]
+  },
+  "enemy-captain-quake": {
+    "id": "impacts/ground-slam",
+    "name": "Ground slam",
+    "fps": 25,
+    "loop": false,
+    "frames": 19,
+    "frameSize": [
+      288,
+      208
+    ],
+    "pivot": [
+      144,
+      164
+    ],
+    "columns": 4,
+    "path": "res://assets/vfx/enemy-captain-quake.png",
+    "source": "impacts/ground-slam",
+    "anchor": [
+      0,
+      0
+    ]
+  },
+  "enemy-spirit-death": {
+    "id": "spawn/soul-rise",
+    "name": "Soul rise",
+    "fps": 25,
+    "loop": false,
+    "frames": 19,
+    "frameSize": [
+      96,
+      140
+    ],
+    "pivot": [
+      48,
+      126
+    ],
+    "columns": 6,
+    "path": "res://assets/vfx/enemy-spirit-death.png",
+    "source": "spawn/soul-rise",
+    "anchor": [
+      0,
+      -44
+    ]
   }
 }

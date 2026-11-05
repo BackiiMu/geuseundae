@@ -1,0 +1,853 @@
+{
+ "frames": [
+  {
+   "filename": "mongdal-han-aura 0",
+   "frame": {
+    "x": 0,
+    "y": 0,
+    "w": 148,
+    "h": 92
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 148,
+    "h": 92
+   },
+   "sourceSize": {
+    "w": 148,
+    "h": 92
+   },
+   "duration": 33
+  },
+  {
+   "filename": "mongdal-han-aura 1",
+   "frame": {
+    "x": 148,
+    "y": 0,
+    "w": 148,
+    "h": 92
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 148,
+    "h": 92
+   },
+   "sourceSize": {
+    "w": 148,
+    "h": 92
+   },
+   "duration": 33
+  },
+  {
+   "filename": "mongdal-han-aura 2",
+   "frame": {
+    "x": 296,
+    "y": 0,
+    "w": 148,
+    "h": 92
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 148,
+    "h": 92
+   },
+   "sourceSize": {
+    "w": 148,
+    "h": 92
+   },
+   "duration": 33
+  },
+  {
+   "filename": "mongdal-han-aura 3",
+   "frame": {
+    "x": 444,
+    "y": 0,
+    "w": 148,
+    "h": 92
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 148,
+    "h": 92
+   },
+   "sourceSize": {
+    "w": 148,
+    "h": 92
+   },
+   "duration": 33
+  },
+  {
+   "filename": "mongdal-han-aura 4",
+   "frame": {
+    "x": 592,
+    "y": 0,
+    "w": 148,
+    "h": 92
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 148,
+    "h": 92
+   },
+   "sourceSize": {
+    "w": 148,
+    "h": 92
+   },
+   "duration": 33
+  },
+  {
+   "filename": "mongdal-han-aura 5",
+   "frame": {
+    "x": 0,
+    "y": 92,
+    "w": 148,
+    "h": 92
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 148,
+    "h": 92
+   },
+   "sourceSize": {
+    "w": 148,
+    "h": 92
+   },
+   "duration": 33
+  },
+  {
+   "filename": "mongdal-han-aura 6",
+   "frame": {
+    "x": 148,
+    "y": 92,
+    "w": 148,
+    "h": 92
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 148,
+    "h": 92
+   },
+   "sourceSize": {
+    "w": 148,
+    "h": 92
+   },
+   "duration": 33
+  },
+  {
+   "filename": "mongdal-han-aura 7",
+   "frame": {
+    "x": 296,
+    "y": 92,
+    "w": 148,
+    "h": 92
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 148,
+    "h": 92
+   },
+   "sourceSize": {
+    "w": 148,
+    "h": 92
+   },
+   "duration": 33
+  },
+  {
+   "filename": "mongdal-han-aura 8",
+   "frame": {
+    "x": 444,
+    "y": 92,
+    "w": 148,
+    "h": 92
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 148,
+    "h": 92
+   },
+   "sourceSize": {
+    "w": 148,
+    "h": 92
+   },
+   "duration": 33
+  },
+  {
+   "filename": "mongdal-han-aura 9",
+   "frame": {
+    "x": 592,
+    "y": 92,
+    "w": 148,
+    "h": 92
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 148,
+    "h": 92
+   },
+   "sourceSize": {
+    "w": 148,
+    "h": 92
+   },
+   "duration": 33
+  },
+  {
+   "filename": "mongdal-han-aura 10",
+   "frame": {
+    "x": 0,
+    "y": 184,
+    "w": 148,
+    "h": 92
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 148,
+    "h": 92
+   },
+   "sourceSize": {
+    "w": 148,
+    "h": 92
+   },
+   "duration": 33
+  },
+  {
+   "filename": "mongdal-han-aura 11",
+   "frame": {
+    "x": 148,
+    "y": 184,
+    "w": 148,
+    "h": 92
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 148,
+    "h": 92
+   },
+   "sourceSize": {
+    "w": 148,
+    "h": 92
+   },
+   "duration": 33
+  },
+  {
+   "filename": "mongdal-han-aura 12",
+   "frame": {
+    "x": 296,
+    "y": 184,
+    "w": 148,
+    "h": 92
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 148,
+    "h": 92
+   },
+   "sourceSize": {
+    "w": 148,
+    "h": 92
+   },
+   "duration": 33
+  },
+  {
+   "filename": "mongdal-han-aura 13",
+   "frame": {
+    "x": 444,
+    "y": 184,
+    "w": 148,
+    "h": 92
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 148,
+    "h": 92
+   },
+   "sourceSize": {
+    "w": 148,
+    "h": 92
+   },
+   "duration": 33
+  },
+  {
+   "filename": "mongdal-han-aura 14",
+   "frame": {
+    "x": 592,
+    "y": 184,
+    "w": 148,
+    "h": 92
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 148,
+    "h": 92
+   },
+   "sourceSize": {
+    "w": 148,
+    "h": 92
+   },
+   "duration": 33
+  },
+  {
+   "filename": "mongdal-han-aura 15",
+   "frame": {
+    "x": 0,
+    "y": 276,
+    "w": 148,
+    "h": 92
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 148,
+    "h": 92
+   },
+   "sourceSize": {
+    "w": 148,
+    "h": 92
+   },
+   "duration": 33
+  },
+  {
+   "filename": "mongdal-han-aura 16",
+   "frame": {
+    "x": 148,
+    "y": 276,
+    "w": 148,
+    "h": 92
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 148,
+    "h": 92
+   },
+   "sourceSize": {
+    "w": 148,
+    "h": 92
+   },
+   "duration": 33
+  },
+  {
+   "filename": "mongdal-han-aura 17",
+   "frame": {
+    "x": 296,
+    "y": 276,
+    "w": 148,
+    "h": 92
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 148,
+    "h": 92
+   },
+   "sourceSize": {
+    "w": 148,
+    "h": 92
+   },
+   "duration": 33
+  },
+  {
+   "filename": "mongdal-han-aura 18",
+   "frame": {
+    "x": 444,
+    "y": 276,
+    "w": 148,
+    "h": 92
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 148,
+    "h": 92
+   },
+   "sourceSize": {
+    "w": 148,
+    "h": 92
+   },
+   "duration": 33
+  },
+  {
+   "filename": "mongdal-han-aura 19",
+   "frame": {
+    "x": 592,
+    "y": 276,
+    "w": 148,
+    "h": 92
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 148,
+    "h": 92
+   },
+   "sourceSize": {
+    "w": 148,
+    "h": 92
+   },
+   "duration": 33
+  },
+  {
+   "filename": "mongdal-han-aura 20",
+   "frame": {
+    "x": 0,
+    "y": 368,
+    "w": 148,
+    "h": 92
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 148,
+    "h": 92
+   },
+   "sourceSize": {
+    "w": 148,
+    "h": 92
+   },
+   "duration": 33
+  },
+  {
+   "filename": "mongdal-han-aura 21",
+   "frame": {
+    "x": 148,
+    "y": 368,
+    "w": 148,
+    "h": 92
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 148,
+    "h": 92
+   },
+   "sourceSize": {
+    "w": 148,
+    "h": 92
+   },
+   "duration": 33
+  },
+  {
+   "filename": "mongdal-han-aura 22",
+   "frame": {
+    "x": 296,
+    "y": 368,
+    "w": 148,
+    "h": 92
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 148,
+    "h": 92
+   },
+   "sourceSize": {
+    "w": 148,
+    "h": 92
+   },
+   "duration": 33
+  },
+  {
+   "filename": "mongdal-han-aura 23",
+   "frame": {
+    "x": 444,
+    "y": 368,
+    "w": 148,
+    "h": 92
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 148,
+    "h": 92
+   },
+   "sourceSize": {
+    "w": 148,
+    "h": 92
+   },
+   "duration": 33
+  },
+  {
+   "filename": "mongdal-han-aura 24",
+   "frame": {
+    "x": 592,
+    "y": 368,
+    "w": 148,
+    "h": 92
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 148,
+    "h": 92
+   },
+   "sourceSize": {
+    "w": 148,
+    "h": 92
+   },
+   "duration": 33
+  },
+  {
+   "filename": "mongdal-han-aura 25",
+   "frame": {
+    "x": 0,
+    "y": 460,
+    "w": 148,
+    "h": 92
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 148,
+    "h": 92
+   },
+   "sourceSize": {
+    "w": 148,
+    "h": 92
+   },
+   "duration": 33
+  },
+  {
+   "filename": "mongdal-han-aura 26",
+   "frame": {
+    "x": 148,
+    "y": 460,
+    "w": 148,
+    "h": 92
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 148,
+    "h": 92
+   },
+   "sourceSize": {
+    "w": 148,
+    "h": 92
+   },
+   "duration": 33
+  },
+  {
+   "filename": "mongdal-han-aura 27",
+   "frame": {
+    "x": 296,
+    "y": 460,
+    "w": 148,
+    "h": 92
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 148,
+    "h": 92
+   },
+   "sourceSize": {
+    "w": 148,
+    "h": 92
+   },
+   "duration": 33
+  },
+  {
+   "filename": "mongdal-han-aura 28",
+   "frame": {
+    "x": 444,
+    "y": 460,
+    "w": 148,
+    "h": 92
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 148,
+    "h": 92
+   },
+   "sourceSize": {
+    "w": 148,
+    "h": 92
+   },
+   "duration": 33
+  },
+  {
+   "filename": "mongdal-han-aura 29",
+   "frame": {
+    "x": 592,
+    "y": 460,
+    "w": 148,
+    "h": 92
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 148,
+    "h": 92
+   },
+   "sourceSize": {
+    "w": 148,
+    "h": 92
+   },
+   "duration": 33
+  },
+  {
+   "filename": "mongdal-han-aura 30",
+   "frame": {
+    "x": 0,
+    "y": 552,
+    "w": 148,
+    "h": 92
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 148,
+    "h": 92
+   },
+   "sourceSize": {
+    "w": 148,
+    "h": 92
+   },
+   "duration": 33
+  },
+  {
+   "filename": "mongdal-han-aura 31",
+   "frame": {
+    "x": 148,
+    "y": 552,
+    "w": 148,
+    "h": 92
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 148,
+    "h": 92
+   },
+   "sourceSize": {
+    "w": 148,
+    "h": 92
+   },
+   "duration": 33
+  },
+  {
+   "filename": "mongdal-han-aura 32",
+   "frame": {
+    "x": 296,
+    "y": 552,
+    "w": 148,
+    "h": 92
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 148,
+    "h": 92
+   },
+   "sourceSize": {
+    "w": 148,
+    "h": 92
+   },
+   "duration": 33
+  },
+  {
+   "filename": "mongdal-han-aura 33",
+   "frame": {
+    "x": 444,
+    "y": 552,
+    "w": 148,
+    "h": 92
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 148,
+    "h": 92
+   },
+   "sourceSize": {
+    "w": 148,
+    "h": 92
+   },
+   "duration": 33
+  },
+  {
+   "filename": "mongdal-han-aura 34",
+   "frame": {
+    "x": 592,
+    "y": 552,
+    "w": 148,
+    "h": 92
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 148,
+    "h": 92
+   },
+   "sourceSize": {
+    "w": 148,
+    "h": 92
+   },
+   "duration": 33
+  },
+  {
+   "filename": "mongdal-han-aura 35",
+   "frame": {
+    "x": 0,
+    "y": 644,
+    "w": 148,
+    "h": 92
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 148,
+    "h": 92
+   },
+   "sourceSize": {
+    "w": 148,
+    "h": 92
+   },
+   "duration": 33
+  },
+  {
+   "filename": "mongdal-han-aura 36",
+   "frame": {
+    "x": 148,
+    "y": 644,
+    "w": 148,
+    "h": 92
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 148,
+    "h": 92
+   },
+   "sourceSize": {
+    "w": 148,
+    "h": 92
+   },
+   "duration": 33
+  }
+ ],
+ "meta": {
+  "app": "https://github.com/patch-gg/pixelfx",
+  "version": "1",
+  "image": "mongdal-han-aura.png",
+  "format": "RGBA8888",
+  "size": {
+   "w": 740,
+   "h": 736
+  },
+  "scale": "1",
+  "frameTags": [
+   {
+    "name": "mongdal-han-aura",
+    "from": 0,
+    "to": 36,
+    "direction": "forward"
+   }
+  ],
+  "pixelfx": {
+   "id": "geuseundae/mongdal-han-aura",
+   "name": "몽달의 한 · 몸에 붙는 연출",
+   "fps": 30,
+   "loop": false,
+   "frames": 37,
+   "frameSize": [
+    148,
+    92
+   ],
+   "pivot": [
+    66,
+    74
+   ],
+   "columns": 5
+  }
+ }
+}

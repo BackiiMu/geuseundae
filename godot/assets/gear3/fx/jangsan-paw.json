@@ -1,0 +1,893 @@
+{
+ "frames": [
+  {
+   "filename": "jangsan-paw 0",
+   "frame": {
+    "x": 0,
+    "y": 0,
+    "w": 180,
+    "h": 140
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 180,
+    "h": 140
+   },
+   "sourceSize": {
+    "w": 180,
+    "h": 140
+   },
+   "duration": 33
+  },
+  {
+   "filename": "jangsan-paw 1",
+   "frame": {
+    "x": 180,
+    "y": 0,
+    "w": 180,
+    "h": 140
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 180,
+    "h": 140
+   },
+   "sourceSize": {
+    "w": 180,
+    "h": 140
+   },
+   "duration": 33
+  },
+  {
+   "filename": "jangsan-paw 2",
+   "frame": {
+    "x": 360,
+    "y": 0,
+    "w": 180,
+    "h": 140
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 180,
+    "h": 140
+   },
+   "sourceSize": {
+    "w": 180,
+    "h": 140
+   },
+   "duration": 33
+  },
+  {
+   "filename": "jangsan-paw 3",
+   "frame": {
+    "x": 540,
+    "y": 0,
+    "w": 180,
+    "h": 140
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 180,
+    "h": 140
+   },
+   "sourceSize": {
+    "w": 180,
+    "h": 140
+   },
+   "duration": 33
+  },
+  {
+   "filename": "jangsan-paw 4",
+   "frame": {
+    "x": 720,
+    "y": 0,
+    "w": 180,
+    "h": 140
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 180,
+    "h": 140
+   },
+   "sourceSize": {
+    "w": 180,
+    "h": 140
+   },
+   "duration": 33
+  },
+  {
+   "filename": "jangsan-paw 5",
+   "frame": {
+    "x": 0,
+    "y": 140,
+    "w": 180,
+    "h": 140
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 180,
+    "h": 140
+   },
+   "sourceSize": {
+    "w": 180,
+    "h": 140
+   },
+   "duration": 33
+  },
+  {
+   "filename": "jangsan-paw 6",
+   "frame": {
+    "x": 180,
+    "y": 140,
+    "w": 180,
+    "h": 140
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 180,
+    "h": 140
+   },
+   "sourceSize": {
+    "w": 180,
+    "h": 140
+   },
+   "duration": 33
+  },
+  {
+   "filename": "jangsan-paw 7",
+   "frame": {
+    "x": 360,
+    "y": 140,
+    "w": 180,
+    "h": 140
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 180,
+    "h": 140
+   },
+   "sourceSize": {
+    "w": 180,
+    "h": 140
+   },
+   "duration": 33
+  },
+  {
+   "filename": "jangsan-paw 8",
+   "frame": {
+    "x": 540,
+    "y": 140,
+    "w": 180,
+    "h": 140
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 180,
+    "h": 140
+   },
+   "sourceSize": {
+    "w": 180,
+    "h": 140
+   },
+   "duration": 33
+  },
+  {
+   "filename": "jangsan-paw 9",
+   "frame": {
+    "x": 720,
+    "y": 140,
+    "w": 180,
+    "h": 140
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 180,
+    "h": 140
+   },
+   "sourceSize": {
+    "w": 180,
+    "h": 140
+   },
+   "duration": 33
+  },
+  {
+   "filename": "jangsan-paw 10",
+   "frame": {
+    "x": 0,
+    "y": 280,
+    "w": 180,
+    "h": 140
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 180,
+    "h": 140
+   },
+   "sourceSize": {
+    "w": 180,
+    "h": 140
+   },
+   "duration": 33
+  },
+  {
+   "filename": "jangsan-paw 11",
+   "frame": {
+    "x": 180,
+    "y": 280,
+    "w": 180,
+    "h": 140
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 180,
+    "h": 140
+   },
+   "sourceSize": {
+    "w": 180,
+    "h": 140
+   },
+   "duration": 33
+  },
+  {
+   "filename": "jangsan-paw 12",
+   "frame": {
+    "x": 360,
+    "y": 280,
+    "w": 180,
+    "h": 140
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 180,
+    "h": 140
+   },
+   "sourceSize": {
+    "w": 180,
+    "h": 140
+   },
+   "duration": 33
+  },
+  {
+   "filename": "jangsan-paw 13",
+   "frame": {
+    "x": 540,
+    "y": 280,
+    "w": 180,
+    "h": 140
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 180,
+    "h": 140
+   },
+   "sourceSize": {
+    "w": 180,
+    "h": 140
+   },
+   "duration": 33
+  },
+  {
+   "filename": "jangsan-paw 14",
+   "frame": {
+    "x": 720,
+    "y": 280,
+    "w": 180,
+    "h": 140
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 180,
+    "h": 140
+   },
+   "sourceSize": {
+    "w": 180,
+    "h": 140
+   },
+   "duration": 33
+  },
+  {
+   "filename": "jangsan-paw 15",
+   "frame": {
+    "x": 0,
+    "y": 420,
+    "w": 180,
+    "h": 140
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 180,
+    "h": 140
+   },
+   "sourceSize": {
+    "w": 180,
+    "h": 140
+   },
+   "duration": 33
+  },
+  {
+   "filename": "jangsan-paw 16",
+   "frame": {
+    "x": 180,
+    "y": 420,
+    "w": 180,
+    "h": 140
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 180,
+    "h": 140
+   },
+   "sourceSize": {
+    "w": 180,
+    "h": 140
+   },
+   "duration": 33
+  },
+  {
+   "filename": "jangsan-paw 17",
+   "frame": {
+    "x": 360,
+    "y": 420,
+    "w": 180,
+    "h": 140
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 180,
+    "h": 140
+   },
+   "sourceSize": {
+    "w": 180,
+    "h": 140
+   },
+   "duration": 33
+  },
+  {
+   "filename": "jangsan-paw 18",
+   "frame": {
+    "x": 540,
+    "y": 420,
+    "w": 180,
+    "h": 140
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 180,
+    "h": 140
+   },
+   "sourceSize": {
+    "w": 180,
+    "h": 140
+   },
+   "duration": 33
+  },
+  {
+   "filename": "jangsan-paw 19",
+   "frame": {
+    "x": 720,
+    "y": 420,
+    "w": 180,
+    "h": 140
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 180,
+    "h": 140
+   },
+   "sourceSize": {
+    "w": 180,
+    "h": 140
+   },
+   "duration": 33
+  },
+  {
+   "filename": "jangsan-paw 20",
+   "frame": {
+    "x": 0,
+    "y": 560,
+    "w": 180,
+    "h": 140
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 180,
+    "h": 140
+   },
+   "sourceSize": {
+    "w": 180,
+    "h": 140
+   },
+   "duration": 33
+  },
+  {
+   "filename": "jangsan-paw 21",
+   "frame": {
+    "x": 180,
+    "y": 560,
+    "w": 180,
+    "h": 140
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 180,
+    "h": 140
+   },
+   "sourceSize": {
+    "w": 180,
+    "h": 140
+   },
+   "duration": 33
+  },
+  {
+   "filename": "jangsan-paw 22",
+   "frame": {
+    "x": 360,
+    "y": 560,
+    "w": 180,
+    "h": 140
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 180,
+    "h": 140
+   },
+   "sourceSize": {
+    "w": 180,
+    "h": 140
+   },
+   "duration": 33
+  },
+  {
+   "filename": "jangsan-paw 23",
+   "frame": {
+    "x": 540,
+    "y": 560,
+    "w": 180,
+    "h": 140
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 180,
+    "h": 140
+   },
+   "sourceSize": {
+    "w": 180,
+    "h": 140
+   },
+   "duration": 33
+  },
+  {
+   "filename": "jangsan-paw 24",
+   "frame": {
+    "x": 720,
+    "y": 560,
+    "w": 180,
+    "h": 140
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 180,
+    "h": 140
+   },
+   "sourceSize": {
+    "w": 180,
+    "h": 140
+   },
+   "duration": 33
+  },
+  {
+   "filename": "jangsan-paw 25",
+   "frame": {
+    "x": 0,
+    "y": 700,
+    "w": 180,
+    "h": 140
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 180,
+    "h": 140
+   },
+   "sourceSize": {
+    "w": 180,
+    "h": 140
+   },
+   "duration": 33
+  },
+  {
+   "filename": "jangsan-paw 26",
+   "frame": {
+    "x": 180,
+    "y": 700,
+    "w": 180,
+    "h": 140
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 180,
+    "h": 140
+   },
+   "sourceSize": {
+    "w": 180,
+    "h": 140
+   },
+   "duration": 33
+  },
+  {
+   "filename": "jangsan-paw 27",
+   "frame": {
+    "x": 360,
+    "y": 700,
+    "w": 180,
+    "h": 140
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 180,
+    "h": 140
+   },
+   "sourceSize": {
+    "w": 180,
+    "h": 140
+   },
+   "duration": 33
+  },
+  {
+   "filename": "jangsan-paw 28",
+   "frame": {
+    "x": 540,
+    "y": 700,
+    "w": 180,
+    "h": 140
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 180,
+    "h": 140
+   },
+   "sourceSize": {
+    "w": 180,
+    "h": 140
+   },
+   "duration": 33
+  },
+  {
+   "filename": "jangsan-paw 29",
+   "frame": {
+    "x": 720,
+    "y": 700,
+    "w": 180,
+    "h": 140
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 180,
+    "h": 140
+   },
+   "sourceSize": {
+    "w": 180,
+    "h": 140
+   },
+   "duration": 33
+  },
+  {
+   "filename": "jangsan-paw 30",
+   "frame": {
+    "x": 0,
+    "y": 840,
+    "w": 180,
+    "h": 140
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 180,
+    "h": 140
+   },
+   "sourceSize": {
+    "w": 180,
+    "h": 140
+   },
+   "duration": 33
+  }
+ ],
+ "meta": {
+  "app": "https://github.com/patch-gg/pixelfx",
+  "version": "1",
+  "image": "jangsan-paw.png",
+  "format": "RGBA8888",
+  "size": {
+   "w": 900,
+   "h": 980
+  },
+  "scale": "1",
+  "frameTags": [
+   {
+    "name": "jangsan-paw",
+    "from": 0,
+    "to": 30,
+    "direction": "forward"
+   }
+  ],
+  "pixelfx": {
+   "id": "geuseundae/jangsan-paw",
+   "name": "장산범의 앞발",
+   "fps": 30,
+   "loop": false,
+   "frames": 31,
+   "frameSize": [
+    180,
+    140
+   ],
+   "pivot": [
+    34,
+    128
+   ],
+   "columns": 5,
+   "act": {
+    "windup": 0.46,
+    "recovery": 0,
+    "onBody": false,
+    "targets": [
+     98
+    ],
+    "hits": [
+     {
+      "t": 0.04,
+      "freeze": 0.03,
+      "shake": 0,
+      "amp": 0,
+      "push": 0.9
+     },
+     {
+      "t": 0.08,
+      "freeze": 0.03,
+      "shake": 0,
+      "amp": 0,
+      "push": 0.9
+     },
+     {
+      "t": 0.12,
+      "freeze": 0.08,
+      "shake": 0.14,
+      "amp": 2,
+      "push": 1.4
+     }
+    ],
+    "poses": [
+     {
+      "t": -0.46,
+      "how": "smooth",
+      "pose": {
+       "crouch": 5,
+       "fx": 14,
+       "fy": -21,
+       "bx": 8,
+       "by": -25,
+       "ffx": 9,
+       "fbx": -8,
+       "sa": -0.4,
+       "sb": -0.9,
+       "lean": 3,
+       "x": -6
+      }
+     },
+     {
+      "t": -0.2,
+      "how": "smooth",
+      "pose": {
+       "crouch": 4,
+       "fx": 3,
+       "fy": -41,
+       "bx": 7,
+       "by": -18,
+       "ffx": 10,
+       "fbx": -8,
+       "sa": -1.4,
+       "sb": -0.3,
+       "lean": -3,
+       "x": -6
+      }
+     },
+     {
+      "t": -0.05,
+      "how": "smooth",
+      "pose": {
+       "crouch": 5,
+       "fx": 3,
+       "fy": -41,
+       "bx": 7,
+       "by": -18,
+       "ffx": 10,
+       "fbx": -8,
+       "sa": -1.4,
+       "sb": -0.3,
+       "lean": -3,
+       "x": -6
+      }
+     },
+     {
+      "t": 0,
+      "how": "snap",
+      "pose": {
+       "crouch": 3,
+       "fx": 19,
+       "fy": -36,
+       "bx": -7,
+       "by": -24,
+       "ffx": 9,
+       "fbx": -8,
+       "sa": -0.9,
+       "sb": -0.9,
+       "lean": 4,
+       "x": 0,
+       "ghost": 1
+      }
+     },
+     {
+      "t": 0.05,
+      "how": "snap",
+      "pose": {
+       "crouch": 5,
+       "fx": 23,
+       "fy": -24,
+       "bx": -7,
+       "by": -24,
+       "ffx": 13,
+       "fbx": -10,
+       "sa": 0.5,
+       "sb": -0.9,
+       "lean": 6,
+       "x": 2,
+       "toeB": true
+      }
+     },
+     {
+      "t": 0.1,
+      "how": "snap",
+      "pose": {
+       "crouch": 7,
+       "fx": 22,
+       "fy": -12,
+       "bx": -7,
+       "by": -24,
+       "ffx": 13,
+       "fbx": -10,
+       "sa": 1.2,
+       "sb": -0.9,
+       "lean": 7,
+       "x": 3,
+       "toeB": true
+      }
+     },
+     {
+      "t": 0.42,
+      "how": "smooth",
+      "pose": {
+       "crouch": 6,
+       "fx": 21,
+       "fy": -13,
+       "bx": -6,
+       "by": -22,
+       "ffx": 13,
+       "fbx": -10,
+       "sa": 1.1,
+       "sb": -0.9,
+       "lean": 5,
+       "x": 3
+      }
+     },
+     {
+      "t": 0.9,
+      "how": "smooth",
+      "pose": {
+       "crouch": 5,
+       "fx": 14,
+       "fy": -21,
+       "bx": 8,
+       "by": -25,
+       "ffx": 9,
+       "fbx": -8,
+       "sa": -0.4,
+       "sb": -0.9,
+       "lean": 3,
+       "x": -6
+      }
+     }
+    ]
+   }
+  }
+ }
+}

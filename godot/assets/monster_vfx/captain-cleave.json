@@ -1,0 +1,1475 @@
+{
+ "frames": [
+  {
+   "filename": "captain-cleave 0",
+   "frame": {
+    "x": 0,
+    "y": 0,
+    "w": 152,
+    "h": 108
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 152,
+    "h": 108
+   },
+   "sourceSize": {
+    "w": 152,
+    "h": 108
+   },
+   "duration": 33
+  },
+  {
+   "filename": "captain-cleave 1",
+   "frame": {
+    "x": 152,
+    "y": 0,
+    "w": 152,
+    "h": 108
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 152,
+    "h": 108
+   },
+   "sourceSize": {
+    "w": 152,
+    "h": 108
+   },
+   "duration": 33
+  },
+  {
+   "filename": "captain-cleave 2",
+   "frame": {
+    "x": 304,
+    "y": 0,
+    "w": 152,
+    "h": 108
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 152,
+    "h": 108
+   },
+   "sourceSize": {
+    "w": 152,
+    "h": 108
+   },
+   "duration": 33
+  },
+  {
+   "filename": "captain-cleave 3",
+   "frame": {
+    "x": 456,
+    "y": 0,
+    "w": 152,
+    "h": 108
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 152,
+    "h": 108
+   },
+   "sourceSize": {
+    "w": 152,
+    "h": 108
+   },
+   "duration": 33
+  },
+  {
+   "filename": "captain-cleave 4",
+   "frame": {
+    "x": 608,
+    "y": 0,
+    "w": 152,
+    "h": 108
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 152,
+    "h": 108
+   },
+   "sourceSize": {
+    "w": 152,
+    "h": 108
+   },
+   "duration": 33
+  },
+  {
+   "filename": "captain-cleave 5",
+   "frame": {
+    "x": 760,
+    "y": 0,
+    "w": 152,
+    "h": 108
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 152,
+    "h": 108
+   },
+   "sourceSize": {
+    "w": 152,
+    "h": 108
+   },
+   "duration": 33
+  },
+  {
+   "filename": "captain-cleave 6",
+   "frame": {
+    "x": 912,
+    "y": 0,
+    "w": 152,
+    "h": 108
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 152,
+    "h": 108
+   },
+   "sourceSize": {
+    "w": 152,
+    "h": 108
+   },
+   "duration": 33
+  },
+  {
+   "filename": "captain-cleave 7",
+   "frame": {
+    "x": 0,
+    "y": 108,
+    "w": 152,
+    "h": 108
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 152,
+    "h": 108
+   },
+   "sourceSize": {
+    "w": 152,
+    "h": 108
+   },
+   "duration": 33
+  },
+  {
+   "filename": "captain-cleave 8",
+   "frame": {
+    "x": 152,
+    "y": 108,
+    "w": 152,
+    "h": 108
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 152,
+    "h": 108
+   },
+   "sourceSize": {
+    "w": 152,
+    "h": 108
+   },
+   "duration": 33
+  },
+  {
+   "filename": "captain-cleave 9",
+   "frame": {
+    "x": 304,
+    "y": 108,
+    "w": 152,
+    "h": 108
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 152,
+    "h": 108
+   },
+   "sourceSize": {
+    "w": 152,
+    "h": 108
+   },
+   "duration": 33
+  },
+  {
+   "filename": "captain-cleave 10",
+   "frame": {
+    "x": 456,
+    "y": 108,
+    "w": 152,
+    "h": 108
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 152,
+    "h": 108
+   },
+   "sourceSize": {
+    "w": 152,
+    "h": 108
+   },
+   "duration": 33
+  },
+  {
+   "filename": "captain-cleave 11",
+   "frame": {
+    "x": 608,
+    "y": 108,
+    "w": 152,
+    "h": 108
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 152,
+    "h": 108
+   },
+   "sourceSize": {
+    "w": 152,
+    "h": 108
+   },
+   "duration": 33
+  },
+  {
+   "filename": "captain-cleave 12",
+   "frame": {
+    "x": 760,
+    "y": 108,
+    "w": 152,
+    "h": 108
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 152,
+    "h": 108
+   },
+   "sourceSize": {
+    "w": 152,
+    "h": 108
+   },
+   "duration": 33
+  },
+  {
+   "filename": "captain-cleave 13",
+   "frame": {
+    "x": 912,
+    "y": 108,
+    "w": 152,
+    "h": 108
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 152,
+    "h": 108
+   },
+   "sourceSize": {
+    "w": 152,
+    "h": 108
+   },
+   "duration": 33
+  },
+  {
+   "filename": "captain-cleave 14",
+   "frame": {
+    "x": 0,
+    "y": 216,
+    "w": 152,
+    "h": 108
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 152,
+    "h": 108
+   },
+   "sourceSize": {
+    "w": 152,
+    "h": 108
+   },
+   "duration": 33
+  },
+  {
+   "filename": "captain-cleave 15",
+   "frame": {
+    "x": 152,
+    "y": 216,
+    "w": 152,
+    "h": 108
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 152,
+    "h": 108
+   },
+   "sourceSize": {
+    "w": 152,
+    "h": 108
+   },
+   "duration": 33
+  },
+  {
+   "filename": "captain-cleave 16",
+   "frame": {
+    "x": 304,
+    "y": 216,
+    "w": 152,
+    "h": 108
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 152,
+    "h": 108
+   },
+   "sourceSize": {
+    "w": 152,
+    "h": 108
+   },
+   "duration": 33
+  },
+  {
+   "filename": "captain-cleave 17",
+   "frame": {
+    "x": 456,
+    "y": 216,
+    "w": 152,
+    "h": 108
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 152,
+    "h": 108
+   },
+   "sourceSize": {
+    "w": 152,
+    "h": 108
+   },
+   "duration": 33
+  },
+  {
+   "filename": "captain-cleave 18",
+   "frame": {
+    "x": 608,
+    "y": 216,
+    "w": 152,
+    "h": 108
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 152,
+    "h": 108
+   },
+   "sourceSize": {
+    "w": 152,
+    "h": 108
+   },
+   "duration": 33
+  },
+  {
+   "filename": "captain-cleave 19",
+   "frame": {
+    "x": 760,
+    "y": 216,
+    "w": 152,
+    "h": 108
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 152,
+    "h": 108
+   },
+   "sourceSize": {
+    "w": 152,
+    "h": 108
+   },
+   "duration": 33
+  },
+  {
+   "filename": "captain-cleave 20",
+   "frame": {
+    "x": 912,
+    "y": 216,
+    "w": 152,
+    "h": 108
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 152,
+    "h": 108
+   },
+   "sourceSize": {
+    "w": 152,
+    "h": 108
+   },
+   "duration": 33
+  },
+  {
+   "filename": "captain-cleave 21",
+   "frame": {
+    "x": 0,
+    "y": 324,
+    "w": 152,
+    "h": 108
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 152,
+    "h": 108
+   },
+   "sourceSize": {
+    "w": 152,
+    "h": 108
+   },
+   "duration": 33
+  },
+  {
+   "filename": "captain-cleave 22",
+   "frame": {
+    "x": 152,
+    "y": 324,
+    "w": 152,
+    "h": 108
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 152,
+    "h": 108
+   },
+   "sourceSize": {
+    "w": 152,
+    "h": 108
+   },
+   "duration": 33
+  },
+  {
+   "filename": "captain-cleave 23",
+   "frame": {
+    "x": 304,
+    "y": 324,
+    "w": 152,
+    "h": 108
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 152,
+    "h": 108
+   },
+   "sourceSize": {
+    "w": 152,
+    "h": 108
+   },
+   "duration": 33
+  },
+  {
+   "filename": "captain-cleave 24",
+   "frame": {
+    "x": 456,
+    "y": 324,
+    "w": 152,
+    "h": 108
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 152,
+    "h": 108
+   },
+   "sourceSize": {
+    "w": 152,
+    "h": 108
+   },
+   "duration": 33
+  },
+  {
+   "filename": "captain-cleave 25",
+   "frame": {
+    "x": 608,
+    "y": 324,
+    "w": 152,
+    "h": 108
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 152,
+    "h": 108
+   },
+   "sourceSize": {
+    "w": 152,
+    "h": 108
+   },
+   "duration": 33
+  },
+  {
+   "filename": "captain-cleave 26",
+   "frame": {
+    "x": 760,
+    "y": 324,
+    "w": 152,
+    "h": 108
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 152,
+    "h": 108
+   },
+   "sourceSize": {
+    "w": 152,
+    "h": 108
+   },
+   "duration": 33
+  },
+  {
+   "filename": "captain-cleave 27",
+   "frame": {
+    "x": 912,
+    "y": 324,
+    "w": 152,
+    "h": 108
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 152,
+    "h": 108
+   },
+   "sourceSize": {
+    "w": 152,
+    "h": 108
+   },
+   "duration": 33
+  },
+  {
+   "filename": "captain-cleave 28",
+   "frame": {
+    "x": 0,
+    "y": 432,
+    "w": 152,
+    "h": 108
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 152,
+    "h": 108
+   },
+   "sourceSize": {
+    "w": 152,
+    "h": 108
+   },
+   "duration": 33
+  },
+  {
+   "filename": "captain-cleave 29",
+   "frame": {
+    "x": 152,
+    "y": 432,
+    "w": 152,
+    "h": 108
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 152,
+    "h": 108
+   },
+   "sourceSize": {
+    "w": 152,
+    "h": 108
+   },
+   "duration": 33
+  },
+  {
+   "filename": "captain-cleave 30",
+   "frame": {
+    "x": 304,
+    "y": 432,
+    "w": 152,
+    "h": 108
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 152,
+    "h": 108
+   },
+   "sourceSize": {
+    "w": 152,
+    "h": 108
+   },
+   "duration": 33
+  },
+  {
+   "filename": "captain-cleave 31",
+   "frame": {
+    "x": 456,
+    "y": 432,
+    "w": 152,
+    "h": 108
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 152,
+    "h": 108
+   },
+   "sourceSize": {
+    "w": 152,
+    "h": 108
+   },
+   "duration": 33
+  },
+  {
+   "filename": "captain-cleave 32",
+   "frame": {
+    "x": 608,
+    "y": 432,
+    "w": 152,
+    "h": 108
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 152,
+    "h": 108
+   },
+   "sourceSize": {
+    "w": 152,
+    "h": 108
+   },
+   "duration": 33
+  },
+  {
+   "filename": "captain-cleave 33",
+   "frame": {
+    "x": 760,
+    "y": 432,
+    "w": 152,
+    "h": 108
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 152,
+    "h": 108
+   },
+   "sourceSize": {
+    "w": 152,
+    "h": 108
+   },
+   "duration": 33
+  },
+  {
+   "filename": "captain-cleave 34",
+   "frame": {
+    "x": 912,
+    "y": 432,
+    "w": 152,
+    "h": 108
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 152,
+    "h": 108
+   },
+   "sourceSize": {
+    "w": 152,
+    "h": 108
+   },
+   "duration": 33
+  },
+  {
+   "filename": "captain-cleave 35",
+   "frame": {
+    "x": 0,
+    "y": 540,
+    "w": 152,
+    "h": 108
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 152,
+    "h": 108
+   },
+   "sourceSize": {
+    "w": 152,
+    "h": 108
+   },
+   "duration": 33
+  },
+  {
+   "filename": "captain-cleave 36",
+   "frame": {
+    "x": 152,
+    "y": 540,
+    "w": 152,
+    "h": 108
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 152,
+    "h": 108
+   },
+   "sourceSize": {
+    "w": 152,
+    "h": 108
+   },
+   "duration": 33
+  },
+  {
+   "filename": "captain-cleave 37",
+   "frame": {
+    "x": 304,
+    "y": 540,
+    "w": 152,
+    "h": 108
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 152,
+    "h": 108
+   },
+   "sourceSize": {
+    "w": 152,
+    "h": 108
+   },
+   "duration": 33
+  },
+  {
+   "filename": "captain-cleave 38",
+   "frame": {
+    "x": 456,
+    "y": 540,
+    "w": 152,
+    "h": 108
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 152,
+    "h": 108
+   },
+   "sourceSize": {
+    "w": 152,
+    "h": 108
+   },
+   "duration": 33
+  },
+  {
+   "filename": "captain-cleave 39",
+   "frame": {
+    "x": 608,
+    "y": 540,
+    "w": 152,
+    "h": 108
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 152,
+    "h": 108
+   },
+   "sourceSize": {
+    "w": 152,
+    "h": 108
+   },
+   "duration": 33
+  },
+  {
+   "filename": "captain-cleave 40",
+   "frame": {
+    "x": 760,
+    "y": 540,
+    "w": 152,
+    "h": 108
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 152,
+    "h": 108
+   },
+   "sourceSize": {
+    "w": 152,
+    "h": 108
+   },
+   "duration": 33
+  },
+  {
+   "filename": "captain-cleave 41",
+   "frame": {
+    "x": 912,
+    "y": 540,
+    "w": 152,
+    "h": 108
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 152,
+    "h": 108
+   },
+   "sourceSize": {
+    "w": 152,
+    "h": 108
+   },
+   "duration": 33
+  },
+  {
+   "filename": "captain-cleave 42",
+   "frame": {
+    "x": 0,
+    "y": 648,
+    "w": 152,
+    "h": 108
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 152,
+    "h": 108
+   },
+   "sourceSize": {
+    "w": 152,
+    "h": 108
+   },
+   "duration": 33
+  },
+  {
+   "filename": "captain-cleave 43",
+   "frame": {
+    "x": 152,
+    "y": 648,
+    "w": 152,
+    "h": 108
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 152,
+    "h": 108
+   },
+   "sourceSize": {
+    "w": 152,
+    "h": 108
+   },
+   "duration": 33
+  },
+  {
+   "filename": "captain-cleave 44",
+   "frame": {
+    "x": 304,
+    "y": 648,
+    "w": 152,
+    "h": 108
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 152,
+    "h": 108
+   },
+   "sourceSize": {
+    "w": 152,
+    "h": 108
+   },
+   "duration": 33
+  },
+  {
+   "filename": "captain-cleave 45",
+   "frame": {
+    "x": 456,
+    "y": 648,
+    "w": 152,
+    "h": 108
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 152,
+    "h": 108
+   },
+   "sourceSize": {
+    "w": 152,
+    "h": 108
+   },
+   "duration": 33
+  },
+  {
+   "filename": "captain-cleave 46",
+   "frame": {
+    "x": 608,
+    "y": 648,
+    "w": 152,
+    "h": 108
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 152,
+    "h": 108
+   },
+   "sourceSize": {
+    "w": 152,
+    "h": 108
+   },
+   "duration": 33
+  },
+  {
+   "filename": "captain-cleave 47",
+   "frame": {
+    "x": 760,
+    "y": 648,
+    "w": 152,
+    "h": 108
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 152,
+    "h": 108
+   },
+   "sourceSize": {
+    "w": 152,
+    "h": 108
+   },
+   "duration": 33
+  },
+  {
+   "filename": "captain-cleave 48",
+   "frame": {
+    "x": 912,
+    "y": 648,
+    "w": 152,
+    "h": 108
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 152,
+    "h": 108
+   },
+   "sourceSize": {
+    "w": 152,
+    "h": 108
+   },
+   "duration": 33
+  },
+  {
+   "filename": "captain-cleave 49",
+   "frame": {
+    "x": 0,
+    "y": 756,
+    "w": 152,
+    "h": 108
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 152,
+    "h": 108
+   },
+   "sourceSize": {
+    "w": 152,
+    "h": 108
+   },
+   "duration": 33
+  },
+  {
+   "filename": "captain-cleave 50",
+   "frame": {
+    "x": 152,
+    "y": 756,
+    "w": 152,
+    "h": 108
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 152,
+    "h": 108
+   },
+   "sourceSize": {
+    "w": 152,
+    "h": 108
+   },
+   "duration": 33
+  },
+  {
+   "filename": "captain-cleave 51",
+   "frame": {
+    "x": 304,
+    "y": 756,
+    "w": 152,
+    "h": 108
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 152,
+    "h": 108
+   },
+   "sourceSize": {
+    "w": 152,
+    "h": 108
+   },
+   "duration": 33
+  },
+  {
+   "filename": "captain-cleave 52",
+   "frame": {
+    "x": 456,
+    "y": 756,
+    "w": 152,
+    "h": 108
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 152,
+    "h": 108
+   },
+   "sourceSize": {
+    "w": 152,
+    "h": 108
+   },
+   "duration": 33
+  },
+  {
+   "filename": "captain-cleave 53",
+   "frame": {
+    "x": 608,
+    "y": 756,
+    "w": 152,
+    "h": 108
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 152,
+    "h": 108
+   },
+   "sourceSize": {
+    "w": 152,
+    "h": 108
+   },
+   "duration": 33
+  },
+  {
+   "filename": "captain-cleave 54",
+   "frame": {
+    "x": 760,
+    "y": 756,
+    "w": 152,
+    "h": 108
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 152,
+    "h": 108
+   },
+   "sourceSize": {
+    "w": 152,
+    "h": 108
+   },
+   "duration": 33
+  },
+  {
+   "filename": "captain-cleave 55",
+   "frame": {
+    "x": 912,
+    "y": 756,
+    "w": 152,
+    "h": 108
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 152,
+    "h": 108
+   },
+   "sourceSize": {
+    "w": 152,
+    "h": 108
+   },
+   "duration": 33
+  },
+  {
+   "filename": "captain-cleave 56",
+   "frame": {
+    "x": 0,
+    "y": 864,
+    "w": 152,
+    "h": 108
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 152,
+    "h": 108
+   },
+   "sourceSize": {
+    "w": 152,
+    "h": 108
+   },
+   "duration": 33
+  },
+  {
+   "filename": "captain-cleave 57",
+   "frame": {
+    "x": 152,
+    "y": 864,
+    "w": 152,
+    "h": 108
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 152,
+    "h": 108
+   },
+   "sourceSize": {
+    "w": 152,
+    "h": 108
+   },
+   "duration": 33
+  }
+ ],
+ "meta": {
+  "app": "https://github.com/patch-gg/pixelfx",
+  "version": "1",
+  "image": "captain-cleave.png",
+  "format": "RGBA8888",
+  "size": {
+   "w": 1064,
+   "h": 972
+  },
+  "scale": "1",
+  "frameTags": [
+   {
+    "name": "captain-cleave",
+    "from": 0,
+    "to": 57,
+    "direction": "forward"
+   }
+  ],
+  "pixelfx": {
+   "id": "monsters/captain-cleave",
+   "name": "퇴마단 선봉대장 · 내려베기",
+   "fps": 30,
+   "loop": false,
+   "frames": 58,
+   "frameSize": [
+    152,
+    108
+   ],
+   "pivot": [
+    44,
+    96
+   ],
+   "columns": 7,
+   "act": {
+    "windup": 0,
+    "recovery": 0,
+    "onBody": false,
+    "targets": [
+     56
+    ],
+    "hits": [
+     {
+      "t": 0.92,
+      "freeze": 0.14,
+      "shake": 0.34,
+      "amp": 4,
+      "push": 3.2
+     }
+    ],
+    "poses": [
+     {
+      "t": 0,
+      "how": "smooth",
+      "pose": {
+       "crouch": 3,
+       "fx": 11,
+       "fy": -21,
+       "bx": 9,
+       "by": -21,
+       "ffx": 7,
+       "fbx": -7,
+       "weapon": "greatsword",
+       "two": true,
+       "sa": -1
+      }
+     },
+     {
+      "t": 0.1,
+      "how": "smooth",
+      "pose": {
+       "crouch": 3,
+       "fx": 11,
+       "fy": -21,
+       "bx": 9,
+       "by": -21,
+       "ffx": 7,
+       "fbx": -7,
+       "weapon": "greatsword",
+       "two": true,
+       "sa": -1
+      }
+     },
+     {
+      "t": 0.44999999999999996,
+      "how": "smooth",
+      "pose": {
+       "crouch": 1,
+       "fx": 1,
+       "fy": -44,
+       "bx": 9,
+       "by": -21,
+       "ffx": 8,
+       "fbx": -7,
+       "weapon": "greatsword",
+       "two": true,
+       "sa": -2.45,
+       "x": -4,
+       "lean": -4
+      }
+     },
+     {
+      "t": 0.85,
+      "how": "smooth",
+      "pose": {
+       "crouch": 1,
+       "fx": 1,
+       "fy": -46,
+       "bx": 9,
+       "by": -21,
+       "ffx": 8,
+       "fbx": -7,
+       "weapon": "greatsword",
+       "two": true,
+       "sa": -2.45,
+       "x": -4,
+       "lean": -6
+      }
+     },
+     {
+      "t": 0.92,
+      "how": "snap",
+      "pose": {
+       "crouch": 8,
+       "fx": 17,
+       "fy": -20,
+       "bx": 9,
+       "by": -21,
+       "ffx": 11,
+       "fbx": -10,
+       "weapon": "greatsword",
+       "two": true,
+       "sa": 0.72,
+       "x": 1,
+       "lean": 7,
+       "toeB": true
+      }
+     },
+     {
+      "t": 1.22,
+      "how": "smooth",
+      "pose": {
+       "crouch": 8,
+       "fx": 17,
+       "fy": -20,
+       "bx": 9,
+       "by": -21,
+       "ffx": 11,
+       "fbx": -10,
+       "weapon": "greatsword",
+       "two": true,
+       "sa": 0.72,
+       "x": 1,
+       "lean": 7,
+       "toeB": true
+      }
+     },
+     {
+      "t": 1.6,
+      "how": "smooth",
+      "pose": {
+       "crouch": 7,
+       "fx": 17,
+       "fy": -20,
+       "bx": 9,
+       "by": -21,
+       "ffx": 11,
+       "fbx": -10,
+       "weapon": "greatsword",
+       "two": true,
+       "sa": 0.72,
+       "x": 1,
+       "lean": 7,
+       "toeB": true
+      }
+     },
+     {
+      "t": 1.85,
+      "how": "smooth",
+      "pose": {
+       "crouch": 3,
+       "fx": 11,
+       "fy": -21,
+       "bx": 9,
+       "by": -21,
+       "ffx": 7,
+       "fbx": -7,
+       "weapon": "greatsword",
+       "two": true,
+       "sa": -1
+      }
+     }
+    ]
+   }
+  }
+ }
+}

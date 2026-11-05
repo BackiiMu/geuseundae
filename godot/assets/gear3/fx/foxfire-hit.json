@@ -1,0 +1,347 @@
+{
+ "frames": [
+  {
+   "filename": "foxfire-hit 0",
+   "frame": {
+    "x": 0,
+    "y": 0,
+    "w": 40,
+    "h": 40
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 40,
+    "h": 40
+   },
+   "sourceSize": {
+    "w": 40,
+    "h": 40
+   },
+   "duration": 33
+  },
+  {
+   "filename": "foxfire-hit 1",
+   "frame": {
+    "x": 40,
+    "y": 0,
+    "w": 40,
+    "h": 40
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 40,
+    "h": 40
+   },
+   "sourceSize": {
+    "w": 40,
+    "h": 40
+   },
+   "duration": 33
+  },
+  {
+   "filename": "foxfire-hit 2",
+   "frame": {
+    "x": 80,
+    "y": 0,
+    "w": 40,
+    "h": 40
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 40,
+    "h": 40
+   },
+   "sourceSize": {
+    "w": 40,
+    "h": 40
+   },
+   "duration": 33
+  },
+  {
+   "filename": "foxfire-hit 3",
+   "frame": {
+    "x": 120,
+    "y": 0,
+    "w": 40,
+    "h": 40
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 40,
+    "h": 40
+   },
+   "sourceSize": {
+    "w": 40,
+    "h": 40
+   },
+   "duration": 33
+  },
+  {
+   "filename": "foxfire-hit 4",
+   "frame": {
+    "x": 0,
+    "y": 40,
+    "w": 40,
+    "h": 40
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 40,
+    "h": 40
+   },
+   "sourceSize": {
+    "w": 40,
+    "h": 40
+   },
+   "duration": 33
+  },
+  {
+   "filename": "foxfire-hit 5",
+   "frame": {
+    "x": 40,
+    "y": 40,
+    "w": 40,
+    "h": 40
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 40,
+    "h": 40
+   },
+   "sourceSize": {
+    "w": 40,
+    "h": 40
+   },
+   "duration": 33
+  },
+  {
+   "filename": "foxfire-hit 6",
+   "frame": {
+    "x": 80,
+    "y": 40,
+    "w": 40,
+    "h": 40
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 40,
+    "h": 40
+   },
+   "sourceSize": {
+    "w": 40,
+    "h": 40
+   },
+   "duration": 33
+  },
+  {
+   "filename": "foxfire-hit 7",
+   "frame": {
+    "x": 120,
+    "y": 40,
+    "w": 40,
+    "h": 40
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 40,
+    "h": 40
+   },
+   "sourceSize": {
+    "w": 40,
+    "h": 40
+   },
+   "duration": 33
+  },
+  {
+   "filename": "foxfire-hit 8",
+   "frame": {
+    "x": 0,
+    "y": 80,
+    "w": 40,
+    "h": 40
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 40,
+    "h": 40
+   },
+   "sourceSize": {
+    "w": 40,
+    "h": 40
+   },
+   "duration": 33
+  },
+  {
+   "filename": "foxfire-hit 9",
+   "frame": {
+    "x": 40,
+    "y": 80,
+    "w": 40,
+    "h": 40
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 40,
+    "h": 40
+   },
+   "sourceSize": {
+    "w": 40,
+    "h": 40
+   },
+   "duration": 33
+  },
+  {
+   "filename": "foxfire-hit 10",
+   "frame": {
+    "x": 80,
+    "y": 80,
+    "w": 40,
+    "h": 40
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 40,
+    "h": 40
+   },
+   "sourceSize": {
+    "w": 40,
+    "h": 40
+   },
+   "duration": 33
+  },
+  {
+   "filename": "foxfire-hit 11",
+   "frame": {
+    "x": 120,
+    "y": 80,
+    "w": 40,
+    "h": 40
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 40,
+    "h": 40
+   },
+   "sourceSize": {
+    "w": 40,
+    "h": 40
+   },
+   "duration": 33
+  },
+  {
+   "filename": "foxfire-hit 12",
+   "frame": {
+    "x": 0,
+    "y": 120,
+    "w": 40,
+    "h": 40
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 40,
+    "h": 40
+   },
+   "sourceSize": {
+    "w": 40,
+    "h": 40
+   },
+   "duration": 33
+  },
+  {
+   "filename": "foxfire-hit 13",
+   "frame": {
+    "x": 40,
+    "y": 120,
+    "w": 40,
+    "h": 40
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 40,
+    "h": 40
+   },
+   "sourceSize": {
+    "w": 40,
+    "h": 40
+   },
+   "duration": 33
+  }
+ ],
+ "meta": {
+  "app": "https://github.com/patch-gg/pixelfx",
+  "version": "1",
+  "image": "foxfire-hit.png",
+  "format": "RGBA8888",
+  "size": {
+   "w": 160,
+   "h": 160
+  },
+  "scale": "1",
+  "frameTags": [
+   {
+    "name": "foxfire-hit",
+    "from": 0,
+    "to": 13,
+    "direction": "forward"
+   }
+  ],
+  "pixelfx": {
+   "id": "geuseundae/foxfire-hit",
+   "name": "여우불 · 명중",
+   "fps": 30,
+   "loop": false,
+   "frames": 14,
+   "frameSize": [
+    40,
+    40
+   ],
+   "pivot": [
+    20,
+    20
+   ],
+   "columns": 4
+  }
+ }
+}

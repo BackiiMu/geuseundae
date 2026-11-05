@@ -1,0 +1,1031 @@
+{
+ "frames": [
+  {
+   "filename": "wood-goose 0",
+   "frame": {
+    "x": 0,
+    "y": 0,
+    "w": 156,
+    "h": 100
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 156,
+    "h": 100
+   },
+   "sourceSize": {
+    "w": 156,
+    "h": 100
+   },
+   "duration": 33
+  },
+  {
+   "filename": "wood-goose 1",
+   "frame": {
+    "x": 156,
+    "y": 0,
+    "w": 156,
+    "h": 100
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 156,
+    "h": 100
+   },
+   "sourceSize": {
+    "w": 156,
+    "h": 100
+   },
+   "duration": 33
+  },
+  {
+   "filename": "wood-goose 2",
+   "frame": {
+    "x": 312,
+    "y": 0,
+    "w": 156,
+    "h": 100
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 156,
+    "h": 100
+   },
+   "sourceSize": {
+    "w": 156,
+    "h": 100
+   },
+   "duration": 33
+  },
+  {
+   "filename": "wood-goose 3",
+   "frame": {
+    "x": 468,
+    "y": 0,
+    "w": 156,
+    "h": 100
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 156,
+    "h": 100
+   },
+   "sourceSize": {
+    "w": 156,
+    "h": 100
+   },
+   "duration": 33
+  },
+  {
+   "filename": "wood-goose 4",
+   "frame": {
+    "x": 624,
+    "y": 0,
+    "w": 156,
+    "h": 100
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 156,
+    "h": 100
+   },
+   "sourceSize": {
+    "w": 156,
+    "h": 100
+   },
+   "duration": 33
+  },
+  {
+   "filename": "wood-goose 5",
+   "frame": {
+    "x": 780,
+    "y": 0,
+    "w": 156,
+    "h": 100
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 156,
+    "h": 100
+   },
+   "sourceSize": {
+    "w": 156,
+    "h": 100
+   },
+   "duration": 33
+  },
+  {
+   "filename": "wood-goose 6",
+   "frame": {
+    "x": 0,
+    "y": 100,
+    "w": 156,
+    "h": 100
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 156,
+    "h": 100
+   },
+   "sourceSize": {
+    "w": 156,
+    "h": 100
+   },
+   "duration": 33
+  },
+  {
+   "filename": "wood-goose 7",
+   "frame": {
+    "x": 156,
+    "y": 100,
+    "w": 156,
+    "h": 100
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 156,
+    "h": 100
+   },
+   "sourceSize": {
+    "w": 156,
+    "h": 100
+   },
+   "duration": 33
+  },
+  {
+   "filename": "wood-goose 8",
+   "frame": {
+    "x": 312,
+    "y": 100,
+    "w": 156,
+    "h": 100
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 156,
+    "h": 100
+   },
+   "sourceSize": {
+    "w": 156,
+    "h": 100
+   },
+   "duration": 33
+  },
+  {
+   "filename": "wood-goose 9",
+   "frame": {
+    "x": 468,
+    "y": 100,
+    "w": 156,
+    "h": 100
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 156,
+    "h": 100
+   },
+   "sourceSize": {
+    "w": 156,
+    "h": 100
+   },
+   "duration": 33
+  },
+  {
+   "filename": "wood-goose 10",
+   "frame": {
+    "x": 624,
+    "y": 100,
+    "w": 156,
+    "h": 100
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 156,
+    "h": 100
+   },
+   "sourceSize": {
+    "w": 156,
+    "h": 100
+   },
+   "duration": 33
+  },
+  {
+   "filename": "wood-goose 11",
+   "frame": {
+    "x": 780,
+    "y": 100,
+    "w": 156,
+    "h": 100
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 156,
+    "h": 100
+   },
+   "sourceSize": {
+    "w": 156,
+    "h": 100
+   },
+   "duration": 33
+  },
+  {
+   "filename": "wood-goose 12",
+   "frame": {
+    "x": 0,
+    "y": 200,
+    "w": 156,
+    "h": 100
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 156,
+    "h": 100
+   },
+   "sourceSize": {
+    "w": 156,
+    "h": 100
+   },
+   "duration": 33
+  },
+  {
+   "filename": "wood-goose 13",
+   "frame": {
+    "x": 156,
+    "y": 200,
+    "w": 156,
+    "h": 100
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 156,
+    "h": 100
+   },
+   "sourceSize": {
+    "w": 156,
+    "h": 100
+   },
+   "duration": 33
+  },
+  {
+   "filename": "wood-goose 14",
+   "frame": {
+    "x": 312,
+    "y": 200,
+    "w": 156,
+    "h": 100
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 156,
+    "h": 100
+   },
+   "sourceSize": {
+    "w": 156,
+    "h": 100
+   },
+   "duration": 33
+  },
+  {
+   "filename": "wood-goose 15",
+   "frame": {
+    "x": 468,
+    "y": 200,
+    "w": 156,
+    "h": 100
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 156,
+    "h": 100
+   },
+   "sourceSize": {
+    "w": 156,
+    "h": 100
+   },
+   "duration": 33
+  },
+  {
+   "filename": "wood-goose 16",
+   "frame": {
+    "x": 624,
+    "y": 200,
+    "w": 156,
+    "h": 100
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 156,
+    "h": 100
+   },
+   "sourceSize": {
+    "w": 156,
+    "h": 100
+   },
+   "duration": 33
+  },
+  {
+   "filename": "wood-goose 17",
+   "frame": {
+    "x": 780,
+    "y": 200,
+    "w": 156,
+    "h": 100
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 156,
+    "h": 100
+   },
+   "sourceSize": {
+    "w": 156,
+    "h": 100
+   },
+   "duration": 33
+  },
+  {
+   "filename": "wood-goose 18",
+   "frame": {
+    "x": 0,
+    "y": 300,
+    "w": 156,
+    "h": 100
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 156,
+    "h": 100
+   },
+   "sourceSize": {
+    "w": 156,
+    "h": 100
+   },
+   "duration": 33
+  },
+  {
+   "filename": "wood-goose 19",
+   "frame": {
+    "x": 156,
+    "y": 300,
+    "w": 156,
+    "h": 100
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 156,
+    "h": 100
+   },
+   "sourceSize": {
+    "w": 156,
+    "h": 100
+   },
+   "duration": 33
+  },
+  {
+   "filename": "wood-goose 20",
+   "frame": {
+    "x": 312,
+    "y": 300,
+    "w": 156,
+    "h": 100
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 156,
+    "h": 100
+   },
+   "sourceSize": {
+    "w": 156,
+    "h": 100
+   },
+   "duration": 33
+  },
+  {
+   "filename": "wood-goose 21",
+   "frame": {
+    "x": 468,
+    "y": 300,
+    "w": 156,
+    "h": 100
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 156,
+    "h": 100
+   },
+   "sourceSize": {
+    "w": 156,
+    "h": 100
+   },
+   "duration": 33
+  },
+  {
+   "filename": "wood-goose 22",
+   "frame": {
+    "x": 624,
+    "y": 300,
+    "w": 156,
+    "h": 100
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 156,
+    "h": 100
+   },
+   "sourceSize": {
+    "w": 156,
+    "h": 100
+   },
+   "duration": 33
+  },
+  {
+   "filename": "wood-goose 23",
+   "frame": {
+    "x": 780,
+    "y": 300,
+    "w": 156,
+    "h": 100
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 156,
+    "h": 100
+   },
+   "sourceSize": {
+    "w": 156,
+    "h": 100
+   },
+   "duration": 33
+  },
+  {
+   "filename": "wood-goose 24",
+   "frame": {
+    "x": 0,
+    "y": 400,
+    "w": 156,
+    "h": 100
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 156,
+    "h": 100
+   },
+   "sourceSize": {
+    "w": 156,
+    "h": 100
+   },
+   "duration": 33
+  },
+  {
+   "filename": "wood-goose 25",
+   "frame": {
+    "x": 156,
+    "y": 400,
+    "w": 156,
+    "h": 100
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 156,
+    "h": 100
+   },
+   "sourceSize": {
+    "w": 156,
+    "h": 100
+   },
+   "duration": 33
+  },
+  {
+   "filename": "wood-goose 26",
+   "frame": {
+    "x": 312,
+    "y": 400,
+    "w": 156,
+    "h": 100
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 156,
+    "h": 100
+   },
+   "sourceSize": {
+    "w": 156,
+    "h": 100
+   },
+   "duration": 33
+  },
+  {
+   "filename": "wood-goose 27",
+   "frame": {
+    "x": 468,
+    "y": 400,
+    "w": 156,
+    "h": 100
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 156,
+    "h": 100
+   },
+   "sourceSize": {
+    "w": 156,
+    "h": 100
+   },
+   "duration": 33
+  },
+  {
+   "filename": "wood-goose 28",
+   "frame": {
+    "x": 624,
+    "y": 400,
+    "w": 156,
+    "h": 100
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 156,
+    "h": 100
+   },
+   "sourceSize": {
+    "w": 156,
+    "h": 100
+   },
+   "duration": 33
+  },
+  {
+   "filename": "wood-goose 29",
+   "frame": {
+    "x": 780,
+    "y": 400,
+    "w": 156,
+    "h": 100
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 156,
+    "h": 100
+   },
+   "sourceSize": {
+    "w": 156,
+    "h": 100
+   },
+   "duration": 33
+  },
+  {
+   "filename": "wood-goose 30",
+   "frame": {
+    "x": 0,
+    "y": 500,
+    "w": 156,
+    "h": 100
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 156,
+    "h": 100
+   },
+   "sourceSize": {
+    "w": 156,
+    "h": 100
+   },
+   "duration": 33
+  },
+  {
+   "filename": "wood-goose 31",
+   "frame": {
+    "x": 156,
+    "y": 500,
+    "w": 156,
+    "h": 100
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 156,
+    "h": 100
+   },
+   "sourceSize": {
+    "w": 156,
+    "h": 100
+   },
+   "duration": 33
+  },
+  {
+   "filename": "wood-goose 32",
+   "frame": {
+    "x": 312,
+    "y": 500,
+    "w": 156,
+    "h": 100
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 156,
+    "h": 100
+   },
+   "sourceSize": {
+    "w": 156,
+    "h": 100
+   },
+   "duration": 33
+  },
+  {
+   "filename": "wood-goose 33",
+   "frame": {
+    "x": 468,
+    "y": 500,
+    "w": 156,
+    "h": 100
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 156,
+    "h": 100
+   },
+   "sourceSize": {
+    "w": 156,
+    "h": 100
+   },
+   "duration": 33
+  },
+  {
+   "filename": "wood-goose 34",
+   "frame": {
+    "x": 624,
+    "y": 500,
+    "w": 156,
+    "h": 100
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 156,
+    "h": 100
+   },
+   "sourceSize": {
+    "w": 156,
+    "h": 100
+   },
+   "duration": 33
+  },
+  {
+   "filename": "wood-goose 35",
+   "frame": {
+    "x": 780,
+    "y": 500,
+    "w": 156,
+    "h": 100
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 156,
+    "h": 100
+   },
+   "sourceSize": {
+    "w": 156,
+    "h": 100
+   },
+   "duration": 33
+  },
+  {
+   "filename": "wood-goose 36",
+   "frame": {
+    "x": 0,
+    "y": 600,
+    "w": 156,
+    "h": 100
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 156,
+    "h": 100
+   },
+   "sourceSize": {
+    "w": 156,
+    "h": 100
+   },
+   "duration": 33
+  },
+  {
+   "filename": "wood-goose 37",
+   "frame": {
+    "x": 156,
+    "y": 600,
+    "w": 156,
+    "h": 100
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 156,
+    "h": 100
+   },
+   "sourceSize": {
+    "w": 156,
+    "h": 100
+   },
+   "duration": 33
+  },
+  {
+   "filename": "wood-goose 38",
+   "frame": {
+    "x": 312,
+    "y": 600,
+    "w": 156,
+    "h": 100
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 156,
+    "h": 100
+   },
+   "sourceSize": {
+    "w": 156,
+    "h": 100
+   },
+   "duration": 33
+  },
+  {
+   "filename": "wood-goose 39",
+   "frame": {
+    "x": 468,
+    "y": 600,
+    "w": 156,
+    "h": 100
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 156,
+    "h": 100
+   },
+   "sourceSize": {
+    "w": 156,
+    "h": 100
+   },
+   "duration": 33
+  }
+ ],
+ "meta": {
+  "app": "https://github.com/patch-gg/pixelfx",
+  "version": "1",
+  "image": "wood-goose.png",
+  "format": "RGBA8888",
+  "size": {
+   "w": 936,
+   "h": 700
+  },
+  "scale": "1",
+  "frameTags": [
+   {
+    "name": "wood-goose",
+    "from": 0,
+    "to": 39,
+    "direction": "forward"
+   }
+  ],
+  "pixelfx": {
+   "id": "geuseundae/wood-goose",
+   "name": "부러진 나무기러기",
+   "fps": 30,
+   "loop": false,
+   "frames": 40,
+   "frameSize": [
+    156,
+    100
+   ],
+   "pivot": [
+    26,
+    84
+   ],
+   "columns": 6,
+   "act": {
+    "windup": 0.3,
+    "recovery": 0,
+    "onBody": false,
+    "targets": [
+     96
+    ],
+    "hits": [
+     {
+      "t": 0.28500000000000014,
+      "freeze": 0.04,
+      "shake": 0,
+      "amp": 0,
+      "push": 1.2
+     },
+     {
+      "t": 0.4700000000000001,
+      "freeze": 0.04,
+      "shake": 0,
+      "amp": 0,
+      "push": 1.2
+     }
+    ],
+    "poses": [
+     {
+      "t": -0.3,
+      "how": "smooth",
+      "pose": {
+       "crouch": 3,
+       "fx": 10,
+       "fy": -22,
+       "bx": 7,
+       "by": -20,
+       "ffx": 7,
+       "fbx": -7
+      }
+     },
+     {
+      "t": -0.12,
+      "how": "smooth",
+      "pose": {
+       "crouch": 3,
+       "fx": -2,
+       "fy": -32,
+       "bx": 7,
+       "by": -20,
+       "ffx": 7,
+       "fbx": -7,
+       "lean": -4,
+       "armsFront": true
+      }
+     },
+     {
+      "t": 0,
+      "how": "snap",
+      "pose": {
+       "crouch": 3,
+       "fx": 18,
+       "fy": -28,
+       "bx": -6,
+       "by": -22,
+       "ffx": 11,
+       "fbx": -8,
+       "lean": 5,
+       "toeB": true,
+       "ghost": 1
+      }
+     },
+     {
+      "t": 0.5,
+      "how": "smooth",
+      "pose": {
+       "crouch": 3,
+       "fx": 18,
+       "fy": -28,
+       "bx": -6,
+       "by": -22,
+       "ffx": 11,
+       "fbx": -8,
+       "lean": 5,
+       "toeB": true
+      }
+     },
+     {
+      "t": 0.76,
+      "how": "snap",
+      "pose": {
+       "crouch": 4,
+       "fx": 16,
+       "fy": -30,
+       "bx": 4,
+       "by": -24,
+       "ffx": 7,
+       "fbx": -7,
+       "lean": -2
+      }
+     },
+     {
+      "t": 1.2,
+      "how": "smooth",
+      "pose": {
+       "crouch": 3,
+       "fx": 10,
+       "fy": -22,
+       "bx": 7,
+       "by": -20,
+       "ffx": 7,
+       "fbx": -7
+      }
+     }
+    ]
+   }
+  }
+ }
+}

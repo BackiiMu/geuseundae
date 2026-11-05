@@ -52,5 +52,13 @@ await library('seal-4','shadow/hex-sigil',ink,1.4,1.6,[0,-50]);
 await library('fist-4','geuseundae/shadow-fist',null,0,.72);
 await library('beam-3','arcane/arcane-beam',null,0,1.2,[15,-24]);
 await dedicated('dash-2','geuseundae/shadow-dash');
+// Chapter 1 enemy tells: every archetype gets a bright, readable release and
+// its own palette instead of sharing the player's temporary placeholder art.
+await library('enemy-warrior-cleave','melee/double-slash',['#161b25','#30445a','#6f92a0','#bad8d0','#f3f0d0'],.08,.7,[0,-20]);
+await library('enemy-adept-talisman','geuseundae/purifying-talisman',['#160d17','#442033','#813347','#c95a55','#e7aa76','#f3d9ae','#fff3d8'],.06,.92,[0,-26]);
+await library('enemy-monk-bell','impacts/ground-slam',['#1a1a1b','#4a4132','#8f7046','#cfa45b','#f1d28d','#fff2bc'],.18,1.08,[0,0]);
+await library('enemy-captain-cleave','melee/heavy-cleave',['#11131c','#252a3d','#4d5878','#8b9ec1','#d2e2df','#fff8dc'],.12,.98,[0,-24]);
+await library('enemy-captain-quake','impacts/ground-slam',['#211217','#542535','#914150','#cf765e','#e6b080','#fff0cc'],.18,1.12,[0,0]);
+await library('enemy-spirit-death','spawn/soul-rise',['#101723','#263747','#496b75','#7fa39d','#bdd2bd','#edf2d9'],.1,1.25,[0,-44]);
 writeFileSync(join(output,'manifest.json'),JSON.stringify(manifest,null,2));
-console.log('13 profiles now use the original layered recipes, dedicated shadow fist and ghost dash');
+console.log('Chapter 1 enemy tells and player profiles exported from Pixelfx recipes');

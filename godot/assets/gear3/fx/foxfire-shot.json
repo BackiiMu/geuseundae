@@ -1,0 +1,303 @@
+{
+ "frames": [
+  {
+   "filename": "foxfire-shot 0",
+   "frame": {
+    "x": 0,
+    "y": 0,
+    "w": 28,
+    "h": 16
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 28,
+    "h": 16
+   },
+   "sourceSize": {
+    "w": 28,
+    "h": 16
+   },
+   "duration": 33
+  },
+  {
+   "filename": "foxfire-shot 1",
+   "frame": {
+    "x": 28,
+    "y": 0,
+    "w": 28,
+    "h": 16
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 28,
+    "h": 16
+   },
+   "sourceSize": {
+    "w": 28,
+    "h": 16
+   },
+   "duration": 33
+  },
+  {
+   "filename": "foxfire-shot 2",
+   "frame": {
+    "x": 56,
+    "y": 0,
+    "w": 28,
+    "h": 16
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 28,
+    "h": 16
+   },
+   "sourceSize": {
+    "w": 28,
+    "h": 16
+   },
+   "duration": 33
+  },
+  {
+   "filename": "foxfire-shot 3",
+   "frame": {
+    "x": 0,
+    "y": 16,
+    "w": 28,
+    "h": 16
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 28,
+    "h": 16
+   },
+   "sourceSize": {
+    "w": 28,
+    "h": 16
+   },
+   "duration": 33
+  },
+  {
+   "filename": "foxfire-shot 4",
+   "frame": {
+    "x": 28,
+    "y": 16,
+    "w": 28,
+    "h": 16
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 28,
+    "h": 16
+   },
+   "sourceSize": {
+    "w": 28,
+    "h": 16
+   },
+   "duration": 33
+  },
+  {
+   "filename": "foxfire-shot 5",
+   "frame": {
+    "x": 56,
+    "y": 16,
+    "w": 28,
+    "h": 16
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 28,
+    "h": 16
+   },
+   "sourceSize": {
+    "w": 28,
+    "h": 16
+   },
+   "duration": 33
+  },
+  {
+   "filename": "foxfire-shot 6",
+   "frame": {
+    "x": 0,
+    "y": 32,
+    "w": 28,
+    "h": 16
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 28,
+    "h": 16
+   },
+   "sourceSize": {
+    "w": 28,
+    "h": 16
+   },
+   "duration": 33
+  },
+  {
+   "filename": "foxfire-shot 7",
+   "frame": {
+    "x": 28,
+    "y": 32,
+    "w": 28,
+    "h": 16
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 28,
+    "h": 16
+   },
+   "sourceSize": {
+    "w": 28,
+    "h": 16
+   },
+   "duration": 33
+  },
+  {
+   "filename": "foxfire-shot 8",
+   "frame": {
+    "x": 56,
+    "y": 32,
+    "w": 28,
+    "h": 16
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 28,
+    "h": 16
+   },
+   "sourceSize": {
+    "w": 28,
+    "h": 16
+   },
+   "duration": 33
+  },
+  {
+   "filename": "foxfire-shot 9",
+   "frame": {
+    "x": 0,
+    "y": 48,
+    "w": 28,
+    "h": 16
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 28,
+    "h": 16
+   },
+   "sourceSize": {
+    "w": 28,
+    "h": 16
+   },
+   "duration": 33
+  },
+  {
+   "filename": "foxfire-shot 10",
+   "frame": {
+    "x": 28,
+    "y": 48,
+    "w": 28,
+    "h": 16
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 28,
+    "h": 16
+   },
+   "sourceSize": {
+    "w": 28,
+    "h": 16
+   },
+   "duration": 33
+  },
+  {
+   "filename": "foxfire-shot 11",
+   "frame": {
+    "x": 56,
+    "y": 48,
+    "w": 28,
+    "h": 16
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 28,
+    "h": 16
+   },
+   "sourceSize": {
+    "w": 28,
+    "h": 16
+   },
+   "duration": 33
+  }
+ ],
+ "meta": {
+  "app": "https://github.com/patch-gg/pixelfx",
+  "version": "1",
+  "image": "foxfire-shot.png",
+  "format": "RGBA8888",
+  "size": {
+   "w": 84,
+   "h": 64
+  },
+  "scale": "1",
+  "frameTags": [
+   {
+    "name": "foxfire-shot",
+    "from": 0,
+    "to": 11,
+    "direction": "forward"
+   }
+  ],
+  "pixelfx": {
+   "id": "geuseundae/foxfire-shot",
+   "name": "여우불 · 불씨",
+   "fps": 30,
+   "loop": true,
+   "frames": 12,
+   "frameSize": [
+    28,
+    16
+   ],
+   "pivot": [
+    20,
+    8
+   ],
+   "columns": 3
+  }
+ }
+}

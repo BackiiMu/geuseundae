@@ -1,0 +1,949 @@
+{
+ "frames": [
+  {
+   "filename": "old-broom 0",
+   "frame": {
+    "x": 0,
+    "y": 0,
+    "w": 132,
+    "h": 84
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 132,
+    "h": 84
+   },
+   "sourceSize": {
+    "w": 132,
+    "h": 84
+   },
+   "duration": 33
+  },
+  {
+   "filename": "old-broom 1",
+   "frame": {
+    "x": 132,
+    "y": 0,
+    "w": 132,
+    "h": 84
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 132,
+    "h": 84
+   },
+   "sourceSize": {
+    "w": 132,
+    "h": 84
+   },
+   "duration": 33
+  },
+  {
+   "filename": "old-broom 2",
+   "frame": {
+    "x": 264,
+    "y": 0,
+    "w": 132,
+    "h": 84
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 132,
+    "h": 84
+   },
+   "sourceSize": {
+    "w": 132,
+    "h": 84
+   },
+   "duration": 33
+  },
+  {
+   "filename": "old-broom 3",
+   "frame": {
+    "x": 396,
+    "y": 0,
+    "w": 132,
+    "h": 84
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 132,
+    "h": 84
+   },
+   "sourceSize": {
+    "w": 132,
+    "h": 84
+   },
+   "duration": 33
+  },
+  {
+   "filename": "old-broom 4",
+   "frame": {
+    "x": 528,
+    "y": 0,
+    "w": 132,
+    "h": 84
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 132,
+    "h": 84
+   },
+   "sourceSize": {
+    "w": 132,
+    "h": 84
+   },
+   "duration": 33
+  },
+  {
+   "filename": "old-broom 5",
+   "frame": {
+    "x": 0,
+    "y": 84,
+    "w": 132,
+    "h": 84
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 132,
+    "h": 84
+   },
+   "sourceSize": {
+    "w": 132,
+    "h": 84
+   },
+   "duration": 33
+  },
+  {
+   "filename": "old-broom 6",
+   "frame": {
+    "x": 132,
+    "y": 84,
+    "w": 132,
+    "h": 84
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 132,
+    "h": 84
+   },
+   "sourceSize": {
+    "w": 132,
+    "h": 84
+   },
+   "duration": 33
+  },
+  {
+   "filename": "old-broom 7",
+   "frame": {
+    "x": 264,
+    "y": 84,
+    "w": 132,
+    "h": 84
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 132,
+    "h": 84
+   },
+   "sourceSize": {
+    "w": 132,
+    "h": 84
+   },
+   "duration": 33
+  },
+  {
+   "filename": "old-broom 8",
+   "frame": {
+    "x": 396,
+    "y": 84,
+    "w": 132,
+    "h": 84
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 132,
+    "h": 84
+   },
+   "sourceSize": {
+    "w": 132,
+    "h": 84
+   },
+   "duration": 33
+  },
+  {
+   "filename": "old-broom 9",
+   "frame": {
+    "x": 528,
+    "y": 84,
+    "w": 132,
+    "h": 84
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 132,
+    "h": 84
+   },
+   "sourceSize": {
+    "w": 132,
+    "h": 84
+   },
+   "duration": 33
+  },
+  {
+   "filename": "old-broom 10",
+   "frame": {
+    "x": 0,
+    "y": 168,
+    "w": 132,
+    "h": 84
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 132,
+    "h": 84
+   },
+   "sourceSize": {
+    "w": 132,
+    "h": 84
+   },
+   "duration": 33
+  },
+  {
+   "filename": "old-broom 11",
+   "frame": {
+    "x": 132,
+    "y": 168,
+    "w": 132,
+    "h": 84
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 132,
+    "h": 84
+   },
+   "sourceSize": {
+    "w": 132,
+    "h": 84
+   },
+   "duration": 33
+  },
+  {
+   "filename": "old-broom 12",
+   "frame": {
+    "x": 264,
+    "y": 168,
+    "w": 132,
+    "h": 84
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 132,
+    "h": 84
+   },
+   "sourceSize": {
+    "w": 132,
+    "h": 84
+   },
+   "duration": 33
+  },
+  {
+   "filename": "old-broom 13",
+   "frame": {
+    "x": 396,
+    "y": 168,
+    "w": 132,
+    "h": 84
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 132,
+    "h": 84
+   },
+   "sourceSize": {
+    "w": 132,
+    "h": 84
+   },
+   "duration": 33
+  },
+  {
+   "filename": "old-broom 14",
+   "frame": {
+    "x": 528,
+    "y": 168,
+    "w": 132,
+    "h": 84
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 132,
+    "h": 84
+   },
+   "sourceSize": {
+    "w": 132,
+    "h": 84
+   },
+   "duration": 33
+  },
+  {
+   "filename": "old-broom 15",
+   "frame": {
+    "x": 0,
+    "y": 252,
+    "w": 132,
+    "h": 84
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 132,
+    "h": 84
+   },
+   "sourceSize": {
+    "w": 132,
+    "h": 84
+   },
+   "duration": 33
+  },
+  {
+   "filename": "old-broom 16",
+   "frame": {
+    "x": 132,
+    "y": 252,
+    "w": 132,
+    "h": 84
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 132,
+    "h": 84
+   },
+   "sourceSize": {
+    "w": 132,
+    "h": 84
+   },
+   "duration": 33
+  },
+  {
+   "filename": "old-broom 17",
+   "frame": {
+    "x": 264,
+    "y": 252,
+    "w": 132,
+    "h": 84
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 132,
+    "h": 84
+   },
+   "sourceSize": {
+    "w": 132,
+    "h": 84
+   },
+   "duration": 33
+  },
+  {
+   "filename": "old-broom 18",
+   "frame": {
+    "x": 396,
+    "y": 252,
+    "w": 132,
+    "h": 84
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 132,
+    "h": 84
+   },
+   "sourceSize": {
+    "w": 132,
+    "h": 84
+   },
+   "duration": 33
+  },
+  {
+   "filename": "old-broom 19",
+   "frame": {
+    "x": 528,
+    "y": 252,
+    "w": 132,
+    "h": 84
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 132,
+    "h": 84
+   },
+   "sourceSize": {
+    "w": 132,
+    "h": 84
+   },
+   "duration": 33
+  },
+  {
+   "filename": "old-broom 20",
+   "frame": {
+    "x": 0,
+    "y": 336,
+    "w": 132,
+    "h": 84
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 132,
+    "h": 84
+   },
+   "sourceSize": {
+    "w": 132,
+    "h": 84
+   },
+   "duration": 33
+  },
+  {
+   "filename": "old-broom 21",
+   "frame": {
+    "x": 132,
+    "y": 336,
+    "w": 132,
+    "h": 84
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 132,
+    "h": 84
+   },
+   "sourceSize": {
+    "w": 132,
+    "h": 84
+   },
+   "duration": 33
+  },
+  {
+   "filename": "old-broom 22",
+   "frame": {
+    "x": 264,
+    "y": 336,
+    "w": 132,
+    "h": 84
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 132,
+    "h": 84
+   },
+   "sourceSize": {
+    "w": 132,
+    "h": 84
+   },
+   "duration": 33
+  },
+  {
+   "filename": "old-broom 23",
+   "frame": {
+    "x": 396,
+    "y": 336,
+    "w": 132,
+    "h": 84
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 132,
+    "h": 84
+   },
+   "sourceSize": {
+    "w": 132,
+    "h": 84
+   },
+   "duration": 33
+  },
+  {
+   "filename": "old-broom 24",
+   "frame": {
+    "x": 528,
+    "y": 336,
+    "w": 132,
+    "h": 84
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 132,
+    "h": 84
+   },
+   "sourceSize": {
+    "w": 132,
+    "h": 84
+   },
+   "duration": 33
+  },
+  {
+   "filename": "old-broom 25",
+   "frame": {
+    "x": 0,
+    "y": 420,
+    "w": 132,
+    "h": 84
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 132,
+    "h": 84
+   },
+   "sourceSize": {
+    "w": 132,
+    "h": 84
+   },
+   "duration": 33
+  },
+  {
+   "filename": "old-broom 26",
+   "frame": {
+    "x": 132,
+    "y": 420,
+    "w": 132,
+    "h": 84
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 132,
+    "h": 84
+   },
+   "sourceSize": {
+    "w": 132,
+    "h": 84
+   },
+   "duration": 33
+  },
+  {
+   "filename": "old-broom 27",
+   "frame": {
+    "x": 264,
+    "y": 420,
+    "w": 132,
+    "h": 84
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 132,
+    "h": 84
+   },
+   "sourceSize": {
+    "w": 132,
+    "h": 84
+   },
+   "duration": 33
+  },
+  {
+   "filename": "old-broom 28",
+   "frame": {
+    "x": 396,
+    "y": 420,
+    "w": 132,
+    "h": 84
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 132,
+    "h": 84
+   },
+   "sourceSize": {
+    "w": 132,
+    "h": 84
+   },
+   "duration": 33
+  },
+  {
+   "filename": "old-broom 29",
+   "frame": {
+    "x": 528,
+    "y": 420,
+    "w": 132,
+    "h": 84
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 132,
+    "h": 84
+   },
+   "sourceSize": {
+    "w": 132,
+    "h": 84
+   },
+   "duration": 33
+  },
+  {
+   "filename": "old-broom 30",
+   "frame": {
+    "x": 0,
+    "y": 504,
+    "w": 132,
+    "h": 84
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 132,
+    "h": 84
+   },
+   "sourceSize": {
+    "w": 132,
+    "h": 84
+   },
+   "duration": 33
+  },
+  {
+   "filename": "old-broom 31",
+   "frame": {
+    "x": 132,
+    "y": 504,
+    "w": 132,
+    "h": 84
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 132,
+    "h": 84
+   },
+   "sourceSize": {
+    "w": 132,
+    "h": 84
+   },
+   "duration": 33
+  },
+  {
+   "filename": "old-broom 32",
+   "frame": {
+    "x": 264,
+    "y": 504,
+    "w": 132,
+    "h": 84
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 132,
+    "h": 84
+   },
+   "sourceSize": {
+    "w": 132,
+    "h": 84
+   },
+   "duration": 33
+  },
+  {
+   "filename": "old-broom 33",
+   "frame": {
+    "x": 396,
+    "y": 504,
+    "w": 132,
+    "h": 84
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 132,
+    "h": 84
+   },
+   "sourceSize": {
+    "w": 132,
+    "h": 84
+   },
+   "duration": 33
+  },
+  {
+   "filename": "old-broom 34",
+   "frame": {
+    "x": 528,
+    "y": 504,
+    "w": 132,
+    "h": 84
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 132,
+    "h": 84
+   },
+   "sourceSize": {
+    "w": 132,
+    "h": 84
+   },
+   "duration": 33
+  },
+  {
+   "filename": "old-broom 35",
+   "frame": {
+    "x": 0,
+    "y": 588,
+    "w": 132,
+    "h": 84
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 132,
+    "h": 84
+   },
+   "sourceSize": {
+    "w": 132,
+    "h": 84
+   },
+   "duration": 33
+  },
+  {
+   "filename": "old-broom 36",
+   "frame": {
+    "x": 132,
+    "y": 588,
+    "w": 132,
+    "h": 84
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 132,
+    "h": 84
+   },
+   "sourceSize": {
+    "w": 132,
+    "h": 84
+   },
+   "duration": 33
+  }
+ ],
+ "meta": {
+  "app": "https://github.com/patch-gg/pixelfx",
+  "version": "1",
+  "image": "old-broom.png",
+  "format": "RGBA8888",
+  "size": {
+   "w": 660,
+   "h": 672
+  },
+  "scale": "1",
+  "frameTags": [
+   {
+    "name": "old-broom",
+    "from": 0,
+    "to": 36,
+    "direction": "forward"
+   }
+  ],
+  "pixelfx": {
+   "id": "geuseundae/old-broom",
+   "name": "낡은 빗자루",
+   "fps": 30,
+   "loop": false,
+   "frames": 37,
+   "frameSize": [
+    132,
+    84
+   ],
+   "pivot": [
+    34,
+    74
+   ],
+   "columns": 5,
+   "act": {
+    "windup": 0.25,
+    "recovery": 0,
+    "onBody": false,
+    "targets": [
+     60
+    ],
+    "hits": [
+     {
+      "t": 0.04,
+      "freeze": 0.03,
+      "shake": 0,
+      "amp": 0,
+      "push": 0.8
+     },
+     {
+      "t": 0.2,
+      "freeze": 0.04,
+      "shake": 0,
+      "amp": 0,
+      "push": 1.6
+     }
+    ],
+    "poses": [
+     {
+      "t": -0.25,
+      "how": "smooth",
+      "pose": {
+       "crouch": 3,
+       "fx": 10,
+       "fy": -22,
+       "bx": 7,
+       "by": -20,
+       "ffx": 7,
+       "fbx": -7
+      }
+     },
+     {
+      "t": -0.08,
+      "how": "smooth",
+      "pose": {
+       "crouch": 3,
+       "fx": 10,
+       "fy": -22,
+       "bx": 7,
+       "by": -20,
+       "ffx": 7,
+       "fbx": -7,
+       "lean": -3
+      }
+     },
+     {
+      "t": 0,
+      "how": "snap",
+      "pose": {
+       "crouch": 3,
+       "fx": 19,
+       "fy": -26,
+       "bx": -6,
+       "by": -22,
+       "ffx": 11,
+       "fbx": -8,
+       "lean": 5,
+       "toeB": true
+      }
+     },
+     {
+      "t": 0.35,
+      "how": "smooth",
+      "pose": {
+       "crouch": 3,
+       "fx": 19,
+       "fy": -26,
+       "bx": -6,
+       "by": -22,
+       "ffx": 11,
+       "fbx": -8,
+       "lean": 5,
+       "toeB": true
+      }
+     },
+     {
+      "t": 0.8,
+      "how": "smooth",
+      "pose": {
+       "crouch": 3,
+       "fx": 10,
+       "fy": -22,
+       "bx": 7,
+       "by": -20,
+       "ffx": 7,
+       "fbx": -7
+      }
+     }
+    ]
+   }
+  }
+ }
+}

@@ -7,6 +7,9 @@ const MerchantStock = preload("res://scripts/merchant_stock.gd")
 const CombatDirector = preload("res://scripts/combat_director.gd")
 const Player = preload("res://scripts/player.gd")
 const TravelProp = preload("res://scripts/travel_prop.gd")
+const FloorMapView = preload("res://scripts/floor_map_view.gd")
+const SummonEffect = preload("res://scripts/summon_effect.gd")
+const SongaksiNPC = preload("res://scripts/songaksi_npc.gd")
 @export var start_in_village := false
 @export var combat_enabled := true
 var combat: Node2D
@@ -15,6 +18,9 @@ var floor_number := 1
 var village_stock: Array = []
 var wallet: Dictionary = {"souls":0,"bag":[]}
 var merchant: Node2D
+var songaksi_npc: Node2D
+var songaksi_dialog: ConfirmationDialog
+var summon_in_progress := false
 var run: Dictionary
 var current_id := 0
 var room: Node2D
@@ -30,13 +36,14 @@ var web_status_timer := 0.0
 var lab_snapshot: Dictionary = {}
 var lab_index := 0
 var lab_button: Button
+var session_rng := RandomNumberGenerator.new()
 var complete := false
 var floor_exit_position := Vector2.ZERO
 var portal_props: Dictionary = {}
 var well_prop: Node2D
 var well_position := Vector2.ZERO
 var floor_map_panel: PanelContainer
-var floor_map_rows: VBoxContainer
+var floor_map_view: Control
 var floor_map_open := false
 var traveling := false
 var travel_phase := ""
@@ -60,17 +67,17 @@ func _ready() -> void:
 	mouse.button_index=MOUSE_BUTTON_LEFT
 	InputMap.action_add_event("attack",mouse)
 	build_hud()
+	build_songaksi_dialog()
 	combat=CombatDirector.new()
 	combat.world=self
 	combat.enabled=combat_enabled
 	add_child(combat)
 	if combat_enabled: combat.seed_starter()
-	var initial_seed := 1103
+	session_rng.randomize()
+	var initial_seed := fresh_seed()
 	for argument in OS.get_cmdline_user_args():
 		if argument.begins_with("--seed="):
 			initial_seed = int(argument.trim_prefix("--seed="))
-	var session_rng := RandomNumberGenerator.new()
-	session_rng.randomize()
 	village_stock = MerchantStock.roll(session_rng.randi(),1,true)
 	if start_in_village: show_village()
 	else: new_run(initial_seed)
@@ -91,14 +98,98 @@ func new_run(value: int) -> void:
 	seed_input.text = str(value)
 	change_room(0,-1)
 
+func fresh_seed() -> int:
+	# A new play session gets a new layout, while the displayed numeric seed can
+	# still be supplied again to reproduce that exact floor graph.
+	return session_rng.randi_range(1,2147483646)
+
 func show_village() -> void:
 	in_village = true
 	complete = false
 	run = {"version":Generator.VERSION,"seed":1103,"start":0,"goal":-1,"rooms":[{"id":0,"template":"courtyard","links":[],"grid":[0,0],"decor_seed":1103,"visited":false,"peaceful":true}]}
 	change_room(0,-1)
+	call_deferred("spawn_songaksi_npc")
+	call_deferred("enter_heartless_form",true)
+
+func spawn_songaksi_npc() -> void:
+	if not in_village or not is_instance_valid(room): return
+	songaksi_npc=SongaksiNPC.new()
+	songaksi_npc.position=Vector2(700,704)
+	var label:=Label.new()
+	label.text="손각시\n[E] 말 걸기"
+	label.position=Vector2(-42,-82)
+	label.add_theme_font_size_override("font_size",14)
+	songaksi_npc.add_child(label)
+	room.add_child(songaksi_npc)
+
+func build_songaksi_dialog() -> void:
+	var layer:=CanvasLayer.new()
+	layer.layer=30
+	add_child(layer)
+	songaksi_dialog=ConfirmationDialog.new()
+	songaksi_dialog.title="손각시의 제안"
+	songaksi_dialog.dialog_text="내 심장을 가져갈래?"
+	songaksi_dialog.ok_button_text="예"
+	songaksi_dialog.cancel_button_text="아니오"
+	songaksi_dialog.confirmed.connect(accept_songaksi_heart)
+	songaksi_dialog.canceled.connect(func():
+		if is_instance_valid(player): player.controls_enabled=true)
+	layer.add_child(songaksi_dialog)
+
+func open_songaksi_dialog() -> void:
+	if summon_in_progress or combat.equipment.get("heart","")!="": return
+	player.controls_enabled=false
+	songaksi_dialog.popup_centered(Vector2i(420,180))
+
+func play_player_summon(on_finished: Callable) -> void:
+	if not is_instance_valid(player): return
+	summon_in_progress=true
+	player.controls_enabled=false
+	player.visual.hide()
+	var summon := SummonEffect.new()
+	# Player.position is the collision body's foot point, so the summoning ring
+	# stays planted on the floor instead of hovering around the torso.
+	summon.position=player.position
+	summon.finished.connect(func():
+		if is_instance_valid(player):
+			on_finished.call()
+			player.visual.show()
+			player.controls_enabled=true
+		summon_in_progress=false)
+	add_child(summon)
+
+func enter_heartless_form(with_summon := false) -> void:
+	combat.equipment["heart"]=""
+	# Songaksi's borrowed hand disappears with the borrowed body. It is granted
+	# fresh only when the player accepts her heart again.
+	if combat.equipment.get("main","")=="songaksi_hand": combat.equipment["main"]=""
+	if is_instance_valid(player):
+		player.visual.modulate=Color("11121a")
+	if with_summon: play_player_summon(func(): player.visual.modulate=Color("11121a"))
+
+func accept_songaksi_heart() -> void:
+	if not is_instance_valid(player): return
+	play_player_summon(func():
+		combat.equipment["heart"]="songaksi"
+		var bag:Array=wallet["bag"]
+		for i in range(bag.size()-1,-1,-1):
+			if str(bag[i].get("id",""))=="songaksi_hand": bag.remove_at(i)
+		if combat.equipment["main"]!="" and combat.equipment["main"]!="songaksi_hand": bag.append(combat.equipped("main"))
+		combat.equipment["main"]="songaksi_hand"
+		player.visual.modulate=Color.WHITE
+		combat.health=60
+		combat.message("손각시의 심장을 빌렸습니다 · 손각시의 손 획득"))
+
+func has_heart() -> bool:
+	return str(combat.equipment.get("heart",""))!=""
+
+func play_village_summon() -> void:
+	play_player_summon(func(): player.visual.modulate=Color("11121a"))
+
+func add_village_exit_sign() -> void:
 	var sign := Label.new()
 	sign.position = Vector2(1570,578)
-	sign.text = "[E] 1층으로 출발"
+	sign.text = "[E] 1층으로 출발 · 심장 필요"
 	room.add_child(sign)
 
 func is_combat_room() -> bool:
@@ -124,7 +215,7 @@ func portal_position(source: int, destination: int) -> Vector2:
 	var x := width*.70
 	for gap in def["gaps"]:
 		if x > gap[0]-100 and x < gap[0]+gap[1]+100:
-			x = gap[0]+gap[1]+100
+			x = gap[0]-120
 	return Vector2(x,704)
 
 func change_room(id: int, previous: int) -> void:
@@ -220,6 +311,7 @@ func change_room(id: int, previous: int) -> void:
 	else: title.text = str(floor_number)+"층 · "+title.text
 	minimap.queue_redraw()
 	if is_instance_valid(combat): combat.enter_room(data)
+	if in_village: call_deferred("add_village_exit_sign")
 
 func safe_floor_position(def: Dictionary, preferred: float) -> Vector2:
 	var x := clampf(preferred, 150.0, float(def["width"]) - 150.0)
@@ -230,25 +322,7 @@ func safe_floor_position(def: Dictionary, preferred: float) -> Vector2:
 
 func open_floor_map() -> void:
 	floor_map_open = true
-	for child in floor_map_rows.get_children():
-		floor_map_rows.remove_child(child)
-		child.queue_free()
-	var heading := Label.new()
-	heading.text = str(floor_number) + "층 상세지도 · 방문한 우물로 이동"
-	heading.add_theme_font_size_override("font_size", 21)
-	floor_map_rows.add_child(heading)
-	for data in run["rooms"]:
-		var button := Button.new()
-		var name: String = str(Catalog.templates()[data["template"]]["name"])
-		button.text = ("현재 위치 · " if data["id"] == current_id else "") + name
-		button.disabled = data["id"] == current_id or not bool(data.get("visited", false)) or data["id"] == run["goal"]
-		var destination := int(data["id"])
-		button.pressed.connect(func(): begin_well_travel(destination))
-		floor_map_rows.add_child(button)
-	var close := Button.new()
-	close.text = "지도 닫기 [E / Esc]"
-	close.pressed.connect(close_floor_map)
-	floor_map_rows.add_child(close)
+	floor_map_view.rebuild()
 	floor_map_panel.show()
 
 func close_floor_map() -> void:
@@ -321,6 +395,12 @@ func _process(delta: float) -> void:
 		player.controls_enabled = false
 		tick_travel(delta)
 		return
+	if summon_in_progress:
+		player.controls_enabled=false
+		return
+	if is_instance_valid(songaksi_dialog) and songaksi_dialog.visible:
+		player.controls_enabled=false
+		return
 	if floor_map_open:
 		player.controls_enabled = false
 		if Input.is_action_just_pressed("interact") or Input.is_action_just_pressed("ui_cancel"): close_floor_map()
@@ -363,11 +443,17 @@ func _process(delta: float) -> void:
 		combat.hurt_timer=1.0
 		return
 	if in_village:
+		if is_instance_valid(songaksi_npc) and player.position.distance_to(songaksi_npc.global_position)<90:
+			hint.text="E · 손각시와 대화"
+			if Input.is_action_just_pressed("interact"): open_songaksi_dialog()
+			return
 		if player.position.x>1570:
-			hint.text = "E · 1층으로 출발"
+			hint.text = "E · 1층으로 출발" if has_heart() else "심장이 없어 출발할 수 없습니다 · 손각시와 대화하세요"
 			if Input.is_action_just_pressed("interact"):
-				floor_number=1
-				new_run(1103)
+				if has_heart():
+					floor_number=1
+					new_run(fresh_seed())
+				else: combat.message("심장이 없이는 흉가에 들어갈 수 없습니다")
 		else: hint.text = "마을 · 도깨비상인과 거래 / 오른쪽에서 1층 출발"
 		return
 	if Input.is_action_just_pressed("new_run"):
@@ -491,8 +577,8 @@ func build_hud() -> void:
 	minimap.draw.connect(draw_minimap)
 	layer.add_child(minimap)
 	floor_map_panel = PanelContainer.new()
-	floor_map_panel.position = Vector2(176, 74)
-	floor_map_panel.size = Vector2(416, 300)
+	floor_map_panel.position = Vector2(104, 38)
+	floor_map_panel.size = Vector2(560, 350)
 	var map_style := StyleBoxFlat.new()
 	map_style.bg_color = Color("101923")
 	map_style.border_color = Color("9d8663")
@@ -500,9 +586,10 @@ func build_hud() -> void:
 	map_style.set_content_margin_all(18)
 	floor_map_panel.add_theme_stylebox_override("panel", map_style)
 	layer.add_child(floor_map_panel)
-	floor_map_rows = VBoxContainer.new()
-	floor_map_rows.add_theme_constant_override("separation", 8)
-	floor_map_panel.add_child(floor_map_rows)
+	floor_map_view = FloorMapView.new()
+	floor_map_view.custom_minimum_size = Vector2(554,344)
+	floor_map_panel.add_child(floor_map_view)
+	floor_map_view.setup(self)
 	floor_map_panel.hide()
 
 func draw_minimap() -> void:
@@ -568,7 +655,8 @@ func toggle_equipment_lab() -> void:
 func cycle_lab(step: int) -> void:
 	lab_index=posmod(lab_index+step,CombatDirector.DB.weapons().size())
 	var item:Dictionary=CombatDirector.DB.get_item(CombatDirector.DB.weapons()[lab_index][0])
-	combat.equipment["main"]="songaksi_hand" if item["slot"]=="off" else item["id"]
+	# In the lab, do not let the starter hand hide a left-hand weapon's attack.
+	combat.equipment["main"]="" if item["slot"]=="off" else item["id"]
 	combat.equipment["off"]=item["id"] if item["slot"]=="off" else ""
 	combat.attack_cd={"main":0.0,"off":0.0}
 	combat.skill_cd={"main":0.0,"off":0.0}
