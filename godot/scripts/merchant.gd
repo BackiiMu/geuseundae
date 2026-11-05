@@ -5,6 +5,7 @@ var wallet: Dictionary
 var ui: CanvasLayer
 var panel: PanelContainer
 const Icon = preload("res://scripts/item_icon.gd")
+const MerchantArt = preload("res://assets/actors/concepts/dokkaebi-merchant-game-v1.png")
 var rows: VBoxContainer
 var details: VBoxContainer
 var message: Label
@@ -87,21 +88,14 @@ func _ready() -> void:
 	content.add_child(text_label("1~4 상품 선택  ·  ↑↓ 이동  ·  Enter 구매  ·  E / Esc 닫기",14,Color("a8bfbb")))
 	panel.hide()
 	var sign:=text_label("[E] 도깨비상인 · 평화구역",14)
-	sign.position=Vector2(-88,-112)
+	sign.position=Vector2(-88,-142)
 	add_child(sign)
 	queue_redraw()
 
 func _draw() -> void:
-	# Temporary merchant silhouette; the stall uses the shared village atlas.
-	var art: Texture2D = preload("res://assets/environment/haunted-village-atlas.png")
-	var regions: Array = JSON.parse_string(FileAccess.get_file_as_string("res://assets/environment/atlas-regions.json"))
-	var r: Array = regions[12]
-	draw_texture_rect_region(art,Rect2(-60,-48,120,48),Rect2(r[0],r[1],r[2],r[3]))
-	draw_rect(Rect2(-20,-80,40,40),Color("607f73"))
-	draw_polygon(PackedVector2Array([Vector2(-17,-80),Vector2(-15,-96),Vector2(-5,-80)]),PackedColorArray([Color("a3b09a")]))
-	draw_polygon(PackedVector2Array([Vector2(6,-80),Vector2(15,-96),Vector2(18,-80)]),PackedColorArray([Color("a3b09a")]))
-	draw_rect(Rect2(-10,-66,5,3),Color("e0b46c"))
-	draw_rect(Rect2(6,-66,5,3),Color("e0b46c"))
+	# Seated hanryang merchant, bundles and antique coin piles are one readable
+	# prop cluster so the peaceful shop room is identifiable at a glance.
+	draw_texture(MerchantArt,Vector2(-95,-126))
 
 func toggle() -> void:
 	opened=not opened

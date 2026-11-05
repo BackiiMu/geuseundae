@@ -15,8 +15,8 @@ Godot 4.7.2에서 `godot/project.godot`을 열고 실행합니다. 기본 창은
 
 ## 이어서 개발
 
-먼저 [세션 인계](docs/SESSION_HANDOFF.md), [개발 화면 선호](docs/development-preferences.md), [장비 원안](geuseundae_equipment.md)을 읽어 주세요. 현재 구현은 `godot/scripts`와 `docs/equipment-implementation.md`를 기준으로 확인합니다.
+먼저 [최신 작업 인계](docs/CURRENT_STATUS.md), [개발 화면 선호](docs/development-preferences.md), [장비 원안](geuseundae_equipment.md)을 읽어 주세요. 과거 기록은 `docs/SESSION_HANDOFF.md`, 현재 구현은 `godot/scripts`와 `docs/equipment-implementation.md`를 기준으로 확인합니다.
 
-모바일 터치 조작과 내보내기 프리셋은 준비 중입니다. APK/iOS 설치 검증은 완료하지 않았으며 사용자의 요청으로 보류했습니다. iOS 프리셋의 Team ID는 비어 있습니다. 모바일 출력물과 Web 빌드는 Git에서 제외합니다.
+모바일 터치 조작과 Android/iOS 내보내기 프리셋이 있습니다. iOS Xcode 프로젝트 내보내기는 성공했으며 인증서와 실제 Team ID는 사용자가 Xcode에서 지정합니다. App Store용 정식 아이콘과 실기기 설치 검증은 남아 있습니다. 모바일 출력물과 Web 빌드는 Git에서 제외합니다.
 
 이펙트 재생성: `node vendor/pixelfx/tools/export-geuseundae.mjs`. 출처와 라이선스는 [THIRD_PARTY.md](THIRD_PARTY.md)를 참고하세요.
