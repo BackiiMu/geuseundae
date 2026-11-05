@@ -1,5 +1,6 @@
 extends Control
 var item: Dictionary
+var show_frame := true
 static var icon_cache := {}
 static var sheet_cache := {}
 static var sheet_info := {}
@@ -12,9 +13,10 @@ func _ready() -> void:
 	custom_minimum_size=Vector2(42,42)
 	mouse_filter=Control.MOUSE_FILTER_IGNORE
 func _draw() -> void:
-	var c: Color=[Color("b8c1b5"),Color("7da8c7"),Color("b397cf"),Color("d5bb75")][clampi(int(item.get("tier",1))-1,0,3)]
-	draw_rect(Rect2(0,0,42,42),Color("18232d"))
-	draw_rect(Rect2(1,1,40,40),c,false,1)
+	var c:=Color("aeb8ae")
+	if show_frame:
+		draw_rect(Rect2(0,0,42,42),Color("18232d"))
+		draw_rect(Rect2(1,1,40,40),Color("59655e"),false,1)
 	var slot: String=item.get("slot","main")
 	var id: String=item.get("id","")
 	if GEAR2_ITEMS.has(id):

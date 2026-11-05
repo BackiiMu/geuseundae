@@ -2,6 +2,12 @@ extends Node2D
 const DB = preload("res://scripts/equipment_db.gd")
 const Progression = preload("res://scripts/progression.gd")
 const PixelVFX = preload("res://scripts/pixel_vfx.gd")
+const InventoryPaperDoll = preload("res://scripts/inventory_paper_doll.gd")
+const InventorySelectFX = preload("res://scripts/inventory_select_fx.gd")
+const InventoryHeartIcon = preload("res://scripts/inventory_heart_icon.gd")
+const InventoryAccessoryRail = preload("res://scripts/inventory_accessory_rail.gd")
+const InventoryModularSkin = preload("res://scripts/inventory_modular_skin.gd")
+const InventoryFont = preload("res://assets/fonts/NotoSansKR-Semibold.ttf")
 var vfx: Node2D
 const Arsenal = preload("res://scripts/equipment_runtime.gd")
 var arsenal = Arsenal.new()
@@ -16,7 +22,7 @@ var hurt_timer := 0.0
 var heart_cd := 0.0
 var skill_cd := {"main":0.0,"off":0.0}
 var attack_cd := {"main":0.0,"off":0.0}
-var equipment: Dictionary = {"heart":"","main":"","off":"","head":"","legs":"","feet":"","a0":"","a1":"","a2":"","a3":""}
+var equipment: Dictionary = {"heart":"","main":"","off":"","head":"","legs":"","feet":"","internal":"","a0":"","a1":"","a2":"","a3":""}
 var enemies: Array = []
 var projectiles: Array = []
 var pickups: Array = []
@@ -32,12 +38,13 @@ var regen_cd := 0.0
 var heart_animation := 0.0
 var ui: CanvasLayer
 var hud: Label
-var inventory: PanelContainer
-var inv_rows: VBoxContainer
+var inventory: Control
+var inv_rows: Control
 var confirm: ConfirmationDialog
 var pending_destroy := -1
 var inventory_selection := 0
 var inventory_shade: ColorRect
+var inventory_fx: Control
 var skill_bar: Label
 var toast: Label
 var toast_time := 0.0
@@ -81,23 +88,20 @@ func _ready() -> void:
 	inventory_shade.mouse_filter=Control.MOUSE_FILTER_IGNORE
 	ui.add_child(inventory_shade)
 	inventory_shade.hide()
-	inventory=PanelContainer.new()
-	inventory.position=Vector2(30,26)
-	inventory.size=Vector2(708,380)
-	var box:=StyleBoxFlat.new()
-	box.bg_color=Color("17242e")
-	box.border_color=Color("a8946d")
-	box.set_border_width_all(2)
-	box.content_margin_left=14
-	box.content_margin_right=14
-	box.content_margin_top=10
-	box.content_margin_bottom=10
-	inventory.add_theme_stylebox_override("panel",box)
+	inventory=Control.new()
+	inventory.position=Vector2.ZERO
+	inventory.size=Vector2(768,432)
 	ui.add_child(inventory)
-	inv_rows=VBoxContainer.new()
-	inv_rows.add_theme_constant_override("separation",8)
+	var inventory_frame:=InventoryModularSkin.new()
+	inventory_frame.size=Vector2(768,432)
+	inventory.add_child(inventory_frame)
+	inv_rows=Control.new()
+	inv_rows.size=Vector2(768,432)
 	inventory.add_child(inv_rows)
 	inventory.hide()
+	inventory_fx=InventorySelectFX.new()
+	inventory_fx.z_index=40
+	ui.add_child(inventory_fx)
 	confirm=ConfirmationDialog.new()
 	confirm.title="아이템 영구 파기"
 	confirm.ok_button_text="파기"
@@ -327,110 +331,270 @@ func toggle_inventory() -> void:
 func inv_label(text: String,size:=14,color:=Color("dce4d4")) -> Label:
 	var label:=Label.new()
 	label.text=text
+	label.add_theme_font_override("font",InventoryFont)
 	label.add_theme_font_size_override("font_size",size)
 	label.add_theme_color_override("font_color",color)
 	return label
 func attack_type_label(item: Dictionary) -> String:
 	if not item.has("kind"): return ""
 	return "[근접]" if item["kind"]=="melee" else "[원거리]"
+
+func inventory_style(bg:Color,border:Color,width:=1,margins:=6) -> StyleBoxFlat:
+	var style:=StyleBoxFlat.new()
+	style.bg_color=bg
+	style.border_color=border
+	style.set_border_width_all(width)
+	style.content_margin_left=margins
+	style.content_margin_right=margins
+	style.content_margin_top=margins
+	style.content_margin_bottom=margins
+	return style
+
+func style_inventory_button(button:Button,selected:=false,danger:=false) -> void:
+	var border:=Color("9ebba4") if selected else Color("4e554d")
+	if danger: border=Color("79504b")
+	button.add_theme_stylebox_override("normal",inventory_style(Color("11191d"),border,2,2))
+	button.add_theme_stylebox_override("hover",inventory_style(Color("1b2828"),Color("b7c9ae"),2,2))
+	button.add_theme_stylebox_override("pressed",inventory_style(Color("253332"),Color("d4c28f"),2,2))
+	button.add_theme_stylebox_override("disabled",inventory_style(Color("0c1215"),Color("343b38"),1,2))
+	button.add_theme_color_override("font_color",Color("ded7c5"))
+	button.add_theme_color_override("font_disabled_color",Color("6d736d"))
+
+func style_skin_slot(button:Button,selected:=false) -> void:
+	button.add_theme_font_override("font",InventoryFont)
+	var clear:=inventory_style(Color(0,0,0,0),Color(0,0,0,0),0,0)
+	button.add_theme_stylebox_override("normal",clear)
+	button.add_theme_stylebox_override("disabled",clear)
+	button.add_theme_stylebox_override("hover",inventory_style(Color(0.25,0.12,0.08,.28),Color("c8a66a"),1,0))
+	button.add_theme_stylebox_override("pressed",inventory_style(Color(0.35,0.14,0.08,.34),Color("e0bf7c"),1,0))
+	if selected: button.add_theme_stylebox_override("normal",inventory_style(Color(0.28,0.12,0.06,.24),Color("cfa65d"),1,0))
+
+func style_movable_slot(button:Button,selected:=false) -> void:
+	button.add_theme_font_override("font",InventoryFont)
+	var normal_path:="res://assets/ui/modular/slot-selected-v1.png" if selected else "res://assets/ui/modular/slot-normal-v1.png"
+	for state in ["normal","disabled","hover","pressed"]:
+		var style:=StyleBoxTexture.new()
+		style.texture=load("res://assets/ui/modular/slot-selected-v1.png" if state in ["hover","pressed"] else normal_path)
+		style.texture_margin_left=9
+		style.texture_margin_right=9
+		style.texture_margin_top=9
+		style.texture_margin_bottom=9
+		if state=="disabled": style.modulate_color=Color(.68,.66,.63,1)
+		elif state=="pressed": style.modulate_color=Color(.82,.78,.70,1)
+		button.add_theme_stylebox_override(state,style)
+
+func style_action_button(button:Button,danger:=false) -> void:
+	button.add_theme_font_override("font",InventoryFont)
+	var paths:={"normal":"res://assets/ui/modular/button-normal-v1.png","hover":"res://assets/ui/modular/button-hover-v1.png","pressed":"res://assets/ui/modular/button-pressed-v1.png"}
+	for state in paths:
+		var style:=StyleBoxTexture.new()
+		style.texture=load(paths[state])
+		style.texture_margin_left=38
+		style.texture_margin_right=38
+		style.texture_margin_top=24
+		style.texture_margin_bottom=24
+		style.modulate_color=Color(.62,.60,.58,1) if state=="normal" else Color(.78,.75,.70,1)
+		button.add_theme_stylebox_override(state,style)
+	button.add_theme_color_override("font_color",Color("dca49b") if danger else Color("eee2cc"))
+
+func add_slot_icon(button:Button,item:Dictionary,scale_value:=.84) -> void:
+	var icon=preload("res://scripts/item_icon.gd").new()
+	icon.item=item
+	icon.show_frame=false
+	icon.scale=Vector2.ONE*scale_value
+	button.add_child(icon)
+	var center_icon:=func():
+		if is_instance_valid(icon) and is_instance_valid(button):
+			icon.position=(button.size-Vector2(42,42)*scale_value)*.5
+	button.resized.connect(center_icon)
+	center_icon.call()
+
+func add_equipped_slot(board:Control,slot:String,label_text:String,pos:Vector2,label_pos:Vector2) -> void:
+	var button:=Button.new()
+	button.position=pos
+	button.size=Vector2(38,38)
+	if slot=="heart": button.add_to_group("inventory_heart_slot")
+	button.focus_mode=Control.FOCUS_NONE
+	style_movable_slot(button,false)
+	var item:=equipped(slot)
+	if slot=="heart" and str(equipment.get("heart",""))!="":
+		item={"name":"손각시의 심장","effect":"HP "+str(int(health))+" · 이리 오너라","slot":"heart"}
+		var heart_icon:=InventoryHeartIcon.new()
+		heart_icon.scale=Vector2.ONE*.8
+		heart_icon.position=Vector2(2,2)
+		button.add_child(heart_icon)
+	elif not item.is_empty():
+		add_slot_icon(button,item,.8)
+	button.tooltip_text=label_text+" · "+str(item.get("name","비어 있음"))+"\n"+str(item.get("effect",""))
+	button.disabled=item.is_empty() or slot=="heart"
+	if slot!="heart": button.pressed.connect(func():unequip(slot))
+	board.add_child(button)
+	var label:=inv_label(label_text,9,Color("d8c39e"))
+	label.position=label_pos
+	label.size=Vector2(40,18)
+	label.horizontal_alignment=HORIZONTAL_ALIGNMENT_CENTER
+	label.mouse_filter=Control.MOUSE_FILTER_IGNORE
+	board.add_child(label)
+	if slot=="heart" and not item.is_empty():
+		button.modulate=Color("e2a0a0")
+		var pulse:=button.create_tween().set_loops()
+		pulse.tween_property(button,"modulate",Color("ffffff"),.55).set_trans(Tween.TRANS_SINE)
+		pulse.tween_property(button,"modulate",Color("e2a0a0"),.75).set_trans(Tween.TRANS_SINE)
+
+func select_inventory(index:int) -> void:
+	inventory_selection=index
+	refresh_inventory()
+	call_deferred("play_inventory_selection_fx",index)
+
+func play_inventory_selection_fx(index:int) -> void:
+	for node in get_tree().get_nodes_in_group("inventory_bag_slot"):
+		if int(node.get_meta("bag_index",-1))==index and is_instance_valid(inventory_fx):
+			inventory_fx.play_at(node.global_position+node.size*.5)
+			return
+
 func refresh_inventory() -> void:
 	for child in inv_rows.get_children():
 		inv_rows.remove_child(child)
 		child.queue_free()
-	var heading:=HBoxContainer.new()
-	heading.add_child(inv_label("빌린 몸과 가방",22,Color("dfc58c")))
-	var spacer:=Control.new()
-	spacer.size_flags_horizontal=Control.SIZE_EXPAND_FILL
-	heading.add_child(spacer)
-	heading.add_child(inv_label("영혼조각 ◆ "+str(world.wallet["souls"]),15,Color("a7d6bc")))
+	var title:=inv_label("빌린 몸",17,Color("2a1710"))
+	title.position=Vector2(121,45)
+	title.size=Vector2(104,25)
+	title.horizontal_alignment=HORIZONTAL_ALIGNMENT_CENTER
+	inv_rows.add_child(title)
+	var souls:=inv_label("영혼조각  ◆ "+str(world.wallet["souls"]),13,Color("d9c59a"))
+	souls.position=Vector2(492,43)
+	souls.size=Vector2(130,24)
+	souls.horizontal_alignment=HORIZONTAL_ALIGNMENT_CENTER
+	inv_rows.add_child(souls)
 	var close:=Button.new()
-	close.text="닫기 [Tab]"
+	close.text="닫기  [Tab]"
+	close.position=Vector2(631,40)
+	close.size=Vector2(76,27)
 	close.focus_mode=Control.FOCUS_NONE
+	style_skin_slot(close,false)
 	close.pressed.connect(toggle_inventory)
-	heading.add_child(close)
-	inv_rows.add_child(heading)
-	var body:=HBoxContainer.new()
-	body.add_theme_constant_override("separation",16)
-	var equipped_list:=VBoxContainer.new()
-	equipped_list.custom_minimum_size.x=286
-	equipped_list.add_theme_constant_override("separation",2)
-	var heart_name := "손각시" if equipment.get("heart","")=="songaksi" else "없음"
-	equipped_list.add_child(inv_label("심장 · "+heart_name+"  /  HP "+str(int(health)),15,Color("b8d5c2")))
-	for slot in equipment:
-		if slot=="heart": continue
-		var item:=equipped(slot)
-		var button:=Button.new()
-		button.text=DB.slot_name(slot)+" · "+str(item.get("name","비어 있음"))
-		button.tooltip_text=attack_type_label(item)+" "+str(item.get("effect",""))+" / 클릭하면 해제"
-		button.add_theme_font_size_override("font_size",13)
-		button.custom_minimum_size=Vector2(286,22)
-		button.clip_text=true
-		button.focus_mode=Control.FOCUS_NONE
-		button.disabled=item.is_empty()
-		button.pressed.connect(func():unequip(slot))
-		equipped_list.add_child(button)
-	body.add_child(equipped_list)
-	var bag_column:=VBoxContainer.new()
-	bag_column.add_child(inv_label("소지품 · "+str(world.wallet["bag"].size())+"개",15))
+	inv_rows.add_child(close)
+	var board:=InventoryPaperDoll.new()
+	board.position=Vector2(111,78)
+	board.size=Vector2(258,164)
+	add_equipped_slot(board,"head","머리",Vector2(31,5),Vector2(-3,14))
+	add_equipped_slot(board,"main","주무기",Vector2(31,48),Vector2(-3,57))
+	add_equipped_slot(board,"legs","다리",Vector2(31,91),Vector2(-3,100))
+	add_equipped_slot(board,"feet","발",Vector2(31,134),Vector2(-3,143))
+	add_equipped_slot(board,"heart","심장",Vector2(173,5),Vector2(214,14))
+	add_equipped_slot(board,"off","보조무기",Vector2(173,48),Vector2(214,57))
+	add_equipped_slot(board,"internal","내장",Vector2(173,91),Vector2(214,100))
+	inv_rows.add_child(board)
+	var accessory_slots:Array=equipment.keys().filter(func(key):return str(key).begins_with("a"))
+	accessory_slots.sort()
+	var accessory_rail:=InventoryAccessoryRail.new()
+	accessory_rail.position=Vector2(82,249)
+	accessory_rail.size=Vector2(288,61)
+	accessory_rail.configure(accessory_slots.size())
+	inv_rows.add_child(accessory_rail)
+	var accessory_title:=inv_label("악세사리",10,Color("29170e"))
+	accessory_title.position=Vector2((accessory_rail.size.x-88)*.5,1)
+	accessory_title.size=Vector2(88,18)
+	accessory_title.horizontal_alignment=HORIZONTAL_ALIGNMENT_CENTER
+	accessory_rail.add_child(accessory_title)
+	var accessory_row:=HBoxContainer.new()
+	accessory_row.position=accessory_rail.slots_origin()
+	accessory_row.size=Vector2(accessory_rail.slots_width(),accessory_rail.slot_size)
+	accessory_row.add_theme_constant_override("separation",int(accessory_rail.gap))
+	for slot in accessory_slots:
+		var accessory_button:=Button.new()
+		accessory_button.custom_minimum_size=Vector2.ONE*accessory_rail.slot_size
+		accessory_button.focus_mode=Control.FOCUS_NONE
+		style_movable_slot(accessory_button,false)
+		var accessory:=equipped(slot)
+		if not accessory.is_empty(): add_slot_icon(accessory_button,accessory,accessory_rail.slot_size/42.0*.88)
+		accessory_button.disabled=accessory.is_empty()
+		accessory_button.add_to_group("inventory_accessory_slot")
+		accessory_button.tooltip_text="악세사리 · "+str(accessory.get("name","비어 있음"))
+		accessory_button.pressed.connect(func():unequip(slot))
+		accessory_row.add_child(accessory_button)
+	accessory_rail.add_child(accessory_row)
+	var bag_title:=inv_label("가방",14,Color("28170f"))
+	bag_title.position=Vector2(392,72)
+	bag_title.size=Vector2(64,23)
+	bag_title.horizontal_alignment=HORIZONTAL_ALIGNMENT_CENTER
+	inv_rows.add_child(bag_title)
 	var scroll:=ScrollContainer.new()
-	scroll.custom_minimum_size=Vector2(370,218)
+	scroll.position=Vector2(392,99)
+	scroll.size=Vector2(274,202)
+	scroll.horizontal_scroll_mode=ScrollContainer.SCROLL_MODE_DISABLED
+	scroll.add_theme_stylebox_override("panel",inventory_style(Color(0,0,0,0),Color(0,0,0,0),0,0))
 	var grid:=GridContainer.new()
 	grid.columns=6
-	grid.add_theme_constant_override("h_separation",5)
-	grid.add_theme_constant_override("v_separation",5)
+	grid.add_theme_constant_override("h_separation",7)
+	grid.add_theme_constant_override("v_separation",4)
 	var bag: Array=world.wallet["bag"]
 	inventory_selection=clampi(inventory_selection,0,maxi(0,bag.size()-1))
-	for i in range(maxi(18,bag.size())):
+	for i in range(maxi(30,bag.size())):
 		var button:=Button.new()
-		button.custom_minimum_size=Vector2(54,54)
+		button.custom_minimum_size=Vector2(38,36)
 		button.focus_mode=Control.FOCUS_NONE
-		var style:=StyleBoxFlat.new()
-		style.bg_color=Color("26383e") if i==inventory_selection else Color("101c26")
-		style.border_color=Color("d8bf85") if i==inventory_selection else Color("42585b")
-		style.set_border_width_all(2)
-		button.add_theme_stylebox_override("normal",style)
+		style_movable_slot(button,i==inventory_selection)
+		button.add_to_group("inventory_bag_slot")
+		button.set_meta("bag_index",i)
 		if i<bag.size():
-			var icon=preload("res://scripts/item_icon.gd").new()
-			icon.item=bag[i]
-			icon.position=Vector2(6,6)
-			button.add_child(icon)
+			add_slot_icon(button,bag[i],.72)
 			button.tooltip_text=str(bag[i]["name"])+" "+attack_type_label(bag[i])+" / "+str(bag[i].get("effect",""))
-			button.pressed.connect(func():inventory_selection=i;refresh_inventory())
+			button.pressed.connect(func():select_inventory(i))
 		else: button.disabled=true
 		grid.add_child(button)
 	scroll.add_child(grid)
-	bag_column.add_child(scroll)
-	body.add_child(bag_column)
-	inv_rows.add_child(body)
-	var footer:=HBoxContainer.new()
-	var description:=VBoxContainer.new()
-	description.custom_minimum_size.x=460
+	inv_rows.add_child(scroll)
 	if not bag.is_empty():
 		var item: Dictionary=bag[inventory_selection]
-		description.add_child(inv_label(str(item["name"])+" · "+DB.slot_name(item["slot"])+" · "+str(item.get("tier",1))+"단계 "+attack_type_label(item),16,Color("d8c7a3")))
-		var effect_label:=inv_label(str(item.get("effect","")),13)
-		effect_label.custom_minimum_size.x=450
+		var detail_icon_button:=Button.new()
+		detail_icon_button.position=Vector2(122,326)
+		detail_icon_button.size=Vector2(61,56)
+		detail_icon_button.mouse_filter=Control.MOUSE_FILTER_IGNORE
+		style_movable_slot(detail_icon_button,false)
+		add_slot_icon(detail_icon_button,item,1.0)
+		inv_rows.add_child(detail_icon_button)
+		var item_name:=inv_label(str(item["name"]),16,Color("f0dcae"))
+		item_name.position=Vector2(199,326)
+		item_name.size=Vector2(270,24)
+		inv_rows.add_child(item_name)
+		var meta:=inv_label(DB.slot_name(item["slot"])+" · "+attack_type_label(item)+" · "+str(item.get("tier",1))+"단계",10,Color("b99d72"))
+		meta.position=Vector2(199,349)
+		meta.size=Vector2(270,18)
+		inv_rows.add_child(meta)
+		var effect_label:=inv_label(str(item.get("effect","")),11,Color("d8d1c2"))
+		effect_label.position=Vector2(199,368)
+		effect_label.size=Vector2(275,39)
 		effect_label.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART
-		description.add_child(effect_label)
+		inv_rows.add_child(effect_label)
 		var equip_button:=Button.new()
 		equip_button.text="장착"
+		equip_button.position=Vector2(519,347)
+		equip_button.size=Vector2(72,34)
 		equip_button.focus_mode=Control.FOCUS_NONE
-		equip_button.custom_minimum_size=Vector2(94,42)
+		equip_button.add_theme_font_size_override("font_size",14)
+		equip_button.add_theme_color_override("font_color",Color("e7dcc5"))
+		style_action_button(equip_button,false)
 		equip_button.pressed.connect(func():equip_bag(inventory_selection))
-		footer.add_child(description)
-		footer.add_child(equip_button)
+		inv_rows.add_child(equip_button)
 		var destroy:=Button.new()
 		destroy.text="파기"
+		destroy.position=Vector2(610,347)
+		destroy.size=Vector2(72,34)
 		destroy.focus_mode=Control.FOCUS_NONE
-		destroy.custom_minimum_size=Vector2(94,42)
+		destroy.add_theme_font_size_override("font_size",14)
+		style_action_button(destroy,true)
 		destroy.pressed.connect(func():
 			pending_destroy=inventory_selection
 			confirm.dialog_text=str(item["name"])+" ("+str(item.get("tier",1))+"단계)\n영구 파기하면 복구할 수 없습니다."
 			confirm.popup_centered(Vector2i(420,160))
 			confirm.get_cancel_button().grab_focus())
-		footer.add_child(destroy)
-	else: footer.add_child(inv_label("가방이 비어 있습니다. 장비는 가까이 가면 자동으로 획득합니다.",14))
-	inv_rows.add_child(footer)
+		inv_rows.add_child(destroy)
+	else:
+		var empty_label:=inv_label("가방이 비어 있습니다. 장비는 가까이 가면 자동으로 획득합니다.",14,Color("bcae91"))
+		empty_label.position=Vector2(200,350)
+		empty_label.size=Vector2(360,28)
+		inv_rows.add_child(empty_label)
 func destroy_confirmed() -> void:
 	if pending_destroy>=0 and pending_destroy<world.wallet["bag"].size(): world.wallet["bag"].remove_at(pending_destroy)
 	pending_destroy=-1
