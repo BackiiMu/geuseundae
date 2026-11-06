@@ -43,5 +43,6 @@ func _draw() -> void:
 	var size := Vector2(info["frameSize"][0], info["frameSize"][1])
 	var pivot := Vector2(info["pivot"][0], info["pivot"][1])
 	var columns := int(info["columns"])
-	var source := Rect2(Vector2(frame % columns, frame / columns) * size, size)
+	var row := floori(float(frame)/float(columns))
+	var source := Rect2(Vector2(frame % columns, row) * size, size)
 	draw_texture_rect_region(texture, Rect2(-pivot, size), source)

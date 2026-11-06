@@ -20,12 +20,11 @@ var was_dashing := false
 var dash_fx_texture: Texture2D
 var dash_fx_info: Dictionary = {}
 var dash_fx_age := 1.0
+var atlas := true
+var scale_override := 1.0
 func _ready() -> void:
 	texture_filter=CanvasItem.TEXTURE_FILTER_NEAREST
-	var key: String="warrior" if role=="boss" else role
-	var path: String="res://assets/actors/source/"+key+"-v1.png"
-	if not texture_cache.has(key) and ResourceLoader.exists(path): texture_cache[key]=load(path)
-	texture=texture_cache.get(key)
+	load_role_texture()
 	if role=="songaksi":
 		var vfx_manifest:Dictionary=JSON.parse_string(FileAccess.get_file_as_string("res://assets/vfx/manifest.json"))
 		dash_fx_info=vfx_manifest.get("dash-2",{})
@@ -35,6 +34,22 @@ func _ready() -> void:
 	shader_material=ShaderMaterial.new()
 	shader_material.shader=shader
 	material=shader_material
+
+func set_role(value: String) -> void:
+	role=value
+	load_role_texture()
+	queue_redraw()
+
+func load_role_texture() -> void:
+	var key: String="warrior" if role=="boss" else role
+	var path: String="res://assets/actors/source/"+key+"-v1.png"
+	atlas=ResourceLoader.exists(path)
+	if atlas:
+		if not texture_cache.has(key): texture_cache[key]=load(path)
+		texture=texture_cache[key]
+		return
+	var fallback:String=str({"mongdal":"res://assets/actors/concepts/mongdal-ghost-game-v1.png", "changgui":"res://assets/actors/concepts/changwi-peasant-game-v2.png"}.get(role,""))
+	texture=load(fallback) if not fallback.is_empty() and ResourceLoader.exists(fallback) else null
 func play_attack(duration := .25,windup := false) -> void:
 	action_duration=duration
 	action_time=duration
@@ -43,6 +58,37 @@ func release_attack() -> void:
 	action_duration=.2
 	action_time=.2
 	action_mode="release"
+
+func is_player_actor() -> bool:
+	return is_instance_valid(actor) and actor.has_method("start_dash")
+
+func draw_size() -> Vector2:
+	return {
+		"mihokbul":Vector2(46,52),
+		"hosikchong-wraith":Vector2(76,58),
+		"mountain-tiger":Vector2(78,58),
+		"jangsan-shadow":Vector2(92,66),
+		"jangsanbeom":Vector2(138,100)
+	}.get(role,Vector2(48,64))
+
+func new_heart_frame_metrics(frame: int) -> Vector3:
+	# Generated Mongdal/Changgui atlas cells have uneven opaque bounds. Normalize
+	# their idle/run silhouettes and keep the visible body centred on the feet.
+	# Vector3: opaque centre X, opaque bottom Y, scale correction.
+	if role=="mongdal":
+		var heights:=[216.0,174.0,187.0,173.0,185.0,184.0,224.0,198.0,173.0,160.0,177.0,147.0,140.0,141.0,157.0,165.0]
+		var centres:=[94.5,106.0,108.5,109.0,121.5,122.5,95.5,110.0,94.5,105.0,90.0,101.5,96.0,101.5,94.0,108.5]
+		var bottoms:=[242.0,243.0,243.0,243.0,243.0,243.0,242.0,242.0,241.0,241.0,241.0,239.0,235.0,235.0,241.0,242.0]
+		var target_height:=185.0
+		return Vector3(centres[frame],bottoms[frame],target_height/heights[frame])
+	if role=="changgui":
+		var heights:=[156.0,158.0,161.0,164.0,164.0,158.0,153.0,148.0,145.0,144.0,139.0,146.0,154.0,144.0,139.0,143.0]
+		var centres:=[114.0,113.5,114.5,114.0,114.0,114.5,115.5,116.0,114.0,116.0,112.5,112.0,108.0,117.5,121.0,119.0]
+		var bottoms:=[242.0,242.0,241.0,242.0,242.0,241.0,242.0,242.0,241.0,241.0,241.0,241.0,241.0,241.0,241.0,241.0]
+		var target_height:=158.0
+		return Vector3(centres[frame],bottoms[frame],target_height/heights[frame])
+	return Vector3(96.0,243.0,1.0)
+
 func _physics_process(delta: float) -> void:
 	if not is_instance_valid(actor): return
 	if is_instance_valid(combat) and combat.paused:
@@ -53,7 +99,7 @@ func _physics_process(delta: float) -> void:
 	action_time=maxf(0,action_time-delta)
 	dash_trail_time=maxf(0,dash_trail_time-delta)
 	dash_fx_age+=delta
-	var dashing: bool=role=="songaksi" and actor.dash_time>0
+	var dashing: bool=is_player_actor() and actor.dash_time>0
 	if dashing and not was_dashing:
 		dash_trail_time=.18
 		dash_trail_direction=actor.dash_direction.normalized()
@@ -61,7 +107,7 @@ func _physics_process(delta: float) -> void:
 	was_dashing=dashing
 	var tint:=Color.WHITE
 	var flash:=0.0
-	if role=="songaksi":
+	if is_player_actor():
 		var hurt:float=combat.hurt_timer if is_instance_valid(combat) else 0.0
 		if hurt>.48:
 			animation="hurt"
@@ -114,31 +160,45 @@ func _physics_process(delta: float) -> void:
 	queue_redraw()
 func _draw() -> void:
 	if texture==null or not is_instance_valid(actor): return
-	var scale_factor:=1.5 if boss else 1.0
+	var scale_factor:=(1.5 if boss and role=="boss" else 1.0)*scale_override
 	var direction:float=actor.facing
-	var source_size:=Vector2(texture.get_width()/8.0,texture.get_height()/4.0)
-	var source:=Rect2(Vector2(frame_index%8,frame_index/8)*source_size,source_size)
-	if role=="songaksi" and dash_fx_texture!=null and not dash_fx_info.is_empty():
+	var target_size:=draw_size()
+	var target_rect:=Rect2(-target_size.x*.5,-target_size.y+2,target_size.x,target_size.y)
+	if role=="mihokbul": target_rect.position.y-=28
+	# The beast atlas has transparent pixels below its paws; place the visible paws on the floor.
+	if role=="jangsanbeom": target_rect.position.y+=15
+	var source_size:=Vector2(texture.get_width()/8.0,texture.get_height()/4.0) if atlas else texture.get_size()
+	var source_row:=floori(float(frame_index)/8.0)
+	var source:=Rect2(Vector2(frame_index%8,source_row)*source_size,source_size) if atlas else Rect2(Vector2.ZERO,source_size)
+	var frame_offset:=Vector2.ZERO
+	var frame_scale:=1.0
+	if atlas and is_player_actor() and role in ["mongdal","changgui"] and frame_index<16:
+		var metrics:=new_heart_frame_metrics(frame_index)
+		frame_offset=Vector2(direction*(source_size.x*.5-metrics.x)*target_size.x/source_size.x,(243.0-metrics.y)*target_size.y/source_size.y)
+		frame_scale=metrics.z
+	if is_player_actor() and dash_fx_texture!=null and not dash_fx_info.is_empty():
 		var dash_frames:int=int(dash_fx_info["frames"])
 		var dash_fps:float=float(dash_fx_info["fps"])
 		if dash_fx_age<float(dash_frames)/dash_fps:
 			var dash_frame:=clampi(int(dash_fx_age*dash_fps),0,dash_frames-1)
 			var dash_size:=Vector2(dash_fx_info["frameSize"][0],dash_fx_info["frameSize"][1])
 			var dash_pivot:=Vector2(dash_fx_info["pivot"][0],dash_fx_info["pivot"][1])
-			var dash_source:=Rect2(Vector2(dash_frame%int(dash_fx_info["columns"]),dash_frame/int(dash_fx_info["columns"]))*dash_size,dash_size)
+			var dash_columns:=int(dash_fx_info["columns"])
+			var dash_row:=floori(float(dash_frame)/float(dash_columns))
+			var dash_source:=Rect2(Vector2(dash_frame%dash_columns,dash_row)*dash_size,dash_size)
 			var dash_angle:=dash_trail_direction.angle()
 			var dash_flip:=cos(dash_angle)<0
 			var dash_rotation:=dash_angle-PI if dash_flip else dash_angle
 			draw_set_transform(Vector2.ZERO,dash_rotation,Vector2(-.7 if dash_flip else .7,.7))
 			draw_texture_rect_region(dash_fx_texture,Rect2(-dash_pivot,dash_size),dash_source,Color(0.72,0.84,0.8,.72))
-	if role=="songaksi" and dash_trail_time>0:
+	if is_player_actor() and dash_trail_time>0:
 		var life:=dash_trail_time/.18
 		var spread:=(1.0-life)*10.0
 		for i in range(2,0,-1):
 			var offset:=-dash_trail_direction*(float(i)*12.0+spread)
 			var alpha:=life*(.07+float(3-i)*.055)
 			draw_set_transform(offset.round(),0,Vector2(direction*scale_factor,scale_factor))
-			draw_texture_rect_region(texture,Rect2(-24,-62,48,64),source,Color(0.18,0.36,0.4,alpha))
-	draw_set_transform(Vector2.ZERO,0,Vector2(direction*scale_factor,scale_factor))
-	draw_texture_rect_region(texture,Rect2(-24,-62,48,64),source)
+			draw_texture_rect_region(texture,target_rect,source,Color(0.18,0.36,0.4,alpha))
+	draw_set_transform(frame_offset,0,Vector2(direction*scale_factor*frame_scale,scale_factor*frame_scale))
+	draw_texture_rect_region(texture,target_rect,source)
 	draw_set_transform(Vector2.ZERO)

@@ -30,7 +30,7 @@ func run_checks() -> void:
 	if not check(not world.summon_in_progress and world.player.visual.visible and world.player.visual.modulate.r<.1,"Spawn ends as the black humanoid form"): return
 	if not check(is_instance_valid(world.songaksi_npc),"Songaksi NPC is present in the village"): return
 	world.open_songaksi_dialog()
-	if not check(world.songaksi_dialog.visible and world.songaksi_dialog.dialog_text=="내 심장을 가져갈래?","Songaksi asks for an explicit yes/no choice"): return
+	if not check(world.songaksi_dialog.visible and world.songaksi_dialog.dialog_text.begins_with("내 심장을 가져갈래?"),"Songaksi asks for an explicit yes/no choice"): return
 	world.songaksi_dialog.hide()
 	world.accept_songaksi_heart()
 	await frames(2)

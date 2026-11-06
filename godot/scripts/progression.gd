@@ -7,10 +7,13 @@ static var profile: Dictionary = {}
 
 static func load_profile() -> Dictionary:
 	if not profile.is_empty(): return profile
-	profile = {"unlocked_hearts":["songaksi"],"unlocked_sets":[]}
+	profile = {"unlocked_hearts":["songaksi","mongdal"],"unlocked_sets":[]}
 	if FileAccess.file_exists(SAVE_PATH):
 		var parsed = JSON.parse_string(FileAccess.get_file_as_string(SAVE_PATH))
 		if parsed is Dictionary: profile.merge(parsed, true)
+	# Mongdal is a starting identity. Migrate older local profiles as well.
+	if not profile["unlocked_hearts"].has("mongdal"):
+		profile["unlocked_hearts"].append("mongdal")
 	return profile
 
 static func unlock_changgui_and_jangsan() -> bool:

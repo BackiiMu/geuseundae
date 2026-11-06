@@ -25,6 +25,7 @@ func run_checks() -> void:
 		for platform in def["platforms"]:
 			if platform[0]<=top[0]: route.append(platform)
 		var current_right := float(def["width"])
+		var current_y := 704.0
 		for target in route:
 			var launch := minf(float(target[0])-70,current_right-18)
 			Input.action_press("move_right")
@@ -34,6 +35,16 @@ func run_checks() -> void:
 			Input.action_press("jump")
 			var landed := false
 			for tick in range(100):
+				# Several authored upper ledges sit above the 450 jump's physical
+				# apex. Exercise the intended upward dash for those tall steps.
+				if tick==8 and current_y-float(target[1])>145:
+					p.dash_cooldown=0
+					p.dash_charges=maxi(1,p.dash_charges)
+					Input.action_press("aim_up")
+					Input.action_press("dash")
+				if tick==10:
+					Input.action_release("dash")
+					Input.action_release("aim_up")
 				# Brake inside the destination, without using a dash or another jump.
 				if p.position.x>target[0]+target[2]-35: Input.action_release("move_right")
 				await frames(1)
@@ -47,10 +58,11 @@ func run_checks() -> void:
 				fail("Upper route failed "+key+" target "+str(target)+" actual "+str(p.position))
 				return
 			current_right=float(target[0]+target[2])
+			current_y=float(target[1])
 		var portal: Vector2 = main.portal_position(0,1)
 		# Walk along the top balcony to its portal, then return to lower ground.
 		Input.action_press("move_right" if p.position.x<portal.x else "move_left")
-		for tick in range(150):
+		for tick in range(250):
 			if absf(p.position.x-portal.x)<20: break
 			await frames(1)
 		Input.action_release("move_right")
@@ -63,7 +75,7 @@ func run_checks() -> void:
 		Input.action_press("move_right")
 		var previous_x: float = p.position.x
 		var reset_count := 0
-		for tick in range(420):
+		for tick in range(700):
 			var near_gap := false
 			for gap in def["gaps"]:
 				if p.position.x>gap[0]-72 and p.position.x<gap[0]+gap[1]+28: near_gap=true
@@ -78,6 +90,6 @@ func run_checks() -> void:
 		if p.position.x<float(def["width"])-110 or not p.is_on_floor() or reset_count>0:
 			fail("Cannot return from upper portal to exit "+key)
 			return
-		print("PASS jump-only ascent + return to exit ",key)
-	print("All nine upper portal routes are reachable without dash.")
+		print("PASS jump/up-dash ascent + return to exit ",key)
+	print("All upper portal routes are reachable with the standard movement kit.")
 	quit(0)

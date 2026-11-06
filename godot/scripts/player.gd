@@ -2,7 +2,11 @@ extends CharacterBody2D
 const ActorSprite=preload("res://scripts/actor_sprite.gd")
 var visual: Node2D
 
-const SPEED = 280.0
+# Deliberate exploration pace: 60% of the original 280 movement speed.
+const SPEED = 168.0
+# Preserve authored platform reach while keeping ordinary ground traversal at
+# the requested 60% pace.
+const AIR_SPEED = 280.0
 # Slightly gentler jump arc: the old launch was too snappy for platform control.
 const JUMP = -450.0
 const GRAVITY = 700.0
@@ -12,6 +16,9 @@ var buffered_jump := 0.0
 var dash_direction := Vector2.RIGHT
 var dash_time := 0.0
 var dash_cooldown := 0.0
+var dash_max_charges := 1
+var dash_charges := 1
+var dash_recharge_timer := 0.0
 var facing := 1.0
 var spawn := Vector2(360, 590)
 var controls_enabled := true
@@ -26,7 +33,9 @@ const DOUBLE_TAP_WINDOW := .4
 var tap_windows := {"move_left":0.0,"move_right":0.0,"aim_up":0.0,"aim_down":0.0,"jump":0.0}
 
 func _ready() -> void:
-	for action in ["aim_up", "aim_down"]:
+	# Player-only test scenes do not have RandomRun's input bootstrap, so make
+	# every action queried by this script safe on its own as well.
+	for action in ["aim_up", "aim_down", "attack_left", "attack_right", "attack"]:
 		if not InputMap.has_action(action):
 			InputMap.add_action(action)
 	var direction_keys := {"aim_up": [KEY_W], "aim_down": [KEY_S]}
@@ -60,18 +69,30 @@ func _ready() -> void:
 	add_child(visual)
 	queue_redraw()
 
+func set_heart_role(role: String, charges := 1) -> void:
+	dash_max_charges=maxi(1,charges)
+	dash_charges=dash_max_charges
+	dash_recharge_timer=0
+	if is_instance_valid(visual): visual.set_role(role)
+
 func respawn() -> void:
 	position = spawn
 	velocity = Vector2.ZERO
 	dash_time = 0.0
+	dash_charges=dash_max_charges
+	dash_recharge_timer=0
 	for action in tap_windows: tap_windows[action]=0.0
 	camera.reset_smoothing()
 
 func start_dash(direction: Vector2) -> void:
-	if dash_cooldown>0: return
+	if dash_cooldown>0 or dash_charges<=0: return
+	dash_charges-=1
 	dash_direction = direction.normalized() if direction.length_squared()>0 else Vector2(facing,0)
 	dash_time = .12
-	dash_cooldown = .65
+	# A short input gate permits Mongdal's three dashes to chain. Each spent
+	# charge still takes the original 0.65 seconds to regenerate.
+	dash_cooldown = .12
+	if dash_recharge_timer<=0: dash_recharge_timer=.65
 	buffered_jump = 0
 	for action in tap_windows: tap_windows[action]=0.0
 
@@ -80,7 +101,7 @@ func register_double_tap(action: String,direction: Vector2) -> bool:
 	return register_tap(action,direction)
 
 func register_tap(action: String,direction: Vector2) -> bool:
-	if float(tap_windows[action])>0 and dash_cooldown<=0:
+	if float(tap_windows[action])>0 and dash_cooldown<=0 and dash_charges>0:
 		start_dash(direction)
 		return true
 	tap_windows[action]=DOUBLE_TAP_WINDOW
@@ -143,6 +164,11 @@ func _physics_process(delta: float) -> void:
 		facing = signf(axis)
 		queue_redraw()
 	dash_cooldown = maxf(0.0, dash_cooldown - delta)
+	if dash_charges<dash_max_charges:
+		dash_recharge_timer=maxf(0.0,dash_recharge_timer-delta)
+		if dash_recharge_timer<=0:
+			dash_charges+=1
+			dash_recharge_timer=.65 if dash_charges<dash_max_charges else 0.0
 	for action in tap_windows: tap_windows[action]=maxf(0,float(tap_windows[action])-delta)
 	var input_direction := Vector2(axis,Input.get_axis("aim_up","aim_down"))
 	# The dedicated jump button can double-tap into an upward (or running
@@ -154,7 +180,7 @@ func _physics_process(delta: float) -> void:
 		double_dash = register_double_tap("move_right",Vector2.RIGHT) or double_dash
 		double_dash = register_double_tap("aim_up",Vector2.UP) or double_dash
 		double_dash = register_double_tap("aim_down",Vector2.DOWN) or double_dash
-	if Input.is_action_just_pressed("dash") and dash_cooldown<=0:
+	if Input.is_action_just_pressed("dash") and dash_cooldown<=0 and dash_charges>0:
 		start_dash(input_direction)
 		double_dash = true
 	if Input.is_action_just_pressed("jump") and drop_timer<=0 and not double_dash:
@@ -163,10 +189,12 @@ func _physics_process(delta: float) -> void:
 		dash_time -= delta
 		velocity = dash_direction * DASH_SPEED
 	else:
-		velocity.x = move_toward(velocity.x, axis * SPEED * movement_multiplier, 2200 * delta)
+		var move_speed:=AIR_SPEED if not is_on_floor() else SPEED
+		velocity.x = move_toward(velocity.x, axis * move_speed * movement_multiplier, 2200 * delta)
 		velocity.y = minf(velocity.y + GRAVITY * delta, 1000)
 		if buffered_jump > 0 and coyote > 0 and drop_timer<=0:
 			velocity.y = JUMP
+			if absf(axis)>.01: velocity.x=axis*AIR_SPEED*movement_multiplier
 			buffered_jump = 0
 			coyote = 0
 		if Input.is_action_just_released("jump") and velocity.y < -280:

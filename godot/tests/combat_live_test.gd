@@ -17,6 +17,10 @@ func run_checks() -> void:
 	combat.data["cleared"]=false
 	world.player.position=Vector2(500,704)
 	world.player.facing=1
+	# Live input needs an explicit weapon; a heartless player intentionally
+	# starts with empty hands and must not attack.
+	combat.equipment["heart"]="songaksi"
+	combat.equipment["main"]="songaksi_hand"
 	combat.health=60
 	var enemy=combat.spawn_enemy("warrior",Vector2(565,704),91)
 	Input.action_press("attack")

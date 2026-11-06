@@ -8,6 +8,7 @@ const InventoryHeartIcon = preload("res://scripts/inventory_heart_icon.gd")
 const InventoryAccessoryRail = preload("res://scripts/inventory_accessory_rail.gd")
 const InventoryModularSkin = preload("res://scripts/inventory_modular_skin.gd")
 const InventoryFont = preload("res://assets/fonts/NotoSansKR-Semibold.ttf")
+const HeartDB = preload("res://scripts/heart_db.gd")
 var vfx: Node2D
 const Arsenal = preload("res://scripts/equipment_runtime.gd")
 var arsenal = Arsenal.new()
@@ -18,6 +19,7 @@ var world: Node2D
 var enabled := true
 var paused := false
 var health := 60.0
+var max_health := 60.0
 var hurt_timer := 0.0
 var heart_cd := 0.0
 var skill_cd := {"main":0.0,"off":0.0}
@@ -54,6 +56,7 @@ var heart_windup := 0.0
 var tooth_ammo := 8
 var tooth_reload := 0.0
 var hit_pause := 0.0
+var boss_transitioning := false
 var attack_serial := 0
 var visual_clock := 0.0
 var drop_textures := {}
@@ -118,6 +121,7 @@ func message(text: String) -> void:
 	toast.text=text
 	toast_time=3
 func leave_room() -> void:
+	boss_transitioning=false
 	arsenal.reset_room()
 	if is_instance_valid(vfx): vfx.clear()
 	if not data.is_empty(): data["pickups"]=pickups.duplicate(true)
@@ -140,8 +144,9 @@ func enter_room(room_data: Dictionary) -> void:
 	if data.get("cleared",false): return
 	var width:=float(world.room.definition["width"])
 	if world.current_id==world.run["goal"]:
-		spawn_enemy("boss",safe_ground(width*.45),0)
-		message("퇴마단 선봉대장 · 적을 모두 처치하면 문이 열립니다")
+		var boss_kind:="jangsanbeom" if world.floor_number>=2 else "boss"
+		spawn_enemy(boss_kind,safe_ground(width*.45),0)
+		message(("장산범" if boss_kind=="jangsanbeom" else "퇴마단 선봉대장")+" · 적을 처치하면 문이 열립니다")
 	else:
 		var candidates: Array = []
 		for x in range(352,int(width)-180,64):
@@ -153,11 +158,16 @@ func enter_room(room_data: Dictionary) -> void:
 		for i in range(mini(3,candidates.size())):
 			var index:=rng.randi_range(0,candidates.size()-1)
 			var pos: Vector2 = candidates.pop_at(index)
-			spawn_enemy((["warrior","warrior","adept"] if world.current_id==world.run.get("start",0) else ["warrior","adept","monk"])[i],pos,i)
+			if world.floor_number>=2:
+				var mountain_kinds:=["changgui-remnant","mihokbul","hosikchong-wraith","mountain-tiger"]
+				var mountain_kind:String="jangsan-shadow" if i==0 and world.current_id>0 and world.current_id%4==0 else mountain_kinds[(world.current_id+i)%mountain_kinds.size()]
+				spawn_enemy(mountain_kind,pos,i)
+			else:
+				spawn_enemy((["warrior","warrior","adept"] if world.current_id==world.run.get("start",0) else ["warrior","adept","monk"])[i],pos,i)
 func spawn_enemy(kind: String, pos: Vector2, uid: int) -> Node:
 	var enemy=Enemy.new()
 	enemy.kind=kind
-	enemy.hp=420 if kind=="boss" else 60 if kind=="monk" else 20 if kind=="adept" else 30
+	enemy.hp=-1
 	enemy.position=pos
 	enemy.uid=uid
 	enemy.director=self
@@ -219,7 +229,7 @@ func hurt(amount: float) -> void:
 func enemy_killed(enemy: Node) -> void:
 	arsenal.killed(enemy)
 	frenzy=3
-	if enemy.boss:
+	if enemy.kind=="jangsanbeom":
 		# The Chapter 2 reward pool starts with the finished legendary paw. Keeping
 		# it as an array makes later Jangsan set pieces a drop-in addition.
 		var jangsan_rewards := ["jangsan_paw"]
@@ -227,8 +237,10 @@ func enemy_killed(enemy: Node) -> void:
 		world.wallet["bag"].append(reward)
 		var newly_unlocked := Progression.unlock_changgui_and_jangsan()
 		message("장산범 처치 · "+str(reward["name"])+" 획득"+(" · 장산범 장비·창귀 심장 해금" if newly_unlocked else ""))
+	elif enemy.boss:
+		message("퇴마단 선봉대장 처치 · 안개 낀 산으로 향하는 길이 열렸습니다")
 	if has_passive("heal") and regen_cd<=0:
-		health=minf(60,health+3)
+		health=minf(max_health,health+3)
 		regen_cd=.6
 	if enemy.boss or rng.randf()<.6:
 		pickups.append({"kind":"souls","amount":30 if enemy.boss else rng.randi_range(1,3),"pos":safe_ground(enemy.position.x)+Vector2(0,-18)})
@@ -274,6 +286,20 @@ func use_skill(slot: String) -> void:
 	arsenal.skill(slot)
 func use_heart() -> void:
 	if heart_cd>0: return
+	var heart_id:=str(equipment.get("heart",""))
+	var heart:=HeartDB.get_heart(heart_id)
+	if heart.is_empty(): return
+	# Mongdal has no Q skill; its identity is three rechargeable dashes.
+	if heart_id=="mongdal": return
+	if heart_id=="changgui":
+		var targets:=living()
+		if targets.is_empty(): return
+		for enemy in targets:
+			enemy.stun=maxf(enemy.stun,4.0)
+			vfx.changgui_soul_bind(enemy)
+		heart_animation=4.0
+		heart_cd=float(heart["cooldown"])
+		return
 	var selected: Array = []
 	for enemy in living():
 		if visible_rect().has_point(enemy.position+Vector2(0,-25)): selected.append(enemy)
@@ -286,7 +312,7 @@ func use_heart() -> void:
 	vfx.emit("seal",3,world.player.position+Vector2(0,-30),Vector2.RIGHT,.85,Color("b6cccd"))
 	heart_windup=.25
 	heart_animation=1.1
-	heart_cd=30
+	heart_cd=float(heart["cooldown"])
 func nearest_enemy(pos: Vector2,distance: float):
 	var target=null
 	for enemy in living():
@@ -418,7 +444,9 @@ func add_equipped_slot(board:Control,slot:String,label_text:String,pos:Vector2,l
 	style_movable_slot(button,false)
 	var item:=equipped(slot)
 	if slot=="heart" and str(equipment.get("heart",""))!="":
-		item={"name":"손각시의 심장","effect":"HP "+str(int(health))+" · 이리 오너라","slot":"heart"}
+		var heart:=HeartDB.get_heart(str(equipment["heart"]))
+		var identity:String="대시 3회" if str(equipment["heart"])=="mongdal" else str(heart.get("skill_name",""))
+		item={"name":heart.get("heart_name","심장"),"effect":"HP "+str(int(max_health))+" · "+identity,"slot":"heart"}
 		var heart_icon:=InventoryHeartIcon.new()
 		heart_icon.scale=Vector2.ONE*.8
 		heart_icon.position=Vector2(2,2)
@@ -725,7 +753,7 @@ func _physics_process(delta: float) -> void:
 	visual_clock += delta
 	if Input.is_action_just_pressed("inventory") and not confirm.visible and not (is_instance_valid(world.merchant) and world.merchant.opened): toggle_inventory()
 	hit_pause=maxf(0,hit_pause-delta)
-	paused=vfx_preview_paused or inventory.visible or world.floor_map_open or world.traveling or (is_instance_valid(world.merchant) and world.merchant.opened) or world.seed_input.has_focus() or hit_pause>0
+	paused=vfx_preview_paused or inventory.visible or world.floor_map_open or world.traveling or boss_transitioning or (is_instance_valid(world.merchant) and world.merchant.opened) or world.seed_input.has_focus() or hit_pause>0
 	if paused: return
 	hurt_timer=maxf(0,hurt_timer-delta)
 	heart_cd=maxf(0,heart_cd-delta)
@@ -771,14 +799,17 @@ func _physics_process(delta: float) -> void:
 	for i in range(effects.size()-1,-1,-1):
 		effects[i]["time"]-=delta
 		if effects[i]["time"]<=0: effects.remove_at(i)
-	hud.text="HP "+str(int(health))+" / 60   영혼조각 "+str(world.wallet["souls"])+"   가방 "+str(world.wallet["bag"].size())+"개 [Tab]"
-	var skills:="Q 심장 "+("준비" if heart_cd<=0 else str(int(ceil(heart_cd)))+"초")
+	hud.text="HP "+str(int(health))+" / "+str(int(max_health))+"   영혼조각 "+str(world.wallet["souls"])+"   가방 "+str(world.wallet["bag"].size())+"개 [Tab]"
+	var heart:Dictionary=HeartDB.get_heart(str(equipment.get("heart","")))
+	var skills:String="대시 "+str(world.player.dash_charges)+"/"+str(world.player.dash_max_charges) if str(equipment.get("heart",""))=="mongdal" else "Q "+str(heart.get("skill_name","심장"))+" "+("준비" if heart_cd<=0 else str(int(ceil(heart_cd)))+"초")
 	for slot in ["main","off"]:
 		if not str(equipped(slot).get("skill","")).is_empty() or (slot=="off" and duo_set()):
 			skills+="  |  "+("F 주무기 " if slot=="main" else "G 보조 ")+("준비" if float(skill_cd[slot])<=0 else str(int(ceil(skill_cd[slot])))+"초")
 	skill_bar.text=skills+"  |  방향키 공격 · J/좌클릭 공격 · F6 장비시험"
 	for enemy in living():
-		if enemy.boss: hud.text+="\n선봉대장 "+str(int(enemy.hp))+" / "+str(int(enemy.max_hp))
+		if enemy.boss:
+			var phase_text:=" · "+str(enemy.jangsan_phase)+"페이즈" if enemy.kind=="jangsanbeom" else ""
+			hud.text+="\n"+("장산범" if enemy.kind=="jangsanbeom" else "선봉대장")+" "+str(int(enemy.hp))+" / "+str(int(enemy.max_hp))+phase_text
 	queue_redraw()
 func _draw() -> void:
 	arsenal.draw()
@@ -837,7 +868,8 @@ func draw_provided_drop(pickup: Dictionary) -> bool:
 	var size := Vector2(info["frameSize"][0], info["frameSize"][1])
 	var pivot := Vector2(info["pivot"][0], info["pivot"][1])
 	var columns := int(info["columns"])
-	var source := Rect2(Vector2(frame % columns, frame / columns) * size, size)
+	var row := floori(float(frame)/float(columns))
+	var source := Rect2(Vector2(frame % columns, row) * size, size)
 	draw_texture_rect_region(drop_textures[key], Rect2(Vector2(pickup["pos"]) + Vector2(0, 18) - pivot, size), source)
 	return true
 
@@ -852,6 +884,7 @@ func draw_gear2_drop(pickup: Dictionary, name: String) -> bool:
 	var size := Vector2(info["frameSize"][0], info["frameSize"][1])
 	var pivot := Vector2(info["pivot"][0], info["pivot"][1])
 	var columns := int(info["columns"])
-	var source := Rect2(Vector2(frame % columns, frame / columns) * size, size)
+	var row := floori(float(frame)/float(columns))
+	var source := Rect2(Vector2(frame % columns, row) * size, size)
 	draw_texture_rect_region(drop_textures[key], Rect2(Vector2(pickup["pos"]) + Vector2(0,18) - pivot, size), source)
 	return true

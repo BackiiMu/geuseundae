@@ -10,6 +10,18 @@ const TravelProp = preload("res://scripts/travel_prop.gd")
 const FloorMapView = preload("res://scripts/floor_map_view.gd")
 const SummonEffect = preload("res://scripts/summon_effect.gd")
 const SongaksiNPC = preload("res://scripts/songaksi_npc.gd")
+const HeartNPC = preload("res://scripts/heart_npc.gd")
+const HeartDB = preload("res://scripts/heart_db.gd")
+const Progression = preload("res://scripts/progression.gd")
+const ChapterFogOverlay = preload("res://scripts/chapter_fog_overlay.gd")
+const MOUNTAIN_NAMES := {
+	"gate":"안개 고개","courtyard":"부서진 전망대","well":"메아리 웅덩이","hall":"바람 동굴",
+	"gallery":"절벽 잔도","forest":"검은 소나무숲","store":"산중 보급굴","shrine":"버려진 산신당",
+	"moon_gate":"흰안개 능선","collapsed_house":"무너진 암자","servants_quarters":"버려진 화전터",
+	"black_kitchen":"그을린 숯막","granary":"바위 창고","dry_pond":"마른 폭포터","bamboo_path":"귀울음 대숲",
+	"rotten_bridge":"썩은 현수교","ritual_yard":"호랑이 제단","grave_yard":"호식총 묘역",
+	"paper_corridor":"찢긴 금줄길","sanctum":"장산범의 소굴"
+}
 @export var start_in_village := false
 @export var combat_enabled := true
 var combat: Node2D
@@ -20,6 +32,8 @@ var wallet: Dictionary = {"souls":0,"bag":[]}
 var merchant: Node2D
 var songaksi_npc: Node2D
 var songaksi_dialog: ConfirmationDialog
+var heart_npcs: Dictionary = {}
+var pending_heart := "songaksi"
 var summon_in_progress := false
 var run: Dictionary
 var current_id := 0
@@ -50,6 +64,7 @@ var travel_phase := ""
 var travel_timer := 0.0
 var travel_destination := -1
 var travel_start_position := Vector2.ZERO
+var fog_layer: CanvasLayer
 
 func bind_action(action: String, keys: Array) -> void:
 	if not InputMap.has_action(action):
@@ -67,6 +82,7 @@ func _ready() -> void:
 	mouse.button_index=MOUSE_BUTTON_LEFT
 	InputMap.action_add_event("attack",mouse)
 	build_hud()
+	build_fog_overlay()
 	build_songaksi_dialog()
 	combat=CombatDirector.new()
 	combat.world=self
@@ -103,6 +119,23 @@ func fresh_seed() -> int:
 	# still be supplied again to reproduce that exact floor graph.
 	return session_rng.randi_range(1,2147483646)
 
+func display_room_name(template: String) -> String:
+	if not in_village and floor_number>=2:
+		return str(MOUNTAIN_NAMES.get(template,"안개 낀 산길"))
+	return str(Catalog.templates()[template]["name"])
+
+func build_fog_overlay() -> void:
+	fog_layer=CanvasLayer.new()
+	fog_layer.layer=5
+	add_child(fog_layer)
+	var overlay:=ChapterFogOverlay.new()
+	fog_layer.add_child(overlay)
+	fog_layer.hide()
+
+func update_chapter_overlay() -> void:
+	if is_instance_valid(fog_layer):
+		fog_layer.visible=not in_village and floor_number>=2
+
 func show_village() -> void:
 	in_village = true
 	complete = false
@@ -113,6 +146,7 @@ func show_village() -> void:
 
 func spawn_songaksi_npc() -> void:
 	if not in_village or not is_instance_valid(room): return
+	heart_npcs.clear()
 	songaksi_npc=SongaksiNPC.new()
 	songaksi_npc.position=Vector2(700,704)
 	var label:=Label.new()
@@ -121,6 +155,24 @@ func spawn_songaksi_npc() -> void:
 	label.add_theme_font_size_override("font_size",14)
 	songaksi_npc.add_child(label)
 	room.add_child(songaksi_npc)
+	heart_npcs["songaksi"]=songaksi_npc
+	var profile:=Progression.load_profile()
+	var positions:={"mongdal":Vector2(940,704),"changgui":Vector2(1180,704)}
+	for heart_id in ["mongdal","changgui"]:
+		var data:=HeartDB.get_heart(heart_id)
+		var npc:=HeartNPC.new()
+		npc.heart_id=heart_id
+		npc.display_name=data["name"]
+		npc.art_path=data["npc_art"]
+		npc.unlocked=HeartDB.unlocked(heart_id,profile)
+		npc.position=positions[heart_id]
+		var npc_label:=Label.new()
+		npc_label.text=str(data["name"])+("\n[E] 심장 빌리기" if npc.unlocked else "\n잠김 · 장산범 처치 필요")
+		npc_label.position=Vector2(-64,-92)
+		npc_label.add_theme_font_size_override("font_size",14)
+		npc.add_child(npc_label)
+		room.add_child(npc)
+		heart_npcs[heart_id]=npc
 
 func build_songaksi_dialog() -> void:
 	var layer:=CanvasLayer.new()
@@ -137,7 +189,19 @@ func build_songaksi_dialog() -> void:
 	layer.add_child(songaksi_dialog)
 
 func open_songaksi_dialog() -> void:
+	open_heart_dialog("songaksi")
+
+func open_heart_dialog(heart_id: String) -> void:
 	if summon_in_progress or combat.equipment.get("heart","")!="": return
+	var data:Dictionary=HeartDB.get_heart(heart_id)
+	if data.is_empty(): return
+	if not HeartDB.unlocked(heart_id,Progression.load_profile()):
+		combat.message(str(data["name"])+"의 심장은 아직 잠겨 있습니다")
+		return
+	pending_heart=heart_id
+	songaksi_dialog.title=str(data["name"])+"의 제안"
+	var identity:String="대시 3회" if heart_id=="mongdal" else "Q "+str(data["skill_name"])
+	songaksi_dialog.dialog_text="내 심장을 가져갈래?\nHP "+str(int(data["hp"]))+" · "+identity
 	player.controls_enabled=false
 	songaksi_dialog.popup_centered(Vector2i(420,180))
 
@@ -159,26 +223,38 @@ func play_player_summon(on_finished: Callable) -> void:
 	add_child(summon)
 
 func enter_heartless_form(with_summon := false) -> void:
+	var old_heart:=str(combat.equipment.get("heart",""))
 	combat.equipment["heart"]=""
-	# Songaksi's borrowed hand disappears with the borrowed body. It is granted
-	# fresh only when the player accepts her heart again.
-	if combat.equipment.get("main","")=="songaksi_hand": combat.equipment["main"]=""
+	var old_data:=HeartDB.get_heart(old_heart)
+	if not old_data.is_empty() and combat.equipment.get("main","")==old_data.get("starter",""):
+		combat.equipment["main"]=""
+	combat.max_health=1
+	combat.health=1
 	if is_instance_valid(player):
+		player.set_heart_role("songaksi",1)
 		player.visual.modulate=Color("11121a")
 	if with_summon: play_player_summon(func(): player.visual.modulate=Color("11121a"))
 
 func accept_songaksi_heart() -> void:
+	accept_heart(pending_heart)
+
+func accept_heart(heart_id: String) -> void:
 	if not is_instance_valid(player): return
+	var data:=HeartDB.get_heart(heart_id)
+	if data.is_empty(): return
 	play_player_summon(func():
-		combat.equipment["heart"]="songaksi"
+		combat.equipment["heart"]=heart_id
 		var bag:Array=wallet["bag"]
 		for i in range(bag.size()-1,-1,-1):
-			if str(bag[i].get("id",""))=="songaksi_hand": bag.remove_at(i)
-		if combat.equipment["main"]!="" and combat.equipment["main"]!="songaksi_hand": bag.append(combat.equipped("main"))
-		combat.equipment["main"]="songaksi_hand"
+			if str(bag[i].get("id",""))==str(data["starter"]): bag.remove_at(i)
+		if combat.equipment["main"]!="" and combat.equipment["main"]!=data["starter"]: bag.append(combat.equipped("main"))
+		combat.equipment["main"]=data["starter"]
+		player.set_heart_role(data["role"],int(data.get("dash_charges",1)))
 		player.visual.modulate=Color.WHITE
-		combat.health=60
-		combat.message("손각시의 심장을 빌렸습니다 · 손각시의 손 획득"))
+		combat.max_health=float(data["hp"])
+		combat.health=combat.max_health
+		combat.heart_cd=0
+		combat.message(str(data["name"])+"의 심장을 빌렸습니다 · "+str(CombatDirector.DB.get_item(data["starter"]).get("name","기본 무기"))+" 획득"))
 
 func has_heart() -> bool:
 	return str(combat.equipment.get("heart",""))!=""
@@ -219,6 +295,11 @@ func portal_position(source: int, destination: int) -> Vector2:
 	return Vector2(x,704)
 
 func change_room(id: int, previous: int) -> void:
+	var previous_dash_charges:=-1
+	var previous_dash_recharge:=0.0
+	if is_instance_valid(player):
+		previous_dash_charges=player.dash_charges
+		previous_dash_recharge=player.dash_recharge_timer
 	if is_instance_valid(combat): combat.leave_room()
 	if is_instance_valid(merchant):
 		remove_child(merchant)
@@ -238,6 +319,7 @@ func change_room(id: int, previous: int) -> void:
 		def=Catalog.templates()["sanctum"]
 		data["template"]="sanctum"
 	room = RoomView.new()
+	room.chapter=2 if not in_village and floor_number>=2 else 1
 	room.z_index=-20
 	add_child(room)
 	room.build(def,data["decor_seed"])
@@ -257,7 +339,7 @@ func change_room(id: int, previous: int) -> void:
 			portal_props[next] = portal
 		var label := Label.new()
 		label.position = door + Vector2(-62,-118)
-		label.text = ("[E] 보스문 · " if is_boss_door else "[E] 그림자 포탈 · ") + str(Catalog.templates()[run["rooms"][next]["template"]]["name"])
+		label.text = ("[E] 보스문 · " if is_boss_door else "[E] 그림자 포탈 · ") + display_room_name(str(run["rooms"][next]["template"]))
 		label.add_theme_font_size_override("font_size",15)
 		room.add_child(label)
 	room.queue_redraw()
@@ -270,6 +352,13 @@ func change_room(id: int, previous: int) -> void:
 	player.spawn = spawn_point
 	player.position = spawn_point
 	add_child(player)
+	var heart_id:=str(combat.equipment.get("heart","")) if is_instance_valid(combat) else ""
+	var heart:=HeartDB.get_heart(heart_id)
+	if not heart.is_empty():
+		player.set_heart_role(str(heart["role"]),int(heart.get("dash_charges",1)))
+		if previous_dash_charges>=0:
+			player.dash_charges=mini(player.dash_max_charges,previous_dash_charges)
+			player.dash_recharge_timer=previous_dash_recharge
 	player.camera.limit_right = def["width"]
 	player.camera.limit_bottom = 864
 	player.camera.reset_smoothing()
@@ -297,7 +386,7 @@ func change_room(id: int, previous: int) -> void:
 		add_child(merchant)
 		if not in_village and is_instance_valid(combat) and not data.get("rested",false):
 			data["rested"]=true
-			combat.health=60
+			combat.health=combat.max_health
 			combat.message("평화구역 · 도깨비의 쉼터에서 HP 회복")
 	if id == run["goal"]:
 		var exit_label := Label.new()
@@ -306,9 +395,11 @@ func change_room(id: int, previous: int) -> void:
 		exit_label.text = "[E] 구간 출구"
 		exit_label.add_theme_font_size_override("font_size",14)
 		room.add_child(exit_label)
-	title.text = str(def["name"]) + "  ·  SEED " + str(run["seed"]) + " / V" + str(run["version"]) + " / 포탈 " + str(data["links"].size()) + "개"
+	title.text = display_room_name(str(data["template"])) + "  ·  SEED " + str(run["seed"]) + " / V" + str(run["version"]) + " / 포탈 " + str(data["links"].size()) + "개"
 	if in_village: title.text = "흉가 마을 · 도깨비상인 / 재접속 시 재고 갱신"
+	elif floor_number>=2: title.text = "2챕터 · 안개 낀 산 · "+str(floor_number)+"층 · "+title.text
 	else: title.text = str(floor_number)+"층 · "+title.text
+	update_chapter_overlay()
 	minimap.queue_redraw()
 	if is_instance_valid(combat): combat.enter_room(data)
 	if in_village: call_deferred("add_village_exit_sign")
@@ -439,22 +530,26 @@ func _process(delta: float) -> void:
 	if combat_enabled and Input.is_action_just_pressed("boss_test"):
 		new_run(1103)
 		change_room(run["goal"],-1)
-		combat.health=60
+		combat.health=combat.max_health
 		combat.hurt_timer=1.0
 		return
 	if in_village:
-		if is_instance_valid(songaksi_npc) and player.position.distance_to(songaksi_npc.global_position)<90:
-			hint.text="E · 손각시와 대화"
-			if Input.is_action_just_pressed("interact"): open_songaksi_dialog()
-			return
+		for heart_id in heart_npcs:
+			var npc:Node2D=heart_npcs[heart_id]
+			if is_instance_valid(npc) and player.position.distance_to(npc.global_position)<90:
+				var data:=HeartDB.get_heart(heart_id)
+				var unlocked:=HeartDB.unlocked(heart_id,Progression.load_profile())
+				hint.text="E · "+str(data["name"])+("의 심장 빌리기" if unlocked else " · 잠김")
+				if Input.is_action_just_pressed("interact"): open_heart_dialog(heart_id)
+				return
 		if player.position.x>1570:
-			hint.text = "E · 1층으로 출발" if has_heart() else "심장이 없어 출발할 수 없습니다 · 손각시와 대화하세요"
+			hint.text = "E · 1층으로 출발" if has_heart() else "심장이 없어 출발할 수 없습니다 · 귀신에게 심장을 빌리세요"
 			if Input.is_action_just_pressed("interact"):
 				if has_heart():
 					floor_number=1
 					new_run(fresh_seed())
 				else: combat.message("심장이 없이는 흉가에 들어갈 수 없습니다")
-		else: hint.text = "마을 · 도깨비상인과 거래 / 오른쪽에서 1층 출발"
+		else: hint.text = "마을 · 심장 선택 / 도깨비상인과 거래 / 오른쪽에서 1층 출발"
 		return
 	if Input.is_action_just_pressed("new_run"):
 		new_run(int(run["seed"])+1)
@@ -478,7 +573,7 @@ func _process(delta: float) -> void:
 	if combat_enabled and Input.is_action_just_pressed("interact") and combat.try_open_chest():
 		return
 	if nearby >= 0:
-		hint.text = "E · " + str(Catalog.templates()[run["rooms"][portal_links[nearby]]["template"]]["name"])+" 이동"
+		hint.text = "E · " + display_room_name(str(run["rooms"][portal_links[nearby]]["template"]))+" 이동"
 		if cooldown<=0 and Input.is_action_just_pressed("interact"):
 			var destination: int = portal_links[nearby]
 			if destination == run["goal"]: change_room(destination,current_id)
@@ -497,7 +592,7 @@ func _process(delta: float) -> void:
 func update_web_status() -> void:
 	if not OS.has_feature("web") or not is_instance_valid(player) or not is_instance_valid(combat): return
 	var text:="마을" if in_village else str(floor_number)+"층 · "+str(room.definition["name"])
-	text+=" | HP "+str(int(combat.health))+"/60 | 영혼조각 "+str(wallet["souls"])+" | 남은 적 "+str(combat.living().size())
+	text+=" | HP "+str(int(combat.health))+"/"+str(int(combat.max_health))+" | 영혼조각 "+str(wallet["souls"])+" | 남은 적 "+str(combat.living().size())
 	if combat.inventory.visible: text+=" | 가방 열림 (일시정지)"
 	if is_instance_valid(merchant) and merchant.opened:
 		text+=" | 상점 · "+str(merchant.stock[merchant.selected]["name"])+" "+str(merchant.stock[merchant.selected]["price"])+"조각"
@@ -509,7 +604,6 @@ func update_web_status() -> void:
 func combat_death() -> void:
 	combat.inventory.hide()
 	combat.inventory_shade.hide()
-	combat.health=60
 	combat.heart_cd=0
 	combat.hurt_timer=1
 	show_village()
@@ -517,6 +611,7 @@ func combat_death() -> void:
 
 func build_hud() -> void:
 	var layer := CanvasLayer.new()
+	layer.layer=10
 	add_child(layer)
 	var panel := ColorRect.new()
 	panel.position = Vector2(10,10)
@@ -646,6 +741,7 @@ func toggle_equipment_lab() -> void:
 	run={"seed":1103,"version":Generator.VERSION,"goal":0,"rooms":[{"id":0,"template":"sanctum","links":[],"grid":[0,0],"decor_seed":1103,"visited":true}]}
 	change_room(0,-1)
 	combat.equipment={"heart":"songaksi","main":"songaksi_hand","off":"","head":"","legs":"","feet":"","a0":"","a1":"","a2":"","a3":""}
+	combat.max_health=60
 	combat.health=60
 	lab_index=0
 	reset_lab_targets()
@@ -673,7 +769,7 @@ func reset_lab_targets() -> void:
 	combat.data=run["rooms"][0]
 	combat.data["cleared"]=false
 	combat.pickups.clear()
-	combat.health=60
+	combat.health=combat.max_health
 	combat.heart_cd=0
 	combat.skill_cd={"main":0.0,"off":0.0}
 	combat.tooth_ammo=8

@@ -59,7 +59,9 @@ func run_checks() -> void:
 		var resets := 0
 		var previous_x: float = p.position.x
 		var gaps: Array = Catalog.templates()[template]["gaps"]
-		for tick in range(480):
+		# Base movement is now 60% of its original speed; preserve the same
+		# physical traversal distance instead of shortening the authored rooms.
+		for tick in range(800):
 			var near_gap := false
 			for gap in gaps:
 				if p.position.x>gap[0]-72 and p.position.x<gap[0]+gap[1]+28:

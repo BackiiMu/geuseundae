@@ -52,6 +52,7 @@ await library('seal-4','shadow/hex-sigil',ink,1.4,1.6,[0,-50]);
 await library('fist-4','geuseundae/shadow-fist',null,0,.72);
 await library('beam-3','arcane/arcane-beam',null,0,1.2,[15,-24]);
 await dedicated('dash-2','geuseundae/shadow-dash');
+await dedicated('changgui-soul-bind','geuseundae/changgui-soul-bind');
 // Chapter 1 enemy tells: every archetype gets a bright, readable release and
 // its own palette instead of sharing the player's temporary placeholder art.
 await library('enemy-warrior-cleave','melee/double-slash',['#161b25','#30445a','#6f92a0','#bad8d0','#f3f0d0'],.08,.7,[0,-20]);

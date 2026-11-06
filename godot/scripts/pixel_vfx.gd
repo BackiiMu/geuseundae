@@ -131,6 +131,13 @@ func enemy(name: String, pos: Vector2, direction := Vector2.RIGHT, size := 1.0) 
 		bursts.pop_front()
 	bursts.append({"key":name,"pos":pos,"angle":direction.angle(),"size":size,"tint":Color.WHITE,"age":0.0,"speed":1.0})
 
+func changgui_soul_bind(owner: Node) -> void:
+	const KEY := "changgui-soul-bind"
+	if not manifest.has(KEY) or not is_instance_valid(owner): return
+	var info:Dictionary=manifest[KEY]
+	if bursts.size()>=40: bursts.pop_front()
+	bursts.append({"key":KEY,"owner":owner,"offset":Vector2.ZERO,"pos":owner.position,"angle":0.0,"size":1.0,"tint":Color.WHITE,"age":0.0,"speed":1.0,"duration":float(info["frames"])/float(info["fps"])})
+
 func load_monster(name: String) -> Dictionary:
 	if not monster_info.has(name):
 		var base := "res://assets/monster_vfx/"+name
@@ -192,7 +199,9 @@ func gear3_sheet(name: String,pos: Vector2,age: float,angle: float,size := 1.0) 
 	var frame := mini(int(age*float(info["fps"])),int(info["frames"])-1)
 	var frame_size := Vector2(info["frameSize"][0],info["frameSize"][1])
 	var pivot := Vector2(info["pivot"][0],info["pivot"][1])
-	var source := Rect2(Vector2(frame%int(info["columns"]),frame/int(info["columns"]))*frame_size,frame_size)
+	var columns:=int(info["columns"])
+	var row:=floori(float(frame)/float(columns))
+	var source := Rect2(Vector2(frame%columns,row)*frame_size,frame_size)
 	# The supplied claw sprite faces right.  Flip the left half, then rotate it so
 	# mouse aim and the eight keyboard aim directions share the same attack arc.
 	var flip := cos(angle)<0
@@ -208,7 +217,8 @@ func gear2_sheet(name: String,pos: Vector2,age: float,angle: float,size := 1.0,l
 	var frame_size:=Vector2(info["frameSize"][0],info["frameSize"][1])
 	var pivot:=Vector2(info["pivot"][0],info["pivot"][1])
 	var columns:=int(info["columns"])
-	var source:=Rect2(Vector2(frame%columns,frame/columns)*frame_size,frame_size)
+	var row:=floori(float(frame)/float(columns))
+	var source:=Rect2(Vector2(frame%columns,row)*frame_size,frame_size)
 	var flip:=cos(angle)<0
 	var rotation:=angle-PI if flip else angle
 	draw_set_transform(pos.round(),rotation,Vector2(-size if flip else size,size))
@@ -221,7 +231,8 @@ func provided_sheet(name: String, pos: Vector2, age: float, angle: float) -> voi
 	var frame_size := Vector2(info["frameSize"][0], info["frameSize"][1])
 	var pivot := Vector2(info["pivot"][0], info["pivot"][1])
 	var columns := int(info["columns"])
-	var source := Rect2(Vector2(frame % columns, frame / columns) * frame_size, frame_size)
+	var row := floori(float(frame)/float(columns))
+	var source := Rect2(Vector2(frame % columns, row) * frame_size, frame_size)
 	var flip := cos(angle) < 0
 	var rotation := angle-PI if flip else angle
 	draw_set_transform(pos.round(), rotation, Vector2(-1 if flip else 1, 1))
@@ -235,7 +246,8 @@ func monster_sheet(name: String,pos: Vector2,age: float,angle: float,size := 1.0
 	var frame_size:=Vector2(info["frameSize"][0],info["frameSize"][1])
 	var pivot:=Vector2(info["pivot"][0],info["pivot"][1])
 	var columns:=int(info["columns"])
-	var source:=Rect2(Vector2(frame%columns,frame/columns)*frame_size,frame_size)
+	var row:=floori(float(frame)/float(columns))
+	var source:=Rect2(Vector2(frame%columns,row)*frame_size,frame_size)
 	var flip:=cos(angle)<0
 	var rotation:float=(angle-PI if flip else angle) if rotate else 0.0
 	draw_set_transform(pos.round(),rotation,Vector2(-size if flip else size,size))
@@ -247,7 +259,9 @@ func sheet(key: String,pos: Vector2,age: float,size: float,tint: Color,angle := 
 	var frame:=clampi(int(age*float(info["fps"])),0,int(info["frames"])-1)
 	var frame_size:=Vector2(info["frameSize"][0],info["frameSize"][1])
 	var pivot:=Vector2(info["pivot"][0],info["pivot"][1])
-	var source:=Rect2(Vector2(frame%int(info["columns"]),frame/int(info["columns"]))*frame_size,frame_size)
+	var columns:=int(info["columns"])
+	var row:=floori(float(frame)/float(columns))
+	var source:=Rect2(Vector2(frame%columns,row)*frame_size,frame_size)
 	# Horizontal mirroring keeps a left swing's gravity and upright fist intact.
 	var flip:=cos(angle)<0
 	var rotation:=angle-PI if flip else angle
@@ -311,7 +325,9 @@ func draw_beam(from: Vector2,to: Vector2) -> void:
 	var frame:=int(clock*float(info["fps"]))%int(info["frames"])
 	var frame_size:=Vector2(info["frameSize"][0],info["frameSize"][1])
 	var pivot:=Vector2(info["pivot"][0],info["pivot"][1])
-	var source:=Rect2(Vector2(frame%int(info["columns"]),frame/int(info["columns"]))*frame_size,frame_size)
+	var columns:=int(info["columns"])
+	var row:=floori(float(frame)/float(columns))
+	var source:=Rect2(Vector2(frame%columns,row)*frame_size,frame_size)
 	draw_set_transform(from.round(),(to-from).angle(),Vector2(from.distance_to(to)/96.0,1))
 	draw_texture_rect_region(gear2_textures["hollow-gaze-beam"],Rect2(-pivot,frame_size),source)
 	draw_set_transform(Vector2.ZERO)

@@ -29,7 +29,9 @@ func _draw() -> void:
 	if not playing or info.is_empty(): return
 	var frame:=mini(int(info["frames"])-1,int(elapsed*float(info["fps"])))
 	var frame_size:=Vector2(info["frameSize"][0],info["frameSize"][1])
-	var source:=Rect2(Vector2(frame%int(info["columns"]),frame/int(info["columns"]))*frame_size,frame_size)
+	var columns:=int(info["columns"])
+	var row:=floori(float(frame)/float(columns))
+	var source:=Rect2(Vector2(frame%columns,row)*frame_size,frame_size)
 	var pivot:=Vector2(info["pivot"][0],info["pivot"][1])
 	# Keep the confirmation inside a single bag socket instead of floating over
 	# neighbouring items.

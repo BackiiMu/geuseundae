@@ -46,7 +46,7 @@ func rebuild() -> void:
 		button.position = room_points[id]-Vector2(47,18)
 		button.size = Vector2(94,36)
 		button.focus_mode = Control.FOCUS_NONE
-		var room_name := str(Catalog.templates()[data["template"]]["name"])
+		var room_name: String = str(world.display_room_name(str(data["template"])))
 		if id == world.current_id:
 			button.text = "● 현재 위치"
 		elif id == world.run["goal"]:

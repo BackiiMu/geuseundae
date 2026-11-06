@@ -8,9 +8,16 @@ var platforms: Array[Rect2] = []
 var door_positions: Array[Vector2] = []
 var boss_door_positions: Array[Vector2] = []
 var debug_visible := false
+var chapter := 1
+var fog_clock := 0.0
 
 func _ready() -> void:
 	texture_filter=CanvasItem.TEXTURE_FILTER_NEAREST
+
+func _process(delta: float) -> void:
+	if chapter>=2:
+		fog_clock+=delta
+		queue_redraw()
 
 func build(data: Dictionary, seed_value: int) -> void:
 	definition = data
@@ -50,6 +57,7 @@ func add_body(rect: Rect2, one_way: bool) -> void:
 const ART = preload("res://assets/environment/haunted-village-atlas.png")
 var regions: Array = JSON.parse_string(FileAccess.get_file_as_string("res://assets/environment/atlas-regions.json"))
 const DISTANCE = preload("res://assets/haunted-courtyard.png")
+const MOUNTAIN_DISTANCE = preload("res://assets/environment/chapter2/fog-mountain-background-v1.png")
 
 var record_only := false
 var render_commands: Array = []
@@ -98,10 +106,17 @@ func _draw() -> void:
 	var width: int = definition["width"]
 	var theme: String = definition["theme"]
 	paint_fill(Rect2(0,0,width,864),Color("101925"))
-	# Reuse the approved image's distant sky only; no painted collision floor.
-	paint_region(DISTANCE,Rect2(0,0,width,440),Rect2(0,0,DISTANCE.get_width(),250),Color("a9b7c2"))
-	tile_band(2,Rect2(0,504,width,200),Vector2(192,192),Color("87929d"))
-	match theme:
+	if chapter>=2:
+		paint_region(MOUNTAIN_DISTANCE,Rect2(0,0,width,724),Rect2(0,0,MOUNTAIN_DISTANCE.get_width(),MOUNTAIN_DISTANCE.get_height()),Color("bbc4c9"))
+		paint_fill(Rect2(0,520,width,184),Color(0.04,0.07,0.11,.24))
+		for i in range(3):
+			var drift:=fmod(fog_clock*(8.0+i*3.0)+i*211.0,float(width)+420.0)-210.0
+			paint_fill(Rect2(drift,168+i*132,520,48),Color(0.55,0.65,0.69,.035+i*.012))
+	else:
+		# Reuse the approved image's distant sky only; no painted collision floor.
+		paint_region(DISTANCE,Rect2(0,0,width,440),Rect2(0,0,DISTANCE.get_width(),250),Color("a9b7c2"))
+		tile_band(2,Rect2(0,504,width,200),Vector2(192,192),Color("87929d"))
+	match theme if chapter<2 else "mountain":
 		"gate":
 			stamp(9,Rect2(360,288,448,416))
 			stamp(8,Rect2(1056,256,448,448),Color("acbcb9"))
@@ -141,12 +156,14 @@ func _draw() -> void:
 			for x in [width/2.0-352,width/2.0+224]:
 				stamp(11,Rect2(x,544,128,160))
 			stamp(14,Rect2(width/2.0-128,352,256,128))
+		"mountain":
+			pass
 	# Visual floor tops and physical top surfaces share these exact rectangles.
 	for rect in rects:
 		if rect.position.x < 0 or rect.position.x >= width:
 			continue
-		tile_band(1,rect,Vector2(96,96),Color("b0bac6"))
-		tile_band(0,Rect2(rect.position,Vector2(rect.size.x,64)),Vector2(128,64))
+		tile_band(1,rect,Vector2(96,96),Color("778692") if chapter>=2 else Color("b0bac6"))
+		tile_band(0,Rect2(rect.position,Vector2(rect.size.x,64)),Vector2(128,64),Color("8b9b9b") if chapter>=2 else Color.WHITE)
 	for rect in platforms:
 		# Tight atlas bounds put the visible plank directly on the collision top.
 		tile_band(3,rect,Vector2(96,16))

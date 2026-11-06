@@ -19,6 +19,7 @@ func run_checks() -> void:
 		p.velocity = Vector2.ZERO
 		p.dash_time = 0
 		p.dash_cooldown = 0
+		p.dash_charges = p.dash_max_charges
 		for action in ["move_left","move_right","aim_up","aim_down","dash"]: Input.action_release(action)
 		await step(2)
 		if direction.x<0: Input.action_press("move_left")
@@ -35,6 +36,7 @@ func run_checks() -> void:
 	for action in ["move_left","move_right","aim_up","aim_down","dash"]: Input.action_release(action)
 	await step(2)
 	p.dash_cooldown=0
+	p.dash_charges=p.dash_max_charges
 	p.facing=-1
 	Input.action_press("dash")
 	await step(2)
@@ -48,6 +50,7 @@ func run_checks() -> void:
 	for entry in [["move_left",Vector2.LEFT],["move_right",Vector2.RIGHT],["aim_up",Vector2.UP],["aim_down",Vector2.DOWN]]:
 		p.dash_cooldown=0
 		p.dash_time=0
+		p.dash_charges=p.dash_max_charges
 		for action in p.tap_windows: p.tap_windows[action]=0.0
 		Input.action_press(entry[0])
 		await step(1)
@@ -64,6 +67,7 @@ func run_checks() -> void:
 	print("PASS directional double taps trigger four-way dash")
 	p.dash_cooldown=0
 	p.dash_time=0
+	p.dash_charges=p.dash_max_charges
 	for action in p.tap_windows: p.tap_windows[action]=0.0
 	Input.action_press("jump")
 	await step(1)
@@ -79,6 +83,7 @@ func run_checks() -> void:
 	print("PASS double jump key dashes upward without extra jump")
 	p.dash_cooldown=0
 	p.dash_time=0
+	p.dash_charges=p.dash_max_charges
 	for action in p.tap_windows: p.tap_windows[action]=0.0
 	Input.action_press("move_right")
 	Input.action_press("jump")

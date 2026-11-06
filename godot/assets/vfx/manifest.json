@@ -1000,6 +1000,24 @@
     "path": "res://assets/vfx/dash-2.png",
     "source": "geuseundae/shadow-dash"
   },
+  "changgui-soul-bind": {
+    "id": "geuseundae/changgui-soul-bind",
+    "name": "Changgui soul bind",
+    "fps": 24,
+    "loop": false,
+    "frames": 97,
+    "frameSize": [
+      72,
+      96
+    ],
+    "pivot": [
+      36,
+      82
+    ],
+    "columns": 12,
+    "path": "res://assets/vfx/changgui-soul-bind.png",
+    "source": "geuseundae/changgui-soul-bind"
+  },
   "enemy-warrior-cleave": {
     "id": "melee/double-slash",
     "name": "Double slash",

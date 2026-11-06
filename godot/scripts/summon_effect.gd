@@ -19,6 +19,8 @@ func _draw() -> void:
 	if info.is_empty(): return
 	var frame_size:=Vector2(info["frameSize"][0],info["frameSize"][1])
 	var index:=mini(int(info["frames"])-1,int(elapsed*float(info["fps"])))
-	var source:=Rect2(Vector2(index%int(info["columns"]),index/int(info["columns"]))*frame_size,frame_size)
+	var columns:=int(info["columns"])
+	var row:=floori(float(index)/float(columns))
+	var source:=Rect2(Vector2(index%columns,row)*frame_size,frame_size)
 	var pivot:=Vector2(info["pivot"][0],info["pivot"][1])
 	draw_texture_rect_region(texture,Rect2(-pivot,frame_size),source)
