@@ -6,7 +6,7 @@
 
 Godot 4.7.2에서 `godot/project.godot`을 열고 실행합니다. 기본 창은 640×360입니다. 기존 창의 크기와 위치를 유지해 주세요.
 
-- 이동: A/D, 점프: Space, 대시: Shift (공격 조준 8방향). 점프 후 착지 전 Space를 다시 누르면 대시와 동일하게 동작
+- 이동: A/D, 점프: Space, 대시: Shift (PC는 공격 조준 8방향, 모바일은 이동 스틱 방향). 점프 후 착지 전 Space를 다시 누르면 대시와 동일하게 동작
 - 공격: J / 마우스 왼쪽, 심장: Q, 주무기/보조무기 스킬: F/G
 - 상호작용: E, 가방: Tab/I, 재시작: R, 다음 시드: N
 - 장비 실험실: F6, 무기 변경: [ / ], 표적 초기화: T, 두억시니 세트: P, 정지: F9, 표적 AI: Y
@@ -15,7 +15,7 @@ Godot 4.7.2에서 `godot/project.godot`을 열고 실행합니다. 기본 창은
 
 ## 이어서 개발
 
-먼저 [최신 작업 인계](docs/CURRENT_STATUS.md), [개발 화면 선호](docs/development-preferences.md), [장비 원안](geuseundae_equipment.md)을 읽어 주세요. 과거 기록은 `docs/SESSION_HANDOFF.md`, 현재 구현은 `godot/scripts`와 `docs/equipment-implementation.md`를 기준으로 확인합니다.
+먼저 [최신 작업 인계](docs/CURRENT_STATUS.md), [개발 화면 선호](docs/development-preferences.md), [장비 원안](geuseundae_equipment.md)을 읽어 주세요. 현재 구현은 `godot/scripts`와 `docs/equipment-implementation.md`를 기준으로 확인합니다.
 
 모바일 터치 조작과 Android/iOS 내보내기 프리셋이 있습니다. iOS Xcode 프로젝트 내보내기는 성공했으며 인증서와 실제 Team ID는 사용자가 Xcode에서 지정합니다. App Store용 정식 아이콘과 실기기 설치 검증은 남아 있습니다. 모바일 출력물과 Web 빌드는 Git에서 제외합니다.
 

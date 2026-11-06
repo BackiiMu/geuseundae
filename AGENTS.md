@@ -1,6 +1,6 @@
 # 작업 시작
 
-- `README.md`, `docs/SESSION_HANDOFF.md`, `docs/development-preferences.md`를 먼저 읽는다.
+- `README.md`, `docs/CURRENT_STATUS.md`, `docs/development-preferences.md`를 먼저 읽는다.
 - 실제 게임은 `godot/`이며 루트 HTML은 과거 시안이다.
 - 기존 실행 창은 이동·확대하지 않는다. 기본 창 640×360을 유지한다.
 - 장비 원안의 `두??니??의 XX??`, `??의 짙은 저주`는 의도한 이름이다. 임시 이름으로 취급하거나 변경하지 않는다.
