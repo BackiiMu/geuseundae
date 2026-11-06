@@ -12,6 +12,8 @@ var hidden_for_ui := false
 const MOVE_ACTIONS = ["move_left", "move_right"]
 const ATTACK_ACTIONS = ["attack_left", "attack_right", "attack_up", "attack_down"]
 const STICK_RADIUS := 52.0
+# Movement-stick vector shared with the player so mobile dashes follow movement.
+static var move_vector := Vector2.ZERO
 
 func _ready() -> void:
 	var specs = [
@@ -48,6 +50,7 @@ func release_actions(actions: Array) -> void:
 func release_movement() -> void:
 	release_actions(MOVE_ACTIONS)
 	move_stick = Vector2.ZERO
+	move_vector = Vector2.ZERO
 	move_finger = -1
 
 func release_attack() -> void:
@@ -91,6 +94,7 @@ func _input(event: InputEvent) -> void:
 
 func update_move_stick(pos: Vector2) -> void:
 	move_stick = (pos - move_center).limit_length(STICK_RADIUS) / STICK_RADIUS
+	move_vector = move_stick
 	Input.action_press("move_left", absf(move_stick.x)) if move_stick.x < -0.18 else Input.action_release("move_left")
 	Input.action_press("move_right", absf(move_stick.x)) if move_stick.x > 0.18 else Input.action_release("move_right")
 

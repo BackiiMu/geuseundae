@@ -120,6 +120,12 @@ func attack_aim_direction(move_axis := 0.0) -> Vector2:
 	if absf(move_axis)>.01: return Vector2(signf(move_axis),0)
 	return Vector2(facing,0)
 
+# Mobile dashes follow the movement stick (8-way); neutral uses facing.
+func mobile_dash_direction() -> Vector2:
+	var stick:Vector2=preload("res://scripts/mobile_controls.gd").move_vector
+	if stick.length()<.18: return Vector2(facing,0)
+	return Vector2.from_angle(roundf(stick.angle()/(PI/4))*(PI/4))
+
 func handle_jump_press(dash_direction_input: Vector2) -> bool:
 	if jumped_since_floor:
 		var before:=dash_time
@@ -192,9 +198,9 @@ func _physics_process(delta: float) -> void:
 			dash_charges+=1
 			dash_recharge_timer=.65 if dash_charges<dash_max_charges else 0.0
 	for action in tap_windows: tap_windows[action]=maxf(0,float(tap_windows[action])-delta)
-	var input_direction:=attack_aim_direction(axis)
-	var double_dash:=false
 	var mobile_mode := OS.has_feature("mobile") or OS.get_cmdline_user_args().has("--touch")
+	var input_direction:=mobile_dash_direction() if mobile_mode else attack_aim_direction(axis)
+	var double_dash:=false
 	if not mobile_mode:
 		double_dash = register_double_tap("move_left",input_direction) or double_dash
 		double_dash = register_double_tap("move_right",input_direction) or double_dash
