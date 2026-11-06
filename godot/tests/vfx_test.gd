@@ -27,7 +27,7 @@ func run_checks() -> void:
 	assert(fx.bursts[0]["key"]=="enemy-warrior-cleave" and is_equal_approx(fx.bursts[0]["angle"],PI))
 	fx.clear()
 	print("PASS: all 31 pixelfx sheets load with valid frame sizes, Changgui soul bind and Chapter 1 enemy tells")
-	for name in ["musa-slash","talisman-cast","talisman-shot","talisman-hit","monk-moktak","captain-sweep","captain-cleave","captain-charge-fx"]:
+	for name in ["musa-slash","talisman-shot","monk-moktak","changgui-claw","tiger-claw","shadow-claw","mihokbul-cast","hosikchong-erupt","captain-sweep","captain-cleave","captain-charge-fx"]:
 		var monster_info:Dictionary=fx.load_monster(name)
 		assert(not monster_info.is_empty() and fx.monster_textures[name]!=null)
 		assert(fx.monster_textures[name].get_width()>=int(monster_info["frameSize"][0])*int(monster_info["columns"]))
@@ -38,10 +38,16 @@ func run_checks() -> void:
 	fx.clear()
 	var adept=c.living().filter(func(enemy): return enemy.kind=="adept")[0]
 	adept.begin_attack_vfx()
-	assert(fx.bursts[0]["monster"]=="talisman-cast")
-	fx.monster_impact("talisman-hit",Vector2(700,676),Vector2.LEFT)
-	assert(fx.bursts[-1]["monster"]=="talisman-hit" and fx.bursts[-1]["rotate"])
-	print("PASS: supplied monster-only sheets load and bind to warrior, adept, projectile and hit paths")
+	assert(fx.bursts.is_empty())
+	for kind in ["monk","changgui-remnant","mountain-tiger","jangsan-shadow","mihokbul","hosikchong-wraith"]:
+		var enemy=c.spawn_enemy(kind,Vector2(700,676),9000+int(kind.hash()%1000))
+		assert(enemy!=null)
+		fx.clear()
+		enemy.begin_attack_vfx()
+		assert(fx.bursts[0]["monster"]==enemy.ATTACK_VFX[kind] and fx.bursts[0]["owner"]==enemy)
+		enemy.queue_free()
+		c.enemies.erase(enemy)
+	print("PASS: supplied monster-only sheets load and bind to warrior and chapter attack paths; the adept has no cast or hit effect")
 	for tier in range(1,5):
 		fx.clear()
 		fx.attack({"id":"songaksi_hand","tier":tier,"kind":"melee","set":"songaksi"},Vector2(650,676),Vector2.RIGHT,84)

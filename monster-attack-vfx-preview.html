@@ -1,0 +1,81 @@
+<!doctype html><meta charset="utf-8"><meta name=viewport content="width=device-width,initial-scale=1"><title>그슨대 · 몬스터 공격 이펙트 시안</title>
+<style>:root{--bg:#07090a;--card:#101517;--line:#2c3a37;--tx:#cfcbb8;--mut:#8a9189;--btn:#3d4a44}body{margin:0;background:var(--bg);color:var(--tx);font:14px/1.5 sans-serif}
+main{max-width:1120px;margin:0 auto;padding:20px 16px}h1{font-size:20px;margin:0 0 4px}.lead{color:var(--mut);margin:0 0 16px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(500px,1fr));gap:14px}
+.card{background:var(--card);border:1px solid var(--line);padding:12px}.card h2{font-size:16px;margin:0;display:inline}.g{float:right;font-size:11px;color:var(--mut);border:1px solid var(--line);padding:0 6px}.d{margin:2px 0 8px;color:var(--mut)}
+.stage{position:relative;width:100%;max-width:495px;aspect-ratio:11/6;overflow:hidden;image-rendering:pixelated;background:#0a0e10}
+.world{position:absolute;left:0;top:0;width:330px;height:180px;transform-origin:0 0;background:url('docs/mockups/monster-attack-vfx/bg-chapter2.png') 0 0/660px 180px;image-rendering:pixelated}
+.hero,.mon,.fx,.proj,.hit{position:absolute;background-repeat:no-repeat;image-rendering:pixelated}.fx,.proj,.hit{transform-origin:0 0}
+.circ{position:absolute;border:1px dashed #ff8a6aaa;border-radius:50%;box-sizing:border-box}.circ.in{border:1px solid #ff8a6a55}
+.tag{position:absolute;right:6px;top:4px;color:#fff8;font-size:11px}
+.n{color:var(--mut);margin:8px 0;font-size:12px}.n b{color:var(--tx)}button,a{display:inline-block;margin:2px 8px 0 0;background:var(--btn);color:#d8d6c6;border:0;padding:6px 10px;font-size:13px;text-decoration:none;cursor:pointer}a{background:#252e2b}label{font-size:13px;color:var(--mut)}
+</style><main><h1>몬스터 공격 이펙트 시안 · 게임 설정값 기준</h1><p class=lead>모든 이펙트는 반짝임·광 없이 무광으로 눌렀습니다. 실제 몬스터 스프라이트와 2챕터 배경 위에 올렸고, 선딜·후딜·시작 거리·돌진·투사체 속도·판정 원을 모두 <code>combat_enemy.gd</code>/<code>combat_director.gd</code> 값 그대로 적용했습니다. 점선 원은 실제 판정(플레이어 몸 여유 12 포함), 안쪽 실선은 게임이 공격 때 그리는 범위 호입니다. 게임에는 아직 적용하지 않았습니다. <code>#frame=30</code>을 주소 뒤에 붙이면 그 프레임에서 멈춥니다.</p>
+<div class=grid><section class=card data-key="musa-slash" data-w="112" data-h="84" data-px="30" data-py="74" data-cols="7" data-n="58" data-fps="30" data-scale="1" data-pre="0.8" data-total="1.55" data-role="warrior" data-dw="48" data-dh="64" data-yo="0" data-charge="0" data-dist="48" data-ranged="" data-rec="1.2" data-circ='[[28, -25, 38]]'>
+<span class=g>1장 일반</span><h2>퇴마 무사</h2><p class=d>부적검 베기 · 기존 에셋에서 반짝·광 제거</p>
+<div class=stage><div class=world><i class=hero></i><i class=mon></i><div class=fx></div><div class=proj></div><div class=hit></div></div><span class=tag></span></div>
+<p class=n><b>게임 설정값</b> · 선딜 0.8초 · 후딜 1.2초 · 공격 시작 거리 52 · 판정 몸 앞 28 / 반경 38 · 피해 8</p>
+<button class=play>재생/정지</button><label><input type=checkbox class=rng checked> 실제 판정 범위</label><a href="docs/mockups/monster-attack-vfx/musa-slash-review.png" target=_blank>프레임 시트</a></section><section class=card data-key="talisman-cast" data-w="44" data-h="40" data-px="22" data-py="20" data-cols="5" data-n="21" data-fps="30" data-scale="1" data-pre="0.75" data-total="1.25" data-role="adept" data-dw="48" data-dh="64" data-yo="0" data-charge="0" data-dist="230" data-ranged="talisman" data-rec="1.5" data-circ='[]'>
+<span class=g>1장 일반</span><h2>부적 도사</h2><p class=d>부적 투척 · 시전·명중 이펙트 없이 날아가는 부적만</p>
+<div class=stage><div class=world><i class=hero></i><i class=mon></i><div class=fx></div><div class=proj></div><div class=hit></div></div><span class=tag></span></div>
+<p class=n><b>게임 설정값</b> · 선딜 1.1초 · 후딜 1.5초 · 거리 380 안에서 시전(200 미만 후퇴, 220~320 유지) · 부적 속도 220px/s, 수명 2초 · 명중 반경 17 · 피해 6 · 명중 이펙트 없음</p>
+<button class=play>재생/정지</button><label><input type=checkbox class=rng checked> 실제 판정 범위</label><a href="docs/mockups/monster-attack-vfx/talisman-cast-review.png" target=_blank>프레임 시트</a></section><section class=card data-key="monk-moktak" data-w="288" data-h="208" data-px="104" data-py="164" data-cols="7" data-n="64" data-fps="30" data-scale="1" data-pre="0.9" data-total="2.1" data-role="monk" data-dw="48" data-dh="64" data-yo="0" data-charge="0" data-dist="75" data-ranged="" data-rec="1.35" data-circ='[[40, -25, 55]]'>
+<span class=g>1장 일반</span><h2>목탁 승려</h2><p class=d>목탁 강타 · 먼지 충격파</p>
+<div class=stage><div class=world><i class=hero></i><i class=mon></i><div class=fx></div><div class=proj></div><div class=hit></div></div><span class=tag></span></div>
+<p class=n><b>게임 설정값</b> · 선딜 0.9초 · 후딜 1.35초 · 공격 시작 거리 80 · 판정 몸 앞 40 / 반경 55 · 피해 12</p>
+<button class=play>재생/정지</button><label><input type=checkbox class=rng checked> 실제 판정 범위</label><a href="docs/mockups/monster-attack-vfx/monk-moktak-review.png" target=_blank>프레임 시트</a></section><section class=card data-key="changgui-claw" data-w="128" data-h="96" data-px="40" data-py="84" data-cols="6" data-n="40" data-fps="30" data-scale="1" data-pre="0.8" data-total="1.3" data-role="changgui-remnant" data-dw="48" data-dh="64" data-yo="0" data-charge="69" data-dist="50" data-ranged="" data-rec="1.2" data-circ='[[34, -22, 42]]'>
+<span class=g>2장 일반</span><h2>창귀 잔혼</h2><p class=d>발톱 돌진</p>
+<div class=stage><div class=world><i class=hero></i><i class=mon></i><div class=fx></div><div class=proj></div><div class=hit></div></div><span class=tag></span></div>
+<p class=n><b>게임 설정값</b> · 선딜 0.8초 · 후딜 1.2초 · 공격 시작 거리 52 · 0.16초 돌진(69px) 중 몸 앞 34 / 반경 42 판정 · 피해 9</p>
+<button class=play>재생/정지</button><label><input type=checkbox class=rng checked> 실제 판정 범위</label><a href="docs/mockups/monster-attack-vfx/changgui-claw-review.png" target=_blank>프레임 시트</a></section><section class=card data-key="tiger-claw" data-w="128" data-h="96" data-px="40" data-py="84" data-cols="6" data-n="39" data-fps="30" data-scale="1" data-pre="0.7" data-total="1.25" data-role="mountain-tiger" data-dw="78" data-dh="58" data-yo="0" data-charge="103" data-dist="140" data-ranged="" data-rec="0.9" data-circ='[[34, -22, 42]]'>
+<span class=g>2장 일반</span><h2>산호랑이</h2><p class=d>호랑이 발톱 돌진</p>
+<div class=stage><div class=world><i class=hero></i><i class=mon></i><div class=fx></div><div class=proj></div><div class=hit></div></div><span class=tag></span></div>
+<p class=n><b>게임 설정값</b> · 선딜 0.7초 · 후딜 0.9초 · 공격 시작 거리 150 · 0.24초 돌진(103px) 중 몸 앞 34 / 반경 42 판정 · 피해 10</p>
+<button class=play>재생/정지</button><label><input type=checkbox class=rng checked> 실제 판정 범위</label><a href="docs/mockups/monster-attack-vfx/tiger-claw-review.png" target=_blank>프레임 시트</a></section><section class=card data-key="shadow-claw" data-w="128" data-h="96" data-px="40" data-py="84" data-cols="6" data-n="39" data-fps="30" data-scale="1" data-pre="0.7" data-total="1.25" data-role="jangsan-shadow" data-dw="92" data-dh="66" data-yo="0" data-charge="103" data-dist="140" data-ranged="" data-rec="0.9" data-circ='[[34, -22, 42]]'>
+<span class=g>2장 정예</span><h2>장산범의 그림자</h2><p class=d>먹빛 발톱 돌진 (몸 1.25배)</p>
+<div class=stage><div class=world><i class=hero></i><i class=mon></i><div class=fx></div><div class=proj></div><div class=hit></div></div><span class=tag></span></div>
+<p class=n><b>게임 설정값</b> · 선딜 0.7초 · 후딜 0.9초 · 공격 시작 거리 150 · 0.24초 돌진(103px) 중 몸 앞 34 / 반경 42 판정 · 피해 11</p>
+<button class=play>재생/정지</button><label><input type=checkbox class=rng checked> 실제 판정 범위</label><a href="docs/mockups/monster-attack-vfx/shadow-claw-review.png" target=_blank>프레임 시트</a></section><section class=card data-key="mihokbul-cast" data-w="80" data-h="124" data-px="40" data-py="86" data-cols="9" data-n="46" data-fps="30" data-scale="1" data-pre="1.1" data-total="1.5" data-role="mihokbul" data-dw="46" data-dh="52" data-yo="-28" data-charge="0" data-dist="230" data-ranged="spirit" data-rec="1.35" data-circ='[]'>
+<span class=g>2장 일반</span><h2>미혹불</h2><p class=d>도깨비불 시전 + 투사체</p>
+<div class=stage><div class=world><i class=hero></i><i class=mon></i><div class=fx></div><div class=proj></div><div class=hit></div></div><span class=tag></span></div>
+<p class=n><b>게임 설정값</b> · 선딜 1.15초 · 후딜 1.35초 · 거리 380 안에서 시전(200 미만 후퇴, 220~320 유지) · 투사체 속도 220px/s, 수명 2초 · 명중 반경 17 · 피해 7</p>
+<button class=play>재생/정지</button><label><input type=checkbox class=rng checked> 실제 판정 범위</label><a href="docs/mockups/monster-attack-vfx/mihokbul-cast-review.png" target=_blank>프레임 시트</a></section><section class=card data-key="hosikchong-erupt" data-w="240" data-h="130" data-px="90" data-py="112" data-cols="6" data-n="57" data-fps="30" data-scale="1" data-pre="1" data-total="1.85" data-role="hosikchong-wraith" data-dw="76" data-dh="58" data-yo="0" data-charge="0" data-dist="110" data-ranged="" data-rec="1.4" data-circ='[[30, -8, 92]]'>
+<span class=g>2장 일반</span><h2>호식총 원귀</h2><p class=d>바닥에서 솟는 손</p>
+<div class=stage><div class=world><i class=hero></i><i class=mon></i><div class=fx></div><div class=proj></div><div class=hit></div></div><span class=tag></span></div>
+<p class=n><b>게임 설정값</b> · 선딜 1.0초 · 후딜 1.4초 · 제자리(이동 안 함) · 공격 시작 거리 120 · 판정 몸 앞 30 / 반경 92 · 피해 11</p>
+<button class=play>재생/정지</button><label><input type=checkbox class=rng checked> 실제 판정 범위</label><a href="docs/mockups/monster-attack-vfx/hosikchong-erupt-review.png" target=_blank>프레임 시트</a></section></div></main>
+<script>
+const FEET=156,MX=250,SPD=220,PR=17;
+const ROOT='docs/mockups/monster-attack-vfx/../../../godot/assets/';
+function sprite(el,role,frame,dw,dh){el.style.backgroundImage=`url('${ROOT}actors/source/${role}-v1.png')`;el.style.width=dw+'px';el.style.height=dh+'px';el.style.backgroundSize=`${dw*8}px ${dh*4}px`;el.style.backgroundPosition=`${-(frame%8)*dw}px ${-Math.floor(frame/8)*dh}px`}
+const SHEETS={talisman:{shot:{img:'docs/mockups/monster-attack-vfx/talisman-shot.png',w:28,h:14,px:18,py:7,cols:3,n:9,fps:30},hit:{img:'docs/mockups/monster-attack-vfx/talisman-hit.png',w:40,h:44,px:20,py:20,cols:5,n:17,fps:30}}};
+document.querySelectorAll('.card').forEach(c=>{const d=c.dataset,w=+d.w,h=+d.h,px=+d.px,py=+d.py,cols=+d.cols,n=+d.n,fps=+d.fps,sc=+d.scale,pre=+d.pre,total=+d.total,dw=+d.dw,dh=+d.dh,yo=+d.yo,charge=+d.charge,dist=+d.dist,rec=+d.rec,ranged=d.ranged,circ=JSON.parse(d.circ);
+const world=c.querySelector('.world'),fx=c.querySelector('.fx'),mon=c.querySelector('.mon'),hero=c.querySelector('.hero'),proj=c.querySelector('.proj'),hit=c.querySelector('.hit'),tag=c.querySelector('.tag'),chk=c.querySelector('.rng'),stage=c.querySelector('.stage');
+const HX=MX-dist,hcx=HX,hcy=FEET-23;fx.style.backgroundImage=`url('docs/mockups/monster-attack-vfx/${d.key}.png')`;
+// 투사체: 몸 중심(발+(0,-25))에서 플레이어 중심으로 220px/s, 반경 17 명중
+const ox=MX,oy=FEET-25,dx=hcx-ox,dy=hcy-oy,len=Math.hypot(dx,dy),ux=dx/len,uy=dy/len,flight=Math.max(0,(len-PR))/SPD;
+const loop=ranged?pre+flight+.75:Math.max(total,pre+(charge?charge/430:0)+rec*.5);
+let play=true,t=0,last=performance.now(),hold=0;
+const circles=circ.map(([cx,cy,r])=>{const o=document.createElement('i');o.className='circ';const i=document.createElement('i');i.className='circ in';world.append(o,i);return {o,i,cx,cy,r}});
+function fit(){world.style.transform=`scale(${stage.clientWidth/330})`}
+function cell(el,S,frame,x,y,rot,sx){const col=frame%S.cols,row=Math.floor(frame/S.cols);el.style.display='block';el.style.width=S.w+'px';el.style.height=S.h+'px';el.style.backgroundImage=`url('${S.img}')`;el.style.backgroundSize=`${S.cols*S.w}px auto`;el.style.backgroundPosition=`${-col*S.w}px ${-row*S.h}px`;el.style.transform=`translate(${x}px,${y}px) rotate(${rot}rad) scale(${sx},1) translate(${-S.px}px,${-S.py}px)`}
+function show(){const col0=0;let mx=MX;if(charge&&t>=pre)mx-=Math.min(charge,(t-pre)*430);
+ sprite(hero,'songaksi',0,48,64);hero.style.left=(HX-24)+'px';hero.style.top=(FEET+2-64)+'px';
+ const fr=t<pre?16+Math.min(3,Math.floor(t/pre*4)):20+Math.min(3,Math.floor((t-pre)/rec*4));
+ sprite(mon,d.role,fr,dw,dh);mon.style.left=(mx-dw/2)+'px';mon.style.top=(FEET+2-dh+yo)+'px';mon.style.transform='scaleX(-1)';
+ const f=Math.min(n-1,Math.floor(t*fps)),col=f%cols,row=Math.floor(f/cols);
+ fx.style.width=w+'px';fx.style.height=h+'px';fx.style.backgroundSize=`${cols*w}px auto`;fx.style.backgroundPosition=`${-col*w}px ${-row*h}px`;fx.style.display=t*fps<n?'block':'none';
+ fx.style.transform=`translate(${mx}px,${FEET}px) scale(${-sc},${sc}) translate(${-px}px,${-py}px)`;
+ proj.style.display='none';hit.style.display='none';
+ if(ranged&&t>=pre){const a=t-pre;if(a<=flight){const px_=ox+ux*SPD*a,py_=oy+uy*SPD*a,ang=Math.atan2(uy,ux)-Math.PI;
+   if(ranged==='talisman'){const S=SHEETS.talisman.shot;cell(proj,S,Math.floor(a*S.fps)%S.n,px_,py_,ang+Math.PI,-1)}
+   else{proj.style.display='block';proj.style.width='10px';proj.style.height='3px';proj.style.background='#e1b17c';proj.style.backgroundImage='none';proj.style.transform=`translate(${px_}px,${py_}px) rotate(${Math.atan2(uy,ux)}rad) translate(-10px,-1px)`}}
+  if(a<=flight&&chk.checked){}}
+ circles.forEach(k=>{const show=chk.checked&&t>=pre-.001&&t<pre+(charge?charge/430:.2)+.001;const cxp=mx-k.cx,cyp=FEET+k.cy,R=k.r+12;
+  Object.assign(k.o.style,{display:show?'block':'none',left:(cxp-R)+'px',top:(cyp-R)+'px',width:2*R+'px',height:2*R+'px'});
+  Object.assign(k.i.style,{display:show?'block':'none',left:(cxp-k.r)+'px',top:(cyp-k.r)+'px',width:2*k.r+'px',height:2*k.r+'px'});});
+ tag.textContent=t.toFixed(2)+'s'+(t>=pre?'  (공격)':'  (선딜)')+`  · 거리 ${dist}`;}
+c.querySelector('.play').onclick=()=>play=!play;chk.onchange=show;
+function tick(now){const dt=Math.min(.1,(now-last)/1000);last=now;if(play){if(t>=loop){hold+=dt;if(hold>.6){t=0;hold=0}}else t=Math.min(loop,t+dt);show()}requestAnimationFrame(tick)}
+const hf=/frame=(\d+)/.exec(location.hash);if(hf){t=+hf[1]/30;play=false}
+fit();show();addEventListener('resize',fit);requestAnimationFrame(tick);});
+</script>

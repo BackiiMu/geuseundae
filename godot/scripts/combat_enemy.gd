@@ -45,6 +45,8 @@ var phase_transition_target := 0
 var phase_transition_swapped := false
 var phase_fog_alpha := 0.0
 const JANGSAN_PHASE_HP := [0.0,260.0,450.0,850.0]
+# 몬스터별 공격 이펙트 시트(godot/assets/monster_vfx). 원점은 발이고 판정 범위에 맞춰 만들었다.
+const ATTACK_VFX := {"monk":"monk-moktak","changgui-remnant":"changgui-claw","mountain-tiger":"tiger-claw","jangsan-shadow":"shadow-claw","mihokbul":"mihokbul-cast","hosikchong-wraith":"hosikchong-erupt"}
 
 func windup_duration() -> float:
 	if kind=="jangsanbeom" and jangsan_phase==1: return .78
@@ -60,7 +62,7 @@ func windup_duration() -> float:
 func recovery_duration() -> float:
 	if kind=="jangsanbeom" and jangsan_phase==1: return 1.0
 	if kind=="jangsanbeom": return [.68,.82,.6][pattern]
-	if boss: return [.59,.68,.52][pattern]
+	if boss: return [.95,1.3,1.1][pattern]
 	if kind=="mihokbul": return 1.35
 	if kind=="hosikchong-wraith": return 1.4
 	if kind in ["mountain-tiger","jangsan-shadow"]: return .9
@@ -75,9 +77,9 @@ func begin_attack_vfx() -> void:
 		if pattern==0: director.vfx.emit_monster("captain-sweep",self,Vector2.ZERO,direction,1.5)
 		elif pattern==1: director.vfx.emit_monster("captain-cleave",self,Vector2.ZERO,direction,1.5)
 		else: director.vfx.emit_monster("captain-charge-fx",self,Vector2.ZERO,direction,1.5)
-	# The monk deliberately keeps the original unadorned moktak attack.
-	elif kind=="monk": pass
-	elif kind=="adept": director.vfx.emit_monster("talisman-cast",self,Vector2(facing*10,-42),attack_direction)
+	# 부적 도사: 시전·명중 이펙트 없이 날아가는 부적만 쓴다.
+	elif kind=="adept": pass
+	elif ATTACK_VFX.has(kind): director.vfx.emit_monster(ATTACK_VFX[kind],self,Vector2.ZERO,direction)
 	else: director.vfx.emit_monster("musa-slash",self,Vector2.ZERO,direction)
 func _ready() -> void:
 	boss = kind in ["boss","jangsanbeom"]

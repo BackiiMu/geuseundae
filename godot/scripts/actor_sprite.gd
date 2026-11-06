@@ -22,6 +22,12 @@ var dash_fx_info: Dictionary = {}
 var dash_fx_age := 1.0
 var atlas := true
 var scale_override := 1.0
+# 네 발 짐승 시트는 192x256 칸 아래쪽이 비어 있어 가로세로를 따로 줄이면 납작해지고 몸이 떠 보인다.
+# 가로세로 같은 비율로 그리고, 칸마다 발끝(불투명 영역의 아랫단)을 바닥에 맞춘다. 공중에 뜬 도약 프레임(발끝 170 미만)은 기준선만 유지한다.
+const BEAST_SPRITES := {
+	"mountain-tiger":{"scale":.43,"ground":186.0,"bottoms":[193,193,193,193,193,193,193,193,178,176,164,175,178,178,178,178,186,186,179,157,146,186,186,186,186,186,186,187,187,187,188,188]},
+	"jangsan-shadow":{"scale":.5,"ground":248.0,"bottoms":[248]}
+}
 func _ready() -> void:
 	texture_filter=CanvasItem.TEXTURE_FILTER_NEAREST
 	load_role_texture()
@@ -165,6 +171,14 @@ func _draw() -> void:
 	var target_size:=draw_size()
 	var target_rect:=Rect2(-target_size.x*.5,-target_size.y+2,target_size.x,target_size.y)
 	if role=="mihokbul": target_rect.position.y-=28
+	if BEAST_SPRITES.has(role) and atlas:
+		var beast:Dictionary=BEAST_SPRITES[role]
+		var beast_scale:float=beast["scale"]
+		var bottoms:Array=beast["bottoms"]
+		var feet:float=float(bottoms[mini(frame_index,bottoms.size()-1)])
+		if feet<170.0: feet=float(beast["ground"])
+		var cell:=Vector2(texture.get_width()/8.0,texture.get_height()/4.0)
+		target_rect=Rect2(-cell.x*.5*beast_scale,2.0-feet*beast_scale,cell.x*beast_scale,cell.y*beast_scale)
 	# The beast atlas has transparent pixels below its paws; place the visible paws on the floor.
 	if role=="jangsanbeom": target_rect.position.y+=15
 	var source_size:=Vector2(texture.get_width()/8.0,texture.get_height()/4.0) if atlas else texture.get_size()

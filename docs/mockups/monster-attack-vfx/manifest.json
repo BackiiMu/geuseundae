@@ -1,0 +1,333 @@
+{
+ "musa-slash": {
+  "id": "monsters/musa-slash",
+  "name": "\ud1f4\ub9c8 \ubb34\uc0ac \u00b7 \ubd80\uc801\uac80 \ubca0\uae30",
+  "fps": 30,
+  "loop": false,
+  "frames": 58,
+  "frameSize": [
+   112,
+   84
+  ],
+  "pivot": [
+   30,
+   74
+  ],
+  "columns": 7,
+  "act": {
+   "windup": 0,
+   "recovery": 0,
+   "onBody": false,
+   "targets": [
+    54
+   ],
+   "hits": [
+    {
+     "t": 0.8,
+     "freeze": 0.1,
+     "shake": 0.18,
+     "amp": 2,
+     "push": 2.6
+    }
+   ],
+   "poses": [
+    {
+     "t": 0,
+     "how": "smooth",
+     "pose": {
+      "crouch": 3,
+      "fx": 12,
+      "fy": -21,
+      "bx": 9,
+      "by": -21,
+      "ffx": 7,
+      "fbx": -7,
+      "weapon": "sword",
+      "sa": -0.85
+     }
+    },
+    {
+     "t": 0.15,
+     "how": "smooth",
+     "pose": {
+      "crouch": 3,
+      "fx": 12,
+      "fy": -21,
+      "bx": 9,
+      "by": -21,
+      "ffx": 7,
+      "fbx": -7,
+      "weapon": "sword",
+      "sa": -0.85
+     }
+    },
+    {
+     "t": 0.65,
+     "how": "smooth",
+     "pose": {
+      "crouch": 5,
+      "fx": -7,
+      "fy": -35,
+      "bx": 9,
+      "by": -25,
+      "ffx": 9,
+      "fbx": -8,
+      "weapon": "sword",
+      "sa": -2.65,
+      "x": -6,
+      "lean": -5,
+      "armsFront": true
+     }
+    },
+    {
+     "t": 0.75,
+     "how": "smooth",
+     "pose": {
+      "crouch": 5,
+      "fx": -7,
+      "fy": -35,
+      "bx": 9,
+      "by": -25,
+      "ffx": 9,
+      "fbx": -8,
+      "weapon": "sword",
+      "sa": -2.65,
+      "x": -6,
+      "lean": -6,
+      "armsFront": true
+     }
+    },
+    {
+     "t": 0.78,
+     "how": "snap",
+     "pose": {
+      "crouch": 2,
+      "fx": 16,
+      "fy": -37,
+      "bx": -7,
+      "by": -24,
+      "ffx": 11,
+      "fbx": -10,
+      "weapon": "sword",
+      "sa": -1.45,
+      "x": 2,
+      "lean": 4
+     }
+    },
+    {
+     "t": 0.8,
+     "how": "snap",
+     "pose": {
+      "crouch": 7,
+      "fx": 20,
+      "fy": -16,
+      "bx": -9,
+      "by": -22,
+      "ffx": 13,
+      "fbx": -10,
+      "weapon": "sword",
+      "sa": 0.62,
+      "x": 4,
+      "lean": 7,
+      "toeB": true
+     }
+    },
+    {
+     "t": 1,
+     "how": "smooth",
+     "pose": {
+      "crouch": 7,
+      "fx": 20,
+      "fy": -16,
+      "bx": -9,
+      "by": -22,
+      "ffx": 13,
+      "fbx": -10,
+      "weapon": "sword",
+      "sa": 0.62,
+      "x": 4,
+      "lean": 7,
+      "toeB": true
+     }
+    },
+    {
+     "t": 1.55,
+     "how": "smooth",
+     "pose": {
+      "crouch": 6,
+      "fx": 20,
+      "fy": -18,
+      "bx": -9,
+      "by": -22,
+      "ffx": 13,
+      "fbx": -10,
+      "weapon": "sword",
+      "sa": 0.62,
+      "x": 4,
+      "lean": 5,
+      "toeB": true
+     }
+    },
+    {
+     "t": 1.85,
+     "how": "smooth",
+     "pose": {
+      "crouch": 3,
+      "fx": 12,
+      "fy": -21,
+      "bx": 9,
+      "by": -21,
+      "ffx": 7,
+      "fbx": -7,
+      "weapon": "sword",
+      "sa": -0.85
+     }
+    }
+   ]
+  },
+  "source": "\uae30\uc874 \uac8c\uc784 \uc5d0\uc14b",
+  "pre": 0.8,
+  "total": 1.55,
+  "scale": 1
+ },
+ "talisman-cast": {
+  "id": "monsters/talisman-cast",
+  "name": "\ubd80\uc801 \ub3c4\uc0ac \u00b7 \uc120\ub51c",
+  "fps": 30,
+  "loop": false,
+  "frames": 21,
+  "frameSize": [
+   44,
+   40
+  ],
+  "pivot": [
+   22,
+   20
+  ],
+  "columns": 5,
+  "source": "\uae30\uc874 \uac8c\uc784 \uc5d0\uc14b",
+  "pre": 0.75,
+  "total": 1.25,
+  "scale": 1
+ },
+ "changgui-claw": {
+  "id": "changgui-claw",
+  "name": "changgui-claw",
+  "fps": 30,
+  "loop": false,
+  "frames": 40,
+  "frameSize": [
+   128,
+   96
+  ],
+  "pivot": [
+   40,
+   84
+  ],
+  "columns": 6,
+  "source": "custom",
+  "pre": 0.8,
+  "total": 1.3,
+  "scale": 1
+ },
+ "tiger-claw": {
+  "id": "tiger-claw",
+  "name": "tiger-claw",
+  "fps": 30,
+  "loop": false,
+  "frames": 39,
+  "frameSize": [
+   128,
+   96
+  ],
+  "pivot": [
+   40,
+   84
+  ],
+  "columns": 6,
+  "source": "custom",
+  "pre": 0.7,
+  "total": 1.25,
+  "scale": 1
+ },
+ "shadow-claw": {
+  "id": "shadow-claw",
+  "name": "shadow-claw",
+  "fps": 30,
+  "loop": false,
+  "frames": 39,
+  "frameSize": [
+   128,
+   96
+  ],
+  "pivot": [
+   40,
+   84
+  ],
+  "columns": 6,
+  "source": "custom",
+  "pre": 0.7,
+  "total": 1.25,
+  "scale": 1
+ },
+ "mihokbul-cast": {
+  "id": "mihokbul-cast",
+  "name": "mihokbul-cast",
+  "fps": 30,
+  "loop": false,
+  "frames": 46,
+  "frameSize": [
+   80,
+   124
+  ],
+  "pivot": [
+   40,
+   86
+  ],
+  "columns": 9,
+  "source": "custom",
+  "pre": 1.1,
+  "total": 1.5,
+  "scale": 1
+ },
+ "hosikchong-erupt": {
+  "id": "hosikchong-erupt",
+  "name": "Grasping hands",
+  "fps": 30,
+  "loop": false,
+  "frames": 57,
+  "frameSize": [
+   240,
+   130
+  ],
+  "pivot": [
+   90,
+   112
+  ],
+  "columns": 6,
+  "source": "shadow/grasping-hands x5",
+  "pre": 1,
+  "total": 1.85,
+  "scale": 1
+ },
+ "monk-moktak": {
+  "id": "monk-moktak",
+  "name": "Ground slam",
+  "fps": 30,
+  "loop": false,
+  "frames": 64,
+  "frameSize": [
+   288,
+   208
+  ],
+  "pivot": [
+   104,
+   164
+  ],
+  "columns": 7,
+  "source": "impacts/ground-slam",
+  "pre": 0.9,
+  "total": 2.1,
+  "scale": 1
+ }
+}

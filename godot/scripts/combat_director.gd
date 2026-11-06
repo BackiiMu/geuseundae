@@ -632,7 +632,6 @@ func tick_projectiles(delta: float) -> void:
 		p["life"]-=delta
 		p["age"]+=delta
 		if p["life"]<=0:
-			if p["kind"]=="talisman": vfx.monster_impact("talisman-hit",p["pos"],Vector2(p["velocity"]).normalized())
 			projectiles.remove_at(i)
 			continue
 		var from:Vector2=p["pos"]
@@ -690,7 +689,6 @@ func tick_projectiles(delta: float) -> void:
 					hurt(p["damage"])
 					p["life"]=0
 		if p["life"]<=0:
-			if p["kind"]=="talisman": vfx.monster_impact("talisman-hit",p["pos"],Vector2(p["velocity"]).normalized())
 			projectiles.remove_at(i)
 func tick_zones(delta: float) -> void:
 	for i in range(zones.size()-1,-1,-1):
