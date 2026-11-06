@@ -20,6 +20,8 @@ func run_checks() -> void:
 			InputMap.add_action(action)
 	var controls = Controls.new()
 	root.add_child(controls)
+	if not require(controls.buttons.any(func(item): return item["action"]=="jump") and controls.buttons.any(func(item): return item["action"]=="dash"), "Mobile exposes separate jump and dash buttons through the shared input actions"):
+		return
 	controls.set_process(false)
 	controls.move_finger = 1
 	controls.move_center = Vector2(100,300)

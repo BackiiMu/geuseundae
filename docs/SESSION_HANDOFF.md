@@ -15,6 +15,7 @@
 - 몽달귀신: HP 90, `몽달의 손톱`, Q 없음, 대시 충전 총 3회.
 - 창귀: HP 70, `범의 발톱`, Q `창귀원혼`(맵 전체 적 4초 정지, 30초). 장산범 처치 후 해금.
 - 몽달·창귀 8×4 시트의 프레임별 몸 크기·중심·발 위치 차이는 `actor_sprite.gd`에서 정규화했다. 대기와 이동도 같은 보이는 높이를 유지한다.
+- 점프키는 착지 상태의 첫 입력만 점프다. 점프 후 착지 전 재입력은 대시키와 동일하게 현재 공격 조준 방향으로 8방향 대시한다. Shift, 이동키 연타, 공중 점프키 대시는 모두 공격 방향을 사용한다. 모바일도 별도 점프 버튼의 첫 입력은 점프, 공중 재입력은 오른쪽 공격 스틱 방향 대시다.
 
 ## 챕터 상태
 
@@ -47,6 +48,8 @@
 /Applications/Godot.app/Contents/MacOS/Godot --headless --path godot --script res://tests/combat_test.gd
 /Applications/Godot.app/Contents/MacOS/Godot --headless --path godot --script res://tests/vfx_test.gd
 /Applications/Godot.app/Contents/MacOS/Godot --headless --path godot --script res://tests/random_run_test.gd
+/Applications/Godot.app/Contents/MacOS/Godot --headless --path godot --script res://tests/dash_test.gd
+/Applications/Godot.app/Contents/MacOS/Godot --headless --path godot --script res://tests/mobile_controls_test.gd
 ```
 
 2026-11-06 기준 핵심 검사와 대시 검사가 통과했다. macOS 헤드리스 실행의 시스템 인증서 조회 경고는 게임 테스트 실패가 아니다. `combat_live_test.gd`는 과거 근접 적 처치 타이밍에 따라 간헐 실패한 기록이 있어 별도 재현이 필요하다.

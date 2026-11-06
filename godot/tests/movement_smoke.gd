@@ -40,11 +40,15 @@ func run() -> void:
 	await frames(2)
 	Input.action_release("jump")
 	await frames(4)
+	Input.action_press("attack_right")
+	Input.action_press("attack_up")
 	Input.action_press("jump")
 	await frames(2)
 	Input.action_release("jump")
+	Input.action_release("attack_right")
+	Input.action_release("attack_up")
 	Input.action_release("move_right")
-	if not check_ok(p.dash_time>0.0 and p.dash_direction.x>0 and p.dash_direction.y<0, "Double-tapping the real jump input starts a directional air dash"):
+	if not check_ok(p.dash_time>0.0 and p.dash_direction.is_equal_approx(Vector2(1,-1).normalized()), "Airborne jump input dashes toward the 8-way attack aim"):
 		return
 	await frames(90)
 	Input.action_press("move_right")

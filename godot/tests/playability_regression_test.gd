@@ -72,14 +72,15 @@ func run_checks() -> void:
 	if not check(combat.aim().is_equal_approx(Vector2(1,1).normalized()),"Two arrow keys support diagonal attacks"): return
 	Input.action_release("attack_right")
 	Input.action_release("attack_down")
-	# Jump remains a normal jump on the first press, then becomes a directional
-	# dash when the same button is pressed again inside the double-tap window.
+	# The first jump-button press requests a jump. Until landing, every later
+	# press uses the exact same aimed dash path as the dedicated dash button.
 	p.set_physics_process(false)
 	p.dash_cooldown=0.0
 	p.dash_time=0.0
-	p.tap_windows["jump"]=0.0
-	var first_jump_dash=p.register_tap("jump",Vector2.RIGHT)
+	p.jumped_since_floor=false
+	var first_jump_dash=p.handle_jump_press(Vector2.RIGHT)
 	if not check(not first_jump_dash and p.dash_time==0.0,"First jump-button press remains a normal jump"): return
-	var second_jump_dash=p.register_tap("jump",Vector2(-1,-1))
-	if not check(second_jump_dash and p.dash_time>0.0 and p.dash_direction.is_equal_approx(Vector2(-1,-1).normalized()),"Second jump-button press dashes in the held movement direction"): return
+	p.jumped_since_floor=true
+	var second_jump_dash=p.handle_jump_press(Vector2(-1,-1))
+	if not check(second_jump_dash and p.dash_time>0.0 and p.dash_direction.is_equal_approx(Vector2(-1,-1).normalized()),"Airborne jump-button press dashes in the attack direction"): return
 	quit(0)

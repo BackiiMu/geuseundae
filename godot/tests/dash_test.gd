@@ -20,12 +20,12 @@ func run_checks() -> void:
 		p.dash_time = 0
 		p.dash_cooldown = 0
 		p.dash_charges = p.dash_max_charges
-		for action in ["move_left","move_right","aim_up","aim_down","dash"]: Input.action_release(action)
+		for action in ["move_left","move_right","aim_up","aim_down","attack_left","attack_right","attack_up","attack_down","dash"]: Input.action_release(action)
 		await step(2)
-		if direction.x<0: Input.action_press("move_left")
-		if direction.x>0: Input.action_press("move_right")
-		if direction.y<0: Input.action_press("aim_up")
-		if direction.y>0: Input.action_press("aim_down")
+		if direction.x<0: Input.action_press("attack_left")
+		if direction.x>0: Input.action_press("attack_right")
+		if direction.y<0: Input.action_press("attack_up")
+		if direction.y>0: Input.action_press("attack_down")
 		Input.action_press("dash")
 		await step(2)
 		if p.velocity.distance_to(direction.normalized()*680)>1:
@@ -33,7 +33,7 @@ func run_checks() -> void:
 			quit(1)
 			return
 		print("PASS dash ",direction," speed ",p.velocity.length())
-	for action in ["move_left","move_right","aim_up","aim_down","dash"]: Input.action_release(action)
+	for action in ["move_left","move_right","aim_up","aim_down","attack_left","attack_right","attack_up","attack_down","dash"]: Input.action_release(action)
 	await step(2)
 	p.dash_cooldown=0
 	p.dash_charges=p.dash_max_charges
@@ -52,51 +52,43 @@ func run_checks() -> void:
 		p.dash_time=0
 		p.dash_charges=p.dash_max_charges
 		for action in p.tap_windows: p.tap_windows[action]=0.0
+		Input.action_press("attack_right")
+		Input.action_press("attack_up")
 		Input.action_press(entry[0])
 		await step(1)
 		Input.action_release(entry[0])
 		await step(3)
 		Input.action_press(entry[0])
 		await step(2)
-		if p.velocity.distance_to(Vector2(entry[1])*680)>1:
-			push_error("Double-tap dash failed: "+str(entry[0])+" actual "+str(p.velocity))
+		if p.velocity.distance_to(Vector2(1,-1).normalized()*680)>1:
+			push_error("Double-tap dash did not follow attack aim: "+str(entry[0])+" actual "+str(p.velocity))
 			quit(1)
 			return
 		Input.action_release(entry[0])
+		Input.action_release("attack_right")
+		Input.action_release("attack_up")
 		await step(2)
-	print("PASS directional double taps trigger four-way dash")
+	print("PASS directional double taps trigger a dash toward the 8-way attack aim")
 	p.dash_cooldown=0
 	p.dash_time=0
 	p.dash_charges=p.dash_max_charges
-	for action in p.tap_windows: p.tap_windows[action]=0.0
-	Input.action_press("jump")
-	await step(1)
-	Input.action_release("jump")
-	await step(3)
-	Input.action_press("jump")
-	await step(2)
-	Input.action_release("jump")
-	if p.velocity.distance_to(Vector2.UP*680)>1 or p.buffered_jump>0:
-		push_error("Double jump-key dash failed or also buffered a jump: "+str(p.velocity))
+	p.jumped_since_floor=false
+	p.handle_jump_press(Vector2.RIGHT)
+	if p.buffered_jump<=0 or p.dash_time>0:
+		push_error("First jump-button press must buffer a jump, not dash")
 		quit(1)
 		return
-	print("PASS double jump key dashes upward without extra jump")
+	print("PASS first jump-button press requests a jump")
 	p.dash_cooldown=0
 	p.dash_time=0
 	p.dash_charges=p.dash_max_charges
-	for action in p.tap_windows: p.tap_windows[action]=0.0
-	Input.action_press("move_right")
-	Input.action_press("jump")
+	p.buffered_jump=0
+	p.jumped_since_floor=true
+	p.handle_jump_press(Vector2(1,-1))
 	await step(1)
-	Input.action_release("jump")
-	await step(3)
-	Input.action_press("jump")
-	await step(2)
-	Input.action_release("jump")
-	Input.action_release("move_right")
-	if p.velocity.distance_to(Vector2(1,-1).normalized()*680)>1:
-		push_error("Moving double jump-key dash must go diagonally upward: "+str(p.velocity))
+	if p.dash_direction.distance_to(Vector2(1,-1).normalized())>.01 or p.buffered_jump>0:
+		push_error("Airborne jump-button press must use the same aimed dash: "+str(p.dash_direction))
 		quit(1)
 		return
-	print("PASS held movement plus double jump key dashes diagonally upward")
+	print("PASS airborne jump-button press performs the same 8-way aimed dash")
 	quit(0)
