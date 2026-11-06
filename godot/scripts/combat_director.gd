@@ -309,7 +309,6 @@ func use_heart() -> void:
 		if enemy.boss and enemy.state=="windup" and enemy.pattern==2: continue
 		heart_pending.append(enemy)
 		enemy.stun=maxf(enemy.stun,.3)
-	vfx.emit("seal",3,world.player.position+Vector2(0,-30),Vector2.RIGHT,.85,Color("b6cccd"))
 	heart_windup=.25
 	heart_animation=1.1
 	heart_cd=float(heart["cooldown"])
@@ -849,7 +848,6 @@ func _draw() -> void:
 						var u:=k/19.0*(1-heart_windup/.25) if heart_windup>0 else k/19.0
 						points.append(from.lerp(to,u)+Vector2(0,sin(u*PI)*(-18+j*2)))
 					draw_polyline(points,Color("3b414e") if j!=1 else Color("a5bfb6"),2)
-				draw_arc(to,18*enemy.size_factor,0,TAU,24,Color("879f96"),2)
 
 func draw_provided_drop(pickup: Dictionary) -> bool:
 	var item: Dictionary = pickup.get("item", {})

@@ -1,39 +1,81 @@
-# 새 세션 인계 · 2026-11-03
+# 새 PC·새 세션 작업 인계 · 2026-11-06
 
-## 현재 요청과 보류
+## 저장소와 시작점
 
-GitHub BackiiMu/geuseundae에 소스를 푸시하고 인계한다. APK 제작, 연결 Android 설치, iOS Xcode 내보내기는 사용자가 “푸시만 해놔 나머진 나중에”라고 하여 중단했다. 모바일 관련 수정은 미완성 상태로 보존한다.
+- 저장소: `https://github.com/BackiiMu/geuseundae.git`, 브랜치 `main`.
+- 실제 게임은 Godot 4.7.2의 `godot/project.godot`, 시작 장면은 `godot/scenes/village.tscn`이다.
+- 루트 HTML은 과거 시안이다. 현재 구현 판단은 `godot/scripts`와 `docs/CURRENT_STATUS.md`를 따른다.
+- 새 PC에서 받은 뒤 Godot 이미지 import가 끝날 때까지 기다린다.
+- 기본 창은 640×360이다. 사용자가 요청하기 전에는 크게 띄우지 말고, 검수 창은 기존 위치나 화면 아래쪽에 둔다.
 
-## 실제 게임
+## 현재 게임 흐름
 
-- Godot 4.7.2, `godot/project.godot`, 시작 장면 `scenes/village.tscn`.
-- `random_run.gd`: 마을/런/장비 실험실, `run_generator.gd`: 시드 생성, `room_catalog.gd`, `room_view.gd`: 방과 동선.
-- `combat_director.gd`: 전투/UI, `equipment_db.gd`와 `equipment_runtime.gd`: 장비 데이터와 동작, `combat_enemy.gd`: 적/보스.
-- `actor_sprite.gd`: 캐릭터 시트 애니메이션. 텍스처를 중복 곱하면 검게 변하므로 셰이더 수정 주의.
-- `pixel_vfx.gd`: 23종 효과 시트. 원본은 `vendor/pixelfx/src/fx/geuseundae`, 생성기는 `vendor/pixelfx/tools/export-geuseundae.mjs`.
-- 장비 원안은 루트 `geuseundae_equipment.md`. 의도적으로 깨진 두억시니 장비 이름을 유지한다. 두억시니 무기는 검은 그림자 주먹이다.
-- 시드 1103 정상 루트: forest 0 → shrine 1 → 상점 3 → gallery 4 → 보스 8. 각 맵의 이동 포탈은 1~4개이며 한 구간의 방 개수를 의미하지 않는다.
-- 손각시 심장 HP60, Q는 화면 내 적을 머리카락으로 앞으로 끌며 쿨타임 30초.
-- 장비 자동 가방 획득, 파기는 경고 후 영구 제거. 상점은 마을 1/2등급 4개 세션 랜덤, 층 상점은 시드 기반. 저장 기능은 아직 없다.
+- 시작·사망 귀환 시 검은 인간형으로 소환된다. 심장이 없으면 런을 시작할 수 없다.
+- 손각시: HP 60, 기본 무기 `손각시의 손`. Q는 화면 내 적에게 머리카락을 뻗어 앞으로 끌어오며 쿨타임 30초다. 마법진·원형 표시는 사용하지 않는다.
+- 몽달귀신: HP 90, `몽달의 손톱`, Q 없음, 대시 충전 총 3회.
+- 창귀: HP 70, `범의 발톱`, Q `창귀원혼`(맵 전체 적 4초 정지, 30초). 장산범 처치 후 해금.
+- 몽달·창귀 8×4 시트의 프레임별 몸 크기·중심·발 위치 차이는 `actor_sprite.gd`에서 정규화했다. 대기와 이동도 같은 보이는 높이를 유지한다.
 
-## 검수 기록과 제한
+## 챕터 상태
 
-이전 작업에서 실제 Godot Web 데모를 조작해 일반 경로로 보스까지 클리어했다. 장비/전투/적 AI/상점/방 생성/상단 동선/8방향 대시/이펙트 관련 `godot/tests` 검사를 통과했다. 이 기록은 모바일 수정 전 기준이며 이번 푸시 과정에서 전체 재실행하지 않았다.
+- 1챕터: 시드 기반 방, 방 포탈 1~4개, 우물 지도 이동, 평화방·도깨비상인, 퇴마단 선봉대장 보스가 동작한다.
+- 전투, 장비/가방, 영혼조각 자동 획득, 방 보상, 확인 후 장비 파기가 연결되어 있다.
+- 2챕터는 안개 낀 산이다. 창귀 잔혼·미혹불·호식총 원귀·산호랑이와 장산범 그림자 정예가 등장한다.
+- 장산범 보스는 플레이어 복제형(HP 260, 기본 할퀴기) → 그림자(HP 450) → 흰 몸·붉은 얼굴 장산범(HP 850)의 독립 체력 3페이즈다.
+- 각 페이즈 처치 시 전투가 멈추고 Pixelfx 날씨 안개가 보스를 완전히 가린 뒤 다음 모습으로 전환한다.
+- 최종 장산범은 크게 확대했고 발 위치와 충돌 범위도 외형에 맞췄다. 최종 처치 시 장산범 장비 하나와 장산범 세트·창귀 심장 해금을 처리한다.
+- 상세 기준은 `docs/chapter-two-fog-mountain.md`, 검수 캡처는 `docs/reviews/chapter2/`에 있다.
 
-보스 외형은 전사 확대 버전이며 별도 보스 시트가 필요하다. 아트·전투 밸런스는 계속 검토해야 한다. 루트 HTML은 과거 시안이며 현재 게임과 혼동하지 않는다. `godot/README.md`와 오래된 제안 문서는 최신 구현과 다를 수 있다.
+## 주요 코드
 
-## 모바일 준비 상태 — 미검증
+- `godot/scripts/random_run.gd`: 마을·런·방 이동·층 흐름.
+- `godot/scripts/combat_director.gd`: 전투, 보상, 인벤토리, 심장 스킬.
+- `godot/scripts/combat_enemy.gd`: 적과 장산범 3페이즈.
+- `godot/scripts/actor_sprite.gd`: 캐릭터 시트와 신규 심장 캐릭터 크기 보정.
+- `godot/scripts/heart_db.gd`, `heart_npc.gd`: 심장 데이터와 NPC.
+- `godot/scripts/equipment_db.gd`, `equipment_runtime.gd`: 장비 데이터와 효과.
+- `godot/scripts/pixel_vfx.gd`: 전투 이펙트.
+- `vendor/pixelfx/`: Pixelfx 원본과 프로젝트 전용 효과.
+- `docs/HEART_CHARACTERS.md`: 심장 캐릭터 기준.
+- `geuseundae_equipment.md`: 장비 원안. 의도적으로 이상한 두억시니 장비 이름을 임시 이름으로 고치지 않는다.
 
-`mobile_controls.gd`와 모바일 조준 분기, landscape 설정, Android/iOS 프리셋을 추가했다. 첫 Android 내보내기는 ETC2/ASTC import 설정 누락, 첫 iOS 내보내기는 Team ID 누락으로 실패했다. 압축 import 설정은 추가했으나 성공한 APK/Xcode 결과물과 기기 설치 검증은 없다. iOS Team ID는 빈 값으로 보관했다. 실제 개발팀 ID를 선택해야 한다.
+## 핵심 검수
 
-개발 환경에 Godot export templates 4.7.2, Xcode, Android SDK가 있다. Android SDK 기본 위치는 `~/Library/Android/sdk`; Java는 Android Studio JBR 또는 Homebrew openjdk@17 사용 가능. 연결 Android는 SM-A826S로 확인했었다. 인증서·키·개인 설정·빌드 산출물은 커밋하지 않는다.
+```sh
+/Applications/Godot.app/Contents/MacOS/Godot --headless --path godot --script res://tests/heart_identity_test.gd
+/Applications/Godot.app/Contents/MacOS/Godot --headless --path godot --script res://tests/chapter_two_test.gd
+/Applications/Godot.app/Contents/MacOS/Godot --headless --path godot --script res://tests/combat_test.gd
+/Applications/Godot.app/Contents/MacOS/Godot --headless --path godot --script res://tests/vfx_test.gd
+/Applications/Godot.app/Contents/MacOS/Godot --headless --path godot --script res://tests/random_run_test.gd
+```
 
-## 작업 재개
+2026-11-06 기준 핵심 검사와 대시 검사가 통과했다. macOS 헤드리스 실행의 시스템 인증서 조회 경고는 게임 테스트 실패가 아니다. `combat_live_test.gd`는 과거 근접 적 처치 타이밍에 따라 간헐 실패한 기록이 있어 별도 재현이 필요하다.
 
-창 크기와 위치 선호를 반드시 유지한다. 모바일 재개를 요청받으면 우선 import/문법 검사, 터치 입력 검수, Android export/설치/실행 검증, iOS 실제 팀 선택과 Xcode export 순서로 진행한다. 완료 전 성공했다고 기록하지 않는다.
+## iOS/Xcode
 
-테스트 예시: `/Applications/Godot.app/Contents/MacOS/Godot --headless --path godot --script res://tests/equipment_test.gd`.
+- 프리셋: `iOS Xcode`. 인증서와 `DEVELOPMENT_TEAM`은 비워 두고 사용자가 Xcode에서 선택한다.
+- 2026-11-06 내보내기와 ZIP 무결성 검사를 통과했다.
+- 로컬 산출물은 `builds/ios/Geuseundae-Xcode.zip`(약 147MB)이다. `builds/`는 Git 제외이므로 다른 Mac에서는 다시 내보낸다.
 
-## 외부 코드
+```sh
+/Applications/Godot.app/Contents/MacOS/Godot --headless --path godot --export-debug "iOS Xcode" ../builds/ios/Geuseundae-Xcode.zip
+```
 
-pixelfx 원본 https://github.com/patch-gg/pixelfx.git, 기반 커밋 `a84159688af3ca37a4be05a0d422b94451b2e24e`. 프로젝트 전용 효과와 내보내기 도구를 수정했다. 일반 소스로 포함하며 라이선스/NOTICE를 보존한다.
+- 임시 앱 아이콘 자동 리사이즈와 App Store 1024 아이콘 투명도 경고가 남아 있다.
+
+## 다음 우선순위
+
+1. 몽달·창귀 크기 보정 후 이동 애니메이션의 폭 변화와 잔상을 실제 플레이로 확인한다.
+2. 2챕터 전체 동선을 플레이해 장산범 3페이즈 공격 밸런스와 큰 충돌 범위를 조정한다.
+3. 변신 안개 속도·밝기를 실제 전투 배경에서 최종 조정한다.
+4. 도깨비상인·상점 UI를 최신 도트 인벤토리 스타일로 통일한다.
+5. 불투명 App Store 아이콘 제작과 iPhone 실기기 서명·설치 검증.
+
+## 유지할 디자인 규칙
+
+- 두억시니 무기는 검은 그림자 주먹이다.
+- 손각시의 손과 손각시 머리카락은 별도 아이템이며 무기가 없으면 공격하지 않는다.
+- 창귀는 갓 없는 일반 농노다. 산발, 절단된 팔·다리의 백골, 배의 호랑이 발톱 상처를 유지한다.
+- 장비와 몬스터 이펙트는 제공된 원본과 Pixelfx 리소스를 우선 사용한다.
+- 도깨비상인은 영혼조각을 아이템으로 바꾼다. 마을은 1·2단계 4개, 층 상점은 고층일수록 상위 등급 확률이 오른다.
+- 빌드, 인증서, 프로비저닝 파일, 개인 개발팀 설정은 Git에 넣지 않는다.

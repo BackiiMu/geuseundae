@@ -93,8 +93,10 @@ func run_checks() -> void:
 	combat.equipment["heart"]="songaksi"
 	combat.heart_cd=0
 	boss.state="approach"
+	var heart_bursts_before:int=combat.vfx.bursts.size()
 	combat.use_heart()
 	if not check(combat.heart_cd==30 and combat.heart_pending.has(boss),"Heart skill targets visible boss and starts 30-second cooldown"): return
+	if not check(combat.vfx.bursts.size()==heart_bursts_before,"Songaksi heart uses only hair strands without a magic-circle burst"): return
 	boss.pull_to(Vector2(860,704),.7)
 	if not check(boss.pull_remaining>0,"Hair gather uses moving pull rather than teleport"): return
 	boss.pull_remaining=0
