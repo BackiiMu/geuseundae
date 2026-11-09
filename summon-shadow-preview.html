@@ -1,0 +1,50 @@
+<!doctype html><meta charset="utf-8"><meta name=viewport content="width=device-width,initial-scale=1"><title>그슨대 · 그림자 형체 소환 시안</title>
+<style>
+:root{--bg:#07090a;--card:#101517;--line:#2c3a37;--tx:#cfcbb8;--mut:#8a9189;--btn:#3d4a44}
+body{margin:0;background:var(--bg);color:var(--tx);font:14px/1.5 sans-serif}main{max-width:1120px;margin:0 auto;padding:20px 16px 50px}
+h1{font-size:20px;margin:0 0 4px}.lead{color:var(--mut);margin:0 0 16px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(480px,1fr));gap:14px}
+.card{background:var(--card);border:1px solid var(--line);padding:12px}.card h2{font-size:16px;margin:0 0 6px}
+.stage{position:relative;width:100%;aspect-ratio:11/6;overflow:hidden;background:#0a0e10;image-rendering:pixelated}
+.world{position:absolute;left:0;top:0;width:330px;height:180px;transform-origin:0 0;background:url('docs/mockups/monster-attack-vfx/bg-chapter2.png') 0 0/660px 180px;image-rendering:pixelated}
+.fx,.ref{position:absolute;background-repeat:no-repeat;image-rendering:pixelated}
+.ctl{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:10px;font-size:13px;color:var(--mut)}
+button,select{background:var(--btn);color:#d8d6c6;border:0;padding:6px 10px;font-size:13px;cursor:pointer}
+input[type=range]{accent-color:#a8532a}
+.tl{position:relative;height:18px;margin-top:8px;background:#0b0f10;font-size:11px;line-height:18px;color:#d8d6c6;display:flex}
+.tl div{padding-left:6px;overflow:hidden;white-space:nowrap}
+.n{color:var(--mut);font-size:12px;margin:6px 0 0}
+</style>
+<main><h1>그림자 형체 소환 시안</h1>
+<p class=lead>바닥에 먹빛 그림자가 물결처럼 번져 웅덩이가 되고, 그 한가운데서 검은 그림자 인간 형체가 느리게 솟은 뒤 웅덩이가 발밑으로 흡수됩니다. 게임 배경과 실제 캐릭터 크기 위에 올렸습니다. 오른쪽은 지금 쓰는 검은 인간형 소환(보라 웅덩이)으로, 비교용입니다. 게임에는 적용하지 않았습니다.</p>
+<div class=grid>
+<section class=card id=a data-img="docs/mockups/summon-shadow/shadow-rise.png" data-w=170 data-h=112 data-px=85 data-py=92 data-cols=11 data-n=175 data-fps=30 data-speed=1>
+ <h2>새 소환 · 검은 그림자 형체 (5.8초)</h2>
+ <div class=stage><div class=world><i class=ref></i><div class=fx></div></div></div>
+ <div class=tl><div style="width:33%;background:#232a3b">① 번짐 0~1.9s</div><div style="width:43%;background:#1b2130">② 형체가 솟음 1.5~4.0s</div><div style="flex:1;background:#2a3140">③ 흡수 3.9~5.4s</div></div>
+ <div class=ctl><button class=play>재생/정지</button><button class=rst>처음부터</button><input type=range class=sc min=0 max=174 value=0 style="width:220px"><span class=tag>0.00s</span>
+  속도 <select class=sp><option value=1>1배</option><option value=.5>0.5배</option><option value=1.5>1.5배</option></select></div>
+ <p class=n>웅덩이 가장자리는 일렁이고 안에서 고리가 바깥으로 번집니다. 형체는 얼굴 없는 검은 그림자로 머리부터 수면 위로 올라옵니다. 긴 머리가 늘어지고 가장자리가 숨 쉬듯 일렁이며, 갓 올라온 부분에는 웅덩이의 푸른 물기가 흘러내리다 걷힙니다. 허리 아래는 안개처럼 풀려 웅덩이로 이어집니다.</p>
+</section>
+<section class=card id=b data-img="godot/assets/actors/tar-child.png" data-w=128 data-h=104 data-px=64 data-py=86 data-cols=12 data-n=175 data-fps=30 data-speed=1>
+ <h2>현재 소환 · 검은 인간형 (비교)</h2>
+ <div class=stage><div class=world><i class=ref></i><div class=fx></div></div></div>
+ <div class=ctl><button class=play>재생/정지</button><button class=rst>처음부터</button><input type=range class=sc min=0 max=174 value=0 style="width:220px"><span class=tag>0.00s</span></div>
+ <p class=n>게임에서는 3.5배속(약 1.7초)으로 재생합니다. 이 비교는 같은 속도(원본 5.8초)로 보여 줍니다.</p>
+</section>
+</div></main>
+<script>
+const Z=1,FEET=150,CX=165;
+document.querySelectorAll('.card').forEach(c=>{const d=c.dataset,w=+d.w,h=+d.h,px=+d.px,py=+d.py,cols=+d.cols,n=+d.n,fps=+d.fps;
+ const world=c.querySelector('.world'),fx=c.querySelector('.fx'),ref=c.querySelector('.ref'),st=c.querySelector('.stage'),sc=c.querySelector('.sc'),tag=c.querySelector('.tag');
+ let play=true,t=0,last=performance.now(),speed=1,hold=0;
+ fx.style.backgroundImage=`url('${d.img}')`;fx.style.width=w+'px';fx.style.height=h+'px';fx.style.left=(CX-px)+'px';fx.style.top=(FEET-py)+'px';fx.style.backgroundSize=`${cols*w}px auto`;
+ ref.style.cssText+=`;left:${CX+70}px;top:${FEET+2-64}px;width:48px;height:64px;opacity:.9;background:url('godot/assets/actors/source/songaksi-v1.png') 0 0/384px 256px`;
+ const fit=()=>world.style.transform=`scale(${st.clientWidth/330})`;
+ function show(){const f=Math.min(n-1,Math.floor(t*fps)),col=f%cols,row=Math.floor(f/cols);fx.style.backgroundPosition=`${-col*w}px ${-row*h}px`;sc.value=f;tag.textContent=(f/fps).toFixed(2)+'s'}
+ c.querySelector('.play').onclick=()=>play=!play;c.querySelector('.rst').onclick=()=>{t=0;hold=0;play=true};
+ sc.oninput=()=>{play=false;t=sc.value/fps;show()};const sp=c.querySelector('.sp');if(sp)sp.onchange=()=>speed=+sp.value;
+ (function tick(now){const dt=Math.min(.1,(now-last)/1000);last=now;if(play){if(t>=(n-1)/fps){hold+=dt;if(hold>1.2){t=0;hold=0}}else t+=dt*speed;show()}requestAnimationFrame(tick)})(last);
+ const hf=/frame=(\d+)/.exec(location.hash);if(hf){t=+hf[1]/fps;play=false}
+ fit();show();addEventListener('resize',fit)});
+</script>

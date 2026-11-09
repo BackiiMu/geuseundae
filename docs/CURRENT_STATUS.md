@@ -5,7 +5,7 @@
 ## 바로 시작하기
 
 1. 저장소: `https://github.com/BackiiMu/geuseundae.git`, 브랜치 `main`.
-2. Godot 4.7.2에서 `godot/project.godot`을 연다. 시작 장면은 `godot/scenes/village.tscn`.
+2. Godot 4.7.2에서 `godot/project.godot`을 연다. 시작 장면은 `godot/scenes/title_screen.tscn`이며 `게임 시작`을 누르면 마을로 들어간다.
 3. 첫 실행 전 Godot이 이미지 import를 마칠 때까지 기다린다.
 4. 루트 HTML은 과거 시안이다.
 5. 기본 창은 640×360이다. 사용자가 요청하기 전에는 키우거나 옮기지 않고, 검수 창은 기존 위치나 화면 아래쪽에 둔다.
@@ -23,7 +23,7 @@
 - PC: 이동 A/D, 점프 Space, 대시 Shift, 공격 J/마우스 왼쪽(방향키 8방향 조준), 심장 Q, 주무기/보조무기 스킬 F/G, 상호작용 E, 가방 Tab/I.
 - 대시 방향
   - **PC**: Shift, 방향키 연타, 점프 후 착지 전 Space 재입력 모두 공격 조준 방향(8방향). 조준이 없으면 바라보는 방향.
-  - **모바일**: 대시 버튼과 공중 점프 재입력 모두 왼쪽 이동 스틱 방향(8방향 스냅). 스틱을 놓고 있으면 바라보는 방향. 구현은 `player.gd`의 `mobile_dash_direction()`과 `mobile_controls.gd`의 `move_vector`이다. `dash_test.gd`와 `mobile_controls_test.gd`는 통과했으나 모바일 방향 자체를 확인하는 테스트는 아직 없고, 실기기·`--touch` 확인도 하지 않았다.
+  - **모바일**: 대시 버튼과 공중 점프 재입력 모두 왼쪽 이동 스틱의 자유 각도를 그대로 따른다. 스틱을 놓고 있으면 바라보는 방향. 구현은 `player.gd`의 `mobile_dash_direction()`과 `mobile_controls.gd`의 `move_vector`이며 `mobile_controls_test.gd`에서 임의 아날로그 각도와 중립 방향을 검사한다. 실기기·`--touch` 확인은 아직 하지 않았다.
 - 점프키는 착지 상태의 첫 입력만 점프다. 모바일도 별도 점프 버튼의 첫 입력은 점프이며, 오른쪽 스틱은 공격 조준만 맡는다.
 - 개발용: 장비 실험실 F6, 무기 변경 [ / ], 표적 초기화 T, 두억시니 세트 P, 정지 F9, 표적 AI Y, 재시작 R, 다음 시드 N.
 
@@ -40,7 +40,15 @@
 ## UI
 
 - 인벤토리는 768×432 논리 화면에서 비율을 유지한다. 가변 악세사리 레일(2/4/6칸)과 6×5 가방을 쓰고, 한 장짜리 배경이 아니라 9패치 패널·도트 슬롯·버튼 부품으로 조립한다(`inventory_modular_skin.gd`).
+- 인벤토리 배치는 `godot/assets/ui/layouts/inventory-layout.json`을 실제로 읽는다. 화면 비율에 따라 landscape·compact·portrait 프로필을 고르고, 장비·가방·상세 영역 좌표와 가방 열/간격을 JSON에서 가져온다(`inventory_layout.gd`).
+- 시작 장면은 `title_screen.tscn`이다. 버튼 없는 흉가 배경 위에 실제 Godot `게임 시작`·`설정` 버튼을 배치하며, 게임 시작은 마을로 연결된다.
+- 게임 HUD는 이미지 HP바, 엽전형 대시 충전, 가방 수량과 닫힘→반열림→열림 애니메이션, 설정 버튼을 쓴다(`game_hud.gd`). 설정에는 도트 음량 슬라이더와 전체 화면 토글이 있다.
 - 도깨비상인은 영혼조각을 아이템으로 바꿔 준다. 마을은 1·2단계 4개, 층 상점은 높은 층일수록 상위 등급 확률이 오른다(`merchant.gd`, `merchant_stock.gd`).
+
+## 시작·변신 소환
+
+- 시작·부활·심장 변신은 `assets/vfx/summon/shadow-rise.png`와 JSON(170×112, 175프레임, 30fps, 피벗 85×92)을 사용한다. 원본 약 5.8초를 3.5배속으로 재생해 약 1.7초에 끝나며 바닥 피벗을 유지한다.
+- 시각 검수 캡처는 `docs/reviews/ui/`에 있다. `ui_visual_review.gd`가 인트로·그림자 소환·마을 HUD·JSON 인벤토리·설정을 실제 렌더러로 저장한다.
 
 ## 주요 코드
 
@@ -70,7 +78,7 @@
 
 핵심: `heart_identity_test`, `chapter_two_test`, `combat_test`, `vfx_test`, `random_run_test`, `dash_test`, `mobile_controls_test`, `inventory_ui_test`, `merchant_test`.
 
-- 2026-11-06 기준 핵심 검사, 대시 검사, 인벤토리·상인 검사 통과(문서 기록 기준). 모바일 대시 방향 변경 후에는 `dash_test`, `mobile_controls_test`만 다시 돌렸다.
+- 2026-11-09 기준 몬스터 VFX·2챕터·전투·PC 대시·모바일 조작 자동 검사 통과. 모바일 대시는 이동 스틱의 자유 각도를 유지하며, 키보드 공격 방향만 8방향이다.
 - macOS 헤드리스의 시스템 인증서 조회 경고는 테스트 실패가 아니다.
 - `combat_live_test.gd`는 근접 적 처치 타이밍에서 간헐 실패한 기록이 있어 별도 재현·수정이 필요하다.
 
@@ -107,7 +115,7 @@
 3. 변신 안개 속도·밝기를 실제 전투 배경에서 최종 조정.
 4. 도깨비상인 크기·바닥 위치·상호작용 표지 실기기 검수, 상점 UI를 최신 도트 인벤토리 스타일로 통일.
 5. 불투명 App Store 아이콘 제작과 iPhone 실기기 서명·설치 검증.
-6. 모바일 대시 방향(이동 스틱 기준) 테스트 추가와 실기기 확인.
+6. 모바일 자유 각도 대시와 공격 조준을 실기기에서 확인.
 
 ## 유지할 디자인 규칙
 

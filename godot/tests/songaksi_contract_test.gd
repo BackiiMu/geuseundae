@@ -23,7 +23,7 @@ func run_checks() -> void:
 	if not check(world.summon_in_progress and not world.player.visual.visible,"Spawn uses the supplied summon sheet before revealing the body"): return
 	var summon:Node=world.get_children().filter(func(child): return child is SummonEffect)[0]
 	if not check(summon.position.is_equal_approx(world.player.position),"Spawn effect is anchored to the player's floor point"): return
-	if not check(summon.self_modulate==SummonEffect.SHADOW_TINT,"Spawn and transformation effect use the black shadow tint"): return
+	if not check(summon.texture.resource_path=="res://assets/vfx/summon/shadow-rise.png" and summon.self_modulate==SummonEffect.SHADOW_TINT,"Spawn and transformation use the supplied black shadow-rise sheet without recoloring it"): return
 	if not check(SummonEffect.PLAYBACK_SPEED>=3.5,"Spawn and transformation play at the shortened speed"): return
 	finish_summon(world)
 	await frames(2)

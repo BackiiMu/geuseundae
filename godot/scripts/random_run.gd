@@ -150,7 +150,7 @@ func spawn_songaksi_npc() -> void:
 	songaksi_npc=SongaksiNPC.new()
 	songaksi_npc.position=Vector2(700,704)
 	var label:=Label.new()
-	label.text="손각시\n[E] 말 걸기"
+	label.text="손각시"
 	label.position=Vector2(-42,-82)
 	label.add_theme_font_size_override("font_size",14)
 	songaksi_npc.add_child(label)
@@ -167,7 +167,7 @@ func spawn_songaksi_npc() -> void:
 		npc.unlocked=HeartDB.unlocked(heart_id,profile)
 		npc.position=positions[heart_id]
 		var npc_label:=Label.new()
-		npc_label.text=str(data["name"])+("\n[E] 심장 빌리기" if npc.unlocked else "\n잠김 · 장산범 처치 필요")
+		npc_label.text=str(data["name"])+("" if npc.unlocked else "\n잠김")
 		npc_label.position=Vector2(-64,-92)
 		npc_label.add_theme_font_size_override("font_size",14)
 		npc.add_child(npc_label)
@@ -265,7 +265,7 @@ func play_village_summon() -> void:
 func add_village_exit_sign() -> void:
 	var sign := Label.new()
 	sign.position = Vector2(1570,578)
-	sign.text = "[E] 1층으로 출발 · 심장 필요"
+	sign.text = "1층 입구"
 	room.add_child(sign)
 
 func is_combat_room() -> bool:
@@ -339,7 +339,7 @@ func change_room(id: int, previous: int) -> void:
 			portal_props[next] = portal
 		var label := Label.new()
 		label.position = door + Vector2(-62,-118)
-		label.text = ("[E] 보스문 · " if is_boss_door else "[E] 그림자 포탈 · ") + display_room_name(str(run["rooms"][next]["template"]))
+		label.text = ("보스문 · " if is_boss_door else "그림자 포탈 · ") + display_room_name(str(run["rooms"][next]["template"]))
 		label.add_theme_font_size_override("font_size",15)
 		room.add_child(label)
 	room.queue_redraw()
@@ -392,14 +392,15 @@ func change_room(id: int, previous: int) -> void:
 		var exit_label := Label.new()
 		floor_exit_position=Vector2(float(def["width"])*.5,704)
 		exit_label.position = floor_exit_position+Vector2(-65,-96)
-		exit_label.text = "[E] 구간 출구"
+		exit_label.text = "구간 출구"
 		exit_label.add_theme_font_size_override("font_size",14)
 		room.add_child(exit_label)
-	title.text = display_room_name(str(data["template"])) + "  ·  SEED " + str(run["seed"]) + " / V" + str(run["version"]) + " / 포탈 " + str(data["links"].size()) + "개"
-	if in_village: title.text = "흉가 마을 · 도깨비상인 / 재접속 시 재고 갱신"
+	title.text = display_room_name(str(data["template"]))
+	if in_village: title.text = "흉가 마을"
 	elif floor_number>=2: title.text = "2챕터 · 안개 낀 산 · "+str(floor_number)+"층 · "+title.text
 	else: title.text = str(floor_number)+"층 · "+title.text
 	update_chapter_overlay()
+	minimap.visible=not in_village
 	minimap.queue_redraw()
 	if is_instance_valid(combat): combat.enter_room(data)
 	if in_village: call_deferred("add_village_exit_sign")
@@ -524,7 +525,7 @@ func _process(delta: float) -> void:
 	if not player.controls_enabled:
 		return
 	if is_instance_valid(merchant) and player.position.distance_to(merchant.position)<80:
-		hint.text = "E · 도깨비상인 / 평화구역 / 영혼조각 "+str(wallet["souls"])
+		hint.text = "E · 도깨비상인"
 		if Input.is_action_just_pressed("interact"): merchant.toggle()
 		return
 	if combat_enabled and Input.is_action_just_pressed("boss_test"):
@@ -549,7 +550,7 @@ func _process(delta: float) -> void:
 					floor_number=1
 					new_run(fresh_seed())
 				else: combat.message("심장이 없이는 흉가에 들어갈 수 없습니다")
-		else: hint.text = "마을 · 심장 선택 / 도깨비상인과 거래 / 오른쪽에서 1층 출발"
+		else: hint.text = ""
 		return
 	if Input.is_action_just_pressed("new_run"):
 		new_run(int(run["seed"])+1)
@@ -558,7 +559,7 @@ func _process(delta: float) -> void:
 		room.debug_visible = not room.debug_visible
 		room.queue_redraw()
 	if combat_enabled and combat.locked():
-		hint.text="남은 적 "+str(combat.living().size())+" · "+combat.enemy_location_hint()+" · 전멸 시 문 열림"
+		hint.text=""
 		return
 	if is_instance_valid(well_prop) and player.position.distance_to(well_position) < 76:
 		hint.text = "E · 우물 상세지도"
@@ -587,7 +588,7 @@ func _process(delta: float) -> void:
 				new_run(int(run["seed"])+1009)
 			else: complete=true
 		return
-	hint.text="E · 클리어 보상 상자 열기" if combat_enabled and combat.near_chest() else "문 앞 E · 이동  |  Tab 가방  |  목표: 봉인의 마당"
+	hint.text="E · 상자 열기" if combat_enabled and combat.near_chest() else ""
 
 func update_web_status() -> void:
 	if not OS.has_feature("web") or not is_instance_valid(player) or not is_instance_valid(combat): return
@@ -613,23 +614,13 @@ func build_hud() -> void:
 	var layer := CanvasLayer.new()
 	layer.layer=10
 	add_child(layer)
-	var panel := ColorRect.new()
-	panel.position = Vector2(10,10)
-	panel.size = Vector2(748,72)
-	panel.color = Color(0.04,.06,.09,.9)
-	panel.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	layer.add_child(panel)
 	title = Label.new()
-	title.position = Vector2(22,14)
-	title.size.x=435
+	title.position = Vector2(282,58)
+	title.size=Vector2(204,22)
+	title.horizontal_alignment=HORIZONTAL_ALIGNMENT_CENTER
 	title.clip_text=true
-	title.add_theme_font_size_override("font_size",17)
+	title.add_theme_font_size_override("font_size",13)
 	layer.add_child(title)
-	var instructions := Label.new()
-	instructions.position = Vector2(22,43)
-	instructions.text = "WASD 이동  방향키 공격  좌클릭 조준  Shift 대시  E 상호작용  Tab 가방"
-	instructions.add_theme_font_size_override("font_size",15)
-	layer.add_child(instructions)
 	seed_input = LineEdit.new()
 	seed_input.position = Vector2(22,90)
 	seed_input.size = Vector2(100,28)
@@ -658,16 +649,17 @@ func build_hud() -> void:
 	hint.add_theme_font_size_override("font_size",15)
 	layer.add_child(hint)
 	lab_button=Button.new()
-	lab_button.position=Vector2(620,88)
+	lab_button.position=Vector2(620,74)
 	lab_button.size=Vector2(130,28)
 	lab_button.text="장비시험 [F6]"
 	lab_button.add_theme_font_size_override("font_size",13)
 	lab_button.focus_mode=Control.FOCUS_NONE
 	lab_button.pressed.connect(toggle_equipment_lab)
 	layer.add_child(lab_button)
+	lab_button.hide()
 	minimap = Control.new()
-	minimap.position = Vector2(480,16)
-	minimap.size = Vector2(255,58)
+	minimap.position = Vector2(284,82)
+	minimap.size = Vector2(200,50)
 	minimap.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	minimap.draw.connect(draw_minimap)
 	layer.add_child(minimap)

@@ -1,4 +1,5 @@
 extends SceneTree
+const InventoryLayout=preload("res://scripts/inventory_layout.gd")
 
 func _initialize() -> void: call_deferred("run_checks")
 func frames(count:int) -> void:
@@ -11,6 +12,8 @@ func check(ok:bool,message:String) -> bool:
 	quit(1)
 	return false
 func run_checks() -> void:
+	if not check(InventoryLayout.data().get("schema","")=="geuseundae.ui.layout/1","Inventory reads the supplied JSON layout schema"): return
+	if not check(InventoryLayout.profile_id(Vector2(768,432))=="landscape" and InventoryLayout.profile_id(Vector2(640,480))=="compact" and InventoryLayout.profile_id(Vector2(432,768))=="portrait","Inventory JSON selects landscape, compact and portrait profiles by aspect ratio"): return
 	if not check(ProjectSettings.get_setting("display/window/stretch/mode")=="canvas_items","UI scales with the window instead of using raw screen pixels"): return
 	if not check(ProjectSettings.get_setting("display/window/stretch/aspect")=="keep","Window and phone aspect changes preserve the 16:9 UI composition"): return
 	var world=load("res://scenes/village.tscn").instantiate()

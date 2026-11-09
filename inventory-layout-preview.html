@@ -1,0 +1,343 @@
+<!doctype html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>그슨대 · 인벤토리 JSON 레이아웃 시안</title>
+<style>
+@font-face{font-family:Noto;src:url('godot/assets/fonts/NotoSansKR-Semibold.ttf')}
+@font-face{font-family:Galmuri;src:url('godot/assets/fonts/Galmuri11-Bold.ttf')}
+:root{--bg:#07090a;--card:#101517;--line:#2c3a37;--tx:#cfcbb8;--mut:#8a9189;--btn:#3d4a44}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--tx);font:14px/1.5 sans-serif}
+main{max-width:1180px;margin:0 auto;padding:20px 16px 60px}
+h1{font-size:20px;margin:0 0 4px}h2{font-size:16px;margin:0 0 6px}
+.lead{color:var(--mut);margin:0 0 16px}
+.card{background:var(--card);border:1px solid var(--line);padding:14px;margin-bottom:14px}
+.d{color:var(--mut);margin:0 0 10px;font-size:13px}
+.ctl{display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center;font-size:13px;color:var(--mut);margin-bottom:10px}
+select,button{background:var(--btn);color:#d8d6c6;border:0;padding:6px 10px;font-size:13px;cursor:pointer}
+input[type=range]{accent-color:#a8532a;vertical-align:middle}
+.info{font-size:12px;color:#b9c0a8;background:#0b0f10;padding:6px 10px;margin-bottom:10px;display:inline-block}
+.dev{position:relative;overflow:hidden;background:#000;transform-origin:0 0;image-rendering:pixelated;box-shadow:0 0 0 3px #2a3330,0 0 0 4px #000}
+.dev .bg{position:absolute;inset:0;background:linear-gradient(#17222b,#0d1418 60%,#0a0e10);}
+.dev .bg:after{content:"";position:absolute;left:0;right:0;bottom:0;height:34%;background:url('docs/mockups/monster-attack-vfx/bg-chapter2.png') 0 100%/auto 100% repeat-x;opacity:.9}
+.dev .safe{position:absolute;outline:1px dashed #ffffff22}
+.cv{position:absolute;transform-origin:0 0;image-rendering:pixelated;font-family:Noto,sans-serif}
+.n{position:absolute;box-sizing:border-box}
+.n.panel{border-style:solid}
+.n.lab{white-space:pre;line-height:1.2;display:flex;align-items:center;font-family:Noto,sans-serif}
+.n.lab.wrap{white-space:normal;align-items:flex-start;line-height:1.35}
+.n.btn{border-style:solid;display:flex;align-items:center;justify-content:center;cursor:pointer;font-family:Noto,sans-serif}
+.n.slot{border-style:solid}
+.n.slot img,.n.slotIcon img{position:absolute;image-rendering:pixelated}
+.n.slot.empty{opacity:.86}
+.n.grid{overflow-y:auto;overflow-x:hidden;scrollbar-width:thin;scrollbar-color:#6f211d #0b0708}
+.n.grid .cells{display:grid}
+.cell{position:relative;border-style:solid;cursor:pointer}
+.cell img{position:absolute;image-rendering:pixelated;left:50%;top:50%;transform:translate(-50%,-50%)}
+.cell.dis{cursor:default;opacity:.7}
+.row{display:flex;flex-wrap:wrap;gap:16px;align-items:flex-start}
+.gal{display:flex;flex-wrap:wrap;gap:22px;align-items:flex-start}
+.gal .cap{font-size:12px;color:var(--mut);margin-top:6px}
+textarea{width:100%;height:340px;background:#080b0c;color:#cdd3c0;border:1px solid var(--line);font:12px/1.5 ui-monospace,Menlo,monospace;padding:10px;resize:vertical;tab-size:2}
+.err{color:#e07b66;font-size:12px;margin-left:8px}
+table{border-collapse:collapse;font-size:12px}td,th{border:1px solid var(--line);padding:4px 8px;text-align:left;vertical-align:top}th{color:#b9c0a8;background:#0b0f10}
+code{background:#0b0f10;padding:0 4px}
+</style>
+<main>
+<h1>인벤토리 · JSON 레이아웃 시안</h1>
+<p class=lead>지금은 인벤토리 위치와 크기가 <code>combat_director.gd</code>의 숫자와 그리기 코드에 박혀 있습니다. 이 시안은 그것을 <b>배치 정의 JSON</b>(<code>docs/ui/inventory-layout.json</code>)으로 옮기고, 화면 비율마다 다른 배치(profile)를 고르는 방식입니다. 이미지는 9패치 틀·슬롯·아이콘 부품만 쓰고 한 장짜리 그림은 쓰지 않습니다. 아래 화면은 모두 그 JSON을 읽어 그린 것이고, 아래 편집 칸의 JSON을 고치면 바로 반영됩니다. 게임에는 아직 적용하지 않았습니다.</p>
+
+<section class=card>
+ <h2>1. 화면별 미리보기</h2>
+ <p class=d>기기를 바꿔 보세요. 화면 비율에 맞는 profile이 자동으로 골라지고, 폰 노치 같은 안전 영역은 피해서 배치됩니다. 가방 칸을 눌러 선택할 수 있습니다.</p>
+ <div class=ctl>
+  <label>기기 <select id=dev></select></label>
+  <label>악세사리 칸 <select id=acc><option value=2>2칸</option><option value=4 selected>4칸</option><option value=6>6칸</option></select></label>
+  <label>가방 아이템 <input type=range id=bagn min=0 max=44 value=14 style="width:160px"> <b id=bagv>14</b>개</label>
+  <label>영혼조각 <input type=range id=soulsr min=0 max=999 value=42 style="width:120px"> <b id=soulsv>42</b></label>
+ </div>
+ <div class=info id=info></div>
+ <div id=main></div>
+</section>
+
+<section class=card>
+ <h2>2. 세 가지 배치 한눈에</h2>
+ <p class=d>같은 JSON에서 가로·정사각·세로 profile이 어떻게 달라지는지입니다. (위의 악세사리·가방 설정이 함께 적용됩니다.)</p>
+ <div class=gal id=gal></div>
+</section>
+
+<section class=card>
+ <h2>3. 배치 JSON (편집하면 위 화면이 바뀝니다)</h2>
+ <p class=d>예: <code>bag_grid</code>의 <code>columns</code>를 5로 바꾸거나 <code>detail_name</code>의 <code>size</code>를 키워 보세요. 구조는 Godot의 Control 배치(anchor·offset·rect)와 1:1로 옮길 수 있게 잡았습니다.</p>
+ <div class=ctl><button id=apply>적용</button><button id=reset>원래대로</button><span class=err id=err></span></div>
+ <textarea id=json spellcheck=false></textarea>
+</section>
+
+<section class=card>
+ <h2>4. JSON 구조 설명</h2>
+ <table>
+ <tr><th>키</th><th>역할</th></tr>
+ <tr><td><code>skins</code></td><td>9패치 이미지 부품. <code>slice</code> = [위,오른쪽,아래,왼쪽] 늘어나지 않는 가장자리(Godot <code>StyleBoxTexture</code> margin과 같음), <code>tint</code> = 어둡게 섞는 색.</td></tr>
+ <tr><td><code>colors</code></td><td>글자 색 이름표. 노드는 <code>"color":"souls"</code>처럼 이름으로 부른다.</td></tr>
+ <tr><td><code>profiles</code></td><td>화면 비율별 배치. <code>design</code> = 기준 해상도, <code>when</code> = 적용할 가로/세로 비율 범위, <code>patch</code> = 기본 배치(root)에서 바꿀 노드만 덮어쓰기.</td></tr>
+ <tr><td><code>root.children</code></td><td>화면 요소 목록. <code>type</code>: panel · label · button · slot · slotRow(악세사리 줄) · grid(가방) · slotIcon · image · rect · group.</td></tr>
+ <tr><td><code>rect</code> / <code>anchor</code></td><td><code>rect</code>=[x,y,w,h] 부모 기준. <code>anchor</code>=[0,0,1,1]은 안전 영역 전체(어둡게 덮는 판).</td></tr>
+ <tr><td><code>bind</code> · <code>{…}</code> · <code>when</code></td><td>게임 데이터 연결(<code>bag</code>, <code>accessories</code>, <code>selected</code>), 글자 속 <code>{souls}</code> 치환, 조건부 표시(<code>hasSelection</code>, <code>emptyBag</code>).</td></tr>
+ <tr><td><code>action</code></td><td>버튼이 보낼 이벤트 이름(<code>inventory.equip</code> 등). 로직은 코드가 맡고 JSON은 배치만 맡는다.</td></tr>
+ </table>
+ <p class=d style="margin-top:10px">정리: 새 화면 비율이나 칸 수를 늘릴 때 코드를 고치지 않고 JSON만 고치고, 이미지를 새로 그릴 필요 없이 9패치 부품이 늘어나는 구조입니다.</p>
+</section>
+</main>
+
+<script type="application/json" id=layout-src>{
+  "schema": "geuseundae.ui.layout/1",
+  "id": "inventory",
+  "note": "인벤토리 화면 구성 정의 시안. 좌표는 모두 디자인 픽셀이고 부모 왼쪽 위가 기준이다. 이미지는 9패치 부품과 아이콘만 쓰고 배치·크기·글씨·개수는 이 파일이 정한다. 화면 비율에 맞는 profile을 골라 patch를 덧씌운다. 아직 게임에는 연결하지 않았다.",
+  "skins": {
+    "panel": { "src": "godot/assets/ui/modular/panel-normal-v1.png", "slice": [28, 31, 28, 31], "shadow": [3, 3, 0.55] },
+    "panelInner": { "extends": "panel", "tint": [0.56, 0.53, 0.5] },
+    "panelRail": { "extends": "panel", "slice": [22, 25, 22, 25], "tint": [0.56, 0.53, 0.5] },
+    "plaque": { "src": "godot/assets/ui/modular/plaque-v1.png", "stretch": true },
+    "button": {
+      "normal": "godot/assets/ui/modular/button-normal-v1.png",
+      "hover": "godot/assets/ui/modular/button-hover-v1.png",
+      "pressed": "godot/assets/ui/modular/button-pressed-v1.png",
+      "slice": [40, 40, 40, 40],
+      "drawWidth": 12
+    },
+    "slot": {
+      "normal": "godot/assets/ui/modular/slot-normal-v1.png",
+      "selected": "godot/assets/ui/modular/slot-selected-v1.png",
+      "slice": [9, 9, 9, 9]
+    }
+  },
+  "colors": {
+    "dim": "rgba(5,9,13,0.78)",
+    "title": "#2a1710",
+    "plaqueText": "#28170f",
+    "souls": "#d9c59a",
+    "slotLabel": "#d8c39e",
+    "itemName": "#f0dcae",
+    "itemMeta": "#b99d72",
+    "itemEffect": "#d8d1c2",
+    "empty": "#bcae91",
+    "button": "#e7dcc5"
+  },
+  "profiles": [
+    { "id": "landscape", "label": "가로 (16:9 · 19.5:9 폰 포함)", "design": [768, 432], "when": { "aspectMin": 1.5 }, "safeInsets": "scaled", "patch": {} },
+    {
+      "id": "compact",
+      "label": "정사각에 가까움 (4:3 태블릿)",
+      "design": [640, 480],
+      "when": { "aspectMin": 1.0, "aspectMax": 1.5 },
+      "patch": {
+        "frame": { "rect": [8, 8, 624, 464] },
+        "doll_panel": { "rect": [20, 50, 290, 184] },
+        "doll": { "rect": [28, 62, 258, 164] },
+        "title_plaque": { "rect": [60, 28, 102, 27] },
+        "title_label": { "rect": [60, 32, 102, 25] },
+        "rail_panel": { "rect": [26, 240, 278, 61], "slotsFit": 242 },
+        "bag_panel": { "rect": [318, 50, 304, 251] },
+        "bag_plaque": { "rect": [326, 56, 64, 26] },
+        "bag_title": { "rect": [326, 59, 64, 23] },
+        "bag_grid": { "rect": [326, 88, 288, 206], "columns": 6, "gap": [4, 4] },
+        "souls": { "rect": [380, 30, 130, 24] },
+        "btn_close": { "rect": [548, 26, 76, 27] },
+        "detail_panel": { "rect": [20, 310, 600, 150] },
+        "detail_icon": { "rect": [34, 328, 61, 56] },
+        "detail_name": { "rect": [110, 326, 300, 24] },
+        "detail_meta": { "rect": [110, 351, 300, 18] },
+        "detail_effect": { "rect": [110, 372, 330, 64] },
+        "btn_equip": { "rect": [470, 352, 72, 34] },
+        "btn_destroy": { "rect": [548, 352, 72, 34] },
+        "empty_hint": { "rect": [110, 360, 420, 28] }
+      }
+    },
+    {
+      "id": "portrait",
+      "label": "세로 (폰 세로)",
+      "design": [432, 768],
+      "when": { "aspectMax": 1.0 },
+      "patch": {
+        "frame": { "rect": [6, 8, 420, 752] },
+        "title_plaque": { "rect": [22, 24, 102, 27] },
+        "title_label": { "rect": [22, 28, 102, 25] },
+        "souls": { "rect": [150, 27, 140, 24] },
+        "btn_close": { "rect": [334, 24, 76, 27] },
+        "doll_panel": { "rect": [18, 64, 396, 190] },
+        "doll": { "rect": [69, 72, 258, 164] },
+        "rail_panel": { "rect": [18, 258, 396, 61], "slotsFit": 360 },
+        "bag_panel": { "rect": [18, 324, 396, 268] },
+        "bag_plaque": { "rect": [30, 332, 64, 26] },
+        "bag_title": { "rect": [30, 335, 64, 23] },
+        "bag_grid": { "rect": [30, 364, 372, 222], "columns": 8, "gap": [6, 4] },
+        "detail_panel": { "rect": [18, 598, 396, 156] },
+        "detail_icon": { "rect": [30, 612, 61, 56] },
+        "detail_name": { "rect": [104, 610, 300, 24] },
+        "detail_meta": { "rect": [104, 634, 300, 18] },
+        "detail_effect": { "rect": [104, 654, 300, 50] },
+        "btn_equip": { "rect": [104, 712, 96, 34] },
+        "btn_destroy": { "rect": [208, 712, 96, 34] },
+        "empty_hint": { "rect": [30, 640, 370, 28] }
+      }
+    }
+  ],
+  "root": {
+    "id": "root",
+    "type": "group",
+    "children": [
+      { "id": "dim", "type": "rect", "anchor": [0, 0, 1, 1], "color": "dim" },
+      { "id": "frame", "type": "panel", "skin": "panel", "rect": [62, 21, 644, 388] },
+      { "id": "doll_panel", "type": "panel", "skin": "panelInner", "rect": [75, 63, 302, 184] },
+      {
+        "id": "doll", "type": "group", "rect": [111, 78, 258, 164],
+        "children": [
+          { "id": "ghost", "type": "image", "src": "godot/assets/ui/modular/borrowed-ghost-v1.png", "rect": [92, 8, 74, 148], "opacity": 0.82 },
+          { "id": "slot_head", "type": "slot", "slot": "head", "rect": [31, 5, 38, 38], "label": { "text": "머리", "rect": [-3, 14, 40, 18] } },
+          { "id": "slot_main", "type": "slot", "slot": "main", "rect": [31, 48, 38, 38], "label": { "text": "주무기", "rect": [-3, 57, 40, 18] } },
+          { "id": "slot_legs", "type": "slot", "slot": "legs", "rect": [31, 91, 38, 38], "label": { "text": "다리", "rect": [-3, 100, 40, 18] } },
+          { "id": "slot_feet", "type": "slot", "slot": "feet", "rect": [31, 134, 38, 38], "label": { "text": "발", "rect": [-3, 143, 40, 18] } },
+          { "id": "slot_heart", "type": "slot", "slot": "heart", "rect": [173, 5, 38, 38], "label": { "text": "심장", "rect": [214, 14, 40, 18] } },
+          { "id": "slot_off", "type": "slot", "slot": "off", "rect": [173, 48, 38, 38], "label": { "text": "보조무기", "rect": [214, 57, 40, 18] } },
+          { "id": "slot_internal", "type": "slot", "slot": "internal", "rect": [173, 91, 38, 38], "label": { "text": "내장", "rect": [214, 100, 40, 18] } }
+        ]
+      },
+      {
+        "id": "rail_panel", "type": "slotRow", "skin": "panelRail", "rect": [82, 249, 288, 61],
+        "bind": "accessories", "slotsFit": 252, "slotMin": 24, "slotMax": 36, "gap": 6, "slotsTop": 22,
+        "plaque": { "text": "악세사리", "rect": [102, 2, 84, 17] }
+      },
+      { "id": "bag_panel", "type": "panel", "skin": "panelInner", "rect": [382, 63, 313, 247] },
+      { "id": "bag_plaque", "type": "panel", "skin": "plaque", "rect": [392, 69, 64, 26] },
+      { "id": "bag_title", "type": "label", "text": "가방", "rect": [392, 72, 64, 23], "size": 14, "color": "plaqueText", "align": "center" },
+      { "id": "bag_grid", "type": "grid", "bind": "bag", "rect": [392, 99, 274, 202], "columns": 6, "cell": [38, 36], "gap": [7, 4], "minCells": 30, "scroll": true },
+      { "id": "title_plaque", "type": "panel", "skin": "plaque", "rect": [112, 40, 102, 27] },
+      { "id": "title_label", "type": "label", "text": "빌린 몸", "rect": [121, 45, 104, 25], "size": 17, "color": "title", "align": "center" },
+      { "id": "souls", "type": "label", "text": "영혼조각  ◆ {souls}", "rect": [492, 43, 130, 24], "size": 13, "color": "souls", "align": "center" },
+      { "id": "btn_close", "type": "button", "skin": "button", "rect": [631, 40, 76, 27], "text": "닫기", "size": 13, "action": "inventory.close" },
+      { "id": "detail_panel", "type": "panel", "skin": "panelInner", "rect": [64, 312, 640, 92] },
+      { "id": "detail_icon", "type": "slotIcon", "rect": [122, 326, 61, 56], "bind": "selected", "when": "hasSelection" },
+      { "id": "detail_name", "type": "label", "text": "{selected.name}", "rect": [199, 326, 270, 24], "size": 16, "color": "itemName", "when": "hasSelection" },
+      { "id": "detail_meta", "type": "label", "text": "{selected.slotName} · {selected.attackType} · {selected.tier}단계", "rect": [199, 349, 270, 18], "size": 10, "color": "itemMeta", "when": "hasSelection" },
+      { "id": "detail_effect", "type": "label", "text": "{selected.effect}", "rect": [199, 368, 275, 39], "size": 11, "color": "itemEffect", "wrap": true, "when": "hasSelection" },
+      { "id": "btn_equip", "type": "button", "skin": "button", "rect": [519, 347, 72, 34], "text": "장착", "size": 14, "action": "inventory.equip", "when": "hasSelection" },
+      { "id": "btn_destroy", "type": "button", "skin": "button", "variant": "danger", "rect": [610, 347, 72, 34], "text": "파기", "size": 14, "action": "inventory.destroy", "when": "hasSelection" },
+      { "id": "empty_hint", "type": "label", "text": "가방이 비어 있습니다. 장비는 가까이 가면 자동으로 획득합니다.", "rect": [200, 350, 360, 28], "size": 14, "color": "empty", "when": "emptyBag" }
+    ]
+  }
+}
+</script>
+<script>
+const SRC=document.getElementById('layout-src').textContent;
+let L=JSON.parse(SRC);
+const ICON='godot/assets/equipment/icons/';
+const ITEMS=[
+ ['hair','손각시의 머리카락','주무기','근접',1,'머리카락을 길게 뻗어 적을 끌어옵니다.'],
+ ['pin','녹슨 비녀','주무기','근접',2,'찌른 뒤 짧게 출혈을 남깁니다.'],
+ ['mirror','피 묻은 족두리','머리','방어',3,'피격 시 짧게 반사 피해를 줍니다.'],
+ ['claws','범의 발톱','주무기','근접',3,'세 갈래로 할퀴며 약하게 밀어냅니다.'],
+ ['club','도깨비 방망이','주무기','근접',2,'내려치면 앞쪽 바닥이 흔들립니다.'],
+ ['nails','몽달의 손톱','주무기','근접',1,'빠르게 연속으로 할큅니다.'],
+ ['fist','검은 그림자 주먹','주무기','근접',4,'그림자 주먹을 내질러 크게 밀칩니다.'],
+ ['goose','목각 기러기','보조무기','투척',2,'기러기를 던져 곡선으로 날아갑니다.'],
+ ['broom','도깨비 빗자루','주무기','근접',1,'넓게 쓸어 가까운 적을 모읍니다.'],
+ ['belt','끊어진 허리띠','악세사리','보조',1,'대시 직후 짧게 이동 속도가 오릅니다.'],
+ ['gaze','흐린 눈동자','악세사리','보조',2,'화면 안 적의 체력을 어렴풋이 보여 줍니다.'],
+ ['mouth','찢어진 입','악세사리','보조',3,'처치할 때마다 영혼조각을 조금 더 줍니다.']
+];
+const bagItem=i=>{const b=ITEMS[i%ITEMS.length];return{icon:b[0],name:b[1]+(i>=ITEMS.length?' +'+Math.floor(i/ITEMS.length):''),slotName:b[2],attackType:b[3],tier:Math.min(4,b[4]+Math.floor(i/ITEMS.length)),effect:b[5]}};
+const ST={acc:4,bagn:14,souls:42,sel:0};
+const DEVICES=[
+ {n:'PC 기본 창 640×360 (16:9)',w:640,h:360},
+ {n:'PC 1280×720 (16:9)',w:1280,h:720},
+ {n:'아이폰 가로 844×390 (노치)',w:844,h:390,safe:[47,0,47,21]},
+ {n:'울트라와이드 1260×540 (21:9)',w:1260,h:540},
+ {n:'아이패드 가로 1024×768 (4:3)',w:1024,h:768},
+ {n:'정사각 640×480 (4:3)',w:640,h:480},
+ {n:'아이폰 세로 390×844 (노치)',w:390,h:844,safe:[0,47,0,34]},
+ {n:'작은 폰 세로 360×640',w:360,h:640}
+];
+const $=(s,r=document)=>r.querySelector(s);
+const E=(t,c)=>{const e=document.createElement(t);if(c)e.className=c;return e};
+
+/* ---- profile / patch ---- */
+function pickProfile(a){return L.profiles.find(p=>(p.when.aspectMin==null||a>=p.when.aspectMin)&&(p.when.aspectMax==null||a<p.when.aspectMax))||L.profiles[0]}
+function patched(profile){const root=JSON.parse(JSON.stringify(L.root));const P=profile.patch||{};
+ (function w(n){if(P[n.id])Object.assign(n,P[n.id]);(n.children||[]).forEach(w)})(root);return root}
+/* ---- skins ---- */
+function skin(name){let s=L.skins[name];if(!s)return{};if(s.extends)s={...skin(s.extends),...s};return s}
+function nine(el,sk,src,scale=1){const [t,r,b,l]=sk.slice;const w=sk.drawWidth;
+ const bw=w?[w,w,w,w]:[t,r,b,l];
+ el.style.borderWidth=bw.map(v=>v+'px').join(' ');el.style.borderImage=`url('${src}') ${t} ${r} ${b} ${l} fill / ${bw.map(v=>v+'px').join(' ')} stretch`}
+function tintFilter(sk){if(!sk.tint)return '';const k=(sk.tint[0]+sk.tint[1]+sk.tint[2])/3;return `brightness(${k.toFixed(2)})`}
+/* ---- data ---- */
+function dataCtx(){const bag=[];for(let i=0;i<ST.bagn;i++)bag.push(bagItem(i));
+ const accs=[];for(let i=0;i<ST.acc;i++)accs.push(i<Math.min(ST.acc,3)?ITEMS[9+i%3]:null);
+ return{souls:ST.souls,bag,accessories:accs,selected:bag[Math.min(ST.sel,bag.length-1)]||null,hasSelection:bag.length>0,emptyBag:bag.length===0,
+  equipped:{head:ITEMS[2],main:ITEMS[0],legs:null,feet:null,heart:'heart',off:ITEMS[7],internal:null}}}
+const get=(o,p)=>p.split('.').reduce((a,k)=>a==null?a:a[k],o);
+const fill=(s,c)=>s.replace(/\{([\w.]+)\}/g,(m,k)=>{const v=get(c,k);return v==null?'':v});
+function cond(n,c){return !n.when||!!c[n.when]}
+/* ---- render ---- */
+function place(el,n,W,H){let r=n.rect;if(n.anchor){r=[n.anchor[0]*W,n.anchor[1]*H,(n.anchor[2]-n.anchor[0])*W,(n.anchor[3]-n.anchor[1])*H]}
+ if(!r)r=[0,0,W,H];el.style.left=r[0]+'px';el.style.top=r[1]+'px';el.style.width=r[2]+'px';el.style.height=r[3]+'px';return r}
+function slotBox(el,kind,sel){const sk=skin('slot');nine(el,sk,sel?sk.selected:sk.normal)}
+function render(n,parent,ctx,pr){if(!cond(n,ctx))return;
+ const t=n.type;let el;
+ if(t==='group'){el=E('div','n');place(el,n,pr[2],pr[3]);parent.append(el);const r=[0,0,parseFloat(el.style.width),parseFloat(el.style.height)];(n.children||[]).forEach(c=>render(c,el,ctx,r));return}
+ if(t==='rect'){el=E('div','n');el.style.cssText+=`;position:absolute;inset:0;background:${L.colors[n.color]||n.color}`;parent.append(el);return}
+ if(t==='panel'){el=E('div','n panel');const r=place(el,n,pr[2],pr[3]);const sk=skin(n.skin);
+  if(sk.stretch){el.style.background=`url('${sk.src}') 0 0/100% 100% no-repeat`;el.style.border='0'}
+  else{nine(el,sk,sk.src);const f=tintFilter(sk);const sh=sk.shadow?`drop-shadow(${sk.shadow[0]}px ${sk.shadow[1]}px 0 rgba(0,0,0,${sk.shadow[2]}))`:'';el.style.filter=[f,sh].filter(Boolean).join(' ')}
+  parent.append(el);return}
+ if(t==='label'){el=E('div','n lab'+(n.wrap?' wrap':''));place(el,n,pr[2],pr[3]);el.style.fontSize=(n.size||12)+'px';el.style.color=L.colors[n.color]||n.color||'#ddd';
+  el.style.justifyContent=n.align==='center'?'center':n.align==='right'?'flex-end':'flex-start';el.textContent=fill(n.text||'',ctx);parent.append(el);return}
+ if(t==='button'){el=E('div','n btn');place(el,n,pr[2],pr[3]);const sk=skin(n.skin);const base=n.variant==='danger'?sk.hover:sk.normal;nine(el,sk,base);
+  el.style.fontSize=(n.size||13)+'px';el.style.color=L.colors.button;el.style.textShadow='1px 1px 0 #000';el.textContent=n.text;
+  el.onmouseenter=()=>nine(el,sk,sk.hover);el.onmouseleave=()=>nine(el,sk,base);el.onmousedown=()=>nine(el,sk,sk.pressed);el.onmouseup=()=>nine(el,sk,sk.hover);
+  el.title='action: '+n.action;parent.append(el);return}
+ if(t==='image'){el=E('img','n');el.src=n.src;place(el,n,pr[2],pr[3]);el.style.opacity=n.opacity??1;el.style.imageRendering='pixelated';parent.append(el);return}
+ if(t==='slot'){el=E('div','n slot');const r=place(el,n,pr[2],pr[3]);slotBox(el,'n',false);const it=ctx.equipped[n.slot];
+  if(it==null)el.classList.add('empty');else if(it==='heart'){const h=E('div');h.textContent='♥';h.style.cssText='position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#c23a2d;font-size:22px;text-shadow:1px 1px 0 #000';el.append(h)}
+  else{const im=E('img');im.src=ICON+it[0]+'.png';const s=r[2]*.8;im.style.cssText=`width:${s}px;height:${s}px;left:${(r[2]-s)/2-9}px;top:${(r[3]-s)/2-9}px`;el.append(im)}
+  parent.append(el);if(n.label){const lb=E('div','n lab');lb.style.left=n.label.rect[0]+parseFloat(el.style.left)+'px';lb.style.top=n.label.rect[1]+parseFloat(el.style.top)+'px';lb.style.width=n.label.rect[2]+'px';lb.style.height=n.label.rect[3]+'px';lb.style.fontSize='9px';lb.style.color=L.colors.slotLabel;lb.style.justifyContent='center';lb.style.textShadow='1px 1px 0 #000';lb.textContent=n.label.text;parent.append(lb)}return}
+ if(t==='slotRow'){el=E('div','n panel');const r=place(el,n,pr[2],pr[3]);const sk=skin(n.skin);nine(el,sk,sk.src);el.style.filter=tintFilter(sk)||'';parent.append(el);
+  const cnt=ctx.accessories.length;const size=cnt?Math.max(n.slotMin,Math.min(n.slotMax,(n.slotsFit-n.gap*(cnt-1))/cnt)):0;const wd=cnt?size*cnt+n.gap*(cnt-1):0;
+  const holder=E('div','n');holder.style.cssText=`left:${r[0]}px;top:${r[1]}px;width:${r[2]}px;height:${r[3]}px`;parent.append(holder);
+  if(n.plaque){const pl=E('div','n panel');const ps=skin('plaque');pl.style.background=`url('${ps.src}') 0 0/100% 100% no-repeat`;const q=n.plaque.rect;pl.style.cssText+=`;left:${q[0]}px;top:${q[1]}px;width:${q[2]}px;height:${q[3]}px;border:0;display:flex;align-items:center;justify-content:center;font-size:10px;color:${L.colors.plaqueText}`;pl.style.border='0';pl.textContent=n.plaque.text;holder.append(pl)}
+  ctx.accessories.forEach((it,i)=>{const s=E('div','n slot'+(it?'':' empty'));s.style.cssText+=`;left:${(r[2]-wd)/2+i*(size+n.gap)}px;top:${n.slotsTop}px;width:${size}px;height:${size}px`;slotBox(s);
+   if(it){const im=E('img');im.src=ICON+it[0]+'.png';const q=size*.8;im.style.cssText=`width:${q}px;height:${q}px;left:${(size-q)/2-9}px;top:${(size-q)/2-9}px`;s.append(im)}holder.append(s)});return}
+ if(t==='grid'){el=E('div','n grid');const r=place(el,n,pr[2],pr[3]);parent.append(el);const cells=E('div','cells');
+  const cnt=Math.max(n.minCells,ctx.bag.length);cells.style.cssText=`grid-template-columns:repeat(${n.columns},${n.cell[0]}px);grid-auto-rows:${n.cell[1]}px;column-gap:${n.gap[0]}px;row-gap:${n.gap[1]}px`;
+  for(let i=0;i<cnt;i++){const c=E('div','cell'+(i<ctx.bag.length?'':' dis'));slotBox(c,'n',i===ST.sel&&i<ctx.bag.length);
+   if(i<ctx.bag.length){const im=E('img');im.src=ICON+ctx.bag[i].icon+'.png';im.style.cssText=`width:${n.cell[1]*.72}px;height:${n.cell[1]*.72}px`;c.append(im);c.onclick=()=>{ST.sel=i;rerender()};c.title=ctx.bag[i].name}cells.append(c)}
+  el.append(cells);return}
+ if(t==='slotIcon'){el=E('div','n slot');const r=place(el,n,pr[2],pr[3]);slotBox(el);const it=ctx.selected;if(it){const im=E('img');im.src=ICON+it.icon+'.png';const s=Math.min(r[2],r[3])*.78;im.style.cssText=`width:${s}px;height:${s}px;left:${(r[2]-s)/2-9}px;top:${(r[3]-s)/2-9}px`;el.append(im)}parent.append(el);return}
+}
+function renderDevice(host,dev,{maxW=720,maxH=520}={}){host.innerHTML='';
+ const safe=dev.safe||[0,0,0,0];const sw=dev.w-safe[0]-safe[2],sh=dev.h-safe[1]-safe[3];const prof=pickProfile(sw/sh);
+ const [dw,dh]=prof.design;const s=Math.min(sw/dw,sh/dh);const ox=safe[0]+(sw-dw*s)/2,oy=safe[1]+(sh-dh*s)/2;
+ const ds=Math.min(maxW/dev.w,maxH/dev.h,1.6);
+ const wrap=E('div');wrap.style.cssText=`width:${dev.w*ds}px;height:${dev.h*ds}px`;const d=E('div','dev');d.style.cssText=`width:${dev.w}px;height:${dev.h}px;transform:scale(${ds})`;
+ d.append(E('div','bg'));
+ const ctx=dataCtx();const root=patched(prof);
+ // anchor 전체(rect) 노드는 안전 영역이 아니라 화면 전체를 덮는다
+ root.children.filter(n=>n.type==='rect').forEach(n=>render(n,d,ctx,[0,0,dev.w,dev.h]));
+ if(dev.safe){const sf=E('div','safe');sf.style.cssText=`left:${safe[0]}px;top:${safe[1]}px;width:${sw}px;height:${sh}px`;d.append(sf)}
+ const cv=E('div','cv');cv.style.cssText=`left:${ox}px;top:${oy}px;width:${dw}px;height:${dh}px;transform:scale(${s})`;d.append(cv);
+ const body={...root,children:root.children.filter(n=>n.type!=='rect')};render({type:'group',rect:[0,0,dw,dh],children:body.children},cv,ctx,[0,0,dw,dh]);
+ wrap.append(d);host.append(wrap);return{prof,scale:s,design:prof.design}}
+/* ---- UI wiring ---- */
+const devSel=$('#dev');DEVICES.forEach((d,i)=>{const o=E('option');o.value=i;o.textContent=d.n;devSel.append(o)});
+function rerender(){const dev=DEVICES[+devSel.value];const r=renderDevice($('#main'),dev);
+ $('#info').textContent=`화면 ${dev.w}×${dev.h} (비율 ${(dev.w/dev.h).toFixed(2)}) → profile "${r.prof.id}" · ${r.prof.label} · 기준 ${r.design[0]}×${r.design[1]} · 배율 ${r.scale.toFixed(2)}배`+(dev.safe?` · 안전 영역 ${dev.safe.join('/')}`:'');
+ const g=$('#gal');g.innerHTML='';[{n:'가로',w:844,h:390,safe:[47,0,47,21]},{n:'정사각',w:640,h:480},{n:'세로',w:390,h:844,safe:[0,47,0,34]}].forEach(d=>{const box=E('div');const h=E('div');box.append(h);const rr=renderDevice(h,d,{maxW:360,maxH:340});const c=E('div','cap');c.textContent=`${d.n} ${d.w}×${d.h} → ${rr.prof.id}`;box.append(c);g.append(box)})}
+devSel.onchange=rerender;
+$('#acc').onchange=e=>{ST.acc=+e.target.value;rerender()};
+$('#bagn').oninput=e=>{ST.bagn=+e.target.value;$('#bagv').textContent=ST.bagn;ST.sel=Math.min(ST.sel,Math.max(0,ST.bagn-1));rerender()};
+$('#soulsr').oninput=e=>{ST.souls=+e.target.value;$('#soulsv').textContent=ST.souls;rerender()};
+const ta=$('#json');ta.value=JSON.stringify(L,null,2);
+$('#apply').onclick=()=>{try{L=JSON.parse(ta.value);$('#err').textContent='';rerender()}catch(e){$('#err').textContent='JSON 오류: '+e.message}};
+$('#reset').onclick=()=>{L=JSON.parse(SRC);ta.value=JSON.stringify(L,null,2);$('#err').textContent='';rerender()};
+devSel.value=2;rerender();
+</script>

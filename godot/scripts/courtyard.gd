@@ -81,7 +81,7 @@ func build_hud() -> void:
 	layer.add_child(panel)
 	var text := Label.new()
 	text.position = Vector2(24, 16)
-	text.text = "흉가 탐색 · 이동과 카메라 테스트\nA/D 이동   W/Space 점프   S 발판 내려가기   Shift 대시   R 처음으로"
+	text.text = "흉가 탐색"
 	text.add_theme_font_size_override("font_size", 14)
 	layer.add_child(text)
 	status = Label.new()

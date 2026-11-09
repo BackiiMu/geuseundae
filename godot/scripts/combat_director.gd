@@ -9,6 +9,8 @@ const InventoryAccessoryRail = preload("res://scripts/inventory_accessory_rail.g
 const InventoryModularSkin = preload("res://scripts/inventory_modular_skin.gd")
 const InventoryFont = preload("res://assets/fonts/NotoSansKR-Semibold.ttf")
 const HeartDB = preload("res://scripts/heart_db.gd")
+const GameHUD = preload("res://scripts/game_hud.gd")
+const InventoryLayout = preload("res://scripts/inventory_layout.gd")
 var vfx: Node2D
 const Arsenal = preload("res://scripts/equipment_runtime.gd")
 var arsenal = Arsenal.new()
@@ -40,6 +42,7 @@ var regen_cd := 0.0
 var heart_animation := 0.0
 var ui: CanvasLayer
 var hud: Label
+var game_hud: Control
 var inventory: Control
 var inv_rows: Control
 var confirm: ConfirmationDialog
@@ -71,9 +74,14 @@ func _ready() -> void:
 	ui=CanvasLayer.new()
 	ui.layer=10
 	add_child(ui)
+	game_hud=GameHUD.new()
+	game_hud.inventory_requested.connect(toggle_inventory)
+	ui.add_child(game_hud)
 	hud=Label.new()
-	hud.position=Vector2(18,88)
-	hud.add_theme_font_size_override("font_size",18)
+	hud.position=Vector2(282,8)
+	hud.size=Vector2(204,54)
+	hud.horizontal_alignment=HORIZONTAL_ALIGNMENT_CENTER
+	hud.add_theme_font_size_override("font_size",14)
 	ui.add_child(hud)
 	skill_bar=Label.new()
 	skill_bar.position=Vector2(18,368)
@@ -352,6 +360,7 @@ func unequip(slot: String) -> void:
 func toggle_inventory() -> void:
 	inventory.visible=not inventory.visible
 	inventory_shade.visible=inventory.visible
+	if is_instance_valid(game_hud): game_hud.set_inventory_open(inventory.visible)
 	if inventory.visible: refresh_inventory()
 func inv_label(text: String,size:=14,color:=Color("dce4d4")) -> Label:
 	var label:=Label.new()
@@ -468,6 +477,20 @@ func add_equipped_slot(board:Control,slot:String,label_text:String,pos:Vector2,l
 		pulse.tween_property(button,"modulate",Color("ffffff"),.55).set_trans(Tween.TRANS_SINE)
 		pulse.tween_property(button,"modulate",Color("e2a0a0"),.75).set_trans(Tween.TRANS_SINE)
 
+func inventory_rect(id: String) -> Rect2:
+	return InventoryLayout.rect(id, inventory.size)
+
+func apply_inventory_rect(control: Control, id: String) -> void:
+	var target := inventory_rect(id)
+	control.position = target.position
+	control.size = target.size
+
+func add_layout_equipped_slot(board: Control, id: String, slot: String, label_text: String) -> void:
+	var node := InventoryLayout.node(id, inventory.size)
+	var values: Array = node.get("rect", [0, 0, 38, 38])
+	var label_values: Array = node.get("label", {}).get("rect", [0, 0, 40, 18])
+	add_equipped_slot(board, slot, label_text, Vector2(values[0], values[1]), Vector2(label_values[0], label_values[1]))
+
 func select_inventory(index:int) -> void:
 	inventory_selection=index
 	refresh_inventory()
@@ -484,39 +507,34 @@ func refresh_inventory() -> void:
 		inv_rows.remove_child(child)
 		child.queue_free()
 	var title:=inv_label("빌린 몸",17,Color("2a1710"))
-	title.position=Vector2(121,45)
-	title.size=Vector2(104,25)
+	apply_inventory_rect(title,"title_label")
 	title.horizontal_alignment=HORIZONTAL_ALIGNMENT_CENTER
 	inv_rows.add_child(title)
 	var souls:=inv_label("영혼조각  ◆ "+str(world.wallet["souls"]),13,Color("d9c59a"))
-	souls.position=Vector2(492,43)
-	souls.size=Vector2(130,24)
+	apply_inventory_rect(souls,"souls")
 	souls.horizontal_alignment=HORIZONTAL_ALIGNMENT_CENTER
 	inv_rows.add_child(souls)
 	var close:=Button.new()
-	close.text="닫기  [Tab]"
-	close.position=Vector2(631,40)
-	close.size=Vector2(76,27)
+	close.text="닫기"
+	apply_inventory_rect(close,"btn_close")
 	close.focus_mode=Control.FOCUS_NONE
-	style_skin_slot(close,false)
+	style_action_button(close,false)
 	close.pressed.connect(toggle_inventory)
 	inv_rows.add_child(close)
 	var board:=InventoryPaperDoll.new()
-	board.position=Vector2(111,78)
-	board.size=Vector2(258,164)
-	add_equipped_slot(board,"head","머리",Vector2(31,5),Vector2(-3,14))
-	add_equipped_slot(board,"main","주무기",Vector2(31,48),Vector2(-3,57))
-	add_equipped_slot(board,"legs","다리",Vector2(31,91),Vector2(-3,100))
-	add_equipped_slot(board,"feet","발",Vector2(31,134),Vector2(-3,143))
-	add_equipped_slot(board,"heart","심장",Vector2(173,5),Vector2(214,14))
-	add_equipped_slot(board,"off","보조무기",Vector2(173,48),Vector2(214,57))
-	add_equipped_slot(board,"internal","내장",Vector2(173,91),Vector2(214,100))
+	apply_inventory_rect(board,"doll")
+	add_layout_equipped_slot(board,"slot_head","head","머리")
+	add_layout_equipped_slot(board,"slot_main","main","주무기")
+	add_layout_equipped_slot(board,"slot_legs","legs","다리")
+	add_layout_equipped_slot(board,"slot_feet","feet","발")
+	add_layout_equipped_slot(board,"slot_heart","heart","심장")
+	add_layout_equipped_slot(board,"slot_off","off","보조무기")
+	add_layout_equipped_slot(board,"slot_internal","internal","내장")
 	inv_rows.add_child(board)
 	var accessory_slots:Array=equipment.keys().filter(func(key):return str(key).begins_with("a"))
 	accessory_slots.sort()
 	var accessory_rail:=InventoryAccessoryRail.new()
-	accessory_rail.position=Vector2(82,249)
-	accessory_rail.size=Vector2(288,61)
+	apply_inventory_rect(accessory_rail,"rail_panel")
 	accessory_rail.configure(accessory_slots.size())
 	inv_rows.add_child(accessory_rail)
 	var accessory_title:=inv_label("악세사리",10,Color("29170e"))
@@ -542,24 +560,25 @@ func refresh_inventory() -> void:
 		accessory_row.add_child(accessory_button)
 	accessory_rail.add_child(accessory_row)
 	var bag_title:=inv_label("가방",14,Color("28170f"))
-	bag_title.position=Vector2(392,72)
-	bag_title.size=Vector2(64,23)
+	apply_inventory_rect(bag_title,"bag_title")
 	bag_title.horizontal_alignment=HORIZONTAL_ALIGNMENT_CENTER
 	inv_rows.add_child(bag_title)
 	var scroll:=ScrollContainer.new()
-	scroll.position=Vector2(392,99)
-	scroll.size=Vector2(274,202)
+	apply_inventory_rect(scroll,"bag_grid")
 	scroll.horizontal_scroll_mode=ScrollContainer.SCROLL_MODE_DISABLED
 	scroll.add_theme_stylebox_override("panel",inventory_style(Color(0,0,0,0),Color(0,0,0,0),0,0))
 	var grid:=GridContainer.new()
-	grid.columns=6
-	grid.add_theme_constant_override("h_separation",7)
-	grid.add_theme_constant_override("v_separation",4)
+	var bag_layout := InventoryLayout.node("bag_grid",inventory.size)
+	grid.columns=int(bag_layout.get("columns",6))
+	var gaps: Array=bag_layout.get("gap",[7,4])
+	grid.add_theme_constant_override("h_separation",int(gaps[0]))
+	grid.add_theme_constant_override("v_separation",int(gaps[1]))
+	var cell: Array=bag_layout.get("cell",[38,36])
 	var bag: Array=world.wallet["bag"]
 	inventory_selection=clampi(inventory_selection,0,maxi(0,bag.size()-1))
-	for i in range(maxi(30,bag.size())):
+	for i in range(maxi(int(bag_layout.get("minCells",30)),bag.size())):
 		var button:=Button.new()
-		button.custom_minimum_size=Vector2(38,36)
+		button.custom_minimum_size=Vector2(cell[0],cell[1])
 		button.focus_mode=Control.FOCUS_NONE
 		style_movable_slot(button,i==inventory_selection)
 		button.add_to_group("inventory_bag_slot")
@@ -575,29 +594,24 @@ func refresh_inventory() -> void:
 	if not bag.is_empty():
 		var item: Dictionary=bag[inventory_selection]
 		var detail_icon_button:=Button.new()
-		detail_icon_button.position=Vector2(122,326)
-		detail_icon_button.size=Vector2(61,56)
+		apply_inventory_rect(detail_icon_button,"detail_icon")
 		detail_icon_button.mouse_filter=Control.MOUSE_FILTER_IGNORE
 		style_movable_slot(detail_icon_button,false)
 		add_slot_icon(detail_icon_button,item,1.0)
 		inv_rows.add_child(detail_icon_button)
 		var item_name:=inv_label(str(item["name"]),16,Color("f0dcae"))
-		item_name.position=Vector2(199,326)
-		item_name.size=Vector2(270,24)
+		apply_inventory_rect(item_name,"detail_name")
 		inv_rows.add_child(item_name)
 		var meta:=inv_label(DB.slot_name(item["slot"])+" · "+attack_type_label(item)+" · "+str(item.get("tier",1))+"단계",10,Color("b99d72"))
-		meta.position=Vector2(199,349)
-		meta.size=Vector2(270,18)
+		apply_inventory_rect(meta,"detail_meta")
 		inv_rows.add_child(meta)
 		var effect_label:=inv_label(str(item.get("effect","")),11,Color("d8d1c2"))
-		effect_label.position=Vector2(199,368)
-		effect_label.size=Vector2(275,39)
+		apply_inventory_rect(effect_label,"detail_effect")
 		effect_label.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART
 		inv_rows.add_child(effect_label)
 		var equip_button:=Button.new()
 		equip_button.text="장착"
-		equip_button.position=Vector2(519,347)
-		equip_button.size=Vector2(72,34)
+		apply_inventory_rect(equip_button,"btn_equip")
 		equip_button.focus_mode=Control.FOCUS_NONE
 		equip_button.add_theme_font_size_override("font_size",14)
 		equip_button.add_theme_color_override("font_color",Color("e7dcc5"))
@@ -606,8 +620,7 @@ func refresh_inventory() -> void:
 		inv_rows.add_child(equip_button)
 		var destroy:=Button.new()
 		destroy.text="파기"
-		destroy.position=Vector2(610,347)
-		destroy.size=Vector2(72,34)
+		apply_inventory_rect(destroy,"btn_destroy")
 		destroy.focus_mode=Control.FOCUS_NONE
 		destroy.add_theme_font_size_override("font_size",14)
 		style_action_button(destroy,true)
@@ -619,8 +632,7 @@ func refresh_inventory() -> void:
 		inv_rows.add_child(destroy)
 	else:
 		var empty_label:=inv_label("가방이 비어 있습니다. 장비는 가까이 가면 자동으로 획득합니다.",14,Color("bcae91"))
-		empty_label.position=Vector2(200,350)
-		empty_label.size=Vector2(360,28)
+		apply_inventory_rect(empty_label,"empty_hint")
 		inv_rows.add_child(empty_label)
 func destroy_confirmed() -> void:
 	if pending_destroy>=0 and pending_destroy<world.wallet["bag"].size(): world.wallet["bag"].remove_at(pending_destroy)
@@ -750,7 +762,7 @@ func _physics_process(delta: float) -> void:
 	visual_clock += delta
 	if Input.is_action_just_pressed("inventory") and not confirm.visible and not (is_instance_valid(world.merchant) and world.merchant.opened): toggle_inventory()
 	hit_pause=maxf(0,hit_pause-delta)
-	paused=vfx_preview_paused or inventory.visible or world.floor_map_open or world.traveling or boss_transitioning or (is_instance_valid(world.merchant) and world.merchant.opened) or world.seed_input.has_focus() or hit_pause>0
+	paused=vfx_preview_paused or inventory.visible or (is_instance_valid(game_hud) and game_hud.settings_open) or world.floor_map_open or world.traveling or boss_transitioning or (is_instance_valid(world.merchant) and world.merchant.opened) or world.seed_input.has_focus() or hit_pause>0
 	if paused: return
 	hurt_timer=maxf(0,hurt_timer-delta)
 	heart_cd=maxf(0,heart_cd-delta)
@@ -796,17 +808,22 @@ func _physics_process(delta: float) -> void:
 	for i in range(effects.size()-1,-1,-1):
 		effects[i]["time"]-=delta
 		if effects[i]["time"]<=0: effects.remove_at(i)
-	hud.text="HP "+str(int(health))+" / "+str(int(max_health))+"   영혼조각 "+str(world.wallet["souls"])+"   가방 "+str(world.wallet["bag"].size())+"개 [Tab]"
+	game_hud.set_stats(health,max_health,world.wallet["bag"].size(),world.player.dash_charges,world.player.dash_max_charges)
+	hud.text=""
 	var heart:Dictionary=HeartDB.get_heart(str(equipment.get("heart","")))
-	var skills:String="대시 "+str(world.player.dash_charges)+"/"+str(world.player.dash_max_charges) if str(equipment.get("heart",""))=="mongdal" else "Q "+str(heart.get("skill_name","심장"))+" "+("준비" if heart_cd<=0 else str(int(ceil(heart_cd)))+"초")
+	var heart_id:=str(equipment.get("heart",""))
+	var skills:String=""
+	if heart_id=="mongdal": skills="대시 "+str(world.player.dash_charges)+"/"+str(world.player.dash_max_charges)
+	elif not heart_id.is_empty(): skills=str(heart.get("skill_name","심장"))+" "+("준비" if heart_cd<=0 else str(int(ceil(heart_cd)))+"초")
 	for slot in ["main","off"]:
 		if not str(equipped(slot).get("skill","")).is_empty() or (slot=="off" and duo_set()):
-			skills+="  |  "+("F 주무기 " if slot=="main" else "G 보조 ")+("준비" if float(skill_cd[slot])<=0 else str(int(ceil(skill_cd[slot])))+"초")
-	skill_bar.text=skills+"  |  방향키 공격 · J/좌클릭 공격 · F6 장비시험"
+			if not skills.is_empty(): skills+="  |  "
+			skills+=("주무기 " if slot=="main" else "보조무기 ")+("준비" if float(skill_cd[slot])<=0 else str(int(ceil(skill_cd[slot])))+"초")
+	skill_bar.text=skills
 	for enemy in living():
 		if enemy.boss:
 			var phase_text:=" · "+str(enemy.jangsan_phase)+"페이즈" if enemy.kind=="jangsanbeom" else ""
-			hud.text+="\n"+("장산범" if enemy.kind=="jangsanbeom" else "선봉대장")+" "+str(int(enemy.hp))+" / "+str(int(enemy.max_hp))+phase_text
+			hud.text+=("장산범" if enemy.kind=="jangsanbeom" else "선봉대장")+" "+str(int(enemy.hp))+" / "+str(int(enemy.max_hp))+phase_text
 	queue_redraw()
 func _draw() -> void:
 	arsenal.draw()

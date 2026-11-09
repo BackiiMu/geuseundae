@@ -13,6 +13,7 @@ const PAPER_DARK:=Color("674c34")
 const PANEL_TEXTURE:=preload("res://assets/ui/modular/panel-normal-v1.png")
 const PLAQUE_TEXTURE:=preload("res://assets/ui/modular/plaque-v1.png")
 const GHOST_TEXTURE:=preload("res://assets/ui/modular/borrowed-ghost-v1.png")
+const InventoryLayout:=preload("res://scripts/inventory_layout.gd")
 var panel_style:StyleBoxTexture
 var inner_panel_style:StyleBoxTexture
 
@@ -77,8 +78,12 @@ func hanging_tassel(origin:Vector2) -> void:
 	draw_line(origin+Vector2(0,12),origin+Vector2(0,39),Color("7d201e"),3)
 	for x in range(-5,6,3): draw_line(origin+Vector2(x,28),origin+Vector2(x*1.4,49),Color("9b2c25"),2)
 
+func layout_rect(id:String) -> Rect2:
+	return InventoryLayout.rect(id,size)
+
 func draw_body_diagram() -> void:
-	var center:=Vector2(231,151)
+	var doll:=layout_rect("doll")
+	var center:=doll.position+Vector2(120,73)
 	draw_circle(center-Vector2(0,15),57,Color("24201e"))
 	draw_arc(center-Vector2(0,15),57,0,TAU,48,Color("65352e"),1)
 	draw_arc(center-Vector2(0,15),48,0,TAU,40,Color("3e3028"),1)
@@ -87,8 +92,8 @@ func draw_body_diagram() -> void:
 		draw_rect(Rect2(center-Vector2(0,15)+mark-Vector2.ONE,Vector2(2,2)),Color("9a794d"))
 	# The borrowed body is a real transparent pixel asset rather than a geometric
 	# mannequin: faceless hair, torn hanbok and a lower body dissolving into ink.
-	draw_texture(GHOST_TEXTURE,Vector2(194,77),Color(.72,.72,.78,.82))
-	var endpoints:=[Vector2(142,101),Vector2(142,144),Vector2(142,187),Vector2(142,230),Vector2(284,101),Vector2(284,144),Vector2(284,187)]
+	draw_texture_rect(GHOST_TEXTURE,Rect2(doll.position+Vector2(83,-1),Vector2(74,148)),false,Color(.72,.72,.78,.82))
+	var endpoints:=[doll.position+Vector2(31,23),doll.position+Vector2(31,66),doll.position+Vector2(31,109),doll.position+Vector2(31,152),doll.position+Vector2(173,23),doll.position+Vector2(173,66),doll.position+Vector2(173,109)]
 	var joints:=[center+Vector2(-5,-36),center+Vector2(-14,-4),center+Vector2(-9,33),center+Vector2(-8,66),center+Vector2(8,-13),center+Vector2(15,2),center+Vector2(8,24)]
 	for i in range(endpoints.size()):
 		draw_line(endpoints[i],joints[i],Color("b39466"),1)
@@ -98,23 +103,25 @@ func _draw() -> void:
 	# Everything is drawn on integer coordinates so nearest-neighbour scaling
 	# stays crisp at 1x, 2x and 3x. No layout socket is baked into a bitmap.
 	draw_rect(Rect2(Vector2.ZERO,size),Color(0.01,0.015,0.02,.78))
-	var outer:=Rect2(62,21,644,388)
+	var outer:=layout_rect("frame")
 	draw_rect(outer.grow(5),Color(0,0,0,.72))
 	pixel_panel(outer,Color("0d1012"),true)
 	# Independently resizable modules.
-	pixel_panel(Rect2(75,63,302,184),Color("1a1b1c"),false)
-	pixel_panel(Rect2(82,249,288,61),Color("101214"),false)
-	pixel_panel(Rect2(382,63,313,247),Color("101214"),false)
-	pixel_panel(Rect2(64,312,640,92),Color("111315"),false)
-	draw_line(Vector2(491,325),Vector2(491,393),Color("5b4633"),1)
-	paper_plaque(Rect2(112,40,102,27))
-	paper_plaque(Rect2(392,69,64,26))
+	pixel_panel(layout_rect("doll_panel"),Color("1a1b1c"),false)
+	pixel_panel(layout_rect("rail_panel"),Color("101214"),false)
+	pixel_panel(layout_rect("bag_panel"),Color("101214"),false)
+	pixel_panel(layout_rect("detail_panel"),Color("111315"),false)
+	var detail:=layout_rect("detail_panel")
+	draw_line(detail.position+Vector2(detail.size.x*.67,13),detail.position+Vector2(detail.size.x*.67,detail.size.y-11),Color("5b4633"),1)
+	paper_plaque(layout_rect("title_plaque"))
+	paper_plaque(layout_rect("bag_plaque"))
 	draw_body_diagram()
-	plum_branch(Vector2(219,43),Vector2(350,62))
-	hanging_tassel(Vector2(78,71))
+	var title_plaque:=layout_rect("title_plaque")
+	plum_branch(title_plaque.end+Vector2(5,-24),title_plaque.end+Vector2(136,-5))
+	hanging_tassel(layout_rect("doll_panel").position+Vector2(3,8))
 	# Small pixel hardware and restrained folk decoration.
-	for point in [Vector2(71,30),Vector2(696,30),Vector2(71,399),Vector2(696,399)]:
+	for point in [outer.position+Vector2(9,9),Vector2(outer.end.x-10,outer.position.y+9),Vector2(outer.position.x+9,outer.end.y-10),outer.end-Vector2(10,10)]:
 		draw_circle(point,2,BRASS_LIGHT)
-	for x in range(90,690,23):
-		draw_rect(Rect2(x,26+(x%3),11,1),Color("76231f"))
-		draw_rect(Rect2(x,400-(x%2),7,1),Color("57201d"))
+	for x in range(int(outer.position.x+28),int(outer.end.x-16),23):
+		draw_rect(Rect2(x,outer.position.y+5+(x%3),11,1),Color("76231f"))
+		draw_rect(Rect2(x,outer.end.y-9-(x%2),7,1),Color("57201d"))

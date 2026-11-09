@@ -1,14 +1,14 @@
 extends Node2D
 signal finished
 const PLAYBACK_SPEED := 3.5
-const SHADOW_TINT := Color("101116")
-var texture := preload("res://assets/actors/tar-child.png")
+const SHADOW_TINT := Color.WHITE
+var texture := preload("res://assets/vfx/summon/shadow-rise.png")
 var elapsed := 0.0
 var info: Dictionary
 func _ready() -> void:
 	texture_filter=CanvasItem.TEXTURE_FILTER_NEAREST
 	self_modulate=SHADOW_TINT
-	info=JSON.parse_string(FileAccess.get_file_as_string("res://assets/actors/tar-child.json"))["meta"]["pixelfx"]
+	info=JSON.parse_string(FileAccess.get_file_as_string("res://assets/vfx/summon/shadow-rise.json"))["meta"]["pixelfx"]
 func _process(delta: float) -> void:
 	elapsed += delta*PLAYBACK_SPEED
 	if elapsed >= float(info["frames"])/float(info["fps"]):

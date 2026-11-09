@@ -120,11 +120,11 @@ func attack_aim_direction(move_axis := 0.0) -> Vector2:
 	if absf(move_axis)>.01: return Vector2(signf(move_axis),0)
 	return Vector2(facing,0)
 
-# Mobile dashes follow the movement stick (8-way); neutral uses facing.
+# Mobile dashes preserve the movement stick's analog angle; neutral uses facing.
 func mobile_dash_direction() -> Vector2:
 	var stick:Vector2=preload("res://scripts/mobile_controls.gd").move_vector
 	if stick.length()<.18: return Vector2(facing,0)
-	return Vector2.from_angle(roundf(stick.angle()/(PI/4))*(PI/4))
+	return stick.normalized()
 
 func handle_jump_press(dash_direction_input: Vector2) -> bool:
 	if jumped_since_floor:

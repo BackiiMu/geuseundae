@@ -1,0 +1,247 @@
+<!doctype html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>그슨대 · HUD UI 시안</title>
+<style>
+@font-face{font-family:Galmuri;src:url('godot/assets/fonts/Galmuri11-Bold.ttf')}
+:root{--bg:#07090a;--card:#101517;--line:#2c3a37;--tx:#cfcbb8;--mut:#8a9189;--btn:#3d4a44;--brass:#9a713d;--brass2:#d0aa68;--red:#6f211d;--ink:#080b0d}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--tx);font:14px/1.5 sans-serif}
+main{max-width:1120px;margin:0 auto;padding:20px 16px 60px}
+h1{font-size:20px;margin:0 0 4px}h2{font-size:16px;margin:0 0 4px}
+.lead{color:var(--mut);margin:0 0 18px}
+.card{background:var(--card);border:1px solid var(--line);padding:14px;margin-bottom:14px}
+.d{color:var(--mut);margin:0 0 10px;font-size:13px}
+.px{image-rendering:pixelated}
+.row{display:flex;flex-wrap:wrap;gap:18px;align-items:flex-end}
+.cap{font-size:12px;color:var(--mut);margin-top:4px}
+.ctl{margin-top:12px;display:flex;flex-wrap:wrap;gap:8px;align-items:center;font-size:13px;color:var(--mut)}
+button.b{background:var(--btn);color:#d8d6c6;border:0;padding:6px 10px;font-size:13px;cursor:pointer}
+button.b:hover{background:#4d5c55}
+input[type=range]{accent-color:#a8532a;vertical-align:middle}
+.stage{position:relative;width:768px;height:432px;max-width:100%;overflow:hidden;background:linear-gradient(#17222b,#0d1418 60%,#0a0e10);image-rendering:pixelated;transform-origin:0 0}
+.stagewrap{width:768px;max-width:100%}
+.stage .ground{position:absolute;left:0;right:0;bottom:0;height:130px;background:url('docs/mockups/monster-attack-vfx/bg-chapter2.png') 0 100%/auto 130px repeat-x;opacity:.9}
+.tag{position:absolute;color:#fff6;font-size:11px}
+
+/* ---------- HP 바 ---------- */
+.hp{position:relative;width:260px;height:72px;transform-origin:0 0}
+.hp .frame{position:absolute;left:0;top:0;width:260px;height:72px}
+.hp .win{position:absolute;left:29px;top:28px;width:223px;height:15px;overflow:hidden;background:#0b0708}
+.hp .trail{position:absolute;left:0;top:0;bottom:0;background:#c9a089;transition:width .6s ease-out .3s}
+.hp .fill{position:absolute;left:0;top:0;bottom:0;transition:width .25s ease-out;
+ background:linear-gradient(#c23a2d 0 2px,#a52a22 2px 4px,#82201d 4px 10px,#5e1517 10px 13px,#3f0c0e 13px 15px)}
+.hp .fill:after{content:"";position:absolute;right:0;top:0;bottom:0;width:2px;background:#e0614f;opacity:.85}
+.hp .ticks{position:absolute;inset:0;pointer-events:none;mix-blend-mode:multiply}
+.hp .flash{position:absolute;inset:0;background:#fff;opacity:0}
+.hp.low .fill{animation:low .6s steps(2) infinite}
+@keyframes low{50%{filter:brightness(1.45) saturate(1.1)}}
+.hp.hit .flash{animation:hit .25s steps(3)}
+@keyframes hit{0%{opacity:.55}100%{opacity:0}}
+.hp.shake{animation:shake .22s steps(4)}
+@keyframes shake{25%{transform:translate(-2px,1px)}50%{transform:translate(2px,-1px)}75%{transform:translate(-1px,0)}}
+.hp .txt{position:absolute;left:29px;top:28px;width:223px;height:15px;font:11px/15px Galmuri,monospace;text-align:center;color:#f0e4d0;text-shadow:1px 1px 0 #000,-1px 0 0 #000,0 1px 0 #000}
+.hp .lbl{position:absolute;left:30px;top:48px;font:10px/12px Galmuri,monospace;color:#b99867;text-shadow:1px 1px 0 #000}
+
+/* ---------- 대시 게이지 ---------- */
+.dash{display:inline-flex;align-items:center;gap:4px;padding:5px 8px 5px 8px;background:#0b0708;position:relative;
+ box-shadow:0 0 0 1px #000,0 0 0 3px #2a1114,0 0 0 4px #000;margin:4px}
+.dash:before,.dash:after{content:"";position:absolute;width:3px;height:3px;background:var(--brass);top:-3px;left:-3px;box-shadow:0 0 0 1px #000}
+.dash:after{left:auto;right:-3px;top:auto;bottom:-3px}
+.dash canvas{width:36px;height:36px;image-rendering:pixelated;display:block}
+.dash .cnt{font:11px Galmuri,monospace;color:#b99867;margin-left:4px;text-shadow:1px 1px 0 #000;min-width:26px}
+
+/* ---------- 아이콘 버튼 ---------- */
+.ibtn{position:relative;background:none;border:0;padding:0;cursor:pointer;image-rendering:pixelated;display:inline-block}
+.ibtn img{display:block;image-rendering:pixelated}
+.ibtn:hover img{filter:brightness(1.25)}
+.ibtn:active{transform:translateY(2px)}
+.bag .badge{position:absolute;right:-6px;bottom:-4px;min-width:20px;height:16px;padding:0 4px;background:#0b0708;color:#e0c68a;font:10px/14px Galmuri,monospace;text-align:center;box-shadow:0 0 0 1px #000,0 0 0 2px #6f211d}
+.bag .new{position:absolute;left:68%;top:4%;width:8px;height:8px;background:#d33b2c;box-shadow:0 0 0 1px #000;animation:blink 1s steps(2) infinite}
+@keyframes blink{50%{opacity:.3}}
+.bag .key{position:absolute;left:50%;top:100%;transform:translateX(-50%);margin-top:3px;white-space:nowrap;font:10px Galmuri,monospace;color:#8a9189;opacity:0}
+.bag:hover .key,.gear:hover .key{opacity:1}
+.gear .key{position:absolute;left:50%;top:100%;transform:translateX(-50%);margin-top:3px;white-space:nowrap;font:10px Galmuri,monospace;color:#8a9189;opacity:0}
+.gear img{transition:transform .15s steps(3)}
+.gear:hover img{transform:rotate(15deg)}
+.gear.on img{transform:rotate(30deg);filter:brightness(1.2)}
+.frames{display:flex;gap:10px}
+.frames div{text-align:center;font-size:11px;color:var(--mut)}
+
+/* ---------- 설정 패널 ---------- */
+.panel{position:relative;width:360px;padding:34px 34px 30px;color:#d8d0bc;
+ border:31px solid transparent;border-width:28px 31px;border-image:url('godot/assets/ui/modular/panel-normal-v1.png') 28 31 fill / 28px 31px stretch;font:13px/1.4 Galmuri,sans-serif;image-rendering:pixelated;padding:6px 6px 8px}
+.panel .title{margin:-8px auto 10px;width:150px;height:44px;background:url('godot/assets/ui/modular/plaque-v1.png') 0 0/100% 100% no-repeat;text-align:center;font:15px/42px Galmuri,sans-serif;color:#4a2a1a;image-rendering:pixelated}
+.set{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:6px 4px;border-bottom:1px dashed #2a2224}
+.set span{color:#cdbf9f}
+.slider{position:relative;width:150px;height:12px;background:#0b0708;box-shadow:0 0 0 1px #000,0 0 0 2px #3a2a20;cursor:pointer}
+.slider i{position:absolute;left:0;top:0;bottom:0;background:linear-gradient(#a52a22 0 3px,#7a1f1c 3px 8px,#4a1214 8px)}
+.slider b{position:absolute;top:-4px;width:8px;height:20px;margin-left:-4px;background:linear-gradient(90deg,#d0aa68 0 2px,#9a713d 2px 6px,#6b4a28 6px);box-shadow:0 0 0 1px #000}
+.slider em{position:absolute;right:-34px;top:-2px;font:10px/16px Galmuri,monospace;color:#b99867;font-style:normal}
+.tog{width:34px;height:16px;background:#0b0708;box-shadow:0 0 0 1px #000,0 0 0 2px #3a2a20;position:relative;cursor:pointer}
+.tog b{position:absolute;top:2px;left:2px;width:12px;height:12px;background:#4a4540;box-shadow:0 0 0 1px #000;transition:left .1s steps(2)}
+.tog.on{background:#5a1a18}
+.tog.on b{left:20px;background:#d0aa68}
+.pbtns{display:flex;gap:10px;justify-content:center;margin-top:14px}
+.pbtn{width:120px;height:40px;border:14px solid transparent;border-image:url('godot/assets/ui/modular/button-normal-v1.png') 36 fill / 14px stretch;background:none;color:#d8d0bc;font:13px Galmuri,sans-serif;cursor:pointer;image-rendering:pixelated;padding:0;line-height:12px}
+.pbtn:hover{border-image-source:url('godot/assets/ui/modular/button-hover-v1.png')}
+.pbtn:active{border-image-source:url('godot/assets/ui/modular/button-pressed-v1.png')}
+.hidden{display:none}
+.modal{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:5}
+.dim{position:absolute;inset:0;background:#000a;z-index:4}
+</style>
+<main>
+<h1>HUD UI 시안 · HP 바 · 대시 게이지 · 가방 · 설정</h1>
+<p class=lead>기존 도트 UI 부품(<code>godot/assets/ui/hud</code>의 HP 프레임·가방·설정 아이콘, <code>ui/modular</code>의 패널·버튼·명판)과 같은 재질로 맞췄습니다. 게임에는 적용하지 않은 미리보기입니다. 모든 조각은 눌러 보거나 슬라이더로 움직여 볼 수 있습니다.</p>
+
+<section class=card>
+<h2>1. 게임 화면 배치 (768×432, 1:1)</h2>
+<p class=d>왼쪽 위에 HP 바와 대시 게이지, 오른쪽 위에 가방·설정. 가방과 설정은 클릭해 보세요.</p>
+<div class=stagewrap><div class=stage id=stage>
+ <div class=ground></div>
+ <div style="position:absolute;left:14px;top:10px" id=sHP></div>
+ <div style="position:absolute;left:20px;top:84px" id=sDash></div>
+ <div style="position:absolute;right:14px;top:14px;display:flex;gap:18px;align-items:flex-start">
+  <div id=sBag></div><div id=sGear></div>
+ </div>
+ <div class=tag style="left:20px;bottom:10px">Q 심장 준비 | 방향키 공격 · J/좌클릭 공격</div>
+ <div class="dim hidden" id=sDim></div>
+ <div class="modal hidden" id=sModal></div>
+</div></div>
+<div class=ctl>
+ <button class=b id=sHit>피격 -10</button><button class=b id=sHeal>회복 +10</button>
+ <button class=b id=sDashUse>대시 사용</button><button class=b id=sMore>대시 최대 +1</button><button class=b id=sLess>대시 최대 -1</button>
+</div>
+</section>
+
+<section class=card>
+<h2>2. HP 바</h2>
+<p class=d>기존 <code>hp-frame-v1.png</code>(옻칠 틀·놋쇠 모서리·붉은 매듭) 안쪽 칸에 핏빛 게이지를 채웁니다. 피해를 입으면 흰 번쩍임 뒤 옅은 잔상이 천천히 줄고, 25% 이하에서는 깜빡입니다.  칸 나눔 없이 HP 비율만큼 매끄럽게 줄고 늡니다.</p>
+<div class=row id=hpRow></div>
+<div class=ctl>
+ HP <input type=range id=hpR min=0 max=120 value=60 style="width:200px"> <span id=hpV>60</span>
+ 최대 <input type=range id=hpM min=30 max=120 step=10 value=60 style="width:160px"> <span id=hpMV>60</span>
+ <button class=b id=hHit>피격 -10</button><button class=b id=hHeal>회복 +10</button>
+</div>
+<div class=row style="margin-top:14px" id=hpStates></div>
+</section>
+
+<section class=card>
+<h2>3. 대시 충전 게이지</h2>
+<p class=d>기본 1회이고 심장·장비로 늘어납니다(몽달 3회). 엽전 한 닢이 대시 1회이며, 쓰면 비고 0.65초 동안 아래에서 위로 놋쇠색이 차오릅니다(게임의 충전 간격과 같음). 개수가 늘면 판이 옆으로 길어집니다.</p>
+<div class=row id=dashStates></div>
+<div class=ctl>
+ <button class=b id=dUse>대시 사용 (Shift)</button><button class=b id=dPlus>최대 +1</button><button class=b id=dMinus>최대 −1</button>
+ <span>최대 <b id=dMax>1</b>회</span>
+</div>
+<div style="margin-top:10px" id=dashLive></div>
+</section>
+
+<section class=card>
+<h2>4. 가방 아이콘 (닫힘 / 열림)</h2>
+<p class=d>닫힘은 기존 <code>bag-icon-v1.png</code>, 열림 두 장(반쯤·활짝)은 같은 주머니를 코드로 그린 초안입니다. 클릭하면 열리고 다시 클릭하면 닫히며(약 0.1초 간격 3컷), 개수 표시와 새 아이템 점을 붙일 수 있습니다.</p>
+<div class=row>
+ <div><div class=frames id=bagFrames></div><div class=cap>닫힘 → 반쯤 → 열림</div></div>
+ <div><div id=bagLive></div><div class=cap>클릭해서 열고 닫기 (Tab / I)</div></div>
+ <div><div id=bagNew></div><div class=cap>새 아이템 표시</div></div>
+</div>
+</section>
+
+<section class=card>
+<h2>5. 설정</h2>
+<p class=d>설정 아이콘은 기존 <code>settings-icon-v1.png</code>입니다(마우스를 올리면 살짝 돌고, 열리면 더 돕니다). 패널은 인벤토리와 같은 옻칠 패널·종이 명판·붉은 버튼을 썼습니다. 항목은 제안이며 게임에 아직 없는 기능도 있습니다.</p>
+<div class=row style="align-items:flex-start">
+ <div id=gearLive></div>
+ <div id=panelHost style="position:relative"></div>
+</div>
+</section>
+</main>
+
+<script>
+const HUD='godot/assets/ui/hud/',BAG=['godot/assets/ui/hud/bag-icon-v1.png','docs/mockups/hud-ui/bag-open-half.png','docs/mockups/hud-ui/bag-open.png'];
+const $=(s,r=document)=>r.querySelector(s);
+function el(tag,cls,html){const e=document.createElement(tag);if(cls)e.className=cls;if(html!=null)e.innerHTML=html;return e}
+
+/* ---------- HP ---------- */
+function makeHP(host,{hp=60,max=60,zoom=1,label='HP'}={}){
+ const root=el('div','hp');root.style.transform=`scale(${zoom})`;
+ root.innerHTML=`<img class="frame px" src="${HUD}hp-frame-v1.png"><div class=win><div class=trail></div><div class=fill></div><div class=flash></div></div><div class=txt></div><div class=lbl>${label}</div>`;
+ const wrap=el('div');wrap.style.cssText=`width:${260*zoom}px;height:${72*zoom}px`;wrap.append(root);host.append(wrap);
+ const W=223,fill=$('.fill',root),trail=$('.trail',root),txt=$('.txt',root);
+ const api={hp,max,set(h,m){if(m!=null)api.max=m;h=Math.max(0,Math.min(api.max,h));const dropped=h<api.hp;api.hp=h;draw(dropped)},
+  hit(n){root.classList.remove('hit','shake');void root.offsetWidth;root.classList.add('hit','shake');api.set(api.hp-n)},heal(n){api.set(api.hp+n)}};
+ function draw(){const w=api.hp/api.max*W;fill.style.width=w+'px';trail.style.width=Math.max(w,parseFloat(trail.style.width)||0)+'px';clearTimeout(api.t);api.t=setTimeout(()=>trail.style.width=w+'px',60);
+  txt.textContent=`${Math.ceil(api.hp)} / ${api.max}`;root.classList.toggle('low',api.hp/api.max<=.25&&api.hp>0)}
+ api.set(hp,max);trail.style.width=(hp/max*W)+'px';return api}
+
+/* ---------- 엽전(대시) ---------- */
+function coin(state,fill){const c=document.createElement('canvas');c.width=c.height=18;const g=c.getContext('2d');
+ const P={on:{o:'#1a1006',rim:'#d0aa68',body:'#9a713d',hi:'#b88a4c',sh:'#6b4a28',hole:'#0a0605',he:'#5a3f20'},off:{o:'#1a1006',rim:'#3a2c1e',body:'#1b1410',hi:'#241a14',sh:'#120d0a',hole:'#070404',he:'#2a2118'}};
+ const draw=(p,rowMin)=>{for(let y=rowMin;y<18;y++)for(let x=0;x<18;x++){const dx=x-8.5,dy=y-8.5,d=Math.hypot(dx,dy);if(d>8.4)continue;
+   let col;if(Math.abs(dx)<2.6&&Math.abs(dy)<2.6)col=(Math.abs(dx)>1.7||Math.abs(dy)>1.7)?p.he:p.hole;
+   else if(d>7.2)col=p.o;else if(d>5.8)col=p.rim;else col=(x+y<12)?p.hi:(x+y>22?p.sh:p.body);
+   g.fillStyle=col;g.fillRect(x,y,1,1)}};
+ draw(P.off,0);if(state==='on')draw(P.on,0);if(state==='fill'){const rows=Math.round(18*fill);draw(P.on,18-rows)}return c}
+function makeDash(host,{max=1,have=null,showCount=true}={}){
+ const box=el('div','dash');host.append(box);const api={max,have:have==null?max:have,t:0,use(){if(api.have<=0)return false;api.have--;if(api.t<=0)api.t=.65;draw();return true},setMax(m){api.max=Math.max(1,Math.min(8,m));api.have=Math.min(api.have,api.max);if(api.have<api.max&&api.t<=0)api.t=.65;draw()}};
+ function draw(){box.innerHTML='';for(let i=0;i<api.max;i++){const st=i<api.have?'on':(i===api.have&&api.have<api.max?'fill':'off');const c=coin(st,st==='fill'?1-api.t/.65:0);box.append(c)}
+  if(showCount){const n=el('span','cnt',`${api.have}/${api.max}`);n.className='cnt';box.append(n)}}
+ let last=performance.now();(function loop(now){const dt=Math.min(.1,(now-last)/1000);last=now;if(api.have<api.max){api.t-=dt;if(api.t<=0){api.have++;api.t=api.have<api.max?.65:0}draw()}requestAnimationFrame(loop)})(last);
+ api.timerFrozen=false;draw();return api}
+function staticDash(host,max,have,frac){const box=el('div','dash');for(let i=0;i<max;i++){const st=i<have?'on':(i===have?'fill':'off');box.append(coin(st,frac))}box.append(el('span','cnt',`${have}/${max}`));host.append(box)}
+
+/* ---------- 가방 ---------- */
+function makeBag(host,{count=5,fresh=false,zoom=2,onToggle}={}){
+ const b=el('button','ibtn bag');b.innerHTML=`<img class=px src="${BAG[0]}" width=${48*zoom} height=${48*zoom}>`;
+ const img=$('img',b);const badge=el('div','badge',count);b.append(badge);if(fresh)b.append(el('div','new'));b.append(el('div','key','Tab / I'));
+ let open=false,busy=false;
+ const seq=[0,1,2];function play(list){busy=true;let i=0;(function s(){img.src=BAG[list[i]];if(++i<list.length)setTimeout(s,100);else busy=false})()}
+ b.onclick=()=>{if(busy)return;open=!open;play(open?seq:[...seq].reverse());onToggle&&onToggle(open)};
+ host.append(b);return {setCount(n){badge.textContent=n},btn:b}}
+
+/* ---------- 설정 ---------- */
+function makeGear(host,{zoom=2,onClick}={}){const b=el('button','ibtn gear');b.innerHTML=`<img class=px src="${HUD}settings-icon-v1.png" width=${44*zoom} height=${44*zoom}><div class=key>설정 (Esc)</div>`;
+ b.onclick=()=>onClick&&onClick(b);host.append(b);return b}
+function slider(label,val,fmt=v=>v+'%'){const r=el('div','set');r.append(el('span','',label));const s=el('div','slider');const i=el('i'),k=el('b'),e=el('em');s.append(i,k,e);r.append(s);
+ const set=v=>{v=Math.max(0,Math.min(100,v));i.style.width=v+'%';k.style.left=v+'%';e.textContent=fmt(v)};set(val);
+ const mv=ev=>{const rc=s.getBoundingClientRect();set(Math.round((ev.clientX-rc.left)/rc.width*20)*5)};
+ s.onpointerdown=ev=>{s.setPointerCapture(ev.pointerId);mv(ev);s.onpointermove=mv};s.onpointerup=()=>s.onpointermove=null;return r}
+function toggle(label,on){const r=el('div','set');r.append(el('span','',label));const t=el('div','tog'+(on?' on':''));t.append(el('b'));t.onclick=()=>t.classList.toggle('on');r.append(t);return r}
+function makePanel(onClose){const p=el('div','panel');p.append(el('div','title','설정'));
+ p.append(slider('전체 음량',80),slider('배경음',60),slider('효과음',80),toggle('진동 (모바일)',true),toggle('화면 흔들림',true),toggle('피해 숫자 표시',false),slider('모바일 버튼 크기',50,v=>(60+v*.8|0)+'%'));
+ const bt=el('div','pbtns');const c=el('button','pbtn','닫기'),d=el('button','pbtn','기본값');c.onclick=onClose;bt.append(d,c);p.append(bt);return p}
+
+/* ===== 배치 ===== */
+const sHP=makeHP($('#sHP'),{hp:60,max:60,zoom:1});
+const sDash=makeDash($('#sDash'),{max:1});
+let sBagOpen=false;const sBag=makeBag($('#sBag'),{count:5,zoom:1,onToggle:o=>sBagOpen=o});
+const modal=$('#sModal'),dim=$('#sDim');
+const sGear=makeGear($('#sGear'),{zoom:1,onClick:b=>{b.classList.add('on');dim.classList.remove('hidden');modal.classList.remove('hidden');modal.innerHTML='';modal.append(makePanel(()=>{b.classList.remove('on');dim.classList.add('hidden');modal.classList.add('hidden')}))}});
+$('#sHit').onclick=()=>sHP.hit(10);$('#sHeal').onclick=()=>sHP.heal(10);$('#sDashUse').onclick=()=>sDash.use();
+$('#sMore').onclick=()=>sDash.setMax(sDash.max+1);$('#sLess').onclick=()=>sDash.setMax(sDash.max-1);
+
+/* ===== HP 섹션 ===== */
+const hpMain=makeHP($('#hpRow'),{hp:60,max:60,zoom:2});
+const hpR=$('#hpR'),hpM=$('#hpM');
+hpR.oninput=()=>{hpMain.set(+hpR.value);$('#hpV').textContent=hpMain.hp};
+hpM.oninput=()=>{hpR.max=hpM.value;hpMain.set(Math.min(hpMain.hp,+hpM.value),+hpM.value);hpR.value=hpMain.hp;$('#hpV').textContent=hpMain.hp;$('#hpMV').textContent=hpM.value};
+$('#hHit').onclick=()=>{hpMain.hit(10);hpR.value=hpMain.hp;$('#hpV').textContent=hpMain.hp};
+$('#hHeal').onclick=()=>{hpMain.heal(10);hpR.value=hpMain.hp;$('#hpV').textContent=hpMain.hp};
+const states=$('#hpStates');
+[['가득',60,60],['부상 절반',30,60],['위험(25% 이하)',12,60],['최대 HP 90',90,90],['최대 HP 120',70,120]].forEach(([n,h,m])=>{const d=el('div');makeHP(d,{hp:h,max:m,zoom:1});d.append(el('div','cap',`${n} · ${h}/${m}`));states.append(d)});
+
+/* ===== 대시 섹션 ===== */
+const ds=$('#dashStates');
+[['기본 1회 (가득)',1,1,0],['기본 1회 (충전 중)',1,0,.5],['몽달 3회 (2 + 충전 중)',3,2,.6],['장비로 5회 (3 + 충전 중)',5,3,.3],['6회 전부 가득',6,6,0]].forEach(([n,m,h,f])=>{const d=el('div');staticDash(d,m,h,f);d.append(el('div','cap',n));ds.append(d)});
+const live=makeDash($('#dashLive'),{max:1});
+$('#dUse').onclick=()=>live.use();$('#dPlus').onclick=()=>{live.setMax(live.max+1);$('#dMax').textContent=live.max};$('#dMinus').onclick=()=>{live.setMax(live.max-1);$('#dMax').textContent=live.max};
+addEventListener('keydown',e=>{if(e.key==='Shift'){live.use();sDash.use()}});
+
+/* ===== 가방 섹션 ===== */
+const fr=$('#bagFrames');BAG.forEach((s,i)=>{const d=el('div','',`<img class=px src="${s}" width=96 height=96><div>${['닫힘','반쯤','열림'][i]}</div>`);fr.append(d)});
+makeBag($('#bagLive'),{count:5,zoom:3});makeBag($('#bagNew'),{count:12,fresh:true,zoom:3});
+
+/* ===== 설정 섹션 ===== */
+const host=$('#panelHost');host.append(makePanel(()=>{}));
+makeGear($('#gearLive'),{zoom:3,onClick:b=>b.classList.toggle('on')});
+</script>
