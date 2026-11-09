@@ -90,9 +90,20 @@ func build_health_bar() -> void:
 	hp_fill = ColorRect.new()
 	hp_fill.position = channel.position
 	hp_fill.size = channel.size
-	hp_fill.color = Color("81201d")
+	hp_fill.color = Color("82201d")
+	hp_fill.clip_contents = true
 	hp_fill.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	root.add_child(hp_fill)
+	# Match hud-ui-preview.html exactly: five hard pixel bands rather than a
+	# smooth gradient, so the blood-red fill stays readable at 1x scale.
+	for band in [[0,2,"c23a2d"],[2,4,"a52a22"],[4,10,"82201d"],[10,13,"5e1517"],[13,15,"3f0c0e"]]:
+		var stripe:=ColorRect.new()
+		stripe.anchor_right=1.0
+		stripe.offset_top=band[0]
+		stripe.offset_bottom=band[1]
+		stripe.color=Color(band[2])
+		stripe.mouse_filter=Control.MOUSE_FILTER_IGNORE
+		hp_fill.add_child(stripe)
 	root.add_child(texture_rect(HP_FRAME, Vector2.ZERO, Vector2(260, 72)))
 	hp_text = Label.new()
 	hp_text.position = Vector2(29, 26)
