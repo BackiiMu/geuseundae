@@ -1,6 +1,6 @@
 extends Node2D
 signal finished
-const PLAYBACK_SPEED := 3.5
+const PLAYBACK_SPEED := 5.0
 const SHADOW_TINT := Color.WHITE
 var texture := preload("res://assets/vfx/summon/shadow-rise.png")
 var elapsed := 0.0

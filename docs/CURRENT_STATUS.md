@@ -5,7 +5,7 @@
 ## 바로 시작하기
 
 1. 저장소: `https://github.com/BackiiMu/geuseundae.git`, 브랜치 `main`.
-2. Godot 4.7.2에서 `godot/project.godot`을 연다. 시작 장면은 `godot/scenes/title_screen.tscn`이며 `게임 시작`을 누르면 마을로 들어간다.
+2. Godot 4.7.2에서 `godot/project.godot`을 연다. 시작 장면은 `godot/scenes/intro_screen.tscn`(약 24초 인트로, 우상단 `건너뛰기`·Esc)이며 끝나면 `title_screen.tscn`으로 이어지고 `게임 시작`을 누르면 마을로 들어간다.
 3. 첫 실행 전 Godot이 이미지 import를 마칠 때까지 기다린다.
 4. 루트 HTML은 과거 시안이다.
 5. 기본 창은 640×360이다. 사용자가 요청하기 전에는 키우거나 옮기지 않고, 검수 창은 기존 위치나 화면 아래쪽에 둔다.
@@ -47,7 +47,7 @@
 
 ## 시작·변신 소환
 
-- 시작·부활·심장 변신은 `assets/vfx/summon/shadow-rise.png`와 JSON(170×112, 175프레임, 30fps, 피벗 85×92)을 사용한다. 원본 약 5.8초를 3.5배속으로 재생해 약 1.7초에 끝나며 바닥 피벗을 유지한다.
+- 시작·부활·심장 변신은 `assets/vfx/summon/shadow-rise.png`와 JSON(170×112, 175프레임, 30fps, 피벗 85×92)을 사용한다. 원본 약 5.8초를 5배속으로 재생해 약 1.2초에 끝나며 바닥 피벗을 유지한다.
 - 시각 검수 캡처는 `docs/reviews/ui/`에 있다. `ui_visual_review.gd`가 인트로·그림자 소환·마을 HUD·JSON 인벤토리·설정을 실제 렌더러로 저장한다.
 
 ## 주요 코드

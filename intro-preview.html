@@ -1,0 +1,287 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>그슨대 인트로 시안</title>
+<style>
+  :root{--bg:#0a0d12;--panel:#141a22;--line:#2b3542;--ink:#d8cfbd;--dim:#8f8a7e;--acc:#c9a55c;--red:#a8382c}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.5 "Noto Sans KR",system-ui,sans-serif}
+  .wrap{max-width:1180px;margin:0 auto;padding:20px 16px 48px}
+  h1{font-size:18px;margin:0 0 2px}
+  .sub{color:var(--dim);margin:0 0 16px;font-size:13px}
+  .grid{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:16px}
+  @media(max-width:900px){.grid{grid-template-columns:1fr}}
+  .stage{position:relative;background:#000;border:1px solid var(--line);aspect-ratio:16/9;overflow:hidden}
+  canvas{position:absolute;inset:0;width:100%;height:100%;image-rendering:pixelated;display:block}
+  .skipbtn{position:absolute;right:1.2%;top:.8%;background:#1b1210;color:#e6d9b9;border:2px solid #7a2a22;padding:4px 14px;font-size:13px;z-index:2}
+  .skipbtn:hover{border-color:var(--acc)}
+  .bar{display:flex;gap:8px;align-items:center;margin-top:10px;flex-wrap:wrap}
+  button{background:var(--panel);color:var(--ink);border:1px solid var(--line);padding:6px 12px;font:inherit;cursor:pointer;border-radius:3px}
+  button:hover{border-color:var(--acc)}
+  button.on{border-color:var(--acc);color:var(--acc)}
+  input[type=range]{flex:1;min-width:140px;accent-color:var(--acc)}
+  .time{font-variant-numeric:tabular-nums;color:var(--dim);min-width:84px;text-align:right}
+  .side{background:var(--panel);border:1px solid var(--line);padding:14px}
+  .side h2{font-size:13px;margin:0 0 8px;color:var(--acc)}
+  .scenes{display:grid;gap:6px;margin:0 0 14px;padding:0;list-style:none}
+  .scenes button{width:100%;text-align:left;display:flex;gap:8px}
+  .scenes b{color:var(--acc);font-weight:600;min-width:20px}
+  .scenes span{color:var(--dim);font-size:12px;margin-left:auto}
+  .note{font-size:12px;color:var(--dim);margin:0 0 8px}
+  .note strong{color:var(--ink)}
+  label.opt{display:flex;gap:8px;align-items:center;margin:4px 0;font-size:13px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>그슨대 인트로 시안</h1>
+  <p class="sub">약 24초 · 대사 없는 컷신 5장면 · 게임에는 아직 연결하지 않은 HTML 시안입니다. 자막 문구는 제안이며 확정된 설정이 아닙니다.</p>
+  <div class="grid">
+    <div>
+      <div class="stage" id="stage"><canvas id="cv" width="1280" height="720"></canvas><button class="skipbtn" id="skipBtn">건너뛰기</button></div>
+      <div class="bar">
+        <button id="play">일시정지</button>
+        <button id="restart">처음부터</button>
+        <input type="range" id="seek" min="0" max="2400" value="0">
+        <span class="time" id="time">0.0 / 24.0s</span>
+      </div>
+    </div>
+    <aside class="side">
+      <h2>장면</h2>
+      <ul class="scenes" id="scenes"></ul>
+      <h2>옵션</h2>
+      <label class="opt"><input type="checkbox" id="optCap" checked> 자막 표시</label>
+      <label class="opt"><input type="checkbox" id="optRain" checked> 비</label>
+      <label class="opt"><input type="checkbox" id="optBars" checked> 레터박스</label>
+      <p class="note" style="margin-top:10px"><strong>구성 의도</strong><br>빈 마당 → 흉가 대문 → 웅덩이에서 검은 형체가 솟음 → 타이틀. 타이틀 화면의 로고·배경과 그대로 이어지도록 같은 배경 에셋을 씁니다.</p>
+      <p class="note">쓰는 자산: <code>haunted-courtyard.png</code>, <code>title-background-v1.png</code>, <code>shadow-rise.png</code>(그림자 소환 시트).</p>
+    </aside>
+  </div>
+</div>
+
+<script>
+const W=640,H=360,S=2;           // 게임 해상도 기준 좌표, 캔버스는 2배
+const cv=document.getElementById('cv'),g=cv.getContext('2d');
+g.imageSmoothingEnabled=false;
+
+const SCENES=[
+  {t:0,  d:4.5, name:'어둠',        cap:['억울하게 죽은 이들은 이승을 떠나지 못했다.']},
+  {t:4.5,d:5,   name:'빈 마당',     cap:['날이 저물면 퇴마꾼들이 횃불을 들고 찾아왔다.']},
+  {t:9.5,d:5,   name:'대문',        cap:['쫓겨나느니, 뭔지 모를 귀신에게 심장을 빌려주기로 했다.']},
+  {t:14.5,d:5.5,name:'웅덩이',      cap:['심장을 건넨 자리에, 그림자가 몸을 얻는다.','이번에는 우리가 되갚을 차례다.']},
+  {t:20, d:4,   name:'타이틀',      cap:[]}
+];
+const TOTAL=24;
+
+function img(src){const i=new Image();i.src=src;return i}
+const yard=img('godot/assets/haunted-courtyard.png');
+const title=img('godot/assets/ui/title/title-background-v1.png');
+const rise=img('docs/mockups/summon-shadow/shadow-rise.png');
+const FW=170,FH=112,COLS=11,NF=175,PX=85,PY=92;
+
+// 결정적 의사난수 (프레임 고정 캡처용)
+function rnd(n){const x=Math.sin(n*127.1+311.7)*43758.5453;return x-Math.floor(x)}
+const clamp=(v,a=0,b=1)=>Math.max(a,Math.min(b,v));
+const ease=t=>t<.5?2*t*t:1-Math.pow(-2*t+2,2)/2;
+const seg=(t,a,b)=>clamp((t-a)/(b-a));
+
+let opt={cap:true,rain:true,bars:true};
+
+function drawCover(im,sx,sy,sw,sh,alpha=1,dx=0,dy=0,dw=W,dh=H){
+  if(!im.complete||!im.naturalWidth)return;
+  g.globalAlpha=alpha;
+  g.drawImage(im,sx,sy,sw,sh,dx*S,dy*S,dw*S,dh*S);
+  g.globalAlpha=1;
+}
+
+function rain(t,amount=1,wind=.25){
+  if(!opt.rain)return;
+  g.save();g.strokeStyle='rgba(150,170,195,.28)';g.lineWidth=1*S;
+  const n=Math.floor(90*amount);
+  for(let i=0;i<n;i++){
+    const sp=260+rnd(i)*160, x0=rnd(i+9)*(W+80)-40, y=(rnd(i+3)*H+t*sp)%(H+30)-15;
+    const x=x0-y*wind*.4;
+    g.beginPath();g.moveTo(x*S,y*S);g.lineTo((x-wind*5)*S,(y+8+rnd(i+5)*6)*S);g.stroke();
+  }
+  g.restore();
+}
+
+function vignette(a=.75){
+  const r=g.createRadialGradient(W/2*S,H/2*S,H*.25*S,W/2*S,H/2*S,W*.62*S);
+  r.addColorStop(0,'rgba(0,0,0,0)');r.addColorStop(1,`rgba(0,0,0,${a})`);
+  g.fillStyle=r;g.fillRect(0,0,W*S,H*S);
+}
+
+function tint(c,a){g.fillStyle=c;g.globalAlpha=a;g.fillRect(0,0,W*S,H*S);g.globalAlpha=1}
+
+function caption(text,a){
+  if(!opt.cap||!text||a<=0)return;
+  g.save();g.globalAlpha=a;
+  g.font=`${13*S}px "Noto Sans KR",sans-serif`;g.textAlign='center';g.textBaseline='middle';
+  const y=(opt.bars?H-34:H-26)*S;
+  g.fillStyle='rgba(0,0,0,.55)';
+  const w=g.measureText(text).width+28*S;
+  g.fillRect(W/2*S-w/2,y-13*S,w,26*S);
+  g.fillStyle='#e6d9b9';g.fillText(text,W/2*S,y);
+  g.restore();
+}
+
+// ---- 장면 ----
+function sceneDark(lt,T){
+  // 0~4.5s: 거의 검은 화면에서 마당이 아주 흐리게 떠오름
+  g.fillStyle='#05070a';g.fillRect(0,0,W*S,H*S);
+  const a=ease(seg(lt,.8,4.2))*.35;
+  const pan=lt*2;
+  drawCover(yard,pan,0,yard.naturalWidth*.5,yard.naturalHeight,a,0,0);
+  rain(T,.6);
+  vignette(.9);
+}
+
+function sceneYard(lt,T,dur){
+  const k=lt/dur;
+  const sw=724*(W/H);              // 원본 높이 724 → 화면 높이 360
+  const maxPan=yard.naturalWidth-sw;
+  const sx=maxPan*(.15+.55*ease(k));
+  drawCover(yard,sx,0,sw,724,1);
+  tint('#06101c',.28);
+  rain(T,1);
+  // 번개: 2.4s 부근 두 번 번쩍
+  const f=Math.max(0,1-Math.abs(lt-2.35)*9)+Math.max(0,.6-Math.abs(lt-2.7)*9);
+  if(f>0)tint('#cfe0ff',clamp(f)*.5);
+  torches(lt,T,dur);
+  vignette(.7);
+}
+
+// 퇴마꾼 실루엣 + 횃불: 장면 후반에 왼쪽 먼 곳에서 걸어 들어옴
+function torches(lt,T,dur){
+  const a=ease(seg(lt,1.6,3.4));if(a<=0)return;
+  const people=[{x:-20,y:300,h:34},{x:-52,y:306,h:38},{x:-86,y:298,h:32}];
+  people.forEach((p,i)=>{
+    const x=p.x+lt*20+a*70, y=p.y, h=p.h, fl=.75+.25*Math.sin(T*17+i*2)+.1*rnd(Math.floor(T*14)+i);
+    // 번지는 불빛
+    const r=g.createRadialGradient((x+7)*S,(y-h+8)*S,2*S,(x+7)*S,(y-h+8)*S,70*S);
+    r.addColorStop(0,`rgba(255,150,60,${.32*fl*a})`);r.addColorStop(1,'rgba(255,120,40,0)');
+    g.fillStyle=r;g.fillRect(0,0,W*S,H*S);
+    // 실루엣 (몸·머리·삿갓·막대)
+    g.globalAlpha=a;g.fillStyle='#06080b';
+    g.fillRect((x-4)*S,(y-h+10)*S,9*S,(h-10)*S);          // 몸
+    g.fillRect((x-3)*S,(y-h+4)*S,7*S,6*S);                 // 머리
+    g.fillRect((x-6)*S,(y-h+3)*S,13*S,2*S);                // 갓
+    g.fillRect((x+5)*S,(y-h+9)*S,2*S,(h-9)*S*.55);         // 막대
+    // 횃불 불꽃
+    g.fillStyle=`rgba(255,${170+fl*50|0},70,${a})`;
+    g.fillRect((x+4)*S,(y-h+3)*S,4*S,6*S);
+    g.fillStyle=`rgba(255,235,160,${a})`;g.fillRect((x+5)*S,(y-h+5)*S,2*S,3*S);
+    // 바닥 반사
+    g.globalAlpha=a*.18*fl;g.fillStyle='#ff9a40';g.fillRect((x-10)*S,(y+2)*S,24*S,2*S);
+    g.globalAlpha=1;
+  });
+}
+
+function sceneGate(lt,T,dur){
+  const k=ease(lt/dur);
+  // 타이틀 배경은 위쪽에 로고가 박혀 있어 y 200 아래(대문 하단·문고리)만 잘라 천천히 줌인
+  const vh=232-60*k, vw=vh*16/9;
+  const cx=640+(690-640)*k, sy=200+22*k;
+  const sx=clamp(cx-vw/2,0,768-vw);
+  drawCover(title,sx,sy,vw,vh,1);
+  tint('#05080f',.25);
+  // 문틈에서 새는 붉은 기운
+  const gl=ease(seg(lt,2.2,4.6));
+  const r=g.createRadialGradient(560*S,200*S,4*S,560*S,200*S,170*S);
+  r.addColorStop(0,`rgba(150,30,22,${.28*gl})`);r.addColorStop(1,'rgba(150,30,22,0)');
+  g.fillStyle=r;g.fillRect(0,0,W*S,H*S);
+  rain(T,.9);
+  vignette(.75);
+}
+
+function sceneSummon(lt,T,dur){
+  // 바닥: 타이틀 배경의 돌바닥 부분을 어둡게 확대
+  const k=lt/dur;
+  drawCover(title,150,210,395,222,1);
+  tint('#04070c',.5+.25*(1-ease(seg(lt,0,1.2))) );
+  // 소환 시트: 175프레임 @30fps ≈ 5.8s → 이 장면 길이에 맞춰 재생
+  const fi=Math.min(NF-1,Math.floor(clamp(lt/(dur-.1))*NF));
+  const col=fi%COLS,row=Math.floor(fi/COLS);
+  const sc=2.8, dx=W/2-PX*sc, dy=300-PY*sc;
+  if(rise.complete&&rise.naturalWidth){
+    g.drawImage(rise,col*FW,row*FH,FW,FH,dx*S,dy*S,FW*sc*S,FH*sc*S);
+  }
+  rain(T,.8);
+  vignette(.8);
+}
+
+function sceneTitle(lt,T,dur){
+  // 타이틀 화면으로 크로스페이드 (버튼 자리는 비워 둠 — 실제 게임에서는 Godot 버튼이 올라옴)
+  drawCover(title,0,0,768,432,1);
+  rain(T,.7);
+  const a=1-ease(seg(lt,0,1.2));
+  tint('#000',a);
+  const hint=ease(seg(lt,2,3.2));
+  if(hint>0){
+    g.save();g.globalAlpha=hint*(.55+.45*Math.sin(T*3));
+    g.font=`${11*S}px "Noto Sans KR",sans-serif`;g.textAlign='center';
+    g.fillStyle='#e6d9b9';g.fillText('아무 곳이나 눌러 시작',W/2*S,(H-26)*S);g.restore();
+  }
+  vignette(.5);
+}
+
+const FN=[sceneDark,sceneYard,sceneGate,sceneSummon,sceneTitle];
+
+function render(T){
+  T=clamp(T,0,TOTAL-.001);
+  g.clearRect(0,0,cv.width,cv.height);
+  let idx=0;for(let i=0;i<SCENES.length;i++)if(T>=SCENES[i].t)idx=i;
+  const s=SCENES[idx],lt=T-s.t;
+  FN[idx](lt,T,s.d);
+  // 장면 전환 페이드 (타이틀 제외 — 타이틀은 자체 크로스페이드)
+  if(idx>0&&idx<4){const f=1-seg(lt,0,.6);if(f>0)tint('#000',f)}
+  if(idx<3){const f=seg(lt,s.d-.5,s.d);if(f>0&&idx<3)tint('#000',f)}
+  // 레터박스
+  if(opt.bars){g.fillStyle='#000';const b=26;g.fillRect(0,0,W*S,b*S);g.fillRect(0,(H-b)*S,W*S,b*S)}
+  // 자막: 장면 안에서 페이드 인/아웃
+  const n=s.cap.length,per=(s.d-.4)/Math.max(n,1);
+  s.cap.forEach((c,i)=>{const l=lt-i*per-.4;const a=Math.min(seg(l,.1,.7),1-seg(l,per-.8,per-.2));caption(c,a)});
+  // 타이틀 직전 하얀 번쩍
+  if(T>19.85&&T<20.3)tint('#cfd8e6',(1-seg(T,19.85,20.3))*.55);
+  UI(T,idx);
+}
+
+// ---- UI ----
+const $=id=>document.getElementById(id);
+const sceneList=$('scenes');
+SCENES.forEach((s,i)=>{
+  const li=document.createElement('li'),b=document.createElement('button');
+  b.innerHTML=`<b>${i+1}</b>${s.name}<span>${s.t.toFixed(1)}s</span>`;
+  b.onclick=()=>{T0=s.t;paused=false;$('play').textContent='일시정지';last=performance.now()};
+  li.appendChild(b);sceneList.appendChild(li);
+});
+function UI(T,idx){
+  $('skipBtn').style.display=idx===4?'none':'';
+  $('seek').value=Math.round(T*100);
+  $('time').textContent=`${T.toFixed(1)} / ${TOTAL.toFixed(1)}s`;
+  [...sceneList.querySelectorAll('button')].forEach((b,i)=>b.classList.toggle('on',i===idx));
+}
+
+let T0=0,paused=false,last=performance.now();
+const hash=location.hash.match(/t=([\d.]+)/);
+if(hash){T0=parseFloat(hash[1]);paused=true}
+function loop(now){
+  if(!paused){T0+=(now-last)/1000;if(T0>=TOTAL){T0=0}}
+  last=now;render(T0);requestAnimationFrame(loop);
+}
+requestAnimationFrame(loop);
+
+$('play').onclick=()=>{paused=!paused;$('play').textContent=paused?'재생':'일시정지'};
+$('skipBtn').onclick=()=>{T0=SCENES[4].t;paused=false;$('play').textContent='일시정지'};
+$('restart').onclick=()=>{T0=0;paused=false;$('play').textContent='일시정지'};
+$('seek').oninput=e=>{T0=e.target.value/100;paused=true;$('play').textContent='재생'};
+$('optCap').onchange=e=>opt.cap=e.target.checked;
+$('optRain').onchange=e=>opt.rain=e.target.checked;
+$('optBars').onchange=e=>opt.bars=e.target.checked;
+addEventListener('keydown',e=>{if(e.target.tagName==='INPUT')return;if(e.code==='Space'){e.preventDefault();$('play').click()}else{T0=SCENES[4].t;paused=false}});
+</script>
+</body>
+</html>
