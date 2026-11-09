@@ -17,6 +17,8 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 config/name="그슨대"
 run/main_scene="res://scenes/intro_screen.tscn"
 config/features=PackedStringArray("4.7", "GL Compatibility")
+boot_splash/show_image=false
+boot_splash/bg_color=Color(0.0196, 0.0275, 0.0392, 1)
 
 [display]
 
