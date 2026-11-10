@@ -18,7 +18,7 @@ func rebuild() -> void:
 		return
 	var title := Label.new()
 	title.position = Vector2(24, 16)
-	title.text = str(world.floor_number) + "층 상세지도 · 방문한 방을 눌러 우물 이동"
+	title.text = world.chapter_title() + " · 상세지도"
 	title.add_theme_font_size_override("font_size", 19)
 	add_child(title)
 	var close := Button.new()
@@ -46,15 +46,14 @@ func rebuild() -> void:
 		button.position = room_points[id]-Vector2(47,18)
 		button.size = Vector2(94,36)
 		button.focus_mode = Control.FOCUS_NONE
-		var room_name: String = str(world.display_room_name(str(data["template"])))
 		if id == world.current_id:
 			button.text = "● 현재 위치"
 		elif id == world.run["goal"]:
 			button.text = "보스방" if visited else "잠긴 문"
 		elif bool(data.get("peaceful",false)):
-			button.text = "상점 · "+room_name if visited else "상점 · ???"
+			button.text = "도깨비상점" if visited else "미탐색"
 		else:
-			button.text = room_name if visited else "미탐색"
+			button.text = "이동 가능" if visited else "미탐색"
 		button.add_theme_font_size_override("font_size",10)
 		button.disabled = id == world.current_id or not visited or id == world.run["goal"]
 		if not button.disabled:

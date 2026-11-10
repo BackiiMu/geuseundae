@@ -40,6 +40,7 @@ func run_checks() -> void:
 	root.add_child(main)
 	await frames(40)
 	if not require(main.in_village and is_instance_valid(main.merchant) and not main.is_combat_room(),"Village merchant not placed"): return
+	if not require(main.merchant.z_index<main.player.z_index,"Dokkaebi merchant must render behind the player"): return
 	var village_before := JSON.stringify(main.merchant.stock)
 	main.merchant.toggle()
 	await frames(2)
@@ -52,6 +53,7 @@ func run_checks() -> void:
 	main.change_room(shop_id,-1)
 	await frames(3)
 	if not require(not main.is_combat_room() and is_instance_valid(main.merchant),"Floor shop not peaceful"): return
+	if not require(main.merchant.z_index<main.player.z_index,"Floor merchant must render behind the player"): return
 	main.wallet["souls"]=100
 	Stock.buy(main.merchant.stock,0,main.wallet)
 	main.change_room(main.run["goal"],-1)

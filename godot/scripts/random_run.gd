@@ -22,6 +22,14 @@ const MOUNTAIN_NAMES := {
 	"rotten_bridge":"썩은 현수교","ritual_yard":"호랑이 제단","grave_yard":"호식총 묘역",
 	"paper_corridor":"찢긴 금줄길","sanctum":"장산범의 소굴"
 }
+const GARRISON_NAMES := {
+	"gate":"주둔지 외곽 목책","courtyard":"훈련장 안뜰","well":"봉인 우물","hall":"병사 막사",
+	"gallery":"궁술 회랑","forest":"순찰 목책길","store":"퇴마단 보급막사","shrine":"봉인 제단",
+	"moon_gate":"달빛 감시로","collapsed_house":"무너진 초소","servants_quarters":"하급병 막사",
+	"black_kitchen":"취사 막사","granary":"화살 보관고","dry_pond":"마른 해자","bamboo_path":"금줄 통로",
+	"rotten_bridge":"감시탑 연결로","ritual_yard":"봉인 훈련장","grave_yard":"귀신 감옥",
+	"paper_corridor":"부적 회랑","sanctum":"지휘 막사"
+}
 @export var start_in_village := false
 @export var combat_enabled := true
 var combat: Node2D
@@ -120,9 +128,13 @@ func fresh_seed() -> int:
 	return session_rng.randi_range(1,2147483646)
 
 func display_room_name(template: String) -> String:
-	if not in_village and floor_number>=2:
-		return str(MOUNTAIN_NAMES.get(template,"안개 낀 산길"))
-	return str(Catalog.templates()[template]["name"])
+	return chapter_title()
+
+func chapter_title() -> String:
+	if in_village: return "흉가 마을"
+	if floor_number>=3: return "3챕터 · 퇴마단 주둔지"
+	if floor_number==2: return "2챕터 · 안개 낀 산"
+	return "1챕터 · 흉가"
 
 func build_fog_overlay() -> void:
 	fog_layer=CanvasLayer.new()
@@ -134,7 +146,7 @@ func build_fog_overlay() -> void:
 
 func update_chapter_overlay() -> void:
 	if is_instance_valid(fog_layer):
-		fog_layer.visible=not in_village and floor_number>=2
+		fog_layer.visible=not in_village and floor_number==2
 
 func show_village() -> void:
 	in_village = true
@@ -319,7 +331,7 @@ func change_room(id: int, previous: int) -> void:
 		def=Catalog.templates()["sanctum"]
 		data["template"]="sanctum"
 	room = RoomView.new()
-	room.chapter=2 if not in_village and floor_number>=2 else 1
+	room.chapter=clampi(floor_number,1,3) if not in_village else 1
 	room.z_index=-20
 	add_child(room)
 	room.build(def,data["decor_seed"])
@@ -339,7 +351,7 @@ func change_room(id: int, previous: int) -> void:
 			portal_props[next] = portal
 		var label := Label.new()
 		label.position = door + Vector2(-62,-118)
-		label.text = ("보스문 · " if is_boss_door else "그림자 포탈 · ") + display_room_name(str(run["rooms"][next]["template"]))
+		label.text = "보스문" if is_boss_door else "그림자 포탈"
 		label.add_theme_font_size_override("font_size",15)
 		room.add_child(label)
 	room.queue_redraw()
@@ -373,6 +385,7 @@ func change_room(id: int, previous: int) -> void:
 	cooldown = .3
 	if not is_combat_room():
 		merchant = Merchant.new()
+		merchant.z_index=-1
 		merchant.position = Vector2(400,704)
 		merchant.wallet = wallet
 		if in_village:
@@ -395,10 +408,7 @@ func change_room(id: int, previous: int) -> void:
 		exit_label.text = "구간 출구"
 		exit_label.add_theme_font_size_override("font_size",14)
 		room.add_child(exit_label)
-	title.text = display_room_name(str(data["template"]))
-	if in_village: title.text = "흉가 마을"
-	elif floor_number>=2: title.text = "2챕터 · 안개 낀 산 · "+str(floor_number)+"층 · "+title.text
-	else: title.text = str(floor_number)+"층 · "+title.text
+	title.text = chapter_title()
 	update_chapter_overlay()
 	minimap.visible=not in_village
 	minimap.queue_redraw()
@@ -574,7 +584,8 @@ func _process(delta: float) -> void:
 	if combat_enabled and Input.is_action_just_pressed("interact") and combat.try_open_chest():
 		return
 	if nearby >= 0:
-		hint.text = "E · " + display_room_name(str(run["rooms"][portal_links[nearby]]["template"]))+" 이동"
+		var destination_id:int=portal_links[nearby]
+		hint.text = "E · 보스방 이동" if destination_id==run["goal"] else "E · 다음 방 이동"
 		if cooldown<=0 and Input.is_action_just_pressed("interact"):
 			var destination: int = portal_links[nearby]
 			if destination == run["goal"]: change_room(destination,current_id)
@@ -592,7 +603,7 @@ func _process(delta: float) -> void:
 
 func update_web_status() -> void:
 	if not OS.has_feature("web") or not is_instance_valid(player) or not is_instance_valid(combat): return
-	var text:="마을" if in_village else str(floor_number)+"층 · "+str(room.definition["name"])
+	var text:=chapter_title()
 	text+=" | HP "+str(int(combat.health))+"/"+str(int(combat.max_health))+" | 영혼조각 "+str(wallet["souls"])+" | 남은 적 "+str(combat.living().size())
 	if combat.inventory.visible: text+=" | 가방 열림 (일시정지)"
 	if is_instance_valid(merchant) and merchant.opened:

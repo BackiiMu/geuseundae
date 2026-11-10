@@ -11,6 +11,7 @@ const InventoryFont = preload("res://assets/fonts/NotoSansKR-Semibold.ttf")
 const HeartDB = preload("res://scripts/heart_db.gd")
 const GameHUD = preload("res://scripts/game_hud.gd")
 const InventoryLayout = preload("res://scripts/inventory_layout.gd")
+const REWARD_CHEST_TEXTURE = preload("res://assets/vfx/pickups/reward-chest.png")
 var vfx: Node2D
 const Arsenal = preload("res://scripts/equipment_runtime.gd")
 var arsenal = Arsenal.new()
@@ -64,6 +65,7 @@ var attack_serial := 0
 var visual_clock := 0.0
 var drop_textures := {}
 var drop_info := {}
+var reward_chest_info: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://assets/vfx/pickups/reward-chest.json"))["meta"]["pixelfx"]
 const PROVIDED_DROPS = {"hair":"hair","pin":"hairpin","water_bucket":"gourd","fox_bead":"foxbead","claws":"claw","goblin_fire":"ghostfire","plague":"jar","fist":"fist"}
 const GEAR2_DROPS = {"songaksi_hand":"songakHand","ribbon":"ribbon","mirror":"jokduri","eggshell":"eggshell","blank_face":"blankface","gaze":"hollowgaze","wig":"wig","duo_head":"mask","bent_leg":"brokenLeg","mongdal_legs":"leg","wet_shoes":"shoe","single_shoe":"oneShoe","stomach":"stomach","duo_curse":"curse"}
 func _ready() -> void:
@@ -152,9 +154,16 @@ func enter_room(room_data: Dictionary) -> void:
 	if data.get("cleared",false): return
 	var width:=float(world.room.definition["width"])
 	if world.current_id==world.run["goal"]:
-		var boss_kind:="jangsanbeom" if world.floor_number>=2 else "boss"
-		spawn_enemy(boss_kind,safe_ground(width*.45),0)
-		message(("장산범" if boss_kind=="jangsanbeom" else "퇴마단 선봉대장")+" · 적을 처치하면 문이 열립니다")
+		if world.floor_number>=3:
+			spawn_enemy("exorcist-spearman",safe_ground(width*.34),0)
+			spawn_enemy("exorcist-archer",safe_ground(width*.67),1)
+			spawn_enemy("bell-exorcist",safe_ground(width*.52),2)
+			spawn_enemy("hunting-hawk",safe_ground(width*.76),3)
+			message("지휘 막사 정예전 · 진형을 무너뜨리면 출구가 열립니다")
+		else:
+			var boss_kind:="jangsanbeom" if world.floor_number==2 else "boss"
+			spawn_enemy(boss_kind,safe_ground(width*.45),0)
+			message(("장산범" if boss_kind=="jangsanbeom" else "퇴마단 선봉대장")+" · 적을 처치하면 문이 열립니다")
 	else:
 		var candidates: Array = []
 		for x in range(352,int(width)-180,64):
@@ -166,7 +175,13 @@ func enter_room(room_data: Dictionary) -> void:
 		for i in range(mini(3,candidates.size())):
 			var index:=rng.randi_range(0,candidates.size()-1)
 			var pos: Vector2 = candidates.pop_at(index)
-			if world.floor_number>=2:
+			if world.floor_number>=3:
+				var garrison_kinds:=["exorcist-spearman","exorcist-archer","bell-exorcist","hunting-hawk"]
+				var garrison_kind:String=garrison_kinds[(world.current_id+i)%garrison_kinds.size()]
+				# Two archers plus a hawk creates excessive off-axis pressure.
+				if garrison_kind=="hunting-hawk" and i>1: garrison_kind="exorcist-spearman"
+				spawn_enemy(garrison_kind,pos,i)
+			elif world.floor_number==2:
 				var mountain_kinds:=["changgui-remnant","mihokbul","hosikchong-wraith","mountain-tiger"]
 				var mountain_kind:String="jangsan-shadow" if i==0 and world.current_id>0 and world.current_id%4==0 else mountain_kinds[(world.current_id+i)%mountain_kinds.size()]
 				spawn_enemy(mountain_kind,pos,i)
@@ -176,7 +191,7 @@ func spawn_enemy(kind: String, pos: Vector2, uid: int) -> Node:
 	var enemy=Enemy.new()
 	enemy.kind=kind
 	enemy.hp=-1
-	enemy.position=pos
+	enemy.position=pos+Vector2(0,-145) if kind=="hunting-hawk" else pos
 	enemy.uid=uid
 	enemy.director=self
 	add_child(enemy)
@@ -188,6 +203,18 @@ func safe_ground(x: float) -> Vector2:
 	for gap in world.room.definition["gaps"]:
 		if x>gap[0]-24 and x<gap[0]+gap[1]+24: x=gap[0]+gap[1]+40
 	return Vector2(x,704)
+
+func reward_drop_position() -> Vector2:
+	var width:=float(world.room.definition["width"])
+	for offset in [0.0,-150.0,150.0,-300.0,300.0,-450.0,450.0]:
+		var candidate:=safe_ground(width*.5+offset)+Vector2(0,-18)
+		var blocked:=false
+		if is_instance_valid(world.well_prop) and candidate.distance_to(world.well_position+Vector2(0,-18))<125:
+			blocked=true
+		for door in world.room.door_positions:
+			if candidate.distance_to(Vector2(door)+Vector2(0,-18))<110: blocked=true
+		if not blocked: return candidate
+	return safe_ground(width*.25)+Vector2(0,-18)
 func living() -> Array:
 	return enemies.filter(func(enemy):return is_instance_valid(enemy) and not enemy.dead)
 func locked() -> bool: return enabled and not living().is_empty()
@@ -204,6 +231,9 @@ func attack_permission(requester: Node) -> bool:
 	for enemy in living():
 		if enemy!=requester and enemy.state=="windup" and (enemy.kind=="adept")== (requester.kind=="adept"): count+=1
 	return count<(1 if requester.kind=="adept" else 2)
+
+func queue_enemy_strike(kind: String,pos: Vector2,delay: float,damage: float,source: Node) -> void:
+	zones.append({"kind":kind,"pos":safe_ground(pos.x),"life":delay+(2.2 if kind=="enemy-seal" else .2),"delay":delay,"tick":0.0,"damage":damage,"source":source,"triggered":false,"hurt_cd":0.0})
 func enemy_target(enemy: Node) -> Vector2:
 	if enemy.confusion>0:
 		for other in living():
@@ -261,8 +291,8 @@ func enemy_killed(enemy: Node) -> void:
 		var stock=preload("res://scripts/merchant_stock.gd").roll(int(world.run["seed"])^(world.current_id*131+0x4c4f4f54),world.floor_number)
 		var item: Dictionary = stock[0].duplicate(true)
 		item.erase("sold")
-		pickups.append({"kind":"chest" if rng.randf()<.6 else "item","item":item,"pos":safe_ground(float(world.room.definition["width"])*.5)+Vector2(0,-18)})
-		message("방 클리어 · 중앙에 보상이 나타났습니다")
+		pickups.append({"kind":"chest" if rng.randf()<.6 else "item","item":item,"pos":reward_drop_position()})
+		message("방 클리어 · 안전한 위치에 보상이 나타났습니다")
 func equipped(slot: String) -> Dictionary: return DB.get_item(str(equipment.get(slot,"")))
 func has_passive(passive: String) -> bool:
 	for slot in equipment:
@@ -706,6 +736,19 @@ func tick_zones(delta: float) -> void:
 	for i in range(zones.size()-1,-1,-1):
 		var zone:Dictionary=zones[i]
 		zone["life"]-=delta
+		if str(zone["kind"]).begins_with("enemy-"):
+			zone["delay"]=float(zone.get("delay",0.0))-delta
+			zone["hurt_cd"]=maxf(0.0,float(zone.get("hurt_cd",0.0))-delta)
+			if float(zone["delay"])<=0:
+				if zone["kind"]=="enemy-arrow-rain" and not bool(zone["triggered"]):
+					zone["triggered"]=true
+					area_effect(Vector2(zone["pos"])+Vector2(0,-12),34,float(zone["damage"]),zone.get("source"))
+					zone["life"]=minf(float(zone["life"]),.12)
+				elif zone["kind"]=="enemy-seal" and Vector2(zone["pos"]).distance_to(world.player.position)<48 and float(zone["hurt_cd"])<=0:
+					hurt(float(zone["damage"]))
+					zone["hurt_cd"]=.75
+			if zone["life"]<=0: zones.remove_at(i)
+			continue
 		zone["tick"]-=delta
 		if zone["tick"]<=0 and zone["life"]>0:
 			zone["tick"]=.15 if zone["kind"] in ["well","lure","rush"] else .4
@@ -738,6 +781,16 @@ func tick_pickups(delta: float) -> void:
 		var pos: Vector2 = pickup["pos"]
 		var target: Vector2 = world.player.position+Vector2(0,-20)
 		if pickup["kind"]=="chest": continue
+		elif pickup["kind"]=="chest_opening":
+			pickup["open_age"]=float(pickup.get("open_age",0.0))+delta
+			if float(pickup["open_age"])>=1.15:
+				pickup["kind"]="item"
+				pickup["pickup_delay"]=.55
+				message("상자 개봉 · "+str(pickup["item"]["name"]))
+			continue
+		elif float(pickup.get("pickup_delay",0.0))>0:
+			pickup["pickup_delay"]=maxf(0.0,float(pickup["pickup_delay"])-delta)
+			continue
 		elif pos.distance_to(target)<120:
 			pickup["pos"]=pos.move_toward(target,380*delta)
 			if Vector2(pickup["pos"]).distance_to(target)<16:
@@ -753,8 +806,9 @@ func near_chest() -> bool:
 func try_open_chest() -> bool:
 	for pickup in pickups:
 		if pickup["kind"]=="chest" and Vector2(pickup["pos"]).distance_to(world.player.position+Vector2(0,-20))<75:
-			pickup["kind"]="item"
-			message("상자 개봉 · "+str(pickup["item"]["name"]))
+			pickup["kind"]="chest_opening"
+			pickup["open_age"]=0.0
+			message("봉인된 보상 상자를 엽니다")
 			return true
 	return false
 func _physics_process(delta: float) -> void:
@@ -840,15 +894,23 @@ func _draw() -> void:
 		if not p["friendly"] and p["kind"]!="talisman": draw_line(p["pos"]-Vector2(p["velocity"]).normalized()*10,p["pos"],Color("e1b17c"),3)
 	for zone in zones:
 		if zone["kind"]=="decoy": draw_rect(Rect2(zone["pos"]-Vector2(13,46),Vector2(26,46)),Color(.6,.8,.75,.5))
+		elif zone["kind"]=="enemy-arrow-rain":
+			var warning_alpha:=.28 if float(zone.get("delay",0.0))>0 else .75
+			draw_line(Vector2(zone["pos"])+Vector2(-24,0),Vector2(zone["pos"])+Vector2(24,0),Color(0.76,0.32,0.24,warning_alpha),3)
+			draw_line(Vector2(zone["pos"])+Vector2(0,-180),Vector2(zone["pos"])+Vector2(0,-8),Color(0.72,0.62,0.42,warning_alpha),2)
+		elif zone["kind"]=="enemy-seal":
+			var active:=float(zone.get("delay",0.0))<=0
+			draw_rect(Rect2(Vector2(zone["pos"])+Vector2(-42,-8),Vector2(84,8)),Color(0.18,0.12,0.1,.72 if active else .28))
+			if active:
+				for knot in range(-32,33,16): draw_line(Vector2(zone["pos"])+Vector2(knot,-8),Vector2(zone["pos"])+Vector2(knot+8,-34),Color("9b7350"),3)
 	for effect in effects:
 		if effect["color"]==Color("db9a73"): draw_arc(effect["pos"],effect["radius"],-.8,2.4,24,effect["color"],2)
 	for pickup in pickups:
 		var pos: Vector2=pickup["pos"]
 		if pickup["kind"]=="souls":
 			draw_polygon(PackedVector2Array([pos+Vector2(0,-8),pos+Vector2(5,0),pos+Vector2(0,8),pos+Vector2(-5,0)]),PackedColorArray([Color("a6dec3")]))
-		elif pickup["kind"]=="chest":
-			draw_rect(Rect2(pos-Vector2(16,12),Vector2(32,24)),Color("9d7750"))
-			draw_rect(Rect2(pos-Vector2(3,12),Vector2(6,24)),Color("d5b16d"))
+		elif pickup["kind"] in ["chest","chest_opening"]:
+			draw_reward_chest(pickup)
 		else:
 			if not draw_provided_drop(pickup):
 				draw_circle(pos,8,[Color("c2ccbe"),Color("7fadd0"),Color("b39dd1"),Color("e4c178")][mini(3,int(pickup["item"].get("tier",1))-1)])
@@ -863,6 +925,17 @@ func _draw() -> void:
 						var u:=k/19.0*(1-heart_windup/.25) if heart_windup>0 else k/19.0
 						points.append(from.lerp(to,u)+Vector2(0,sin(u*PI)*(-18+j*2)))
 					draw_polyline(points,Color("3b414e") if j!=1 else Color("a5bfb6"),2)
+
+func draw_reward_chest(pickup: Dictionary) -> void:
+	var frame:=0
+	if pickup["kind"]=="chest_opening":
+		frame=clampi(int(float(pickup.get("open_age",0.0))*float(reward_chest_info["fps"])),0,int(reward_chest_info["frames"])-1)
+	var frame_size:=Vector2(reward_chest_info["frameSize"][0],reward_chest_info["frameSize"][1])
+	var pivot:=Vector2(reward_chest_info["pivot"][0],reward_chest_info["pivot"][1])
+	var columns:=int(reward_chest_info["columns"])
+	var source:=Rect2(Vector2(frame%columns,floori(float(frame)/columns))*frame_size,frame_size)
+	var pos:Vector2=pickup["pos"]+Vector2(0,18)
+	draw_texture_rect_region(REWARD_CHEST_TEXTURE,Rect2(pos-pivot,frame_size),source)
 
 func draw_provided_drop(pickup: Dictionary) -> bool:
 	var item: Dictionary = pickup.get("item", {})

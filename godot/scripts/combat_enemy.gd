@@ -44,11 +44,20 @@ var phase_transition_time := 0.0
 var phase_transition_target := 0
 var phase_transition_swapped := false
 var phase_fog_alpha := 0.0
+var slam_pending := false
+var slam_horizontal := 0.0
+var hawk_dive_remaining := 0.0
+var hawk_hit := false
+var hawk_hover_origin := Vector2.ZERO
 const JANGSAN_PHASE_HP := [0.0,260.0,450.0,850.0]
 # 몬스터별 공격 이펙트 시트(godot/assets/monster_vfx). 원점은 발이고 판정 범위에 맞춰 만들었다.
 const ATTACK_VFX := {"monk":"monk-moktak","changgui-remnant":"changgui-claw","mountain-tiger":"tiger-claw","jangsan-shadow":"shadow-claw","mihokbul":"mihokbul-cast","hosikchong-wraith":"hosikchong-erupt"}
 
 func windup_duration() -> float:
+	if kind=="hunting-hawk": return .62
+	if kind=="exorcist-spearman": return .72
+	if kind=="exorcist-archer": return .92
+	if kind=="bell-exorcist": return 1.05
 	if kind=="jangsanbeom" and jangsan_phase==1: return .78
 	if kind=="jangsanbeom": return [.72,1.05,.64][pattern]
 	if boss: return [.56,.92,.75][pattern]
@@ -60,6 +69,10 @@ func windup_duration() -> float:
 	return .8
 
 func recovery_duration() -> float:
+	if kind=="hunting-hawk": return 1.0
+	if kind=="exorcist-spearman": return 1.05
+	if kind=="exorcist-archer": return 1.5
+	if kind=="bell-exorcist": return 1.75
 	if kind=="jangsanbeom" and jangsan_phase==1: return 1.0
 	if kind=="jangsanbeom": return [.68,.82,.6][pattern]
 	if boss: return [.95,1.3,1.1][pattern]
@@ -78,21 +91,21 @@ func begin_attack_vfx() -> void:
 		elif pattern==1: director.vfx.emit_monster("captain-cleave",self,Vector2.ZERO,direction,1.5)
 		else: director.vfx.emit_monster("captain-charge-fx",self,Vector2.ZERO,direction,1.5)
 	# 부적 도사: 시전·명중 이펙트 없이 날아가는 부적만 쓴다.
-	elif kind=="adept": pass
+	elif kind in ["adept","exorcist-archer","bell-exorcist","hunting-hawk","exorcist-spearman"]: pass
 	elif ATTACK_VFX.has(kind): director.vfx.emit_monster(ATTACK_VFX[kind],self,Vector2.ZERO,direction)
 	else: director.vfx.emit_monster("musa-slash",self,Vector2.ZERO,direction)
 func _ready() -> void:
 	boss = kind in ["boss","jangsanbeom"]
 	size_factor = 2.0 if kind=="jangsanbeom" else 1.5 if boss else 1.25 if kind=="jangsan-shadow" else 1.0
-	max_hp = {"boss":420.0,"jangsanbeom":260.0,"jangsan-shadow":150.0,"mountain-tiger":85.0,"changgui-remnant":70.0,"mihokbul":45.0,"hosikchong-wraith":100.0,"monk":60.0,"adept":20.0,"warrior":30.0}.get(kind,30.0)
+	max_hp = {"boss":420.0,"jangsanbeom":260.0,"jangsan-shadow":150.0,"mountain-tiger":85.0,"changgui-remnant":70.0,"mihokbul":45.0,"hosikchong-wraith":100.0,"monk":60.0,"adept":20.0,"warrior":30.0,"exorcist-spearman":95.0,"exorcist-archer":70.0,"bell-exorcist":80.0,"hunting-hawk":32.0}.get(kind,30.0)
 	hp = max_hp if hp<0 else hp
-	attack = {"boss":10.0,"jangsanbeom":14.0,"jangsan-shadow":11.0,"mountain-tiger":10.0,"changgui-remnant":9.0,"mihokbul":7.0,"hosikchong-wraith":11.0,"monk":12.0,"adept":6.0,"warrior":8.0}.get(kind,8.0)
-	speed = {"boss":85.0,"jangsanbeom":120.0,"jangsan-shadow":145.0,"mountain-tiger":130.0,"changgui-remnant":92.0,"mihokbul":72.0,"hosikchong-wraith":0.0,"monk":65.0,"adept":80.0,"warrior":105.0}.get(kind,95.0)
+	attack = {"boss":10.0,"jangsanbeom":14.0,"jangsan-shadow":11.0,"mountain-tiger":10.0,"changgui-remnant":9.0,"mihokbul":7.0,"hosikchong-wraith":11.0,"monk":12.0,"adept":6.0,"warrior":8.0,"exorcist-spearman":14.0,"exorcist-archer":11.0,"bell-exorcist":7.0,"hunting-hawk":8.0}.get(kind,8.0)
+	speed = {"boss":85.0,"jangsanbeom":120.0,"jangsan-shadow":145.0,"mountain-tiger":130.0,"changgui-remnant":92.0,"mihokbul":72.0,"hosikchong-wraith":0.0,"monk":65.0,"adept":80.0,"warrior":105.0,"exorcist-spearman":72.0,"exorcist-archer":78.0,"bell-exorcist":52.0,"hunting-hawk":115.0}.get(kind,95.0)
 	collision_layer = 4
 	collision_mask = 1
 	var c := CollisionShape2D.new()
 	var box := RectangleShape2D.new()
-	var collision_size:Vector2={"jangsanbeom":Vector2(86,52),"jangsan-shadow":Vector2(64,42),"mountain-tiger":Vector2(54,36),"hosikchong-wraith":Vector2(58,34),"mihokbul":Vector2(32,40)}.get(kind,Vector2(28,46)*size_factor)
+	var collision_size:Vector2={"jangsanbeom":Vector2(86,52),"jangsan-shadow":Vector2(64,42),"mountain-tiger":Vector2(54,36),"hosikchong-wraith":Vector2(58,34),"mihokbul":Vector2(32,40),"exorcist-spearman":Vector2(34,52),"exorcist-archer":Vector2(28,48),"bell-exorcist":Vector2(32,54),"hunting-hawk":Vector2(42,26)}.get(kind,Vector2(28,46)*size_factor)
 	box.size = collision_size
 	c.position.y = -collision_size.y*.5
 	c.shape=box
@@ -104,6 +117,7 @@ func _ready() -> void:
 	visual.role=kind
 	visual.boss=boss
 	add_child(visual)
+	if kind=="hunting-hawk": hawk_hover_origin=position
 	if kind=="jangsanbeom": configure_jangsan_phase(1)
 	queue_redraw()
 
@@ -243,6 +257,9 @@ func _physics_process(delta: float) -> void:
 		queue_redraw()
 		return
 	stun=maxf(0,stun-delta)
+	if kind=="hunting-hawk":
+		tick_hunting_hawk(delta)
+		return
 	velocity.y=minf(1000,velocity.y+1700*delta)
 	if stun>0:
 		velocity.x=0
@@ -272,14 +289,14 @@ func _physics_process(delta: float) -> void:
 			state="recover"
 			timer=recovery_duration()
 	elif state=="recover":
-		velocity.x=0
+		velocity.x=slam_horizontal if kind=="exorcist-spearman" and slam_pending and not is_on_floor() else 0
 		if timer<=0: state="approach"
 	else:
 		facing=signf(difference.x) if absf(difference.x)>1 else facing
 		var close := absf(difference.x)<(145 if kind=="jangsanbeom" else 95 if boss else 150 if kind in ["mountain-tiger","jangsan-shadow"] else 120 if kind=="hosikchong-wraith" else 80 if kind=="monk" else 52)
 		var can_attack := visible_to_player() and clear_shot(target) and absf(difference.y)<120
 		if boss: can_attack=visible_to_player() and clear_shot(target)
-		if kind in ["adept","mihokbul"]: close=distance<380
+		if kind in ["adept","mihokbul","exorcist-archer","bell-exorcist"]: close=distance<420
 		if timer<=0 and can_attack and (close or boss) and director.attack_permission(self):
 			if boss:
 				if kind=="jangsanbeom" and jangsan_phase==1:
@@ -295,15 +312,59 @@ func _physics_process(delta: float) -> void:
 			begin_attack_vfx()
 		else:
 			var direction:=facing
-			if kind in ["adept","mihokbul"] and distance<200: direction=-facing
-			if kind in ["adept","mihokbul"] and distance>=220 and distance<=320: direction=0
+			if kind in ["adept","mihokbul","exorcist-archer","bell-exorcist"] and distance<200: direction=-facing
+			if kind in ["adept","mihokbul","exorcist-archer","bell-exorcist"] and distance>=220 and distance<=340: direction=0
 			if kind=="hosikchong-wraith": direction=0
 			velocity.x=direction*speed*(.45 if slow>0 else 1.0) if safe_step(direction) and absf(difference.y)<150 else 0
 	move_and_slide()
+	if kind=="exorcist-spearman" and slam_pending and is_on_floor():
+		slam_pending=false
+		slam_horizontal=0
+		director.area_effect(global_position+Vector2(0,-8),58,attack,self)
 	if position.y>810:
 		position=director.safe_ground(position.x)
 		velocity=Vector2.ZERO
 	queue_redraw()
+
+func tick_hunting_hawk(delta: float) -> void:
+	flash=maxf(0,flash-delta)
+	if training_dummy:
+		velocity=Vector2.ZERO
+		queue_redraw()
+		return
+	var target:Vector2=director.enemy_target(self)
+	var center:=global_position+Vector2(0,-12)
+	var difference:=target-center
+	facing=signf(difference.x) if absf(difference.x)>1 else facing
+	timer=maxf(0,timer-delta)
+	if hawk_dive_remaining>0:
+		hawk_dive_remaining=maxf(0,hawk_dive_remaining-delta)
+		position+=velocity*delta
+		if not hawk_hit and (global_position+Vector2(0,-10)).distance_to(target)<38:
+			hawk_hit=true
+			director.hurt(attack)
+		if hawk_dive_remaining<=0:
+			state="recover"
+			timer=recovery_duration()
+			velocity=Vector2.ZERO
+	elif state=="windup":
+		velocity=Vector2.ZERO
+		if timer<=0:
+			release_attack(target)
+	elif state=="recover":
+		var recover_target:=target+Vector2(-facing*120,-145)
+		position=position.move_toward(recover_target,150*delta)
+		if timer<=0: state="approach"
+	else:
+		var hover_target:=target+Vector2(-facing*135,-135+sin(Time.get_ticks_msec()*.004+uid)*18)
+		position=position.move_toward(hover_target,speed*delta)
+		if timer<=0 and visible_to_player() and director.attack_permission(self):
+			attack_direction=difference.normalized()
+			state="windup"
+			timer=windup_duration()
+			begin_attack_vfx()
+	queue_redraw()
+
 func release_attack(target: Vector2) -> void:
 	var origin:=global_position+Vector2(0,-25*size_factor)
 	if kind=="jangsanbeom" and jangsan_phase==1:
@@ -329,6 +390,19 @@ func release_attack(target: Vector2) -> void:
 		director.fire_projectile(origin,attack_direction,attack,false,"spirit",self)
 	elif kind=="hosikchong-wraith":
 		director.area_effect(global_position+Vector2(facing*30,-8),92,attack,self)
+	elif kind=="hunting-hawk":
+		hawk_hit=false
+		hawk_dive_remaining=.46
+		velocity=(target-(global_position+Vector2(0,-12))).normalized()*420
+		state="dive"
+	elif kind=="exorcist-spearman":
+		slam_pending=true
+		slam_horizontal=clampf(target.x-global_position.x,-180.0,180.0)*1.7
+		velocity=Vector2(slam_horizontal,-430)
+	elif kind=="exorcist-archer":
+		for offset in [-62.0,0.0,62.0]: director.queue_enemy_strike("enemy-arrow-rain",target+Vector2(offset,0),.72+absf(offset)*.003,attack,self)
+	elif kind=="bell-exorcist":
+		director.queue_enemy_strike("enemy-seal",target,.85,attack,self)
 	elif kind in ["mountain-tiger","jangsan-shadow","changgui-remnant"]:
 		charge_remaining=.24 if kind!="changgui-remnant" else .16
 	else:
@@ -346,7 +420,7 @@ func _draw() -> void:
 		return
 	if director.equipment_lab:
 		var font=preload("res://assets/fonts/NotoSansKR-Semibold.ttf")
-		draw_string(font,Vector2(-24,-84),{"warrior":"퇴마 무사","adept":"부적 도사","monk":"목탁 승려","changgui-remnant":"창귀 잔혼","mihokbul":"미혹불","hosikchong-wraith":"호식총 원귀","mountain-tiger":"산호랑이","jangsan-shadow":"장산범의 그림자","jangsanbeom":"장산범"}.get(kind,"선봉대장"),HORIZONTAL_ALIGNMENT_LEFT,-1,12,Color("c7d0bc"))
+		draw_string(font,Vector2(-24,-84),{"warrior":"퇴마 무사","adept":"부적 도사","monk":"목탁 승려","changgui-remnant":"창귀 잔혼","mihokbul":"미혹불","hosikchong-wraith":"호식총 원귀","mountain-tiger":"산호랑이","jangsan-shadow":"장산범의 그림자","jangsanbeom":"장산범","exorcist-spearman":"퇴마 창수","exorcist-archer":"퇴마 궁수","bell-exorcist":"방울 술사","hunting-hawk":"사냥매"}.get(kind,"선봉대장"),HORIZONTAL_ALIGNMENT_LEFT,-1,12,Color("c7d0bc"))
 	if state=="windup":
 		draw_arc(Vector2(0,-30*s),42*s,0,TAU,24,Color("e5a86c"),2)
 		if boss:

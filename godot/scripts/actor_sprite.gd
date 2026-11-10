@@ -48,6 +48,16 @@ func set_role(value: String) -> void:
 
 func load_role_texture() -> void:
 	var key: String="warrior" if role=="boss" else role
+	var chapter3_single:Dictionary={
+		"exorcist-spearman":"res://assets/actors/chapter3/exorcist-spearman-game-v1.png",
+		"exorcist-archer":"res://assets/actors/chapter3/exorcist-archer-game-v1.png",
+		"bell-exorcist":"res://assets/actors/chapter3/bell-exorcist-game-v1.png",
+		"hunting-hawk":"res://assets/actors/chapter3/hunting-hawk-game-v1.png"
+	}
+	if chapter3_single.has(role):
+		atlas=false
+		texture=load(chapter3_single[role])
+		return
 	var path: String="res://assets/actors/source/"+key+"-v1.png"
 	atlas=ResourceLoader.exists(path)
 	if atlas:
@@ -74,7 +84,11 @@ func draw_size() -> Vector2:
 		"hosikchong-wraith":Vector2(76,58),
 		"mountain-tiger":Vector2(78,58),
 		"jangsan-shadow":Vector2(92,66),
-		"jangsanbeom":Vector2(138,100)
+		"jangsanbeom":Vector2(138,100),
+		"exorcist-spearman":Vector2(58,72),
+		"exorcist-archer":Vector2(54,70),
+		"bell-exorcist":Vector2(56,74),
+		"hunting-hawk":Vector2(68,48)
 	}.get(role,Vector2(48,64))
 
 func new_heart_frame_metrics(frame: int) -> Vector3:
@@ -142,7 +156,23 @@ func _physics_process(delta: float) -> void:
 		flash=1.0 if actor.flash>.055 else 0.0
 		if actor.slow>0: tint=Color("a2cdda")
 		if actor.vulnerable>0: tint=Color("e2acc4")
-		if actor.flash>0:
+		if role=="hunting-hawk":
+			if actor.flash>0:
+				animation="hurt"
+				frame_index=29+int(clock*12)%3
+			elif actor.state=="windup":
+				animation="windup"
+				frame_index=8+clampi(int((1-actor.timer/actor.windup_duration())*4),0,3)
+			elif actor.state=="dive":
+				animation="dive"
+				frame_index=16+int(clock*16)%5
+			elif actor.state=="recover":
+				animation="recover"
+				frame_index=22+int(clock*10)%3
+			else:
+				animation="fly"
+				frame_index=int(clock*9)%8
+		elif actor.flash>0:
 			animation="hurt"
 			frame_index=24+int(clock*16)%4
 		elif actor.pull_remaining>0 or actor.throw_remaining>0 or actor.stun>0 or absf(actor.knockback)>10:
@@ -186,6 +216,16 @@ func _draw() -> void:
 	var source:=Rect2(Vector2(frame_index%8,source_row)*source_size,source_size) if atlas else Rect2(Vector2.ZERO,source_size)
 	var frame_offset:=Vector2.ZERO
 	var frame_scale:=1.0
+	var pose_rotation:=0.0
+	if not atlas and role in ["exorcist-spearman","exorcist-archer","bell-exorcist","hunting-hawk"]:
+		if role=="hunting-hawk":
+			frame_offset.y=sin(clock*9.0)*2.0
+			if actor.state=="windup": pose_rotation=-actor.facing*.12
+			elif actor.state=="dive": pose_rotation=actor.velocity.angle() if actor.facing>0 else PI-actor.velocity.angle()
+		else:
+			if actor.state=="windup": pose_rotation=-actor.facing*.045
+			elif actor.state=="recover": pose_rotation=actor.facing*.035
+			elif absf(actor.velocity.x)>8: frame_offset.y=sin(clock*12.0)*1.5
 	if atlas and is_player_actor() and role in ["mongdal","changgui"] and frame_index<16:
 		var metrics:=new_heart_frame_metrics(frame_index)
 		frame_offset=Vector2(direction*(source_size.x*.5-metrics.x)*target_size.x/source_size.x,(243.0-metrics.y)*target_size.y/source_size.y)
@@ -213,6 +253,6 @@ func _draw() -> void:
 			var alpha:=life*(.07+float(3-i)*.055)
 			draw_set_transform(offset.round(),0,Vector2(direction*scale_factor,scale_factor))
 			draw_texture_rect_region(texture,target_rect,source,Color(0.18,0.36,0.4,alpha))
-	draw_set_transform(frame_offset,0,Vector2(direction*scale_factor*frame_scale,scale_factor*frame_scale))
+	draw_set_transform(frame_offset,pose_rotation,Vector2(direction*scale_factor*frame_scale,scale_factor*frame_scale))
 	draw_texture_rect_region(texture,target_rect,source)
 	draw_set_transform(Vector2.ZERO)

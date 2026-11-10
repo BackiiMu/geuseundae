@@ -29,15 +29,25 @@ func run_checks() -> void:
 	if not check(world.room.z_index<combat.z_index,"Room art renders behind combat actors"): return
 	if not check(combat.data.get("cleared",false) and not combat.locked(),"Kills clear room and unlock portals"): return
 	var rewards:=0
+	var reward_position:=Vector2.ZERO
 	for pickup in combat.pickups:
-		if pickup["kind"] in ["chest","item"]: rewards+=1
+		if pickup["kind"] in ["chest","item"]:
+			rewards+=1
+			reward_position=pickup["pos"]
 	if not check(rewards==1,"Room awards exactly one clear reward"): return
+	if not check(not is_instance_valid(world.well_prop) or reward_position.distance_to(world.well_position+Vector2(0,-18))>=125,"Room reward never overlaps the travel well"): return
 	var id: int=world.current_id
 	world.change_room(world.run["shop_room"],-1)
 	world.change_room(id,-1)
 	if not check(combat.living().is_empty() and combat.pickups.size()>0,"Revisit preserves cleared state and unclaimed drops"): return
 	world.player.set_physics_process(false)
 	world.player.position=Vector2(700,704)
+	combat.pickups=[{"kind":"chest","item":DB.get_item("fist"),"pos":Vector2(700,684)}]
+	if not check(combat.try_open_chest() and combat.pickups[0]["kind"]=="chest_opening","Reward chest starts its Pixelfx opening animation before releasing the item"): return
+	combat.tick_pickups(.6)
+	if not check(combat.pickups[0]["kind"]=="chest_opening","Reward remains inside during the lid windup and burst"): return
+	combat.tick_pickups(.6)
+	if not check(combat.pickups[0]["kind"]=="item" and float(combat.pickups[0]["pickup_delay"])>0,"Opened chest releases its item after the JSON-timed animation cue"): return
 	combat.pickups=[{"kind":"souls","amount":3,"pos":Vector2(700,684)}]
 	var before:int=world.wallet["souls"]
 	combat.tick_pickups(.1)

@@ -58,6 +58,7 @@ const ART = preload("res://assets/environment/haunted-village-atlas.png")
 var regions: Array = JSON.parse_string(FileAccess.get_file_as_string("res://assets/environment/atlas-regions.json"))
 const DISTANCE = preload("res://assets/haunted-courtyard.png")
 const MOUNTAIN_DISTANCE = preload("res://assets/environment/chapter2/fog-mountain-background-v1.png")
+const GARRISON_DISTANCE = preload("res://assets/environment/chapter3/exorcist-garrison-background-v1.png")
 
 var record_only := false
 var render_commands: Array = []
@@ -106,7 +107,10 @@ func _draw() -> void:
 	var width: int = definition["width"]
 	var theme: String = definition["theme"]
 	paint_fill(Rect2(0,0,width,864),Color("101925"))
-	if chapter>=2:
+	if chapter==3:
+		paint_region(GARRISON_DISTANCE,Rect2(0,0,width,724),Rect2(0,0,GARRISON_DISTANCE.get_width(),GARRISON_DISTANCE.get_height()),Color("b7bdc2"))
+		paint_fill(Rect2(0,570,width,134),Color(0.035,0.045,0.065,.2))
+	elif chapter==2:
 		paint_region(MOUNTAIN_DISTANCE,Rect2(0,0,width,724),Rect2(0,0,MOUNTAIN_DISTANCE.get_width(),MOUNTAIN_DISTANCE.get_height()),Color("bbc4c9"))
 		paint_fill(Rect2(0,520,width,184),Color(0.04,0.07,0.11,.24))
 		for i in range(3):
@@ -116,7 +120,7 @@ func _draw() -> void:
 		# Reuse the approved image's distant sky only; no painted collision floor.
 		paint_region(DISTANCE,Rect2(0,0,width,440),Rect2(0,0,DISTANCE.get_width(),250),Color("a9b7c2"))
 		tile_band(2,Rect2(0,504,width,200),Vector2(192,192),Color("87929d"))
-	match theme if chapter<2 else "mountain":
+	match theme if chapter==1 else "mountain":
 		"gate":
 			stamp(9,Rect2(360,288,448,416))
 			stamp(8,Rect2(1056,256,448,448),Color("acbcb9"))
@@ -162,8 +166,8 @@ func _draw() -> void:
 	for rect in rects:
 		if rect.position.x < 0 or rect.position.x >= width:
 			continue
-		tile_band(1,rect,Vector2(96,96),Color("778692") if chapter>=2 else Color("b0bac6"))
-		tile_band(0,Rect2(rect.position,Vector2(rect.size.x,64)),Vector2(128,64),Color("8b9b9b") if chapter>=2 else Color.WHITE)
+		tile_band(1,rect,Vector2(96,96),Color("6f737b") if chapter==3 else Color("778692") if chapter==2 else Color("b0bac6"))
+		tile_band(0,Rect2(rect.position,Vector2(rect.size.x,64)),Vector2(128,64),Color("8b8279") if chapter==3 else Color("8b9b9b") if chapter==2 else Color.WHITE)
 	for rect in platforms:
 		# Tight atlas bounds put the visible plank directly on the collision top.
 		tile_band(3,rect,Vector2(96,16))

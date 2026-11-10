@@ -21,7 +21,7 @@ func run_checks() -> void:
 	world.new_run(2202)
 	await frames(8)
 	if not check(world.room.chapter==2 and world.fog_layer.visible,"Floor 2 uses the fog mountain background and screen veil"): return
-	if not check(world.title.text.contains("2챕터 · 안개 낀 산"),"Chapter 2 title and mountain room names are active"): return
+	if not check(world.title.text=="2챕터 · 안개 낀 산","Chapter 2 shows only its chapter title without per-room names"): return
 	for role in EXPECTED+["jangsan-shadow","jangsanbeom"]:
 		if not check(ResourceLoader.exists("res://assets/actors/source/"+role+"-v1.png"),role+" atlas is packaged at the runtime path"): return
 	var found:Dictionary={}
