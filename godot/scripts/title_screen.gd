@@ -21,17 +21,26 @@ func _ready() -> void:
 	background.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
 	add_child(background)
 	var menu := VBoxContainer.new()
-	menu.position = Vector2(282, 225)
-	menu.size = Vector2(204, 112)
+	var show_mobile_test := OS.has_feature("mobile") or OS.is_debug_build()
+	menu.position = Vector2(282, 165 if show_mobile_test else 225)
+	menu.size = Vector2(204, 174 if show_mobile_test else 112)
 	menu.add_theme_constant_override("separation", 12)
 	add_child(menu)
 	var start := title_button("게임 시작")
 	start.pressed.connect(func(): get_tree().change_scene_to_file("res://scenes/village.tscn"))
 	menu.add_child(start)
+	if show_mobile_test:
+		var full_test := title_button("전체 장비 테스트")
+		full_test.pressed.connect(start_full_test_run)
+		menu.add_child(full_test)
 	var settings := title_button("설정", SETTINGS_ICON)
 	settings.pressed.connect(toggle_settings)
 	menu.add_child(settings)
 	build_settings()
+
+func start_full_test_run() -> void:
+	get_tree().set_meta("full_test_run_requested", true)
+	get_tree().change_scene_to_file("res://scenes/village.tscn")
 
 func box(texture: Texture2D, margin: int) -> StyleBoxTexture:
 	var style := StyleBoxTexture.new()

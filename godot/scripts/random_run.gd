@@ -116,6 +116,9 @@ func _ready() -> void:
 		touch.world=self
 		layer.add_child(touch)
 		lab_button.hide()
+	if bool(get_tree().get_meta("full_test_run_requested",false)):
+		get_tree().remove_meta("full_test_run_requested")
+		call_deferred("start_full_test_run")
 
 func new_run(value: int) -> void:
 	in_village = false

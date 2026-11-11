@@ -660,9 +660,15 @@ func add_equipped_slot(board:Control,slot:String,label_text:String,pos:Vector2,l
 		button.add_child(heart_icon)
 	elif not item.is_empty():
 		add_slot_icon(button,item,.8)
+	var test_heart_button:bool = slot=="heart" and world.full_test_run and not item.is_empty()
 	button.tooltip_text=label_text+" · "+str(item.get("name","비어 있음"))+"\n"+str(item.get("effect",""))
-	button.disabled=item.is_empty() or slot=="heart"
-	if slot!="heart": button.pressed.connect(func():unequip(slot))
+	if test_heart_button: button.tooltip_text+="\n터치하여 다음 심장으로 변경"
+	button.disabled=item.is_empty() or (slot=="heart" and not test_heart_button)
+	if test_heart_button:
+		button.pressed.connect(func():
+			world.cycle_full_test_heart(1)
+			refresh_inventory())
+	elif slot!="heart": button.pressed.connect(func():unequip(slot))
 	board.add_child(button)
 	var label:=inv_label(label_text,9,Color("d8c39e"))
 	label.position=label_pos
@@ -705,7 +711,8 @@ func refresh_inventory() -> void:
 	for child in inv_rows.get_children():
 		inv_rows.remove_child(child)
 		child.queue_free()
-	var title:=inv_label("빌린 몸",17,Color("2a1710"))
+	var title_text := "테스트 · 심장 터치=변경" if world.full_test_run else "빌린 몸"
+	var title:=inv_label(title_text,11 if world.full_test_run else 17,Color("2a1710"))
 	apply_inventory_rect(title,"title_label")
 	title.horizontal_alignment=HORIZONTAL_ALIGNMENT_CENTER
 	inv_rows.add_child(title)

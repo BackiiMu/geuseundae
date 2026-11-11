@@ -193,5 +193,11 @@ func run_checks() -> void:
 	for heart_id in HeartDB.HEARTS:
 		world.set_lab_heart(heart_id)
 		if not check(c.equipment["heart"]==heart_id and world.player.visual.role==HeartDB.get_heart(heart_id)["role"],"Full unlock run can switch playable character: "+HeartDB.display_name(heart_id)): return
+	world.set_lab_heart("songaksi")
+	c.refresh_inventory()
+	var test_heart_buttons:Array=c.get_tree().get_nodes_in_group("inventory_heart_slot").filter(func(button): return not button.disabled)
+	if not check(test_heart_buttons.size()==1,"Full unlock inventory exposes a touch heart switch button"): return
+	test_heart_buttons[0].pressed.emit()
+	if not check(c.equipment["heart"]!="songaksi","Touch heart switch changes playable character during the real run"): return
 	print("All equipment behavior checks completed.")
 	quit(0)
