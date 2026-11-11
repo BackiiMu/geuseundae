@@ -25,20 +25,14 @@ func run_review() -> void:
 	world.player.position=Vector2(500,704)
 	world.player.camera.position_smoothing_enabled=false
 	world.player.camera.force_update_scroll()
-	var positions:={
-		"exorcist-spearman":Vector2(600,704),
-		"exorcist-archer":Vector2(700,704),
-		"bell-exorcist":Vector2(800,704),
-		"hunting-hawk":Vector2(735,555)
-	}
+	var positions:={"soul-warden":Vector2(700,704)}
 	for enemy in world.combat.living():
 		enemy.position=positions[enemy.kind]
 		enemy.training_dummy=true
 	await frames(5)
-	await capture("01-garrison-enemy-roster")
-	var target:Vector2=world.player.position+Vector2(140,0)
-	for enemy in world.combat.living():
-		if enemy.kind in ["exorcist-archer","bell-exorcist"]: enemy.release_attack(target)
+	await capture("03-soul-warden-boss")
+	var boss=world.combat.living()[0]
+	world.combat.start_warden_pattern(boss,"stakes")
 	await frames(2)
-	await capture("02-arrow-and-seal-telegraphs")
+	await capture("04-soul-warden-stakes")
 	quit(0)

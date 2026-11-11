@@ -66,6 +66,21 @@ var visual_clock := 0.0
 var drop_textures := {}
 var drop_info := {}
 var reward_chest_info: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://assets/vfx/pickups/reward-chest.json"))["meta"]["pixelfx"]
+var warden_pattern_active := false
+var warden_pattern := ""
+var warden_last_pattern := ""
+var warden_boss: Node = null
+var warden_orb := {}
+var warden_orbs_left := 0
+var warden_pattern_time := 0.0
+var warden_spawn_timer := 0.0
+var warden_no_hit := true
+var warden_saved_max_health := 0.0
+var warden_saved_dash_max := 1
+var warden_saved_role := ""
+var warden_saved_modulate := Color.WHITE
+var warden_heart_sealed := false
+var warden_player_stagger := 0.0
 const PROVIDED_DROPS = {"hair":"hair","pin":"hairpin","water_bucket":"gourd","fox_bead":"foxbead","claws":"claw","goblin_fire":"ghostfire","plague":"jar","fist":"fist"}
 const GEAR2_DROPS = {"songaksi_hand":"songakHand","ribbon":"ribbon","mirror":"jokduri","eggshell":"eggshell","blank_face":"blankface","gaze":"hollowgaze","wig":"wig","duo_head":"mask","bent_leg":"brokenLeg","mongdal_legs":"leg","wet_shoes":"shoe","single_shoe":"oneShoe","stomach":"stomach","duo_curse":"curse"}
 func _ready() -> void:
@@ -131,6 +146,7 @@ func message(text: String) -> void:
 	toast.text=text
 	toast_time=3
 func leave_room() -> void:
+	end_warden_pattern(false)
 	boss_transitioning=false
 	arsenal.reset_room()
 	if is_instance_valid(vfx): vfx.clear()
@@ -155,11 +171,8 @@ func enter_room(room_data: Dictionary) -> void:
 	var width:=float(world.room.definition["width"])
 	if world.current_id==world.run["goal"]:
 		if world.floor_number>=3:
-			spawn_enemy("exorcist-spearman",safe_ground(width*.34),0)
-			spawn_enemy("exorcist-archer",safe_ground(width*.67),1)
-			spawn_enemy("bell-exorcist",safe_ground(width*.52),2)
-			spawn_enemy("hunting-hawk",safe_ground(width*.76),3)
-			message("지휘 막사 정예전 · 진형을 무너뜨리면 출구가 열립니다")
+			spawn_enemy("soul-warden",safe_ground(width*.52),0)
+			message("쇄혼대감 · 심장을 봉인하는 집행관을 쓰러뜨리십시오")
 		else:
 			var boss_kind:="jangsanbeom" if world.floor_number==2 else "boss"
 			spawn_enemy(boss_kind,safe_ground(width*.45),0)
@@ -232,6 +245,157 @@ func attack_permission(requester: Node) -> bool:
 		if enemy!=requester and enemy.state=="windup" and (enemy.kind=="adept")== (requester.kind=="adept"): count+=1
 	return count<(1 if requester.kind=="adept" else 2)
 
+func start_random_warden_pattern(boss: Node) -> bool:
+	if warden_pattern_active or not is_instance_valid(boss) or boss.dead: return false
+	var chosen:="capture" if rng.randf()<.5 else "stakes"
+	if boss.hp<=boss.max_hp*.3 and rng.randf()<.2: chosen="heart"
+	if chosen==warden_last_pattern:
+		chosen="stakes" if chosen=="capture" else "capture"
+	start_warden_pattern(boss,chosen)
+	return true
+
+func start_warden_pattern(boss: Node, chosen: String) -> void:
+	if warden_pattern_active: return
+	warden_pattern_active=true
+	warden_pattern=chosen
+	warden_boss=boss
+	warden_pattern_time=0.0
+	warden_no_hit=true
+	boss.state="approach"
+	boss.velocity=Vector2.ZERO
+	if chosen=="capture":
+		warden_orbs_left=rng.randi_range(3,5)
+		world.player.controls_enabled=false
+		spawn_warden_orb()
+		message("쇄혼 포획 · 2초 안에 봉인구슬을 연타하십시오")
+	elif chosen=="stakes":
+		warden_saved_max_health=max_health
+		warden_saved_dash_max=world.player.dash_max_charges
+		max_health=maxf(30.0,max_health-15.0)
+		health=minf(health,max_health)
+		world.player.dash_max_charges=maxi(1,world.player.dash_max_charges-1)
+		world.player.dash_charges=mini(world.player.dash_charges,world.player.dash_max_charges)
+		warden_heart_sealed=true
+		var width:=float(world.room.definition["width"])
+		for ratio in [.28,.5,.72]:
+			zones.append({"kind":"warden-stake","pos":safe_ground(width*ratio),"life":999.0,"hp":50.0,"max_hp":50.0})
+		message("삼중 봉인 · 말뚝을 부숴 심장과 체력을 되찾으십시오")
+	else:
+		warden_saved_max_health=max_health
+		warden_saved_role=str(world.player.visual.role)
+		warden_saved_modulate=world.player.visual.modulate
+		max_health=maxf(30.0,max_health-15.0)
+		health=minf(health,max_health)
+		warden_heart_sealed=true
+		world.player.visual.set_role("songaksi")
+		world.player.visual.modulate=Color("11121a")
+		warden_spawn_timer=.35
+		message("심장 적출 · 5초 동안 떨어지는 부적을 피하십시오")
+
+func spawn_warden_orb() -> void:
+	var view:=visible_rect().grow(-74)
+	warden_orb={"pos":Vector2(rng.randf_range(view.position.x,view.end.x),rng.randf_range(view.position.y+75,view.end.y-45)),"hits":0,"time":2.0}
+
+func hit_warden_orb(world_pos: Vector2, aimed:=false) -> bool:
+	if not warden_pattern_active or warden_pattern!="capture" or warden_orb.is_empty(): return false
+	var orb_pos:Vector2=warden_orb["pos"]
+	if not aimed and orb_pos.distance_to(world_pos)>34: return false
+	if aimed:
+		var from:Vector2=world.player.position+Vector2(0,-28)
+		var aim_dir:Vector2=(world_pos-from).normalized()
+		var orb_dir:Vector2=(orb_pos-from).normalized()
+		if aim_dir.dot(orb_dir)<.92: return false
+	warden_orb["hits"]=int(warden_orb["hits"])+1
+	if int(warden_orb["hits"])>=4:
+		warden_orbs_left-=1
+		if warden_orbs_left<=0:
+			if is_instance_valid(warden_boss):
+				warden_boss.take_damage(warden_boss.max_hp*.05)
+				warden_boss.stun=maxf(warden_boss.stun,2.0)
+				warden_boss.vulnerable=maxf(warden_boss.vulnerable,2.0)
+			end_warden_pattern(true)
+		else: spawn_warden_orb()
+	return true
+
+func damage_warden_stakes(origin: Vector2, radius: float, damage: float) -> bool:
+	var hit_any:=false
+	for zone in zones.duplicate():
+		if zone.get("kind","")!="warden-stake" or Vector2(zone["pos"]).distance_to(origin)>radius+22: continue
+		zone["hp"]=float(zone["hp"])-damage
+		hit_any=true
+		if float(zone["hp"])<=0:
+			zones.erase(zone)
+			max_health=minf(warden_saved_max_health,max_health+5.0)
+			health=minf(max_health,health+5.0)
+	if warden_pattern_active and warden_pattern=="stakes" and not zones.any(func(z): return z.get("kind","")=="warden-stake"):
+		if is_instance_valid(warden_boss):
+			warden_boss.stun=maxf(warden_boss.stun,3.0)
+			warden_boss.vulnerable=maxf(warden_boss.vulnerable,3.0)
+		end_warden_pattern(true)
+	return hit_any
+
+func end_warden_pattern(success: bool) -> void:
+	if not warden_pattern_active: return
+	var finished:=warden_pattern
+	if finished=="capture": world.player.controls_enabled=true
+	if finished in ["stakes","heart"] and warden_saved_max_health>0:
+		max_health=warden_saved_max_health
+		health=minf(health,max_health)
+	if finished=="stakes":
+		world.player.dash_max_charges=warden_saved_dash_max
+		world.player.dash_charges=mini(world.player.dash_charges,world.player.dash_max_charges)
+		for zone in zones.duplicate():
+			if zone.get("kind","")=="warden-stake": zones.erase(zone)
+	if finished=="heart" and is_instance_valid(world.player.visual):
+		world.player.visual.set_role(warden_saved_role)
+		world.player.visual.modulate=warden_saved_modulate
+	warden_heart_sealed=false
+	warden_orb.clear()
+	if is_instance_valid(warden_boss):
+		warden_boss.special_cooldown=20.0 if finished=="heart" else rng.randf_range(10.0,15.0)
+	warden_last_pattern=finished
+	warden_pattern_active=false
+	warden_pattern=""
+	warden_saved_max_health=0.0
+	if success: message("봉인 파훼 · 쇄혼대감이 빈틈을 보입니다")
+
+func tick_warden_pattern(delta: float) -> void:
+	if not warden_pattern_active: return
+	warden_pattern_time+=delta
+	if warden_pattern=="capture":
+		warden_orb["time"]=float(warden_orb.get("time",0.0))-delta
+		if float(warden_orb["time"])<=0:
+			hurt(15.0)
+			end_warden_pattern(false)
+			warden_player_stagger=1.0
+			world.player.controls_enabled=false
+			message("포획 실패 · 1초간 움직일 수 없습니다")
+	elif warden_pattern=="heart":
+		warden_spawn_timer-=delta
+		if warden_spawn_timer<=0 and warden_pattern_time<4.3:
+			warden_spawn_timer=rng.randf_range(.52,.72)
+			var view:=visible_rect().grow(-65)
+			queue_enemy_strike("warden-talisman",Vector2(rng.randf_range(view.position.x,view.end.x),world.player.position.y),.7,8.0,warden_boss)
+		if warden_pattern_time>=5.0:
+			if warden_no_hit and is_instance_valid(warden_boss):
+				warden_boss.stun=maxf(warden_boss.stun,2.0)
+				warden_boss.vulnerable=maxf(warden_boss.vulnerable,2.0)
+			end_warden_pattern(warden_no_hit)
+
+func _unhandled_input(event: InputEvent) -> void:
+	if not warden_pattern_active or warden_pattern!="capture": return
+	var screen_pos:=Vector2.ZERO
+	var pressed:=false
+	if event is InputEventMouseButton:
+		pressed=event.pressed and event.button_index==MOUSE_BUTTON_LEFT
+		screen_pos=event.position
+	elif event is InputEventScreenTouch:
+		pressed=event.pressed
+		screen_pos=event.position
+	if pressed:
+		var world_pos:=get_viewport().get_canvas_transform().affine_inverse()*screen_pos
+		hit_warden_orb(world_pos)
+
 func queue_enemy_strike(kind: String,pos: Vector2,delay: float,damage: float,source: Node) -> void:
 	zones.append({"kind":kind,"pos":safe_ground(pos.x),"life":delay+(2.2 if kind=="enemy-seal" else .2),"delay":delay,"tick":0.0,"damage":damage,"source":source,"triggered":false,"hurt_cd":0.0})
 func enemy_target(enemy: Node) -> Vector2:
@@ -244,6 +408,7 @@ func enemy_target(enemy: Node) -> Vector2:
 func area_effect(origin: Vector2,radius: float,damage: float,source: Node=null) -> void:
 	effects.append({"pos":origin,"radius":radius,"time":.2,"color":Color("c9e1cc") if source==null else Color("db9a73")})
 	if source==null:
+		damage_warden_stakes(origin,radius,damage)
 		for enemy in living():
 			if (enemy.global_position+Vector2(0,-25*enemy.size_factor)).distance_to(origin)<radius+15:
 				enemy.take_damage(damage)
@@ -261,6 +426,7 @@ func area_effect(origin: Vector2,radius: float,damage: float,source: Node=null) 
 func hurt(amount: float) -> void:
 	if equipment_lab or hurt_timer>0 or world.player.dash_time>0 or not enabled or data.get("cleared",false) or not world.is_combat_room(): return
 	health=maxf(0,health-amount)
+	if warden_pattern_active and warden_pattern=="heart": warden_no_hit=false
 	hurt_timer=.65
 	if health<=0:
 		world.call_deferred("combat_death")
@@ -275,6 +441,9 @@ func enemy_killed(enemy: Node) -> void:
 		world.wallet["bag"].append(reward)
 		var newly_unlocked := Progression.unlock_changgui_and_jangsan()
 		message("장산범 처치 · "+str(reward["name"])+" 획득"+(" · 장산범 장비·창귀 심장 해금" if newly_unlocked else ""))
+	elif enemy.kind=="soul-warden":
+		end_warden_pattern(false)
+		message("쇄혼대감 처치 · 퇴마단 주둔지의 봉인이 무너졌습니다")
 	elif enemy.boss:
 		message("퇴마단 선봉대장 처치 · 안개 낀 산으로 향하는 길이 열렸습니다")
 	if has_passive("heal") and regen_cd<=0:
@@ -323,7 +492,7 @@ func fire_projectile(pos: Vector2,direction: Vector2,damage: float,friendly: boo
 func use_skill(slot: String) -> void:
 	arsenal.skill(slot)
 func use_heart() -> void:
-	if heart_cd>0: return
+	if heart_cd>0 or warden_heart_sealed: return
 	var heart_id:=str(equipment.get("heart",""))
 	var heart:=HeartDB.get_heart(heart_id)
 	if heart.is_empty(): return
@@ -701,6 +870,14 @@ func tick_projectiles(delta: float) -> void:
 				zones.append({"kind":p["kind"],"weapon":p.get("weapon",""),"pos":to if p["kind"]=="pin" else safe_ground(to.x),"life":3.0,"tick":0.0})
 		p["pos"]=to
 		if p["friendly"]:
+			for zone in zones.duplicate():
+				if zone.get("kind","")=="warden-stake" and Geometry2D.get_closest_point_to_segment(Vector2(zone["pos"])+Vector2(0,-28),from,to).distance_to(Vector2(zone["pos"])+Vector2(0,-28))<24:
+					damage_warden_stakes(Vector2(zone["pos"]),4,float(p["damage"]))
+					p["life"]=0
+					break
+			if p["life"]<=0:
+				projectiles.remove_at(i)
+				continue
 			for enemy in living():
 				if p["hit"].has(enemy.get_instance_id()): continue
 				var center:Vector2=enemy.position+Vector2(0,-25*enemy.size_factor)
@@ -736,11 +913,11 @@ func tick_zones(delta: float) -> void:
 	for i in range(zones.size()-1,-1,-1):
 		var zone:Dictionary=zones[i]
 		zone["life"]-=delta
-		if str(zone["kind"]).begins_with("enemy-"):
+		if str(zone["kind"]).begins_with("enemy-") or zone["kind"]=="warden-talisman":
 			zone["delay"]=float(zone.get("delay",0.0))-delta
 			zone["hurt_cd"]=maxf(0.0,float(zone.get("hurt_cd",0.0))-delta)
 			if float(zone["delay"])<=0:
-				if zone["kind"]=="enemy-arrow-rain" and not bool(zone["triggered"]):
+				if zone["kind"] in ["enemy-arrow-rain","warden-talisman"] and not bool(zone["triggered"]):
 					zone["triggered"]=true
 					area_effect(Vector2(zone["pos"])+Vector2(0,-12),34,float(zone["damage"]),zone.get("source"))
 					zone["life"]=minf(float(zone["life"]),.12)
@@ -818,6 +995,11 @@ func _physics_process(delta: float) -> void:
 	hit_pause=maxf(0,hit_pause-delta)
 	paused=vfx_preview_paused or inventory.visible or (is_instance_valid(game_hud) and game_hud.settings_open) or world.floor_map_open or world.traveling or boss_transitioning or (is_instance_valid(world.merchant) and world.merchant.opened) or world.seed_input.has_focus() or hit_pause>0
 	if paused: return
+	var stagger_before:=warden_player_stagger
+	warden_player_stagger=maxf(0.0,warden_player_stagger-delta)
+	if stagger_before>0 and warden_player_stagger<=0:
+		world.player.controls_enabled=true
+	tick_warden_pattern(delta)
 	hurt_timer=maxf(0,hurt_timer-delta)
 	heart_cd=maxf(0,heart_cd-delta)
 	heart_animation=maxf(0,heart_animation-delta)
@@ -838,7 +1020,10 @@ func _physics_process(delta: float) -> void:
 	for slot in ["main","off"]:
 		attack_cd[slot]=maxf(0,float(attack_cd[slot])-delta)
 		skill_cd[slot]=maxf(0,float(skill_cd[slot])-delta)
-	if attack_input_held() and not world.in_village:
+	var capture_aim_pressed:=Input.is_action_just_pressed("attack") or Input.is_action_just_pressed("attack_left") or Input.is_action_just_pressed("attack_right") or Input.is_action_just_pressed("attack_up") or Input.is_action_just_pressed("attack_down")
+	if warden_pattern_active and warden_pattern=="capture" and capture_aim_pressed:
+		hit_warden_orb(world.player.position+Vector2(0,-28)+aim()*600.0,true)
+	elif attack_input_held() and not world.in_village and not (warden_pattern_active and warden_pattern in ["capture","heart"]):
 		for slot in ["main","off"]:
 			if float(attack_cd[slot])<=0: perform_attack(slot)
 	if Input.is_action_just_pressed("heart_skill") and not world.in_village: use_heart()
@@ -868,7 +1053,7 @@ func _physics_process(delta: float) -> void:
 	var heart_id:=str(equipment.get("heart",""))
 	var skills:String=""
 	if heart_id=="mongdal": skills="대시 "+str(world.player.dash_charges)+"/"+str(world.player.dash_max_charges)
-	elif not heart_id.is_empty(): skills=str(heart.get("skill_name","심장"))+" "+("준비" if heart_cd<=0 else str(int(ceil(heart_cd)))+"초")
+	elif not heart_id.is_empty(): skills=str(heart.get("skill_name","심장"))+" "+("봉인" if warden_heart_sealed else "준비" if heart_cd<=0 else str(int(ceil(heart_cd)))+"초")
 	for slot in ["main","off"]:
 		if not str(equipped(slot).get("skill","")).is_empty() or (slot=="off" and duo_set()):
 			if not skills.is_empty(): skills+="  |  "
@@ -877,7 +1062,8 @@ func _physics_process(delta: float) -> void:
 	for enemy in living():
 		if enemy.boss:
 			var phase_text:=" · "+str(enemy.jangsan_phase)+"페이즈" if enemy.kind=="jangsanbeom" else ""
-			hud.text+=("장산범" if enemy.kind=="jangsanbeom" else "선봉대장")+" "+str(int(enemy.hp))+" / "+str(int(enemy.max_hp))+phase_text
+			var boss_name:="장산범" if enemy.kind=="jangsanbeom" else "쇄혼대감" if enemy.kind=="soul-warden" else "선봉대장"
+			hud.text+=boss_name+" "+str(int(enemy.hp))+" / "+str(int(enemy.max_hp))+phase_text
 	queue_redraw()
 func _draw() -> void:
 	arsenal.draw()
@@ -894,10 +1080,16 @@ func _draw() -> void:
 		if not p["friendly"] and p["kind"]!="talisman": draw_line(p["pos"]-Vector2(p["velocity"]).normalized()*10,p["pos"],Color("e1b17c"),3)
 	for zone in zones:
 		if zone["kind"]=="decoy": draw_rect(Rect2(zone["pos"]-Vector2(13,46),Vector2(26,46)),Color(.6,.8,.75,.5))
-		elif zone["kind"]=="enemy-arrow-rain":
+		elif zone["kind"] in ["enemy-arrow-rain","warden-talisman"]:
 			var warning_alpha:=.28 if float(zone.get("delay",0.0))>0 else .75
-			draw_line(Vector2(zone["pos"])+Vector2(-24,0),Vector2(zone["pos"])+Vector2(24,0),Color(0.76,0.32,0.24,warning_alpha),3)
-			draw_line(Vector2(zone["pos"])+Vector2(0,-180),Vector2(zone["pos"])+Vector2(0,-8),Color(0.72,0.62,0.42,warning_alpha),2)
+			var warning_color:=Color(0.45,0.32,0.52,warning_alpha) if zone["kind"]=="warden-talisman" else Color(0.76,0.32,0.24,warning_alpha)
+			draw_line(Vector2(zone["pos"])+Vector2(-24,0),Vector2(zone["pos"])+Vector2(24,0),warning_color,3)
+			draw_line(Vector2(zone["pos"])+Vector2(0,-180),Vector2(zone["pos"])+Vector2(0,-8),warning_color,2)
+		elif zone["kind"]=="warden-stake":
+			var stake_pos:Vector2=zone["pos"]
+			draw_rect(Rect2(stake_pos+Vector2(-7,-58),Vector2(14,58)),Color("26242b"))
+			draw_polygon(PackedVector2Array([stake_pos+Vector2(-13,-58),stake_pos+Vector2(0,-76),stake_pos+Vector2(13,-58)]),PackedColorArray([Color("665263")]))
+			draw_rect(Rect2(stake_pos+Vector2(-16,-84),Vector2(32*float(zone["hp"])/float(zone["max_hp"]),4)),Color("8e5964"))
 		elif zone["kind"]=="enemy-seal":
 			var active:=float(zone.get("delay",0.0))<=0
 			draw_rect(Rect2(Vector2(zone["pos"])+Vector2(-42,-8),Vector2(84,8)),Color(0.18,0.12,0.1,.72 if active else .28))
@@ -925,6 +1117,13 @@ func _draw() -> void:
 						var u:=k/19.0*(1-heart_windup/.25) if heart_windup>0 else k/19.0
 						points.append(from.lerp(to,u)+Vector2(0,sin(u*PI)*(-18+j*2)))
 					draw_polyline(points,Color("3b414e") if j!=1 else Color("a5bfb6"),2)
+	if warden_pattern_active and warden_pattern=="capture" and not warden_orb.is_empty():
+		var orb_pos:Vector2=warden_orb["pos"]
+		var pulse:=2.0+sin(visual_clock*12.0)*2.0
+		draw_circle(orb_pos,18+pulse,Color(0.12,0.1,0.16,.5))
+		draw_arc(orb_pos,23+pulse,0,TAU,28,Color("8b7695"),3)
+		for pip in range(4):
+			draw_circle(orb_pos+Vector2((pip-1.5)*9,28),3,Color("b6a4bd") if pip<int(warden_orb["hits"]) else Color("3b3542"))
 
 func draw_reward_chest(pickup: Dictionary) -> void:
 	var frame:=0

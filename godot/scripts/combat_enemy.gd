@@ -22,6 +22,8 @@ var pattern := 0
 var phase_counter := 0
 var training_dummy := false
 var dead := false
+var dying := false
+var death_time := 0.0
 var boss := false
 var pull_remaining := 0.0
 var pull_origin := Vector2.ZERO
@@ -31,12 +33,14 @@ var size_factor := 1.0
 var flash := 0.0
 var slow := 0.0
 var vulnerable := 0.0
+var one_hit_vulnerable := false
 var knockback := 0.0
 var thrown_velocity := Vector2.ZERO
 var throw_remaining := 0.0
 var throw_damage := 0.0
 var throw_hits: Array = []
 var charge_remaining := 0.0
+var special_cooldown := 12.0
 var collision_shape: CollisionShape2D
 var jangsan_phase := 0
 var phase_transitioning := false
@@ -95,17 +99,17 @@ func begin_attack_vfx() -> void:
 	elif ATTACK_VFX.has(kind): director.vfx.emit_monster(ATTACK_VFX[kind],self,Vector2.ZERO,direction)
 	else: director.vfx.emit_monster("musa-slash",self,Vector2.ZERO,direction)
 func _ready() -> void:
-	boss = kind in ["boss","jangsanbeom"]
-	size_factor = 2.0 if kind=="jangsanbeom" else 1.5 if boss else 1.25 if kind=="jangsan-shadow" else 1.0
-	max_hp = {"boss":420.0,"jangsanbeom":260.0,"jangsan-shadow":150.0,"mountain-tiger":85.0,"changgui-remnant":70.0,"mihokbul":45.0,"hosikchong-wraith":100.0,"monk":60.0,"adept":20.0,"warrior":30.0,"exorcist-spearman":95.0,"exorcist-archer":70.0,"bell-exorcist":80.0,"hunting-hawk":32.0}.get(kind,30.0)
+	boss = kind in ["boss","jangsanbeom","soul-warden"]
+	size_factor = 2.0 if kind=="jangsanbeom" else 1.7 if kind=="soul-warden" else 1.5 if boss else 1.25 if kind=="jangsan-shadow" else 1.0
+	max_hp = {"boss":420.0,"soul-warden":760.0,"jangsanbeom":260.0,"jangsan-shadow":150.0,"mountain-tiger":85.0,"changgui-remnant":70.0,"mihokbul":45.0,"hosikchong-wraith":100.0,"monk":60.0,"adept":20.0,"warrior":30.0,"exorcist-spearman":95.0,"exorcist-archer":70.0,"bell-exorcist":80.0,"hunting-hawk":32.0}.get(kind,30.0)
 	hp = max_hp if hp<0 else hp
-	attack = {"boss":10.0,"jangsanbeom":14.0,"jangsan-shadow":11.0,"mountain-tiger":10.0,"changgui-remnant":9.0,"mihokbul":7.0,"hosikchong-wraith":11.0,"monk":12.0,"adept":6.0,"warrior":8.0,"exorcist-spearman":14.0,"exorcist-archer":11.0,"bell-exorcist":7.0,"hunting-hawk":8.0}.get(kind,8.0)
-	speed = {"boss":85.0,"jangsanbeom":120.0,"jangsan-shadow":145.0,"mountain-tiger":130.0,"changgui-remnant":92.0,"mihokbul":72.0,"hosikchong-wraith":0.0,"monk":65.0,"adept":80.0,"warrior":105.0,"exorcist-spearman":72.0,"exorcist-archer":78.0,"bell-exorcist":52.0,"hunting-hawk":115.0}.get(kind,95.0)
+	attack = {"boss":10.0,"soul-warden":12.0,"jangsanbeom":14.0,"jangsan-shadow":11.0,"mountain-tiger":10.0,"changgui-remnant":9.0,"mihokbul":7.0,"hosikchong-wraith":11.0,"monk":12.0,"adept":6.0,"warrior":8.0,"exorcist-spearman":14.0,"exorcist-archer":11.0,"bell-exorcist":7.0,"hunting-hawk":8.0}.get(kind,8.0)
+	speed = {"boss":85.0,"soul-warden":72.0,"jangsanbeom":120.0,"jangsan-shadow":145.0,"mountain-tiger":130.0,"changgui-remnant":92.0,"mihokbul":72.0,"hosikchong-wraith":0.0,"monk":65.0,"adept":80.0,"warrior":105.0,"exorcist-spearman":72.0,"exorcist-archer":78.0,"bell-exorcist":52.0,"hunting-hawk":115.0}.get(kind,95.0)
 	collision_layer = 4
 	collision_mask = 1
 	var c := CollisionShape2D.new()
 	var box := RectangleShape2D.new()
-	var collision_size:Vector2={"jangsanbeom":Vector2(86,52),"jangsan-shadow":Vector2(64,42),"mountain-tiger":Vector2(54,36),"hosikchong-wraith":Vector2(58,34),"mihokbul":Vector2(32,40),"exorcist-spearman":Vector2(34,52),"exorcist-archer":Vector2(28,48),"bell-exorcist":Vector2(32,54),"hunting-hawk":Vector2(42,26)}.get(kind,Vector2(28,46)*size_factor)
+	var collision_size:Vector2={"soul-warden":Vector2(42,74),"jangsanbeom":Vector2(86,52),"jangsan-shadow":Vector2(64,42),"mountain-tiger":Vector2(54,36),"hosikchong-wraith":Vector2(58,34),"mihokbul":Vector2(32,40),"exorcist-spearman":Vector2(34,52),"exorcist-archer":Vector2(28,48),"bell-exorcist":Vector2(32,54),"hunting-hawk":Vector2(42,26)}.get(kind,Vector2(28,46)*size_factor)
 	box.size = collision_size
 	c.position.y = -collision_size.y*.5
 	c.shape=box
@@ -118,6 +122,7 @@ func _ready() -> void:
 	visual.boss=boss
 	add_child(visual)
 	if kind=="hunting-hawk": hawk_hover_origin=position
+	if kind=="soul-warden": special_cooldown=director.rng.randf_range(10.0,15.0)
 	if kind=="jangsanbeom": configure_jangsan_phase(1)
 	queue_redraw()
 
@@ -191,15 +196,26 @@ func _process(delta: float) -> void:
 		director.message(("장산범의 그림자 · 2페이즈" if jangsan_phase==2 else "장산범 · 3페이즈"))
 		queue_redraw()
 func take_damage(amount: float) -> void:
-	if dead: return
-	if vulnerable>0:
+	if dead or dying: return
+	if one_hit_vulnerable:
 		amount*=1.5
-		vulnerable=0
+		one_hit_vulnerable=false
+		vulnerable=0.0
+	elif vulnerable>0:
+		amount*=1.5
 	hp-=amount
 	flash=.1
 	if hp<=0:
 		if kind=="jangsanbeom" and jangsan_phase<3:
 			start_jangsan_transition()
+			return
+		if kind=="soul-warden":
+			dying=true
+			death_time=0.0
+			velocity=Vector2.ZERO
+			collision_layer=0
+			state="death"
+			queue_redraw()
 			return
 		director.vfx.enemy("enemy-spirit-death",global_position+Vector2(0,-8*size_factor),Vector2(facing,0),size_factor)
 		dead=true
@@ -227,6 +243,16 @@ func safe_step(direction: float) -> bool:
 	return not get_world_2d().direct_space_state.intersect_ray(query).is_empty()
 func _physics_process(delta: float) -> void:
 	if dead or not is_instance_valid(director) or director.paused: return
+	if dying:
+		death_time+=delta
+		velocity=Vector2.ZERO
+		queue_redraw()
+		if death_time>=.95:
+			dead=true
+			hide()
+			director.vfx.enemy("enemy-spirit-death",global_position+Vector2(0,-8*size_factor),Vector2(facing,0),size_factor)
+			director.enemy_killed(self)
+		return
 	slow=maxf(0,slow-delta)
 	vulnerable=maxf(0,vulnerable-delta)
 	if throw_remaining>0:
@@ -257,6 +283,18 @@ func _physics_process(delta: float) -> void:
 		queue_redraw()
 		return
 	stun=maxf(0,stun-delta)
+	if kind=="soul-warden":
+		if director.warden_pattern_active:
+			if director.warden_pattern in ["capture","heart"]:
+				velocity=Vector2.ZERO
+				queue_redraw()
+				return
+		else:
+			if stun<=0: special_cooldown=maxf(0.0,special_cooldown-delta)
+			if special_cooldown<=0 and state=="approach" and director.start_random_warden_pattern(self):
+				velocity=Vector2.ZERO
+				queue_redraw()
+				return
 	if kind=="hunting-hawk":
 		tick_hunting_hawk(delta)
 		return

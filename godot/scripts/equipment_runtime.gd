@@ -34,7 +34,9 @@ func hit(enemy: Node,damage: float,id := "") -> float:
 		combo_time=1.2
 	if id=="hair" and int(counters.get(id,0))%3==0: enemy.stun=maxf(enemy.stun,.4)
 	if id=="water_hand": enemy.slow=2.0
-	if id=="mirror" and not enemy.dead: enemy.vulnerable=4.0
+	if id=="mirror" and not enemy.dead:
+		enemy.vulnerable=4.0
+		enemy.one_hit_vulnerable=true
 	return maxf(0,before-enemy.hp)
 func strike(origin: Vector2,direction: Vector2,reach: float,damage: float,id: String) -> Array:
 	var struck:Array=targets(origin,direction,reach,.0)

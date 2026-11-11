@@ -1,5 +1,6 @@
 extends SceneTree
 const DB=preload("res://scripts/equipment_db.gd")
+const HeartDB=preload("res://scripts/heart_db.gd")
 var world
 var c
 func _initialize() -> void: call_deferred("run_checks")
@@ -33,9 +34,22 @@ func run_checks() -> void:
 	await frames(5)
 	world.set_process(false)
 	var original_bag=world.wallet["bag"].duplicate(true)
+	var original_max_health:float=world.combat.max_health
 	world.toggle_equipment_lab()
 	c=world.combat
 	if not check(DB.weapons().size()==34 and DB.items().size()==43 and world.wallet["bag"].size()==43,"All 34 weapons and 9 passive items are available in lab"): return
+	for heart_id in HeartDB.HEARTS:
+		world.set_lab_heart(heart_id)
+		var heart:=HeartDB.get_heart(heart_id)
+		if not check(c.equipment["heart"]==heart_id and world.player.visual.role==heart["role"] and c.max_health==heart["hp"],"Lab can immediately switch to playable character: "+heart["name"]): return
+	world.lab_index=0
+	for i in range(DB.items().size()):
+		world.cycle_lab(0 if i==0 else 1)
+		var item:Dictionary=DB.items()[i]
+		var equipped_ids:Array=c.equipment.values()
+		if not check(equipped_ids.has(item["id"]),"Lab direct cycle equips catalog item: "+item["name"]): return
+	world.set_lab_heart("songaksi")
+	c.equipment={"heart":"songaksi","main":"","off":"","head":"","legs":"","feet":"","internal":"","a0":"","a1":"","a2":"","a3":""}
 	var ids={}
 	for item in DB.items():
 		if not check(not ids.has(item["id"]) and not str(item["effect"]).is_empty(),"Unique item and effect: "+item["name"]): return
@@ -172,6 +186,6 @@ func run_checks() -> void:
 	c.living()[0].take_damage(20000)
 	if not check(c.health==43,"Stomach heals on kill"): return
 	world.toggle_equipment_lab()
-	if not check(world.in_village and world.wallet["bag"]==original_bag and not c.equipment_lab,"Leaving lab restores original inventory and run"): return
+	if not check(world.in_village and world.wallet["bag"]==original_bag and c.max_health==original_max_health and not c.equipment_lab,"Leaving lab restores original inventory, health and run"): return
 	print("All equipment behavior checks completed.")
 	quit(0)

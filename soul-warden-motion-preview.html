@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>그슨대 — 쇄혼대감 전체 패턴 모션</title>
+<style>
+:root{color-scheme:dark;font-family:system-ui,-apple-system,sans-serif;background:#070609;color:#ddd3c6}*{box-sizing:border-box}body{margin:0;min-height:100vh;display:grid;place-items:center;background:radial-gradient(circle at 50% 28%,#21171c,#09070b 55%,#040305)}main{width:min(94vw,960px);padding:18px}.head{display:flex;justify-content:space-between;align-items:end;margin-bottom:10px}.head h1{margin:0;font-size:18px;letter-spacing:.1em}.head span{font-size:11px;color:#857a75}.stage{border:1px solid #443337;box-shadow:0 20px 60px #000c,0 0 0 4px #100c10;background:#09090e;aspect-ratio:16/9;overflow:hidden}canvas{display:block;width:100%;height:100%;image-rendering:pixelated}.bar{display:flex;gap:8px;margin-top:12px;align-items:center;flex-wrap:wrap}button{border:1px solid #554045;background:#181216;color:#c5b8ad;padding:8px 13px;font:inherit;font-size:12px;cursor:pointer}button:hover,button.on{border-color:#a04c50;background:#2c191d;color:#fff1df}.phase{margin-left:auto;color:#b49d95;font-size:12px}.timeline{height:5px;background:#21171b;margin-top:10px;position:relative}.timeline i{display:block;height:100%;width:0;background:linear-gradient(90deg,#667581,#9daab0,#8c343c);box-shadow:0 0 8px #7d3038}.desc{font-size:11px;color:#817774;line-height:1.65;margin:9px 0 0}
+</style>
+</head>
+<body><main>
+<div class="head"><h1>쇄혼대감 · 봉인목 원혼 강제 인출</h1><span>이미지 기반 16프레임 패턴 모션</span></div>
+<div class="stage"><canvas width="640" height="360"></canvas></div>
+<div class="timeline"><i></i></div>
+<div class="bar"><button id="replay">처음부터</button><button id="pause">일시정지</button><button id="normal" class="on">10 FPS</button><button id="slow">느리게</button><span class="phase" id="phase">봉인목 반응</span></div>
+<p class="desc">봉인목 반응 → 억눌린 원혼이 괴로워하며 빠져나옴 → 쇠사슬로 강제 견인 → 검붉은 영능력과 압축·융합 → 자세 회복. 점이나 선으로 생성한 효과가 아니라 모든 원혼과 동작이 시트에 직접 그려져 있습니다.</p>
+</main>
+<script>
+const c=document.querySelector('canvas'),x=c.getContext('2d');x.imageSmoothingEnabled=false;const img=new Image();img.src='docs/mockups/chapter3/soul-warden/soul-warden-forced-extraction-motion-v1.png';
+let start=performance.now(),hold=0,paused=false,fps=10;const frames=16,loopGap=.8;
+function backdrop(t){x.fillStyle='#08090e';x.fillRect(0,0,640,360);let g=x.createLinearGradient(0,0,0,300);g.addColorStop(0,'#15131a');g.addColorStop(.75,'#0a0a10');g.addColorStop(1,'#171116');x.fillStyle=g;x.fillRect(0,0,640,286);for(let i=0;i<6;i++){let px=((i*151+t*(7+i))%760)-70;x.globalAlpha=.025+i*.007;x.fillStyle=i%2?'#9c929c':'#606372';x.beginPath();x.ellipse(px,98+i*29,78+i*6,8+i%3*3,0,0,Math.PI*2);x.fill()}x.globalAlpha=1;x.fillStyle='#18131a';x.fillRect(0,286,640,74);x.fillStyle='#30232b';x.fillRect(0,286,640,3);for(let i=0;i<20;i++){x.fillStyle=i%2?'#201820':'#251b23';x.fillRect(i*34,302+(i%3)*5,28,2)}}
+function phaseName(f){if(f<3)return'봉인목 반응';if(f<7)return'원혼이 몸을 비틀며 올라옴';if(f<11)return'쇠사슬 강제 견인';if(f<14)return'영능력 압축·융합';return'자세 회복'}
+function render(now){requestAnimationFrame(render);if(!img.complete)return;let elapsed=paused?hold:(now-start)/1000,total=frames/fps,cycle=total+loopGap,pos=elapsed%cycle,fi=pos<total?Math.min(frames-1,Math.floor(pos*fps)):15;backdrop(elapsed);let sw=img.naturalWidth/4,sh=img.naturalHeight/4,sx=(fi%4)*sw,sy=Math.floor(fi/4)*sh;let dh=286,dw=sw*(dh/sh),dx=320-dw/2,dy=288-dh;x.globalAlpha=.35;x.fillStyle='#000';x.beginPath();x.ellipse(320,291,88,11,0,0,Math.PI*2);x.fill();x.globalAlpha=1;x.drawImage(img,sx,sy,sw,sh,dx,dy,dw,dh);document.querySelector('.timeline i').style.width=(Math.min(pos,total)/total*100)+'%';document.getElementById('phase').textContent=phaseName(fi)}
+function restart(){start=performance.now();paused=false;document.getElementById('pause').textContent='일시정지'}document.getElementById('replay').onclick=restart;document.getElementById('pause').onclick=e=>{if(paused){start=performance.now()-hold*1000;paused=false;e.target.textContent='일시정지'}else{hold=(performance.now()-start)/1000;paused=true;e.target.textContent='계속 보기'}};document.getElementById('normal').onclick=()=>{fps=10;document.getElementById('normal').classList.add('on');document.getElementById('slow').classList.remove('on');restart()};document.getElementById('slow').onclick=()=>{fps=5;document.getElementById('slow').classList.add('on');document.getElementById('normal').classList.remove('on');restart()};requestAnimationFrame(render);
+</script></body></html>

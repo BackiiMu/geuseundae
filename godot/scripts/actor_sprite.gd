@@ -22,6 +22,8 @@ var dash_fx_info: Dictionary = {}
 var dash_fx_age := 1.0
 var atlas := true
 var scale_override := 1.0
+var custom_columns := 1
+var custom_rows := 1
 # 네 발 짐승 시트는 192x256 칸 아래쪽이 비어 있어 가로세로를 따로 줄이면 납작해지고 몸이 떠 보인다.
 # 가로세로 같은 비율로 그리고, 칸마다 발끝(불투명 영역의 아랫단)을 바닥에 맞춘다. 공중에 뜬 도약 프레임(발끝 170 미만)은 기준선만 유지한다.
 const BEAST_SPRITES := {
@@ -50,12 +52,15 @@ func load_role_texture() -> void:
 	var key: String="warrior" if role=="boss" else role
 	var chapter3_single:Dictionary={
 		"exorcist-spearman":"res://assets/actors/chapter3/exorcist-spearman-game-v1.png",
+		"soul-warden":"res://assets/actors/chapter3/soul-warden-game-v1.png",
 		"exorcist-archer":"res://assets/actors/chapter3/exorcist-archer-game-v1.png",
 		"bell-exorcist":"res://assets/actors/chapter3/bell-exorcist-game-v1.png",
 		"hunting-hawk":"res://assets/actors/chapter3/hunting-hawk-game-v1.png"
 	}
 	if chapter3_single.has(role):
 		atlas=false
+		custom_columns=1
+		custom_rows=1
 		texture=load(chapter3_single[role])
 		return
 	var path: String="res://assets/actors/source/"+key+"-v1.png"
@@ -66,6 +71,53 @@ func load_role_texture() -> void:
 		return
 	var fallback:String=str({"mongdal":"res://assets/actors/concepts/mongdal-ghost-game-v1.png", "changgui":"res://assets/actors/concepts/changwi-peasant-game-v2.png"}.get(role,""))
 	texture=load(fallback) if not fallback.is_empty() and ResourceLoader.exists(fallback) else null
+
+func use_custom_sheet(path: String, columns: int, rows: int, frame: int) -> void:
+	atlas=false
+	custom_columns=columns
+	custom_rows=rows
+	if not texture_cache.has(path): texture_cache[path]=load(path)
+	texture=texture_cache[path]
+	frame_index=frame
+
+func update_soul_warden_pose() -> void:
+	var core:="res://assets/actors/chapter3/soul-warden-core-motion-v1.png"
+	var attacks:="res://assets/actors/chapter3/soul-warden-basic-attacks-v1.png"
+	var extraction:="res://assets/actors/chapter3/soul-warden-forced-extraction-motion-v1.png"
+	var patterns:="res://assets/actors/chapter3/soul-warden-patterns-death-v1.png"
+	if actor.get("dying"):
+		animation="death"
+		use_custom_sheet(patterns,4,4,12+clampi(int(float(actor.get("death_time"))*5.0),0,3))
+	elif actor.flash>0:
+		animation="hurt"
+		use_custom_sheet(core,4,4,10+int(clock*10.0)%2)
+	elif actor.stun>0 or actor.vulnerable>0:
+		animation="groggy"
+		use_custom_sheet(core,4,4,12+int(clock*6.0)%4)
+	elif is_instance_valid(combat) and combat.warden_pattern_active and combat.warden_boss==actor:
+		var pattern_time:float=float(combat.warden_pattern_time)
+		if pattern_time<1.6:
+			animation="extract"
+			use_custom_sheet(extraction,4,4,clampi(int(pattern_time*10.0),0,15))
+		else:
+			animation=str(combat.warden_pattern)
+			var row_start:int={"capture":0,"stakes":4,"heart":8}.get(combat.warden_pattern,0)
+			use_custom_sheet(patterns,4,4,row_start+clampi(int((pattern_time-1.6)*7.0),0,3))
+	elif actor.state in ["windup","recover"]:
+		var chain_attack:bool=int(actor.pattern)%2==1
+		var start_frame:int=8 if chain_attack else 0
+		var duration:float=actor.windup_duration() if actor.state=="windup" else actor.recovery_duration()
+		var phase:float=1.0-clampf(actor.timer/maxf(.01,duration),0.0,1.0)
+		if actor.state=="recover": start_frame+=4
+		animation="chain" if chain_attack else "stake"
+		use_custom_sheet(attacks,4,4,start_frame+clampi(int(phase*4.0),0,3))
+	elif absf(actor.velocity.x)>8:
+		animation="run"
+		use_custom_sheet(core,4,4,4+int(clock*8.0)%6)
+	else:
+		# 대기는 애니메이션 없이 기준 포즈 한 장만 사용한다.
+		animation="idle"
+		use_custom_sheet("res://assets/actors/chapter3/soul-warden-game-v1.png",1,1,0)
 func play_attack(duration := .25,windup := false) -> void:
 	action_duration=duration
 	action_time=duration
@@ -88,7 +140,8 @@ func draw_size() -> Vector2:
 		"exorcist-spearman":Vector2(58,72),
 		"exorcist-archer":Vector2(54,70),
 		"bell-exorcist":Vector2(56,74),
-		"hunting-hawk":Vector2(68,48)
+		"hunting-hawk":Vector2(68,48),
+		"soul-warden":Vector2(116,106)
 	}.get(role,Vector2(48,64))
 
 func new_heart_frame_metrics(frame: int) -> Vector3:
@@ -156,7 +209,9 @@ func _physics_process(delta: float) -> void:
 		flash=1.0 if actor.flash>.055 else 0.0
 		if actor.slow>0: tint=Color("a2cdda")
 		if actor.vulnerable>0: tint=Color("e2acc4")
-		if role=="hunting-hawk":
+		if role=="soul-warden":
+			update_soul_warden_pose()
+		elif role=="hunting-hawk":
 			if actor.flash>0:
 				animation="hurt"
 				frame_index=29+int(clock*12)%3
@@ -211,13 +266,14 @@ func _draw() -> void:
 		target_rect=Rect2(-cell.x*.5*beast_scale,2.0-feet*beast_scale,cell.x*beast_scale,cell.y*beast_scale)
 	# The beast atlas has transparent pixels below its paws; place the visible paws on the floor.
 	if role=="jangsanbeom": target_rect.position.y+=15
-	var source_size:=Vector2(texture.get_width()/8.0,texture.get_height()/4.0) if atlas else texture.get_size()
-	var source_row:=floori(float(frame_index)/8.0)
-	var source:=Rect2(Vector2(frame_index%8,source_row)*source_size,source_size) if atlas else Rect2(Vector2.ZERO,source_size)
+	var source_size:=Vector2(texture.get_width()/8.0,texture.get_height()/4.0) if atlas else Vector2(texture.get_width()/float(custom_columns),texture.get_height()/float(custom_rows))
+	var source_columns:=8 if atlas else custom_columns
+	var source_row:=floori(float(frame_index)/float(source_columns))
+	var source:=Rect2(Vector2(frame_index%source_columns,source_row)*source_size,source_size)
 	var frame_offset:=Vector2.ZERO
 	var frame_scale:=1.0
 	var pose_rotation:=0.0
-	if not atlas and role in ["exorcist-spearman","exorcist-archer","bell-exorcist","hunting-hawk"]:
+	if not atlas and role in ["exorcist-spearman","exorcist-archer","bell-exorcist","hunting-hawk","soul-warden"]:
 		if role=="hunting-hawk":
 			frame_offset.y=sin(clock*9.0)*2.0
 			if actor.state=="windup": pose_rotation=-actor.facing*.12

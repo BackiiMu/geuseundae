@@ -57,6 +57,7 @@ var cooldown := 0.0
 var web_status_timer := 0.0
 var lab_snapshot: Dictionary = {}
 var lab_index := 0
+var lab_heart_index := 0
 var lab_button: Button
 var session_rng := RandomNumberGenerator.new()
 var complete := false
@@ -83,7 +84,7 @@ func bind_action(action: String, keys: Array) -> void:
 		InputMap.action_add_event(action,event)
 
 func _ready() -> void:
-	var bindings: Dictionary = {"move_left":[KEY_A],"move_right":[KEY_D],"jump":[KEY_W,KEY_SPACE],"dash":[KEY_SHIFT],"restart":[KEY_R],"collision_view":[KEY_F1],"interact":[KEY_E],"new_run":[KEY_N],"inventory":[KEY_TAB,KEY_I],"heart_skill":[KEY_Q],"main_skill":[KEY_F],"off_skill":[KEY_G],"boss_test":[KEY_F8],"fx_freeze":[KEY_F9],"equipment_lab":[KEY_F6],"lab_next":[KEY_BRACKETRIGHT],"lab_previous":[KEY_BRACKETLEFT],"lab_ai":[KEY_Y],"lab_reset":[KEY_T],"lab_set":[KEY_P],"attack":[KEY_J],"attack_left":[KEY_LEFT],"attack_right":[KEY_RIGHT],"attack_up":[KEY_UP],"attack_down":[KEY_DOWN]}
+	var bindings: Dictionary = {"move_left":[KEY_A],"move_right":[KEY_D],"jump":[KEY_W,KEY_SPACE],"dash":[KEY_SHIFT],"restart":[KEY_R],"collision_view":[KEY_F1],"interact":[KEY_E],"new_run":[KEY_N],"inventory":[KEY_TAB,KEY_I],"heart_skill":[KEY_Q],"main_skill":[KEY_F],"off_skill":[KEY_G],"boss_test":[KEY_F8],"fx_freeze":[KEY_F9],"equipment_lab":[KEY_F6],"lab_next":[KEY_BRACKETRIGHT],"lab_previous":[KEY_BRACKETLEFT],"lab_heart_next":[KEY_PERIOD],"lab_heart_previous":[KEY_COMMA],"lab_ai":[KEY_Y],"lab_reset":[KEY_T],"lab_set":[KEY_P],"attack":[KEY_J],"attack_left":[KEY_LEFT],"attack_right":[KEY_RIGHT],"attack_up":[KEY_UP],"attack_down":[KEY_DOWN]}
 	for action in bindings:
 		bind_action(action,bindings[action])
 	var mouse := InputEventMouseButton.new()
@@ -515,6 +516,8 @@ func _process(delta: float) -> void:
 		if not combat.inventory.visible:
 			if Input.is_action_just_pressed("lab_next"): cycle_lab(1)
 			if Input.is_action_just_pressed("lab_previous"): cycle_lab(-1)
+			if Input.is_action_just_pressed("lab_heart_next"): cycle_lab_heart(1)
+			if Input.is_action_just_pressed("lab_heart_previous"): cycle_lab_heart(-1)
 			if Input.is_action_just_pressed("lab_reset"): reset_lab_targets()
 			if Input.is_action_just_pressed("lab_ai"):
 				for enemy in combat.living(): enemy.training_dummy=not enemy.training_dummy
@@ -523,7 +526,7 @@ func _process(delta: float) -> void:
 				combat.equipment.merge({"main":"fist","off":"","head":"duo_head","a0":"duo_curse"},true)
 				combat.skill_cd={"main":0.0,"off":0.0}
 				combat.message("두억시니 3종 장착 · G 짓누르기 / Shift 대시 공격")
-		hint.text="시험장 · [ ] 장비 · T 초기화 · Y 적 AI · P 세트 · F9 정지 · F6 복귀"
+		hint.text="통합 시험장 · [ ] 전 장비 · , . 캐릭터 · Tab 장비목록 · T 표적 · Y AI · F6 복귀"
 		return
 	cooldown = maxf(0,cooldown-delta)
 	if is_instance_valid(merchant) and merchant.opened:
@@ -727,6 +730,7 @@ func toggle_equipment_lab() -> void:
 		in_village=lab_snapshot["village"]
 		floor_number=lab_snapshot["floor"]
 		combat.equipment=lab_snapshot["equipment"]
+		combat.max_health=lab_snapshot["max_health"]
 		combat.health=lab_snapshot["health"]
 		combat.heart_cd=lab_snapshot["heart_cd"]
 		combat.data={}
@@ -735,7 +739,7 @@ func toggle_equipment_lab() -> void:
 		combat.message("장비 시험 종료 · 원래 진행과 가방 복원")
 		lab_snapshot.clear()
 		return
-	lab_snapshot={"wallet":wallet.duplicate(true),"run":run.duplicate(true),"village":in_village,"floor":floor_number,"equipment":combat.equipment.duplicate(true),"health":combat.health,"id":current_id,"position":player.position,"heart_cd":combat.heart_cd}
+	lab_snapshot={"wallet":wallet.duplicate(true),"run":run.duplicate(true),"village":in_village,"floor":floor_number,"equipment":combat.equipment.duplicate(true),"max_health":combat.max_health,"health":combat.health,"id":current_id,"position":player.position,"heart_cd":combat.heart_cd}
 	combat.equipment_lab=true
 	lab_button.text="탐색 복귀 [F6]"
 	combat.data={}
@@ -748,19 +752,47 @@ func toggle_equipment_lab() -> void:
 	combat.health=60
 	lab_index=0
 	reset_lab_targets()
-	title.text="캐릭터·장비 시험장 · 전 장비 42종"
+	title.text="통합 시험장 · 캐릭터 "+str(HeartDB.HEARTS.size())+"종 · 장비 "+str(CombatDirector.DB.items().size())+"종"
 	for child in room.get_children():
 		if child is Label: child.hide()
 func cycle_lab(step: int) -> void:
-	lab_index=posmod(lab_index+step,CombatDirector.DB.weapons().size())
-	var item:Dictionary=CombatDirector.DB.get_item(CombatDirector.DB.weapons()[lab_index][0])
-	# In the lab, do not let the starter hand hide a left-hand weapon's attack.
-	combat.equipment["main"]="" if item["slot"]=="off" else item["id"]
-	combat.equipment["off"]=item["id"] if item["slot"]=="off" else ""
+	var catalog:=CombatDirector.DB.items()
+	lab_index=posmod(lab_index+step,catalog.size())
+	var item:Dictionary=catalog[lab_index]
+	var slot:String=str(item["slot"])
+	if slot=="two":
+		combat.equipment["main"]=item["id"]
+		combat.equipment["off"]=""
+	elif slot=="main":
+		combat.equipment["main"]=item["id"]
+	elif slot=="off":
+		combat.equipment["off"]=item["id"]
+	elif slot=="accessory":
+		combat.equipment["a0"]=item["id"]
+	else:
+		combat.equipment[slot]=item["id"]
 	combat.attack_cd={"main":0.0,"off":0.0}
 	combat.skill_cd={"main":0.0,"off":0.0}
 	combat.arsenal.reset_room()
-	combat.message(str(lab_index+1)+"/34 · "+str(item["name"])+" · "+str(item["effect"]))
+	combat.message(str(lab_index+1)+"/"+str(catalog.size())+" · "+CombatDirector.DB.slot_name(slot)+" · "+str(item["name"])+" · "+str(item["effect"]))
+
+func set_lab_heart(heart_id: String) -> void:
+	var data:=HeartDB.get_heart(heart_id)
+	if data.is_empty() or not is_instance_valid(player): return
+	combat.equipment["heart"]=heart_id
+	player.set_heart_role(str(data["role"]),int(data.get("dash_charges",1)))
+	player.visual.modulate=Color.WHITE
+	combat.max_health=float(data["hp"])
+	combat.health=combat.max_health
+	combat.heart_cd=0
+	combat.skill_cd={"main":0.0,"off":0.0}
+	combat.message("캐릭터 · "+str(data["name"])+" · HP "+str(int(data["hp"]))+" · "+("고유 스킬 없음" if str(data.get("skill_name",""))=="" else "Q "+str(data["skill_name"])))
+
+func cycle_lab_heart(step: int) -> void:
+	var hearts:Array=HeartDB.HEARTS.keys()
+	hearts.sort()
+	lab_heart_index=posmod(lab_heart_index+step,hearts.size())
+	set_lab_heart(str(hearts[lab_heart_index]))
 func reset_lab_targets() -> void:
 	combat.leave_room()
 	combat.vfx_preview_paused=false
