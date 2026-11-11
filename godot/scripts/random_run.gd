@@ -59,6 +59,8 @@ var lab_snapshot: Dictionary = {}
 var lab_index := 0
 var lab_heart_index := 0
 var lab_button: Button
+var full_test_run := false
+var full_test_heart_index := 0
 var session_rng := RandomNumberGenerator.new()
 var complete := false
 var floor_exit_position := Vector2.ZERO
@@ -84,7 +86,7 @@ func bind_action(action: String, keys: Array) -> void:
 		InputMap.action_add_event(action,event)
 
 func _ready() -> void:
-	var bindings: Dictionary = {"move_left":[KEY_A],"move_right":[KEY_D],"jump":[KEY_W,KEY_SPACE],"dash":[KEY_SHIFT],"restart":[KEY_R],"collision_view":[KEY_F1],"interact":[KEY_E],"new_run":[KEY_N],"inventory":[KEY_TAB,KEY_I],"heart_skill":[KEY_Q],"main_skill":[KEY_F],"off_skill":[KEY_G],"boss_test":[KEY_F8],"fx_freeze":[KEY_F9],"equipment_lab":[KEY_F6],"lab_next":[KEY_BRACKETRIGHT],"lab_previous":[KEY_BRACKETLEFT],"lab_heart_next":[KEY_PERIOD],"lab_heart_previous":[KEY_COMMA],"lab_ai":[KEY_Y],"lab_reset":[KEY_T],"lab_set":[KEY_P],"attack":[KEY_J],"attack_left":[KEY_LEFT],"attack_right":[KEY_RIGHT],"attack_up":[KEY_UP],"attack_down":[KEY_DOWN]}
+	var bindings: Dictionary = {"move_left":[KEY_A],"move_right":[KEY_D],"jump":[KEY_W,KEY_SPACE],"dash":[KEY_SHIFT],"restart":[KEY_R],"collision_view":[KEY_F1],"interact":[KEY_E],"new_run":[KEY_N],"inventory":[KEY_TAB,KEY_I],"heart_skill":[KEY_Q],"main_skill":[KEY_F],"off_skill":[KEY_G],"boss_test":[KEY_F8],"fx_freeze":[KEY_F9],"equipment_lab":[KEY_F6],"full_test_run":[KEY_F7],"lab_next":[KEY_BRACKETRIGHT],"lab_previous":[KEY_BRACKETLEFT],"lab_heart_next":[KEY_PERIOD],"lab_heart_previous":[KEY_COMMA],"lab_ai":[KEY_Y],"lab_reset":[KEY_T],"lab_set":[KEY_P],"attack":[KEY_J],"attack_left":[KEY_LEFT],"attack_right":[KEY_RIGHT],"attack_up":[KEY_UP],"attack_down":[KEY_DOWN]}
 	for action in bindings:
 		bind_action(action,bindings[action])
 	var mouse := InputEventMouseButton.new()
@@ -511,6 +513,9 @@ func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("equipment_lab"):
 		toggle_equipment_lab()
 		return
+	if Input.is_action_just_pressed("full_test_run"):
+		start_full_test_run()
+		return
 	if combat.equipment_lab:
 		if Input.is_action_just_pressed("fx_freeze"): combat.vfx_preview_paused=not combat.vfx_preview_paused
 		if not combat.inventory.visible:
@@ -528,6 +533,9 @@ func _process(delta: float) -> void:
 				combat.message("두억시니 3종 장착 · G 짓누르기 / Shift 대시 공격")
 		hint.text="통합 시험장 · [ ] 전 장비 · , . 캐릭터 · Tab 장비목록 · T 표적 · Y AI · F6 복귀"
 		return
+	if full_test_run and not combat.inventory.visible:
+		if Input.is_action_just_pressed("lab_heart_next"): cycle_full_test_heart(1)
+		if Input.is_action_just_pressed("lab_heart_previous"): cycle_full_test_heart(-1)
 	cooldown = maxf(0,cooldown-delta)
 	if is_instance_valid(merchant) and merchant.opened:
 		player.controls_enabled = false
@@ -793,6 +801,23 @@ func cycle_lab_heart(step: int) -> void:
 	hearts.sort()
 	lab_heart_index=posmod(lab_heart_index+step,hearts.size())
 	set_lab_heart(str(hearts[lab_heart_index]))
+
+func start_full_test_run() -> void:
+	if combat.equipment_lab: toggle_equipment_lab()
+	full_test_run=true
+	full_test_heart_index=0
+	combat.equipment={"heart":"songaksi","main":"songaksi_hand","off":"","head":"","legs":"","feet":"","internal":"","a0":"","a1":"","a2":"","a3":""}
+	wallet={"souls":9999,"bag":CombatDirector.DB.items()}
+	floor_number=1
+	new_run(fresh_seed())
+	set_lab_heart("songaksi")
+	combat.message("전체 해금 실전 런 · 전 장비 43종 보유 · , . 캐릭터 전환 · 정상 방·상점·보스 진행")
+
+func cycle_full_test_heart(step: int) -> void:
+	var hearts:Array=HeartDB.HEARTS.keys()
+	hearts.sort()
+	full_test_heart_index=posmod(full_test_heart_index+step,hearts.size())
+	set_lab_heart(str(hearts[full_test_heart_index]))
 func reset_lab_targets() -> void:
 	combat.leave_room()
 	combat.vfx_preview_paused=false

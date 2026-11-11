@@ -187,5 +187,11 @@ func run_checks() -> void:
 	if not check(c.health==43,"Stomach heals on kill"): return
 	world.toggle_equipment_lab()
 	if not check(world.in_village and world.wallet["bag"]==original_bag and c.max_health==original_max_health and not c.equipment_lab,"Leaving lab restores original inventory, health and run"): return
+	world.start_full_test_run()
+	if not check(world.full_test_run and not c.equipment_lab and not world.in_village and world.run["rooms"].size()>1,"Full unlock test starts a real seeded multi-room run"): return
+	if not check(world.wallet["bag"].size()==DB.items().size() and world.wallet["souls"]==9999,"Full unlock run starts with every item and test currency"): return
+	for heart_id in HeartDB.HEARTS:
+		world.set_lab_heart(heart_id)
+		if not check(c.equipment["heart"]==heart_id and world.player.visual.role==HeartDB.get_heart(heart_id)["role"],"Full unlock run can switch playable character: "+HeartDB.display_name(heart_id)): return
 	print("All equipment behavior checks completed.")
 	quit(0)
