@@ -1149,5 +1149,27 @@
       0,
       -44
     ]
+  },
+  "tiger-spirit": {
+    "id": "geuseundae/tiger-spirit",
+    "name": "Tiger spirit",
+    "fps": 20,
+    "loop": true,
+    "frames": 12,
+    "frameSize": [
+      84,
+      59
+    ],
+    "pivot": [
+      64,
+      30
+    ],
+    "columns": 4,
+    "path": "res://assets/vfx/tiger-spirit.png",
+    "source": "tiger-fang-spirit-projectile-pixel-v2",
+    "anchor": [
+      0,
+      0
+    ]
   }
 }

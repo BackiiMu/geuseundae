@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>장산범의 앞발 범위 시안</title>
+<style>
+:root{--bg:#0a0d12;--panel:#141a22;--line:#2b3542;--ink:#d8cfbd;--dim:#8f8a7e;--acc:#c9a55c;--ok:#7fb58a;--bad:#c9614f}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.5 "Noto Sans KR",system-ui,sans-serif}
+.wrap{max-width:1100px;margin:0 auto;padding:20px 16px 48px}
+h1{font-size:18px;margin:0 0 2px}.sub{color:var(--dim);margin:0 0 12px;font-size:13px}
+.stage{background:#000;border:1px solid var(--line)}
+canvas{display:block;image-rendering:pixelated;width:768px;max-width:none}
+.stage{overflow-x:auto}
+.bar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:10px 0}
+button{background:var(--panel);color:var(--ink);border:1px solid var(--line);padding:6px 12px;font:inherit;cursor:pointer;border-radius:3px}
+button.on{border-color:var(--acc);color:var(--acc)}button:hover{border-color:var(--acc)}
+.panel{background:var(--panel);border:1px solid var(--line);padding:10px 14px;margin:8px 0}
+.row{display:grid;grid-template-columns:170px 1fr 70px;gap:10px;align-items:center;margin:4px 0}
+.row input{accent-color:var(--acc)}.row b{color:var(--acc);text-align:right}
+.res{font-size:13px;color:var(--dim)}.res b{color:var(--ink)}
+.note{border-left:3px solid #d8a65a;background:var(--panel);padding:8px 12px;font-size:13px;color:var(--dim);margin:8px 0}
+code{background:#18202a;padding:0 4px;font-size:12px}
+label{display:flex;gap:6px;align-items:center;cursor:pointer}
+</style>
+</head>
+<body><div class="wrap">
+<h1>장산범의 앞발 범위 시안</h1>
+<p class="sub">발톱 할퀴기를 <b>위아래로 길고 옆으로 두껍게</b> 키운 시안입니다. 사거리만 늘린 게 아니라 판정 면적 자체를 키웁니다. 게임 화면(768×432)에서 손각시가 휘두르는 모습이며, 슬라이더 값은 이 페이지에서만 바뀌고 게임에는 반영되지 않습니다.</p>
+<div class="stage"><canvas id="cv" width="768" height="432"></canvas></div>
+<div class="bar">
+  <button id="atk">휘두르기</button>
+  <button id="mOrig" class="on">새: 원래 발톱을 정수 배율로 키움</button>
+  <button id="mClaw">참고: 처음부터 그린 발톱</button>
+  <button id="mOld">기존: 반원 216</button>
+  <span class="sub" style="margin:0">발톱 배율</span><button id="s2">2배</button><button id="s3" class="on">3배</button>
+  <span class="sub" style="margin:0">화면 배율</span><button id="z1" class="on">1배</button><button id="z2">2배</button>
+  <label><input type="checkbox" id="ov" checked> 판정 영역 표시</label>
+  <label><input type="checkbox" id="auto" checked> 자동 반복</label>
+</div>
+<div class="panel" id="tune">
+  <div class="row"><span>실제 사거리(판정 앞 끝)</span><input type="range" id="reach" min="70" max="320" step="5" value="150"><b id="reachV"></b></div>
+  <div class="row"><span>이펙트 위치(발톱 오른쪽 끝)</span><input type="range" id="eff" min="100" max="260" step="5" value="180"><b id="effV"></b></div>
+  <div class="row"><span>옆 두께(가로 반폭)</span><input type="range" id="aa" min="30" max="150" step="5" value="105"><b id="aaV"></b></div>
+  <div class="row"><span>위아래 길이(세로 반폭)</span><input type="range" id="bb" min="40" max="130" step="5" value="85"><b id="bbV"></b></div>
+  <div class="row"><span>초승달 두께(발톱 간격)</span><input type="range" id="th" min="30" max="220" step="5" value="150"><b id="thV"></b></div>
+  <div class="row"><span>발톱 한 줄 굵기</span><input type="range" id="ct" min="1" max="7" step="1" value="5"><b id="ctV"></b></div>
+  <div class="row"><span>위로 치우침</span><input type="range" id="cy" min="-40" max="10" step="2" value="-14"><b id="cyV"></b></div>
+  <div class="res" id="res"></div>
+</div>
+<div class="note">기본(<b>원래 발톱을 정수 배율로 키움</b>)은 기존 <code>jangsan-paw</code> 이펙트를 모양 그대로 2배 또는 3배 키웁니다. 늘이거나 휘지 않아 원래 질감이 유지되고, 발톱 한 줄이 배율만큼 굵어지며 간격도 같이 벌어집니다. 발톱의 오른쪽 끝은 이펙트 위치(기본 180)에, 세로 중심은 판정 영역 중심에 맞춰집니다. 실제 맞는 사거리(판정 앞 끝, 기본 150)와 이펙트 위치를 따로 조정할 수 있습니다. 판정은 가슴에서 앞쪽에 놓인 타원(점선)이며 가까이 붙은 적(50px 이내)은 항상 맞습니다. 게임에는 적용하지 않은 시안입니다.</div>
+</div>
+<script>
+const cv=document.getElementById('cv'),g=cv.getContext('2d');g.imageSmoothingEnabled=false;
+const L=s=>{const i=new Image();i.src=s;return i};
+const bg=L('godot/assets/haunted-courtyard.png'),song=L('godot/assets/actors/source/songaksi-v1.png'),war=L('godot/assets/actors/source/warrior-v1.png'),mih=L('godot/assets/actors/source/mihokbul-v1.png'),claw=L('godot/assets/gear3/fx/jangsan-paw.png'),baked=L('docs/mockups/equipment/jangsan-paw/paw-claws.png');
+const BK={fw:180,fh:190,cols:5,n:16,fps:30,px:32,py:112};   // 구운 시트(bake_claw.py): 가슴 기준점이 (px,py)
+const CLAW={fw:180,fh:140,cols:5,frames:31,fps:30,pivot:[34,128]};
+const P={x:120,y:352};
+const ORG=()=>({x:P.x,y:P.y-28});
+const DMG=34;
+let mode='orig',SC=3,reach=150,EFF=180,AA=105,BB=85,CY=-14,THK=150,CT=5;
+const SR={x:65,y:55,w:72,h:64};   // 기존 발톱 시트에서 실제로 그려지는 영역(전 프레임 합집합)
+const enemies=[
+ {n:'무사',dx:40,dy:0,img:war,sf:1},{n:'무사',dx:105,dy:0,img:war,sf:1},{n:'무사',dx:170,dy:0,img:war,sf:1},
+ {n:'무사',dx:240,dy:0,img:war,sf:1},{n:'무사',dx:330,dy:0,img:war,sf:1},
+ {n:'무사',dx:75,dy:-84,img:war,sf:1,air:true},{n:'미혹불',dx:150,dy:-128,img:mih,sf:1,air:true},{n:'미혹불',dx:120,dy:36,img:mih,sf:1,air:true,low:true}
+];
+enemies.forEach(e=>{e.hit=0;e.pop=0});
+const CX=()=>reach-AA;                 // 타원 중심(가슴 기준 앞쪽)
+function inZone(e){
+  const org=ORG(),cx=P.x+e.dx,cy=P.y+e.dy-25*e.sf;
+  const vx=cx-org.x,vy=cy-org.y,len=Math.hypot(vx,vy);
+  if(mode==='old')return len<216+20&&(len<25||vx>0);
+  const m=16*e.sf;if(len<50+m)return true;
+  if(mode==='moon')return ((vx-90)/(180+m))**2+(vy/(58+m))**2<=1;
+  return ((vx-CX())/(AA+m))**2+((vy-CY)/(BB+m))**2<=1;
+}
+let atk=null,shake=0,scratches=[];
+function swing(){atk={t:0,hit:false}}
+function frameOf(f,cols,fw,fh){return[(f%cols)*fw,Math.floor(f/cols)*fh,fw,fh]}
+function drawChar(img,f,x,y,flip,alpha=1){
+  g.save();g.globalAlpha=alpha;g.translate(x,y);if(flip)g.scale(-1,1);
+  g.drawImage(img,(f%8)*192,Math.floor(f/8)*256,192,256,-24,-62,48,64);g.restore();
+}
+// 이전 초승달(비교용)
+function moonShape(t){
+  const k=Math.max(0,Math.min(1,(.26-t)/.26)),reveal=Math.max(0,Math.min(1,(1-k)*4.5));
+  const steps=16,shown=Math.round(steps*reveal);if(shown<2||k<=0)return;
+  const org=ORG(),out=[],inn=[];
+  for(let i=0;i<=shown;i++){const ph=-Math.PI/2+Math.PI*i/steps;out.push([90+180*Math.cos(ph),58*Math.sin(ph)]);inn.push([90+100*Math.cos(ph),58*Math.sin(ph)])}
+  const poly=out.concat(inn.slice().reverse()).map(([x,y])=>[org.x+x,org.y+y]);
+  g.beginPath();poly.forEach(([x,y],i)=>i?g.lineTo(x,y):g.moveTo(x,y));g.closePath();
+  g.fillStyle=`rgba(230,224,204,${.6*Math.pow(k,.6)})`;g.fill();
+}
+// 새: 원래 발톱 이펙트를 모양 그대로 정수 배율(2·3배)로 키운다. 늘이거나 휘지 않는다.
+// 발톱이 그려지는 영역(SR)의 오른쪽 끝을 사거리에, 세로 중심을 판정 영역 중심(CY)에 맞춘다.
+function origClaw(t){
+  const f=Math.min(CLAW.frames-1,Math.floor(t*CLAW.fps));if(t>=CLAW.frames/CLAW.fps||!(claw.complete&&claw.naturalWidth))return;
+  const org=ORG(),SW=72,SH=76;                       // 원본 발톱이 그려지는 영역(전 프레임 합집합) 65,55 ~ 137,131
+  const dx=Math.round(org.x+EFF-SW*SC),dy=Math.round(org.y+CY-SH*SC/2);
+  const sx=(f%CLAW.cols)*CLAW.fw+65,sy=Math.floor(f/CLAW.cols)*CLAW.fh+55;
+  g.drawImage(claw,sx,sy,SW,SH,dx,dy,SW*SC,SH*SC);
+}
+// 미리 구운 시트(docs/mockups/equipment/jangsan-paw/claw-crescent.png)를 그대로 재생한다.
+function bakedClaw(t){
+  const f=Math.floor(t*BK.fps);if(f>=BK.n||!(baked.complete&&baked.naturalWidth))return;
+  const org=ORG();
+  g.drawImage(baked,(f%BK.cols)*BK.fw,Math.floor(f/BK.cols)*BK.fh,BK.fw,BK.fh,Math.round(org.x-BK.px),Math.round(org.y-BK.py),BK.fw,BK.fh);
+}
+// 이전 방식: 기존 발톱 이펙트(jangsan-paw 시트)를 초승달 모양으로 휘어 입힌다.
+// 초승달의 각 가로줄(위→아래)에 시트의 같은 비율 가로줄을 늘이거나 줄여 그린다(최근접 · 도트 유지).
+function warpCrescent(t){
+  const org=ORG(),life=.5;if(t>life)return;
+  const cxm=org.x+CX(),cym=org.y+CY,PM=100.8*Math.PI/180;
+  const f=Math.min(18,Math.floor(t*30*.8));                      // 시트의 앞쪽 19프레임을 0.5초에 재생
+  const fx=(f%CLAW.cols)*CLAW.fw+SR.x,fy=Math.floor(f/CLAW.cols)*CLAW.fh+SR.y;
+  const top=Math.round(cym-BB),bot=Math.round(cym+BB),k=Math.max(0,1-t/life);
+  if(!(claw.complete&&claw.naturalWidth))return;
+  g.save();
+  // 발톱 이펙트를 줄마다 매핑 (1) 어두운 외곽선 → (2) 본체. 위·아래 끝은 가늘고 옅게, 끝에서 부드럽게 사라진다.
+  const fade=t<.30?1:Math.max(0,1-(t-.30)/.20);
+  const rows=[];
+  for(let y=top;y<=bot;y++){
+    const sn=(y-cym)/BB;if(Math.abs(sn)>1)continue;
+    const ph=Math.asin(sn),ox=cxm+AA*Math.cos(ph),th=THK*Math.cos(ph/PM*Math.PI/2);
+    if(th<1)continue;
+    const v=(y-top)/(bot-top),sy=fy+Math.min(SR.h-1,Math.floor(v*SR.h));
+    rows.push({y,sy,x0:Math.round(ox-th),w:Math.max(1,Math.round(th)),a:Math.min(1,th/34)*fade});
+  }
+  const h=Math.floor(CT/2);
+  g.filter='brightness(0) opacity(.75)';
+  rows.forEach(r=>{g.globalAlpha=r.a;for(const [dx,dy] of [[-h-1,0],[h+1,0],[0,-1],[0,1]])g.drawImage(claw,fx,r.sy,SR.w,1,r.x0+dx,r.y+dy,r.w,1)});
+  g.filter='none';
+  rows.forEach(r=>{g.globalAlpha=r.a;for(let d=-h;d<=h;d++)g.drawImage(claw,fx,r.sy,SR.w,1,r.x0+d,r.y,r.w,1)});
+  g.restore();
+}
+// 단순 도형 초승달(비교용)
+// 새: 초승달 궤적 — 위·아래 끝이 뾰족하고 앞쪽(바깥)으로 볼록하며, 가운데가 가장 두껍다. 안에 발톱 자국 선 3줄이 곡선을 따라 흐른다.
+function clawMarks(t){
+  const org=ORG(),life=.32;if(t>life)return;
+  const k=Math.max(0,1-t/life),sweep=Math.min(1,t/.11);        // 위→아래로 그려지는 정도
+  const steps=36,shown=Math.floor(steps*Math.min(1,sweep*1.1));if(shown<2)return;
+  const cxm=org.x+CX(),cym=org.y+CY;                              // 타원 중심
+  const thick=THK,PM=100.8*Math.PI/180;                         // 가운데 최대 두께, 끝이 뒤로 휘는 각도
+  const outer=[],inner=[];
+  for(let i=0;i<=shown;i++){
+    const ph=-PM+2*PM*i/steps;
+    const ox=cxm+AA*Math.cos(ph),oy=cym+BB*Math.sin(ph);          // 바깥 호(앞으로 볼록)
+    const th=thick*Math.cos(ph/PM*Math.PI/2);                      // 두께: 가운데 최대, 양 끝 0 → 끝이 뾰족하게 만남
+    outer.push([ox,oy]);inner.push([ox-th,oy]);
+  }
+  const poly=outer.concat(inner.slice().reverse());
+  g.beginPath();poly.forEach(([x,y],j)=>j?g.lineTo(x,y):g.moveTo(x,y));g.closePath();
+  g.fillStyle=`rgba(236,230,212,${.78*Math.pow(k,.55)})`;g.fill();
+  // 발톱 자국: 바깥 호와 안쪽 호 사이를 3등분한 곡선
+  [.25,.5,.75].forEach((f,j)=>{
+    g.beginPath();
+    outer.forEach(([ox,oy],i)=>{const [ix]=inner[i];const x=ox+(ix-ox)*f,y=oy;i?g.lineTo(x,y):g.moveTo(x,y)});
+    g.strokeStyle=`rgba(${j===1?'90,82,70':'130,120,104'},${.7*k})`;g.lineWidth=j===1?2:1;g.stroke();
+  });
+  // 윤곽
+  g.beginPath();outer.forEach(([x,y],i)=>i?g.lineTo(x,y):g.moveTo(x,y));
+  g.strokeStyle=`rgba(255,253,244,${Math.min(1,1.4*k)})`;g.lineWidth=3;g.stroke();
+}
+function overlay(){
+  const org=ORG();g.save();g.setLineDash([5,4]);g.lineWidth=1;
+  if(mode==='old'){g.strokeStyle='rgba(201,97,79,.9)';g.beginPath();g.arc(org.x,org.y,216,-Math.PI/2,Math.PI/2);g.closePath();g.stroke()}
+  else if(mode==='moon'){g.strokeStyle='rgba(216,166,90,.95)';g.beginPath();g.ellipse(org.x+90,org.y,180,58,0,0,Math.PI*2);g.stroke()}
+  else{g.strokeStyle='rgba(127,181,138,.95)';g.beginPath();g.ellipse(org.x+CX(),org.y+CY,AA,BB,0,0,Math.PI*2);g.stroke();
+       g.strokeStyle='rgba(127,181,138,.5)';g.beginPath();g.arc(org.x,org.y,50,0,Math.PI*2);g.stroke()}
+  g.restore();
+}
+let last=performance.now(),idle=0;
+function frame(now){
+  const dt=Math.min(.05,(now-last)/1000);last=now;idle+=dt;
+  g.save();if(shake>0){shake-=dt;g.translate(Math.round((Math.random()-.5)*4),Math.round((Math.random()-.5)*3))}
+  g.clearRect(-6,-6,780,444);
+  if(bg.complete&&bg.naturalWidth){const s=432/724;g.drawImage(bg,420,0,768/s,724,0,0,768,432)}
+  g.fillStyle='rgba(6,10,16,.35)';g.fillRect(0,0,768,432);g.fillStyle='rgba(0,0,0,.25)';g.fillRect(0,P.y,768,432-P.y);
+  enemies.forEach(e=>{
+    const x=P.x+e.dx,y=P.y+e.dy;if(e.hit>0){e.hit-=dt;e.pop+=dt}
+    g.save();if(e.hit>0)g.filter='brightness(2.2) saturate(.2)';drawChar(e.img,0,x,y,true,e.air?.92:1);g.restore();
+    g.fillStyle='rgba(0,0,0,.55)';g.fillRect(x-12,y-72,24,4);g.fillStyle=e.hit>0?'#c9614f':'#6fa57d';g.fillRect(x-12,y-72,e.hit>0?9:24,4)});
+  let pf;if(atk){const ph=Math.min(1,atk.t/.25);pf=16+Math.min(7,Math.floor(ph*8))}else pf=Math.floor(idle*7)%8;
+  drawChar(song,pf,P.x,P.y,false);
+  if(atk){
+    if(!atk.hit){atk.hit=true;shake=.08;enemies.forEach(e=>{if(inZone(e)){e.hit=.28;e.pop=0;scratches.push({x:P.x+e.dx,y:P.y+e.dy-30,t:0})}})}
+    if(mode==='orig')origClaw(atk.t);else if(mode==='claw')bakedClaw(atk.t);else if(mode==='warp')warpCrescent(atk.t);else if(mode==='moon')moonShape(atk.t);
+    // 발톱 시트(기존 그림): 새 모드는 영역에 맞춰 가로·세로를 따로 키운다
+    const sx=mode==='moon'?1.9:1,sy=mode==='moon'?1.9:1;
+    const px=mode==='moon'?P.x+110:P.x,py=P.y;
+    const f=Math.min(CLAW.frames-1,Math.floor(atk.t*CLAW.fps));
+    if(mode!=='orig'&&mode!=='claw'&&mode!=='warp'&&claw.complete&&claw.naturalWidth&&atk.t<CLAW.frames/CLAW.fps){
+      const[ssx,ssy,sw,sh]=frameOf(f,CLAW.cols,CLAW.fw,CLAW.fh);
+      g.drawImage(claw,ssx,ssy,sw,sh,Math.round(px-CLAW.pivot[0]*sx),Math.round(py-CLAW.pivot[1]*sy),sw*sx,sh*sy);
+    }
+    if(mode==='orig'||mode==='claw'||mode==='warp')drawChar(song,pf,P.x,P.y,false);      // 발톱이 몸을 덮지 않게 캐릭터를 다시 위에 그린다
+    atk.t+=dt;if(atk.t>1.1)atk=null;
+  }
+  scratches.forEach(q=>{q.t+=dt;const k=q.t/.2;if(k<1){g.strokeStyle=`rgba(240,236,222,${1-k})`;g.lineWidth=2;for(let i=-1;i<=1;i++){g.beginPath();g.moveTo(q.x-8+i*6,q.y-16);g.lineTo(q.x+6+i*6,q.y+16);g.stroke()}}});
+  scratches=scratches.filter(q=>q.t<.2);
+  if(document.getElementById('ov').checked)overlay();
+  enemies.forEach(e=>{if(e.hit>0){g.fillStyle='#f0dcae';g.font='bold 13px sans-serif';g.textAlign='center';g.fillText('-'+DMG,P.x+e.dx,P.y+e.dy-78-e.pop*30)}});
+  g.restore();
+  if(document.getElementById('auto').checked&&!atk&&idle%2.6<dt)swing();
+  if(!window.__sim)requestAnimationFrame(frame);
+}
+if(!location.hash.startsWith('#sim='))requestAnimationFrame(frame);
+function report(){
+  const hit=enemies.filter(inZone).map(e=>e.n+(e.air?(e.low?'(아래)':'(공중)'):'')+' '+e.dx+'px');
+  $('reachV').textContent=reach;$('effV').textContent=EFF;$('aaV').textContent=AA;$('bbV').textContent='±'+BB;$('cyV').textContent=CY;$('thV').textContent=THK;$('ctV').textContent=CT;
+  const cxv=reach-AA;
+  $('res').innerHTML=`맞는 적 <b>${hit.length}/${enemies.length}</b>: ${hit.join(', ')||'없음'}<br>게임 값으로 옮기면 <code>cx=${cxv}, a=${AA}, b=${BB}, cy=${CY}</code> (가슴 기준, 위가 음수). 영역: 판정 앞쪽 끝 ${reach}px, 이펙트 오른쪽 끝 ${EFF}px, 가로 ${cxv-AA}~${reach}px, 세로 ${CY-BB}~${CY+BB}px(가슴 기준, 발은 +28)`;
+}
+const $=id=>document.getElementById(id);
+const setZoom=z=>{cv.style.width=(768*z)+'px';$('z1').classList.toggle('on',z===1);$('z2').classList.toggle('on',z===2)};
+$('z1').onclick=()=>setZoom(1);$('z2').onclick=()=>setZoom(2);
+const setMode=m=>{mode=m;[['orig','mOrig'],['claw','mClaw'],['old','mOld']].forEach(([k,id])=>$(id).classList.toggle('on',k===m));$('tune').style.opacity=(m==='old')?.4:1;report()};
+$('atk').onclick=swing;$('mOrig').onclick=()=>setMode('orig');$('mClaw').onclick=()=>setMode('claw');$('mMoon')&&0;$('mOld').onclick=()=>setMode('old');const setSC=n=>{SC=n;$('s2').classList.toggle('on',n===2);$('s3').classList.toggle('on',n===3)};$('s2').onclick=()=>setSC(2);$('s3').onclick=()=>setSC(3);
+$('reach').oninput=e=>{reach=+e.target.value;report()};$('eff').oninput=e=>{EFF=+e.target.value;report()};$('aa').oninput=e=>{AA=+e.target.value;report()};$('bb').oninput=e=>{BB=+e.target.value;report()};$('cy').oninput=e=>{CY=+e.target.value;report()};$('th').oninput=e=>{THK=+e.target.value;report()};$('ct').oninput=e=>{CT=+e.target.value;report()};
+report();
+if(location.hash.startsWith('#sim=')){addEventListener('load',()=>{const T=parseFloat(location.hash.slice(5))||0.3;if(location.hash.includes('claw'))setMode('claw');if(location.hash.includes('x2'))setSC(2);if(location.hash.includes('old'))setMode('old');$('auto').checked=false;window.__sim=true;swing();let tt=last;for(let i=0;i<Math.round(T*60);i++){tt+=1000/60;frame(tt)}})}else setTimeout(swing,200);
+</script></body></html>

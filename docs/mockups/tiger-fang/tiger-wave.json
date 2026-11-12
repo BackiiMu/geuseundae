@@ -1,0 +1,303 @@
+{
+ "frames": [
+  {
+   "filename": "tiger-wave 0",
+   "frame": {
+    "x": 0,
+    "y": 0,
+    "w": 200,
+    "h": 112
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 200,
+    "h": 112
+   },
+   "sourceSize": {
+    "w": 200,
+    "h": 112
+   },
+   "duration": 50
+  },
+  {
+   "filename": "tiger-wave 1",
+   "frame": {
+    "x": 200,
+    "y": 0,
+    "w": 200,
+    "h": 112
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 200,
+    "h": 112
+   },
+   "sourceSize": {
+    "w": 200,
+    "h": 112
+   },
+   "duration": 50
+  },
+  {
+   "filename": "tiger-wave 2",
+   "frame": {
+    "x": 400,
+    "y": 0,
+    "w": 200,
+    "h": 112
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 200,
+    "h": 112
+   },
+   "sourceSize": {
+    "w": 200,
+    "h": 112
+   },
+   "duration": 50
+  },
+  {
+   "filename": "tiger-wave 3",
+   "frame": {
+    "x": 600,
+    "y": 0,
+    "w": 200,
+    "h": 112
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 200,
+    "h": 112
+   },
+   "sourceSize": {
+    "w": 200,
+    "h": 112
+   },
+   "duration": 50
+  },
+  {
+   "filename": "tiger-wave 4",
+   "frame": {
+    "x": 800,
+    "y": 0,
+    "w": 200,
+    "h": 112
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 200,
+    "h": 112
+   },
+   "sourceSize": {
+    "w": 200,
+    "h": 112
+   },
+   "duration": 50
+  },
+  {
+   "filename": "tiger-wave 5",
+   "frame": {
+    "x": 1000,
+    "y": 0,
+    "w": 200,
+    "h": 112
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 200,
+    "h": 112
+   },
+   "sourceSize": {
+    "w": 200,
+    "h": 112
+   },
+   "duration": 50
+  },
+  {
+   "filename": "tiger-wave 6",
+   "frame": {
+    "x": 0,
+    "y": 112,
+    "w": 200,
+    "h": 112
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 200,
+    "h": 112
+   },
+   "sourceSize": {
+    "w": 200,
+    "h": 112
+   },
+   "duration": 50
+  },
+  {
+   "filename": "tiger-wave 7",
+   "frame": {
+    "x": 200,
+    "y": 112,
+    "w": 200,
+    "h": 112
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 200,
+    "h": 112
+   },
+   "sourceSize": {
+    "w": 200,
+    "h": 112
+   },
+   "duration": 50
+  },
+  {
+   "filename": "tiger-wave 8",
+   "frame": {
+    "x": 400,
+    "y": 112,
+    "w": 200,
+    "h": 112
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 200,
+    "h": 112
+   },
+   "sourceSize": {
+    "w": 200,
+    "h": 112
+   },
+   "duration": 50
+  },
+  {
+   "filename": "tiger-wave 9",
+   "frame": {
+    "x": 600,
+    "y": 112,
+    "w": 200,
+    "h": 112
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 200,
+    "h": 112
+   },
+   "sourceSize": {
+    "w": 200,
+    "h": 112
+   },
+   "duration": 50
+  },
+  {
+   "filename": "tiger-wave 10",
+   "frame": {
+    "x": 800,
+    "y": 112,
+    "w": 200,
+    "h": 112
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 200,
+    "h": 112
+   },
+   "sourceSize": {
+    "w": 200,
+    "h": 112
+   },
+   "duration": 50
+  },
+  {
+   "filename": "tiger-wave 11",
+   "frame": {
+    "x": 1000,
+    "y": 112,
+    "w": 200,
+    "h": 112
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 200,
+    "h": 112
+   },
+   "sourceSize": {
+    "w": 200,
+    "h": 112
+   },
+   "duration": 50
+  }
+ ],
+ "meta": {
+  "app": "geuseundae tiger wave generator",
+  "version": "1",
+  "image": "tiger-wave.png",
+  "format": "RGBA8888",
+  "size": {
+   "w": 1200,
+   "h": 224
+  },
+  "scale": "1",
+  "frameTags": [
+   {
+    "name": "fly",
+    "from": 0,
+    "to": 11,
+    "direction": "forward"
+   }
+  ],
+  "pixelfx": {
+   "id": "geuseundae/tiger-wave",
+   "name": "범의 송곳니 · 푸른 호랑이 기공파",
+   "fps": 20,
+   "loop": true,
+   "frames": 12,
+   "frameSize": [
+    200,
+    112
+   ],
+   "pivot": [
+    142,
+    58
+   ],
+   "columns": 6
+  }
+ }
+}

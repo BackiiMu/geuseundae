@@ -45,7 +45,11 @@ func attack(item: Dictionary,pos: Vector2,direction: Vector2,reach: float) -> vo
 	var id:String=item["id"]
 	var tier:int=item["tier"]
 	if id=="jangsan_paw":
-		emit_gear3("jangsan-paw",pos+Vector2(0,28),direction,1.0)
+		# 원래 발톱 시트를 정수 3배로 키운다. 발톱이 그려지는 영역(시트 65..137, 55..131)의 오른쪽 끝이 가슴 기준 앞 180,
+		# 세로 중심이 가슴보다 14 위에 오도록 피벗(34,128) 위치를 계산한 값 (-129, 91). 실제 판정 사거리는 150이다.
+		var claw_local:=Vector2(-129.0,91.0)
+		var claw_offset:=claw_local.rotated(direction.angle()) if direction.x>=0.0 else Vector2(-claw_local.x,claw_local.y).rotated(direction.angle()-PI)
+		emit_gear3("jangsan-paw",pos+claw_offset,direction,3.0)
 		attach_last_to_player()
 		return
 	if GEAR2_ATTACKS.has(id):
@@ -287,7 +291,8 @@ func draw_projectile(p: Dictionary) -> void:
 		gear2_sheet("jokduri-shot",pos,float(p["age"]),velocity.angle(),float(p.get("size",1)),true)
 		return
 	if kind=="tiger":
-		sheet("tiger-4",pos,.08+fmod(float(p["age"]),.3),1.2,Color.WHITE,velocity.angle())
+		# 푸른 영혼 호랑이 머리(제공 이미지 v2 기반 12프레임 반복). 80×51 도트를 3배로 그린다.
+		sheet("tiger-spirit",pos,fmod(float(p["age"]),.6),3.0,Color.WHITE,velocity.angle())
 	elif kind in ["pin","spit","boomerang","whistle"]:
 		draw_line((pos-direction*15).round(),pos.round(),color,3*float(p.get("size",1)))
 		if kind=="pin": draw_line(pos.round(),(pos-direction*5+direction.orthogonal()*4).round(),Color("f1ebd6"),2)

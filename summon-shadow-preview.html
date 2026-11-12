@@ -16,21 +16,21 @@ input[type=range]{accent-color:#a8532a}
 .n{color:var(--mut);font-size:12px;margin:6px 0 0}
 </style>
 <main><h1>그림자 형체 소환 시안</h1>
-<p class=lead>바닥에 먹빛 그림자가 물결처럼 번져 웅덩이가 되고, 그 한가운데서 검은 그림자 인간 형체가 느리게 솟은 뒤 웅덩이가 발밑으로 흡수됩니다. 게임 배경과 실제 캐릭터 크기 위에 올렸습니다. 오른쪽은 지금 쓰는 검은 인간형 소환(보라 웅덩이)으로, 비교용입니다. 게임에는 적용하지 않았습니다.</p>
+<p class=lead>바닥에 먹빛 그림자가 물결처럼 번져 웅덩이가 되고, 그 한가운데서 검은 그림자 인간 형체가 느리게 솟은 뒤 웅덩이가 발밑으로 흡수됩니다. 게임 배경과 실제 캐릭터 크기 위에 올렸습니다. 왼쪽 새 소환은 게임에 적용돼 있고(5배속), 오른쪽은 교체되기 전 검은 인간형 소환(보라 웅덩이)으로 비교용입니다.</p>
 <div class=grid>
 <section class=card id=a data-img="docs/mockups/summon-shadow/shadow-rise.png" data-w=170 data-h=112 data-px=85 data-py=92 data-cols=11 data-n=175 data-fps=30 data-speed=1>
- <h2>새 소환 · 검은 그림자 형체 (5.8초)</h2>
+ <h2>게임 적용 · 검은 그림자 형체 (원본 5.8초)</h2>
  <div class=stage><div class=world><i class=ref></i><div class=fx></div></div></div>
  <div class=tl><div style="width:33%;background:#232a3b">① 번짐 0~1.9s</div><div style="width:43%;background:#1b2130">② 형체가 솟음 1.5~4.0s</div><div style="flex:1;background:#2a3140">③ 흡수 3.9~5.4s</div></div>
  <div class=ctl><button class=play>재생/정지</button><button class=rst>처음부터</button><input type=range class=sc min=0 max=174 value=0 style="width:220px"><span class=tag>0.00s</span>
-  속도 <select class=sp><option value=1>1배</option><option value=.5>0.5배</option><option value=1.5>1.5배</option></select></div>
+  속도 <select class=sp><option value=1>1배 (원본 5.8초)</option><option value=5>5배 (게임 적용 · 약 1.2초)</option><option value=3.5>3.5배 (이전 게임 · 약 1.7초)</option><option value=.5>0.5배</option></select></div>
  <p class=n>웅덩이 가장자리는 일렁이고 안에서 고리가 바깥으로 번집니다. 형체는 얼굴 없는 검은 그림자로 머리부터 수면 위로 올라옵니다. 긴 머리가 늘어지고 가장자리가 숨 쉬듯 일렁이며, 갓 올라온 부분에는 웅덩이의 푸른 물기가 흘러내리다 걷힙니다. 허리 아래는 안개처럼 풀려 웅덩이로 이어집니다.</p>
 </section>
 <section class=card id=b data-img="godot/assets/actors/tar-child.png" data-w=128 data-h=104 data-px=64 data-py=86 data-cols=12 data-n=175 data-fps=30 data-speed=1>
- <h2>현재 소환 · 검은 인간형 (비교)</h2>
+ <h2>이전 소환 · 검은 인간형 (교체됨, 비교)</h2>
  <div class=stage><div class=world><i class=ref></i><div class=fx></div></div></div>
  <div class=ctl><button class=play>재생/정지</button><button class=rst>처음부터</button><input type=range class=sc min=0 max=174 value=0 style="width:220px"><span class=tag>0.00s</span></div>
- <p class=n>게임에서는 3.5배속(약 1.7초)으로 재생합니다. 이 비교는 같은 속도(원본 5.8초)로 보여 줍니다.</p>
+ <p class=n>게임에서는 5배속(약 1.2초)으로 재생합니다. 속도 선택으로 원본(1배)·이전 게임 속도(3.5배)와 비교할 수 있습니다.</p>
 </section>
 </div></main>
 <script>

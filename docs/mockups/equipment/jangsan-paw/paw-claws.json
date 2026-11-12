@@ -1,0 +1,391 @@
+{
+  "frames": [
+    {
+      "filename": "paw-claws 0",
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 190
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 190
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 190
+      },
+      "duration": 33
+    },
+    {
+      "filename": "paw-claws 1",
+      "frame": {
+        "x": 180,
+        "y": 0,
+        "w": 180,
+        "h": 190
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 190
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 190
+      },
+      "duration": 33
+    },
+    {
+      "filename": "paw-claws 2",
+      "frame": {
+        "x": 360,
+        "y": 0,
+        "w": 180,
+        "h": 190
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 190
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 190
+      },
+      "duration": 33
+    },
+    {
+      "filename": "paw-claws 3",
+      "frame": {
+        "x": 540,
+        "y": 0,
+        "w": 180,
+        "h": 190
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 190
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 190
+      },
+      "duration": 33
+    },
+    {
+      "filename": "paw-claws 4",
+      "frame": {
+        "x": 720,
+        "y": 0,
+        "w": 180,
+        "h": 190
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 190
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 190
+      },
+      "duration": 33
+    },
+    {
+      "filename": "paw-claws 5",
+      "frame": {
+        "x": 0,
+        "y": 190,
+        "w": 180,
+        "h": 190
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 190
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 190
+      },
+      "duration": 33
+    },
+    {
+      "filename": "paw-claws 6",
+      "frame": {
+        "x": 180,
+        "y": 190,
+        "w": 180,
+        "h": 190
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 190
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 190
+      },
+      "duration": 33
+    },
+    {
+      "filename": "paw-claws 7",
+      "frame": {
+        "x": 360,
+        "y": 190,
+        "w": 180,
+        "h": 190
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 190
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 190
+      },
+      "duration": 33
+    },
+    {
+      "filename": "paw-claws 8",
+      "frame": {
+        "x": 540,
+        "y": 190,
+        "w": 180,
+        "h": 190
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 190
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 190
+      },
+      "duration": 33
+    },
+    {
+      "filename": "paw-claws 9",
+      "frame": {
+        "x": 720,
+        "y": 190,
+        "w": 180,
+        "h": 190
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 190
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 190
+      },
+      "duration": 33
+    },
+    {
+      "filename": "paw-claws 10",
+      "frame": {
+        "x": 0,
+        "y": 380,
+        "w": 180,
+        "h": 190
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 190
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 190
+      },
+      "duration": 33
+    },
+    {
+      "filename": "paw-claws 11",
+      "frame": {
+        "x": 180,
+        "y": 380,
+        "w": 180,
+        "h": 190
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 190
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 190
+      },
+      "duration": 33
+    },
+    {
+      "filename": "paw-claws 12",
+      "frame": {
+        "x": 360,
+        "y": 380,
+        "w": 180,
+        "h": 190
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 190
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 190
+      },
+      "duration": 33
+    },
+    {
+      "filename": "paw-claws 13",
+      "frame": {
+        "x": 540,
+        "y": 380,
+        "w": 180,
+        "h": 190
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 190
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 190
+      },
+      "duration": 33
+    },
+    {
+      "filename": "paw-claws 14",
+      "frame": {
+        "x": 720,
+        "y": 380,
+        "w": 180,
+        "h": 190
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 190
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 190
+      },
+      "duration": 33
+    },
+    {
+      "filename": "paw-claws 15",
+      "frame": {
+        "x": 0,
+        "y": 570,
+        "w": 180,
+        "h": 190
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 180,
+        "h": 190
+      },
+      "sourceSize": {
+        "w": 180,
+        "h": 190
+      },
+      "duration": 33
+    }
+  ],
+  "meta": {
+    "app": "https://github.com/patch-gg/pixelfx",
+    "version": "1",
+    "image": "paw-claws.png",
+    "format": "RGBA8888",
+    "size": {
+      "w": 900,
+      "h": 760
+    },
+    "scale": "1",
+    "frameTags": [
+      {
+        "name": "paw-claws",
+        "from": 0,
+        "to": 15,
+        "direction": "forward"
+      }
+    ],
+    "pixelfx": {
+      "id": "geuseundae/paw-claws",
+      "name": "Paw claw crescent",
+      "fps": 30,
+      "loop": false,
+      "frames": 16,
+      "frameSize": [
+        180,
+        190
+      ],
+      "pivot": [
+        32,
+        112
+      ],
+      "columns": 5
+    }
+  }
+}

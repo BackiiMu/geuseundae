@@ -8,7 +8,7 @@ func run_checks() -> void:
 	world.toggle_equipment_lab()
 	var c=world.combat
 	var fx=c.vfx
-	assert(fx.manifest.size()==31)
+	assert(fx.manifest.size()==32)
 	assert(fx.manifest.has("dash-2"))
 	assert(fx.manifest.has("changgui-soul-bind"))
 	for key in fx.manifest:
@@ -18,6 +18,8 @@ func run_checks() -> void:
 			assert(int(info["frames"])==14 and int(info["fps"])==30)
 		elif key=="changgui-soul-bind":
 			assert(int(info["frames"])==97 and int(info["fps"])==24)
+		elif key=="tiger-spirit":
+			assert(int(info["frames"])==12 and int(info["fps"])==20)
 		else:
 			assert(int(info["frames"])==19 and int(info["fps"])==25)
 		assert(fx.textures[key].get_width()>=int(info["frameSize"][0])*int(info["columns"]))
@@ -26,7 +28,7 @@ func run_checks() -> void:
 	fx.enemy("enemy-warrior-cleave",Vector2(650,676),Vector2.LEFT)
 	assert(fx.bursts[0]["key"]=="enemy-warrior-cleave" and is_equal_approx(fx.bursts[0]["angle"],PI))
 	fx.clear()
-	print("PASS: all 31 pixelfx sheets load with valid frame sizes, Changgui soul bind and Chapter 1 enemy tells")
+	print("PASS: all 32 pixelfx sheets load with valid frame sizes, Changgui soul bind and Chapter 1 enemy tells")
 	for name in ["musa-slash","talisman-shot","monk-moktak","changgui-claw","tiger-claw","shadow-claw","mihokbul-cast","hosikchong-erupt","captain-sweep","captain-cleave","captain-charge-fx"]:
 		var monster_info:Dictionary=fx.load_monster(name)
 		assert(not monster_info.is_empty() and fx.monster_textures[name]!=null)

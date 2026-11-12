@@ -7,7 +7,7 @@ static var sheet_info := {}
 static var sheet_body_rect := {}
 const PROVIDED_ITEMS = {"hair":"hair","pin":"hairpin","water_bucket":"gourd","fox_bead":"foxbead","claws":"claw","goblin_fire":"ghostfire","plague":"jar","fist":"fist"}
 const GEAR2_ITEMS = {"songaksi_hand":"songakHand","ribbon":"ribbon","mirror":"jokduri","eggshell":"eggshell","blank_face":"blankface","gaze":"hollowgaze","wig":"wig","duo_head":"mask","bent_leg":"brokenLeg","mongdal_legs":"leg","wet_shoes":"shoe","single_shoe":"oneShoe","stomach":"stomach","duo_curse":"curse"}
-const GEAR3_ITEMS = {"jangsan_paw":"jangsanPaw","fox_tail":"foxTail"}
+const GEAR3_ITEMS = {"nails":"mongdalNail","goose":"woodGoose","mongdal_rush":"mongdalHan","call":"changgwiBell","tiger_soul":"boundSoul","tiger_fang":"tigerFang","water_hand":"drownedHand","well_bucket":"wellBucket","fox_fire":"foxFire","fox_mirror":"shapeMirror","club":"dokkaebiClub","broom":"oldBroom","belt":"ssireumSash","tooth":"agwiTeeth","tongue":"agwiTongue","shadow":"murkShadow","voice":"mimicVoice","whistle":"thinWhistle","mouth":"giantMouth","jangsan_paw":"jangsanPaw","fox_tail":"foxTail"}
 func _ready() -> void:
 	texture_filter=CanvasItem.TEXTURE_FILTER_NEAREST
 	custom_minimum_size=Vector2(42,42)

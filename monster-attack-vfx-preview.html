@@ -47,7 +47,7 @@ main{max-width:1120px;margin:0 auto;padding:20px 16px}h1{font-size:20px;margin:0
 const FEET=156,MX=250,SPD=220,PR=17;
 const ROOT='docs/mockups/monster-attack-vfx/../../../godot/assets/';
 function sprite(el,role,frame,dw,dh){el.style.backgroundImage=`url('${ROOT}actors/source/${role}-v1.png')`;el.style.width=dw+'px';el.style.height=dh+'px';el.style.backgroundSize=`${dw*8}px ${dh*4}px`;el.style.backgroundPosition=`${-(frame%8)*dw}px ${-Math.floor(frame/8)*dh}px`}
-const SHEETS={talisman:{shot:{img:'docs/mockups/monster-attack-vfx/talisman-shot.png',w:28,h:14,px:18,py:7,cols:3,n:9,fps:30},hit:{img:'docs/mockups/monster-attack-vfx/talisman-hit.png',w:40,h:44,px:20,py:20,cols:5,n:17,fps:30}}};
+const SHEETS={talisman:{shot:{img:'docs/mockups/monster-attack-vfx/talisman-shot.png',w:28,h:14,px:18,py:7,cols:3,n:9,fps:30}}};
 document.querySelectorAll('.card').forEach(c=>{const d=c.dataset,w=+d.w,h=+d.h,px=+d.px,py=+d.py,cols=+d.cols,n=+d.n,fps=+d.fps,sc=+d.scale,pre=+d.pre,total=+d.total,dw=+d.dw,dh=+d.dh,yo=+d.yo,charge=+d.charge,dist=+d.dist,rec=+d.rec,ranged=d.ranged,circ=JSON.parse(d.circ);
 const world=c.querySelector('.world'),fx=c.querySelector('.fx'),mon=c.querySelector('.mon'),hero=c.querySelector('.hero'),proj=c.querySelector('.proj'),hit=c.querySelector('.hit'),tag=c.querySelector('.tag'),chk=c.querySelector('.rng'),stage=c.querySelector('.stage');
 const HX=MX-dist,hcx=HX,hcy=FEET-23;fx.style.backgroundImage=`url('docs/mockups/monster-attack-vfx/${d.key}.png')`;

@@ -58,6 +58,22 @@
 - 시작·부활·심장 변신은 `assets/vfx/summon/shadow-rise.png`와 JSON(170×112, 175프레임, 30fps, 피벗 85×92)을 사용한다. 원본 약 5.8초를 5배속으로 재생해 약 1.2초에 끝나며 바닥 피벗을 유지한다.
 - 시각 검수 캡처는 `docs/reviews/ui/`에 있다. `ui_visual_review.gd`가 인트로·그림자 소환·마을 HUD·JSON 인벤토리·설정을 실제 렌더러로 저장한다.
 
+## 범의 송곳니 F 스킬 · 푸른 호랑이
+
+- F 스킬(호랑이 혼령 관통)의 그림을 제공 이미지 `docs/mockups/equipment/tiger-fang/tiger-fang-spirit-projectile-pixel-v2.png`에서 만든 푸른 호랑이 머리로 교체했다. 배경·광을 뺀 80×51 도트에 꼬리 물결과 머리 흔들림을 넣은 12프레임 반복 시트 `godot/assets/vfx/tiger-spirit.png`(+`.json`, `manifest.json`의 `tiger-spirit`)이며 `pixel_vfx.gd`가 3배로 그린다(이전 시안 2배의 1.5배). 생성은 `docs/mockups/equipment/tiger-fang/build_sheet.py`.
+- 피해 45·속도 850·수명 1.15초·관통 같은 규칙은 그대로다. 시안에 있던 충전·충격 고리·잔상·적중 베기 연출은 적용하지 않았다. `vfx_test.gd`는 시트 수 32와 `tiger-spirit`(12프레임·20fps)를 검사하도록 고쳤다.
+
+## 장비 아이콘·드롭 연결
+
+- 임시 초안 아이콘이던 무기 19종 중 만들어 둔 `assets/gear3/icons`·`assets/gear3/drop` 이미지가 있는 17종(몽달의 손톱, 부러진 나무기러기, 몽달의 한, 창귀의 부름, 홀린 넋, 범의 송곳니, 물귀신의 손, 우물 두레박, 여우불, 둔갑 거울, 도깨비방망이, 낡은 빗자루, 씨름 샅바, 아귀의 이빨·혀, 어둑한 그림자, 흉내 내는 목소리, 가는 휘파람, 거구귀의 입)을 `item_icon.gd`의 `GEAR3_ITEMS`와 `combat_director.gd`의 `GEAR3_DROPS`에 연결했다. 가방·상점 아이콘과 바닥 드롭 모습이 모두 바뀐다.
+- 캡처: `docs/equipment-report/images/drops-gear3.png`, `inventory-equipped.png`. 새 이미지를 만들지는 않았다.
+
+## 장산범의 앞발 범위
+
+- 판정은 가슴 기준 앞쪽 타원이다: 앞 끝 150(`cx` 45 + `a` 105), 위아래 ±85, 중심이 가슴보다 14 위(`cy`). 머리 위부터 발 아래까지 덮고 옆으로 넓다. 가까운 적(50px 이내)은 항상 맞고 적 크기만큼 여유를 준다(`equipment_runtime.gd`의 `PAW_ARC`, `paw_strike`). DB 사거리 값도 150이다.
+- 그림은 기존 `jangsan-paw` 발톱 시트(`assets/gear3/fx/`)를 늘이거나 휘지 않고 정수 3배로 키워 쓴다. 발톱이 그려지는 영역의 오른쪽 끝이 가슴 기준 앞 180(판정보다 30 앞), 세로 중심이 가슴보다 14 위가 되도록 `pixel_vfx.gd`가 배치한다. 초승달 도형 그리기는 제거했다.
+- `equipment_test.gd`·`vfx_test.gd` 통과, 마을에서 실제 렌더러로 휘둘러 배치를 확인했다. 실제 적을 맞히는 체감과 피해(34)·간격(0.82초)은 확인하지 못했다. 시안은 `jangsan-paw-preview.html`.
+
 ## 주요 코드
 
 - `godot/scripts/random_run.gd`: 마을·런·방 이동·층 흐름·상인 배치.

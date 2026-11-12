@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>그슨대 장비 현황</title>
+<style>
+:root{--bg:#0a0d12;--panel:#121820;--panel2:#18202a;--line:#2b3542;--ink:#dcd3c0;--dim:#8f8a7e;--acc:#c9a55c;--ok:#7fb58a;--warn:#d8a65a;--bad:#c9614f;
+ --t1:#c2ccbe;--t2:#7fadd0;--t3:#b39dd1;--t4:#e4c178}
+@media(prefers-color-scheme:light){:root{--bg:#f3efe6;--panel:#fff;--panel2:#f7f3ea;--line:#d6cfbf;--ink:#2a2620;--dim:#6f685a;--acc:#8a6a1f;--ok:#2f7a43;--warn:#a2701a;--bad:#a63a2a;--t1:#6b7567;--t2:#2f6f9c;--t3:#7a5aa6;--t4:#a97a10}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.55 "Noto Sans KR",system-ui,sans-serif}
+.wrap{max-width:1240px;margin:0 auto;padding:18px 16px 60px}
+h1{font-size:20px;margin:0 0 2px}h2{font-size:16px;margin:30px 0 4px;color:var(--acc)}h3{font-size:14px;margin:18px 0 6px}
+.sub{color:var(--dim);margin:0 0 12px;font-size:13px}
+nav{position:sticky;top:0;z-index:5;background:var(--bg);border-bottom:1px solid var(--line);display:flex;gap:6px;flex-wrap:wrap;padding:8px 0;margin-bottom:14px}
+nav a{color:var(--ink);text-decoration:none;border:1px solid var(--line);padding:4px 11px;border-radius:3px;font-size:13px;background:var(--panel)}
+nav a:hover{border-color:var(--acc);color:var(--acc)}
+.note{background:var(--panel2);border:1px solid var(--line);border-left:3px solid var(--warn);padding:8px 12px;font-size:13px;color:var(--dim);margin:8px 0}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px;margin:10px 0}
+.stat{background:var(--panel);border:1px solid var(--line);padding:10px 12px}.stat b{display:block;font-size:22px;color:var(--acc)}.stat span{color:var(--dim);font-size:12px}
+.filters{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0}
+.filters button,.chipbtn{background:var(--panel);color:var(--ink);border:1px solid var(--line);padding:4px 10px;font:inherit;font-size:12px;cursor:pointer;border-radius:3px}
+.filters button.on{border-color:var(--acc);color:var(--acc)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(360px,1fr));gap:12px}
+.card{background:var(--panel);border:1px solid var(--line);padding:12px;display:flex;flex-direction:column;gap:8px}
+.head{display:flex;gap:10px;align-items:center}
+.ibox{width:56px;height:56px;flex:none;background:#18232d;border:1px solid #59655e;display:flex;align-items:center;justify-content:center}
+.ibox canvas,.ibox img{image-rendering:pixelated;max-width:100%;max-height:100%}
+.name{font-weight:700;font-size:15px}
+.badge{display:inline-block;font-size:11px;padding:0 7px;border-radius:9px;border:1px solid currentColor;margin-left:4px}
+.t1{color:var(--t1)}.t2{color:var(--t2)}.t3{color:var(--t3)}.t4{color:var(--t4)}
+.chips{display:flex;flex-wrap:wrap;gap:4px}.chip{font-size:11px;color:var(--dim);border:1px solid var(--line);padding:0 6px;border-radius:3px}
+.chip.ok{color:var(--ok);border-color:var(--ok)}.chip.warn{color:var(--warn);border-color:var(--warn)}.chip.bad{color:var(--bad);border-color:var(--bad)}
+.eff{font-size:13px}
+.nums{display:grid;grid-template-columns:repeat(4,1fr);gap:4px;font-size:12px}.nums div{background:var(--panel2);padding:3px 6px}.nums span{display:block;color:var(--dim);font-size:10px}
+.fxrow{display:flex;gap:8px;flex-wrap:wrap}
+.fx{background:#0c1118;border:1px solid var(--line);padding:4px;text-align:center;width:116px}
+.fx canvas{image-rendering:pixelated;display:block;margin:0 auto}
+.fx small{display:block;color:#9a9486;font-size:10px;line-height:1.2;margin-top:2px}
+.sec{background:var(--panel);border:1px solid var(--line);padding:12px 14px;margin:8px 0}
+table{border-collapse:collapse;width:100%;font-size:13px}th,td{border-bottom:1px solid var(--line);padding:6px 8px;text-align:left;vertical-align:top}th{color:var(--dim);font-weight:500;font-size:12px}
+.status-ok{color:var(--ok)}.status-bad{color:var(--bad)}.status-warn{color:var(--warn)}
+.shots{display:grid;grid-template-columns:repeat(auto-fit,minmax(380px,1fr));gap:12px}
+.shots figure{margin:0;background:var(--panel);border:1px solid var(--line);padding:8px}.shots img{width:100%;image-rendering:pixelated;display:block}
+figcaption{font-size:12px;color:var(--dim);margin-top:6px}
+.setbox{background:var(--panel);border:1px solid var(--line);padding:10px 12px}
+.setgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:10px}
+.mini{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}.mini .ibox{width:40px;height:40px}
+code{background:var(--panel2);padding:0 4px;font-size:12px}
+.pair{display:flex;gap:6px;align-items:center}
+.stage{background:#0c1118;border:1px solid var(--line);margin:0 0 2px}.stage canvas{width:100%;image-rendering:pixelated;display:block}.stagecap{font-size:11px;color:var(--dim);margin:0 0 4px}
+</style>
+</head>
+<body><div class="wrap">
+<h1>그슨대 장비 현황</h1>
+<p class="sub">구현된 무기·장비, 이펙트, 아이템 모습, 인벤토리를 한 장에 정리했습니다. 기준일 2026-11-12.</p>
+<div class="note">이 문서는 <b>코드·에셋·설계서를 읽어 만든 정리</b>입니다. 게임을 실행해 모든 무기를 확인한 것은 아니며, 구현 여부는 코드와 파일이 있는지를 기준으로 했습니다. 인벤토리 화면 두 장만 실제 렌더러로 캡처했습니다.</div>
+<nav><a href="#sum">요약</a><a href="#weapons">구현된 무기</a><a href="#gear">장비·악세서리</a><a href="#sets">세트</a><a href="#todo">미구현·차이</a><a href="#inv">인벤토리</a></nav>
+
+<section id="sum"><h2>요약</h2><div class="stats" id="stats"></div><div id="sumtext"></div></section>
+
+<section id="weapons"><h2>구현된 무기</h2>
+<p class="sub">카드마다 아이콘, 수치, 효과 설명, 필드 드롭 모습, 공격·스킬·명중 이펙트(실제 게임 시트 재생)를 보여 줍니다.</p>
+<div class="filters" id="wf"></div><div class="grid" id="wgrid"></div></section>
+
+<section id="gear"><h2>장비·악세서리 (머리·다리·발·내장)</h2><div class="grid" id="ggrid"></div></section>
+
+<section id="sets"><h2>세트</h2><p class="sub">무기는 한 세트에만 속합니다. 세트 완성 효과는 설계서에서 두억시니만 확정입니다.</p><div class="setgrid" id="setgrid"></div></section>
+
+<section id="todo"><h2>아직 안 된 것 · 설계와 다른 점</h2><div id="todobox"></div></section>
+
+<section id="inv"><h2>인벤토리 모습</h2>
+<div class="shots">
+ <figure><img src="images/inventory-empty.png" alt="시작 직후 인벤토리"><figcaption>마을 시작 직후 모습(기본 지급 장비 5개가 가방에 있음). 768×432 기준 실제 렌더러 캡처.</figcaption></figure>
+ <figure><img src="images/inventory-equipped.png" alt="장비 착용 인벤토리"><figcaption>장비 9종 착용 + 가방 16종. 선택한 아이템(피 묻은 족두리)의 상세·장착·파기 버튼.</figcaption></figure>
+</div>
+<div id="invtext"></div></section>
+</div>
+
+<script>
+const D=/*__DATA__*/null;
+const TIERN={1:'일반',2:'희귀',3:'영웅',4:'전설'};
+const $=(s,r=document)=>r.querySelector(s);
+const el=(t,c,h)=>{const e=document.createElement(t);if(c)e.className=c;if(h!=null)e.innerHTML=h;return e};
+const imgs={};const getImg=s=>imgs[s]||(imgs[s]=Object.assign(new Image(),{src:s}));
+const regs=[];
+function sheetCanvas(sh,max,opts={}){
+  const k=Math.max(1,Math.min(Math.floor(max[0]/sh.fw)||1,Math.floor(max[1]/sh.fh)||1));
+  const c=document.createElement('canvas');c.width=sh.fw*k;c.height=sh.fh*k;
+  const reg={c,sh,k,img:getImg(sh.png),vis:true,still:opts.still};
+  regs.push(reg);io.observe(c);c._reg=reg;return c;
+}
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.target._reg)e.target._reg.vis=e.isIntersecting}),{rootMargin:'80px'});
+function draw(reg,t){
+  const {c,sh,k,img}=reg;if(!img.complete||!img.naturalWidth)return;
+  let f=0;
+  if(!reg.still){const dur=sh.frames/sh.fps,cyc=sh.loop?dur:dur+.55;const tt=t%cyc;f=Math.min(sh.frames-1,Math.floor(tt*sh.fps));}
+  const g=c.getContext('2d');g.imageSmoothingEnabled=false;g.clearRect(0,0,c.width,c.height);
+  g.drawImage(img,(f%sh.cols)*sh.fw,Math.floor(f/sh.cols)*sh.fh,sh.fw,sh.fh,0,0,c.width,c.height);
+}
+function loop(ms){const t=ms/1000;for(const r of regs)if(r.vis)draw(r,t);for(const r of stages)if(r.vis)drawStage(r,t);requestAnimationFrame(loop)}requestAnimationFrame(loop);
+
+function iconNode(it){
+  const b=el('div','ibox');const ic=it.icon;
+  if(ic.kind==='provided'&&ic.sheet){b.appendChild(sheetCanvas(ic.sheet,[52,52],{still:true}))}
+  else{const i=new Image();i.src=ic.src;i.style.maxWidth='52px';i.style.maxHeight='52px';b.appendChild(i)}
+  return b;
+}
+const ICONLABEL={gear2:'확정 아이콘(gear2)',gear3:'확정 아이콘(gear3)',provided:'제공 시트 아이콘',draft:'임시 초안 아이콘'};
+const songImg=getImg('../../godot/assets/actors/source/songaksi-v1.png'),warImg=getImg('../../godot/assets/actors/source/warrior-v1.png');
+const stages=[];
+function stageNode(it){
+  const box=el('div','');const c=document.createElement('canvas');c.width=360;c.height=150;
+  const reg={c,it,vis:true};stages.push(reg);io.observe(c);c._reg=reg;
+  box.appendChild(el('div','stagecap','사용 모습 · 우리 캐릭터(손각시)가 실제 게임 위치에서 휘두릅니다'));
+  const s=el('div','stage');s.appendChild(c);box.appendChild(s);return box;
+}
+function drawStage(reg,t){
+  const {c,it}=reg,g=c.getContext('2d');g.imageSmoothingEnabled=false;
+  const F={x:62,y:132},cyc=2.0,tt=t%cyc,reach=it.range||150;
+  g.clearRect(0,0,360,150);
+  const gr=g.createLinearGradient(0,0,0,150);gr.addColorStop(0,'#17222b');gr.addColorStop(1,'#0a0e10');g.fillStyle=gr;g.fillRect(0,0,360,150);
+  g.fillStyle='#1c2a2c';g.fillRect(0,F.y,360,150-F.y);g.fillStyle='#34493c';g.fillRect(0,F.y,360,2);
+  const ex=Math.min(F.x+Math.min(reach,230),340);
+  const hitT=.12,flash=tt>hitT&&tt<hitT+.28;
+  // 적
+  g.save();g.translate(ex,F.y);g.scale(-1,1);if(flash)g.filter='brightness(2.2) saturate(.2)';
+  if(warImg.complete&&warImg.naturalWidth)g.drawImage(warImg,0,0,192,256,-24,-62,48,64);g.restore();
+  g.fillStyle='rgba(0,0,0,.55)';g.fillRect(ex-12,F.y-72,24,4);g.fillStyle=flash?'#c9614f':'#6fa57d';g.fillRect(ex-12,F.y-72,flash?10:24,4);
+  // 플레이어 (공격 0.25초, 프레임 16~23)
+  const f=tt<.25?16+Math.min(7,Math.floor(tt/.25*8)):Math.floor(t*7)%8;
+  if(songImg.complete&&songImg.naturalWidth)g.drawImage(songImg,(f%8)*192,Math.floor(f/8)*256,192,256,F.x-24,F.y-62,48,64);
+  // 이펙트
+  const fx=(it.fx||[])[0],pl=it.place;
+  if(fx&&pl){
+    const im=getImg(fx.png);
+    if(im.complete&&im.naturalWidth&&tt<fx.frames/fx.fps){
+      const fr=Math.min(fx.frames-1,Math.floor(tt*fx.fps));
+      g.drawImage(im,(fr%fx.cols)*fx.fw,Math.floor(fr/fx.cols)*fx.fh,fx.fw,fx.fh,Math.round(F.x+pl.dx-fx.pivot[0]*pl.size),Math.round(F.y+pl.dy-fx.pivot[1]*pl.size),fx.fw*pl.size,fx.fh*pl.size);
+    }
+  }else if(it.kind==='ranged'&&tt<.5){
+    const px=F.x+14+(ex-F.x-30)*Math.min(1,tt/.4);g.fillStyle='#d9c28b';g.fillRect(px-3,F.y-30,6,4);
+  }
+  g.fillStyle='#8f8a7e';g.font='10px sans-serif';g.fillText('사거리 '+reach,6,12);
+}
+function card(it){
+  const c=el('div','card');
+  const h=el('div','head');h.appendChild(iconNode(it));
+  const nm=el('div','',`<span class="name">${it.name}</span><span class="badge t${it.tier}">${TIERN[it.tier]}</span><div class="chips" style="margin-top:3px"></div>`);
+  const chips=$('.chips',nm);
+  const add=(t,cls='')=>chips.appendChild(el('span','chip '+cls,t));
+  add(D.slots[it.slot]||it.slot);
+  if(it.kind)add(it.kind==='melee'?'근접':'원거리');
+  if(it.set)add(D.sets[it.set]||it.set);
+  add(ICONLABEL[it.icon.kind],it.icon.kind==='draft'?'warn':'ok');
+  if(it.unlinkedIcon)add('새 아이콘 파일 있음(미연결)','warn');
+  if(it.category==='gear'&&it.codeUsed===false)add('효과 코드 확인 안 됨','bad');
+  h.appendChild(nm);c.appendChild(h);
+  c.appendChild(el('div','eff',it.effectText||'-'));
+  if(it.category==='weapon'){
+    const n=el('div','nums');
+    n.innerHTML=`<div><span>피해</span>${it.damage}</div><div><span>간격</span>${it.interval}초</div><div><span>사거리</span>${it.range}</div><div><span>스킬 쿨</span>${it.cooldown?it.cooldown+'초':'없음'}</div>`;
+    c.appendChild(n);
+  }
+  if(it.category==='weapon')c.appendChild(stageNode(it));
+  const row=el('div','fxrow');
+  if(it.unlinkedIcon){const f=el('div','fx');const i=new Image();i.src=it.unlinkedIcon;i.style.cssText='width:48px;image-rendering:pixelated';f.appendChild(i);f.appendChild(el('small','','새 아이콘(미연결)'));row.appendChild(f)}
+  if(it.drop){const f=el('div','fx');f.appendChild(sheetCanvas(it.drop,[100,90]));f.appendChild(el('small','','필드 드롭'));row.appendChild(f)}
+  else{const f=el('div','fx');f.innerHTML=`<div style="height:46px;display:flex;align-items:center;justify-content:center"><span style="width:16px;height:16px;border-radius:50%;background:var(--t${it.tier});display:block"></span></div><small>드롭: 전용 모습 없음<br>등급색 원으로 표시</small>`;row.appendChild(f)}
+  (it.fx||[]).forEach(fx=>{const f=el('div','fx');f.appendChild(sheetCanvas(fx,[100,90]));f.appendChild(el('small','',`${fx.label}<br>${fx.note}`));row.appendChild(f)});
+  c.appendChild(row);return c;
+}
+
+// ── 요약
+const W=D.items.filter(i=>i.category==='weapon'),Gr=D.items.filter(i=>i.category==='gear');
+const lacksDrop=D.items.filter(i=>!i.drop).length;
+$('#stats').innerHTML=[
+ [W.length,'구현된 무기 (설계 33개 중 32개 + 추가 2개)'],[Gr.length,'장비·악세서리 (머리·다리·발·악세서리)'],[3,'심장 (손각시·몽달·창귀)'],
+ [(D.iconKinds.draft||[]).length,'아직 임시 초안 아이콘'],[D.designRows.filter(r=>r.status==='missing').length,'설계서에 있고 아직 없는 무기']
+].map(([n,l])=>`<div class="stat"><b>${n}</b><span>${l}</span></div>`).join('');
+$('#sumtext').innerHTML=`<div class="sec"><ul style="margin:0;padding-left:18px">
+<li>설계서(<code>geuseundae_equipment.md</code>)의 무기 33개 중 <b>32개가 구현</b>됐고, 구미호의 꼬리 <b>무기 버전</b>만 없습니다. 게임에는 같은 이름의 악세서리가 있지만 효과 코드를 찾지 못했습니다.</li>
+<li>설계서에 없는 무기 2개가 있습니다: 손각시의 손(손각시 심장의 기본 무기), 장산범의 앞발(장산범 보스 보상).</li>
+<li>이펙트는 무기 대부분이 전용 시트를 씁니다. 손각시의 손만 공용 베기를 씁니다.</li>
+<li>드롭 모습이 전용인 아이템은 ${D.items.length-lacksDrop}개이고, 나머지 ${lacksDrop}개는 등급색 원으로 표시됩니다.</li></ul></div>`;
+
+// ── 무기 필터
+const wf={slot:'all',set:'all',tier:'all'};
+function filterRow(label,key,opts){
+  const w=el('div','filters');w.appendChild(el('span','sub',label+' '));
+  opts.forEach(([v,t])=>{const b=el('button',wf[key]===v?'on':'',t);b.onclick=()=>{wf[key]=v;renderW();[...w.children].forEach(x=>x.classList&&x.classList.remove('on'));b.classList.add('on')};w.appendChild(b)});
+  return w}
+const wfBox=$('#wf');
+wfBox.appendChild(filterRow('슬롯','slot',[['all','전체'],['main','주무기'],['off','보조무기'],['two','양손']]));
+wfBox.appendChild(filterRow('등급','tier',[['all','전체'],[1,'일반'],[2,'희귀'],[3,'영웅'],[4,'전설']]));
+wfBox.appendChild(filterRow('세트','set',[['all','전체'],...Object.keys(D.sets).filter(s=>W.some(w=>w.set===s)).map(s=>[s,D.sets[s]])]));
+function renderW(){const g=$('#wgrid');g.innerHTML='';regs.length=0;stages.length=0;
+  W.filter(w=>(wf.slot==='all'||w.slot===wf.slot)&&(wf.tier==='all'||w.tier===wf.tier)&&(wf.set==='all'||w.set===wf.set)).forEach(w=>g.appendChild(card(w)));
+  // 장비 카드의 레지스트리는 재등록
+  const gg=$('#ggrid');gg.querySelectorAll('canvas').forEach(c=>{if(c._reg)regs.push(c._reg)});}
+// 장비·악세서리 먼저 그려 두고 무기를 다시 그린다
+Gr.forEach(g=>$('#ggrid').appendChild(card(g)));renderW();
+
+// ── 세트
+const sg=$('#setgrid');
+const HEART={songaksi:true,mongdal:true,changgui:true};
+Object.keys(D.sets).forEach(k=>{
+  const mem=D.items.filter(i=>i.set===k);if(!mem.length)return;
+  const b=el('div','setbox');
+  const done=k==='duo'?'<span class="chip ok">완성 효과·세트 스킬(G 짓누르기) 구현</span>':'<span class="chip warn">완성 효과 미정</span>';
+  b.innerHTML=`<b>${D.sets[k]}</b> <span class="chip">${mem.length}조각</span> ${HEART[k]?'<span class="chip ok">심장 구현</span>':'<span class="chip bad">심장 없음</span>'} ${done}`;
+  const m=el('div','mini');mem.forEach(i=>{const x=iconNode(i);x.title=i.name+' · '+(D.slots[i.slot]||i.slot);m.appendChild(x)});b.appendChild(m);
+  b.appendChild(el('div','sub','조각: '+mem.map(i=>i.name).join(', ')));sg.appendChild(b)});
+
+// ── 미구현·차이
+const miss=D.designRows.filter(r=>r.status==='missing'),diff=D.designRows.filter(r=>r.status==='diff');
+const draft=D.iconKinds.draft||[];const nameOf=id=>(D.items.find(i=>i.id===id)||{}).name||id;
+const unl=D.items.filter(i=>i.unlinkedIcon);
+$('#todobox').innerHTML=`
+<div class="sec"><h3 style="margin-top:0">1. 무기</h3><table>
+<tr><th>항목</th><th>설계서</th><th>현재 게임</th><th>상태</th></tr>
+${miss.map(r=>`<tr><td><b>${r.name}</b></td><td>${{main:'주무기',off:'보조무기',two:'양손'}[r.design.slot]} · ${r.design.kind==='melee'?'근접':'원거리'} · ${TIERN[r.design.tier]}<br>${r.design.effect}</td><td>악세서리 아이템 <code>fox_tail</code>만 있고 "공격 시 여우불 잔광" 설명뿐입니다. <code>has_passive("fox_tail")</code> 사용처가 없습니다.</td><td class="status-bad">무기 미구현 / 악세서리 효과 코드 없음</td></tr>`).join('')}
+${diff.map(r=>`<tr><td>${r.name}</td><td>-</td><td>${r.diffs.join(', ')}</td><td class="status-warn">설계서와 등급이 다름</td></tr>`).join('')}
+${D.extraWeapons.map(n=>`<tr><td>${n}</td><td>설계서 표에 없음</td><td>게임에 구현됨</td><td class="status-warn">설계서에 반영 필요</td></tr>`).join('')}
+</table></div>
+<div class="sec"><h3 style="margin-top:0">2. 제안만 있고 구현 안 된 장비</h3><table>
+<tr><th>이름</th><th>슬롯·등급</th><th>효과 제안</th><th>출처</th></tr>
+<tr><td>달걀귀신의 얼굴</td><td>머리 · 영웅</td><td>나를 바라보는 가까운 적에게 공포 축적</td><td><code>docs/loot-and-items-design.md</code></td></tr>
+<tr><td>깨진 손거울</td><td>왼손 · 영웅</td><td>스킬: 짧은 시간 전방 투사체 반사</td><td>같은 문서</td></tr>
+<tr><td>끊이지 않는 원한의 폐</td><td>내장 · 전설</td><td>스킬: 근처 공포 상태 적을 통해 저주 파동 연쇄 확산</td><td>같은 문서</td></tr></table>
+<p class="sub">이 3개는 DB(<code>equipment_db.gd</code>)에 없습니다. 같은 문서의 첫 장비 후보 12개 중 나머지 9개는 이름만 다르게 구현돼 있습니다.</p></div>
+<div class="sec"><h3 style="margin-top:0">3. 심장과 세트</h3><ul style="margin:0;padding-left:18px">
+<li>심장은 <b>3개</b>(손각시·몽달귀신·창귀)만 구현돼 있습니다. 무기 세트가 있는 나머지 귀신(${['달걀귀신','물귀신','구미호','도깨비','아귀','어둑시니','장산범','여귀','명도','거구귀','두억시니'].join('·')})은 심장이 없어서 같은 귀신 심장일 때 조각이 +1로 세지는 규칙을 쓸 수 없습니다.</li>
+<li>세트 완성 효과와 세트 스킬은 <b>두억시니 3종(주먹·머리·저주)만</b> 있습니다. 나머지 세트의 완성 효과는 설계서에서도 미정입니다.</li>
+<li>장비 악세서리 칸은 4개이고, 악세서리 아이템은 현재 아귀의 위장·두억시니 저주·구미호의 꼬리 3종입니다.</li></ul></div>
+<div class="sec"><h3 style="margin-top:0">4. 모습·이펙트 품질</h3>
+<p><b>임시 초안 아이콘 ${draft.length}종</b>을 아직 쓰고 있습니다 (<code>equipment/icons/</code>의 형태 구분용 초안):<br>${draft.map(nameOf).join(', ')}</p>
+<p><b>새 아이콘 파일이 이미 있는데 게임에 연결되지 않은 것 ${unl.length}종</b> (<code>assets/gear3/icons/</code>, <code>item_icon.gd</code>의 <code>GEAR3_ITEMS</code>에 없음):</p>
+<div class="mini">${unl.map(i=>`<div class="pair"><div class="ibox"><img src="${i.icon.src}" style="max-width:36px;max-height:36px;image-rendering:pixelated"></div>→<div class="ibox"><img src="${i.unlinkedIcon}" style="max-width:36px;max-height:36px;image-rendering:pixelated"></div> <small>${i.name}</small></div>`).join('')}</div>
+<p class="sub">왼쪽이 지금 게임이 쓰는 임시 아이콘, 오른쪽이 이미 만들어 둔 새 아이콘입니다.</p>
+<p>공용 이펙트를 쓰는 무기: ${D.genericFx.map(nameOf).join(', ')||'없음'}. 필드 드롭이 등급색 원인 아이템: ${D.items.filter(i=>!i.drop).map(i=>i.name).join(', ')}.</p></div>`;
+
+$('#invtext').innerHTML=`<div class="sec"><h3 style="margin-top:0">구성</h3><table>
+<tr><th>영역</th><th>내용</th></tr>
+<tr><td>장착 슬롯</td><td>심장 · 주무기 · 보조무기 · 머리 · 다리 · 발 · 내장 · 악세사리 4칸. 양손 무기는 주무기와 보조무기 두 칸을 함께 씁니다. 악세사리 칸은 개수가 늘면 칸 크기가 줄며 가운데 정렬됩니다.</td></tr>
+<tr><td>가방</td><td>6열 격자, 빈 칸 포함 최소 30칸, 넘치면 스크롤. 장비는 가까이 가면 자동으로 들어옵니다.</td></tr>
+<tr><td>상세 패널</td><td>아이콘, 이름, "슬롯 · 근접/원거리 · 등급단계", 효과 설명, <b>장착</b>/<b>파기</b> 버튼. 파기는 확인 창을 거친 뒤 영구 삭제합니다.</td></tr>
+<tr><td>해상도 대응</td><td>화면 구성은 JSON으로 관리합니다. 가로 768×432, 정사각형에 가까운 640×480, 세로 432×768 세 프로필을 정의했습니다.</td></tr></table>
+<p class="sub">레이아웃 정의: <code>docs/ui/inventory-layout.json</code> · 미리보기: 프로젝트 루트의 <code>inventory-layout-preview.html</code> · 코드: <code>godot/scripts/inventory_layout.gd</code>, <code>combat_director.gd</code>.</p></div>`;
+</script></body></html>

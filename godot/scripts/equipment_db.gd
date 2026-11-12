@@ -36,7 +36,7 @@ static func weapons() -> Array:
 	["whistle","가는 휘파람","main","ranged",3,7,.5,520,"","myeongdo"],
 	["mouth","거구귀의 입","two","melee",4,24,1.0,200,"spit","geogu"],
 	["fist","두억시니의 주먹","two","melee",4,30,1.0,100,"","duo"],
-	["jangsan_paw","장산범의 앞발","main","melee",4,34,.82,196,"","jangsan"]]
+	["jangsan_paw","장산범의 앞발","main","melee",4,34,.82,150,"","jangsan"]]
 static func items() -> Array:
 	if not _catalog.is_empty(): return _catalog.duplicate(true)
 	var result: Array = []
@@ -93,5 +93,5 @@ static func description(id: String) -> String:
 	"whistle":"벽을 통과하며 여러 적을 맞히는 소리 파동",
 	"mouth":"넓게 물기 · 처치한 적 최대 6명 삼킴 / F · 삼킨 수만큼 뱉기 (12초)",
 	"fist":"0.3초 준비 후 거대 주먹 · 이동 가능 · 슈퍼아머 없음",
-	"jangsan_paw":"전설 무기 · 거대한 장산범의 앞발로 연속 할퀴기 / 사거리 2배"
+	"jangsan_paw":"전설 무기 · 위아래로 길고 옆으로 넓게 할퀴는 굵은 발톱 / 사거리 150"
 	}.get(id,"")

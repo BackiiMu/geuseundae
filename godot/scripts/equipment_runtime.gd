@@ -22,6 +22,17 @@ func targets(origin: Vector2,direction: Vector2,distance: float,cone := -1.0) ->
 	return c.living().filter(func(e):
 		var v:Vector2=e.position+Vector2(0,-25*e.size_factor)-origin
 		return v.length()<distance+20 and (cone<=-1 or v.length()<25 or v.normalized().dot(direction)>cone))
+# 장산범의 앞발: 위아래로 길고 옆으로 넓게 할퀴는 발톱. 판정은 가슴(origin) 기준 앞쪽 타원 영역(앞 끝 150)이다.
+const PAW_ARC := {"cx":45.0,"a":105.0,"b":85.0,"cy":-14.0}   # 가슴 기준. 앞 끝 = cx+a = 150
+func paw_strike(origin: Vector2,direction: Vector2,damage: float,id: String) -> Array:
+	var angle:=direction.angle()
+	var struck:Array=c.living().filter(func(e):
+		var v:Vector2=(e.position+Vector2(0,-25*e.size_factor)-origin).rotated(-angle)
+		var m:float=16.0*e.size_factor
+		if v.length()<50.0+m: return true
+		return pow((v.x-float(PAW_ARC["cx"]))/(float(PAW_ARC["a"])+m),2)+pow((v.y-float(PAW_ARC["cy"]))/(float(PAW_ARC["b"])+m),2)<=1.0)
+	for enemy in struck: hit(enemy,damage,id)
+	return struck
 func mark(origin: Vector2,radius: float,color := Color("a6d4c0"),duration := .24) -> void:
 	c.effects.append({"pos":origin,"radius":radius,"time":duration,"color":color})
 func hit(enemy: Node,damage: float,id := "") -> float:
@@ -110,6 +121,8 @@ func attack(slot: String) -> void:
 		if enemy!=null:
 			hit(enemy,damage,id)
 			mark(enemy.position+Vector2(0,-22),28,Color("c7bf8a"))
+	elif id=="jangsan_paw":
+		paw_strike(origin,direction,damage,id)
 	elif item["kind"]=="melee":
 		var struck:=strike(origin,direction,reach,damage,id)
 		if id=="belt" and not struck.is_empty(): throw_enemy(struck[0],direction,18)

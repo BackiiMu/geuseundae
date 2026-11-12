@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>범의 송곳니 푸른 호랑이 시안</title>
+<style>
+:root{--bg:#0a0d12;--panel:#141a22;--line:#2b3542;--ink:#d8cfbd;--dim:#8f8a7e;--acc:#c9a55c}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.5 "Noto Sans KR",system-ui,sans-serif}
+.wrap{max-width:1100px;margin:0 auto;padding:20px 16px 48px}
+h1{font-size:18px;margin:0 0 2px}.sub{color:var(--dim);margin:0 0 12px;font-size:13px}
+.stage{background:#000;border:1px solid var(--line)}canvas{width:100%;display:block;image-rendering:pixelated}
+.bar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:10px 0}
+button{background:var(--panel);color:var(--ink);border:1px solid var(--line);padding:6px 12px;font:inherit;cursor:pointer;border-radius:3px}
+button.on{border-color:var(--acc);color:var(--acc)}button:hover{border-color:var(--acc)}
+label{display:flex;gap:6px;align-items:center;cursor:pointer}
+.note{border-left:3px solid #d8a65a;background:var(--panel);padding:8px 12px;font-size:13px;color:var(--dim);margin:8px 0}
+img.sheet{width:100%;image-rendering:pixelated;border:1px solid var(--line);margin-top:10px;background:#1a1e2c}
+code{background:#18202a;padding:0 4px;font-size:12px}
+</style>
+</head>
+<body><div class="wrap">
+<h1>범의 송곳니 · 푸른 호랑이 시안</h1>
+<p class="sub">F 스킬(<code>tiger_fang</code>)을 우리 캐릭터가 쓰는 모습입니다. 입을 벌린 푸른 호랑이 머리가 기공파처럼 날아가며 적을 관통합니다. 게임에는 적용하지 않은 시안입니다.</p>
+<div class="note" id="loadwarn" style="display:none;border-left-color:#c9614f">이미지를 불러오지 못했습니다. 이 HTML을 프로젝트 폴더(<code>geuseundae</code>) 안에서 열었는지 확인해 주세요. <code>docs/mockups/tiger-fang/tiger-spirit-wave.png</code> 가 필요합니다.</div>
+<h2 style="font-size:14px;margin:10px 0 4px;color:var(--acc)">호랑이 확대 보기 (3배 · 반복 재생)</h2>
+<div class="stage" style="max-width:1560px"><canvas id="zoom" width="1560" height="380"></canvas></div>
+<h2 style="font-size:14px;margin:14px 0 4px;color:var(--acc)">제공 이미지 v3 (푸른색 · 효과 없음)</h2>
+<div class="stage" style="display:flex;gap:12px;align-items:center;padding:10px;max-width:1100px;flex-wrap:wrap"><img src="docs/mockups/equipment/tiger-fang/tiger-fang-projectile-existing-tiger-v3.png" alt="제공 원본" style="width:420px;image-rendering:pixelated"><canvas id="v3c" width="480" height="260" style="width:480px;background:#0c1118"></canvas><div style="font-size:12px;color:var(--dim);max-width:300px">왼쪽은 제공해 주신 원본(1536×1024, 16px 블록). 오른쪽은 검은 배경과 바깥 광을 빼고 도트 격자(96×64)로 줄인 뒤, 주황 줄무늬를 푸른색으로 바꿔 4배로 보여 줍니다. 흔들림·물결·광 같은 효과는 넣지 않았습니다(<code>extract_sprite_v3.py</code>).</div></div>
+<h2 style="font-size:14px;margin:14px 0 4px;color:var(--acc)">게임 화면에서 쓰는 모습</h2>
+<div class="stage"><canvas id="cv" width="768" height="432"></canvas></div>
+<div class="bar">
+  <button id="fire">F 스킬 사용</button>
+  <button id="mNew">머리만</button>
+  <button id="mMist">안개 꼬리</button>
+  <button id="mV3" class="on">제공 이미지 v3</button>
+  <button id="mOld">기존 호랑이</button>
+  <label><input type="checkbox" id="slow"> 느리게 보기(0.3배)</label>
+  <label><input type="checkbox" id="auto" checked> 자동 반복</label>
+</div>
+<div class="note">기존과 같은 규칙입니다: 피해 45, 발사 속도 850px/s, 수명 1.15초, 적을 관통. 연출은 0.25초 충전(푸른 기운이 모이고 바닥에 고리) → 발사(충격 고리·화면 흔들림·잔상 3개) → 적중(푸른 베기 자국·파편·밀림) → 끝에서 사라짐 순서입니다. 기존 호랑이는 비교용으로 그대로 남겨 두었습니다. 머리는 게임의 산호랑이 시트에서 따와 푸르게 바꾼 도트 데이터(<code>tiger-head.json</code>)이고, 꼬리 기운은 pixelfx 효과(<code>tiger-wave.js</code>)입니다. 광·반짝임은 없습니다(<code>docs/mockups/tiger-fang/tiger-spirit-wave.png</code>·<code>.json</code>, 260×120 프레임 24장 20fps 반복).</div>
+<img class="sheet" src="docs/mockups/tiger-fang/tiger-spirit-wave-review.png" alt="프레임 시트(3배 확대)">
+</div>
+<script>
+const cv=document.getElementById('cv'),g=cv.getContext('2d');g.imageSmoothingEnabled=false;
+const L=s=>{const i=new Image();i.src=s;return i};
+const bg=L('godot/assets/haunted-courtyard.png'),song=L('godot/assets/actors/source/songaksi-v1.png'),war=L('godot/assets/actors/source/warrior-v1.png'),
+      nw=L('docs/mockups/tiger-fang/tiger-spirit-wave.png'),nwMist=L('docs/mockups/tiger-fang/tiger-spirit-wave-mist.png'),v3=L('docs/mockups/equipment/tiger-fang/tiger-v3-sprite.png'),old=L('godot/assets/vfx/tiger-4.png');
+const NEW={fw:260,fh:120,cols:4,n:24,fps:20,px:190,py:62};
+const OLD={fw:256,fh:192,cols:4,n:19,fps:25,px:128,py:128};
+const P={x:90,y:352};
+let mode='v3',proj=null,atk=null,idle=0,last=performance.now(),slow=false,shake=0;
+const enemies=[190,300,410,520,630,720].map(x=>({x,y:352,hit:0,hurt:false,pop:0,k:0}));
+let parts=[],rings=[],sparks=[];
+function fire(){atk={t:0,launched:false};proj=null;parts=[];rings=[];sparks=[];enemies.forEach(e=>{e.hurt=false;e.k=0})}
+function drawChar(img,f,x,y,flip,a=1){g.save();g.translate(x,y);if(flip)g.scale(-1,1);g.globalAlpha=a;g.drawImage(img,(f%8)*192,Math.floor(f/8)*256,192,256,-24,-62,48,64);g.restore()}
+const rnd=()=>Math.random();
+const fxOn=()=>mode!=='v3'; // v3: 효과(충전 입자·충격 고리·흔들림·파편·베기 자국) 없음
+function drawHead(x,y,age,alpha,lag){
+  if(mode==='v3'){drawV3(g,x,y,2,age,alpha);return}
+  const S=mode==='old'?OLD:NEW,im=mode==='old'?old:mode==='mist'?nwMist:nw;
+  const fr=mode!=='old'?(Math.floor(age*S.fps)+S.n*4-lag)%S.n:Math.min(S.n-1,Math.floor((.08+(age%.3))*S.fps));
+  const sc=mode!=='old'?1.0:1.2;
+  if(im.complete&&im.naturalWidth){g.save();g.globalAlpha=alpha;g.drawImage(im,(fr%S.cols)*S.fw,Math.floor(fr/S.cols)*S.fh,S.fw,S.fh,Math.round(x-S.px*sc),Math.round(y-S.py*sc),S.fw*sc,S.fh*sc);g.restore()}
+}
+function frame(now){
+  let dt=Math.min(.05,(now-last)/1000);last=now;if(slow)dt*=.3;idle+=dt;
+  g.save();
+  if(shake>0){shake-=dt;g.translate(Math.round((rnd()-.5)*6),Math.round((rnd()-.5)*4))}
+  g.clearRect(-8,-8,784,448);
+  if(bg.complete&&bg.naturalWidth){const s=432/724;g.drawImage(bg,420,0,768/s,724,0,0,768,432)}
+  g.fillStyle='rgba(6,10,16,.38)';g.fillRect(0,0,768,432);g.fillStyle='rgba(0,0,0,.25)';g.fillRect(0,P.y,768,80);
+  // 적 (적중 시 뒤로 밀림)
+  enemies.forEach(e=>{if(e.hit>0)e.hit-=dt;e.pop=e.hit>0?e.pop+dt:0;e.k*=Math.pow(.02,dt);
+    const ex=e.x+e.k;
+    g.save();if(e.hit>0)g.filter='brightness(2.2) saturate(.2)';drawChar(war,0,ex,e.y,true);g.restore();
+    g.fillStyle='rgba(0,0,0,.55)';g.fillRect(ex-12,e.y-72,24,4);g.fillStyle=e.hurt?'#c9614f':'#6fa57d';g.fillRect(ex-12,e.y-72,e.hurt?9:24,4)});
+  // 플레이어: 0~0.25초 충전(16·17번 프레임 유지), 이후 발사
+  let pf=Math.floor(idle*7)%8;
+  if(atk){
+    if(atk.t<.25){pf=16+Math.min(1,Math.floor(atk.t/.125));
+      if(fxOn())for(let i=0;i<2;i++){const a=rnd()*Math.PI*2,r=46+rnd()*30;parts.push({x:P.x+20+Math.cos(a)*r,y:P.y-28+Math.sin(a)*r*.8,life:.2+rnd()*.08,age:0})}
+      // 바닥 푸른 고리
+      if(fxOn()){g.strokeStyle='rgba(120,184,242,.8)';g.lineWidth=2;g.beginPath();g.ellipse(P.x,P.y,34-atk.t*60,8-atk.t*14,0,0,Math.PI*2);g.stroke()}
+    }else{pf=18+Math.min(5,Math.floor((atk.t-.25)/.25*6))}
+    if(!atk.launched&&atk.t>=.25){atk.launched=true;proj={x:P.x+46,y:P.y-28,age:0};if(fxOn()){shake=.14;rings.push({x:P.x+30,y:P.y-10,t:0})}
+      if(fxOn())for(let i=0;i<10;i++)sparks.push({x:P.x+30,y:P.y-4,vx:60+rnd()*200,vy:-20-rnd()*60,t:0,life:.3,sz:2})}
+    atk.t+=dt;if(atk.t>2.6)atk=null}
+  drawChar(song,pf,P.x,P.y,false);
+  // 모이는 입자
+  parts.forEach(q=>{q.age+=dt;const k=q.age/q.life,tx=P.x+30,ty=P.y-28;q.x+=(tx-q.x)*Math.min(1,dt*9);q.y+=(ty-q.y)*Math.min(1,dt*9);
+    g.fillStyle=k<.6?'#9fd2ff':'#e8f6ff';g.fillRect(Math.round(q.x),Math.round(q.y),2,2)});
+  parts=parts.filter(q=>q.age<q.life);
+  // 발사 충격 고리
+  rings.forEach(r=>{r.t+=dt;const k=r.t/.3;if(k<1){g.strokeStyle=`rgba(150,205,255,${1-k})`;g.lineWidth=3;g.beginPath();g.ellipse(r.x+k*50,r.y,10+k*44,18+k*34,0,0,Math.PI*2);g.stroke()}});
+  rings=rings.filter(r=>r.t<.3);
+  // 투사체(머리) + 잔상 + 끝에서 사라짐
+  if(proj){
+    proj.age+=dt;proj.x+=850*dt;
+    enemies.forEach(e=>{if(!e.hurt&&Math.abs(e.x-proj.x)<44){e.hurt=true;e.hit=.3;e.pop=0;e.k=16;
+      if(fxOn())for(let i=0;i<12;i++){const a=-Math.PI*.9+rnd()*Math.PI*1.8;sparks.push({x:e.x,y:e.y-30,vx:Math.cos(a)*(80+rnd()*160),vy:Math.sin(a)*(80+rnd()*160),t:0,life:.28,sz:2+(i%3===0?1:0)})}
+      if(fxOn())sparks.push({slash:true,x:e.x,y:e.y-30,t:0,life:.2})}});
+    const fade=proj.age>1.0?Math.max(0,(1.15-proj.age)/.15):1;
+    if(mode!=='old'&&mode!=='v3'){drawHead(proj.x-60,proj.y,proj.age,.14*fade,4);drawHead(proj.x-30,proj.y,proj.age,.28*fade,2)}
+    drawHead(proj.x,proj.y,proj.age,fade,0);
+    if(proj.age>1.15||proj.x>980)proj=null;
+  }
+  // 파편/베기 자국
+  sparks.forEach(q=>{q.t+=dt;const k=q.t/q.life;
+    if(q.slash){g.strokeStyle=`rgba(200,232,255,${1-k})`;g.lineWidth=3;for(let i=-1;i<=1;i++){g.beginPath();g.moveTo(q.x-16+i*8,q.y-22);g.lineTo(q.x+6+i*8,q.y+22);g.stroke()}return}
+    q.x+=q.vx*dt;q.y+=q.vy*dt;q.vy+=380*dt;g.fillStyle=k<.5?'#cfe8ff':'#5a96d8';g.fillRect(Math.round(q.x),Math.round(q.y),q.sz,q.sz)});
+  sparks=sparks.filter(q=>q.t<q.life);
+  enemies.forEach(e=>{if(e.hit>0){g.fillStyle='#f0dcae';g.font='bold 13px sans-serif';g.textAlign='center';g.fillText('-45',e.x+e.k,e.y-78-e.pop*30)}});
+  g.restore();
+  if(document.getElementById('auto').checked&&!atk&&!proj&&idle%3.2<dt*1.5)fire();
+  if(!window.__sim)requestAnimationFrame(frame);
+}
+if(!location.hash.startsWith('#sim='))requestAnimationFrame(frame);
+if(location.hash.startsWith('#sim=')){addEventListener('load',()=>{const T=parseFloat(location.hash.slice(5))||0.3;if(location.hash.includes('v3'))setMode('v3');else if(location.hash.includes('mist'))setMode('mist');document.getElementById('auto').checked=false;window.__sim=true;fire();let tt=last;for(let i=0;i<Math.round(T*60);i++){tt+=1000/60;frame(tt)}})}else setTimeout(fire,100);
+const zc=document.getElementById('zoom'),zg=zc.getContext('2d');zg.imageSmoothingEnabled=false;
+function zoomLoop(now){
+  zg.fillStyle='#0c1118';zg.fillRect(0,0,1560,380);
+  const fr=Math.floor(now/1000*NEW.fps)%NEW.n;
+  [[nw,0,'머리만'],[nwMist,780,'안개 꼬리']].forEach(([im,x,label])=>{
+    if(im.complete&&im.naturalWidth)zg.drawImage(im,(fr%NEW.cols)*NEW.fw,Math.floor(fr/NEW.cols)*NEW.fh,NEW.fw,NEW.fh,x,10,NEW.fw*3,NEW.fh*3);
+    zg.fillStyle='#8f8a7e';zg.font='12px sans-serif';zg.fillText(label+' (3배 확대)',x+10,372)});
+  requestAnimationFrame(zoomLoop)}
+requestAnimationFrame(zoomLoop);
+nw.onerror=nwMist.onerror=v3.onerror=old.onerror=song.onerror=()=>{document.getElementById('loadwarn').style.display='block'};
+const v3g=document.getElementById('v3c').getContext('2d');v3g.imageSmoothingEnabled=false;
+function drawV3(g2,x,y,sc,t,alpha=1){ // 효과 없이 스프라이트만. 머리 중심 (46,13)이 (x,y)
+  if(!(v3.complete&&v3.naturalWidth))return;g2.save();g2.globalAlpha=alpha;
+  g2.drawImage(v3,Math.round(x-46*sc),Math.round(y-13*sc),v3.naturalWidth*sc,v3.naturalHeight*sc);
+  g2.restore()}
+function v3Loop(now){v3g.fillStyle='#0c1118';v3g.fillRect(0,0,480,260);drawV3(v3g,300,120,4,now/1000);requestAnimationFrame(v3Loop)}
+requestAnimationFrame(v3Loop);
+const $=id=>document.getElementById(id);
+$('fire').onclick=fire;
+const setMode=m=>{mode=m;[['new','mNew'],['mist','mMist'],['v3','mV3'],['old','mOld']].forEach(([k,id])=>$(id).classList.toggle('on',k===m))};
+$('mNew').onclick=()=>setMode('new');$('mMist').onclick=()=>setMode('mist');$('mV3').onclick=()=>setMode('v3');$('mOld').onclick=()=>setMode('old');
+$('slow').onchange=e=>slow=e.target.checked;
+</script></body></html>

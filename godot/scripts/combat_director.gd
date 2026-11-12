@@ -83,6 +83,7 @@ var warden_heart_sealed := false
 var warden_player_stagger := 0.0
 const PROVIDED_DROPS = {"hair":"hair","pin":"hairpin","water_bucket":"gourd","fox_bead":"foxbead","claws":"claw","goblin_fire":"ghostfire","plague":"jar","fist":"fist"}
 const GEAR2_DROPS = {"songaksi_hand":"songakHand","ribbon":"ribbon","mirror":"jokduri","eggshell":"eggshell","blank_face":"blankface","gaze":"hollowgaze","wig":"wig","duo_head":"mask","bent_leg":"brokenLeg","mongdal_legs":"leg","wet_shoes":"shoe","single_shoe":"oneShoe","stomach":"stomach","duo_curse":"curse"}
+const GEAR3_DROPS = {"nails":"mongdalNail","goose":"woodGoose","mongdal_rush":"mongdalHan","call":"changgwiBell","tiger_soul":"boundSoul","tiger_fang":"tigerFang","water_hand":"drownedHand","well_bucket":"wellBucket","fox_fire":"foxFire","fox_mirror":"shapeMirror","club":"dokkaebiClub","broom":"oldBroom","belt":"ssireumSash","tooth":"agwiTeeth","tongue":"agwiTongue","shadow":"murkShadow","voice":"mimicVoice","whistle":"thinWhistle","mouth":"giantMouth","jangsan_paw":"jangsanPaw","fox_tail":"foxTail"}
 func _ready() -> void:
 	arsenal.c=self
 	vfx=PixelVFX.new()
@@ -1147,6 +1148,7 @@ func draw_provided_drop(pickup: Dictionary) -> bool:
 	var item: Dictionary = pickup.get("item", {})
 	var id := str(item.get("id", ""))
 	if GEAR2_DROPS.has(id): return draw_gear2_drop(pickup, str(GEAR2_DROPS[id]))
+	if GEAR3_DROPS.has(id): return draw_gear3_drop(pickup, str(GEAR3_DROPS[id]))
 	if not PROVIDED_DROPS.has(id): return false
 	# Drops use the neutral sheet at every rarity; tier is communicated in UI,
 	# without escalating sparkle pillars or motes around the item itself.
@@ -1163,6 +1165,22 @@ func draw_provided_drop(pickup: Dictionary) -> bool:
 	var row := floori(float(frame)/float(columns))
 	var source := Rect2(Vector2(frame % columns, row) * size, size)
 	draw_texture_rect_region(drop_textures[key], Rect2(Vector2(pickup["pos"]) + Vector2(0, 18) - pivot, size), source)
+	return true
+
+func draw_gear3_drop(pickup: Dictionary, name: String) -> bool:
+	var key := "gear3_" + name
+	if not drop_info.has(key):
+		var base := "res://assets/gear3/drop/" + name
+		drop_info[key] = JSON.parse_string(FileAccess.get_file_as_string(base + ".json"))["meta"]["pixelfx"]
+		drop_textures[key] = load(base + ".png")
+	var info: Dictionary = drop_info[key]
+	var frame := int(visual_clock * float(info["fps"])) % int(info["frames"])
+	var size := Vector2(info["frameSize"][0], info["frameSize"][1])
+	var pivot := Vector2(info["pivot"][0], info["pivot"][1])
+	var columns := int(info["columns"])
+	var row := floori(float(frame)/float(columns))
+	var source := Rect2(Vector2(frame % columns, row) * size, size)
+	draw_texture_rect_region(drop_textures[key], Rect2(Vector2(pickup["pos"]) + Vector2(0,18) - pivot, size), source)
 	return true
 
 func draw_gear2_drop(pickup: Dictionary, name: String) -> bool:

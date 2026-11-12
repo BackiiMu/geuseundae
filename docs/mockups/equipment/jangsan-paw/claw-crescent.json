@@ -1,0 +1,175 @@
+{
+ "frames": [
+  {
+   "filename": "claw-crescent 0",
+   "frame": {
+    "x": 0,
+    "y": 0,
+    "w": 160,
+    "h": 176
+   },
+   "duration": 33
+  },
+  {
+   "filename": "claw-crescent 1",
+   "frame": {
+    "x": 160,
+    "y": 0,
+    "w": 160,
+    "h": 176
+   },
+   "duration": 33
+  },
+  {
+   "filename": "claw-crescent 2",
+   "frame": {
+    "x": 320,
+    "y": 0,
+    "w": 160,
+    "h": 176
+   },
+   "duration": 33
+  },
+  {
+   "filename": "claw-crescent 3",
+   "frame": {
+    "x": 480,
+    "y": 0,
+    "w": 160,
+    "h": 176
+   },
+   "duration": 33
+  },
+  {
+   "filename": "claw-crescent 4",
+   "frame": {
+    "x": 0,
+    "y": 176,
+    "w": 160,
+    "h": 176
+   },
+   "duration": 33
+  },
+  {
+   "filename": "claw-crescent 5",
+   "frame": {
+    "x": 160,
+    "y": 176,
+    "w": 160,
+    "h": 176
+   },
+   "duration": 33
+  },
+  {
+   "filename": "claw-crescent 6",
+   "frame": {
+    "x": 320,
+    "y": 176,
+    "w": 160,
+    "h": 176
+   },
+   "duration": 33
+  },
+  {
+   "filename": "claw-crescent 7",
+   "frame": {
+    "x": 480,
+    "y": 176,
+    "w": 160,
+    "h": 176
+   },
+   "duration": 33
+  },
+  {
+   "filename": "claw-crescent 8",
+   "frame": {
+    "x": 0,
+    "y": 352,
+    "w": 160,
+    "h": 176
+   },
+   "duration": 33
+  },
+  {
+   "filename": "claw-crescent 9",
+   "frame": {
+    "x": 160,
+    "y": 352,
+    "w": 160,
+    "h": 176
+   },
+   "duration": 33
+  },
+  {
+   "filename": "claw-crescent 10",
+   "frame": {
+    "x": 320,
+    "y": 352,
+    "w": 160,
+    "h": 176
+   },
+   "duration": 33
+  },
+  {
+   "filename": "claw-crescent 11",
+   "frame": {
+    "x": 480,
+    "y": 352,
+    "w": 160,
+    "h": 176
+   },
+   "duration": 33
+  },
+  {
+   "filename": "claw-crescent 12",
+   "frame": {
+    "x": 0,
+    "y": 528,
+    "w": 160,
+    "h": 176
+   },
+   "duration": 33
+  },
+  {
+   "filename": "claw-crescent 13",
+   "frame": {
+    "x": 160,
+    "y": 528,
+    "w": 160,
+    "h": 176
+   },
+   "duration": 33
+  }
+ ],
+ "meta": {
+  "image": "claw-crescent.png",
+  "size": {
+   "w": 640,
+   "h": 704
+  },
+  "pixelfx": {
+   "id": "geuseundae/claw-crescent",
+   "name": "장산범 앞발 · 초승달 발톱",
+   "fps": 30,
+   "loop": false,
+   "frames": 14,
+   "frameSize": [
+    160,
+    176
+   ],
+   "pivot": [
+    10,
+    102
+   ],
+   "columns": 4,
+   "shape": {
+    "reach": 145,
+    "a": 105,
+    "b": 85,
+    "cy": -14,
+    "thickness": 150,
+    "clawWidth": 5
+   }
+  }
+ }
+}
