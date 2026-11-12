@@ -1,4 +1,5 @@
 extends SceneTree
+const BagUtil=preload("res://scripts/bag_util.gd")
 const DB=preload("res://scripts/equipment_db.gd")
 const Stock=preload("res://scripts/merchant_stock.gd")
 func _initialize() -> void: call_deferred("run_checks")
@@ -66,13 +67,13 @@ func run_checks() -> void:
 		world.wallet["bag"].append(DB.get_item(accessory))
 		combat.equip_bag(world.wallet["bag"].size()-1)
 	if not check(combat.equipment["a0"]=="stomach" and combat.equipment["a1"]=="duo_curse","Accessory slots accept independent equipment"): return
-	bag_before=world.wallet["bag"].size()
+	bag_before=BagUtil.count(world.wallet["bag"])
 	combat.pending_destroy=0
 	combat.confirm.canceled.emit()
-	if not check(world.wallet["bag"].size()==bag_before,"Cancel destruction keeps item"): return
+	if not check(BagUtil.count(world.wallet["bag"])==bag_before,"Cancel destruction keeps item"): return
 	combat.pending_destroy=0
 	combat.destroy_confirmed()
-	if not check(world.wallet["bag"].size()==bag_before-1,"Confirmed destruction removes only one bag item"): return
+	if not check(BagUtil.count(world.wallet["bag"])==bag_before-1 and world.wallet["bag"][0].is_empty(),"Confirmed destruction removes only one bag item and leaves its slot empty"): return
 	# Instantiate every weapon and execute its primary/skill path to catch invalid data or dispatch.
 	for weapon in DB.weapons():
 		var slot: String="off" if weapon[2]=="off" else "main"
@@ -120,8 +121,8 @@ func run_checks() -> void:
 	world.change_room(world.run["shop_room"],-1)
 	if not check(combat.living().is_empty(),"Peace room never spawns enemies"): return
 	world.wallet["souls"]=200
-	var purchase: int=world.wallet["bag"].size()
+	var purchase: int=BagUtil.count(world.wallet["bag"])
 	Stock.buy(world.merchant.stock,0,world.wallet)
-	if not check(world.wallet["bag"].size()==purchase+1,"Earned-currency purchase enters the same equipment bag"): return
+	if not check(BagUtil.count(world.wallet["bag"])==purchase+1,"Earned-currency purchase enters the same equipment bag"): return
 	print("Combat integration checks completed.")
 	quit(0)

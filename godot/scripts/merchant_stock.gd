@@ -29,12 +29,13 @@ static func roll(seed_value: int, floor_number: int, village := false) -> Array:
 		used.append(chosen["id"])
 		stock.append(chosen)
 	return stock
+const BagUtil = preload("res://scripts/bag_util.gd")
 static func buy(stock: Array, index: int, wallet: Dictionary) -> String:
 	if index<0 or index>=stock.size(): return "없는 상품입니다."
 	var item: Dictionary = stock[index]
 	if item["sold"]: return "이미 판매된 상품입니다."
 	if int(wallet["souls"])<item["price"]: return "영혼조각이 부족합니다."
 	wallet["souls"] -= item["price"]
-	wallet["bag"].append(item.duplicate(true))
+	BagUtil.add(wallet["bag"],item.duplicate(true))
 	item["sold"] = true
 	return "가방에 넣었습니다: "+str(item["name"])

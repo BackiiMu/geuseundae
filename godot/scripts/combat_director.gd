@@ -6,6 +6,8 @@ const InventoryPaperDoll = preload("res://scripts/inventory_paper_doll.gd")
 const InventorySelectFX = preload("res://scripts/inventory_select_fx.gd")
 const InventoryHeartIcon = preload("res://scripts/inventory_heart_icon.gd")
 const InventoryAccessoryRail = preload("res://scripts/inventory_accessory_rail.gd")
+const BagUtil = preload("res://scripts/bag_util.gd")
+const DragSlot = preload("res://scripts/inventory_drag_slot.gd")
 const InventoryModularSkin = preload("res://scripts/inventory_modular_skin.gd")
 const InventoryFont = preload("res://assets/fonts/NotoSansKR-Semibold.ttf")
 const HeartDB = preload("res://scripts/heart_db.gd")
@@ -51,6 +53,8 @@ var pending_destroy := -1
 var inventory_selection := 0
 var inventory_shade: ColorRect
 var inventory_fx: Control
+var bag_scroll: ScrollContainer
+var bag_scroll_value := 0
 var skill_bar: Label
 var toast: Label
 var toast_time := 0.0
@@ -141,7 +145,7 @@ func seed_starter() -> void:
 	if not world.wallet.has("starter_given"):
 		# A small explicit starter kit, not a grant of currency or high-tier loot.
 		for id in ["eggshell","water_hand","wig","bent_leg","wet_shoes"]:
-			world.wallet["bag"].append(DB.get_item(id))
+			BagUtil.add(world.wallet["bag"],DB.get_item(id))
 		world.wallet["starter_given"]=true
 func message(text: String) -> void:
 	toast.text=text
@@ -439,7 +443,7 @@ func enemy_killed(enemy: Node) -> void:
 		# it as an array makes later Jangsan set pieces a drop-in addition.
 		var jangsan_rewards := ["jangsan_paw"]
 		var reward: Dictionary = DB.get_item(jangsan_rewards[rng.randi_range(0,jangsan_rewards.size()-1)])
-		world.wallet["bag"].append(reward)
+		BagUtil.add(world.wallet["bag"],reward)
 		var newly_unlocked := Progression.unlock_changgui_and_jangsan()
 		message("장산범 처치 · "+str(reward["name"])+" 획득"+(" · 장산범 장비·창귀 심장 해금" if newly_unlocked else ""))
 	elif enemy.kind=="soul-warden":
@@ -528,35 +532,91 @@ func nearest_enemy(pos: Vector2,distance: float):
 			distance=d
 			target=enemy
 	return target
-func equip_bag(index: int) -> void:
-	var bag: Array = world.wallet["bag"]
-	if index<0 or index>=bag.size(): return
-	var item: Dictionary = DB.get_item(str(bag[index]["id"]))
-	if item.is_empty(): return
-	bag.remove_at(index)
+func slot_for_item(item: Dictionary, target := "") -> String:
+	# 아이템이 들어갈 장착 칸. target이 있으면 그 칸에 맞는지 확인해 맞으면 target, 아니면 ""을 돌려준다.
 	var slot: String = item["slot"]
 	if slot=="accessory":
-		slot="a0"
+		if target!="": return target if target in ["a0","a1","a2","a3"] else ""
 		for candidate in ["a0","a1","a2","a3"]:
-			if equipment[candidate]=="":
-				slot=candidate
-				break
-	if slot=="two":
+			if equipment[candidate]=="": return candidate
+		return "a0"
+	if slot=="two": return "main" if target in ["","main"] else ""
+	if target!="" and target!=slot: return ""
+	return slot
+func equip_bag(index: int, target := "") -> void:
+	var bag: Array = world.wallet["bag"]
+	if BagUtil.is_empty_slot(bag,index): return
+	var item: Dictionary = DB.get_item(str(bag[index]["id"]))
+	if item.is_empty(): return
+	var slot:=slot_for_item(item,target)
+	if slot=="": return
+	var displaced: Array = []                      # 교체돼 가방으로 돌아가는 장비
+	if item["slot"]=="two":
 		for hand in ["main","off"]:
-			if equipment[hand]!="": bag.append(equipped(hand))
+			if equipment[hand]!="": displaced.append(equipped(hand))
 			equipment[hand]=""
-		slot="main"
 	elif slot=="off" and DB.is_two(equipped("main")):
-		bag.append(equipped("main"))
+		displaced.append(equipped("main"))
 		equipment["main"]=""
-	if equipment[slot]!="": bag.append(equipped(slot))
+	if equipment[slot]!="": displaced.append(equipped(slot))
+	bag[index]={}                                  # 방금 비운 칸에 교체된 장비를 우선 넣고, 남으면 앞의 빈 칸으로
 	equipment[slot]=item["id"]
+	for old in displaced:
+		if (bag[index] as Dictionary).is_empty(): bag[index]=old
+		else: BagUtil.add(bag,old)
+	BagUtil.trim(bag)
 	refresh_inventory()
 func unequip(slot: String) -> void:
 	if slot=="heart" or equipment.get(slot,"")=="": return
-	world.wallet["bag"].append(equipped(slot))
+	BagUtil.add(world.wallet["bag"],equipped(slot))
 	equipment[slot]=""
 	refresh_inventory()
+# 끌어서 놓기: source={"bag":i} 또는 {"equip":slot}, target도 같은 형식. dry=true면 가능 여부만 돌려준다.
+func handle_drop(target: Dictionary, source: Dictionary, dry: bool) -> bool:
+	var bag: Array = world.wallet["bag"]
+	if source.has("bag") and target.has("bag"):
+		var a:int=source["bag"]; var b:int=target["bag"]
+		if a==b or BagUtil.is_empty_slot(bag,a): return false
+		if not dry:
+			BagUtil.swap(bag,a,b)
+			inventory_selection=b
+			refresh_inventory()
+		return true
+	if source.has("bag") and target.has("equip"):
+		var i:int=source["bag"]
+		if BagUtil.is_empty_slot(bag,i) or target["equip"]=="heart": return false
+		var item: Dictionary = DB.get_item(str(bag[i]["id"]))
+		if item.is_empty() or slot_for_item(item,str(target["equip"]))=="": return false
+		if not dry: equip_bag(i,str(target["equip"]))
+		return true
+	if source.has("equip") and target.has("bag"):
+		var slot:String=str(source["equip"]); var j:int=target["bag"]
+		if slot=="heart" or equipment.get(slot,"")=="": return false
+		if not BagUtil.is_empty_slot(bag,j):
+			var occupant: Dictionary = DB.get_item(str(bag[j]["id"]))
+			if occupant.is_empty() or slot_for_item(occupant,slot)=="": return false   # 같은 종류끼리만 맞바꾼다
+		if not dry:
+			var old:=equipped(slot)
+			equipment[slot]=""
+			if not BagUtil.is_empty_slot(bag,j):
+				var incoming:Dictionary=bag[j]
+				bag[j]=old
+				equip_bag_into(incoming,slot)
+			else:
+				while bag.size()<=j: bag.append({})
+				bag[j]=old
+			inventory_selection=j
+			refresh_inventory()
+		return true
+	return false
+func equip_bag_into(item: Dictionary, slot: String) -> void:
+	# 가방 밖으로 나온 아이템을 장착 칸에 바로 넣는다(맞바꾸기용). 양손 무기는 반대 손을 비운 뒤 주무기에 둔다.
+	if item["slot"]=="two":
+		for hand in ["main","off"]:
+			if equipment[hand]!="": BagUtil.add(world.wallet["bag"],equipped(hand))
+			equipment[hand]=""
+		equipment["main"]=str(item["id"])
+	else: equipment[slot]=str(item["id"])
 func toggle_inventory() -> void:
 	inventory.visible=not inventory.visible
 	inventory_shade.visible=inventory.visible
@@ -644,7 +704,7 @@ func add_slot_icon(button:Button,item:Dictionary,scale_value:=.84) -> void:
 	center_icon.call()
 
 func add_equipped_slot(board:Control,slot:String,label_text:String,pos:Vector2,label_pos:Vector2) -> void:
-	var button:=Button.new()
+	var button:=DragSlot.new()
 	button.position=pos
 	button.size=Vector2(38,38)
 	if slot=="heart": button.add_to_group("inventory_heart_slot")
@@ -664,12 +724,17 @@ func add_equipped_slot(board:Control,slot:String,label_text:String,pos:Vector2,l
 	var test_heart_button:bool = slot=="heart" and world.full_test_run and not item.is_empty()
 	button.tooltip_text=label_text+" · "+str(item.get("name","비어 있음"))+"\n"+str(item.get("effect",""))
 	if test_heart_button: button.tooltip_text+="\n터치하여 다음 심장으로 변경"
-	button.disabled=item.is_empty() or (slot=="heart" and not test_heart_button)
+	button.disabled=(item.is_empty() and slot=="heart") or (slot=="heart" and not test_heart_button)
 	if test_heart_button:
 		button.pressed.connect(func():
 			world.cycle_full_test_heart(1)
 			refresh_inventory())
 	elif slot!="heart": button.pressed.connect(func():unequip(slot))
+	if slot!="heart":
+		button.drop_handler=func(source:Dictionary,dry:bool)->bool:return handle_drop({"equip":slot},source,dry)
+		if not item.is_empty():
+			button.payload={"equip":slot}
+			button.preview_item=item
 	board.add_child(button)
 	var label:=inv_label(label_text,9,Color("d8c39e"))
 	label.position=label_pos
@@ -682,6 +747,33 @@ func add_equipped_slot(board:Control,slot:String,label_text:String,pos:Vector2,l
 		var pulse:=button.create_tween().set_loops()
 		pulse.tween_property(button,"modulate",Color("ffffff"),.55).set_trans(Tween.TRANS_SINE)
 		pulse.tween_property(button,"modulate",Color("e2a0a0"),.75).set_trans(Tween.TRANS_SINE)
+
+func restore_bag_scroll() -> void:
+	if is_instance_valid(bag_scroll): bag_scroll.scroll_vertical=bag_scroll_value
+
+func style_bag_scrollbar(scroll: ScrollContainer) -> void:
+	# 잡기 쉬운 굵은 막대: 폭 14, 손잡이 최소 길이 32, 눌림·호버 색 구분, 휠 한 번에 한 줄(40px)씩 이동.
+	var bar:=scroll.get_v_scroll_bar()
+	bar.custom_minimum_size=Vector2(14,0)
+	bar.custom_step=40.0
+	var track:=inventory_style(Color("120c0a"),Color("4a2a22"),1,0)
+	bar.add_theme_stylebox_override("scroll",track)
+	bar.add_theme_stylebox_override("scroll_focus",track)
+	for state in [["grabber",Color("8c5a36")],["grabber_highlight",Color("b57a48")],["grabber_pressed",Color("d9a05f")]]:
+		var grab:=inventory_style(state[1],Color("2a1710"),1,0)
+		grab.content_margin_top=16
+		grab.content_margin_bottom=16
+		bar.add_theme_stylebox_override(state[0],grab)
+
+func autoscroll_bag_while_dragging(delta: float) -> void:
+	# 아이템을 끌고 가방 위·아래 가장자리에 가면 목록이 자동으로 스크롤된다.
+	if not is_instance_valid(bag_scroll) or not inventory.visible or not get_viewport().gui_is_dragging(): return
+	var rect:=bag_scroll.get_global_rect()
+	var mouse:=get_viewport().get_mouse_position()
+	if not rect.grow(8).has_point(mouse): return
+	var edge:=28.0
+	if mouse.y<rect.position.y+edge: bag_scroll.scroll_vertical-=int(300.0*delta*(1.0-(mouse.y-rect.position.y)/edge))
+	elif mouse.y>rect.end.y-edge: bag_scroll.scroll_vertical+=int(300.0*delta*(1.0-(rect.end.y-mouse.y)/edge))
 
 func inventory_rect(id: String) -> Rect2:
 	return InventoryLayout.rect(id, inventory.size)
@@ -709,6 +801,7 @@ func play_inventory_selection_fx(index:int) -> void:
 			return
 
 func refresh_inventory() -> void:
+	if is_instance_valid(bag_scroll): bag_scroll_value=bag_scroll.scroll_vertical      # 다시 그려도 스크롤 위치를 유지한다
 	for child in inv_rows.get_children():
 		inv_rows.remove_child(child)
 		child.queue_free()
@@ -754,13 +847,17 @@ func refresh_inventory() -> void:
 	accessory_row.size=Vector2(accessory_rail.slots_width(),accessory_rail.slot_size)
 	accessory_row.add_theme_constant_override("separation",int(accessory_rail.gap))
 	for slot in accessory_slots:
-		var accessory_button:=Button.new()
+		var accessory_button:=DragSlot.new()
 		accessory_button.custom_minimum_size=Vector2.ONE*accessory_rail.slot_size
 		accessory_button.focus_mode=Control.FOCUS_NONE
 		style_movable_slot(accessory_button,false)
 		var accessory:=equipped(slot)
 		if not accessory.is_empty(): add_slot_icon(accessory_button,accessory,accessory_rail.slot_size/42.0*.88)
-		accessory_button.disabled=accessory.is_empty()
+		accessory_button.disabled=false
+		accessory_button.drop_handler=func(source:Dictionary,dry:bool)->bool:return handle_drop({"equip":slot},source,dry)
+		if not accessory.is_empty():
+			accessory_button.payload={"equip":slot}
+			accessory_button.preview_item=accessory
 		accessory_button.add_to_group("inventory_accessory_slot")
 		accessory_button.tooltip_text="악세사리 · "+str(accessory.get("name","비어 있음"))
 		accessory_button.pressed.connect(func():unequip(slot))
@@ -773,7 +870,10 @@ func refresh_inventory() -> void:
 	var scroll:=ScrollContainer.new()
 	apply_inventory_rect(scroll,"bag_grid")
 	scroll.horizontal_scroll_mode=ScrollContainer.SCROLL_MODE_DISABLED
+	scroll.scroll_deadzone=6
 	scroll.add_theme_stylebox_override("panel",inventory_style(Color(0,0,0,0),Color(0,0,0,0),0,0))
+	style_bag_scrollbar(scroll)
+	bag_scroll=scroll
 	var grid:=GridContainer.new()
 	var bag_layout := InventoryLayout.node("bag_grid",inventory.size)
 	grid.columns=int(bag_layout.get("columns",6))
@@ -784,21 +884,29 @@ func refresh_inventory() -> void:
 	var bag: Array=world.wallet["bag"]
 	inventory_selection=clampi(inventory_selection,0,maxi(0,bag.size()-1))
 	for i in range(maxi(int(bag_layout.get("minCells",30)),bag.size())):
-		var button:=Button.new()
+		var button:=DragSlot.new()
 		button.custom_minimum_size=Vector2(cell[0],cell[1])
 		button.focus_mode=Control.FOCUS_NONE
 		style_movable_slot(button,i==inventory_selection)
 		button.add_to_group("inventory_bag_slot")
 		button.set_meta("bag_index",i)
-		if i<bag.size():
+		button.drop_handler=func(source:Dictionary,dry:bool)->bool:return handle_drop({"bag":i},source,dry)
+		if not BagUtil.is_empty_slot(bag,i):
 			add_slot_icon(button,bag[i],.72)
 			button.tooltip_text=str(bag[i]["name"])+" "+attack_type_label(bag[i])+" / "+str(bag[i].get("effect",""))
+			button.payload={"bag":i}
+			button.preview_item=bag[i]
 			button.pressed.connect(func():select_inventory(i))
-		else: button.disabled=true
+			button.gui_input.connect(func(event:InputEvent):
+				if event is InputEventMouseButton and event.double_click and event.button_index==MOUSE_BUTTON_LEFT: equip_bag(i))
+		else:
+			button.pressed.connect(func():select_inventory(i))
 		grid.add_child(button)
 	scroll.add_child(grid)
 	inv_rows.add_child(scroll)
-	if not bag.is_empty():
+	restore_bag_scroll.call_deferred()
+	if not get_tree().process_frame.is_connected(restore_bag_scroll): get_tree().process_frame.connect(restore_bag_scroll,CONNECT_ONE_SHOT)
+	if not BagUtil.is_empty_slot(bag,inventory_selection):
 		var item: Dictionary=bag[inventory_selection]
 		var detail_icon_button:=Button.new()
 		apply_inventory_rect(detail_icon_button,"detail_icon")
@@ -838,11 +946,11 @@ func refresh_inventory() -> void:
 			confirm.get_cancel_button().grab_focus())
 		inv_rows.add_child(destroy)
 	else:
-		var empty_label:=inv_label("가방이 비어 있습니다. 장비는 가까이 가면 자동으로 획득합니다.",14,Color("bcae91"))
+		var empty_label:=inv_label("가방이 비어 있습니다. 장비는 가까이 가면 자동으로 획득합니다." if BagUtil.count(bag)==0 else "아이템을 눌러 선택하고, 끌어서 칸을 옮기거나 장착하세요.",14,Color("bcae91"))
 		apply_inventory_rect(empty_label,"empty_hint")
 		inv_rows.add_child(empty_label)
 func destroy_confirmed() -> void:
-	if pending_destroy>=0 and pending_destroy<world.wallet["bag"].size(): world.wallet["bag"].remove_at(pending_destroy)
+	if pending_destroy>=0 and pending_destroy<world.wallet["bag"].size(): BagUtil.clear_slot(world.wallet["bag"],pending_destroy)
 	pending_destroy=-1
 	refresh_inventory()
 func tick_projectiles(delta: float) -> void:
@@ -981,7 +1089,7 @@ func tick_pickups(delta: float) -> void:
 			if Vector2(pickup["pos"]).distance_to(target)<16:
 				if pickup["kind"]=="souls": world.wallet["souls"]+=int(pickup["amount"])
 				else:
-					world.wallet["bag"].append(pickup["item"].duplicate(true))
+					BagUtil.add(world.wallet["bag"],pickup["item"].duplicate(true))
 					message("획득 · "+str(pickup["item"]["name"]))
 				pickups.remove_at(i)
 func near_chest() -> bool:
@@ -996,6 +1104,9 @@ func try_open_chest() -> bool:
 			message("봉인된 보상 상자를 엽니다")
 			return true
 	return false
+func _process(delta: float) -> void:
+	autoscroll_bag_while_dragging(delta)
+
 func _physics_process(delta: float) -> void:
 	if not enabled or not is_instance_valid(world.player): return
 	visual_clock += delta
@@ -1055,7 +1166,7 @@ func _physics_process(delta: float) -> void:
 	for i in range(effects.size()-1,-1,-1):
 		effects[i]["time"]-=delta
 		if effects[i]["time"]<=0: effects.remove_at(i)
-	game_hud.set_stats(health,max_health,world.wallet["bag"].size(),world.player.dash_charges,world.player.dash_max_charges)
+	game_hud.set_stats(health,max_health,BagUtil.count(world.wallet["bag"]),world.player.dash_charges,world.player.dash_max_charges)
 	hud.text=""
 	var heart:Dictionary=HeartDB.get_heart(str(equipment.get("heart","")))
 	var heart_id:=str(equipment.get("heart",""))

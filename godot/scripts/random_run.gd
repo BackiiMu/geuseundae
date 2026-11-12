@@ -264,8 +264,8 @@ func accept_heart(heart_id: String) -> void:
 		combat.equipment["heart"]=heart_id
 		var bag:Array=wallet["bag"]
 		for i in range(bag.size()-1,-1,-1):
-			if str(bag[i].get("id",""))==str(data["starter"]): bag.remove_at(i)
-		if combat.equipment["main"]!="" and combat.equipment["main"]!=data["starter"]: bag.append(combat.equipped("main"))
+			if str(bag[i].get("id",""))==str(data["starter"]): CombatDirector.BagUtil.clear_slot(bag,i)
+		if combat.equipment["main"]!="" and combat.equipment["main"]!=data["starter"]: CombatDirector.BagUtil.add(bag,combat.equipped("main"))
 		combat.equipment["main"]=data["starter"]
 		player.set_heart_role(data["role"],int(data.get("dash_charges",1)))
 		player.visual.modulate=Color.WHITE
@@ -623,7 +623,7 @@ func update_web_status() -> void:
 	if is_instance_valid(merchant) and merchant.opened:
 		text+=" | 상점 · "+str(merchant.stock[merchant.selected]["name"])+" "+str(merchant.stock[merchant.selected]["price"])+"조각"
 	if combat.equipment_lab:
-		text="장비 시험장 | "+str(combat.equipped("main").get("name","없음"))+" + "+str(combat.equipped("off").get("name","없음"))+" | 표적 "+str(combat.living().size())+" | 가방 "+str(wallet["bag"].size())
+		text="장비 시험장 | "+str(combat.equipped("main").get("name","없음"))+" + "+str(combat.equipped("off").get("name","없음"))+" | 표적 "+str(combat.living().size())+" | 가방 "+str(CombatDirector.BagUtil.count(wallet["bag"]))
 	text+=" | "+hint.text
 	JavaScriptBridge.eval("document.getElementById('playtest-status').textContent="+JSON.stringify(text),true)
 

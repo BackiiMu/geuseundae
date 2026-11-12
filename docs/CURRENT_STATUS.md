@@ -63,6 +63,14 @@
 - F 스킬(호랑이 혼령 관통)의 그림을 제공 이미지 `docs/mockups/equipment/tiger-fang/tiger-fang-spirit-projectile-pixel-v2.png`에서 만든 푸른 호랑이 머리로 교체했다. 배경·광을 뺀 80×51 도트에 꼬리 물결과 머리 흔들림을 넣은 12프레임 반복 시트 `godot/assets/vfx/tiger-spirit.png`(+`.json`, `manifest.json`의 `tiger-spirit`)이며 `pixel_vfx.gd`가 3배로 그린다(이전 시안 2배의 1.5배). 생성은 `docs/mockups/equipment/tiger-fang/build_sheet.py`.
 - 피해 45·속도 850·수명 1.15초·관통 같은 규칙은 그대로다. 시안에 있던 충전·충격 고리·잔상·적중 베기 연출은 적용하지 않았다. `vfx_test.gd`는 시트 수 32와 `tiger-spirit`(12프레임·20fps)를 검사하도록 고쳤다.
 
+## 가방 조작 개선
+
+- 가방은 칸 위치가 고정된 배열이다(`scripts/bag_util.gd`). 빈 칸은 `{}`이고 뒤쪽 빈 칸만 잘라 낸다. 장착하면 교체된 장비가 방금 비운 칸으로 들어가고, 해제·획득·구매 장비는 가장 앞의 빈 칸에 들어간다. 파기해도 다른 칸이 밀리지 않는다. 가방 개수는 `BagUtil.count()`로 센다(HUD 가방 수량 포함).
+- 아이템을 누르면 인벤토리를 다시 그려도 가방 스크롤 위치를 저장했다가 복원한다(`bag_scroll_value`).
+- 끌어서 놓기(`inventory_drag_slot.gd`, `combat_director.gd`의 `handle_drop`): 가방 칸끼리 교환·빈 칸 이동, 가방→장착 칸 장착, 장착 칸→가방 칸. 더블클릭은 바로 장착이다. 터치는 0.25초 길게 눌러야 집히고 그 전에 밀면 스크롤이다(터치 동작은 실제 기기에서 확인하지 못했다). 끌면서 가방 위·아래 가장자리로 가면 자동 스크롤된다.
+- 스크롤바는 폭 14, 손잡이 최소 길이 32, 호버·눌림 색 구분, 휠 한 번에 40px로 키웠다. 가방 격자 폭을 274→280으로 넓혔다(JSON 레이아웃 `inventory-layout.json`).
+- 검사: `bag_test.gd`(신규)·`combat_test`·`inventory_ui_test`·`merchant_test`·`equipment_test`·`heart_identity_test`·`chapter_two_test` 통과. `random_run_test`·`playability_regression_test`도 오류 없이 끝났다(실행이 10분 가까이 걸린다). 시안: `inventory-bag-preview.html`.
+
 ## 장비 아이콘·드롭 연결
 
 - 임시 초안 아이콘이던 무기 19종 중 만들어 둔 `assets/gear3/icons`·`assets/gear3/drop` 이미지가 있는 17종(몽달의 손톱, 부러진 나무기러기, 몽달의 한, 창귀의 부름, 홀린 넋, 범의 송곳니, 물귀신의 손, 우물 두레박, 여우불, 둔갑 거울, 도깨비방망이, 낡은 빗자루, 씨름 샅바, 아귀의 이빨·혀, 어둑한 그림자, 흉내 내는 목소리, 가는 휘파람, 거구귀의 입)을 `item_icon.gd`의 `GEAR3_ITEMS`와 `combat_director.gd`의 `GEAR3_DROPS`에 연결했다. 가방·상점 아이콘과 바닥 드롭 모습이 모두 바뀐다.

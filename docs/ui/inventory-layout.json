@@ -119,7 +119,7 @@
       { "id": "bag_panel", "type": "panel", "skin": "panelInner", "rect": [382, 63, 313, 247] },
       { "id": "bag_plaque", "type": "panel", "skin": "plaque", "rect": [392, 69, 64, 26] },
       { "id": "bag_title", "type": "label", "text": "가방", "rect": [392, 72, 64, 23], "size": 14, "color": "plaqueText", "align": "center" },
-      { "id": "bag_grid", "type": "grid", "bind": "bag", "rect": [392, 99, 274, 202], "columns": 6, "cell": [38, 36], "gap": [7, 4], "minCells": 30, "scroll": true },
+      { "id": "bag_grid", "type": "grid", "bind": "bag", "rect": [392, 99, 280, 202], "columns": 6, "cell": [38, 36], "gap": [7, 4], "minCells": 30, "scroll": true },
       { "id": "title_plaque", "type": "panel", "skin": "plaque", "rect": [112, 40, 102, 27] },
       { "id": "title_label", "type": "label", "text": "빌린 몸", "rect": [121, 45, 104, 25], "size": 17, "color": "title", "align": "center" },
       { "id": "souls", "type": "label", "text": "영혼조각  ◆ {souls}", "rect": [492, 43, 130, 24], "size": 13, "color": "souls", "align": "center" },
