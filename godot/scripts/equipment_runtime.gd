@@ -39,7 +39,9 @@ func hit(enemy: Node,damage: float,id := "") -> float:
 	if enemy.dead: return 0
 	c.vfx.impact(enemy,c.DB.get_item(id) if id!="" else c.equipped("main"))
 	var before:float=enemy.hp
-	enemy.take_damage(damage)
+	c.damage_enemy(enemy,damage)
+	if c.has_passive("fox_tail") and not enemy.dead:
+		enemy.apply_burn(3.0,1.0,.5)
 	if id=="nails":
 		combo=mini(15,combo+1)
 		combo_time=1.2
@@ -89,6 +91,10 @@ func attack(slot: String) -> void:
 	c.world.player.attack_lean=4*c.world.player.facing
 	c.vfx.attack(item,origin,direction,reach)
 	var damage:float=item["damage"]
+	if id=="someone_bow":
+		var charge:float=clampf(c.bow_release_power,0.0,1.0)
+		damage*=lerpf(.65,1.75,charge)
+		direction=c.bow_direction.normalized() if c.bow_direction.length_squared()>.01 else direction
 	c.effects.append({"kind":id,"pos":origin,"direction":direction,"radius":reach,"time":.18,"color":Color("bfd7c7")})
 	counters[id]=int(counters.get(id,0))+1
 	if id=="tails" and counters[id]%9==0:
@@ -131,7 +137,7 @@ func attack(slot: String) -> void:
 				if enemy.dead: swallowed=mini(6,swallowed+1)
 				elif not enemy.boss: enemy.pull_to(c.world.player.position+direction*35,.25)
 	else:
-		var kind:String={"goose":"boomerang","water_bucket":"water","plague":"poison","whistle":"whistle","pin":"pin","goblin_fire":"goblin"}.get(id,"shot")
+		var kind:String={"goose":"boomerang","water_bucket":"water","plague":"poison","whistle":"whistle","pin":"pin","goblin_fire":"goblin","someone_bow":"piercing_arrow"}.get(id,"shot")
 		if id=="eggshell":
 			for angle in [-.22,0.0,.22]: projectile(origin,direction.rotated(angle),damage,kind,reach,id)
 		else: projectile(origin,direction,damage,kind,reach,id,id=="fox_bead")

@@ -9,7 +9,7 @@ var move_stick := Vector2.ZERO
 var attack_stick := Vector2.ZERO
 var buttons: Array = []
 var hidden_for_ui := false
-const MOVE_ACTIONS = ["move_left", "move_right"]
+const MOVE_ACTIONS = ["move_left", "move_right", "drop_down"]
 const ATTACK_ACTIONS = ["attack_left", "attack_right", "attack_up", "attack_down"]
 const STICK_RADIUS := 52.0
 # Movement-stick vector shared with the player so mobile dashes follow movement.
@@ -97,6 +97,9 @@ func update_move_stick(pos: Vector2) -> void:
 	move_vector = move_stick
 	Input.action_press("move_left", absf(move_stick.x)) if move_stick.x < -0.18 else Input.action_release("move_left")
 	Input.action_press("move_right", absf(move_stick.x)) if move_stick.x > 0.18 else Input.action_release("move_right")
+	# 아래로 충분히 기울였을 때만 발판 통과를 요청한다. 작은 대각선 입력은
+	# 걷기로 남기고, 오른쪽 공격 스틱의 아래 조준과도 섞이지 않는다.
+	Input.action_press("drop_down", move_stick.y) if move_stick.y > 0.55 else Input.action_release("drop_down")
 
 func update_attack_stick(pos: Vector2) -> void:
 	attack_stick = (pos - attack_center).limit_length(STICK_RADIUS) / STICK_RADIUS

@@ -10,6 +10,7 @@ const BagUtil = preload("res://scripts/bag_util.gd")
 const DragSlot = preload("res://scripts/inventory_drag_slot.gd")
 const InventoryModularSkin = preload("res://scripts/inventory_modular_skin.gd")
 const InventoryFont = preload("res://assets/fonts/NotoSansKR-Semibold.ttf")
+const RESTRAINED_UI_ATLAS = preload("res://assets/ui/modular/inventory-restrained-atlas-v1.png")
 const HeartDB = preload("res://scripts/heart_db.gd")
 const GameHUD = preload("res://scripts/game_hud.gd")
 const InventoryLayout = preload("res://scripts/inventory_layout.gd")
@@ -29,12 +30,21 @@ var hurt_timer := 0.0
 var heart_cd := 0.0
 var skill_cd := {"main":0.0,"off":0.0}
 var attack_cd := {"main":0.0,"off":0.0}
-var equipment: Dictionary = {"heart":"","main":"","off":"","head":"","legs":"","feet":"","internal":"","a0":"","a1":"","a2":"","a3":""}
+var equipment: Dictionary = {"heart":"","main":"","off":"","head":"","legs":"","internal":"","a0":"","a1":"","a2":"","a3":""}
 var enemies: Array = []
 var projectiles: Array = []
 var pickups: Array = []
 var zones: Array = []
 var effects: Array = []
+var damage_numbers: Array = []
+var damage_number_serial := 0
+var crit_chance := .10
+var crit_multiplier := 1.5
+var crit_rng := RandomNumberGenerator.new()
+var bow_charging := false
+var bow_charge := 0.0
+var bow_release_power := 1.0
+var bow_direction := Vector2.RIGHT
 var data: Dictionary
 var rng := RandomNumberGenerator.new()
 var previous_dash := false
@@ -89,6 +99,7 @@ const PROVIDED_DROPS = {"hair":"hair","pin":"hairpin","water_bucket":"gourd","fo
 const GEAR2_DROPS = {"songaksi_hand":"songakHand","ribbon":"ribbon","mirror":"jokduri","eggshell":"eggshell","blank_face":"blankface","gaze":"hollowgaze","wig":"wig","duo_head":"mask","bent_leg":"brokenLeg","mongdal_legs":"leg","wet_shoes":"shoe","single_shoe":"oneShoe","stomach":"stomach","duo_curse":"curse"}
 const GEAR3_DROPS = {"nails":"mongdalNail","goose":"woodGoose","mongdal_rush":"mongdalHan","call":"changgwiBell","tiger_soul":"boundSoul","tiger_fang":"tigerFang","water_hand":"drownedHand","well_bucket":"wellBucket","fox_fire":"foxFire","fox_mirror":"shapeMirror","club":"dokkaebiClub","broom":"oldBroom","belt":"ssireumSash","tooth":"agwiTeeth","tongue":"agwiTongue","shadow":"murkShadow","voice":"mimicVoice","whistle":"thinWhistle","mouth":"giantMouth","jangsan_paw":"jangsanPaw","fox_tail":"foxTail"}
 func _ready() -> void:
+	crit_rng.randomize()
 	arsenal.c=self
 	vfx=PixelVFX.new()
 	vfx.combat=self
@@ -116,8 +127,10 @@ func _ready() -> void:
 	toast.add_theme_font_size_override("font_size",13)
 	ui.add_child(toast)
 	inventory_shade=ColorRect.new()
-	inventory_shade.color=Color(0.02,.035,.05,.78)
-	inventory_shade.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	inventory_shade.color=Color(0.01,.015,.02,.28)
+	var inventory_dim:=InventoryLayout.rect("dim",Vector2(768,432))
+	inventory_shade.position=inventory_dim.position
+	inventory_shade.size=inventory_dim.size
 	inventory_shade.mouse_filter=Control.MOUSE_FILTER_IGNORE
 	ui.add_child(inventory_shade)
 	inventory_shade.hide()
@@ -150,6 +163,27 @@ func seed_starter() -> void:
 func message(text: String) -> void:
 	toast.text=text
 	toast_time=3
+func roll_player_damage(amount: float) -> Dictionary:
+	var critical:=crit_rng.randf()<effective_crit_chance()
+	return {"damage":amount*(effective_crit_multiplier() if critical else 1.0),"critical":critical}
+func effective_crit_chance() -> float:
+	# 치명타 수치 +100은 실제 확률 +10%p. 최종 확률은 60%가 상한이다.
+	return minf(.60,crit_chance+(.10 if has_passive("critical_dagger") else 0.0))
+func effective_crit_multiplier() -> float:
+	# 치명타 대미지 +100은 배율 +1.0: 기본 1.5배에서 2.5배가 된다.
+	return crit_multiplier+(1.0 if has_passive("critical_dagger") else 0.0)
+func damage_enemy(enemy: Node, amount: float) -> Dictionary:
+	var result:=roll_player_damage(amount)
+	enemy.take_damage(float(result["damage"]),false,Color("f1c45b") if result["critical"] else Color("f3e6c8"),bool(result["critical"]))
+	return result
+func show_damage_number(pos: Vector2, amount: float, color := Color("f3e6c8"), critical := false) -> void:
+	if amount<=0: return
+	var value:=str(int(round(amount))) if is_equal_approx(amount,round(amount)) else ("%.1f" % amount)
+	# 좁은 범위에 산발적으로 겹쳐 뜨되 같은 좌표에 완전히 포개지지는 않는다.
+	var spread:=Vector2(float((damage_number_serial*17)%27-13),float(-((damage_number_serial*11)%13)))
+	var drift:=float((damage_number_serial*7)%17-8)
+	damage_number_serial+=1
+	damage_numbers.append({"pos":pos+spread,"drift":drift,"text":value,"color":color,"critical":critical,"life":.75,"age":0.0})
 func leave_room() -> void:
 	end_warden_pattern(false)
 	boss_transitioning=false
@@ -166,6 +200,7 @@ func leave_room() -> void:
 	projectiles.clear()
 	zones.clear()
 	effects.clear()
+	damage_numbers.clear()
 func enter_room(room_data: Dictionary) -> void:
 	leave_room()
 	data=room_data
@@ -416,7 +451,7 @@ func area_effect(origin: Vector2,radius: float,damage: float,source: Node=null) 
 		damage_warden_stakes(origin,radius,damage)
 		for enemy in living():
 			if (enemy.global_position+Vector2(0,-25*enemy.size_factor)).distance_to(origin)<radius+15:
-				enemy.take_damage(damage)
+				damage_enemy(enemy,damage)
 				if equipped("main").get("id","")=="fist": hit_pause=maxf(hit_pause,.06)
 	elif source.confusion>0:
 		for enemy in living():
@@ -492,6 +527,26 @@ func aim() -> Vector2:
 	return difference.normalized() if difference.length()>4 else Vector2(world.player.facing,0)
 func perform_attack(slot: String) -> void:
 	arsenal.attack(slot)
+func uses_charge_bow() -> bool:
+	return equipped("main").get("id","")=="someone_bow"
+func tick_charge_bow(delta: float,held: bool) -> void:
+	if not uses_charge_bow() or world.in_village:
+		bow_charging=false
+		bow_charge=0.0
+		return
+	if held:
+		if not bow_charging:
+			if float(attack_cd["main"])>0: return
+			bow_charging=true
+			bow_charge=0.0
+		bow_charge=minf(1.2,bow_charge+delta)
+		bow_direction=aim()
+		return
+	if bow_charging:
+		bow_release_power=clampf(bow_charge/1.2,0.0,1.0)
+		if float(attack_cd["main"])<=0: perform_attack("main")
+		bow_charging=false
+		bow_charge=0.0
 func fire_projectile(pos: Vector2,direction: Vector2,damage: float,friendly: bool,kind: String,source: Node=null,homing:=false) -> void:
 	projectiles.append({"pos":pos,"velocity":direction*(440 if friendly else 220),"damage":damage,"friendly":friendly,"kind":kind,"life":(1.2 if friendly else 2.0),"age":0.0,"hit":[],"source":source,"homing":homing})
 func use_skill(slot: String) -> void:
@@ -665,29 +720,34 @@ func style_skin_slot(button:Button,selected:=false) -> void:
 
 func style_movable_slot(button:Button,selected:=false) -> void:
 	button.add_theme_font_override("font",InventoryFont)
-	var normal_path:="res://assets/ui/modular/slot-selected-v1.png" if selected else "res://assets/ui/modular/slot-normal-v1.png"
 	for state in ["normal","disabled","hover","pressed"]:
 		var style:=StyleBoxTexture.new()
-		style.texture=load("res://assets/ui/modular/slot-selected-v1.png" if state in ["hover","pressed"] else normal_path)
-		style.texture_margin_left=9
-		style.texture_margin_right=9
-		style.texture_margin_top=9
-		style.texture_margin_bottom=9
+		var texture:=AtlasTexture.new()
+		texture.atlas=RESTRAINED_UI_ATLAS
+		texture.region=Rect2(912,627,153,153)
+		style.texture=texture
+		style.texture_margin_left=8
+		style.texture_margin_right=8
+		style.texture_margin_top=8
+		style.texture_margin_bottom=8
+		if selected or state in ["hover","pressed"]: style.modulate_color=Color(1.12,.94,.72,1)
 		if state=="disabled": style.modulate_color=Color(.68,.66,.63,1)
 		elif state=="pressed": style.modulate_color=Color(.82,.78,.70,1)
 		button.add_theme_stylebox_override(state,style)
 
 func style_action_button(button:Button,danger:=false) -> void:
 	button.add_theme_font_override("font",InventoryFont)
-	var paths:={"normal":"res://assets/ui/modular/button-normal-v1.png","hover":"res://assets/ui/modular/button-hover-v1.png","pressed":"res://assets/ui/modular/button-pressed-v1.png"}
-	for state in paths:
+	for state in ["normal","hover","pressed"]:
 		var style:=StyleBoxTexture.new()
-		style.texture=load(paths[state])
-		style.texture_margin_left=38
-		style.texture_margin_right=38
-		style.texture_margin_top=24
-		style.texture_margin_bottom=24
-		style.modulate_color=Color(.62,.60,.58,1) if state=="normal" else Color(.78,.75,.70,1)
+		var texture:=AtlasTexture.new()
+		texture.atlas=RESTRAINED_UI_ATLAS
+		texture.region=Rect2(912,850,255,93) if not danger else Rect2(1215,850,256,93)
+		style.texture=texture
+		style.texture_margin_left=10
+		style.texture_margin_right=10
+		style.texture_margin_top=7
+		style.texture_margin_bottom=7
+		style.modulate_color=Color(.82,.80,.76,1) if state=="normal" else Color(1.0,.94,.82,1)
 		button.add_theme_stylebox_override(state,style)
 	button.add_theme_color_override("font_color",Color("dca49b") if danger else Color("eee2cc"))
 
@@ -818,6 +878,7 @@ func refresh_inventory() -> void:
 	close.text="닫기"
 	apply_inventory_rect(close,"btn_close")
 	close.focus_mode=Control.FOCUS_NONE
+	close.add_to_group("inventory_bounded_control")
 	style_action_button(close,false)
 	close.pressed.connect(toggle_inventory)
 	inv_rows.add_child(close)
@@ -826,7 +887,6 @@ func refresh_inventory() -> void:
 	add_layout_equipped_slot(board,"slot_head","head","머리")
 	add_layout_equipped_slot(board,"slot_main","main","주무기")
 	add_layout_equipped_slot(board,"slot_legs","legs","다리")
-	add_layout_equipped_slot(board,"slot_feet","feet","발")
 	add_layout_equipped_slot(board,"slot_heart","heart","심장")
 	add_layout_equipped_slot(board,"slot_off","off","보조무기")
 	add_layout_equipped_slot(board,"slot_internal","internal","내장")
@@ -835,16 +895,18 @@ func refresh_inventory() -> void:
 	accessory_slots.sort()
 	var accessory_rail:=InventoryAccessoryRail.new()
 	apply_inventory_rect(accessory_rail,"rail_panel")
-	accessory_rail.configure(accessory_slots.size())
+	var rail_layout:=InventoryLayout.node("rail_panel",inventory.size)
+	accessory_rail.configure(accessory_slots.size(),float(rail_layout.get("slotsFit",252)),int(rail_layout.get("columns",accessory_slots.size())))
 	inv_rows.add_child(accessory_rail)
 	var accessory_title:=inv_label("악세사리",10,Color("29170e"))
 	accessory_title.position=Vector2((accessory_rail.size.x-88)*.5,1)
 	accessory_title.size=Vector2(88,18)
 	accessory_title.horizontal_alignment=HORIZONTAL_ALIGNMENT_CENTER
 	accessory_rail.add_child(accessory_title)
-	var accessory_row:=HBoxContainer.new()
+	var accessory_row:=GridContainer.new()
+	accessory_row.columns=accessory_rail.columns
 	accessory_row.position=accessory_rail.slots_origin()
-	accessory_row.size=Vector2(accessory_rail.slots_width(),accessory_rail.slot_size)
+	accessory_row.size=Vector2(accessory_rail.slots_width(),accessory_rail.size.y-accessory_row.position.y-8)
 	accessory_row.add_theme_constant_override("separation",int(accessory_rail.gap))
 	for slot in accessory_slots:
 		var accessory_button:=DragSlot.new()
@@ -915,20 +977,32 @@ func refresh_inventory() -> void:
 		add_slot_icon(detail_icon_button,item,1.0)
 		inv_rows.add_child(detail_icon_button)
 		var item_name:=inv_label(str(item["name"]),16,Color("f0dcae"))
+		item_name.clip_text=true
+		item_name.text_overrun_behavior=TextServer.OVERRUN_TRIM_ELLIPSIS
 		apply_inventory_rect(item_name,"detail_name")
+		item_name.add_to_group("inventory_bounded_control")
 		inv_rows.add_child(item_name)
-		var meta:=inv_label(DB.slot_name(item["slot"])+" · "+attack_type_label(item)+" · "+str(item.get("tier",1))+"단계",10,Color("b99d72"))
+		var attack_text:=attack_type_label(item).trim_prefix("[").trim_suffix("]")
+		var meta:=inv_label(DB.slot_name(item["slot"])+" · "+str(item.get("tier",1))+"단계\n"+attack_text,9,Color("b99d72"))
+		meta.clip_text=true
+		meta.autowrap_mode=TextServer.AUTOWRAP_ARBITRARY
+		meta.max_lines_visible=2
 		apply_inventory_rect(meta,"detail_meta")
+		meta.add_to_group("inventory_bounded_control")
 		inv_rows.add_child(meta)
 		var effect_label:=inv_label(str(item.get("effect","")),11,Color("d8d1c2"))
+		effect_label.autowrap_mode=TextServer.AUTOWRAP_ARBITRARY
+		effect_label.clip_text=true
+		effect_label.max_lines_visible=2
 		apply_inventory_rect(effect_label,"detail_effect")
-		effect_label.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART
+		effect_label.add_to_group("inventory_bounded_control")
 		inv_rows.add_child(effect_label)
 		var equip_button:=Button.new()
 		equip_button.text="장착"
 		apply_inventory_rect(equip_button,"btn_equip")
 		equip_button.focus_mode=Control.FOCUS_NONE
-		equip_button.add_theme_font_size_override("font_size",14)
+		equip_button.add_theme_font_size_override("font_size",11)
+		equip_button.add_to_group("inventory_bounded_control")
 		equip_button.add_theme_color_override("font_color",Color("e7dcc5"))
 		style_action_button(equip_button,false)
 		equip_button.pressed.connect(func():equip_bag(inventory_selection))
@@ -937,7 +1011,8 @@ func refresh_inventory() -> void:
 		destroy.text="파기"
 		apply_inventory_rect(destroy,"btn_destroy")
 		destroy.focus_mode=Control.FOCUS_NONE
-		destroy.add_theme_font_size_override("font_size",14)
+		destroy.add_theme_font_size_override("font_size",11)
+		destroy.add_to_group("inventory_bounded_control")
 		style_action_button(destroy,true)
 		destroy.pressed.connect(func():
 			pending_destroy=inventory_selection
@@ -1000,7 +1075,7 @@ func tick_projectiles(delta: float) -> void:
 				if Geometry2D.get_closest_point_to_segment(center,from,to).distance_to(center)<18*enemy.size_factor+6*float(p.get("size",1)):
 					arsenal.hit(enemy,p["damage"],p.get("weapon",""))
 					p["hit"].append(enemy.get_instance_id())
-					if p["kind"] not in ["whistle","boomerang","beam","tiger"]:
+					if p["kind"] not in ["whistle","boomerang","beam","tiger","piercing_arrow"]:
 						if p["kind"] in ["water","poison"]: zones.append({"kind":p["kind"],"weapon":p.get("weapon",""),"pos":safe_ground(to.x),"life":3.0,"tick":0.0})
 						p["life"]=0
 						break
@@ -1140,8 +1215,13 @@ func _physics_process(delta: float) -> void:
 		attack_cd[slot]=maxf(0,float(attack_cd[slot])-delta)
 		skill_cd[slot]=maxf(0,float(skill_cd[slot])-delta)
 	var capture_aim_pressed:=Input.is_action_just_pressed("attack") or Input.is_action_just_pressed("attack_left") or Input.is_action_just_pressed("attack_right") or Input.is_action_just_pressed("attack_up") or Input.is_action_just_pressed("attack_down")
+	if bow_charging and not uses_charge_bow():
+		bow_charging=false
+		bow_charge=0.0
 	if warden_pattern_active and warden_pattern=="capture" and capture_aim_pressed:
 		hit_warden_orb(world.player.position+Vector2(0,-28)+aim()*600.0,true)
+	elif uses_charge_bow() and not (warden_pattern_active and warden_pattern in ["capture","heart"]):
+		tick_charge_bow(delta,attack_input_held())
 	elif attack_input_held() and not world.in_village and not (warden_pattern_active and warden_pattern in ["capture","heart"]):
 		for slot in ["main","off"]:
 			if float(attack_cd[slot])<=0: perform_attack(slot)
@@ -1166,6 +1246,10 @@ func _physics_process(delta: float) -> void:
 	for i in range(effects.size()-1,-1,-1):
 		effects[i]["time"]-=delta
 		if effects[i]["time"]<=0: effects.remove_at(i)
+	for i in range(damage_numbers.size()-1,-1,-1):
+		damage_numbers[i]["age"]+=delta
+		damage_numbers[i]["life"]-=delta
+		if damage_numbers[i]["life"]<=0: damage_numbers.remove_at(i)
 	game_hud.set_stats(health,max_health,BagUtil.count(world.wallet["bag"]),world.player.dash_charges,world.player.dash_max_charges)
 	hud.text=""
 	var heart:Dictionary=HeartDB.get_heart(str(equipment.get("heart","")))
@@ -1196,7 +1280,15 @@ func _draw() -> void:
 				var side:=direction.orthogonal()
 				draw_polygon(PackedVector2Array([point+direction*10,point-direction*5+side*6,point-direction*5-side*6]),PackedColorArray([Color("e2a78b")]))
 	for p in projectiles:
-		if not p["friendly"] and p["kind"]!="talisman": draw_line(p["pos"]-Vector2(p["velocity"]).normalized()*10,p["pos"],Color("e1b17c"),3)
+		if p["friendly"] and p["kind"]=="piercing_arrow":
+			var arrow_dir:=Vector2(p["velocity"]).normalized()
+			draw_line(p["pos"]-arrow_dir*18,p["pos"]+arrow_dir*7,Color("a89b7c"),2)
+			draw_polyline(PackedVector2Array([p["pos"]+arrow_dir*7+arrow_dir.orthogonal()*4,p["pos"]+arrow_dir*13,p["pos"]+arrow_dir*7-arrow_dir.orthogonal()*4]),Color("d4c7a2"),2)
+		elif not p["friendly"] and p["kind"]!="talisman": draw_line(p["pos"]-Vector2(p["velocity"]).normalized()*10,p["pos"],Color("e1b17c"),3)
+	if bow_charging and is_instance_valid(world.player):
+		var charge_ratio:float=bow_charge/1.2
+		var bow_origin:Vector2=world.player.position+Vector2(0,-28)
+		draw_arc(bow_origin,13+charge_ratio*7,-PI*.5,PI*.5,12,Color(0.66,0.59,0.43,.35+charge_ratio*.55),2)
 	for zone in zones:
 		if zone["kind"]=="decoy": draw_rect(Rect2(zone["pos"]-Vector2(13,46),Vector2(26,46)),Color(.6,.8,.75,.5))
 		elif zone["kind"] in ["enemy-arrow-rain","warden-talisman"]:
@@ -1216,6 +1308,17 @@ func _draw() -> void:
 				for knot in range(-32,33,16): draw_line(Vector2(zone["pos"])+Vector2(knot,-8),Vector2(zone["pos"])+Vector2(knot+8,-34),Color("9b7350"),3)
 	for effect in effects:
 		if effect["color"]==Color("db9a73"): draw_arc(effect["pos"],effect["radius"],-.8,2.4,24,effect["color"],2)
+	for number in damage_numbers:
+		var alpha:=clampf(float(number["life"])/.3,0.0,1.0)
+		var critical:=bool(number.get("critical",false))
+		var rise:=42.0 if critical else 34.0
+		var pos:Vector2=Vector2(number["pos"])+Vector2(float(number["drift"])*float(number["age"]),-float(number["age"])*rise)+Vector2(-24,0)
+		var shadow:=Color(0.06,0.04,0.03,.85*alpha)
+		var color:Color=number["color"]
+		color.a*=alpha
+		var font_size:=17 if critical else 14
+		draw_string(InventoryFont,pos+Vector2(1,1),str(number["text"]),HORIZONTAL_ALIGNMENT_CENTER,48,font_size,shadow)
+		draw_string(InventoryFont,pos,str(number["text"]),HORIZONTAL_ALIGNMENT_CENTER,48,font_size,color)
 	for pickup in pickups:
 		var pos: Vector2=pickup["pos"]
 		if pickup["kind"]=="souls":

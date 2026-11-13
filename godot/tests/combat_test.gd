@@ -18,6 +18,7 @@ func run_checks() -> void:
 	await frames(40)
 	world.set_process(false)
 	var combat=world.combat
+	combat.crit_chance=0.0
 	combat.set_physics_process(false)
 	combat.paused=true
 	if not check(combat.living().size()>0 and combat.locked(),"Combat room spawns temporary enemies and locks portals"): return

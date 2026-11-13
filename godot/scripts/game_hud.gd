@@ -13,6 +13,7 @@ const BUTTON_HOVER = preload("res://assets/ui/modular/button-hover-v1.png")
 const BUTTON_PRESSED = preload("res://assets/ui/modular/button-pressed-v1.png")
 const PLAQUE = preload("res://assets/ui/modular/plaque-v1.png")
 const PixelSlider = preload("res://scripts/pixel_slider.gd")
+const Player = preload("res://scripts/player.gd")
 
 class DashGauge extends Control:
 	var charges := 1
@@ -251,6 +252,7 @@ func build_settings_panel() -> void:
 	volume_row.add_child(volume)
 	content.add_child(volume_row)
 	content.add_child(setting_toggle("전체 화면",DisplayServer.window_get_mode() == DisplayServer.WINDOW_MODE_FULLSCREEN,func(on: bool): DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN if on else DisplayServer.WINDOW_MODE_WINDOWED)))
+	content.add_child(setting_toggle("이동 방향으로 대시",Player.dash_to_move_direction,func(on: bool): Player.dash_to_move_direction=on))
 	var close_center := CenterContainer.new()
 	var close := styled_button("닫기")
 	close.pressed.connect(toggle_settings)

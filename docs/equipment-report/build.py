@@ -47,7 +47,7 @@ gm = re.search(r'for a in \[(.*?)\]:\n', db, re.S)
 general = [dict(id=a, name=n, slot=s, tier=int(t), passive=p, set=('duo' if a.startswith('duo') else 'songaksi' if a == 'wig' else ''))
            for a, n, s, t, p in re.findall(r'\["(\w+)","([^"]+)","(\w+)",(\d+),"(\w+)"\]', gm.group(1))]
 pm = re.search(r'passive","\w+"\}', db)
-general_effect = {"hair_range":"머리카락 사거리 20% 증가","reach":"근접 사거리·투사체 크기 1.5배","speed":"이동속도 12% 증가","frenzy":"처치 후 3초간 이동·공격속도 15% 증가","wet_dash":"대시 후 둔화 물자국","landing":"착지 시 근처 적 밀치기","heal":"처치 시 HP 3 회복 (0.6초 간격)","dash_power":"대시 공격 피해 1.5배"}
+general_effect = {"hair_range":"머리카락 사거리 20% 증가","reach":"근접 사거리·투사체 크기 1.5배","speed":"이동속도 12% 증가","frenzy":"처치 후 3초간 이동·공격속도 15% 증가","wet_dash":"대시 후 둔화 물자국","landing":"착지 시 근처 적 밀치기","heal":"처치 시 HP 3 회복 (0.6초 간격)","dash_power":"대시 공격 피해 1.5배","critical_dagger":"치명타 확률 +100 · 치명타 대미지 +100"}
 for g in general: g['effect'] = general_effect[g['passive']]
 fm = re.search(r'"id":"fox_tail","name":"([^"]+)","slot":"(\w+)","tier":(\d+).*?"effect":"([^"]+)"', db)
 general.append(dict(id='fox_tail', name=fm.group(1), slot=fm.group(2), tier=int(fm.group(3)), passive='fox_tail', set='fox', effect=fm.group(4)))
@@ -131,7 +131,7 @@ def drop(i):
 
 SETS = {'songaksi':'손각시','egg':'달걀귀신','mongdal':'몽달귀신','changgui':'창귀','water':'물귀신','fox':'구미호','goblin':'도깨비','agwi':'아귀','shadow':'어둑시니',
         'tiger':'장산범(목소리)','plague':'여귀','myeongdo':'명도','geogu':'거구귀','duo':'두억시니','jangsan':'장산범(앞발·보상)'}
-SLOT = {'main':'주무기','off':'보조무기','two':'양손','head':'머리','legs':'다리','feet':'발','accessory':'악세서리'}
+SLOT = {'main':'주무기','off':'보조무기','two':'양손','head':'머리','legs':'다리','accessory':'악세서리'}
 TIER = {1:'일반',2:'희귀',3:'영웅',4:'전설'}
 
 items = []

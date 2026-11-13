@@ -34,6 +34,10 @@ var flash := 0.0
 var slow := 0.0
 var vulnerable := 0.0
 var one_hit_vulnerable := false
+var burn := 0.0
+var burn_tick := 0.0
+var burn_damage := 1.0
+var burn_interval := .5
 var knockback := 0.0
 var thrown_velocity := Vector2.ZERO
 var throw_remaining := 0.0
@@ -195,14 +199,15 @@ func _process(delta: float) -> void:
 		director.boss_transitioning=false
 		director.message(("장산범의 그림자 · 2페이즈" if jangsan_phase==2 else "장산범 · 3페이즈"))
 		queue_redraw()
-func take_damage(amount: float) -> void:
+func take_damage(amount: float, ignore_vulnerability := false, number_color := Color("f3e6c8"), critical := false) -> void:
 	if dead or dying: return
-	if one_hit_vulnerable:
+	if one_hit_vulnerable and not ignore_vulnerability:
 		amount*=1.5
 		one_hit_vulnerable=false
 		vulnerable=0.0
-	elif vulnerable>0:
+	elif vulnerable>0 and not ignore_vulnerability:
 		amount*=1.5
+	if is_instance_valid(director): director.show_damage_number(global_position+Vector2(0,-55*size_factor),amount,number_color,critical)
 	hp-=amount
 	flash=.1
 	if hp<=0:
@@ -223,6 +228,20 @@ func take_damage(amount: float) -> void:
 		collision_layer=0
 		director.enemy_killed(self)
 	queue_redraw()
+func apply_burn(duration := 3.0, damage := 1.0, interval := .5) -> void:
+	if dead or dying: return
+	if burn<=0: burn_tick=interval
+	burn=maxf(burn,duration)
+	burn_damage=damage
+	burn_interval=interval
+func tick_burn(delta: float) -> void:
+	if burn<=0 or dead or dying: return
+	burn=maxf(0.0,burn-delta)
+	burn_tick-=delta
+	if burn_tick<=0:
+		burn_tick+=burn_interval
+		take_damage(burn_damage,true,Color("e27a32"),false)
+		flash=0.0
 func pull_to(target: Vector2, duration := .7) -> void:
 	if dead: return
 	pull_origin=position
@@ -253,6 +272,8 @@ func _physics_process(delta: float) -> void:
 			director.vfx.enemy("enemy-spirit-death",global_position+Vector2(0,-8*size_factor),Vector2(facing,0),size_factor)
 			director.enemy_killed(self)
 		return
+	tick_burn(delta)
+	if dead: return
 	slow=maxf(0,slow-delta)
 	vulnerable=maxf(0,vulnerable-delta)
 	if throw_remaining>0:
@@ -263,8 +284,8 @@ func _physics_process(delta: float) -> void:
 		for other in director.living():
 			if other!=self and not throw_hits.has(other.get_instance_id()) and other.position.distance_to(position)<48:
 				throw_hits.append(other.get_instance_id())
-				other.take_damage(throw_damage)
-				take_damage(throw_damage)
+				director.damage_enemy(other,throw_damage)
+				director.damage_enemy(self,throw_damage)
 		queue_redraw()
 		return
 	if absf(knockback)>10:

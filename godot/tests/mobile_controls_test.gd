@@ -15,7 +15,7 @@ func require(ok: bool, message: String) -> bool:
 	return false
 
 func run_checks() -> void:
-	var actions = ["move_left", "move_right", "aim_up", "aim_down", "attack", "attack_left", "attack_right", "attack_up", "attack_down", "jump", "dash", "heart_skill", "main_skill", "off_skill", "interact", "inventory", "equipment_lab"]
+	var actions = ["move_left", "move_right", "aim_up", "aim_down", "drop_down", "attack", "attack_left", "attack_right", "attack_up", "attack_down", "jump", "dash", "heart_skill", "main_skill", "off_skill", "interact", "inventory", "equipment_lab"]
 	for action in actions:
 		if not InputMap.has_action(action):
 			InputMap.add_action(action)
@@ -32,6 +32,10 @@ func run_checks() -> void:
 	controls.update_move_stick(Vector2(150,290))
 	if not require(Input.is_action_pressed("move_right") and not Input.is_action_pressed("jump") and not Input.is_action_pressed("aim_up"), "Upward movement-stick input stays movement-only; the separate jump button owns jumping"):
 		return
+	controls.update_move_stick(Vector2(100,352))
+	if not require(Input.is_action_pressed("drop_down") and not Input.is_action_pressed("attack_down"), "Pulling the left stick down requests a platform drop without changing attack aim"):
+		return
+	controls.update_move_stick(Vector2(150,300))
 	var player:=Player.new()
 	Controls.move_vector=Vector2(.73,-.31)
 	if not require(player.mobile_dash_direction().is_equal_approx(Controls.move_vector.normalized()), "Mobile dash preserves the movement stick's free analog angle"):
@@ -49,10 +53,20 @@ func run_checks() -> void:
 	var analog_attack:=Vector2(Input.get_axis("attack_left","attack_right"),Input.get_axis("attack_up","attack_down"))
 	if not require(analog_attack.normalized().is_equal_approx(controls.attack_stick.normalized()), "Mobile attack keeps the right stick's free analog angle"):
 		return
+	var dash_player:=Player.new()
+	Player.dash_to_move_direction=false
+	if not require(dash_player.dash_input_direction(0.0,true).is_equal_approx(analog_attack.normalized()), "Mobile default dash follows the right attack stick aim"):
+		return
+	Player.dash_to_move_direction=true
+	Controls.move_vector=Vector2(-.6,.25)
+	if not require(dash_player.dash_input_direction(0.0,true).is_equal_approx(Controls.move_vector.normalized()), "Mobile move-direction setting switches dash to the left movement stick"):
+		return
+	Player.dash_to_move_direction=false
+	dash_player.free()
 	controls.release_attack()
 	if not require(not Input.is_action_pressed("attack") and not Input.is_action_pressed("attack_left") and Input.is_action_pressed("move_right"), "Releasing attack finger stops fire without stopping movement"):
 		return
 	controls.release_movement()
-	if not require(not Input.is_action_pressed("move_right") and controls.move_finger < 0 and controls.attack_finger < 0, "Releasing both fingers clears both temporary sticks"):
+	if not require(not Input.is_action_pressed("move_right") and not Input.is_action_pressed("drop_down") and controls.move_finger < 0 and controls.attack_finger < 0, "Releasing both fingers clears both temporary sticks"):
 		return
 	quit(0)

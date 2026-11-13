@@ -22,7 +22,8 @@ func run_checks() -> void:
 	world.combat.toggle_inventory()
 	await frames(8)
 	var combat=world.combat
-	if not check(combat.inventory.visible and combat.inventory.size==Vector2(768,432),"Inventory uses the full compact 768x432 composition"): return
+	var frame:=InventoryLayout.rect("frame",combat.inventory.size)
+	if not check(combat.inventory.visible and combat.inventory.size==Vector2(768,432) and frame.position.x>=384 and frame.end.x<=768,"Inventory keeps a stable design surface while the visible panel occupies only the right half"): return
 	var expected_accessories:int=combat.equipment.keys().filter(func(key):return str(key).begins_with("a")).size()
 	if not check(get_nodes_in_group("inventory_accessory_slot").size()==expected_accessories,"Accessory rail derives its square slots from the equipment model"): return
 	combat.equipment.erase("a2")
@@ -39,8 +40,11 @@ func run_checks() -> void:
 	var left_margin:float=six_slots[0].global_position.x-rail.global_position.x
 	var right_margin:float=rail.global_position.x+rail.size.x-(six_slots[-1].global_position.x+six_slots[-1].size.x)
 	if not check(absf(left_margin-right_margin)<2.0,"Variable accessory slots stay centered in their rail"): return
-	if not check(get_nodes_in_group("inventory_bag_slot").size()>=30,"Expanded bag keeps a complete five-row, six-column item grid"): return
+	if not check(get_nodes_in_group("inventory_bag_slot").size()>=30 and int(InventoryLayout.node("bag_grid",combat.inventory.size).get("columns",0))==4,"Half-screen bag keeps the full item capacity in a four-column scroll grid"): return
 	if not check(combat.inv_rows.size.y<=combat.inventory.size.y,"Inventory content stays inside the visible panel"): return
+	for control in get_nodes_in_group("inventory_bounded_control"):
+		var local_rect:=Rect2(control.global_position-combat.inventory.global_position,control.size)
+		if not check(frame.encloses(local_rect),"Inventory control stays inside frame: "+control.get_class()+" · "+str(control.get("text"))+" · "+str(local_rect)): return
 	combat.equipment["heart"]="songaksi"
 	combat.refresh_inventory()
 	await frames(2)

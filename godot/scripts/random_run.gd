@@ -758,7 +758,7 @@ func toggle_equipment_lab() -> void:
 	in_village=false
 	run={"seed":1103,"version":Generator.VERSION,"goal":0,"rooms":[{"id":0,"template":"sanctum","links":[],"grid":[0,0],"decor_seed":1103,"visited":true}]}
 	change_room(0,-1)
-	combat.equipment={"heart":"songaksi","main":"songaksi_hand","off":"","head":"","legs":"","feet":"","a0":"","a1":"","a2":"","a3":""}
+	combat.equipment={"heart":"songaksi","main":"songaksi_hand","off":"","head":"","legs":"","a0":"","a1":"","a2":"","a3":""}
 	combat.max_health=60
 	combat.health=60
 	lab_index=0
@@ -809,12 +809,12 @@ func start_full_test_run() -> void:
 	if combat.equipment_lab: toggle_equipment_lab()
 	full_test_run=true
 	full_test_heart_index=0
-	combat.equipment={"heart":"songaksi","main":"songaksi_hand","off":"","head":"","legs":"","feet":"","internal":"","a0":"","a1":"","a2":"","a3":""}
+	combat.equipment={"heart":"songaksi","main":"songaksi_hand","off":"","head":"","legs":"","internal":"","a0":"","a1":"","a2":"","a3":""}
 	wallet={"souls":9999,"bag":CombatDirector.DB.items()}
 	floor_number=1
 	new_run(fresh_seed())
 	set_lab_heart("songaksi")
-	combat.message("전체 해금 실전 런 · 전 장비 43종 보유 · , . 캐릭터 전환 · 정상 방·상점·보스 진행")
+	combat.message("전체 해금 실전 런 · 전 장비 "+str(CombatDirector.DB.items().size())+"종 보유 · , . 캐릭터 전환 · 정상 방·상점·보스 진행")
 
 func cycle_full_test_heart(step: int) -> void:
 	var hearts:Array=HeartDB.HEARTS.keys()

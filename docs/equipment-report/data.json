@@ -2034,6 +2034,59 @@
    "category": "weapon"
   },
   {
+   "id": "someone_bow",
+   "name": "누군가의 활",
+   "slot": "two",
+   "kind": "ranged",
+   "tier": 3,
+   "damage": 18.0,
+   "interval": 1.0,
+   "range": 560,
+   "skill": "",
+   "set": "human",
+   "cooldown": 0.0,
+   "effectText": "영웅 양손 무기 · 최대 1.2초 차징 · 충전량에 따라 피해 65~175% · 적 관통",
+   "icon": {
+    "kind": "draft",
+    "src": "../../godot/assets/equipment/icons/someone_bow.png"
+   },
+   "drop": null,
+   "fx": [
+    {
+     "label": "공격",
+     "note": "공용(충격)",
+     "png": "../../godot/assets/vfx/impact-3.png",
+     "frames": 19,
+     "fw": 216,
+     "fh": 136,
+     "cols": 4,
+     "fps": 25.0,
+     "loop": false,
+     "pivot": [
+      84.0,
+      106.0
+     ]
+    },
+    {
+     "label": "명중",
+     "note": "공용",
+     "png": "../../godot/assets/vfx/impact-3.png",
+     "frames": 19,
+     "fw": 216,
+     "fh": 136,
+     "cols": 4,
+     "fps": 25.0,
+     "loop": false,
+     "pivot": [
+      84.0,
+      106.0
+     ]
+    }
+   ],
+   "place": null,
+   "category": "weapon"
+  },
+  {
    "id": "mouth",
    "name": "거구귀의 입",
    "slot": "two",
@@ -2351,7 +2404,7 @@
   {
    "id": "wet_shoes",
    "name": "젖은 꽃신",
-   "slot": "feet",
+   "slot": "legs",
    "tier": 2,
    "passive": "wet_dash",
    "set": "",
@@ -2381,7 +2434,7 @@
   {
    "id": "single_shoe",
    "name": "한쪽 꽃신",
-   "slot": "feet",
+   "slot": "legs",
    "tier": 1,
    "passive": "landing",
    "set": "",
@@ -2469,20 +2522,38 @@
    "fx": []
   },
   {
+   "id": "sharp_dagger",
+   "name": "날카로운 비수",
+   "slot": "accessory",
+   "tier": 3,
+   "passive": "critical_dagger",
+   "set": "",
+   "effect": "치명타 확률 +100 · 치명타 대미지 +100",
+   "codeUsed": true,
+   "icon": {
+    "kind": "draft",
+    "src": "../../godot/assets/equipment/icons/sharp_dagger.png"
+   },
+   "drop": null,
+   "effectText": "치명타 확률 +100 · 치명타 대미지 +100",
+   "category": "gear",
+   "fx": []
+  },
+  {
    "id": "fox_tail",
    "name": "구미호의 꼬리",
    "slot": "accessory",
    "tier": 3,
    "passive": "fox_tail",
    "set": "fox",
-   "effect": "악세서리 · 공격 시 여우불 잔광이 적을 태움",
-   "codeUsed": false,
+   "effect": "공격 적중 시 3초간 화상 · 0.5초마다 피해 1",
+   "codeUsed": true,
    "icon": {
     "kind": "gear3",
     "src": "../../godot/assets/gear3/icons/foxTail.png"
    },
    "drop": null,
-   "effectText": "악세서리 · 공격 시 여우불 잔광이 적을 태움",
+   "effectText": "공격 적중 시 3초간 화상 · 0.5초마다 피해 1",
    "category": "gear",
    "fx": []
   }
@@ -2510,7 +2581,6 @@
   "two": "양손",
   "head": "머리",
   "legs": "다리",
-  "feet": "발",
   "accessory": "악세서리"
  },
  "tiers": {
@@ -2863,6 +2933,17 @@
    }
   },
   {
+   "name": "누군가의 활",
+   "status": "ok",
+   "diffs": [],
+   "design": {
+    "slot": "two",
+    "kind": "ranged",
+    "tier": 3,
+    "effect": "공격 키를 최대 1.2초 누르고 놓아 발사. 충전량에 따라 피해가 증가하며 화살은 적을 관통"
+   }
+  },
+  {
    "name": "거구귀의 입",
    "status": "ok",
    "diffs": [],
@@ -2938,18 +3019,21 @@
    "mouth",
    "jangsan_paw",
    "fox_tail"
+  ],
+  "draft": [
+   "someone_bow",
+   "sharp_dagger"
   ]
  },
  "genericFx": [
   "songaksi_hand",
-  "blank_face"
+  "blank_face",
+  "someone_bow"
  ],
- "codeMissing": [
-  "fox_tail"
- ],
+ "codeMissing": [],
  "counts": {
-  "weapons": 34,
-  "general": 9,
-  "designWeapons": 33
+  "weapons": 35,
+  "general": 10,
+  "designWeapons": 34
  }
 }

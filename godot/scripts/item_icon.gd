@@ -41,9 +41,19 @@ func _draw() -> void:
 		draw_rect(Rect2(10,12,22,20),c)
 		draw_rect(Rect2(13,18,5,4),Color("18232d"))
 		draw_rect(Rect2(25,18,5,4),Color("18232d"))
-	elif slot in ["legs","feet"]:
+	elif slot=="legs":
 		draw_polyline(PackedVector2Array([Vector2(14,9),Vector2(17,23),Vector2(11,33),Vector2(23,33)]),c,4)
 		draw_polyline(PackedVector2Array([Vector2(26,9),Vector2(24,23),Vector2(28,33),Vector2(35,33)]),c,3)
+	elif id=="sharp_dagger":
+		draw_line(Vector2(10,33),Vector2(31,10),Color("d9dee0"),5)
+		draw_polygon(PackedVector2Array([Vector2(31,10),Vector2(29,19),Vector2(22,12)]),PackedColorArray([Color("eef2ed")]))
+		draw_line(Vector2(8,29),Vector2(15,36),Color("9b6b49"),4)
+		draw_line(Vector2(7,27),Vector2(16,36),Color("c8a66a"),2)
+	elif id=="someone_bow":
+		draw_arc(Vector2(14,21),15,-PI*.48,PI*.48,12,Color("9a7149"),3)
+		draw_line(Vector2(14,6),Vector2(14,36),Color("d5c7a0"),1)
+		draw_line(Vector2(14,21),Vector2(35,21),Color("b7aa8a"),2)
+		draw_polygon(PackedVector2Array([Vector2(35,21),Vector2(29,17),Vector2(29,25)]),PackedColorArray([Color("d7d3c4")]))
 	elif slot=="accessory":
 		draw_circle(Vector2(21,21),11,c)
 		draw_circle(Vector2(21,21),6,Color("34464e"))

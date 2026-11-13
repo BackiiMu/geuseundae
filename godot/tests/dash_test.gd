@@ -5,6 +5,7 @@ func _initialize() -> void:
 func step(count: int) -> void:
 	for i in range(count): await physics_frame
 func run_checks() -> void:
+	Player.dash_to_move_direction=false
 	var world = load("res://scenes/random_run.tscn").instantiate()
 	world.combat_enabled=false
 	root.add_child(world)
@@ -91,4 +92,19 @@ func run_checks() -> void:
 		quit(1)
 		return
 	print("PASS airborne jump-button press performs the same 8-way aimed dash")
+	Input.action_press("attack_right")
+	Input.action_press("attack_up")
+	Player.dash_to_move_direction=true
+	if not p.dash_input_direction(-1.0,false).is_equal_approx(Vector2.LEFT):
+		push_error("Move-direction option must ignore attack aim and dash toward held movement")
+		quit(1)
+		return
+	if not p.dash_input_direction(0.0,false).is_equal_approx(Vector2(p.facing,0)):
+		push_error("Move-direction option must fall back to facing while movement is neutral")
+		quit(1)
+		return
+	print("PASS move-direction setting overrides aim and uses facing while neutral")
+	Player.dash_to_move_direction=false
+	Input.action_release("attack_right")
+	Input.action_release("attack_up")
 	quit(0)

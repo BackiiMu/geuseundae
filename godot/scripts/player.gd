@@ -31,12 +31,13 @@ var camera: Camera2D
 # A quarter-second window was too tight for a jump-release-jump gesture,
 # especially on touch screens. This still requires a deliberate quick double tap.
 const DOUBLE_TAP_WINDOW := .4
+static var dash_to_move_direction := false
 var tap_windows := {"move_left":0.0,"move_right":0.0,"aim_up":0.0,"aim_down":0.0,"jump":0.0}
 
 func _ready() -> void:
 	# Player-only test scenes do not have RandomRun's input bootstrap, so make
 	# every action queried by this script safe on its own as well.
-	for action in ["aim_up", "aim_down", "attack_left", "attack_right", "attack_up", "attack_down", "attack"]:
+	for action in ["aim_up", "aim_down", "drop_down", "attack_left", "attack_right", "attack_up", "attack_down", "attack"]:
 		if not InputMap.has_action(action):
 			InputMap.add_action(action)
 	var direction_keys := {"aim_up": [KEY_W], "aim_down": [KEY_S]}
@@ -126,6 +127,15 @@ func mobile_dash_direction() -> Vector2:
 	if stick.length()<.18: return Vector2(facing,0)
 	return stick.normalized()
 
+func dash_input_direction(move_axis: float,mobile_mode: bool) -> Vector2:
+	if not dash_to_move_direction:
+		return attack_aim_direction(move_axis)
+	if mobile_mode:
+		return mobile_dash_direction()
+	if absf(move_axis)>.01:
+		return Vector2(signf(move_axis),0)
+	return Vector2(facing,0)
+
 func handle_jump_press(dash_direction_input: Vector2) -> bool:
 	if jumped_since_floor:
 		var before:=dash_time
@@ -174,7 +184,7 @@ func _physics_process(delta: float) -> void:
 		respawn()
 	drop_timer=maxf(0,drop_timer-delta)
 	set_collision_mask_value(1,drop_timer<=0)
-	if Input.is_action_just_pressed("aim_down"):
+	if Input.is_action_just_pressed("aim_down") or Input.is_action_just_pressed("drop_down"):
 		try_drop_through_platform()
 	coyote = 0.12 if is_on_floor() else maxf(0.0, coyote - delta)
 	if is_on_floor(): jumped_since_floor=false
@@ -199,7 +209,7 @@ func _physics_process(delta: float) -> void:
 			dash_recharge_timer=.65 if dash_charges<dash_max_charges else 0.0
 	for action in tap_windows: tap_windows[action]=maxf(0,float(tap_windows[action])-delta)
 	var mobile_mode := OS.has_feature("mobile") or OS.get_cmdline_user_args().has("--touch")
-	var input_direction:=mobile_dash_direction() if mobile_mode else attack_aim_direction(axis)
+	var input_direction:=dash_input_direction(axis,mobile_mode)
 	var double_dash:=false
 	if not mobile_mode:
 		double_dash = register_double_tap("move_left",input_direction) or double_dash

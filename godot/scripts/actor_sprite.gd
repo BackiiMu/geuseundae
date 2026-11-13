@@ -209,6 +209,7 @@ func _physics_process(delta: float) -> void:
 		flash=1.0 if actor.flash>.055 else 0.0
 		if actor.slow>0: tint=Color("a2cdda")
 		if actor.vulnerable>0: tint=Color("e2acc4")
+		if actor.burn>0 and int(clock*10.0)%2==0: tint=Color("d8732f")
 		if role=="soul-warden":
 			update_soul_warden_pose()
 		elif role=="hunting-hawk":

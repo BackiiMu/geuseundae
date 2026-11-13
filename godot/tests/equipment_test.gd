@@ -18,7 +18,7 @@ func prepare(id: String) -> void:
 	world.player.set_physics_process(false)
 	world.player.position=Vector2(650,704)
 	world.player.facing=1
-	c.equipment={"heart":"songaksi","main":"","off":"","head":"","legs":"","feet":"","a0":"","a1":"","a2":"","a3":""}
+	c.equipment={"heart":"songaksi","main":"","off":"","head":"","legs":"","a0":"","a1":"","a2":"","a3":""}
 	var item=DB.get_item(id)
 	c.equipment["off" if item["slot"]=="off" else "main"]=id
 	c.arsenal.counters.clear()
@@ -37,7 +37,8 @@ func run_checks() -> void:
 	var original_max_health:float=world.combat.max_health
 	world.toggle_equipment_lab()
 	c=world.combat
-	if not check(DB.weapons().size()==34 and DB.items().size()==43 and world.wallet["bag"].size()==43,"All 34 weapons and 9 passive items are available in lab"): return
+	c.crit_chance=0.0
+	if not check(DB.weapons().size()==35 and DB.items().size()==45 and world.wallet["bag"].size()==45,"All 35 weapons and 10 passive items are available in lab"): return
 	for heart_id in HeartDB.HEARTS:
 		world.set_lab_heart(heart_id)
 		var heart:=HeartDB.get_heart(heart_id)
@@ -49,7 +50,7 @@ func run_checks() -> void:
 		var equipped_ids:Array=c.equipment.values()
 		if not check(equipped_ids.has(item["id"]),"Lab direct cycle equips catalog item: "+item["name"]): return
 	world.set_lab_heart("songaksi")
-	c.equipment={"heart":"songaksi","main":"","off":"","head":"","legs":"","feet":"","internal":"","a0":"","a1":"","a2":"","a3":""}
+	c.equipment={"heart":"songaksi","main":"","off":"","head":"","legs":"","internal":"","a0":"","a1":"","a2":"","a3":""}
 	var ids={}
 	for item in DB.items():
 		if not check(not ids.has(item["id"]) and not str(item["effect"]).is_empty(),"Unique item and effect: "+item["name"]): return
@@ -95,6 +96,25 @@ func run_checks() -> void:
 	c.projectiles[0]["pos"]=Vector2(790,676)
 	c.tick_projectiles(.16)
 	if not check(c.living()[0].hp<before,"Goose can hit same enemy on return leg"): return
+	prepare("someone_bow")
+	world.in_village=false
+	var uncharged_projectiles:int=c.projectiles.size()
+	c.tick_charge_bow(.6,true)
+	if not check(c.bow_charging and is_equal_approx(c.bow_charge,.6) and c.projectiles.size()==uncharged_projectiles,"Someone's bow holds its shot while the attack input is pressed"): return
+	c.tick_charge_bow(0.0,false)
+	if not check(not c.bow_charging and is_equal_approx(c.bow_release_power,.5) and c.projectiles.size()==uncharged_projectiles+1,"Someone's bow fires at the stored charge when attack input is released"): return
+	c.projectiles.clear()
+	c.attack_cd["main"]=0.0
+	c.bow_release_power=1.0
+	c.bow_direction=Vector2.RIGHT
+	var bow_targets:Array=c.living()
+	var bow_first_hp:float=bow_targets[0].hp
+	var bow_second_hp:float=bow_targets[1].hp
+	c.perform_attack("main")
+	c.tick_projectiles(.2)
+	c.tick_projectiles(.16)
+	if not check(bow_targets[0].hp<bow_first_hp and bow_targets[1].hp<bow_second_hp and not c.projectiles.is_empty(),"Someone's bow full charge pierces multiple enemies without disappearing on the first hit"): return
+	world.in_village=true
 	prepare("tooth")
 	for i in range(8): c.perform_attack("main")
 	var count=c.projectiles.size()
@@ -173,18 +193,50 @@ func run_checks() -> void:
 	c.perform_attack("main")
 	if not check(c.world.player.movement_multiplier>1 and c.attack_cd["main"]<.45,"Mongdal leg grants movement and attack speed after a kill"): return
 	prepare("hair")
-	c.equipment["feet"]="wet_shoes"
+	c.equipment["legs"]="wet_shoes"
 	c.previous_dash=false
 	c.world.player.dash_time=.1
 	c._physics_process(.016)
 	if not check(c.zones.any(func(z):return z["kind"]=="water"),"Wet shoes leave a slowing trail on dash"): return
 	c.world.player.dash_time=0
 	prepare("hair")
+	c.crit_chance=1.0
+	c.crit_rng.seed=1
+	var crit_enemy=c.living()[0]
+	var crit_hp:float=crit_enemy.hp
+	c.perform_attack("main")
+	if not check(is_equal_approx(crit_enemy.hp,crit_hp-15.0) and c.damage_numbers[-1]["critical"] and c.damage_numbers[-1]["text"]=="15","Critical chance applies 1.5x final damage and a distinct number"): return
+	c.crit_chance=0.0
+	prepare("hair")
+	c.equipment["a0"]="sharp_dagger"
+	c.crit_chance=.10
+	if not check(is_equal_approx(c.effective_crit_chance(),.20) and is_equal_approx(c.effective_crit_multiplier(),2.5),"Sharp dagger converts +100 critical chance to +10%p and +100 critical damage to +1.0x"): return
+	c.crit_chance=1.0
+	c.crit_rng.seed=1
+	var dagger_enemy=c.living()[0]
+	var dagger_hp:float=dagger_enemy.hp
+	c.perform_attack("main")
+	if not check(is_equal_approx(dagger_enemy.hp,dagger_hp-25.0),"Sharp dagger raises a guaranteed critical hair hit from 15 to 25 damage"): return
+	c.crit_chance=0.0
+	prepare("hair")
+	c.equipment["a0"]="fox_tail"
+	var burning_enemy=c.living()[0]
+	c.perform_attack("main")
+	if not check(burning_enemy.burn==3.0,"Fox tail applies a three-second burn on attack hit"): return
+	var after_hit_hp:float=burning_enemy.hp
+	burning_enemy.tick_burn(.51)
+	if not check(is_equal_approx(burning_enemy.hp,after_hit_hp-1.0),"Burn deals one damage every half second"): return
+	if not check(c.damage_numbers[-1]["text"]=="1" and c.damage_numbers[-1]["color"]==Color("e27a32"),"Enemy damage displays the final value and burn uses an orange number"): return
+	burning_enemy.visual.clock=0.0
+	burning_enemy.visual._physics_process(.01)
+	if not check(burning_enemy.visual.shader_material.get_shader_parameter("tint")==Color("d8732f"),"Burning enemies blink orange"): return
+	prepare("hair")
 	c.equipment["a0"]="stomach"
 	c.health=40
 	c.regen_cd=0
 	c.living()[0].take_damage(20000)
 	if not check(c.health==43,"Stomach heals on kill"): return
+	if not check(DB.get_item("wet_shoes")["slot"]=="legs" and DB.get_item("single_shoe")["slot"]=="legs" and not c.equipment.has("feet"),"Leg and foot gear share one leg slot"): return
 	world.toggle_equipment_lab()
 	if not check(world.in_village and world.wallet["bag"]==original_bag and c.max_health==original_max_health and not c.equipment_lab,"Leaving lab restores original inventory, health and run"): return
 	world.start_full_test_run()

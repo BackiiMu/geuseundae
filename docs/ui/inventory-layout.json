@@ -1,7 +1,7 @@
 {
   "schema": "geuseundae.ui.layout/1",
   "id": "inventory",
-  "note": "인벤토리 화면 구성 정의 시안. 좌표는 모두 디자인 픽셀이고 부모 왼쪽 위가 기준이다. 이미지는 9패치 부품과 아이콘만 쓰고 배치·크기·글씨·개수는 이 파일이 정한다. 화면 비율에 맞는 profile을 골라 patch를 덧씌운다. 아직 게임에는 연결하지 않았다.",
+  "note": "실제 게임에 연결된 오른쪽 절반형 인벤토리 배치. 좌표는 디자인 픽셀이며 9패치 부품과 독립 UI 요소로 구성한다.",
   "skins": {
     "panel": { "src": "godot/assets/ui/modular/panel-normal-v1.png", "slice": [28, 31, 28, 31], "shadow": [3, 3, 0.55] },
     "panelInner": { "extends": "panel", "tint": [0.56, 0.53, 0.5] },
@@ -95,43 +95,42 @@
     "id": "root",
     "type": "group",
     "children": [
-      { "id": "dim", "type": "rect", "anchor": [0, 0, 1, 1], "color": "dim" },
-      { "id": "frame", "type": "panel", "skin": "panel", "rect": [62, 21, 644, 388] },
-      { "id": "doll_panel", "type": "panel", "skin": "panelInner", "rect": [75, 63, 302, 184] },
+      { "id": "dim", "type": "rect", "rect": [384, 0, 384, 432], "color": "dim" },
+      { "id": "frame", "type": "panel", "skin": "panel", "rect": [386, 6, 376, 420] },
+      { "id": "doll_panel", "type": "panel", "skin": "panelInner", "rect": [394, 48, 226, 168] },
       {
-        "id": "doll", "type": "group", "rect": [111, 78, 258, 164],
+        "id": "doll", "type": "group", "rect": [394, 51, 226, 162],
         "children": [
           { "id": "ghost", "type": "image", "src": "godot/assets/ui/modular/borrowed-ghost-v1.png", "rect": [92, 8, 74, 148], "opacity": 0.82 },
-          { "id": "slot_head", "type": "slot", "slot": "head", "rect": [31, 5, 38, 38], "label": { "text": "머리", "rect": [-3, 14, 40, 18] } },
-          { "id": "slot_main", "type": "slot", "slot": "main", "rect": [31, 48, 38, 38], "label": { "text": "주무기", "rect": [-3, 57, 40, 18] } },
-          { "id": "slot_legs", "type": "slot", "slot": "legs", "rect": [31, 91, 38, 38], "label": { "text": "다리", "rect": [-3, 100, 40, 18] } },
-          { "id": "slot_feet", "type": "slot", "slot": "feet", "rect": [31, 134, 38, 38], "label": { "text": "발", "rect": [-3, 143, 40, 18] } },
-          { "id": "slot_heart", "type": "slot", "slot": "heart", "rect": [173, 5, 38, 38], "label": { "text": "심장", "rect": [214, 14, 40, 18] } },
-          { "id": "slot_off", "type": "slot", "slot": "off", "rect": [173, 48, 38, 38], "label": { "text": "보조무기", "rect": [214, 57, 40, 18] } },
-          { "id": "slot_internal", "type": "slot", "slot": "internal", "rect": [173, 91, 38, 38], "label": { "text": "내장", "rect": [214, 100, 40, 18] } }
+          { "id": "slot_head", "type": "slot", "slot": "head", "rect": [8, 7, 38, 38], "label": { "text": "머리", "rect": [48, 16, 40, 18] } },
+          { "id": "slot_main", "type": "slot", "slot": "main", "rect": [8, 57, 38, 38], "label": { "text": "주무기", "rect": [48, 66, 40, 18] } },
+          { "id": "slot_legs", "type": "slot", "slot": "legs", "rect": [8, 112, 38, 38], "label": { "text": "다리", "rect": [48, 121, 40, 18] } },
+          { "id": "slot_heart", "type": "slot", "slot": "heart", "rect": [180, 7, 38, 38], "label": { "text": "심장", "rect": [138, 16, 40, 18] } },
+          { "id": "slot_off", "type": "slot", "slot": "off", "rect": [180, 57, 38, 38], "label": { "text": "보조무기", "rect": [138, 66, 40, 18] } },
+          { "id": "slot_internal", "type": "slot", "slot": "internal", "rect": [180, 107, 38, 38], "label": { "text": "내장", "rect": [138, 116, 40, 18] } }
         ]
       },
       {
-        "id": "rail_panel", "type": "slotRow", "skin": "panelRail", "rect": [82, 249, 288, 61],
-        "bind": "accessories", "slotsFit": 252, "slotMin": 24, "slotMax": 36, "gap": 6, "slotsTop": 22,
+        "id": "rail_panel", "type": "slotRow", "skin": "panelRail", "rect": [626, 48, 128, 168],
+        "bind": "accessories", "orientation": "grid", "columns": 2, "slotsFit": 104, "slotMin": 24, "slotMax": 36, "gap": 8, "slotsTop": 28,
         "plaque": { "text": "악세사리", "rect": [102, 2, 84, 17] }
       },
-      { "id": "bag_panel", "type": "panel", "skin": "panelInner", "rect": [382, 63, 313, 247] },
-      { "id": "bag_plaque", "type": "panel", "skin": "plaque", "rect": [392, 69, 64, 26] },
-      { "id": "bag_title", "type": "label", "text": "가방", "rect": [392, 72, 64, 23], "size": 14, "color": "plaqueText", "align": "center" },
-      { "id": "bag_grid", "type": "grid", "bind": "bag", "rect": [392, 99, 280, 202], "columns": 6, "cell": [38, 36], "gap": [7, 4], "minCells": 30, "scroll": true },
-      { "id": "title_plaque", "type": "panel", "skin": "plaque", "rect": [112, 40, 102, 27] },
-      { "id": "title_label", "type": "label", "text": "빌린 몸", "rect": [121, 45, 104, 25], "size": 17, "color": "title", "align": "center" },
-      { "id": "souls", "type": "label", "text": "영혼조각  ◆ {souls}", "rect": [492, 43, 130, 24], "size": 13, "color": "souls", "align": "center" },
-      { "id": "btn_close", "type": "button", "skin": "button", "rect": [631, 40, 76, 27], "text": "닫기", "size": 13, "action": "inventory.close" },
-      { "id": "detail_panel", "type": "panel", "skin": "panelInner", "rect": [64, 312, 640, 92] },
-      { "id": "detail_icon", "type": "slotIcon", "rect": [122, 326, 61, 56], "bind": "selected", "when": "hasSelection" },
-      { "id": "detail_name", "type": "label", "text": "{selected.name}", "rect": [199, 326, 270, 24], "size": 16, "color": "itemName", "when": "hasSelection" },
-      { "id": "detail_meta", "type": "label", "text": "{selected.slotName} · {selected.attackType} · {selected.tier}단계", "rect": [199, 349, 270, 18], "size": 10, "color": "itemMeta", "when": "hasSelection" },
-      { "id": "detail_effect", "type": "label", "text": "{selected.effect}", "rect": [199, 368, 275, 39], "size": 11, "color": "itemEffect", "wrap": true, "when": "hasSelection" },
-      { "id": "btn_equip", "type": "button", "skin": "button", "rect": [519, 347, 72, 34], "text": "장착", "size": 14, "action": "inventory.equip", "when": "hasSelection" },
-      { "id": "btn_destroy", "type": "button", "skin": "button", "variant": "danger", "rect": [610, 347, 72, 34], "text": "파기", "size": 14, "action": "inventory.destroy", "when": "hasSelection" },
-      { "id": "empty_hint", "type": "label", "text": "가방이 비어 있습니다. 장비는 가까이 가면 자동으로 획득합니다.", "rect": [200, 350, 360, 28], "size": 14, "color": "empty", "when": "emptyBag" }
+      { "id": "bag_panel", "type": "panel", "skin": "panelInner", "rect": [394, 222, 220, 196] },
+      { "id": "bag_plaque", "type": "panel", "skin": "plaque", "rect": [464, 226, 74, 25] },
+      { "id": "bag_title", "type": "label", "text": "가방", "rect": [464, 229, 74, 22], "size": 14, "color": "plaqueText", "align": "center" },
+      { "id": "bag_grid", "type": "grid", "bind": "bag", "rect": [402, 257, 204, 153], "columns": 4, "cell": [42, 38], "gap": [5, 4], "minCells": 30, "scroll": true },
+      { "id": "title_plaque", "type": "panel", "skin": "plaque", "rect": [407, 17, 94, 27] },
+      { "id": "title_label", "type": "label", "text": "장비", "rect": [407, 21, 94, 23], "size": 15, "color": "title", "align": "center" },
+      { "id": "souls", "type": "label", "text": "영혼조각  ◆ {souls}", "rect": [508, 20, 142, 24], "size": 12, "color": "souls", "align": "center" },
+      { "id": "btn_close", "type": "button", "skin": "button", "rect": [680, 17, 72, 27], "text": "닫기", "size": 13, "action": "inventory.close" },
+      { "id": "detail_panel", "type": "panel", "skin": "panelInner", "rect": [620, 222, 134, 196] },
+      { "id": "detail_icon", "type": "slotIcon", "rect": [628, 235, 48, 48], "bind": "selected", "when": "hasSelection" },
+      { "id": "detail_name", "type": "label", "text": "{selected.name}", "rect": [628, 288, 116, 22], "size": 13, "color": "itemName", "when": "hasSelection" },
+      { "id": "detail_meta", "type": "label", "text": "{selected.slotName} · {selected.tier}단계 / {selected.attackType}", "rect": [628, 310, 116, 28], "size": 9, "color": "itemMeta", "when": "hasSelection" },
+      { "id": "detail_effect", "type": "label", "text": "{selected.effect}", "rect": [628, 340, 116, 32], "size": 10, "color": "itemEffect", "wrap": true, "when": "hasSelection" },
+      { "id": "btn_equip", "type": "button", "skin": "button", "rect": [626, 376, 58, 32], "text": "장착", "size": 12, "action": "inventory.equip", "when": "hasSelection" },
+      { "id": "btn_destroy", "type": "button", "skin": "button", "variant": "danger", "rect": [690, 376, 58, 32], "text": "파기", "size": 12, "action": "inventory.destroy", "when": "hasSelection" },
+      { "id": "empty_hint", "type": "label", "text": "가방이 비어 있습니다.", "rect": [628, 300, 116, 50], "size": 11, "color": "empty", "when": "emptyBag" }
     ]
   }
 }
