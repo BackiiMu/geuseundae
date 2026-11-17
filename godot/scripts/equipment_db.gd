@@ -37,15 +37,19 @@ static func weapons() -> Array:
 	["someone_bow","누군가의 활","two","ranged",3,18,1.0,560,"","human"],
 	["mouth","거구귀의 입","two","melee",4,24,1.0,200,"spit","geogu"],
 	["fist","두억시니의 주먹","two","melee",4,30,1.0,100,"","duo"],
-	["jangsan_paw","장산범의 앞발","main","melee",4,34,.82,150,"","jangsan"]]
+	["jangsan_paw","장산범의 앞발","main","melee",4,34,.82,150,"","jangsan"],
+	["black_fang","검은 이빨","main","ranged",4,6,.7,520,"","test"]]
 static func items() -> Array:
 	if not _catalog.is_empty(): return _catalog.duplicate(true)
 	var result: Array = []
 	for w in weapons():
-		result.append({"id":w[0],"name":w[1],"slot":w[2],"kind":w[3],"tier":w[4],"damage":w[5],"interval":w[6],"range":w[7],"skill":w[8],"set":w[9],"price":[6,12,26,50][w[4]-1],"effect":description(w[0]),"stats":str(w[5])+" 피해 / "+str(w[6])+"초","cooldown":skill_cooldown(w[8])})
+		result.append({"id":w[0],"name":w[1],"slot":w[2],"kind":w[3],"tier":w[4],"damage":w[5],"interval":w[6],"range":w[7],"skill":w[8],"set":w[9],"price":[6,12,26,50][w[4]-1],"test":w[9]=="test","effect":description(w[0]),"stats":str(w[5])+" 피해 / "+str(w[6])+"초","cooldown":skill_cooldown(w[8])})
 	for a in [["wig","헝클어진 가발","head",1,"hair_range"],["duo_head","두??니??의 XX??","head",4,"reach"],["bent_leg","꺾인 다리","legs",1,"speed"],["mongdal_legs","몽달의 다리","legs",2,"frenzy"],["wet_shoes","젖은 꽃신","legs",2,"wet_dash"],["single_shoe","한쪽 꽃신","legs",1,"landing"],["stomach","아귀의 위장","accessory",3,"heal"],["duo_curse","??의 짙은 저주","accessory",3,"dash_power"],["sharp_dagger","날카로운 비수","accessory",3,"critical_dagger"]]:
 		result.append({"id":a[0],"name":a[1],"slot":a[2],"tier":a[3],"passive":a[4],"set":"duo" if a[0].begins_with("duo") else "songaksi" if a[0]=="wig" else "", "price":[6,12,26,50][a[3]-1],"effect":{"hair_range":"머리카락 사거리 20% 증가","reach":"근접 사거리·투사체 크기 1.5배","speed":"이동속도 12% 증가","frenzy":"처치 후 3초간 이동·공격속도 15% 증가","wet_dash":"대시 후 둔화 물자국","landing":"착지 시 근처 적 밀치기","heal":"처치 시 HP 3 회복 (0.6초 간격)","dash_power":"대시 공격 피해 1.5배","critical_dagger":"치명타 확률 +100 · 치명타 대미지 +100"}[a[4]]})
 	result.append({"id":"fox_tail","name":"구미호의 꼬리","slot":"accessory","tier":3,"passive":"fox_tail","set":"fox","price":32,"effect":"공격 적중 시 3초간 화상 · 0.5초마다 피해 1"})
+	result.append({"id":"tiger_hide","name":"범가죽","slot":"accessory","tier":3,"passive":"tiger_hide","set":"changgui","price":26,"effect":"최대 체력 +20 · 받는 피해 20% 감소"})
+	result.append({"id":"tiger_eye","name":"범 눈알","slot":"accessory","tier":2,"passive":"tiger_eye","set":"changgui","price":12,"effect":"공격속도 30% 증가"})
+	result.append({"id":"black_scale","name":"검은비늘","slot":"accessory","tier":4,"passive":"black_scale","set":"","price":50,"effect":"방에 들어설 때마다 무작위 날씨 · 날씨 효과가 방 전체에 적용 (적이 남은 방에서만)"})
 	_catalog=result.duplicate(true)
 	return result
 static func get_item(id: String) -> Dictionary:
@@ -75,7 +79,7 @@ static func description(id: String) -> String:
 	"claws":"넓게 뻗는 범의 세 발톱",
 	"call":"G · 전방에 부름 설치 · 3초간 주변 적을 모으기 (10초)",
 	"tiger_soul":"보조 평타 · 처치한 넋 최대 3개가 8초간 주무기 공격에 동참",
-	"tiger_fang":"짧은 도약 후 물어뜯기 / F · 호랑이 혼령 관통 돌진 (18초)",
+	"tiger_fang":"짧은 도약 후 물어뜯기 / F · 호랑이 혼령 관통 돌진 (18초) · 범의 발톱을 가방이나 장착으로 보유하면 기본공격이 호랑이 혼령 돌진으로 변경",
 	"water_bucket":"포물선 물덩이 · 착지 후 3초 둔화 웅덩이",
 	"water_hand":"보조 평타 · 발목을 잡아 2초간 이동속도 감소",
 	"well_bucket":"넓은 두레박 휘두르기 / F · 3초간 끌어당기는 우물 (14초)",
@@ -94,6 +98,7 @@ static func description(id: String) -> String:
 	"whistle":"벽을 통과하며 여러 적을 맞히는 소리 파동",
 	"someone_bow":"영웅 양손 무기 · 최대 1.2초 차징 · 충전량에 따라 피해 65~175% · 적 관통",
 	"mouth":"넓게 물기 · 처치한 적 최대 6명 삼킴 / F · 삼킨 수만큼 뱉기 (12초)",
-	"fist":"0.3초 준비 후 거대 주먹 · 이동 가능 · 슈퍼아머 없음",
+	"fist":"0.3초 준비 후 거대 주먹 · 이동 가능 · 슈퍼아머 없음 · 두억시니 세트 완성 시 연기에 감싸인 거대한 철퇴를 180° 휘둘러 공격 거리 2배(가로)·대미지 80",
+	"black_fang":"임시 테스트 무기 · 가장 가까운 적을 자동 조준해 즉시 맞히는 히트스캔 · 현재 날씨에 맞는 공격(맑음 돌 솟구침·장맛비 벼락·뇌우 회오리·안개·눈 고드름·눈보라 눈 폭풍우·햇살 불기둥·도깨비불 구체·유성우 유성)",
 	"jangsan_paw":"전설 무기 · 위아래로 길고 옆으로 넓게 할퀴는 굵은 발톱 / 사거리 150"
 	}.get(id,"")

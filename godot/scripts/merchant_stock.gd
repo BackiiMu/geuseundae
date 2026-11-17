@@ -20,10 +20,10 @@ static func roll(seed_value: int, floor_number: int, village := false) -> Array:
 		tier = mini(4,tier)
 		var pool: Array = []
 		for item in DB.items():
-			if item["tier"]==tier and not used.has(item["id"]): pool.append(item)
+			if item["tier"]==tier and not item.get("test",false) and not used.has(item["id"]): pool.append(item)
 		if pool.is_empty():
 			for item in DB.items():
-				if item["tier"]==tier: pool.append(item)
+				if item["tier"]==tier and not item.get("test",false): pool.append(item)
 		var chosen: Dictionary = pool[rng.randi_range(0,pool.size()-1)].duplicate(true)
 		chosen["sold"] = false
 		used.append(chosen["id"])

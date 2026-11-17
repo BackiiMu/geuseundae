@@ -1,6 +1,8 @@
 extends RefCounted
 # Runtime behaviors are independent of inventory presentation and stock generation.
+const BlackFang = preload("res://scripts/black_fang.gd")
 var c: Node2D
+var fang = BlackFang.new()
 var counters := {}
 var combo := 0
 var combo_time := 0.0
@@ -12,15 +14,24 @@ var beam_time := 0.0
 var beam_from := Vector2.ZERO
 var beam_to := Vector2.ZERO
 func reset_room() -> void:
+	fang.c=c
+	fang.reset()
 	pending.clear()
 	spirits.clear()
 	swallowed=0
 	combo=0
 	combo_time=0
 	beam_time=0
-func targets(origin: Vector2,direction: Vector2,distance: float,cone := -1.0) -> Array:
+# 두억시니 세트 완성 시 주먹: 공격 방향(가로) 거리 2배, 대미지 80. 세로(수직)는 그대로라 앞쪽으로 길쭉한 반타원 판정이다.
+const DUO_SET_DAMAGE := 80.0
+const DUO_SET_FORWARD := 2.0
+const DUO_SET_DELAY := .6   # 연기에 감싸인 철퇴를 치켜들었다가(0.3초) 180° 휘둘러 바닥에 닿는 순간(약 0.6초)에 판정
+func targets(origin: Vector2,direction: Vector2,distance: float,cone := -1.0,forward := 1.0) -> Array:
 	return c.living().filter(func(e):
 		var v:Vector2=e.position+Vector2(0,-25*e.size_factor)-origin
+		if forward!=1.0:
+			var along:float=v.dot(direction)
+			v=direction*(along/forward)+(v-direction*along)
 		return v.length()<distance+20 and (cone<=-1 or v.length()<25 or v.normalized().dot(direction)>cone))
 # 장산범의 앞발: 위아래로 길고 옆으로 넓게 할퀴는 발톱. 판정은 가슴(origin) 기준 앞쪽 타원 영역(앞 끝 150)이다.
 const PAW_ARC := {"cx":45.0,"a":105.0,"b":85.0,"cy":-14.0}   # 가슴 기준. 앞 끝 = cx+a = 150
@@ -51,10 +62,10 @@ func hit(enemy: Node,damage: float,id := "") -> float:
 		enemy.vulnerable=4.0
 		enemy.one_hit_vulnerable=true
 	return maxf(0,before-enemy.hp)
-func strike(origin: Vector2,direction: Vector2,reach: float,damage: float,id: String) -> Array:
-	var struck:Array=targets(origin,direction,reach,.0)
+func strike(origin: Vector2,direction: Vector2,reach: float,damage: float,id: String,forward := 1.0) -> Array:
+	var struck:Array=targets(origin,direction,reach,.0,forward)
 	for enemy in struck: hit(enemy,damage,id)
-	mark(origin+direction*reach*.55,reach*.55)
+	mark(origin+direction*reach*forward*.55,reach*(.55 if forward==1.0 else .4)*forward)
 	return struck
 func projectile(origin: Vector2,direction: Vector2,damage: float,kind: String,distance: float,id: String,homing := false) -> void:
 	c.fire_projectile(origin,direction,damage,true,kind,null,homing)
@@ -86,9 +97,15 @@ func attack(slot: String) -> void:
 	var reach:float=item["range"]
 	if item["kind"]=="melee" and c.has_passive("reach"): reach*=1.5
 	if id=="hair" and c.has_passive("hair_range"): reach*=1.2
-	if is_instance_valid(c.world.player.visual): c.world.player.visual.play_attack(.3 if id=="fist" else .25,id=="fist")
+	if is_instance_valid(c.world.player.visual): c.world.player.visual.play_attack((DUO_SET_DELAY if c.duo_set() else .3) if id=="fist" else .25,id=="fist")
 	c.world.player.attack_pose=.18
 	c.world.player.attack_lean=4*c.world.player.facing
+	if id=="black_fang":
+		# 임시 테스트 무기: 자동 조준 히트스캔. 대상이 없으면 헛손질하지 않고 쿨타임도 쓰지 않는다.
+		fang.c=c
+		if fang.fire(origin): c.attack_cd[slot]=float(item["interval"])
+		else: c.attack_cd[slot]=.1
+		return
 	c.vfx.attack(item,origin,direction,reach)
 	var damage:float=item["damage"]
 	if id=="someone_bow":
@@ -105,8 +122,19 @@ func attack(slot: String) -> void:
 	if id=="fist":
 		c.world.player.attack_pose=.3
 		c.world.player.attack_lean=-4*c.world.player.facing
-		pending.append({"kind":"fist","delay":.3,"direction":direction,"reach":reach,"damage":damage})
-		mark(origin+direction*reach*.6,28,Color("dfbf84"),.3)
+		var forward:=1.0
+		var delay:=.3
+		if c.duo_set():
+			damage=DUO_SET_DAMAGE
+			forward=DUO_SET_FORWARD
+			delay=DUO_SET_DELAY
+			# 세트 완성: 기존 주먹 이펙트 대신 연기에 둘러싸인 철퇴 휘두르기를 준비 동작부터 재생한다
+			c.vfx.emit_duo_mace(c.world.player.position,direction)
+		pending.append({"kind":"fist","delay":delay,"direction":direction,"reach":reach,"damage":damage,"forward":forward})
+		mark(origin+direction*reach*forward*.6,28,Color("dfbf84"),.3)
+	elif id=="tiger_fang" and c.owns_item("claws"):
+		# 범의 발톱 보유: 도약 물어뜯기 대신 호랑이 혼령 관통 돌진이 기본공격이 된다
+		projectile(origin,direction,damage,"tiger",500,"tiger_fang")
 	elif id=="tiger_fang":
 		# The pounce follows the actual aim vector instead of snapping sideways.
 		c.world.player.velocity=direction*360
@@ -152,7 +180,7 @@ func attack(slot: String) -> void:
 			if enemy!=null:
 				hit(enemy,4,"spirit")
 				mark(enemy.position+Vector2(0,-28),20,Color("a3c6d9"))
-	c.attack_cd[slot]=float(item["interval"])/(1.15 if c.has_passive("frenzy") and c.frenzy>0 else 1.0)/(1+combo*.035 if id=="nails" else 1.0)
+	c.attack_cd[slot]=float(item["interval"])/(1.15 if c.has_passive("frenzy") and c.frenzy>0 else 1.0)/(1.3 if c.has_passive("tiger_eye") else 1.0)/(1+combo*.035 if id=="nails" else 1.0)
 func throw_enemy(enemy: Node,direction: Vector2,damage: float) -> void:
 	if enemy.dead: return
 	if enemy.boss:
@@ -235,6 +263,8 @@ func killed(_enemy: Node) -> void:
 	if c.equipped("off").get("id","")=="tiger_soul": spirits.append(8.0)
 	if spirits.size()>3: spirits.pop_front()
 func tick(delta: float) -> void:
+	fang.c=c
+	fang.tick(delta)
 	clock+=delta
 	beam_time=maxf(0,beam_time-delta)
 	combo_time=maxf(0,combo_time-delta)
@@ -252,15 +282,18 @@ func tick(delta: float) -> void:
 		if is_instance_valid(c.world.player.visual): c.world.player.visual.release_attack()
 		c.world.player.attack_pose=.16
 		c.world.player.attack_lean=5*c.world.player.facing
-		c.vfx.heavy(origin,p["direction"],p["kind"])
-		var struck:=strike(origin,p["direction"],p["reach"],p["damage"],"fist" if p["kind"]=="fist" else "tiger_fang")
-		if p["kind"]=="fist": c.effects.append({"kind":"fist_hit","pos":origin+p["direction"]*p["reach"]*.6,"radius":30.0,"time":.18,"color":Color("d2c7ae")})
+		var forward:float=float(p.get("forward",1.0))
+		if not (p["kind"]=="fist" and forward>1.0): c.vfx.heavy(origin,p["direction"],p["kind"])   # 세트 완성 시에는 철퇴 이펙트가 이미 재생 중
+		var struck:=strike(origin,p["direction"],p["reach"],p["damage"],"fist" if p["kind"]=="fist" else "tiger_fang",forward)
+		if p["kind"]=="fist": c.effects.append({"kind":"fist_hit","pos":origin+p["direction"]*p["reach"]*forward*.6,"radius":30.0,"time":.18,"color":Color("d2c7ae")})
 		if p["kind"]=="fist" and not struck.is_empty():
 			c.hit_pause=.07
 			for enemy in struck:
 				enemy.knockback=p["direction"].x*180
 		pending.remove_at(i)
 func draw() -> void:
+	fang.c=c
+	fang.draw()
 	if not is_instance_valid(c.world.player): return
 	var origin:Vector2=c.world.player.position+Vector2(0,-30)
 	if c.equipped("main").get("id","")=="fox_bead":

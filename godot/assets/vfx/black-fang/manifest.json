@@ -1,0 +1,166 @@
+{
+ "note": "검은 이빨(검은비늘 날씨 공격) 시트. docs/mockups/black-fang/strikes.json과 같은 값",
+ "strikes": {
+  "clear": {
+   "frames": 69,
+   "fw": 272,
+   "fh": 150,
+   "cols": 7,
+   "pivot": [
+    136,
+    132
+   ],
+   "fps": 20,
+   "start": 6,
+   "end": 59,
+   "rate": 1.66,
+   "anchor": "feet",
+   "sc": 1.5,
+   "src": "nature/earth-spike"
+  },
+  "rain": {
+   "frames": 61,
+   "fw": 240,
+   "fh": 264,
+   "cols": 9,
+   "pivot": [
+    120,
+    228
+   ],
+   "fps": 20,
+   "start": 10,
+   "end": 36,
+   "rate": 1.0,
+   "anchor": "feet",
+   "sc": 1.8,
+   "src": "lightning/lightning-strike"
+  },
+  "storm": {
+   "frames": 40,
+   "fw": 196,
+   "fh": 168,
+   "cols": 6,
+   "pivot": [
+    98,
+    152
+   ],
+   "fps": 20,
+   "start": 0,
+   "end": 39,
+   "rate": 1.0,
+   "anchor": "feet",
+   "sc": 1.5,
+   "loop": true,
+   "dur": 1.5,
+   "src": "geuseundae/storm-tornado (nature/tornado에서 낙엽 제거)"
+  },
+  "fog": {
+   "frames": 60,
+   "fw": 330,
+   "fh": 140,
+   "cols": 6,
+   "pivot": [
+    165,
+    116
+   ],
+   "fps": 20,
+   "start": 0,
+   "end": 59,
+   "rate": 1.0,
+   "anchor": "feet",
+   "sc": 1.6,
+   "loop": true,
+   "dur": 1.8,
+   "src": "geuseundae/mist-bank (새로 만든 효과)"
+  },
+  "snow": {
+   "frames": 53,
+   "fw": 152,
+   "fh": 120,
+   "cols": 7,
+   "pivot": [
+    76,
+    100
+   ],
+   "fps": 20,
+   "start": 16,
+   "end": 42,
+   "rate": 1.0,
+   "anchor": "feet",
+   "sc": 1.0,
+   "src": "ice/icicle-fall"
+  },
+  "blizzard": {
+   "frames": 40,
+   "fw": 128,
+   "fh": 116,
+   "cols": 7,
+   "pivot": [
+    64,
+    102
+   ],
+   "fps": 20,
+   "start": 0,
+   "end": 39,
+   "rate": 1.0,
+   "anchor": "feet",
+   "sc": 2.4,
+   "loop": true,
+   "dur": 1.5,
+   "src": "ice/blizzard-vortex"
+  },
+  "rays": {
+   "frames": 101,
+   "fw": 184,
+   "fh": 256,
+   "cols": 12,
+   "pivot": [
+    92,
+    232
+   ],
+   "fps": 20,
+   "start": 11,
+   "end": 75,
+   "rate": 2.32,
+   "anchor": "feet",
+   "sc": 1.3,
+   "src": "fire/flame-pillar"
+  },
+  "fireflies": {
+   "frames": 60,
+   "fw": 200,
+   "fh": 160,
+   "cols": 7,
+   "pivot": [
+    100,
+    70
+   ],
+   "fps": 20,
+   "start": 0,
+   "end": 59,
+   "rate": 1.0,
+   "anchor": "body",
+   "sc": 3.0,
+   "loop": true,
+   "dur": 1.8,
+   "src": "geuseundae/wisp-orb (새로 만든 효과)"
+  },
+  "stars": {
+   "frames": 101,
+   "fw": 272,
+   "fh": 232,
+   "cols": 10,
+   "pivot": [
+    150,
+    208
+   ],
+   "fps": 20,
+   "start": 0,
+   "end": 62,
+   "rate": 1.6,
+   "anchor": "feet",
+   "sc": 1.0,
+   "src": "fire/meteor"
+  }
+ }
+}

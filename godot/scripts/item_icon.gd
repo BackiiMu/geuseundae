@@ -54,6 +54,13 @@ func _draw() -> void:
 		draw_line(Vector2(14,6),Vector2(14,36),Color("d5c7a0"),1)
 		draw_line(Vector2(14,21),Vector2(35,21),Color("b7aa8a"),2)
 		draw_polygon(PackedVector2Array([Vector2(35,21),Vector2(29,17),Vector2(29,25)]),PackedColorArray([Color("d7d3c4")]))
+	elif id=="tiger_hide":
+		draw_polygon(PackedVector2Array([Vector2(8,10),Vector2(34,10),Vector2(37,24),Vector2(30,35),Vector2(12,35),Vector2(5,24)]),PackedColorArray([Color("c98a3c")]))
+		for x in [13,20,27]: draw_line(Vector2(x,11),Vector2(x-2,24),Color("1b1410"),3)
+	elif id=="tiger_eye":
+		draw_circle(Vector2(21,21),12,Color("e6c24a"))
+		draw_circle(Vector2(21,21),12,Color("7a5a14"),false,2)
+		draw_rect(Rect2(19,12,4,18),Color("15110a"))
 	elif slot=="accessory":
 		draw_circle(Vector2(21,21),11,c)
 		draw_circle(Vector2(21,21),6,Color("34464e"))

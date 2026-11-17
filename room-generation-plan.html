@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>그슨대 · 1챕터 방 생성 기획</title>
+  <style>
+    :root{--bg:#090d12;--panel:#111923;--panel2:#17232d;--line:#354952;--ink:#e3e0d4;--muted:#91a0a2;--jade:#7fa89a;--gold:#c5a465;--red:#9b5350;--blue:#607d91;--purple:#7d668d}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(circle at 50% -20%,#1a2930 0,#090d12 45%);color:var(--ink);font:15px/1.65 system-ui,-apple-system,"Noto Sans KR",sans-serif}
+    body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.08;background-image:linear-gradient(#fff 1px,transparent 1px),linear-gradient(90deg,#fff 1px,transparent 1px);background-size:4px 4px}
+    main{max-width:1180px;margin:auto;padding:42px 22px 90px}.eyebrow{color:var(--jade);letter-spacing:.24em;font-size:12px}.hero{padding:28px 0 34px;border-bottom:1px solid var(--line)}
+    h1{font-size:clamp(32px,5vw,54px);line-height:1.12;margin:8px 0 14px;letter-spacing:-.04em}h2{font-size:25px;margin:52px 0 12px}h3{font-size:17px;margin:0 0 8px}p{color:var(--muted);margin:8px 0}.lead{max-width:780px;font-size:17px}.chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:20px}.chip{border:1px solid var(--line);background:#101820;padding:6px 10px;color:#b8c6c1;font-size:13px}
+    .decision{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:24px}.card,.map-wrap,.rule,.room-card{border:1px solid var(--line);background:linear-gradient(145deg,rgba(23,35,45,.96),rgba(13,20,28,.96));box-shadow:0 10px 28px #0005}.card{padding:19px}.card strong{color:#f0dba9}.selected{border-color:#76978d;box-shadow:inset 0 0 0 1px #76978d55,0 10px 28px #0006}
+    .map-toolbar{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:16px 0 10px}.map-toolbar button,.seed{border:1px solid #526b6b;background:#15232a;color:var(--ink);padding:9px 12px}.map-toolbar button{cursor:pointer}.map-toolbar button:hover{background:#20343a}.seed{width:130px}.map-wrap{padding:16px;overflow:auto}.map{position:relative;width:930px;height:480px;margin:auto;background:#0a1118;overflow:hidden}.map:before{content:"";position:absolute;inset:0;background:linear-gradient(#ffffff08 1px,transparent 1px),linear-gradient(90deg,#ffffff08 1px,transparent 1px);background-size:30px 30px}
+    svg.links{position:absolute;inset:0;width:100%;height:100%}.links line{stroke:#4d6268;stroke-width:5;stroke-linecap:square}.room{position:absolute;width:96px;height:64px;transform:translate(-50%,-50%);border:2px solid #65787c;background:#162129;display:flex;align-items:center;justify-content:center;text-align:center;font-size:12px;font-weight:700;box-shadow:0 5px 0 #05080c}.room small{display:block;color:#a5b1af;font-weight:400}.room.start{border-color:var(--jade)}.room.shop{border-color:var(--gold);color:#f0d9a1}.room.reward{border-color:var(--purple)}.room.elite{border-color:var(--red)}.room.boss{border-color:#b44f4b;background:#2a1719}.room.well:after{content:"◉";position:absolute;right:4px;bottom:1px;color:#759eb1}.legend{display:flex;gap:15px;flex-wrap:wrap;margin-top:12px;color:var(--muted);font-size:12px}.dot{display:inline-block;width:9px;height:9px;margin-right:5px;border:2px solid currentColor}
+    .flow{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-top:16px}.flow .rule{padding:14px;position:relative}.flow .rule:not(:last-child):after{content:"→";position:absolute;right:-12px;top:37%;z-index:2;color:#8ca399}.num{display:block;color:var(--gold);font-weight:800;font-size:12px;letter-spacing:.15em}
+    .rooms{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:17px}.room-card{padding:15px;min-height:144px}.room-card b{color:var(--gold)}.mini{height:58px;position:relative;margin-bottom:12px;background:#0b1117;border-bottom:4px solid #60706c;overflow:hidden}.plat{position:absolute;height:4px;background:#7c8b81}.roof{position:absolute;height:7px;background:#554c50;transform:skewX(-28deg)}.spawn{position:absolute;width:7px;height:10px;background:#9b5350}.air{border-radius:50%;background:#6f8393}.portal{position:absolute;width:8px;height:24px;border:2px solid #7fa89a;bottom:0}
+    table{width:100%;border-collapse:collapse;margin-top:15px;background:#0f171f;border:1px solid var(--line)}th,td{text-align:left;border-bottom:1px solid #2a3a42;padding:11px 12px}th{color:#b9c9c2;background:#17232d;font-size:13px}td{color:#9ca8a7}.ok{color:#8fb9a7}.no{color:#c47772}.callout{margin-top:20px;padding:18px;border-left:4px solid var(--gold);background:#171a1d}.callout strong{color:#e5c987}.refs{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:16px}.ref{padding:16px;border-top:3px solid var(--jade)}.ref a{color:#d6bc84;text-decoration:none}.ref em{display:block;color:#718285;font-size:12px;font-style:normal;margin-bottom:7px}.axes{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:16px}.axis{padding:13px;background:#101820;border:1px solid #2e4048}.axis b{display:block;color:#d5c08e}.chapters{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:18px}.chapter{padding:19px;position:relative;overflow:hidden}.chapter:before{content:"";position:absolute;inset:0 0 auto;height:4px;background:var(--chapter)}.chapter .tag{color:var(--chapter);font-size:12px;font-weight:800;letter-spacing:.18em}.chapter ul{padding-left:18px;color:#a2adab}.chapter li{margin:6px 0}.chapter-one{--chapter:#a78c6b}.chapter-two{--chapter:#708b83}.chapter-three{--chapter:#9b5553}.chapter-flow{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:12px}.chapter-flow span{border:1px solid #35464d;background:#0d151b;padding:8px;text-align:center;font-size:12px;color:#aab4b0}.foot{margin-top:55px;padding-top:20px;border-top:1px solid var(--line);color:#6f7c7e;font-size:13px}
+    @media(max-width:800px){.decision{grid-template-columns:1fr}.rooms,.refs{grid-template-columns:1fr 1fr}.chapters{grid-template-columns:1fr}.axes{grid-template-columns:1fr}.flow{grid-template-columns:1fr}.flow .rule:after{display:none}}@media(max-width:520px){main{padding:24px 12px}.rooms,.refs{grid-template-columns:1fr}.chapter-flow{grid-template-columns:1fr 1fr}}
+  </style>
+</head>
+<body><main>
+  <section class="hero">
+    <div class="eyebrow">GEUSEUNDAE · CHAPTER 1 ROOM PLAN</div>
+    <h1>흉가 한 층이<br>매번 다르게 이어진다.</h1>
+    <p class="lead">던그리드처럼 한 층 전체를 탐색하고 되돌아갈 수 있게 하되, 스컬처럼 다음 방의 성격을 포탈과 지도 아이콘으로 예고한다. 지형은 직접 만든 방을 사용하고 연결·적·보상만 시드로 바꾼다.</p>
+    <div class="chips"><span class="chip">시드 기반</span><span class="chip">방 9~13개</span><span class="chip">포탈 1~4개</span><span class="chip">상점 1개 보장</span><span class="chip">우물 빠른 이동</span><span class="chip">20개 템플릿</span></div>
+    <div class="decision">
+      <article class="card"><h3>스컬에서 가져올 것</h3><p><strong>다음 방의 성격을 미리 보여준다.</strong> 일반·보상·정예·상점·보스 포탈의 문양과 색을 구분해 선택에 의미를 준다.</p></article>
+      <article class="card selected"><h3>던그리드에서 가져올 것</h3><p><strong>층 전체가 하나의 탐색 공간이다.</strong> 갈림길, 막다른 보상방, 재방문과 우물 이동을 유지한다.</p></article>
+    </div>
+  </section>
+
+  <section>
+    <h2>실제 게임에서 확인한 설계법</h2>
+    <p>그대로 복제하지 않고, 각 게임이 반복감을 줄이는 방법만 그슨대의 흉가 구조에 번역한다.</p>
+    <div class="refs">
+      <article class="card ref"><em>DUNGREED</em><h3>층 전체를 탐색</h3><p>여러 방이 지도에서 연결되고, 전투방을 정리한 뒤 되돌아갈 수 있다. 그슨대의 우물·상점·막다른 보상방 구조에 사용한다.</p><a href="https://gigazine.net/gsc_news/en/20200927-nintendo-switch-dungreed">플레이 구조 참고 ↗</a></article>
+      <article class="card ref"><em>SKUL</em><h3>문이 보상을 예고</h3><p>다음 방의 골드·아이템·특수 보상을 문 모양으로 알려준다. 그슨대는 포탈 문양과 지도 아이콘으로 적용한다.</p><a href="https://www.nintendoworldreport.com/review/58800/skul-the-hero-slayer-switch-review">문 선택 참고 ↗</a></article>
+      <article class="card ref"><em>DEAD CELLS</em><h3>사람이 만든 조각을 조합</h3><p>출입구와 흐름이 검증된 방 조각을 직접 만들고 절차적으로 연결한다. 완전 자동 지형보다 전투 품질을 유지하기 쉽다.</p><a href="https://arstechnica.com/gaming/2019/07/war-stories-designing-dead-cells-was-a-marriage-of-man-and-machine/">설계 인터뷰 참고 ↗</a></article>
+      <article class="card ref"><em>ROGUE LEGACY 2</em><h3>방의 목적을 바꿈</h3><p>일반 전투 외에 함정 상자·유물 선택·도전방처럼 방 자체의 목표가 달라진다. 지형뿐 아니라 행동을 다양화한다.</p><a href="https://www.destructoid.com/reviews/rogue-legacy-2-review-1-0-version/">함정방 사례 참고 ↗</a></article>
+    </div>
+    <div class="axes">
+      <div class="axis"><b>진입 변화</b>좌·우 진입 / 위에서 낙하 / 아래에서 상승 / 양쪽 협공</div>
+      <div class="axis"><b>전투 목표 변화</b>전멸 / 표적 우선 처치 / 매복 생존 / 정예 / 추격</div>
+      <div class="axis"><b>공간 변화</b>평지 / 복층 / 수직축 / 지붕 / 좁은 통로 / 넓은 경기장</div>
+      <div class="axis"><b>위험 변화</b>낙하물 / 무너지는 발판 / 가시 / 안개 시야 / 투사체 고지대</div>
+      <div class="axis"><b>선택 변화</b>안전한 긴 길 / 위험한 지름길 / 막다른 보상 / 숨은 통로</div>
+      <div class="axis"><b>보상 변화</b>상자 / 영혼 다발 / 회복 / 장비 선택 / 우물 / 상점</div>
+    </div>
+  </section>
+
+  <section>
+    <h2>시드 배치 예시</h2>
+    <p>아래 입력값을 바꾸면 같은 방 목록도 연결과 특수방 위치가 달라지는 예시다. 실제 구현에서는 검증된 연결안 목록을 시드로 선택한다.</p>
+    <div class="map-toolbar"><label>시드 <input class="seed" id="seed" value="GSN-1042"></label><button id="remix">이 시드로 재배치</button><button id="next">다음 예시</button><span id="summary"></span></div>
+    <div class="map-wrap"><div class="map" id="map"><svg class="links" id="links"></svg></div></div>
+    <div class="legend"><span style="color:#7fa89a"><i class="dot"></i>시작</span><span style="color:#c5a465"><i class="dot"></i>상점</span><span style="color:#7d668d"><i class="dot"></i>보상</span><span style="color:#9b5350"><i class="dot"></i>정예</span><span style="color:#b44f4b"><i class="dot"></i>보스</span><span>◉ 우물 포함</span></div>
+  </section>
+
+  <section>
+    <h2>생성 순서</h2>
+    <div class="flow">
+      <article class="rule"><span class="num">01</span><h3>뼈대 선택</h3><p>9~13개 방의 연결 그래프를 시드로 선택한다.</p></article>
+      <article class="rule"><span class="num">02</span><h3>필수방 배치</h3><p>시작·상점·보스 진입방은 반드시 하나씩 둔다.</p></article>
+      <article class="rule"><span class="num">03</span><h3>지형 선택</h3><p>출구 방향과 수에 맞는 템플릿을 고른다.</p></article>
+      <article class="rule"><span class="num">04</span><h3>내용 배치</h3><p>적·정예·상자·우물·장식을 후보 지점에 넣는다.</p></article>
+      <article class="rule"><span class="num">05</span><h3>동선 검수</h3><p>전 출구 도달, 겹침, 안전지대와 막힘을 검사한다.</p></article>
+    </div>
+  </section>
+
+  <section>
+    <h2>챕터마다 다른 방의 리듬</h2>
+    <p>연결 생성기와 기본 충돌 규칙은 공유하지만, 각 챕터는 대표 동선·위험·적 배치 규칙을 따로 가진다. 같은 ‘복층방’도 챕터에 따라 플레이가 달라진다.</p>
+    <div class="chapters">
+      <article class="card chapter chapter-one"><span class="tag">CHAPTER 1 · 흉가 마을</span><h3>탐색과 기본 전투</h3><p>처음 배우는 층이므로 지형을 읽기 쉽고, 지붕과 골목을 이용한 짧은 우회가 중심이다.</p><ul><li>대표 동선: 마당·골목·지붕·복층 한옥</li><li>대표 위험: 매복, 고지대 사수, 무너지는 다락</li><li>방 비율: 평지 35% / 복층 35% / 수직 20% / 특수 10%</li><li>전용방: 우물 마당, 종루 생존전, 숨은 제사방</li></ul><div class="chapter-flow"><span>읽기 쉬움</span><span>짧은 우회</span><span>기본 혼합전</span><span>완만한 난도</span></div></article>
+      <article class="card chapter chapter-two"><span class="tag">CHAPTER 2 · 안개 낀 산</span><h3>시야와 높이의 불안</h3><p>넓은 평지는 줄이고 절벽·경사·나무 발판을 늘린다. 안개 속 실루엣과 공중 적 때문에 위아래를 계속 확인한다.</p><ul><li>대표 동선: 절벽 상승·계곡 낙하·나무다리·동굴 우회</li><li>대표 위험: 짙은 안개, 낙석 예고, 끊어진 발판</li><li>방 비율: 평지 15% / 복층 25% / 수직 40% / 특수 20%</li><li>전용방: 장산범 흔적길, 호랑이 굴, 안개 추격 계곡</li></ul><div class="chapter-flow"><span>낮은 시야</span><span>긴 수직축</span><span>공중 압박</span><span>기습 중심</span></div></article>
+      <article class="card chapter chapter-three"><span class="tag">CHAPTER 3 · 퇴마단 주둔지</span><h3>통제된 전장 돌파</h3><p>자연 지형보다 사람이 만든 방어진지가 중심이다. 적이 유리한 위치를 잡고 있어 진형을 무너뜨리는 순서가 중요하다.</p><ul><li>대표 동선: 망루·성책·막사·봉인 시설·훈련장</li><li>대표 위험: 금줄 봉인, 화살 낙하지점, 창수 도약</li><li>방 비율: 평지 20% / 복층 30% / 수직 20% / 특수 30%</li><li>전용방: 삼중 망루, 봉인 말뚝 진지, 사냥매 훈련장</li></ul><div class="chapter-flow"><span>적 진형</span><span>표적 우선</span><span>사격 교차</span><span>전술적 난도</span></div></article>
+    </div>
+    <div class="callout"><strong>같은 뼈대의 챕터별 변환 예시</strong><p><b>중앙 복층방</b>은 1챕터에서 한옥 2층과 지붕 사수, 2챕터에서 절벽 사이 나무 발판과 사냥매, 3챕터에서 망루와 봉인 술사로 바뀐다. 충돌 뼈대는 재사용하지만 적 후보 지점·위험 장치·안전 구역을 챕터별로 별도 지정한다.</p></div>
+  </section>
+
+  <section>
+    <h2>서로 다른 플레이를 만드는 방 20종</h2>
+    <p>앞의 8개는 기본 지형, 뒤의 12개는 진입·목표·위험·보상을 바꾼 방이다. 같은 발판을 조금 옮긴 변형은 별도 방으로 세지 않는다.</p>
+    <div class="rooms">
+      <article class="room-card"><div class="mini"><i class="portal" style="left:3px"></i><i class="portal" style="right:3px"></i><i class="spawn" style="left:43%;bottom:4px"></i><i class="spawn" style="left:62%;bottom:4px"></i></div><h3>01 기본 마당</h3><p><b>입문형.</b> 넓은 평지에서 근접전과 기본 회피를 익힌다.</p></article>
+      <article class="room-card"><div class="mini"><i class="portal" style="left:3px"></i><i class="portal" style="right:3px"></i><i class="roof" style="left:8%;top:20px;width:35%"></i><i class="roof" style="right:7%;top:14px;width:37%"></i><i class="spawn" style="right:21%;top:3px"></i></div><h3>02 양쪽 지붕길</h3><p><b>고저 선택.</b> 지붕 위 원거리 적부터 처리할지 결정한다.</p></article>
+      <article class="room-card"><div class="mini"><i class="portal" style="left:3px"></i><i class="portal" style="right:3px"></i><i class="plat" style="left:30%;top:28px;width:43%"></i><i class="spawn" style="left:48%;top:18px"></i><i class="spawn" style="left:75%;bottom:4px"></i></div><h3>03 중앙 복층</h3><p><b>교차 전투.</b> 위층과 아래층의 적이 동시에 압박한다.</p></article>
+      <article class="room-card"><div class="mini"><i class="portal" style="left:3px"></i><i class="portal" style="right:3px"></i><i class="plat" style="left:25%;bottom:12px;width:50%;transform:rotate(5deg)"></i><i class="spawn air" style="left:48%;top:18px"></i></div><h3>04 우물 함몰지</h3><p><b>중앙 위험.</b> 중앙 저지대에 우물과 공중 적이 배치된다.</p></article>
+      <article class="room-card"><div class="mini"><i class="portal" style="left:3px"></i><i class="portal" style="right:3px;top:0"></i><i class="plat" style="left:20%;top:40px;width:26%"></i><i class="plat" style="left:52%;top:22px;width:26%"></i><i class="spawn" style="left:63%;top:12px"></i></div><h3>05 수직 골목</h3><p><b>상승 동선.</b> 발판을 타고 위쪽 포탈까지 올라간다.</p></article>
+      <article class="room-card"><div class="mini"><i class="portal" style="left:46%;top:0"></i><i class="portal" style="right:3px"></i><i class="plat" style="left:10%;top:18px;width:30%"></i><i class="plat" style="left:48%;top:36px;width:30%"></i><i class="spawn" style="left:22%;top:8px"></i></div><h3>06 낙하 마당</h3><p><b>하강 전투.</b> 위에서 진입해 착지 위치를 선택한다.</p></article>
+      <article class="room-card"><div class="mini"><i class="portal" style="left:3px"></i><i class="portal" style="right:3px"></i><i class="plat" style="right:10%;top:19px;width:24%"></i><i class="spawn" style="right:17%;top:9px"></i><i class="spawn" style="left:44%;bottom:4px"></i></div><h3>07 좁은 골목</h3><p><b>엄폐 압박.</b> 고지대 사수와 지상 근접 적의 역할을 나눈다.</p></article>
+      <article class="room-card"><div class="mini"><i class="portal" style="left:3px"></i><i class="portal" style="right:3px"></i><i class="roof" style="left:8%;top:37px;width:25%"></i><i class="roof" style="left:38%;top:23px;width:25%"></i><i class="roof" style="right:6%;top:10px;width:25%"></i><i class="spawn air" style="left:50%;top:4px"></i></div><h3>08 연속 지붕</h3><p><b>기동 시험.</b> 여러 높이의 지붕과 공중 적을 함께 사용한다.</p></article>
+      <article class="room-card"><div class="mini"><i class="portal" style="left:3px"></i><i class="portal" style="right:3px"></i><i class="plat" style="left:35%;bottom:18px;width:30%"></i><i class="spawn" style="left:47%;bottom:22px"></i></div><h3>09 외나무다리</h3><p><b>중앙 쟁탈.</b> 좁은 다리의 정예를 밀어내고 양쪽 안전지대를 확보한다.</p></article>
+      <article class="room-card"><div class="mini"><i class="portal" style="left:3px;top:0"></i><i class="portal" style="right:3px;top:0"></i><i class="plat" style="left:12%;top:25px;width:25%"></i><i class="plat" style="right:12%;top:25px;width:25%"></i><i class="spawn" style="left:48%;bottom:4px"></i></div><h3>10 양문 낙하 매복</h3><p><b>착지 선택.</b> 양쪽 위에서 들어와 중앙 매복을 어느 방향에서 풀지 결정한다.</p></article>
+      <article class="room-card"><div class="mini"><i class="portal" style="left:3px"></i><i class="portal" style="right:3px"></i><i class="plat" style="left:24%;top:18px;width:52%"></i><i class="spawn" style="left:30%;top:8px"></i><i class="spawn" style="right:30%;top:8px"></i></div><h3>11 처마 밑 사격장</h3><p><b>위협 우선순위.</b> 위층 사수 둘을 피하며 아래 근접 적을 상대한다.</p></article>
+      <article class="room-card"><div class="mini"><i class="portal" style="left:3px"></i><i class="portal" style="right:3px"></i><i class="plat" style="left:13%;top:16px;width:20%"></i><i class="plat" style="left:40%;top:30px;width:20%"></i><i class="plat" style="right:13%;top:16px;width:20%"></i></div><h3>12 무너지는 다락</h3><p><b>시간 압박.</b> 밟으면 잠시 후 사라지는 발판 때문에 계속 자리를 바꾼다.</p></article>
+      <article class="room-card"><div class="mini"><i class="portal" style="left:3px"></i><i class="portal" style="right:3px"></i><i class="spawn" style="left:24%;bottom:4px"></i><i class="spawn" style="left:48%;bottom:4px"></i><i class="spawn" style="right:24%;bottom:4px"></i></div><h3>13 봉인 마당</h3><p><b>표적 처치.</b> 적을 강화하는 봉인물 하나를 먼저 부술지 일반 적부터 줄일지 선택한다.</p></article>
+      <article class="room-card"><div class="mini"><i class="portal" style="left:3px"></i><i class="portal" style="right:3px"></i><i class="plat" style="left:20%;top:20px;width:18%"></i><i class="plat" style="right:20%;top:20px;width:18%"></i><i class="spawn air" style="left:49%;top:12px"></i></div><h3>14 매 둥지</h3><p><b>공중전.</b> 지상 적은 적고 사냥매가 교대로 급강하한다. 위쪽 발판이 피난처다.</p></article>
+      <article class="room-card"><div class="mini"><i class="portal" style="left:3px"></i><i class="portal" style="right:3px"></i><i class="plat" style="left:20%;top:15px;width:60%"></i><i class="plat" style="left:20%;top:39px;width:60%"></i></div><h3>15 이중 회랑</h3><p><b>경로 선택.</b> 좁고 안전한 아래길과 빠르지만 원거리 공격에 노출된 윗길로 나뉜다.</p></article>
+      <article class="room-card"><div class="mini"><i class="portal" style="left:3px"></i><i class="portal" style="right:3px"></i><i class="spawn" style="right:12%;bottom:4px"></i><i class="spawn" style="right:22%;bottom:4px"></i><i class="spawn" style="right:32%;bottom:4px"></i></div><h3>16 추격 골목</h3><p><b>전진 전투.</b> 뒤에서 닫히는 안개를 피해 오른쪽 목표 적까지 밀고 나간다.</p></article>
+      <article class="room-card"><div class="mini"><i class="portal" style="left:3px"></i><i class="portal" style="right:3px"></i><i class="plat" style="left:43%;top:20px;width:14%"></i><i class="spawn" style="left:47%;top:10px"></i></div><h3>17 종루 생존전</h3><p><b>제한 생존.</b> 중앙 종이 울리는 동안 짧은 적 파동을 버티면 문이 열린다.</p></article>
+      <article class="room-card"><div class="mini"><i class="portal" style="left:3px"></i><i class="portal" style="right:3px"></i><i class="plat" style="left:14%;top:16px;width:20%"></i><i class="plat" style="right:14%;top:16px;width:20%"></i><i class="spawn" style="left:49%;bottom:4px"></i></div><h3>18 정예 씨름판</h3><p><b>넓은 결투.</b> 잡몹 없이 큰 정예 하나와 싸우고 확정 보상을 받는다.</p></article>
+      <article class="room-card"><div class="mini"><i class="portal" style="left:3px"></i><i class="plat" style="left:16%;top:18px;width:20%"></i><i class="plat" style="left:43%;top:32px;width:20%"></i><i class="plat" style="right:10%;top:12px;width:20%"></i></div><h3>19 숨은 제사방</h3><p><b>막다른 보상.</b> 전투는 짧지만 부서지는 벽이나 지붕길을 발견해야 진입한다.</p></article>
+      <article class="room-card"><div class="mini"><i class="portal" style="left:3px"></i><i class="portal" style="right:3px"></i><i class="plat" style="left:19%;top:18px;width:62%"></i><i class="spawn" style="left:27%;top:8px"></i><i class="spawn" style="right:27%;bottom:4px"></i></div><h3>20 보스 전초문</h3><p><b>최종 점검.</b> 짧은 혼합 편성 뒤 회복 또는 장비 교체 공간을 거쳐 보스문으로 간다.</p></article>
+    </div>
+  </section>
+
+  <section>
+    <h2>20종 확장 구성</h2>
+    <table><thead><tr><th>구조군</th><th>수량</th><th>전투 경험</th><th>주요 적</th></tr></thead><tbody>
+      <tr><td>평지형</td><td>3</td><td>기본 회피·다수전</td><td>근접 + 느린 원거리</td></tr>
+      <tr><td>복층형</td><td>4</td><td>상하 이동·교차 사격</td><td>근접 + 고지대 원거리</td></tr>
+      <tr><td>지붕형</td><td>3</td><td>기동·낙하 공격</td><td>사냥매 + 원거리</td></tr>
+      <tr><td>수직형</td><td>3</td><td>상승·낙하 동선</td><td>공중 + 발판 수비</td></tr>
+      <tr><td>낙하형</td><td>2</td><td>착지 지점 선택</td><td>매복 근접</td></tr>
+      <tr><td>함정형</td><td>2</td><td>위치 강제·이동 압박</td><td>함정과 연계된 적</td></tr>
+      <tr><td>골목형</td><td>2</td><td>좁은 공간 근접전</td><td>방패·돌진형</td></tr>
+      <tr><td>넓은 마당형</td><td>1</td><td>정예·대규모 전투</td><td>혼합 편성</td></tr>
+    </tbody></table>
+  </section>
+
+  <section>
+    <h2>생성 검수 규칙</h2>
+    <table><thead><tr><th>검사</th><th>통과 기준</th><th>실패 시</th></tr></thead><tbody>
+      <tr><td>전체 연결</td><td class="ok">시작방에서 모든 방과 보스방 도달</td><td class="no">해당 시드 재생성</td></tr>
+      <tr><td>포탈 간격</td><td class="ok">출구끼리 충분히 떨어지고 상자·우물과 겹치지 않음</td><td class="no">후보 위치 변경</td></tr>
+      <tr><td>시작 안전</td><td class="ok">입장 지점 주변에 적·투사체 없음</td><td class="no">적 지점 비활성화</td></tr>
+      <tr><td>적 역할</td><td class="ok">같은 위치와 공격 역할이 과하게 겹치지 않음</td><td class="no">편성 다시 선택</td></tr>
+      <tr><td>지붕 접근</td><td class="ok">지붕 적에게 점프·발판으로 접근 가능</td><td class="no">적 제거 또는 발판 추가</td></tr>
+      <tr><td>특수방 보장</td><td class="ok">상점 정확히 1개, 보스 진입방 정확히 1개</td><td class="no">특수방 재배치</td></tr>
+    </tbody></table>
+    <div class="callout"><strong>첫 구현 범위</strong><p>8개 방 템플릿 × 연결 그래프 5종으로 시작한다. 실제 플레이에서 동선과 전투가 안정된 다음 템플릿을 20종으로 늘린다. 방의 미술은 기존 흉가 공통 부품을 재사용하고, 우선 충돌·발판·포탈·적 후보 지점부터 완성한다.</p></div>
+  </section>
+  <section>
+    <h2>벽과 투사체 충돌 규칙</h2>
+    <p>벽은 방을 나누는 장식이 아니라 플레이어·몬스터·공격의 경로를 바꾸는 실제 충돌 지형이다.</p>
+    <table><thead><tr><th>대상</th><th>기본 판정</th><th>예외</th></tr></thead><tbody>
+      <tr><td>플레이어·지상 몬스터</td><td>고체 벽 통과 불가</td><td>벽 통과로 명시된 보스 이동만 가능</td></tr>
+      <tr><td>일반 탄약형 공격</td><td>벽에 닿으면 충돌·소멸</td><td>`벽 관통` 속성이 있는 공격만 통과</td></tr>
+      <tr><td>적 관통 탄환</td><td>적은 관통하지만 벽에서는 소멸</td><td>적 관통과 벽 관통은 별도 속성</td></tr>
+      <tr><td>근접 공격</td><td>벽 너머 대상에게 적중하지 않음</td><td>맵 전체 대상 지정 효과는 벽 판정 제외</td></tr>
+      <tr><td>공중 몬스터</td><td>방 외곽 벽과 천장 통과 불가</td><td>얇은 발판은 통과 가능</td></tr>
+    </tbody></table>
+    <div class="callout"><strong>벽 재료별 사용</strong><p>1챕터는 돌담·회벽·목재 기둥·부서지는 비밀벽, 2챕터는 암벽·동굴 기둥, 3챕터는 성책·막사벽·봉인 금줄·전투 후 열리는 벽문을 사용한다. 벽 뒤의 적이 일방적으로 공격하지 못하도록 적 투사체에도 같은 충돌을 적용한다.</p></div>
+  </section>
+  <div class="foot">기획 시안 · 실제 구현 전 단계 · 게임 실행 및 프로젝트 변경 없음</div>
+</main>
+<script>
+const layouts=[
+ {nodes:[[90,240],[230,240],[370,240],[510,240],[650,240],[790,240],[370,110],[510,110],[650,370],[790,370],[860,110]],edges:[[0,1],[1,2],[2,3],[3,4],[4,5],[2,6],[6,7],[4,8],[8,9],[5,10]]},
+ {nodes:[[90,210],[220,210],[350,210],[480,210],[610,210],[740,210],[350,80],[480,350],[610,350],[740,350],[860,210]],edges:[[0,1],[1,2],[2,3],[3,4],[4,5],[2,6],[3,7],[7,8],[8,9],[5,10]]},
+ {nodes:[[80,260],[210,260],[340,260],[470,260],[600,260],[730,260],[340,110],[470,110],[600,110],[730,400],[860,260]],edges:[[0,1],[1,2],[2,3],[3,4],[4,5],[2,6],[6,7],[7,8],[5,9],[5,10]]},
+ {nodes:[[90,200],[220,200],[350,200],[480,200],[610,200],[740,200],[220,360],[350,360],[610,360],[740,360],[860,200]],edges:[[0,1],[1,2],[2,3],[3,4],[4,5],[1,6],[6,7],[4,8],[8,9],[5,10]]}
+];
+const map=document.querySelector('#map'),svg=document.querySelector('#links'),seed=document.querySelector('#seed'),summary=document.querySelector('#summary');let serial=0;
+function hash(s){let h=2166136261;for(const c of s){h^=c.charCodeAt(0);h=Math.imul(h,16777619)}return h>>>0}
+function render(){const h=hash(seed.value||'GSN');const l=layouts[h%layouts.length];map.querySelectorAll('.room').forEach(n=>n.remove());svg.innerHTML='';l.edges.forEach(([a,b])=>{const n=document.createElementNS('http://www.w3.org/2000/svg','line');n.setAttribute('x1',l.nodes[a][0]);n.setAttribute('y1',l.nodes[a][1]);n.setAttribute('x2',l.nodes[b][0]);n.setAttribute('y2',l.nodes[b][1]);svg.append(n)});
+ const count=l.nodes.length,shop=3+h%(count-5),reward=2+(h>>3)%(count-4),elite=2+(h>>7)%(count-4),well=1+(h>>11)%(count-2);
+ l.nodes.forEach(([x,y],i)=>{const n=document.createElement('div');let cls='room',label='전투방';if(i===0){cls+=' start';label='시작방'}else if(i===count-1){cls+=' boss';label='보스문'}else if(i===shop){cls+=' shop';label='도깨비 상점'}else if(i===reward){cls+=' reward';label='보상방'}else if(i===elite){cls+=' elite';label='정예방'}if(i===well)cls+=' well';n.className=cls;n.style.left=x+'px';n.style.top=y+'px';n.innerHTML=label+'<small>출구 '+l.edges.filter(e=>e.includes(i)).length+'개</small>';map.append(n)});summary.textContent='방 '+count+'개 · 상점 1 · 우물 1 · 보스문 1';}
+document.querySelector('#remix').onclick=render;document.querySelector('#next').onclick=()=>{serial++;seed.value='GSN-'+String(1042+serial*137);render()};seed.addEventListener('keydown',e=>{if(e.key==='Enter')render()});render();
+</script></body></html>

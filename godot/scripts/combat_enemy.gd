@@ -38,6 +38,9 @@ var burn := 0.0
 var burn_tick := 0.0
 var burn_damage := 1.0
 var burn_interval := .5
+var shock := 0.0   # 감전 상태이상 본체는 따로 구현. 여기서는 걸린 시간만 기록한다.
+var frozen := 0.0
+var frozen_then_slow := 0.0
 var knockback := 0.0
 var thrown_velocity := Vector2.ZERO
 var throw_remaining := 0.0
@@ -240,8 +243,17 @@ func tick_burn(delta: float) -> void:
 	burn_tick-=delta
 	if burn_tick<=0:
 		burn_tick+=burn_interval
-		take_damage(burn_damage,true,Color("e27a32"),false)
+		take_damage(burn_damage*director.weather.burn_scale(),true,Color("e27a32"),false)
 		flash=0.0
+func apply_shock(duration := 2.0) -> void:
+	if dead or dying: return
+	shock=maxf(shock,duration)
+# 짧은 빙결(행동 불가) 뒤 둔화가 이어진다. 보스는 호출하는 쪽에서 제외한다.
+func apply_freeze(duration := .8, slow_after := 3.0) -> void:
+	if dead or dying: return
+	frozen=maxf(frozen,duration)
+	frozen_then_slow=maxf(frozen_then_slow,slow_after)
+	stun=maxf(stun,duration)
 func pull_to(target: Vector2, duration := .7) -> void:
 	if dead: return
 	pull_origin=position
@@ -274,7 +286,13 @@ func _physics_process(delta: float) -> void:
 		return
 	tick_burn(delta)
 	if dead: return
-	slow=maxf(0,slow-delta)
+	slow=maxf(0,slow-delta*director.weather.slow_decay())
+	shock=maxf(0,shock-delta)
+	if frozen>0:
+		frozen=maxf(0,frozen-delta)
+		if frozen<=0:
+			slow=maxf(slow,frozen_then_slow)
+			frozen_then_slow=0.0
 	vulnerable=maxf(0,vulnerable-delta)
 	if throw_remaining>0:
 		throw_remaining=maxf(0,throw_remaining-delta)

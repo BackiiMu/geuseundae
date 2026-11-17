@@ -1,0 +1,809 @@
+{
+ "frames": [
+  {
+   "filename": "duo-mace 0",
+   "frame": {
+    "x": 0,
+    "y": 0,
+    "w": 480,
+    "h": 480
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 480,
+    "h": 480
+   },
+   "sourceSize": {
+    "w": 480,
+    "h": 480
+   },
+   "duration": 50
+  },
+  {
+   "filename": "duo-mace 1",
+   "frame": {
+    "x": 480,
+    "y": 0,
+    "w": 480,
+    "h": 480
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 480,
+    "h": 480
+   },
+   "sourceSize": {
+    "w": 480,
+    "h": 480
+   },
+   "duration": 50
+  },
+  {
+   "filename": "duo-mace 2",
+   "frame": {
+    "x": 960,
+    "y": 0,
+    "w": 480,
+    "h": 480
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 480,
+    "h": 480
+   },
+   "sourceSize": {
+    "w": 480,
+    "h": 480
+   },
+   "duration": 50
+  },
+  {
+   "filename": "duo-mace 3",
+   "frame": {
+    "x": 1440,
+    "y": 0,
+    "w": 480,
+    "h": 480
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 480,
+    "h": 480
+   },
+   "sourceSize": {
+    "w": 480,
+    "h": 480
+   },
+   "duration": 50
+  },
+  {
+   "filename": "duo-mace 4",
+   "frame": {
+    "x": 1920,
+    "y": 0,
+    "w": 480,
+    "h": 480
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 480,
+    "h": 480
+   },
+   "sourceSize": {
+    "w": 480,
+    "h": 480
+   },
+   "duration": 50
+  },
+  {
+   "filename": "duo-mace 5",
+   "frame": {
+    "x": 2400,
+    "y": 0,
+    "w": 480,
+    "h": 480
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 480,
+    "h": 480
+   },
+   "sourceSize": {
+    "w": 480,
+    "h": 480
+   },
+   "duration": 50
+  },
+  {
+   "filename": "duo-mace 6",
+   "frame": {
+    "x": 0,
+    "y": 480,
+    "w": 480,
+    "h": 480
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 480,
+    "h": 480
+   },
+   "sourceSize": {
+    "w": 480,
+    "h": 480
+   },
+   "duration": 50
+  },
+  {
+   "filename": "duo-mace 7",
+   "frame": {
+    "x": 480,
+    "y": 480,
+    "w": 480,
+    "h": 480
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 480,
+    "h": 480
+   },
+   "sourceSize": {
+    "w": 480,
+    "h": 480
+   },
+   "duration": 50
+  },
+  {
+   "filename": "duo-mace 8",
+   "frame": {
+    "x": 960,
+    "y": 480,
+    "w": 480,
+    "h": 480
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 480,
+    "h": 480
+   },
+   "sourceSize": {
+    "w": 480,
+    "h": 480
+   },
+   "duration": 50
+  },
+  {
+   "filename": "duo-mace 9",
+   "frame": {
+    "x": 1440,
+    "y": 480,
+    "w": 480,
+    "h": 480
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 480,
+    "h": 480
+   },
+   "sourceSize": {
+    "w": 480,
+    "h": 480
+   },
+   "duration": 50
+  },
+  {
+   "filename": "duo-mace 10",
+   "frame": {
+    "x": 1920,
+    "y": 480,
+    "w": 480,
+    "h": 480
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 480,
+    "h": 480
+   },
+   "sourceSize": {
+    "w": 480,
+    "h": 480
+   },
+   "duration": 50
+  },
+  {
+   "filename": "duo-mace 11",
+   "frame": {
+    "x": 2400,
+    "y": 480,
+    "w": 480,
+    "h": 480
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 480,
+    "h": 480
+   },
+   "sourceSize": {
+    "w": 480,
+    "h": 480
+   },
+   "duration": 50
+  },
+  {
+   "filename": "duo-mace 12",
+   "frame": {
+    "x": 0,
+    "y": 960,
+    "w": 480,
+    "h": 480
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 480,
+    "h": 480
+   },
+   "sourceSize": {
+    "w": 480,
+    "h": 480
+   },
+   "duration": 50
+  },
+  {
+   "filename": "duo-mace 13",
+   "frame": {
+    "x": 480,
+    "y": 960,
+    "w": 480,
+    "h": 480
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 480,
+    "h": 480
+   },
+   "sourceSize": {
+    "w": 480,
+    "h": 480
+   },
+   "duration": 50
+  },
+  {
+   "filename": "duo-mace 14",
+   "frame": {
+    "x": 960,
+    "y": 960,
+    "w": 480,
+    "h": 480
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 480,
+    "h": 480
+   },
+   "sourceSize": {
+    "w": 480,
+    "h": 480
+   },
+   "duration": 50
+  },
+  {
+   "filename": "duo-mace 15",
+   "frame": {
+    "x": 1440,
+    "y": 960,
+    "w": 480,
+    "h": 480
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 480,
+    "h": 480
+   },
+   "sourceSize": {
+    "w": 480,
+    "h": 480
+   },
+   "duration": 50
+  },
+  {
+   "filename": "duo-mace 16",
+   "frame": {
+    "x": 1920,
+    "y": 960,
+    "w": 480,
+    "h": 480
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 480,
+    "h": 480
+   },
+   "sourceSize": {
+    "w": 480,
+    "h": 480
+   },
+   "duration": 50
+  },
+  {
+   "filename": "duo-mace 17",
+   "frame": {
+    "x": 2400,
+    "y": 960,
+    "w": 480,
+    "h": 480
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 480,
+    "h": 480
+   },
+   "sourceSize": {
+    "w": 480,
+    "h": 480
+   },
+   "duration": 50
+  },
+  {
+   "filename": "duo-mace 18",
+   "frame": {
+    "x": 0,
+    "y": 1440,
+    "w": 480,
+    "h": 480
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 480,
+    "h": 480
+   },
+   "sourceSize": {
+    "w": 480,
+    "h": 480
+   },
+   "duration": 50
+  },
+  {
+   "filename": "duo-mace 19",
+   "frame": {
+    "x": 480,
+    "y": 1440,
+    "w": 480,
+    "h": 480
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 480,
+    "h": 480
+   },
+   "sourceSize": {
+    "w": 480,
+    "h": 480
+   },
+   "duration": 50
+  },
+  {
+   "filename": "duo-mace 20",
+   "frame": {
+    "x": 960,
+    "y": 1440,
+    "w": 480,
+    "h": 480
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 480,
+    "h": 480
+   },
+   "sourceSize": {
+    "w": 480,
+    "h": 480
+   },
+   "duration": 50
+  },
+  {
+   "filename": "duo-mace 21",
+   "frame": {
+    "x": 1440,
+    "y": 1440,
+    "w": 480,
+    "h": 480
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 480,
+    "h": 480
+   },
+   "sourceSize": {
+    "w": 480,
+    "h": 480
+   },
+   "duration": 50
+  },
+  {
+   "filename": "duo-mace 22",
+   "frame": {
+    "x": 1920,
+    "y": 1440,
+    "w": 480,
+    "h": 480
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 480,
+    "h": 480
+   },
+   "sourceSize": {
+    "w": 480,
+    "h": 480
+   },
+   "duration": 50
+  },
+  {
+   "filename": "duo-mace 23",
+   "frame": {
+    "x": 2400,
+    "y": 1440,
+    "w": 480,
+    "h": 480
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 480,
+    "h": 480
+   },
+   "sourceSize": {
+    "w": 480,
+    "h": 480
+   },
+   "duration": 50
+  },
+  {
+   "filename": "duo-mace 24",
+   "frame": {
+    "x": 0,
+    "y": 1920,
+    "w": 480,
+    "h": 480
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 480,
+    "h": 480
+   },
+   "sourceSize": {
+    "w": 480,
+    "h": 480
+   },
+   "duration": 50
+  },
+  {
+   "filename": "duo-mace 25",
+   "frame": {
+    "x": 480,
+    "y": 1920,
+    "w": 480,
+    "h": 480
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 480,
+    "h": 480
+   },
+   "sourceSize": {
+    "w": 480,
+    "h": 480
+   },
+   "duration": 50
+  },
+  {
+   "filename": "duo-mace 26",
+   "frame": {
+    "x": 960,
+    "y": 1920,
+    "w": 480,
+    "h": 480
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 480,
+    "h": 480
+   },
+   "sourceSize": {
+    "w": 480,
+    "h": 480
+   },
+   "duration": 50
+  },
+  {
+   "filename": "duo-mace 27",
+   "frame": {
+    "x": 1440,
+    "y": 1920,
+    "w": 480,
+    "h": 480
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 480,
+    "h": 480
+   },
+   "sourceSize": {
+    "w": 480,
+    "h": 480
+   },
+   "duration": 50
+  },
+  {
+   "filename": "duo-mace 28",
+   "frame": {
+    "x": 1920,
+    "y": 1920,
+    "w": 480,
+    "h": 480
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 480,
+    "h": 480
+   },
+   "sourceSize": {
+    "w": 480,
+    "h": 480
+   },
+   "duration": 50
+  },
+  {
+   "filename": "duo-mace 29",
+   "frame": {
+    "x": 2400,
+    "y": 1920,
+    "w": 480,
+    "h": 480
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 480,
+    "h": 480
+   },
+   "sourceSize": {
+    "w": 480,
+    "h": 480
+   },
+   "duration": 50
+  },
+  {
+   "filename": "duo-mace 30",
+   "frame": {
+    "x": 0,
+    "y": 2400,
+    "w": 480,
+    "h": 480
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 480,
+    "h": 480
+   },
+   "sourceSize": {
+    "w": 480,
+    "h": 480
+   },
+   "duration": 50
+  },
+  {
+   "filename": "duo-mace 31",
+   "frame": {
+    "x": 480,
+    "y": 2400,
+    "w": 480,
+    "h": 480
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 480,
+    "h": 480
+   },
+   "sourceSize": {
+    "w": 480,
+    "h": 480
+   },
+   "duration": 50
+  },
+  {
+   "filename": "duo-mace 32",
+   "frame": {
+    "x": 960,
+    "y": 2400,
+    "w": 480,
+    "h": 480
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 480,
+    "h": 480
+   },
+   "sourceSize": {
+    "w": 480,
+    "h": 480
+   },
+   "duration": 50
+  },
+  {
+   "filename": "duo-mace 33",
+   "frame": {
+    "x": 1440,
+    "y": 2400,
+    "w": 480,
+    "h": 480
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 480,
+    "h": 480
+   },
+   "sourceSize": {
+    "w": 480,
+    "h": 480
+   },
+   "duration": 50
+  },
+  {
+   "filename": "duo-mace 34",
+   "frame": {
+    "x": 1920,
+    "y": 2400,
+    "w": 480,
+    "h": 480
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 480,
+    "h": 480
+   },
+   "sourceSize": {
+    "w": 480,
+    "h": 480
+   },
+   "duration": 50
+  }
+ ],
+ "meta": {
+  "app": "https://github.com/patch-gg/pixelfx",
+  "version": "1",
+  "image": "duo-mace.png",
+  "format": "RGBA8888",
+  "size": {
+   "w": 2880,
+   "h": 2880
+  },
+  "scale": "1",
+  "frameTags": [
+   {
+    "name": "duo-mace",
+    "from": 0,
+    "to": 34,
+    "direction": "forward"
+   }
+  ],
+  "pixelfx": {
+   "id": "geuseundae/duo-mace",
+   "name": "Duo mace",
+   "fps": 20,
+   "loop": false,
+   "frames": 35,
+   "frameSize": [
+    480,
+    480
+   ],
+   "pivot": [
+    90,
+    286
+   ],
+   "columns": 6
+  }
+ }
+}

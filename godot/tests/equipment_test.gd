@@ -38,7 +38,7 @@ func run_checks() -> void:
 	world.toggle_equipment_lab()
 	c=world.combat
 	c.crit_chance=0.0
-	if not check(DB.weapons().size()==35 and DB.items().size()==45 and world.wallet["bag"].size()==45,"All 35 weapons and 10 passive items are available in lab"): return
+	if not check(DB.weapons().size()==36 and DB.items().size()==49 and world.wallet["bag"].size()==49,"All 36 weapons and 13 passive items are available in lab"): return
 	for heart_id in HeartDB.HEARTS:
 		world.set_lab_heart(heart_id)
 		var heart:=HeartDB.get_heart(heart_id)

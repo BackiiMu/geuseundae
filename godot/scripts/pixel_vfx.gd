@@ -142,6 +142,28 @@ func changgui_soul_bind(owner: Node) -> void:
 	if bursts.size()>=40: bursts.pop_front()
 	bursts.append({"key":KEY,"owner":owner,"offset":Vector2.ZERO,"pos":owner.position,"angle":0.0,"size":1.0,"tint":Color.WHITE,"age":0.0,"speed":1.0,"duration":float(info["frames"])/float(info["fps"])})
 
+# 두억시니 세트 완성 주먹: 검은 연기에 둘러싸인 철퇴를 치켜들었다가 180° 휘두르는 시트(480×480, 35프레임).
+# 피벗이 플레이어 발 위치이고 오른쪽을 본 그림이라 왼쪽을 볼 때는 좌우로 뒤집는다. 플레이어를 따라 움직인다.
+var duo_mace_info := {}
+var duo_mace_texture: Texture2D
+func emit_duo_mace(player_pos: Vector2,direction: Vector2) -> void:
+	if duo_mace_info.is_empty():
+		duo_mace_info=JSON.parse_string(FileAccess.get_file_as_string("res://assets/vfx/duo-mace.json"))["meta"]["pixelfx"]
+		duo_mace_texture=load("res://assets/vfx/duo-mace.png")
+	if bursts.size()>=40: bursts.pop_front()
+	bursts.append({"duo_mace":true,"pos":player_pos,"angle":0.0 if direction.x>=0.0 else PI,"size":1.0,"age":0.0,"speed":1.0,"duration":float(duo_mace_info["frames"])/float(duo_mace_info["fps"]),"follow_player":true,"player_offset":Vector2.ZERO})
+
+func duo_mace_sheet(pos: Vector2,age: float,angle: float) -> void:
+	var frame:=mini(int(age*float(duo_mace_info["fps"])),int(duo_mace_info["frames"])-1)
+	var frame_size:=Vector2(duo_mace_info["frameSize"][0],duo_mace_info["frameSize"][1])
+	var pivot:=Vector2(duo_mace_info["pivot"][0],duo_mace_info["pivot"][1])
+	var columns:=int(duo_mace_info["columns"])
+	var source:=Rect2(Vector2(frame%columns,floori(float(frame)/columns))*frame_size,frame_size)
+	var flip:=cos(angle)<0
+	draw_set_transform(pos.round(),0.0,Vector2(-1.0 if flip else 1.0,1.0))
+	draw_texture_rect_region(duo_mace_texture,Rect2(-pivot,frame_size),source)
+	draw_set_transform(Vector2.ZERO)
+
 func load_monster(name: String) -> Dictionary:
 	if not monster_info.has(name):
 		var base := "res://assets/monster_vfx/"+name
@@ -292,7 +314,7 @@ func draw_projectile(p: Dictionary) -> void:
 		return
 	if kind=="tiger":
 		# 푸른 영혼 호랑이 머리(제공 이미지 v2 기반 12프레임 반복). 80×51 도트를 3배로 그린다.
-		sheet("tiger-spirit",pos,fmod(float(p["age"]),.6),3.0,Color.WHITE,velocity.angle())
+		sheet("tiger-spirit",pos,fmod(float(p["age"]),.6),3.0,Color(1,1,1,.6),velocity.angle())
 	elif kind in ["pin","spit","boomerang","whistle"]:
 		draw_line((pos-direction*15).round(),pos.round(),color,3*float(p.get("size",1)))
 		if kind=="pin": draw_line(pos.round(),(pos-direction*5+direction.orthogonal()*4).round(),Color("f1ebd6"),2)
@@ -342,6 +364,7 @@ func _draw() -> void:
 		draw_projectile(p)
 	for burst in bursts:
 		if burst.has("monster"): monster_sheet(burst["monster"],burst["pos"],burst["age"],burst["angle"],burst["size"],false,bool(burst.get("rotate",false)))
+		elif burst.has("duo_mace"): duo_mace_sheet(burst["pos"],burst["age"],burst["angle"])
 		elif burst.has("gear3"): gear3_sheet(burst["gear3"],burst["pos"],burst["age"],burst["angle"],burst["size"])
 		elif burst.has("gear2"): gear2_sheet(burst["gear2"],burst["pos"],burst["age"],burst["angle"])
 		elif burst.has("provided"): provided_sheet(burst["provided"],burst["pos"],burst["age"],burst["angle"])

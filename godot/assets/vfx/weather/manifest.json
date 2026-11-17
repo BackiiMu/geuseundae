@@ -1,0 +1,2 @@
+{"source":"pixelfx weather/* (node vendor/pixelfx/tools/render.mjs weather/<id> --sheet --fps 12)","frameSize":[320,180],"columns":8,"fps":12,
+"sheets":{"rain":{"file":"rain","frames":96},"storm":{"file":"storm","frames":120},"fog":{"file":"fog","frames":144},"snow":{"file":"snow","frames":144},"blizzard":{"file":"blizzard","frames":96},"rays":{"file":"god-rays","frames":120},"fireflies":{"file":"fireflies","frames":144},"stars":{"file":"shooting-stars","frames":120}}}

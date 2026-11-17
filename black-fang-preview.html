@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>검은 이빨 · 날씨 공격 시안</title>
+<style>
+:root{--bg:#0a0d12;--panel:#141a22;--line:#2b3542;--ink:#d8cfbd;--dim:#8f8a7e;--gold:#e0b04a}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.55 "Noto Sans KR",system-ui,sans-serif}
+.wrap{max-width:1100px;margin:0 auto;padding:20px 16px 56px}
+h1{font-size:18px;margin:0 0 2px}h2{font-size:14px;margin:20px 0 8px;color:var(--gold)}
+.sub{color:var(--dim);margin:0 0 12px;font-size:13px}
+code{background:#18202a;padding:0 4px;font-size:12px}
+.note{border-left:3px solid #d8a65a;background:var(--panel);padding:8px 12px;font-size:13px;color:var(--dim);margin:10px 0}
+.warn{display:none;border-left-color:#c9614f}
+.stage{background:#000;border:1px solid var(--line)}
+canvas#cv{width:100%;display:block;image-rendering:pixelated}
+.bar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:10px 0}
+button{background:var(--panel);color:var(--ink);border:1px solid var(--line);padding:6px 12px;font:inherit;cursor:pointer;border-radius:3px}
+button:hover{border-color:var(--gold)}button.on{border-color:var(--gold);color:var(--gold)}
+button.primary{background:#2a2110;border-color:var(--gold);color:var(--gold)}
+label{display:flex;gap:6px;align-items:center;cursor:pointer;color:var(--dim)}
+.top{display:grid;grid-template-columns:250px 1fr;gap:16px;align-items:start}
+@media(max-width:760px){.top{grid-template-columns:1fr}}
+.card{background:var(--panel);border:1px solid var(--line);padding:14px}
+.card h3{margin:0 0 4px;font-size:16px;color:var(--gold)}
+.card ul{margin:8px 0 0;padding-left:18px;font-size:13px}
+.tag{display:inline-block;border:1px solid var(--line);padding:0 8px;margin:0 4px 4px 0;font-size:12px;color:var(--dim)}
+.tag.t{border-color:#7a5f28;color:var(--gold)}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th,td{border:1px solid var(--line);padding:6px 8px;text-align:left;vertical-align:top}
+th{background:#101620;color:var(--dim);font-weight:500}
+tr.on td{background:#1a2230}
+td.c{white-space:nowrap}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px}
+.w{background:var(--panel);border:1px solid var(--line);cursor:pointer}
+.w.on,.w:hover{border-color:var(--gold)}
+.w canvas{width:100%;display:block;image-rendering:pixelated;background:#0c1118}
+.w div{padding:6px 10px 8px;font-size:12.5px;color:var(--dim)}
+.w b{color:var(--ink);font-size:13.5px}
+</style>
+</head>
+<body><div class="wrap">
+<h1>검은 이빨 · 날씨 공격 시안</h1>
+<p class="sub">테스트 무기입니다. 공격하면 <b>가장 가까운 적이 서 있는 자리</b>에 현재 날씨에 맞는 공격이 떨어집니다(자동 조준·히트스캔). 벼락과 유성은 하늘에서 내리꽂히고 회오리·눈 폭풍우는 적 자리에 나타납니다. 날씨 연출은 pixelfx 효과입니다. 게임에는 적용하지 않은 시안이며 수치는 모두 가안입니다.</p>
+<div class="note warn" id="loadwarn">이미지를 불러오지 못했습니다. 이 HTML을 프로젝트 폴더(<code>geuseundae</code>) 안에서 열었는지 확인해 주세요. <code>docs/mockups/black-fang/*.png</code> 가 필요합니다.</div>
+
+<div class="top">
+  <div class="card">
+    <h3>검은 이빨</h3>
+    <span class="tag t">테스트 무기</span><span class="tag">원거리</span><span class="tag">히트스캔</span>
+    <ul>
+      <li>가장 가까운 적을 자동 조준 (사거리 520)</li>
+      <li>입력 즉시 판정(날아가는 투사체 없음). 연출은 하늘·땅에서 적 위치로 들어옴</li>
+      <li>공격 간격 0.7초</li>
+      <li>날씨(검은비늘)에 따라 공격과 추가 효과가 바뀜. 날씨가 없으면 맑음 공격</li>
+    </ul>
+  </div>
+  <div>
+    <div class="stage"><canvas id="cv" width="768" height="432"></canvas></div>
+    <div class="bar">
+      <button class="primary" id="fire">공격 (J)</button>
+      <label><input type="checkbox" id="auto" checked> 자동 공격</label>
+      <label><input type="checkbox" id="wfx" checked> 날씨 배경</label>
+      <label>효과 크기 <input type="range" id="sz" min="50" max="140" value="80"> <span id="szv">0.8배</span></label>
+    </div>
+    <div class="bar" id="wbtn"></div>
+    <div class="note" id="desc"></div>
+  </div>
+</div>
+
+<h2>날씨별 공격 (9종)</h2>
+<div class="grid" id="grid"></div>
+<table style="margin-top:12px" id="tbl"><thead><tr><th>날씨</th><th>공격</th><th>설명</th><th>피해</th><th>추가 효과</th><th>pixelfx</th></tr></thead><tbody></tbody></table>
+<div class="note">감전·빙결·화상 등 상태이상 본체는 따로 구현하신다고 해서 시안에서는 글자 표시만 합니다. 판정은 공격 입력 즉시 이뤄지고, 연출은 하늘이나 땅에서 적 위치로 들어옵니다. 벼락은 하늘 끝에서 적 발밑까지 내리치고, 유성은 왼쪽 위에서 비스듬히 떨어져 적 자리에서 터집니다. 긴 효과는 재생 속도를 1.0~2.3배로 올렸습니다.</div>
+</div>
+<script>
+const ORDER=['clear','rain','storm','fog','snow','blizzard','rays','fireflies','stars'];
+const W={
+ clear:{name:'맑음',desc:'적 발밑 바닥이 갈라지며 뾰족한 돌기둥과 돌조각이 솟구칩니다. 날씨 효과가 없을 때 나가는 가장 약한 기본 공격입니다.',atk:'돌 솟구침',dmg:6,st:'',tint:'rgba(0,0,0,0)'},
+ rain:{name:'장맛비',desc:'하늘 끝에서 적 발밑까지 벼락이 내리꽂힙니다. 맞은 적은 감전되며, 장맛비에서는 감전 대미지가 1.5배입니다.',atk:'벼락',dmg:10,st:'감전',tint:'rgba(30,50,90,.28)',sheet:'rain'},
+ storm:{name:'뇌우(폭풍우)',desc:'적이 선 자리에 폭풍 회오리가 나타나 1.5초 동안 머뭅니다. 맞은 적은 회오리에 휘말려 0.8초 동안 공중에 뜹니다.',atk:'회오리바람',dmg:10,st:'띄움 0.8초',tint:'rgba(20,24,50,.38)',sheet:'storm'},
+ fog:{name:'안개',desc:'적 주변 반경 130에 짙은 안개가 깔립니다. 안개 안에 있는 적 모두가 피해를 받고 0.5초 동안 움직이지 못합니다.',atk:'안개 깔림 (반경 130)',dmg:8,st:'속박 0.5초',tint:'rgba(120,140,150,.14)',sheet:'fog'},
+ snow:{name:'눈',desc:'위에서 고드름이 떨어져 적 자리에 꽂히고 깨집니다. 맞은 적은 피해와 함께 둔화됩니다.',atk:'고드름 낙하',dmg:8,st:'둔화',tint:'rgba(120,150,190,.14)',sheet:'snow'},
+ blizzard:{name:'눈보라',desc:'적 자리에 눈 폭풍우가 나타나 1.5초 동안 몰아칩니다. 맞은 적은 0.5초 빙결되고, 풀리면 둔화가 이어집니다.',atk:'눈 폭풍우',dmg:8,st:'빙결 0.5초',tint:'rgba(150,175,210,.22)',sheet:'blizzard'},
+ rays:{name:'햇살',desc:'적 발밑에서 불기둥이 솟아오릅니다. 맞은 적은 피해와 함께 화상에 걸립니다.',atk:'불기둥',dmg:9,st:'화상',tint:'rgba(255,225,150,.10)',sheet:'rays'},
+ fireflies:{name:'도깨비불',desc:'반투명한 청록 도깨비불 구체가 적을 감싸고 불티가 주변을 떠돕니다. 반경 140 안의 적 모두가 피해와 화상을 받습니다.',atk:'도깨비불 구체 (반경 140)',dmg:9,st:'화상',tint:'rgba(10,20,40,.34)',sheet:'fireflies'},
+ stars:{name:'유성우',desc:'왼쪽 위에서 유성이 비스듬히 떨어져 적 자리에서 터집니다. 조준한 적에게 피해 12, 근처(90 이내) 다른 적에게 8을 줍니다.',atk:'유성 낙하',dmg:12,st:'주변 8 범위 피해',tint:'rgba(8,10,30,.40)',sheet:'stars'}
+};
+const WSHEET={rain:96,storm:120,fog:144,snow:144,blizzard:96,rays:120,fireflies:144,stars:120};
+const WFILE={rays:'god-rays',stars:'shooting-stars'};
+let CFG=null,cur='clear',warn=false;
+const L=s=>{const i=new Image();i.onerror=()=>{document.getElementById('loadwarn').style.display='block'};i.src=s;return i};
+const bg=L('godot/assets/haunted-courtyard.png'),song=L('godot/assets/actors/source/songaksi-v1.png'),war=L('godot/assets/actors/source/warrior-v1.png');
+const fx={},wx={};
+ORDER.forEach(k=>{fx[k]=L('docs/mockups/black-fang/'+k+'.png?v=13');if(WSHEET[k])wx[k]=L('docs/mockups/weather/'+(WFILE[k]||k)+'.png')});
+CFG={"clear":{"src":"nature/earth-spike","frames":69,"fw":272,"fh":150,"cols":7,"pivot":[136,132],"fps":20,"start":6,"end":59,"rate":1.66,"anchor":"feet","sc":1.5},"rain":{"src":"lightning/lightning-strike","frames":61,"fw":240,"fh":264,"cols":9,"pivot":[120,228],"fps":20,"start":10,"end":36,"peak":15,"rate":1.0,"anchor":"feet","sc":1.8},"storm":{"src":"geuseundae/storm-tornado (nature/tornado\uc5d0\uc11c \ub099\uc5fd \uc81c\uac70)","frames":40,"fw":196,"fh":168,"cols":6,"pivot":[98,152],"fps":20,"start":0,"end":39,"rate":1.0,"anchor":"feet","sc":1.5,"loop":true,"dur":1.5},"fog":{"src":"geuseundae/mist-bank (\uc0c8\ub85c \ub9cc\ub4e0 \ud6a8\uacfc)","frames":60,"fw":330,"fh":140,"cols":6,"pivot":[165,116],"fps":20,"start":0,"end":59,"rate":1.0,"anchor":"feet","sc":1.6,"loop":true,"dur":1.8},"snow":{"src":"ice/icicle-fall","frames":53,"fw":152,"fh":120,"cols":7,"pivot":[76,100],"fps":20,"start":16,"end":42,"peak":19,"rate":1.0,"anchor":"feet","sc":1.0},"blizzard":{"src":"ice/blizzard-vortex","frames":40,"fw":128,"fh":116,"cols":7,"pivot":[64,102],"fps":20,"start":0,"end":39,"peak":4,"rate":1.0,"anchor":"feet","sc":2.4,"loop":true,"dur":1.5},"rays":{"src":"fire/flame-pillar","frames":101,"fw":184,"fh":256,"cols":12,"pivot":[92,232],"fps":20,"start":11,"end":75,"peak":14,"rate":2.32,"anchor":"feet","sc":1.3},"fireflies":{"src":"geuseundae/wisp-orb (\uc0c8\ub85c \ub9cc\ub4e0 \ud6a8\uacfc)","frames":60,"fw":200,"fh":160,"cols":7,"pivot":[100,70],"fps":20,"start":0,"end":59,"rate":1.0,"anchor":"body","sc":3.0,"loop":true,"dur":1.8},"stars":{"src":"fire/meteor","frames":101,"fw":272,"fh":232,"cols":10,"pivot":[150,208],"fps":20,"start":0,"end":62,"rate":1.6,"anchor":"feet","sc":1.0}};
+addEventListener('load',build);
+const cv=document.getElementById('cv'),g=cv.getContext('2d');g.imageSmoothingEnabled=false;
+const P={x:90,y:352};
+const enemies=[290,430,570,690].map((x,i)=>({x,y:352,hp:40,max:40,hit:0,flash:0,st:'',stt:0,dead:0,k:0}));
+let atk=null,cd=0,strikes=[],nums=[],idle=0,last=performance.now(),scale=.8,clock=0;
+const rnd=Math.random;
+function drawChar(img,f,x,y,flip,filter){g.save();g.translate(x,y);if(flip)g.scale(-1,1);if(filter)g.filter=filter;g.drawImage(img,(f%8)*192,Math.floor(f/8)*256,192,256,-24,-62,48,64);g.restore()}
+function nearest(){let b=null,bd=520;enemies.forEach(e=>{if(e.dead>0)return;const d=Math.abs(e.x-P.x);if(d<bd){bd=d;b=e}});return b}
+function hurt(e,d,color){e.hp-=d;e.flash=.12;nums.push({x:e.x+(rnd()-.5)*10,y:e.y-70,t:0,d,color:color||'#f3e6c8'});if(e.hp<=0&&e.dead<=0){e.dead=1.4}}
+function status(e,s){if(!s)return;e.st=s;e.stt=2.0}
+function fire(){
+  if(cd>0||!CFG)return;const t=nearest();if(!t)return;
+  cd=.7;atk={t:0};
+  const w=W[cur];
+  // 히트스캔: 입력 즉시 판정
+  hurt(t,w.dmg,cur==='rain'?'#9fd0ff':cur==='rays'||cur==='fireflies'?'#ffc77a':undefined);
+  if(w.st&&cur!=='stars')status(t,w.st);
+  if(cur==='stars')enemies.forEach(e=>{if(e!==t&&e.dead<=0&&Math.abs(e.x-t.x)<90){hurt(e,8,'#ffc77a')}});
+  if(cur==='fireflies')enemies.forEach(e=>{if(e!==t&&e.dead<=0&&Math.abs(e.x-t.x)<140){hurt(e,w.dmg,'#9ff0d0');status(e,w.st)}});
+  if(cur==='fog')enemies.forEach(e=>{if(e!==t&&e.dead<=0&&Math.abs(e.x-t.x)<130){hurt(e,w.dmg);status(e,w.st)}});
+  strikes.push({x:t.x,y:CFG[cur].anchor==='body'?t.y-30:t.y,t:0,k:cur});
+}
+function frame(now){
+  const dt=Math.min(.05,(now-last)/1000);last=now;idle+=dt;clock+=dt;cd=Math.max(0,cd-dt);
+  g.clearRect(0,0,768,432);
+  if(bg.complete&&bg.naturalWidth){const s=432/724;g.drawImage(bg,420,0,768/s,724,0,0,768,432)}
+  g.fillStyle='rgba(6,10,16,.38)';g.fillRect(0,0,768,432);g.fillStyle='rgba(0,0,0,.25)';g.fillRect(0,P.y,768,80);
+  // 적
+  enemies.forEach(e=>{
+    if(e.dead>0){e.dead-=dt;if(e.dead<=0){e.hp=e.max;e.st='';e.stt=0;e.flash=0}}
+    e.flash=Math.max(0,e.flash-dt);e.stt=Math.max(0,e.stt-dt);if(e.stt<=0)e.st='';
+    const a=e.dead>0?Math.max(0,e.dead/1.4):1;
+    g.save();g.globalAlpha=a;
+    drawChar(war,0,e.x,e.y,true,e.flash>0?'brightness(2.2) saturate(.2)':e.st==='화상'&&Math.floor(clock*10)%2?'sepia(1) saturate(4) hue-rotate(-20deg)':e.st==='둔화'||e.st.startsWith('빙결')?'hue-rotate(160deg) brightness(1.15)':'');
+    g.restore();
+    if(e.dead<=0){g.fillStyle='rgba(0,0,0,.55)';g.fillRect(e.x-14,e.y-72,28,4);g.fillStyle='#6fa57d';g.fillRect(e.x-14,e.y-72,28*Math.max(0,e.hp/e.max),4);
+      if(e.st){g.fillStyle='#e8d9a8';g.font='11px "Noto Sans KR",sans-serif';g.textAlign='center';g.fillText(e.st.replace(/ [\d.]+초/,''),e.x,e.y-80)}}
+  });
+  // 플레이어
+  let pf=Math.floor(idle*7)%8;
+  if(atk){atk.t+=dt;pf=18+Math.min(5,Math.floor(atk.t/.25*6));if(atk.t>.3)atk=null}
+  drawChar(song,pf,P.x,P.y,false);
+  // 날씨 배경(pixelfx)
+  if(document.getElementById('wfx').checked&&W[cur].sheet){
+    const n=WSHEET[cur],i=Math.floor(clock*12)%n,im=wx[cur];
+    if(im&&im.complete&&im.naturalWidth)g.drawImage(im,(i%8)*320,Math.floor(i/8)*180,320,180,0,0,768,432);
+    g.fillStyle=W[cur].tint;g.fillRect(0,0,768,432);
+  }
+  // 공격 연출 (적 머리 위)
+  if(CFG)strikes=strikes.filter(s=>{
+    const c=CFG[s.k];s.t+=dt;
+    const sc=scale*c.sc;let i,a=1,gy=1;
+    if(c.loop){ // 회오리: 적 자리에 나타나 유지되다 사라짐
+      if(s.t>c.dur)return false;
+      i=c.start+Math.floor(s.t*c.fps)%(c.end-c.start+1);
+      a=Math.min(1,s.t/.18,(c.dur-s.t)/.3) // 솟는 게 아니라 제자리에 나타났다 사라짐
+    }else{i=c.start+Math.floor(s.t*c.fps*c.rate);if(i>c.end)return false}
+    const im=fx[s.k];if(!(im.complete&&im.naturalWidth))return true;
+    g.save();g.globalAlpha=Math.max(0,a);
+    g.drawImage(im,(i%c.cols)*c.fw,Math.floor(i/c.cols)*c.fh,c.fw,c.fh,Math.round(s.x-c.pivot[0]*sc),Math.round(s.y-c.pivot[1]*sc*gy),c.fw*sc,c.fh*sc*gy);
+    g.restore();return true});
+  // 피해 숫자
+  nums=nums.filter(n=>{n.t+=dt;if(n.t>.8)return false;g.fillStyle=n.color;g.globalAlpha=Math.min(1,(.8-n.t)*3);g.font='bold 13px "Noto Sans KR",sans-serif';g.textAlign='center';g.fillText(n.d,n.x,n.y-n.t*30);g.globalAlpha=1;return true});
+  // 현재 날씨 표지
+  g.fillStyle='rgba(10,13,18,.78)';g.fillRect(10,10,230,28);g.strokeStyle='rgba(224,176,74,1)';g.strokeRect(10.5,10.5,229,27);
+  g.fillStyle='#e0b04a';g.font='bold 13px "Noto Sans KR",sans-serif';g.textAlign='left';g.textBaseline='middle';g.fillText('날씨 · '+W[cur].name+' / '+W[cur].atk,20,24);g.textBaseline='alphabetic';
+  if(document.getElementById('auto').checked&&cd<=0)fire();
+  requestAnimationFrame(frame);
+}
+requestAnimationFrame(frame);
+
+function select(k){cur=k;document.getElementById('desc').innerHTML='<b style="color:#e0b04a">'+W[k].name+' · '+W[k].atk+'</b> — '+W[k].desc+' <span style="color:#d8cfbd">(피해 '+W[k].dmg+(W[k].st?' · '+W[k].st:'')+')</span>';document.querySelectorAll('#wbtn button').forEach(b=>b.classList.toggle('on',b.dataset.k===k));document.querySelectorAll('.w').forEach(b=>b.classList.toggle('on',b.dataset.k===k));document.querySelectorAll('#tbl tr[data-k]').forEach(r=>r.classList.toggle('on',r.dataset.k===k))}
+function build(){
+  const wb=document.getElementById('wbtn'),grid=document.getElementById('grid'),tb=document.querySelector('#tbl tbody');
+  ORDER.forEach(k=>{
+    const w=W[k],c=CFG[k];
+    const b=document.createElement('button');b.textContent=w.name;b.dataset.k=k;b.onclick=()=>select(k);wb.appendChild(b);
+    const d=document.createElement('div');d.className='w';d.dataset.k=k;d.innerHTML='<canvas width="'+c.fw+'" height="'+c.fh+'"></canvas><div><b>'+w.name+'</b> · '+w.atk+'<br>피해 '+w.dmg+(w.st?' · '+w.st:'')+'<br><span style="color:#a89f8d">'+w.desc+'</span></div>';
+    d.onclick=()=>{select(k);window.scrollTo({top:0,behavior:'smooth'})};grid.appendChild(d);w.cv=d.querySelector('canvas');
+    const r=document.createElement('tr');r.dataset.k=k;r.innerHTML='<td class="c"><b>'+w.name+'</b></td><td>'+w.atk+'</td><td>'+w.desc+'</td><td class="c">'+w.dmg+'</td><td>'+(w.st||'—')+'</td><td class="c"><code>'+c.src+'</code></td>';tb.appendChild(r);
+  });
+  select(cur);
+  let t0=performance.now();
+  (function cards(now){
+    const time=(now-t0)/1000;
+    ORDER.forEach(k=>{const w=W[k],c=CFG[k],g2=w.cv.getContext('2d');g2.imageSmoothingEnabled=false;g2.clearRect(0,0,c.fw,c.fh);
+      const span=(c.end-c.start+1)/c.fps/c.rate+.5,i=c.start+Math.floor((time%span)*c.fps*c.rate);
+      if(i<=c.end&&fx[k].complete&&fx[k].naturalWidth)g2.drawImage(fx[k],(i%c.cols)*c.fw,Math.floor(i/c.cols)*c.fh,c.fw,c.fh,0,0,c.fw,c.fh)});
+    setTimeout(()=>requestAnimationFrame(cards),50)})(performance.now());
+}
+document.getElementById('fire').onclick=fire;
+addEventListener('keydown',e=>{if(e.key==='j'||e.key==='J')fire()});
+document.getElementById('sz').oninput=e=>{scale=e.target.value/100;document.getElementById('szv').textContent=scale.toFixed(1)+'배'};
+</script>
+</body>
+</html>

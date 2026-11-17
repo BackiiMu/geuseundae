@@ -18,6 +18,10 @@ const REWARD_CHEST_TEXTURE = preload("res://assets/vfx/pickups/reward-chest.png"
 var vfx: Node2D
 const Arsenal = preload("res://scripts/equipment_runtime.gd")
 var arsenal = Arsenal.new()
+const Weather = preload("res://scripts/weather_system.gd")
+const WeatherOverlay = preload("res://scripts/weather_overlay.gd")
+var weather = Weather.new()
+var weather_layer: CanvasLayer
 var equipment_lab := false
 var vfx_preview_paused := false
 const Enemy = preload("res://scripts/combat_enemy.gd")
@@ -33,6 +37,7 @@ var attack_cd := {"main":0.0,"off":0.0}
 var equipment: Dictionary = {"heart":"","main":"","off":"","head":"","legs":"","internal":"","a0":"","a1":"","a2":"","a3":""}
 var enemies: Array = []
 var projectiles: Array = []
+const WALL_PIERCING_PROJECTILES := {"whistle":true,"tiger":true}
 var pickups: Array = []
 var zones: Array = []
 var effects: Array = []
@@ -101,6 +106,13 @@ const GEAR3_DROPS = {"nails":"mongdalNail","goose":"woodGoose","mongdal_rush":"m
 func _ready() -> void:
 	crit_rng.randomize()
 	arsenal.c=self
+	weather.c=self
+	weather_layer=CanvasLayer.new()
+	weather_layer.layer=4
+	add_child(weather_layer)
+	var weather_overlay:=WeatherOverlay.new()
+	weather_overlay.weather=weather
+	weather_layer.add_child(weather_overlay)
 	vfx=PixelVFX.new()
 	vfx.combat=self
 	add_child(vfx)
@@ -165,7 +177,7 @@ func message(text: String) -> void:
 	toast_time=3
 func roll_player_damage(amount: float) -> Dictionary:
 	var critical:=crit_rng.randf()<effective_crit_chance()
-	return {"damage":amount*(effective_crit_multiplier() if critical else 1.0),"critical":critical}
+	return {"damage":amount*weather.player_damage_scale()*(effective_crit_multiplier() if critical else 1.0),"critical":critical}
 func effective_crit_chance() -> float:
 	# 치명타 수치 +100은 실제 확률 +10%p. 최종 확률은 60%가 상한이다.
 	return minf(.60,crit_chance+(.10 if has_passive("critical_dagger") else 0.0))
@@ -205,6 +217,7 @@ func enter_room(room_data: Dictionary) -> void:
 	leave_room()
 	data=room_data
 	pickups=data.get("pickups",[]).duplicate(true)
+	weather.roll_for_room()
 	rng.seed=int(world.run["seed"]) ^ (world.current_id*65537+0x424154)
 	if not enabled or not world.is_combat_room(): return
 	if data.get("cleared",false): return
@@ -465,6 +478,7 @@ func area_effect(origin: Vector2,radius: float,damage: float,source: Node=null) 
 		if (world.player.position+Vector2(0,-23)).distance_to(origin)<radius+12: hurt(damage)
 func hurt(amount: float) -> void:
 	if equipment_lab or hurt_timer>0 or world.player.dash_time>0 or not enabled or data.get("cleared",false) or not world.is_combat_room(): return
+	amount=incoming_damage(amount)
 	health=maxf(0,health-amount)
 	if warden_pattern_active and warden_pattern=="heart": warden_no_hit=false
 	hurt_timer=.65
@@ -507,6 +521,30 @@ func has_passive(passive: String) -> bool:
 	for slot in equipment:
 		if equipped(slot).get("passive","")==passive: return true
 	return false
+# 범의 발톱을 장착했거나 가방에 갖고 있으면 true (범의 송곳니 기본공격 전환 조건)
+func owns_item(id: String) -> bool:
+	for slot in equipment:
+		if str(equipment[slot])==id: return true
+	if is_instance_valid(world):
+		for entry in world.wallet.get("bag",[]):
+			if (entry as Dictionary).get("id","")==id: return true
+	return false
+func incoming_damage(amount: float) -> float:
+	return amount*TIGER_HIDE_REDUCE if has_passive("tiger_hide") else amount
+const TIGER_HIDE_HP := 20.0
+const TIGER_HIDE_REDUCE := .8
+var tiger_hide_applied := false
+# 범가죽: 장착 중에만 최대 체력 +20 (해제하면 되돌린다)
+func sync_tiger_hide() -> void:
+	var want:=has_passive("tiger_hide")
+	if want and not tiger_hide_applied:
+		max_health+=TIGER_HIDE_HP
+		health+=TIGER_HIDE_HP
+		tiger_hide_applied=true
+	elif not want and tiger_hide_applied:
+		max_health=maxf(1.0,max_health-TIGER_HIDE_HP)
+		health=minf(health,max_health)
+		tiger_hide_applied=false
 func duo_set() -> bool:
 	var count:=0
 	for slot in equipment:
@@ -548,7 +586,7 @@ func tick_charge_bow(delta: float,held: bool) -> void:
 		bow_charging=false
 		bow_charge=0.0
 func fire_projectile(pos: Vector2,direction: Vector2,damage: float,friendly: bool,kind: String,source: Node=null,homing:=false) -> void:
-	projectiles.append({"pos":pos,"velocity":direction*(440 if friendly else 220),"damage":damage,"friendly":friendly,"kind":kind,"life":(1.2 if friendly else 2.0),"age":0.0,"hit":[],"source":source,"homing":homing})
+	projectiles.append({"pos":pos,"velocity":direction*(440 if friendly else 220),"damage":damage,"friendly":friendly,"kind":kind,"life":(1.2 if friendly else 2.0),"age":0.0,"hit":[],"source":source,"homing":homing,"wall_piercing":WALL_PIERCING_PROJECTILES.has(kind)})
 func use_skill(slot: String) -> void:
 	arsenal.skill(slot)
 func use_heart() -> void:
@@ -1031,7 +1069,7 @@ func destroy_confirmed() -> void:
 func tick_projectiles(delta: float) -> void:
 	for i in range(projectiles.size()-1,-1,-1):
 		var p:Dictionary=projectiles[i]
-		p["life"]-=delta
+		p["life"]-=delta*(1.0 if p["friendly"] else weather.projectile_life_decay())
 		p["age"]+=delta
 		if p["life"]<=0:
 			projectiles.remove_at(i)
@@ -1050,7 +1088,7 @@ func tick_projectiles(delta: float) -> void:
 		if p["kind"] in ["water","poison"]: p["velocity"]+=Vector2(0,500*delta)
 		var to:Vector2=from+Vector2(p["velocity"])*delta
 		var wall:Dictionary={}
-		if p["kind"] not in ["whistle","tiger"]:
+		if not bool(p.get("wall_piercing",false)):
 			wall=get_world_2d().direct_space_state.intersect_ray(PhysicsRayQueryParameters2D.create(from,to,1))
 		if not wall.is_empty():
 			to=wall["position"]
@@ -1134,7 +1172,7 @@ func tick_zones(delta: float) -> void:
 						enemy.pull_to(safe_ground(Vector2(zone["pos"]).x),.22)
 					if distance<80:
 						if zone["kind"]=="water": enemy.slow=1.0
-						if zone["kind"] in ["poison","pin"]: enemy.take_damage(3)
+						if zone["kind"] in ["poison","pin"]: enemy.take_damage(3*weather.player_damage_scale())
 						if zone["kind"]=="mine":
 							vfx.emit("bloom",int(DB.get_item(zone.get("weapon","")).get("tier",1)),zone["pos"]+Vector2(0,-12),Vector2.RIGHT,.8)
 							area_effect(zone["pos"]+Vector2(0,-12),90,20)
@@ -1209,6 +1247,8 @@ func _physics_process(delta: float) -> void:
 					enemy.pull_to(safe_ground(world.player.position.x+world.player.facing*(62+i*5)),.7)
 			heart_pending.clear()
 	arsenal.tick(delta)
+	weather.tick(delta)
+	sync_tiger_hide()
 	toast_time=maxf(0,toast_time-delta)
 	if toast_time<=0: toast.text=""
 	for slot in ["main","off"]:
@@ -1252,6 +1292,7 @@ func _physics_process(delta: float) -> void:
 		if damage_numbers[i]["life"]<=0: damage_numbers.remove_at(i)
 	game_hud.set_stats(health,max_health,BagUtil.count(world.wallet["bag"]),world.player.dash_charges,world.player.dash_max_charges)
 	hud.text=""
+	if weather.active(): hud.text="날씨 · "+weather.weather_name()+"\n"
 	var heart:Dictionary=HeartDB.get_heart(str(equipment.get("heart","")))
 	var heart_id:=str(equipment.get("heart",""))
 	var skills:String=""
@@ -1270,6 +1311,7 @@ func _physics_process(delta: float) -> void:
 	queue_redraw()
 func _draw() -> void:
 	arsenal.draw()
+	weather.draw()
 	if is_instance_valid(world.player):
 		var view:=visible_rect().grow(-28)
 		for enemy in living():

@@ -1,0 +1,721 @@
+{
+ "frames": [
+  {
+   "filename": "smoke-surge 0",
+   "frame": {
+    "x": 0,
+    "y": 0,
+    "w": 430,
+    "h": 170
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 430,
+    "h": 170
+   },
+   "sourceSize": {
+    "w": 430,
+    "h": 170
+   },
+   "duration": 50
+  },
+  {
+   "filename": "smoke-surge 1",
+   "frame": {
+    "x": 430,
+    "y": 0,
+    "w": 430,
+    "h": 170
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 430,
+    "h": 170
+   },
+   "sourceSize": {
+    "w": 430,
+    "h": 170
+   },
+   "duration": 50
+  },
+  {
+   "filename": "smoke-surge 2",
+   "frame": {
+    "x": 860,
+    "y": 0,
+    "w": 430,
+    "h": 170
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 430,
+    "h": 170
+   },
+   "sourceSize": {
+    "w": 430,
+    "h": 170
+   },
+   "duration": 50
+  },
+  {
+   "filename": "smoke-surge 3",
+   "frame": {
+    "x": 1290,
+    "y": 0,
+    "w": 430,
+    "h": 170
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 430,
+    "h": 170
+   },
+   "sourceSize": {
+    "w": 430,
+    "h": 170
+   },
+   "duration": 50
+  },
+  {
+   "filename": "smoke-surge 4",
+   "frame": {
+    "x": 0,
+    "y": 170,
+    "w": 430,
+    "h": 170
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 430,
+    "h": 170
+   },
+   "sourceSize": {
+    "w": 430,
+    "h": 170
+   },
+   "duration": 50
+  },
+  {
+   "filename": "smoke-surge 5",
+   "frame": {
+    "x": 430,
+    "y": 170,
+    "w": 430,
+    "h": 170
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 430,
+    "h": 170
+   },
+   "sourceSize": {
+    "w": 430,
+    "h": 170
+   },
+   "duration": 50
+  },
+  {
+   "filename": "smoke-surge 6",
+   "frame": {
+    "x": 860,
+    "y": 170,
+    "w": 430,
+    "h": 170
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 430,
+    "h": 170
+   },
+   "sourceSize": {
+    "w": 430,
+    "h": 170
+   },
+   "duration": 50
+  },
+  {
+   "filename": "smoke-surge 7",
+   "frame": {
+    "x": 1290,
+    "y": 170,
+    "w": 430,
+    "h": 170
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 430,
+    "h": 170
+   },
+   "sourceSize": {
+    "w": 430,
+    "h": 170
+   },
+   "duration": 50
+  },
+  {
+   "filename": "smoke-surge 8",
+   "frame": {
+    "x": 0,
+    "y": 340,
+    "w": 430,
+    "h": 170
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 430,
+    "h": 170
+   },
+   "sourceSize": {
+    "w": 430,
+    "h": 170
+   },
+   "duration": 50
+  },
+  {
+   "filename": "smoke-surge 9",
+   "frame": {
+    "x": 430,
+    "y": 340,
+    "w": 430,
+    "h": 170
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 430,
+    "h": 170
+   },
+   "sourceSize": {
+    "w": 430,
+    "h": 170
+   },
+   "duration": 50
+  },
+  {
+   "filename": "smoke-surge 10",
+   "frame": {
+    "x": 860,
+    "y": 340,
+    "w": 430,
+    "h": 170
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 430,
+    "h": 170
+   },
+   "sourceSize": {
+    "w": 430,
+    "h": 170
+   },
+   "duration": 50
+  },
+  {
+   "filename": "smoke-surge 11",
+   "frame": {
+    "x": 1290,
+    "y": 340,
+    "w": 430,
+    "h": 170
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 430,
+    "h": 170
+   },
+   "sourceSize": {
+    "w": 430,
+    "h": 170
+   },
+   "duration": 50
+  },
+  {
+   "filename": "smoke-surge 12",
+   "frame": {
+    "x": 0,
+    "y": 510,
+    "w": 430,
+    "h": 170
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 430,
+    "h": 170
+   },
+   "sourceSize": {
+    "w": 430,
+    "h": 170
+   },
+   "duration": 50
+  },
+  {
+   "filename": "smoke-surge 13",
+   "frame": {
+    "x": 430,
+    "y": 510,
+    "w": 430,
+    "h": 170
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 430,
+    "h": 170
+   },
+   "sourceSize": {
+    "w": 430,
+    "h": 170
+   },
+   "duration": 50
+  },
+  {
+   "filename": "smoke-surge 14",
+   "frame": {
+    "x": 860,
+    "y": 510,
+    "w": 430,
+    "h": 170
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 430,
+    "h": 170
+   },
+   "sourceSize": {
+    "w": 430,
+    "h": 170
+   },
+   "duration": 50
+  },
+  {
+   "filename": "smoke-surge 15",
+   "frame": {
+    "x": 1290,
+    "y": 510,
+    "w": 430,
+    "h": 170
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 430,
+    "h": 170
+   },
+   "sourceSize": {
+    "w": 430,
+    "h": 170
+   },
+   "duration": 50
+  },
+  {
+   "filename": "smoke-surge 16",
+   "frame": {
+    "x": 0,
+    "y": 680,
+    "w": 430,
+    "h": 170
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 430,
+    "h": 170
+   },
+   "sourceSize": {
+    "w": 430,
+    "h": 170
+   },
+   "duration": 50
+  },
+  {
+   "filename": "smoke-surge 17",
+   "frame": {
+    "x": 430,
+    "y": 680,
+    "w": 430,
+    "h": 170
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 430,
+    "h": 170
+   },
+   "sourceSize": {
+    "w": 430,
+    "h": 170
+   },
+   "duration": 50
+  },
+  {
+   "filename": "smoke-surge 18",
+   "frame": {
+    "x": 860,
+    "y": 680,
+    "w": 430,
+    "h": 170
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 430,
+    "h": 170
+   },
+   "sourceSize": {
+    "w": 430,
+    "h": 170
+   },
+   "duration": 50
+  },
+  {
+   "filename": "smoke-surge 19",
+   "frame": {
+    "x": 1290,
+    "y": 680,
+    "w": 430,
+    "h": 170
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 430,
+    "h": 170
+   },
+   "sourceSize": {
+    "w": 430,
+    "h": 170
+   },
+   "duration": 50
+  },
+  {
+   "filename": "smoke-surge 20",
+   "frame": {
+    "x": 0,
+    "y": 850,
+    "w": 430,
+    "h": 170
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 430,
+    "h": 170
+   },
+   "sourceSize": {
+    "w": 430,
+    "h": 170
+   },
+   "duration": 50
+  },
+  {
+   "filename": "smoke-surge 21",
+   "frame": {
+    "x": 430,
+    "y": 850,
+    "w": 430,
+    "h": 170
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 430,
+    "h": 170
+   },
+   "sourceSize": {
+    "w": 430,
+    "h": 170
+   },
+   "duration": 50
+  },
+  {
+   "filename": "smoke-surge 22",
+   "frame": {
+    "x": 860,
+    "y": 850,
+    "w": 430,
+    "h": 170
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 430,
+    "h": 170
+   },
+   "sourceSize": {
+    "w": 430,
+    "h": 170
+   },
+   "duration": 50
+  },
+  {
+   "filename": "smoke-surge 23",
+   "frame": {
+    "x": 1290,
+    "y": 850,
+    "w": 430,
+    "h": 170
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 430,
+    "h": 170
+   },
+   "sourceSize": {
+    "w": 430,
+    "h": 170
+   },
+   "duration": 50
+  },
+  {
+   "filename": "smoke-surge 24",
+   "frame": {
+    "x": 0,
+    "y": 1020,
+    "w": 430,
+    "h": 170
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 430,
+    "h": 170
+   },
+   "sourceSize": {
+    "w": 430,
+    "h": 170
+   },
+   "duration": 50
+  },
+  {
+   "filename": "smoke-surge 25",
+   "frame": {
+    "x": 430,
+    "y": 1020,
+    "w": 430,
+    "h": 170
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 430,
+    "h": 170
+   },
+   "sourceSize": {
+    "w": 430,
+    "h": 170
+   },
+   "duration": 50
+  },
+  {
+   "filename": "smoke-surge 26",
+   "frame": {
+    "x": 860,
+    "y": 1020,
+    "w": 430,
+    "h": 170
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 430,
+    "h": 170
+   },
+   "sourceSize": {
+    "w": 430,
+    "h": 170
+   },
+   "duration": 50
+  },
+  {
+   "filename": "smoke-surge 27",
+   "frame": {
+    "x": 1290,
+    "y": 1020,
+    "w": 430,
+    "h": 170
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 430,
+    "h": 170
+   },
+   "sourceSize": {
+    "w": 430,
+    "h": 170
+   },
+   "duration": 50
+  },
+  {
+   "filename": "smoke-surge 28",
+   "frame": {
+    "x": 0,
+    "y": 1190,
+    "w": 430,
+    "h": 170
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 430,
+    "h": 170
+   },
+   "sourceSize": {
+    "w": 430,
+    "h": 170
+   },
+   "duration": 50
+  },
+  {
+   "filename": "smoke-surge 29",
+   "frame": {
+    "x": 430,
+    "y": 1190,
+    "w": 430,
+    "h": 170
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 430,
+    "h": 170
+   },
+   "sourceSize": {
+    "w": 430,
+    "h": 170
+   },
+   "duration": 50
+  },
+  {
+   "filename": "smoke-surge 30",
+   "frame": {
+    "x": 860,
+    "y": 1190,
+    "w": 430,
+    "h": 170
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 430,
+    "h": 170
+   },
+   "sourceSize": {
+    "w": 430,
+    "h": 170
+   },
+   "duration": 50
+  }
+ ],
+ "meta": {
+  "app": "https://github.com/patch-gg/pixelfx",
+  "version": "1",
+  "image": "smoke-surge.png",
+  "format": "RGBA8888",
+  "size": {
+   "w": 1720,
+   "h": 1360
+  },
+  "scale": "1",
+  "frameTags": [
+   {
+    "name": "smoke-surge",
+    "from": 0,
+    "to": 30,
+    "direction": "forward"
+   }
+  ],
+  "pixelfx": {
+   "id": "geuseundae/smoke-surge",
+   "name": "Smoke surge",
+   "fps": 20,
+   "loop": false,
+   "frames": 31,
+   "frameSize": [
+    430,
+    170
+   ],
+   "pivot": [
+    30,
+    146
+   ],
+   "columns": 4
+  }
+ }
+}
