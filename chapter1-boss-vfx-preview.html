@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>그슨대 · 1챕터 보스 이펙트 시안</title>
+<style>
+  :root{--ink:#0b090d;--panel:#17131b;--line:#4e3542;--paper:#d8c9a7;--dim:#948878;--red:#a4423f;--gold:#b98b52}
+  *{box-sizing:border-box} body{margin:0;background:#09070a;color:var(--paper);font-family:ui-monospace,"Apple SD Gothic Neo",monospace;min-height:100vh}
+  body:before{content:"";position:fixed;inset:0;pointer-events:none;background:radial-gradient(circle at 50% 0,#2a1822 0,transparent 42%),repeating-linear-gradient(0deg,transparent 0 3px,#0002 4px);opacity:.8}
+  main{position:relative;width:min(1060px,calc(100% - 28px));margin:0 auto;padding:26px 0 42px}
+  header{display:flex;justify-content:space-between;gap:24px;align-items:end;border-bottom:1px solid #63424d;padding:0 2px 15px;margin-bottom:16px}
+  h1{font-size:20px;letter-spacing:-.04em;margin:0 0 5px;color:#efe0bd} .sub{font-size:12px;color:#9d8f7e}
+  .draft{font-size:11px;color:#bd8b71;border:1px solid #6c403b;padding:6px 9px;background:#261515}
+  .tabs{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin-bottom:10px}
+  button{font:inherit;color:#aa9b86;background:#141017;border:1px solid #3b2a34;padding:10px;cursor:pointer}
+  button:hover,button.active{color:#f0ddb5;background:#291922;border-color:#8a514c}.tab small{display:block;color:#776d65;margin-top:3px}
+  .stage-wrap{position:relative;border:1px solid #513744;background:#100d13;box-shadow:0 16px 42px #0009,inset 0 0 0 2px #080609;padding:8px}
+  canvas{display:block;width:100%;height:auto;aspect-ratio:2/1;background:#100d13;image-rendering:pixelated;image-rendering:crisp-edges}
+  .stage-label{position:absolute;left:18px;top:17px;font-size:11px;color:#bba989;text-shadow:1px 1px #000}
+  .legend{position:absolute;right:18px;top:16px;display:flex;gap:12px;font-size:10px;color:#95877a}.dot{display:inline-block;width:8px;height:8px;margin-right:4px}.dot.warn{background:#c0594f}.dot.hit{border:1px solid #d6ab63}
+  .controls{display:flex;gap:7px;margin:10px 0 0}.controls button{padding:7px 12px;font-size:11px}.controls .spacer{flex:1}.speed{min-width:60px}
+  .info{display:grid;grid-template-columns:1.2fr .8fr;gap:10px;margin-top:10px}.box{border:1px solid #3c2b35;background:#141116;padding:14px;min-height:118px}
+  h2{font-size:16px;margin:0 0 7px;color:#e5d4b0}.role{display:inline-block;font-size:10px;padding:3px 6px;border:1px solid #69433f;color:#c99074;margin-left:7px;vertical-align:2px}
+  p{font-size:12px;line-height:1.7;color:#b5a998;margin:0}.timing{display:grid;grid-template-columns:55px 1fr;gap:6px 10px;font-size:11px;color:#a99b89}.timing b{color:#d8c29a;font-weight:500}
+  .bar{height:6px;background:#241b23;margin-top:12px;position:relative;overflow:hidden}.bar i{display:block;width:0;height:100%;background:linear-gradient(90deg,#674048,#d0a05d);box-shadow:0 0 8px #cc7b47}
+  .note{margin-top:10px;font-size:11px;color:#746b63}.note strong{color:#aa796c;font-weight:500}
+  .tuner{margin-top:10px;border:1px solid #3c2b35;background:#121016;padding:12px}.tuner-head{display:flex;align-items:center;gap:8px;margin-bottom:10px}.tuner-head strong{font-size:12px;color:#dbc59c}.tuner-head span{font-size:10px;color:#756a61}.tuner-head .push{flex:1}
+  .sliders{display:grid;grid-template-columns:repeat(3,1fr);gap:9px 14px}.slider label{display:flex;justify-content:space-between;font-size:10px;color:#998c7c;margin-bottom:4px}.slider output{color:#deb777}.slider input{width:100%;accent-color:#9b5449}
+  .tuner button{padding:5px 9px;font-size:10px}
+  @media(max-width:700px){header{align-items:start}.tabs{grid-template-columns:1fr}.info{grid-template-columns:1fr}.sliders{grid-template-columns:1fr 1fr}.stage-label,.legend{display:none}main{width:min(100% - 16px,1060px);padding-top:12px}}
+</style>
+</head>
+<body><main>
+  <header><div><h1>1챕터 보스 · 퇴마단 선봉대장</h1><div class="sub">보스 실제 크기 비율 · 3개 패턴 · 위치와 판정 직접 조절</div></div><div class="draft">보스 검토 시안</div></header>
+  <div class="tabs" id="tabs"></div>
+  <section class="stage-wrap">
+    <canvas id="stage" width="960" height="480"></canvas>
+    <div class="stage-label" id="stageLabel"></div>
+    <div class="legend"><span><i class="dot warn"></i>선대기</span><span><i class="dot hit"></i>공격 범위</span></div>
+  </section>
+  <div class="controls"><button id="replay">처음부터</button><button id="pause">일시정지</button><button id="range">판정 표시 끄기</button><span class="spacer"></span><button class="speed" id="speed">1.0×</button></div>
+  <section class="tuner"><div class="tuner-head"><strong>직접 조절</strong><span>선택한 몹에만 적용</span><i class="push"></i><button id="resetTune">초기화</button><button id="copyTune">값 복사</button></div><div class="sliders" id="sliders"></div></section>
+  <div class="info"><div class="box"><h2 id="name"></h2><p id="desc"></p><div class="bar"><i id="progress"></i></div></div><div class="box timing" id="timing"></div></div>
+  <div class="note"><strong>현재 상태:</strong> 실제 게임 판정의 중심·반경·돌진 거리를 기준으로 다시 만든 보스 전용 이펙트입니다.</div>
+</main>
+<script>
+const FX=[
+ {id:'sweep',tab:'패턴 1 · 넓은 베기',sub:'검날이 판정 원을 가로지름',name:'봉쇄 횡베기',role:'주력 근접기',actor:'godot/assets/actors/source/warrior-v1.png',actorScale:1.5,sheet:'docs/mockups/chapter1-boss-vfx/boss-seal-sweep.png',fw:150,fh:140,ox:42,oy:108,count:33,cols:5,fps:30,wind:.56,after:.95,anchor:[154,344],scale:6,range:{kind:'circle',x:362,y:194,r:280},desc:'보스 앞 52, 위 37.5 지점의 반경 70 판정을 검날이 그대로 훑습니다. 부적 조각도 검의 곡선을 따라 흩어집니다.',timing:[['예고','0.56초'],['판정','앞쪽 중심 · 반경 70'],['궤적','단일 횡베기 원호']]},
+ {id:'cleave',tab:'패턴 2 · 내려베기',sub:'검끝이 판정 중심에 떨어짐',name:'처형 내려베기',role:'강한 한 방',actor:'godot/assets/actors/source/warrior-v1.png',actorScale:1.5,sheet:'docs/mockups/chapter1-boss-vfx/boss-seal-cleave.png',fw:190,fh:206,ox:54,oy:154,count:46,cols:6,fps:30,wind:.92,after:1.3,anchor:[154,344],scale:6,range:{kind:'circle',x:370,y:250,r:420},desc:'검끝이 실제 판정 중심에 수직으로 꽂히고, 반경 105 안쪽에서만 부서진 충격선과 파편이 퍼집니다.',timing:[['예고','0.92초'],['판정','앞쪽 중심 · 반경 105'],['궤적','수직 낙하 → 방사 충격']]},
+ {id:'charge',tab:'패턴 3 · 돌진',sub:'전방 판정과 잔상이 함께 이동',name:'그림자 압송',role:'거리 압박',actor:'godot/assets/actors/source/warrior-v1.png',actorScale:1.5,sheet:'docs/mockups/chapter1-boss-vfx/boss-seal-charge.png',fw:196,fh:126,ox:122,oy:108,count:35,cols:5,fps:30,wind:.75,after:1.1,anchor:[154,344],scale:6,range:{kind:'projectile',x:290,y:256,w:482,r:168},desc:'보스 앞쪽 충돌 덩어리가 보스와 같이 이동하고, 뒤의 원혼 세 개와 바닥 자국이 실제 돌진 경로를 따라 끌려옵니다.',timing:[['예고','0.75초'],['돌진','430 속도 · 0.28초'],['판정','전방 중심 · 반경 42']]}
+];
+const canvas=document.querySelector('#stage'),ctx=canvas.getContext('2d');ctx.imageSmoothingEnabled=false;
+let selected=0,start=performance.now(),paused=false,pauseAt=0,speed=1,showRange=true;
+const defaults=FX.map(f=>JSON.parse(JSON.stringify({anchor:f.anchor,scale:f.scale,range:f.range})));
+const images={};
+for(const f of FX){for(const src of [f.actor,f.sheet])if(!images[src]){const im=new Image;im.src=src+'?rev=2';images[src]=im}}
+const tabs=document.querySelector('#tabs');
+FX.forEach((f,i)=>{const b=document.createElement('button');b.className='tab';b.innerHTML=`${f.tab}<small>${f.sub}</small>`;b.onclick=()=>select(i);tabs.appendChild(b)});
+function select(i){selected=i;start=performance.now();paused=false;pauseAt=0;document.querySelector('#pause').textContent='일시정지';document.querySelectorAll('.tab').forEach((b,n)=>b.classList.toggle('active',n===i));const f=FX[i];document.querySelector('#stageLabel').textContent=`${f.tab} / ${f.name}`;document.querySelector('#name').innerHTML=`${f.name}<span class="role">${f.role}</span>`;document.querySelector('#desc').textContent=f.desc;document.querySelector('#timing').innerHTML=f.timing.map(x=>`<b>${x[0]}</b><span>${x[1]}</span>`).join('');buildTuner()}
+function slider(label,min,max,step,value,oninput){const wrap=document.createElement('div');wrap.className='slider';wrap.innerHTML=`<label><span>${label}</span><output>${value}</output></label><input type="range" min="${min}" max="${max}" step="${step}" value="${value}">`;const input=wrap.querySelector('input'),out=wrap.querySelector('output');input.oninput=()=>{const v=Number(input.value);out.value=v;oninput(v)};return wrap}
+function buildTuner(){const f=FX[selected],host=document.querySelector('#sliders');host.innerHTML='';host.append(slider('이펙트 X',-200,500,1,f.anchor[0],v=>f.anchor[0]=v));host.append(slider('이펙트 Y',0,480,1,f.anchor[1],v=>f.anchor[1]=v));host.append(slider('이펙트 크기',.5,6,.1,f.scale,v=>f.scale=v));host.append(slider('판정 중심 X',-200,700,1,f.range.x,v=>f.range.x=v));host.append(slider('판정 중심 Y',-100,520,1,f.range.y,v=>f.range.y=v));if(f.range.kind==='projectile'){host.append(slider('투사체 거리',40,760,1,f.range.w,v=>f.range.w=v));host.append(slider('투사체 두께',2,60,1,f.range.r,v=>f.range.r=v))}else host.append(slider('판정 반경',8,450,1,f.range.r,v=>f.range.r=v))}
+function tuneText(){const f=FX[selected],r=f.range;return `${f.tab}\n이펙트: X ${f.anchor[0]}, Y ${f.anchor[1]}, 크기 ${f.scale}\n판정: ${r.kind}, X ${r.x}, Y ${r.y}, ${r.kind==='projectile'?`거리 ${r.w}, 두께 ${r.r}`:`반경 ${r.r}`}`}
+function actorFrame(local,f){if(local<f.wind){const q=local/f.wind;return 16+Math.min(3,Math.floor(q*4))}const q=Math.min(1,(local-f.wind)/(f.count/f.fps+f.after));return 20+Math.min(3,Math.floor(q*4))}
+const ACTOR_WINDOWS={"warrior-v1.png":{20:[9,192],21:[11,192],22:[16,176]}};
+function drawActor(f,frame,x,y){const im=images[f.actor];if(!im.complete)return;const key=f.actor.split('/').pop(),win=(ACTOR_WINDOWS[key]||{})[frame]||[0,192],sx=(frame%8)*192+win[0],sy=Math.floor(frame/8)*256,s=f.actorScale||1,w=win[1]*s,h=256*s;ctx.drawImage(im,sx,sy,win[1],256,x-96*s+win[0]*s,y-h,w,h)}
+function drawRange(f,phase){if(!showRange||phase<0)return;ctx.save();ctx.strokeStyle='rgba(217,171,91,.42)';ctx.fillStyle='rgba(182,69,62,.10)';ctx.lineWidth=2;ctx.setLineDash([8,7]);ctx.beginPath();if(f.range.kind==='arc'){ctx.moveTo(f.range.x,f.range.y);ctx.arc(f.range.x,f.range.y,f.range.r,-1.3,.75);ctx.closePath()}else if(f.range.kind==='circle'){ctx.arc(f.range.x,f.range.y,f.range.r,0,Math.PI*2)}else if(f.range.kind==='projectile'){ctx.moveTo(f.range.x,f.range.y);ctx.lineTo(f.range.x+f.range.w,f.range.y);ctx.lineWidth=f.range.r*2;ctx.strokeStyle='rgba(217,171,91,.24)';ctx.setLineDash([12,10])}else ctx.rect(f.range.x,f.range.y,f.range.w,f.range.h);ctx.fill();ctx.stroke();ctx.restore()}
+function drawFx(f,phase){if(phase<0)return;const frame=Math.min(f.count-1,Math.floor(phase*f.fps)),sx=(frame%f.cols)*f.fw,sy=Math.floor(frame/f.cols)*f.fh,im=images[f.sheet];if(!im.complete)return;ctx.drawImage(im,sx,sy,f.fw,f.fh,f.anchor[0]-f.ox*f.scale,f.anchor[1]-f.oy*f.scale,f.fw*f.scale,f.fh*f.scale)}
+function background(){ctx.fillStyle='#100d13';ctx.fillRect(0,0,960,480);const g=ctx.createLinearGradient(0,0,0,480);g.addColorStop(0,'#19131a');g.addColorStop(.72,'#261821');g.addColorStop(1,'#0b090c');ctx.fillStyle=g;ctx.fillRect(0,0,960,480);ctx.globalAlpha=.22;ctx.fillStyle='#8b5960';for(let y=80;y<330;y+=54)for(let x=(y/54%2)*46;x<960;x+=118)ctx.fillRect(x,y,72,2);ctx.globalAlpha=1;ctx.fillStyle='#17121a';ctx.fillRect(0,344,960,136);ctx.fillStyle='#46303c';ctx.fillRect(0,344,960,4);ctx.fillStyle='#251a24';for(let x=0;x<960;x+=48)ctx.fillRect(x,368+(x/48%2)*22,34,3)}
+function loop(now){const f=FX[selected],duration=f.wind+f.count/f.fps+f.after;if(!paused){const elapsed=((now-start)/1000*speed)%duration;render(f,elapsed,duration)}else render(f,pauseAt,duration);requestAnimationFrame(loop)}
+function render(f,t,duration){background();const phase=t-f.wind;drawRange(f,phase);drawActor(f,actorFrame(t,f),154,344);drawFx(f,phase);if(t<f.wind){ctx.fillStyle='rgba(153,48,47,'+(.15+.1*Math.sin(t*18))+')';ctx.fillRect(0,0,960,8)}document.querySelector('#progress').style.width=(t/duration*100)+'%'}
+document.querySelector('#replay').onclick=()=>{start=performance.now();paused=false;document.querySelector('#pause').textContent='일시정지'};
+document.querySelector('#pause').onclick=()=>{const f=FX[selected],d=f.wind+f.count/f.fps+f.after;if(!paused){pauseAt=((performance.now()-start)/1000*speed)%d;paused=true}else{start=performance.now()-pauseAt/speed*1000;paused=false}document.querySelector('#pause').textContent=paused?'계속 재생':'일시정지'};
+document.querySelector('#range').onclick=e=>{showRange=!showRange;e.target.textContent=showRange?'판정 표시 끄기':'판정 표시 켜기'};
+document.querySelector('#speed').onclick=e=>{speed=speed===1?0.5:speed===0.5?1.5:1;e.target.textContent=speed.toFixed(1)+'×';start=performance.now()};
+document.querySelector('#resetTune').onclick=()=>{const d=JSON.parse(JSON.stringify(defaults[selected]));FX[selected].anchor=d.anchor;FX[selected].scale=d.scale;FX[selected].range=d.range;buildTuner()};
+document.querySelector('#copyTune').onclick=async e=>{try{await navigator.clipboard.writeText(tuneText());e.target.textContent='복사됨';setTimeout(()=>e.target.textContent='값 복사',900)}catch{prompt('아래 값을 복사하세요',tuneText())}};
+select(0);requestAnimationFrame(loop);
+</script></body></html>

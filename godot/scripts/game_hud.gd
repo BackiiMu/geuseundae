@@ -131,6 +131,7 @@ func build_icon_buttons() -> void:
 	bag_button.size = Vector2(48, 48)
 	bag_button.texture_normal = BAG_CLOSED
 	bag_button.texture_hover = BAG_CLOSED
+	bag_button.focus_mode = Control.FOCUS_NONE   # 포커스가 남으면 스페이스(ui_accept)가 가방 버튼을 다시 누른다
 	bag_button.ignore_texture_size = true
 	bag_button.stretch_mode = TextureButton.STRETCH_KEEP_ASPECT_CENTERED
 	bag_button.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
@@ -151,6 +152,7 @@ func build_icon_buttons() -> void:
 	settings_button.size = Vector2(44, 44)
 	settings_button.texture_normal = SETTINGS_ICON
 	settings_button.texture_hover = SETTINGS_ICON
+	settings_button.focus_mode = Control.FOCUS_NONE
 	settings_button.ignore_texture_size = true
 	settings_button.stretch_mode = TextureButton.STRETCH_KEEP_ASPECT_CENTERED
 	settings_button.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST

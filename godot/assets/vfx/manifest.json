@@ -1171,5 +1171,49 @@
       0,
       0
     ]
+  },
+  "arrow": {
+    "id": "projectiles/arrow",
+    "name": "Arrow",
+    "fps": 20,
+    "loop": true,
+    "frames": 12,
+    "frameSize": [
+      112,
+      32
+    ],
+    "pivot": [
+      92,
+      16
+    ],
+    "columns": 2,
+    "path": "res://assets/vfx/arrow.png",
+    "source": "projectiles/arrow",
+    "anchor": [
+      0,
+      0
+    ]
+  },
+  "arrow-shot": {
+    "id": "moves/arrow-shot",
+    "name": "Arrow shot",
+    "fps": 20,
+    "loop": false,
+    "frames": 39,
+    "frameSize": [
+      300,
+      74
+    ],
+    "pivot": [
+      38,
+      66
+    ],
+    "columns": 4,
+    "path": "res://assets/vfx/arrow-shot.png",
+    "source": "moves/arrow-shot",
+    "anchor": [
+      0,
+      0
+    ]
   }
 }

@@ -1,10 +1,22 @@
 extends Node2D
 
+const MOVE_RING=preload("res://assets/ui/mobile/move-ring-v1.png")
+const MOVE_KNOB=preload("res://assets/ui/mobile/move-knob-v1.png")
+const ATTACK_RING=preload("res://assets/ui/mobile/attack-ring-v1.png")
+const ATTACK_HAND=preload("res://assets/ui/mobile/attack-hand-v1.png")
+const BUTTON_TEXTURES={
+	"jump":preload("res://assets/ui/mobile/jump-button-v1.png"),
+	"dash":preload("res://assets/ui/mobile/dash-button-v1.png"),
+	"heart":preload("res://assets/ui/mobile/heart-button-v1.png"),
+	"main":preload("res://assets/ui/mobile/main-skill-button-v1.png"),
+	"off":preload("res://assets/ui/mobile/off-skill-button-v1.png")
+}
+
 var world: Node2D
 var move_finger := -1
 var attack_finger := -1
-var move_center := Vector2.ZERO
-var attack_center := Vector2.ZERO
+var move_center := Vector2(94,338)
+var attack_center := Vector2(638,338)
 var move_stick := Vector2.ZERO
 var attack_stick := Vector2.ZERO
 var buttons: Array = []
@@ -12,19 +24,21 @@ var hidden_for_ui := false
 const MOVE_ACTIONS = ["move_left", "move_right", "drop_down"]
 const ATTACK_ACTIONS = ["attack_left", "attack_right", "attack_up", "attack_down"]
 const STICK_RADIUS := 52.0
+const MOVE_CENTER := Vector2(94,338)
+const ATTACK_CENTER := Vector2(638,338)
+const JUMP_CENTER := Vector2(638,258)
+const DASH_CENTER := Vector2(712,338)
+const SKILL_Y := 382.0
 # Movement-stick vector shared with the player so mobile dashes follow movement.
 static var move_vector := Vector2.ZERO
 
 func _ready() -> void:
 	var specs = [
-		["jump", "점프", Vector2(686,324), 24.0],
-		["dash", "대시", Vector2(706,257), 24.0],
-		["heart_skill", "심장", Vector2(548,366), 23.0],
-		["main_skill", "주무기", Vector2(578,292), 21.0],
-		["off_skill", "보조", Vector2(630,251), 21.0],
-		["interact", "사용", Vector2(739,187), 22.0],
-		["inventory", "가방", Vector2(739,108), 20.0],
-		["equipment_lab", "시험", Vector2(688,108), 20.0]
+		["jump", "jump", JUMP_CENTER, 25.0],
+		["dash", "dash", DASH_CENTER, 24.0],
+		["heart_skill", "heart", Vector2.ZERO, 22.0],
+		["main_skill", "main", Vector2.ZERO, 22.0],
+		["off_skill", "off", Vector2.ZERO, 22.0]
 	]
 	for spec in specs:
 		var button := TouchScreenButton.new()
@@ -59,6 +73,12 @@ func release_attack() -> void:
 	attack_stick = Vector2.ZERO
 	attack_finger = -1
 
+func release_interact() -> void:
+	Input.action_release("interact")
+
+func contextual_interaction_available() -> bool:
+	return is_instance_valid(world) and is_instance_valid(world.hint) and not str(world.hint.text).is_empty()
+
 func release_all() -> void:
 	release_movement()
 	release_attack()
@@ -74,13 +94,17 @@ func _input(event: InputEvent) -> void:
 		if event.pressed:
 			if over_button(event.position):
 				return
-			if event.position.x < get_viewport_rect().size.x * 0.5 and move_finger < 0:
+			if event.position.distance_to(MOVE_CENTER)<=STICK_RADIUS+18 and move_finger < 0:
 				move_finger = event.index
-				move_center = event.position
+				move_center = MOVE_CENTER
 				update_move_stick(event.position)
-			elif event.position.x >= get_viewport_rect().size.x * 0.5 and attack_finger < 0:
+			elif event.position.distance_to(ATTACK_CENTER)<=STICK_RADIUS+20 and attack_finger < 0:
+				if contextual_interaction_available():
+					Input.action_press("interact")
+					call_deferred("release_interact")
+					return
 				attack_finger = event.index
-				attack_center = event.position
+				attack_center = ATTACK_CENTER
 				update_attack_stick(event.position)
 		elif event.index == move_finger:
 			release_movement()
@@ -107,10 +131,8 @@ func update_attack_stick(pos: Vector2) -> void:
 	Input.action_press("attack_right", absf(attack_stick.x)) if attack_stick.x > 0.18 else Input.action_release("attack_right")
 	Input.action_press("attack_up", absf(attack_stick.y)) if attack_stick.y < -0.18 else Input.action_release("attack_up")
 	Input.action_press("attack_down", absf(attack_stick.y)) if attack_stick.y > 0.18 else Input.action_release("attack_down")
-	if attack_stick.length() > 0.18:
-		Input.action_press("attack")
-	else:
-		Input.action_release("attack")
+	# 고정 공격키는 중앙을 누르기만 해도 바라보는 방향으로 연속 공격한다.
+	Input.action_press("attack")
 
 func _process(_delta: float) -> void:
 	var modal: bool = world.combat.inventory.visible or world.floor_map_open or (is_instance_valid(world.merchant) and world.merchant.opened)
@@ -126,26 +148,34 @@ func _process(_delta: float) -> void:
 		if item["action"] == "off_skill":
 			show = show and (world.combat.equipped("off").get("skill", "") != "" or world.combat.duo_set())
 		item["node"].visible = show
+	var visible_skills:Array=buttons.filter(func(item): return item["node"].visible and item["action"] in ["heart_skill","main_skill","off_skill"])
+	var gap:=54.0
+	for i in range(visible_skills.size()):
+		visible_skills[i]["node"].position=Vector2(384.0+(float(i)-float(visible_skills.size()-1)*.5)*gap,SKILL_Y)
 	queue_redraw()
 
+func draw_centered(texture: Texture2D, center: Vector2, tint := Color.WHITE) -> void:
+	draw_texture(texture,(center-Vector2(texture.get_size())*.5).round(),tint)
+
 func draw_stick(center: Vector2, stick: Vector2, attack_side := false) -> void:
-	draw_circle(center, STICK_RADIUS + 6.0, Color(.10,.08,.16,.62) if attack_side else Color(.07,.12,.16,.58))
-	draw_arc(center, STICK_RADIUS + 6.0, 0, TAU, 40, Color(.72,.60,.78,.8) if attack_side else Color(.7,.8,.76,.72), 2)
-	draw_circle(center + stick * STICK_RADIUS, 23, Color(.7,.55,.76,.72) if attack_side else Color(.7,.8,.73,.62))
+	if attack_side:
+		draw_centered(ATTACK_RING,center,Color(1,1,1,.84))
+		draw_centered(ATTACK_HAND,center+stick*STICK_RADIUS,Color(1,1,1,1.0 if attack_finger>=0 else .88))
+	else:
+		draw_centered(MOVE_RING,center,Color(1,1,1,.78))
+		draw_centered(MOVE_KNOB,center+stick*STICK_RADIUS,Color(1,1,1,1.0 if move_finger>=0 else .82))
 
 func _draw() -> void:
 	if hidden_for_ui:
 		return
-	if move_finger >= 0:
-		draw_stick(move_center, move_stick)
-	if attack_finger >= 0:
-		draw_stick(attack_center, attack_stick, true)
-	var font = preload("res://assets/fonts/NotoSansKR-Semibold.ttf")
+	draw_stick(MOVE_CENTER,move_stick if move_finger>=0 else Vector2.ZERO)
+	draw_stick(ATTACK_CENTER,attack_stick if attack_finger>=0 else Vector2.ZERO,true)
 	for item in buttons:
 		if not item["node"].visible:
 			continue
 		var pos: Vector2 = item["node"].position
 		var active := Input.is_action_pressed(item["action"])
-		draw_circle(pos, item["radius"], Color(.25,.4,.38,.8) if active else Color(.07,.12,.16,.65))
-		draw_arc(pos, item["radius"], 0, TAU, 32, Color(.68,.78,.72,.8), 2)
-		draw_string(font, pos + Vector2(-font.get_string_size(item["text"], HORIZONTAL_ALIGNMENT_LEFT, -1, 13).x / 2, 5), item["text"], HORIZONTAL_ALIGNMENT_LEFT, -1, 13, Color("e2e5d3"))
+		var icon:=str(item["text"])
+		var texture:Texture2D=BUTTON_TEXTURES.get(icon)
+		if texture:
+			draw_centered(texture,pos,Color(.78,.72,.7,1) if active else Color.WHITE)

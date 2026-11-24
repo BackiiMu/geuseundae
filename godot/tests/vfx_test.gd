@@ -8,8 +8,9 @@ func run_checks() -> void:
 	world.toggle_equipment_lab()
 	var c=world.combat
 	var fx=c.vfx
-	assert(fx.manifest.size()==32)
+	assert(fx.manifest.size()==34)
 	assert(fx.manifest.has("dash-2"))
+	assert(fx.manifest.has("arrow") and fx.manifest.has("arrow-shot"))
 	assert(fx.manifest.has("changgui-soul-bind"))
 	for key in fx.manifest:
 		var info:Dictionary=fx.manifest[key]
@@ -18,6 +19,10 @@ func run_checks() -> void:
 			assert(int(info["frames"])==14 and int(info["fps"])==30)
 		elif key=="changgui-soul-bind":
 			assert(int(info["frames"])==97 and int(info["fps"])==24)
+		elif key=="arrow":
+			assert(int(info["frames"])==12 and int(info["fps"])==20)
+		elif key=="arrow-shot":
+			assert(int(info["frames"])==39 and int(info["fps"])==20)
 		elif key=="tiger-spirit":
 			assert(int(info["frames"])==12 and int(info["fps"])==20)
 		else:

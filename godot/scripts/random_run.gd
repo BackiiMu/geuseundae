@@ -13,6 +13,7 @@ const SongaksiNPC = preload("res://scripts/songaksi_npc.gd")
 const HeartNPC = preload("res://scripts/heart_npc.gd")
 const HeartDB = preload("res://scripts/heart_db.gd")
 const Progression = preload("res://scripts/progression.gd")
+const SaveSlots = preload("res://scripts/save_slots.gd")
 const ChapterFogOverlay = preload("res://scripts/chapter_fog_overlay.gd")
 const MOUNTAIN_NAMES := {
 	"gate":"안개 고개","courtyard":"부서진 전망대","well":"메아리 웅덩이","hall":"바람 동굴",
@@ -76,6 +77,9 @@ var travel_timer := 0.0
 var travel_destination := -1
 var travel_start_position := Vector2.ZERO
 var fog_layer: CanvasLayer
+var active_save_slot := 0
+var loading_save := false
+var autosave_blocked := false
 
 func bind_action(action: String, keys: Array) -> void:
 	if not InputMap.has_action(action):
@@ -106,7 +110,13 @@ func _ready() -> void:
 		if argument.begins_with("--seed="):
 			initial_seed = int(argument.trim_prefix("--seed="))
 	village_stock = MerchantStock.roll(session_rng.randi(),1,true)
-	if start_in_village: show_village()
+	active_save_slot=int(get_tree().get_meta("save_slot",0))
+	if get_tree().has_meta("save_slot"): get_tree().remove_meta("save_slot")
+	if start_in_village:
+		if active_save_slot>0 and SaveSlots.exists(active_save_slot): load_slot(active_save_slot)
+		else:
+			if active_save_slot>0: Progression.replace_profile({})
+			show_village()
 	else: new_run(initial_seed)
 	if OS.has_feature("mobile") or OS.get_cmdline_user_args().has("--touch"):
 		var layer:=CanvasLayer.new()
@@ -133,6 +143,53 @@ func fresh_seed() -> int:
 	# still be supplied again to reproduce that exact floor graph.
 	return session_rng.randi_range(1,2147483646)
 
+func save_payload() -> Dictionary:
+	return {
+		"floor":floor_number,"in_village":in_village,"complete":complete,
+		"run":run.duplicate(true),"current_id":current_id,
+		"wallet":wallet.duplicate(true),
+		"equipment":combat.equipment.duplicate(true),"health":combat.health,"max_health":combat.max_health,
+		"heart_cd":combat.heart_cd,"profile":Progression.load_profile().duplicate(true),
+		"player_position":[player.position.x,player.position.y] if is_instance_valid(player) else [144.0,690.0]
+	}
+
+func autosave() -> bool:
+	if active_save_slot<=0 or loading_save or autosave_blocked or full_test_run or combat.equipment_lab: return false
+	return SaveSlots.write(active_save_slot,save_payload())
+
+func load_slot(slot: int) -> bool:
+	var saved:=SaveSlots.read(slot)
+	if saved.is_empty(): return false
+	loading_save=true
+	active_save_slot=slot
+	Progression.replace_profile(saved.get("profile",{}))
+	wallet=saved.get("wallet",{"souls":0,"bag":[]}).duplicate(true)
+	# Village stock intentionally rerolls on every app session. Floor merchant
+	# sold states live inside the saved run room data and do persist.
+	floor_number=maxi(1,int(saved.get("floor",1)))
+	in_village=bool(saved.get("in_village",true))
+	complete=bool(saved.get("complete",false))
+	run=saved.get("run",{}).duplicate(true)
+	if run.is_empty() or (not in_village and not Generator.validate(run)):
+		loading_save=false
+		show_village()
+		return false
+	combat.equipment.merge(saved.get("equipment",{}),true)
+	combat.max_health=maxf(1.0,float(saved.get("max_health",60.0)))
+	combat.health=clampf(float(saved.get("health",combat.max_health)),0.0,combat.max_health)
+	combat.heart_cd=maxf(0.0,float(saved.get("heart_cd",0.0)))
+	var room_id:=clampi(int(saved.get("current_id",0)),0,run["rooms"].size()-1)
+	change_room(room_id,-1)
+	var saved_pos:Array=saved.get("player_position",[])
+	if saved_pos.size()>=2:
+		player.position=Vector2(float(saved_pos[0]),float(saved_pos[1]))
+		player.spawn=player.position
+	if in_village:
+		call_deferred("spawn_songaksi_npc")
+	loading_save=false
+	combat.message("슬롯 %d · 자동 저장 데이터 이어하기" % slot)
+	return true
+
 func display_room_name(template: String) -> String:
 	return chapter_title()
 
@@ -155,12 +212,18 @@ func update_chapter_overlay() -> void:
 		fog_layer.visible=not in_village and floor_number==2
 
 func show_village() -> void:
+	autosave_blocked=true
 	in_village = true
 	complete = false
 	run = {"version":Generator.VERSION,"seed":1103,"start":0,"goal":-1,"rooms":[{"id":0,"template":"courtyard","links":[],"grid":[0,0],"decor_seed":1103,"visited":false,"peaceful":true}]}
 	change_room(0,-1)
 	call_deferred("spawn_songaksi_npc")
 	call_deferred("enter_heartless_form",true)
+	call_deferred("finish_village_autosave")
+
+func finish_village_autosave() -> void:
+	autosave_blocked=false
+	autosave()
 
 func spawn_songaksi_npc() -> void:
 	if not in_village or not is_instance_valid(room): return
@@ -420,6 +483,7 @@ func change_room(id: int, previous: int) -> void:
 	minimap.queue_redraw()
 	if is_instance_valid(combat): combat.enter_room(data)
 	if in_village: call_deferred("add_village_exit_sign")
+	autosave()
 
 func safe_floor_position(def: Dictionary, preferred: float) -> Vector2:
 	var x := clampf(preferred, 150.0, float(def["width"]) - 150.0)
@@ -499,6 +563,8 @@ func _process(delta: float) -> void:
 		web_status_timer=.2
 	if not is_instance_valid(player):
 		return
+	if is_instance_valid(minimap) and minimap.visible and not floor_map_open:
+		minimap.queue_redraw()
 	if traveling:
 		player.controls_enabled = false
 		tick_travel(delta)
@@ -683,19 +749,22 @@ func build_hud() -> void:
 	layer.add_child(lab_button)
 	lab_button.hide()
 	minimap = Control.new()
-	minimap.position = Vector2(284,82)
-	minimap.size = Vector2(200,50)
-	minimap.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	minimap.position = Vector2(284,76)
+	minimap.size = Vector2(200,62)
+	minimap.mouse_filter = Control.MOUSE_FILTER_STOP
 	minimap.draw.connect(draw_minimap)
+	minimap.gui_input.connect(func(event:InputEvent):
+		if event is InputEventMouseButton and event.pressed and event.button_index==MOUSE_BUTTON_LEFT:
+			open_floor_map()
+		elif event is InputEventScreenTouch and event.pressed:
+			open_floor_map())
 	layer.add_child(minimap)
 	floor_map_panel = PanelContainer.new()
 	floor_map_panel.position = Vector2(104, 38)
 	floor_map_panel.size = Vector2(560, 350)
 	var map_style := StyleBoxFlat.new()
-	map_style.bg_color = Color("101923")
-	map_style.border_color = Color("9d8663")
-	map_style.set_border_width_all(3)
-	map_style.set_content_margin_all(18)
+	map_style.bg_color = Color.TRANSPARENT
+	map_style.set_content_margin_all(0)
 	floor_map_panel.add_theme_stylebox_override("panel", map_style)
 	layer.add_child(floor_map_panel)
 	floor_map_view = FloorMapView.new()
@@ -705,27 +774,36 @@ func build_hud() -> void:
 	floor_map_panel.hide()
 
 func draw_minimap() -> void:
-	if run.is_empty():
+	if run.is_empty() or not is_instance_valid(room) or room.definition.is_empty():
 		return
-	var min_cell := Vector2(1000,1000)
-	var max_cell := Vector2(-1000,-1000)
-	for data in run["rooms"]:
-		var cell := Vector2(data["grid"][0],data["grid"][1])
-		min_cell = min_cell.min(cell)
-		max_cell = max_cell.max(cell)
-	var extent := max_cell-min_cell
-	var spacing := minf(30,minf(240/maxf(1,extent.x),46/maxf(1,extent.y)))
-	for data in run["rooms"]:
-		var point := (Vector2(data["grid"][0],data["grid"][1])-min_cell)*spacing+Vector2(6,6)
-		for next in data["links"]:
-			var grid: Array = run["rooms"][next]["grid"]
-			var other := (Vector2(grid[0],grid[1])-min_cell)*spacing+Vector2(6,6)
-			minimap.draw_line(point,other,Color("627576"),2)
-	for data in run["rooms"]:
-		var point := (Vector2(data["grid"][0],data["grid"][1])-min_cell)*spacing+Vector2(2,2)
-		var color := Color("c8d9b1") if data["id"]==current_id else Color("779a91") if data["visited"] else Color("354953")
-		if bool(data.get("peaceful",false)) and data["id"]!=current_id: color=Color("d2ad72")
-		minimap.draw_rect(Rect2(point,Vector2(8,8)),color)
+	var panel_points:=PackedVector2Array([Vector2(0,7),Vector2(7,0),Vector2(193,0),Vector2(200,7),Vector2(200,55),Vector2(193,62),Vector2(7,62),Vector2(0,55)])
+	minimap.draw_colored_polygon(panel_points,Color(0.055,0.052,0.06,.9))
+	minimap.draw_polyline(PackedVector2Array(Array(panel_points)+[panel_points[0]]),Color("9b7355"),2)
+	minimap.draw_rect(Rect2(5,5,190,52),Color("332d2c"),false,1)
+	var width:=float(room.definition["width"])
+	var map_rect:=Rect2(7,6,minimap.size.x-14,minimap.size.y-12)
+	var sx:=map_rect.size.x/width
+	var sy:=map_rect.size.y/440.0
+	var to_map:=func(value:Vector2)->Vector2:
+		return Vector2(map_rect.position.x+value.x*sx,map_rect.position.y+(value.y-280.0)*sy)
+	minimap.draw_line(to_map.call(Vector2(0,704)),to_map.call(Vector2(width,704)),Color("b49772"),3)
+	for gap in room.definition.get("gaps",[]):
+		minimap.draw_line(to_map.call(Vector2(float(gap[0]),704)),to_map.call(Vector2(float(gap[0]+gap[1]),704)),Color("111820"),4)
+	for platform in room.definition.get("platforms",[]):
+		minimap.draw_line(to_map.call(Vector2(float(platform[0]),float(platform[1]))),to_map.call(Vector2(float(platform[0]+platform[2]),float(platform[1]))),Color("aa9272"),2)
+	for wall in room.definition.get("walls",[]):
+		var top_left:Vector2=to_map.call(Vector2(float(wall[0]),float(wall[1])))
+		var bottom_right:Vector2=to_map.call(Vector2(float(wall[0]+wall[2]),float(wall[1]+wall[3])))
+		minimap.draw_rect(Rect2(top_left,bottom_right-top_left),Color("765b49"),true)
+	var player_point:Vector2=to_map.call(player.position)
+	minimap.draw_rect(Rect2(player_point-Vector2(2.5,3),Vector2(5,6)),Color("e7dcc5"),true)
+	if is_instance_valid(combat):
+		for enemy in combat.living():
+			var enemy_point:Vector2=to_map.call(enemy.position)
+			minimap.draw_rect(Rect2(enemy_point-Vector2(2,2),Vector2(4,4)),Color("cf4c46"),true)
+	# 우상단의 접힌 지도 귀퉁이: 눌러 전체 지도를 연다는 표시.
+	minimap.draw_colored_polygon(PackedVector2Array([Vector2(181,5),Vector2(195,5),Vector2(195,19)]),Color("b69468"))
+	minimap.draw_line(Vector2(181,5),Vector2(195,19),Color("5a3a31"),2)
 
 func toggle_equipment_lab() -> void:
 	combat.vfx_preview_paused=false

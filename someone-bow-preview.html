@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>누군가의 활 · 시안</title>
+<style>
+:root{--bg:#0a0d12;--panel:#141a22;--line:#2b3542;--ink:#d8cfbd;--dim:#8f8a7e;--gold:#e0b04a}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.55 "Noto Sans KR",system-ui,sans-serif}
+.wrap{max-width:1000px;margin:0 auto;padding:20px 16px 56px}
+h1{font-size:18px;margin:0 0 2px}h2{font-size:14px;margin:22px 0 8px;color:var(--gold)}
+.sub{color:var(--dim);margin:0 0 12px;font-size:13px}
+.stage{background:#000;border:1px solid var(--line)}
+canvas{width:100%;display:block;image-rendering:pixelated}
+.bar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:10px 0}
+button{background:var(--panel);color:var(--ink);border:1px solid var(--line);padding:6px 12px;font:inherit;cursor:pointer;border-radius:3px}
+button:hover{border-color:var(--gold)}button.on{border-color:var(--gold);color:var(--gold)}
+.note{border-left:3px solid #d8a65a;background:var(--panel);padding:8px 12px;font-size:13px;color:var(--dim);margin:10px 0}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th,td{border:1px solid var(--line);padding:6px 8px;text-align:left;vertical-align:top}
+th{background:#101620;color:var(--dim);font-weight:500}
+.sw{display:inline-block;width:12px;height:12px;vertical-align:-2px;margin-right:6px;border:1px solid #000}
+.pair{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media(max-width:700px){.pair{grid-template-columns:1fr}}
+.pair h3{margin:0 0 4px;font-size:13px;color:var(--dim);font-weight:500}
+</style>
+</head>
+<body>
+<div class="wrap">
+<h1>누군가의 활 · 시안</h1>
+<p class="sub">영웅 양손 무기 · 3단계 · 대미지 18 · 공격 간격 1.0초 · 최대 1.2초 차징 · 충전량에 따라 피해 65~175% · 적 관통. 지금은 활 그림이 없고 호 한 줄과 선 한 개로만 표시됩니다. 아래가 그것을 대신할 시안입니다.</p>
+
+<div class="bar">
+  <button id="bCur">현재 표시</button>
+  <button id="bNew" class="on">시안</button>
+  <span style="width:12px"></span>
+  <button data-p="0.15">약 (15%)</button>
+  <button data-p="0.5">중 (50%)</button>
+  <button data-p="1">완충 (100%)</button>
+  <span style="width:12px"></span>
+  <button data-a="dot" class="on">화살: 직접 도트</button>
+  <button data-a="fx">화살: pixelfx 화살</button>
+  <button data-a="shot">화살: pixelfx 화살쏘기</button>
+  <span style="color:var(--dim);font-size:12px">또는 화면을 누르고 있다가 떼기 (최대 1.2초)</span>
+</div>
+<div class="stage"><canvas id="cv" width="320" height="140"></canvas></div>
+<div class="note" id="info">버튼을 누르거나 화면을 길게 눌렀다 떼 보세요.</div>
+
+<h2>pixelfx 원본 활 동작 (활·시위·몸·표적 포함)</h2>
+<div class="note">위 시안의 활은 제가 직접 그린 것이고, 아래가 pixelfx 원본 활입니다. 키가 큰 나무 활을 세로로 쥐고, 시위를 뺨까지 당겼다가(0.16~0.56초) 놓습니다. 몸은 pixelfx의 시험용 인형이라 게임에서는 플레이어 몸에 이 활과 시위 부분만 맞춰야 합니다.</div>
+<div class="bar"><button id="bAct">다시 재생</button></div>
+<div class="stage"><canvas id="cv2" width="312" height="86"></canvas></div>
+
+<h2>차징 표시</h2>
+<table>
+<tr><th>충전량</th><th>대미지</th><th>표시</th></tr>
+<tr><td>0 ~ 40%</td><td>12 ~ 18</td><td>머리 위 게이지가 차오름 · 활시위가 조금씩 뒤로 당겨짐</td></tr>
+<tr><td>40 ~ 90%</td><td>18 ~ 29</td><td>게이지의 눈금(40%, 90%)으로 단계 구분 · 시위를 더 당김</td></tr>
+<tr><td>100%</td><td>32</td><td>게이지가 반짝이며 가득 참 · 시위를 끝까지 당긴 상태 유지</td></tr>
+</table>
+
+<h2>정리</h2>
+<div class="note">
+· 활은 pixelfx 원본(rig)과 같은 형태로 그리고, 차징 중에는 시위와 화살이 뒤로 당겨집니다. 충전량은 게이지로만 표시합니다(색·빛 변화 없음).<br>
+· 관통은 지금과 같고, 적중마다 작은 파편과 대미지 숫자만 시안에서 보여 줍니다(대미지 숫자는 표시용).<br>
+· 화살 모양은 위 버튼으로 고를 수 있습니다.
+</div>
+</div>
+<script>
+const cv=document.getElementById('cv'),g=cv.getContext('2d');
+const W=320,H=140,GROUND=118;
+const IMG={};['arrow','arrow-shot'].forEach(n=>{const i=new Image();i.src='docs/mockups/bow/'+n+'.png?b=1';IMG[n]=i});
+let arrowStyle='dot',shots=[];
+let mode='new',charge=0,charging=false,release=null,arrows=[],parts=[],floaters=[],ring=null,t0=performance.now(),holdStart=0;
+const enemies=[{x:170,hp:1,f:0},{x:215,hp:1,f:0},{x:262,hp:1,f:0}];
+function resetEnemies(){enemies.forEach(e=>{e.f=0})}
+const px=(x,y,w,h,c)=>{g.fillStyle=c;g.fillRect(Math.round(x),Math.round(y),w,h)};
+function stageOf(p){return p<.4?0:p<.9?1:2}
+const COL=[{a:'#d5c7a0',b:'#a89b7c',glow:null},{a:'#f6c35a',b:'#c98a2a',glow:'#f0b24a'},{a:'#e4f6ff',b:'#7ec3ee',glow:'#9fd8ff'}];
+function line(x0,y0,x1,y1,c,w=1){const n=Math.max(Math.abs(x1-x0),Math.abs(y1-y0))|0;for(let i=0;i<=n;i++){const t=n?i/n:0;px(x0+(x1-x0)*t,y0+(y1-y0)*t,w,w,c)}}
+const PX=64,PY=GROUND-26;           // 플레이어 가슴
+function player(){
+  px(PX-5,PY+10,10,16,'#2c3a46');px(PX-4,PY-1,8,12,'#3d4f5e');px(PX-4,PY-9,8,8,'#c9b38f');px(PX-5,PY-11,10,4,'#1a1e24');
+  px(PX-6,GROUND-2,5,2,'#10161c');px(PX+1,GROUND-2,5,2,'#10161c');
+}
+// pixelfx 원본 활(rig.js bow)과 같은 형태: 앞으로 볼록한 나무 활 + 곧은 시위, 당기면 시위가 V자로 뒤로 꺾이고 화살이 얹힌다
+function bowShape(p,aim,s,cur){
+  if(cur){ if(charging){ g.strokeStyle='rgba(168,150,110,'+(.35+p*.55)+')';g.lineWidth=2;g.beginPath();g.arc(PX,PY,13+p*7,-Math.PI/2,Math.PI/2);g.stroke(); } return; }
+  const bx=PX+8,by=PY-4;                       // 활 중심(앞손)
+  const T=(i,k)=>[bx+i,by+k];                  // i: 앞으로, k: 위아래
+  const WOOD='#8a5a32',WOODD='#5a3820',GOLDD='#b8862a',STR='#e8edf6';
+  for(let u=-1;u<=1.001;u+=.025){const k=u*17,i=6*(1-u*u)-1,[x,y]=T(i,k);px(x,y,1,1,Math.abs(u)>.85?GOLDD:WOOD);px(x+1,y,1,1,WOODD)}
+  const pull=(charging?p:0)*13;
+  const A=T(-1,-17),B=T(-1,17),M=T(-1-pull,0);
+  line(A[0],A[1],M[0],M[1],STR);line(B[0],B[1],M[0],M[1],STR);
+  px(bx-2,by-2,3,4,'#7a3a2a');px(bx-1,by-1,1,2,'#4a2018');   // 손잡이 감은 곳
+  if(charging){
+    const tip=T(13,0);line(M[0],M[1],tip[0],tip[1],WOOD);
+    for(let i=9;i<=13;i+=.5){const w=(13-i)*.45;for(let k=-w;k<=w;k+=.5){const q=T(i,k);px(q[0],q[1],1,1,'#fff')}}
+    px(M[0]-1,M[1]-1,2,3,'#cc4440');
+  }
+}
+document.querySelectorAll('[data-a]').forEach(b=>b.onclick=()=>{arrowStyle=b.dataset.a;document.querySelectorAll('[data-a]').forEach(x=>x.classList.toggle('on',x===b))});
+function fire(p){
+  const s=stageOf(p),dmg=Math.round(18*(.65+1.1*p));
+  const aim=0,x=PX+14+p*0+9,y=PY;
+  if(mode==='new'&&arrowStyle==='shot'){shots.push({t:0,dmg,s,p,done:new Set()});}
+  else arrows.push({x,y,vx:440/60*1.6,s,p,dmg,hit:new Set(),trail:[]});
+  if(s==2)ring={x:PX+16,y:PY,t:0};
+  release={t:0,p};resetEnemies();
+  document.getElementById('info').textContent='충전 '+Math.round(p*100)+'% · '+['약','중','완충'][s]+' 단계 · 대미지 '+dmg+' · 관통 3명';
+}
+document.querySelectorAll('[data-p]').forEach(b=>b.onclick=()=>{charge=0;charging=true;arrows=[];parts=[];floaters=[];const target=+b.dataset.p;const st=performance.now();
+  const iv=setInterval(()=>{charge=Math.min(target,(performance.now()-st)/1000/1.2);if(charge>=target){clearInterval(iv);charging=false;fire(target);charge=0}},16)});
+cv.onpointerdown=()=>{charging=true;holdStart=performance.now();charge=0;arrows=[];parts=[];floaters=[]};
+window.onpointerup=()=>{if(!charging)return;const p=Math.min(1,(performance.now()-holdStart)/1200);charging=false;fire(p);charge=0};
+document.getElementById('bCur').onclick=()=>{mode='cur';document.getElementById('bCur').classList.add('on');document.getElementById('bNew').classList.remove('on')};
+document.getElementById('bNew').onclick=()=>{mode='new';document.getElementById('bNew').classList.add('on');document.getElementById('bCur').classList.remove('on')};
+function enemy(e){
+  const f=e.f>0?1:0,c=f?'#fff':'#5c3a4a',sh=f?'#ffe':'#3a2430';
+  px(e.x-6,GROUND-26,12,22,c);px(e.x-5,GROUND-33,10,8,f?'#fff':'#7a5a66');px(e.x-3,GROUND-30,2,2,'#e8c860');px(e.x+1,GROUND-30,2,2,'#e8c860');px(e.x-7,GROUND-5,14,3,sh);
+}
+let last=performance.now();
+function frame(now){
+  const dt=Math.min(.05,(now-last)/1000);last=now;
+  g.fillStyle='#0d1219';g.fillRect(0,0,W,H);
+  g.fillStyle='#161d26';g.fillRect(0,GROUND,W,H-GROUND);px(0,GROUND,W,1,'#2c3846');
+  enemies.forEach(e=>{if(e.f>0)e.f-=dt;enemy(e)});
+  player();
+  // 마우스로 길게 누르는 경우 충전 진행
+  if(charging&&holdStart){const p=Math.min(1,(now-holdStart)/1200);if(mouseHeld)charge=p}
+  bowShape(charging?charge:(release?release.p||0:0),0,stageOf(charging?charge:(release?release.p||0:0)),mode==='cur');
+  if(release){release.t+=dt;if(release.t>.25)release=null}
+  // 충격 고리
+  if(ring){ring.t+=dt;const r=ring.t*120;g.strokeStyle='rgba(190,230,255,'+Math.max(0,1-ring.t*3.2)+')';g.lineWidth=2;g.beginPath();g.ellipse(ring.x,ring.y,r*.45,r,0,0,Math.PI*2);g.stroke();if(ring.t>.3)ring=null}
+  // pixelfx 화살쏘기: 비행 + 충돌 연출이 한 장의 시트에 들어 있다
+  shots.forEach(sh=>{sh.t+=dt;const fr=Math.min(38,Math.floor(sh.t*20));g.imageSmoothingEnabled=false;
+    const ox=PX+10-38,oy=GROUND-66;g.drawImage(IMG['arrow-shot'],(fr%4)*300,Math.floor(fr/4)*74,300,74,ox,oy,300,74);
+    if(sh.t>=.8&&!sh.done.size){sh.done.add(1);[1,2].forEach(i=>{enemies[i].f=.12;floaters.push({x:enemies[i].x,y:GROUND-38,t:0,v:sh.dmg})});}
+    if(sh.t>=.5&&!sh.done.has(0)){sh.done.add(0);enemies[0].f=.12;floaters.push({x:enemies[0].x,y:GROUND-38,t:0,v:sh.dmg})}});
+  shots=shots.filter(sh=>sh.t<2);
+  // 화살
+  arrows.forEach(a=>{
+    a.x+=a.vx*dt*60/1.6*1.0;a.trail.push([a.x,a.y]);if(a.trail.length>(mode==='cur'?0:8+a.p*18))a.trail.shift();
+    const col=COL[a.s];
+    if(mode==='cur'){line(a.x-18,a.y,a.x+7,a.y,'#a89b7c',2);line(a.x+7,a.y-4,a.x+13,a.y,'#d4c7a2',2);line(a.x+7,a.y+4,a.x+13,a.y,'#d4c7a2',2)}
+    else if(arrowStyle==='fx'){
+      const fr=Math.floor(performance.now()/50)%12,sc=.5;g.imageSmoothingEnabled=false;
+      if(a.s){const gl=g.createRadialGradient(a.x,a.y,0,a.x,a.y,12);gl.addColorStop(0,col.glow+'88');gl.addColorStop(1,col.glow+'00');g.fillStyle=gl;g.fillRect(a.x-14,a.y-14,28,28)}
+      g.drawImage(IMG.arrow,(fr%2)*112,Math.floor(fr/2)*32,112,32,a.x-92*sc,a.y-16*sc,112*sc,32*sc);
+    }
+    else{
+      a.trail.forEach((q,i)=>{const k=i/a.trail.length;g.globalAlpha=k*.7;px(q[0]-2,q[1]-(a.s?1:0),2,a.s?3:1,col.glow||'#c9bd9a')});g.globalAlpha=1;
+      if(col.glow){const gl=g.createRadialGradient(a.x,a.y,0,a.x,a.y,12);gl.addColorStop(0,col.glow+'aa');gl.addColorStop(1,col.glow+'00');g.fillStyle=gl;g.fillRect(a.x-14,a.y-14,28,28)}
+      line(a.x-13,a.y,a.x+3,a.y,'#a8895c',1);px(a.x-14,a.y-2,3,1,'#cc4440');px(a.x-14,a.y+1,3,1,'#cc4440');
+      px(a.x+3,a.y-2,2,5,col.a);px(a.x+5,a.y-1,2,3,col.a);px(a.x+7,a.y,2,1,'#fff');
+    }
+    enemies.forEach((e,i)=>{if(!a.hit.has(i)&&Math.abs(a.x-e.x)<8){a.hit.add(i);e.f=.12;
+      floaters.push({x:e.x,y:GROUND-38,t:0,v:a.dmg});
+      const n=mode==='cur'?0:(a.s==2?10:a.s==1?7:4);
+      for(let k=0;k<n;k++)parts.push({x:e.x,y:a.y+(Math.random()-.5)*8,vx:(Math.random()-.2)*60,vy:-Math.random()*70,t:0,c:col.glow||'#e8dcc0'});}});
+  });
+  arrows=arrows.filter(a=>a.x<W+30);
+  parts.forEach(q=>{q.t+=dt;q.x+=q.vx*dt;q.vy+=220*dt;q.y+=q.vy*dt;px(q.x,q.y,2,2,q.c)});parts=parts.filter(q=>q.t<.5);
+  g.font='bold 9px sans-serif';
+  floaters.forEach(f=>{f.t+=dt;g.fillStyle='rgba(255,236,170,'+Math.max(0,1-f.t*1.2)+')';g.fillText(f.v,f.x-6,f.y-f.t*26)});floaters=floaters.filter(f=>f.t<.9);
+  // 충전 게이지: 머리 위. 40%·90% 눈금(단계 경계), 완충이면 반짝
+  if(charging){const gx=PX-16,gy=PY-30;px(gx-1,gy-1,34,7,'#05080c');px(gx,gy,32,5,'#1a222c');
+    const full=charge>=1;px(gx,gy,32*charge,5,full?(Math.floor(now/90)%2?'#fff3b0':'#e0b04a'):'#e0b04a');
+    px(gx+12.8,gy,1,5,'#05080c');px(gx+28.8,gy,1,5,'#05080c');
+    g.font='bold 8px sans-serif';g.fillStyle='#ffecaa';g.fillText(Math.round(18*(.65+1.1*charge)),gx+36,gy+6)}
+  requestAnimationFrame(frame);
+}
+let mouseHeld=false;
+cv.addEventListener('pointerdown',()=>mouseHeld=true);window.addEventListener('pointerup',()=>mouseHeld=false);
+requestAnimationFrame(frame);
+setTimeout(()=>document.querySelector('[data-p="1"]').click(),500);
+const c2=document.getElementById('cv2'),g2=c2.getContext('2d'),actImg=new Image();actImg.src='docs/mockups/bow/act.png?b=1';
+let actT=0;document.getElementById('bAct').onclick=()=>actT=0;
+let l2=performance.now();(function f2(n){const dt=(n-l2)/1000;l2=n;actT+=dt;const fr=Math.floor(actT*30)%100;const k=Math.min(74,fr>74?74:fr);
+ g2.imageSmoothingEnabled=false;g2.fillStyle='#0d1219';g2.fillRect(0,0,312,86);
+ g2.drawImage(actImg,(k%5)*312,Math.floor(k/5)*86,312,86,0,0,312,86);
+ if(actT>3.2)actT=0;requestAnimationFrame(f2)})(performance.now());
+</script>
+</body>
+</html>

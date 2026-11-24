@@ -60,11 +60,25 @@ var slam_horizontal := 0.0
 var hawk_dive_remaining := 0.0
 var hawk_hit := false
 var hawk_hover_origin := Vector2.ZERO
+var chain_pull_remaining := 0.0
+var chain_pull_origin := Vector2.ZERO
+var chain_pull_target := Vector2.ZERO
+var hound_hit := false
+var soul_barrier_hp := 0.0
+var soul_barrier_layers := 0
+var reflect_window := 0.0
+var dongja_rampage := false
 const JANGSAN_PHASE_HP := [0.0,260.0,450.0,850.0]
 # 몬스터별 공격 이펙트 시트(godot/assets/monster_vfx). 원점은 발이고 판정 범위에 맞춰 만들었다.
-const ATTACK_VFX := {"monk":"monk-moktak","changgui-remnant":"changgui-claw","mountain-tiger":"tiger-claw","jangsan-shadow":"shadow-claw","mihokbul":"mihokbul-cast","hosikchong-wraith":"hosikchong-erupt"}
+const ATTACK_VFX := {"warrior":"musa-slash","monk":"monk-moktak","changgui-remnant":"changgui-claw","mountain-tiger":"tiger-claw","jangsan-shadow":"shadow-claw","mihokbul":"mihokbul-cast","hosikchong-wraith":"hosikchong-erupt"}
 
 func windup_duration() -> float:
+	if kind=="prison-shaman": return [.72,1.0,.85][pattern]
+	if kind=="chain-constable": return .9
+	if kind=="shield-guard": return .72
+	if kind=="brazier-ritualist": return .95
+	if kind=="sealed-lantern-keeper": return 1.05
+	if kind=="tracking-hound": return .55
 	if kind=="hunting-hawk": return .62
 	if kind=="exorcist-spearman": return .72
 	if kind=="exorcist-archer": return .92
@@ -80,6 +94,12 @@ func windup_duration() -> float:
 	return .8
 
 func recovery_duration() -> float:
+	if kind=="prison-shaman": return [.95,1.45,1.1][pattern]
+	if kind=="chain-constable": return 1.45
+	if kind=="shield-guard": return 1.15
+	if kind=="brazier-ritualist": return 1.8
+	if kind=="sealed-lantern-keeper": return 1.65
+	if kind=="tracking-hound": return 1.25
 	if kind=="hunting-hawk": return 1.0
 	if kind=="exorcist-spearman": return 1.05
 	if kind=="exorcist-archer": return 1.5
@@ -102,21 +122,21 @@ func begin_attack_vfx() -> void:
 		elif pattern==1: director.vfx.emit_monster("captain-cleave",self,Vector2.ZERO,direction,1.5)
 		else: director.vfx.emit_monster("captain-charge-fx",self,Vector2.ZERO,direction,1.5)
 	# 부적 도사: 시전·명중 이펙트 없이 날아가는 부적만 쓴다.
-	elif kind in ["adept","exorcist-archer","bell-exorcist","hunting-hawk","exorcist-spearman"]: pass
+	elif kind in ["adept","exorcist-archer","bell-exorcist","hunting-hawk","exorcist-spearman","chain-constable","shield-guard","brazier-ritualist","sealed-lantern-keeper","tracking-hound"]: pass
 	elif ATTACK_VFX.has(kind): director.vfx.emit_monster(ATTACK_VFX[kind],self,Vector2.ZERO,direction)
 	else: director.vfx.emit_monster("musa-slash",self,Vector2.ZERO,direction)
 func _ready() -> void:
-	boss = kind in ["boss","jangsanbeom","soul-warden"]
+	boss = kind in ["boss","jangsanbeom","soul-warden","prison-shaman"]
 	size_factor = 2.0 if kind=="jangsanbeom" else 1.7 if kind=="soul-warden" else 1.5 if boss else 1.25 if kind=="jangsan-shadow" else 1.0
-	max_hp = {"boss":420.0,"soul-warden":760.0,"jangsanbeom":260.0,"jangsan-shadow":150.0,"mountain-tiger":85.0,"changgui-remnant":70.0,"mihokbul":45.0,"hosikchong-wraith":100.0,"monk":60.0,"adept":20.0,"warrior":30.0,"exorcist-spearman":95.0,"exorcist-archer":70.0,"bell-exorcist":80.0,"hunting-hawk":32.0}.get(kind,30.0)
+	max_hp = {"boss":420.0,"prison-shaman":280.0,"soul-warden":760.0,"jangsanbeom":260.0,"jangsan-shadow":150.0,"mountain-tiger":85.0,"changgui-remnant":70.0,"mihokbul":45.0,"hosikchong-wraith":100.0,"monk":60.0,"adept":20.0,"warrior":30.0,"exorcist-spearman":95.0,"exorcist-archer":70.0,"bell-exorcist":80.0,"hunting-hawk":32.0,"chain-constable":105.0,"shield-guard":150.0,"brazier-ritualist":75.0,"sealed-lantern-keeper":85.0,"tracking-hound":48.0}.get(kind,30.0)
 	hp = max_hp if hp<0 else hp
-	attack = {"boss":10.0,"soul-warden":12.0,"jangsanbeom":14.0,"jangsan-shadow":11.0,"mountain-tiger":10.0,"changgui-remnant":9.0,"mihokbul":7.0,"hosikchong-wraith":11.0,"monk":12.0,"adept":6.0,"warrior":8.0,"exorcist-spearman":14.0,"exorcist-archer":11.0,"bell-exorcist":7.0,"hunting-hawk":8.0}.get(kind,8.0)
-	speed = {"boss":85.0,"soul-warden":72.0,"jangsanbeom":120.0,"jangsan-shadow":145.0,"mountain-tiger":130.0,"changgui-remnant":92.0,"mihokbul":72.0,"hosikchong-wraith":0.0,"monk":65.0,"adept":80.0,"warrior":105.0,"exorcist-spearman":72.0,"exorcist-archer":78.0,"bell-exorcist":52.0,"hunting-hawk":115.0}.get(kind,95.0)
+	attack = {"boss":10.0,"prison-shaman":12.0,"soul-warden":12.0,"jangsanbeom":14.0,"jangsan-shadow":11.0,"mountain-tiger":10.0,"changgui-remnant":9.0,"mihokbul":7.0,"hosikchong-wraith":11.0,"monk":12.0,"adept":6.0,"warrior":8.0,"exorcist-spearman":14.0,"exorcist-archer":11.0,"bell-exorcist":7.0,"hunting-hawk":8.0,"chain-constable":12.0,"shield-guard":14.0,"brazier-ritualist":8.0,"sealed-lantern-keeper":10.0,"tracking-hound":8.0}.get(kind,8.0)
+	speed = {"boss":85.0,"soul-warden":72.0,"jangsanbeom":120.0,"jangsan-shadow":145.0,"mountain-tiger":130.0,"changgui-remnant":92.0,"mihokbul":72.0,"hosikchong-wraith":0.0,"monk":65.0,"adept":80.0,"warrior":105.0,"exorcist-spearman":72.0,"exorcist-archer":78.0,"bell-exorcist":52.0,"hunting-hawk":115.0,"chain-constable":68.0,"shield-guard":55.0,"brazier-ritualist":58.0,"sealed-lantern-keeper":52.0,"tracking-hound":145.0}.get(kind,95.0)
 	collision_layer = 4
 	collision_mask = 1
 	var c := CollisionShape2D.new()
 	var box := RectangleShape2D.new()
-	var collision_size:Vector2={"soul-warden":Vector2(42,74),"jangsanbeom":Vector2(86,52),"jangsan-shadow":Vector2(64,42),"mountain-tiger":Vector2(54,36),"hosikchong-wraith":Vector2(58,34),"mihokbul":Vector2(32,40),"exorcist-spearman":Vector2(34,52),"exorcist-archer":Vector2(28,48),"bell-exorcist":Vector2(32,54),"hunting-hawk":Vector2(42,26)}.get(kind,Vector2(28,46)*size_factor)
+	var collision_size:Vector2={"soul-warden":Vector2(42,74),"jangsanbeom":Vector2(86,52),"jangsan-shadow":Vector2(64,42),"mountain-tiger":Vector2(54,36),"hosikchong-wraith":Vector2(58,34),"mihokbul":Vector2(32,40),"exorcist-spearman":Vector2(34,52),"exorcist-archer":Vector2(28,48),"bell-exorcist":Vector2(32,54),"hunting-hawk":Vector2(42,26),"chain-constable":Vector2(32,52),"shield-guard":Vector2(38,52),"brazier-ritualist":Vector2(30,54),"sealed-lantern-keeper":Vector2(32,52),"tracking-hound":Vector2(48,28)}.get(kind,Vector2(28,46)*size_factor)
 	box.size = collision_size
 	c.position.y = -collision_size.y*.5
 	c.shape=box
@@ -131,6 +151,9 @@ func _ready() -> void:
 	if kind=="hunting-hawk": hawk_hover_origin=position
 	if kind=="soul-warden": special_cooldown=director.rng.randf_range(10.0,15.0)
 	if kind=="jangsanbeom": configure_jangsan_phase(1)
+	if kind=="prison-shaman":
+		soul_barrier_hp=240.0
+		soul_barrier_layers=3
 	queue_redraw()
 
 func set_collision_size(value: Vector2) -> void:
@@ -204,6 +227,31 @@ func _process(delta: float) -> void:
 		queue_redraw()
 func take_damage(amount: float, ignore_vulnerability := false, number_color := Color("f3e6c8"), critical := false) -> void:
 	if dead or dying: return
+	if kind=="prison-shaman" and soul_barrier_hp>0 and not ignore_vulnerability:
+		if reflect_window>0:
+			var reflected:Vector2=(director.world.player.global_position-global_position).normalized()
+			director.fire_projectile(global_position+Vector2(0,-62),reflected,minf(18.0,amount*.65),false,"spirit",self)
+			return
+		var old_layers:=soul_barrier_layers
+		soul_barrier_hp=maxf(0.0,soul_barrier_hp-amount)
+		soul_barrier_layers=ceili(soul_barrier_hp/80.0)
+		director.show_damage_number(global_position+Vector2(0,-92),amount,Color("7da6b5"),critical)
+		flash=.1
+		if soul_barrier_layers<old_layers:
+			stun=1.5
+			if soul_barrier_layers==0:
+				dongja_rampage=true
+				visual.set_role("dongja-possession")
+				speed=90.0
+			director.message("창귀 해방 · "+("동자귀가 귀문옥주를 삼켰습니다" if soul_barrier_layers==0 else "방벽이 한 겹 무너졌습니다"))
+		queue_redraw()
+		return
+	if kind=="shield-guard" and not ignore_vulnerability and is_instance_valid(director) and is_instance_valid(director.world.player):
+		var player_side:=signf(director.world.player.global_position.x-global_position.x)
+		# 방패가 향한 정면에서 들어온 공격만 크게 줄고, 뒤잡기는 그대로 들어간다.
+		if player_side==facing:
+			amount*=.2
+			number_color=Color("8d9aa0")
 	if one_hit_vulnerable and not ignore_vulnerability:
 		amount*=1.5
 		one_hit_vulnerable=false
@@ -312,6 +360,7 @@ func _physics_process(delta: float) -> void:
 		move_and_slide()
 		return
 	flash=maxf(0,flash-delta)
+	reflect_window=maxf(0.0,reflect_window-delta)
 	confusion=maxf(0,confusion-delta)
 	if pull_remaining>0:
 		pull_remaining=maxf(0,pull_remaining-delta)
@@ -322,6 +371,11 @@ func _physics_process(delta: float) -> void:
 		queue_redraw()
 		return
 	stun=maxf(0,stun-delta)
+	if chain_pull_remaining>0:
+		chain_pull_remaining=maxf(0.0,chain_pull_remaining-delta)
+		var duration:=.32
+		var q:=1.0-chain_pull_remaining/duration
+		director.world.player.position=chain_pull_origin.lerp(chain_pull_target,q*q*(3.0-2.0*q))
 	if kind=="soul-warden":
 		if director.warden_pattern_active:
 			if director.warden_pattern in ["capture","heart"]:
@@ -350,8 +404,11 @@ func _physics_process(delta: float) -> void:
 		return
 	if charge_remaining>0:
 		charge_remaining=maxf(0,charge_remaining-delta)
-		velocity.x=facing*430
+		velocity.x=facing*(360 if kind=="tracking-hound" else 430)
 		director.area_effect(global_position+Vector2(facing*34,-22),42,attack,self)
+		if kind=="tracking-hound" and not hound_hit and director.world.player.position.distance_to(global_position)<54:
+			hound_hit=true
+			director.world.player.velocity.x=facing*170
 		move_and_slide()
 		queue_redraw()
 		return
@@ -370,10 +427,10 @@ func _physics_process(delta: float) -> void:
 		if timer<=0: state="approach"
 	else:
 		facing=signf(difference.x) if absf(difference.x)>1 else facing
-		var close := absf(difference.x)<(145 if kind=="jangsanbeom" else 95 if boss else 150 if kind in ["mountain-tiger","jangsan-shadow"] else 120 if kind=="hosikchong-wraith" else 80 if kind=="monk" else 52)
+		var close := absf(difference.x)<(145 if kind=="jangsanbeom" else 95 if boss else 150 if kind in ["mountain-tiger","jangsan-shadow"] else 300 if kind=="chain-constable" else 390 if kind in ["brazier-ritualist","sealed-lantern-keeper"] else 105 if kind=="tracking-hound" else 72 if kind=="shield-guard" else 120 if kind=="hosikchong-wraith" else 80 if kind=="monk" else 52)
 		var can_attack := visible_to_player() and clear_shot(target) and absf(difference.y)<120
 		if boss: can_attack=visible_to_player() and clear_shot(target)
-		if kind in ["adept","mihokbul","exorcist-archer","bell-exorcist"]: close=distance<420
+		if kind in ["adept","mihokbul","exorcist-archer","bell-exorcist","brazier-ritualist","sealed-lantern-keeper"]: close=distance<420
 		if timer<=0 and can_attack and (close or boss) and director.attack_permission(self):
 			if boss:
 				if kind=="jangsanbeom" and jangsan_phase==1:
@@ -389,8 +446,8 @@ func _physics_process(delta: float) -> void:
 			begin_attack_vfx()
 		else:
 			var direction:=facing
-			if kind in ["adept","mihokbul","exorcist-archer","bell-exorcist"] and distance<200: direction=-facing
-			if kind in ["adept","mihokbul","exorcist-archer","bell-exorcist"] and distance>=220 and distance<=340: direction=0
+			if kind in ["adept","mihokbul","exorcist-archer","bell-exorcist","brazier-ritualist","sealed-lantern-keeper"] and distance<200: direction=-facing
+			if kind in ["adept","mihokbul","exorcist-archer","bell-exorcist","brazier-ritualist","sealed-lantern-keeper"] and distance>=220 and distance<=340: direction=0
 			if kind=="hosikchong-wraith": direction=0
 			velocity.x=direction*speed*(.45 if slow>0 else 1.0) if safe_step(direction) and absf(difference.y)<150 else 0
 	move_and_slide()
@@ -444,7 +501,14 @@ func tick_hunting_hawk(delta: float) -> void:
 
 func release_attack(target: Vector2) -> void:
 	var origin:=global_position+Vector2(0,-25*size_factor)
-	if kind=="jangsanbeom" and jangsan_phase==1:
+	if kind=="prison-shaman":
+		if pattern==1:
+			reflect_window=1.2
+		elif pattern==2:
+			for angle in [-.34,0.0,.34]: director.fire_projectile(origin,attack_direction.rotated(angle),attack,false,"spirit",self)
+		else:
+			director.area_effect(origin+Vector2(facing*62,5),82,attack,self)
+	elif kind=="jangsanbeom" and jangsan_phase==1:
 		director.area_effect(origin+Vector2(facing*34,4),46,attack,self)
 	elif kind=="jangsanbeom" and pattern==2:
 		charge_remaining=.38
@@ -459,7 +523,8 @@ func release_attack(target: Vector2) -> void:
 	elif boss and pattern==1:
 		director.area_effect(origin+Vector2(facing*54,14),105,12,self)
 	elif kind=="monk":
-		director.area_effect(origin+Vector2(facing*40,0),55,attack,self)
+		# 희미한 먼지 끝이 아니라 목탁 충격의 짙은 핵심부에만 판정을 둔다.
+		director.area_effect(origin+Vector2(facing*2,0),45,attack,self)
 	elif kind=="adept":
 		for angle in ([-.3,0.0,.3] if boss else [0.0]):
 			director.fire_projectile(origin,attack_direction.rotated(angle),6,false,"talisman",self)
@@ -480,6 +545,22 @@ func release_attack(target: Vector2) -> void:
 		for offset in [-62.0,0.0,62.0]: director.queue_enemy_strike("enemy-arrow-rain",target+Vector2(offset,0),.72+absf(offset)*.003,attack,self)
 	elif kind=="bell-exorcist":
 		director.queue_enemy_strike("enemy-seal",target,.85,attack,self)
+	elif kind=="chain-constable":
+		if global_position.distance_to(target)<330 and clear_shot(target):
+			chain_pull_origin=director.world.player.position
+			chain_pull_target=director.safe_ground(global_position.x+facing*48)
+			chain_pull_remaining=.32
+		else:
+			director.area_effect(origin+Vector2(facing*38,0),52,attack,self)
+	elif kind=="shield-guard":
+		director.area_effect(origin+Vector2(facing*42,4),56,attack,self)
+	elif kind=="brazier-ritualist":
+		director.queue_enemy_strike("enemy-brazier-fire",target,.75,attack,self)
+	elif kind=="sealed-lantern-keeper":
+		director.queue_enemy_strike("enemy-lantern-burst",target,1.4,attack,self)
+	elif kind=="tracking-hound":
+		hound_hit=false
+		charge_remaining=.34
 	elif kind in ["mountain-tiger","jangsan-shadow","changgui-remnant"]:
 		charge_remaining=.24 if kind!="changgui-remnant" else .16
 	else:
@@ -497,14 +578,19 @@ func _draw() -> void:
 		return
 	if director.equipment_lab:
 		var font=preload("res://assets/fonts/NotoSansKR-Semibold.ttf")
-		draw_string(font,Vector2(-24,-84),{"warrior":"퇴마 무사","adept":"부적 도사","monk":"목탁 승려","changgui-remnant":"창귀 잔혼","mihokbul":"미혹불","hosikchong-wraith":"호식총 원귀","mountain-tiger":"산호랑이","jangsan-shadow":"장산범의 그림자","jangsanbeom":"장산범","exorcist-spearman":"퇴마 창수","exorcist-archer":"퇴마 궁수","bell-exorcist":"방울 술사","hunting-hawk":"사냥매"}.get(kind,"선봉대장"),HORIZONTAL_ALIGNMENT_LEFT,-1,12,Color("c7d0bc"))
+		draw_string(font,Vector2(-24,-84),{"warrior":"퇴마 무사","adept":"부적 도사","monk":"목탁 승려","changgui-remnant":"창귀 잔혼","mihokbul":"미혹불","hosikchong-wraith":"호식총 원귀","mountain-tiger":"산호랑이","jangsan-shadow":"장산범의 그림자","jangsanbeom":"장산범","exorcist-spearman":"퇴마 창수","exorcist-archer":"퇴마 궁수","bell-exorcist":"방울 술사","hunting-hawk":"사냥매","chain-constable":"쇠사슬 포졸","shield-guard":"방패 군졸","brazier-ritualist":"화로 술사","sealed-lantern-keeper":"봉인등 지기","tracking-hound":"추적견"}.get(kind,"선봉대장"),HORIZONTAL_ALIGNMENT_LEFT,-1,12,Color("c7d0bc"))
 	if state=="windup":
 		draw_arc(Vector2(0,-30*s),42*s,0,TAU,24,Color("e5a86c"),2)
+		if kind=="chain-constable": draw_line(Vector2(0,-34),Vector2(facing*300,-34),Color(0.66,0.46,0.35,.58),2)
+		elif kind=="tracking-hound": draw_line(Vector2(0,-10),Vector2(facing*150,-10),Color(0.72,0.3,0.2,.55),3)
 		if boss:
 			var font=preload("res://assets/fonts/NotoSansKR-Semibold.ttf")
-			var warning:Array=["할퀴기 · 뒤로 회피","목소리 흉내 · 탄막 틈 찾기","흰 번개 · 점프 회피"] if kind=="jangsanbeom" else ["넓은 베기 · 거리 벌리기","내려베기 · 뒤로 회피","돌진 · 점프 회피"]
+			var warning:Array=["창귀 후려치기 · 뒤로 회피","동자 흉내 · 공격 중지 또는 뒤잡기","원혼 방출 · 탄막 틈 찾기"] if kind=="prison-shaman" else ["할퀴기 · 뒤로 회피","목소리 흉내 · 탄막 틈 찾기","흰 번개 · 점프 회피"] if kind=="jangsanbeom" else ["넓은 베기 · 거리 벌리기","내려베기 · 뒤로 회피","돌진 · 점프 회피"]
 			draw_string(font,Vector2(-48,-115),warning[pattern],HORIZONTAL_ALIGNMENT_LEFT,-1,16,Color("fff0c4"))
 		if boss and pattern==1: draw_line(Vector2(-110,0),Vector2(110,0),Color("d76b60"),3)
 	if pull_remaining>0 or stun>0: draw_arc(Vector2(0,-28*s),20*s,0,TAU,24,Color("9dcbb8"),2)
+	if kind=="prison-shaman" and soul_barrier_hp>0:
+		for layer in range(soul_barrier_layers):
+			draw_arc(Vector2(0,-48),52+layer*9,PI*.15,PI*1.85,36,Color(0.32,0.52,0.62,.9 if reflect_window>0 else .55),3)
 	draw_rect(Rect2(-21*s,-69*s,42*s,4),Color("292f39"))
 	draw_rect(Rect2(-21*s,-69*s,42*s*maxf(0,hp)/max_hp,4),Color("d68070"))

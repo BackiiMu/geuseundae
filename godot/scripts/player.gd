@@ -4,12 +4,19 @@ var visual: Node2D
 
 # Deliberate exploration pace: 60% of the original 280 movement speed.
 const SPEED = 168.0
-# Preserve authored platform reach while keeping ordinary ground traversal at
-# the requested 60% pace.
-const AIR_SPEED = 280.0
-# Slightly gentler jump arc: the old launch was too snappy for platform control.
+# Keep horizontal control responsive in the air without changing to a
+# radically different speed the instant the feet leave the floor.
+const AIR_SPEED = 210.0
 const JUMP = -450.0
-const GRAVITY = 700.0
+const GROUND_ACCEL = 2400.0
+const GROUND_DECEL = 3200.0
+const AIR_ACCEL = 1600.0
+const AIR_DECEL = 1000.0
+const JUMP_HOLD_TIME = 0.24
+const JUMP_HOLD_GRAVITY = 350.0
+const JUMP_RELEASE_GRAVITY = 1500.0
+const FALL_GRAVITY = 1200.0
+const MAX_FALL_SPEED = 900.0
 const DASH_SPEED = 680.0
 var coyote := 0.0
 var buffered_jump := 0.0
@@ -20,6 +27,7 @@ var dash_max_charges := 1
 var dash_charges := 1
 var dash_recharge_timer := 0.0
 var jumped_since_floor := false
+var jump_hold_timer := 0.0
 var facing := 1.0
 var spawn := Vector2(360, 590)
 var controls_enabled := true
@@ -76,6 +84,7 @@ func set_heart_role(role: String, charges := 1) -> void:
 	dash_charges=dash_max_charges
 	dash_recharge_timer=0
 	jumped_since_floor=false
+	jump_hold_timer=0.0
 	if is_instance_valid(visual): visual.set_role(role)
 
 func respawn() -> void:
@@ -85,6 +94,7 @@ func respawn() -> void:
 	dash_charges=dash_max_charges
 	dash_recharge_timer=0
 	jumped_since_floor=false
+	jump_hold_timer=0.0
 	for action in tap_windows: tap_windows[action]=0.0
 	camera.reset_smoothing()
 
@@ -98,6 +108,7 @@ func start_dash(direction: Vector2) -> void:
 	dash_cooldown = .12
 	if dash_recharge_timer<=0: dash_recharge_timer=.65
 	buffered_jump = 0
+	jump_hold_timer = 0
 	for action in tap_windows: tap_windows[action]=0.0
 
 func register_double_tap(action: String,direction: Vector2) -> bool:
@@ -112,9 +123,14 @@ func register_tap(action: String,direction: Vector2) -> bool:
 	return false
 
 func attack_aim_direction(move_axis := 0.0) -> Vector2:
+	var mobile_mode:=OS.has_feature("mobile") or OS.get_cmdline_user_args().has("--touch")
+	# PC에서 마우스 버튼을 누른 동안은 방향키 상태보다 커서를 우선한다.
+	# 두 입력 경로가 겹쳤을 때 공격이 이전 방향으로 튀는 현상을 막는다.
+	if not mobile_mode and DisplayServer.get_name()!="headless" and Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
+		var mouse_direction:=get_global_mouse_position()-(global_position+Vector2(0,-28))
+		if mouse_direction.length_squared()>16: return mouse_direction.normalized()
 	var stick:=Vector2(Input.get_axis("attack_left","attack_right"),Input.get_axis("attack_up","attack_down"))
 	if stick.length_squared()>.01: return stick.normalized()
-	var mobile_mode:=OS.has_feature("mobile") or OS.get_cmdline_user_args().has("--touch")
 	if not mobile_mode and DisplayServer.get_name()!="headless":
 		var mouse_direction:=get_global_mouse_position()-(global_position+Vector2(0,-28))
 		if mouse_direction.length_squared()>16: return mouse_direction.normalized()
@@ -170,8 +186,21 @@ func try_drop_through_platform() -> bool:
 			velocity.y = 180
 			buffered_jump = 0
 			coyote = 0
+			jump_hold_timer = 0
 			return true
 	return false
+
+func movement_acceleration(axis: float, airborne: bool) -> float:
+	if airborne:
+		return AIR_ACCEL if absf(axis)>.01 else AIR_DECEL
+	return GROUND_ACCEL if absf(axis)>.01 else GROUND_DECEL
+
+func jump_gravity(jump_held: bool) -> float:
+	if velocity.y >= 0:
+		return FALL_GRAVITY
+	if jump_held and jump_hold_timer > 0:
+		return JUMP_HOLD_GRAVITY
+	return JUMP_RELEASE_GRAVITY
 
 func _physics_process(delta: float) -> void:
 	if not controls_enabled:
@@ -187,7 +216,9 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("aim_down") or Input.is_action_just_pressed("drop_down"):
 		try_drop_through_platform()
 	coyote = 0.12 if is_on_floor() else maxf(0.0, coyote - delta)
-	if is_on_floor(): jumped_since_floor=false
+	if is_on_floor():
+		jumped_since_floor=false
+		jump_hold_timer=0.0
 	buffered_jump = maxf(0.0, buffered_jump - delta)
 	var axis := Input.get_axis("move_left", "move_right")
 	var attack_axis := Input.get_axis("attack_left", "attack_right")
@@ -225,17 +256,19 @@ func _physics_process(delta: float) -> void:
 		dash_time -= delta
 		velocity = dash_direction * DASH_SPEED
 	else:
-		var move_speed:=AIR_SPEED if not is_on_floor() else SPEED
-		velocity.x = move_toward(velocity.x, axis * move_speed * movement_multiplier, 2200 * delta)
-		velocity.y = minf(velocity.y + GRAVITY * delta, 1000)
+		var airborne:=not is_on_floor()
+		var move_speed:=AIR_SPEED if airborne else SPEED
+		velocity.x = move_toward(velocity.x, axis * move_speed * movement_multiplier, movement_acceleration(axis,airborne) * delta)
 		if buffered_jump > 0 and coyote > 0 and drop_timer<=0:
 			velocity.y = JUMP
-			if absf(axis)>.01: velocity.x=axis*AIR_SPEED*movement_multiplier
 			jumped_since_floor=true
+			jump_hold_timer=JUMP_HOLD_TIME
 			buffered_jump = 0
 			coyote = 0
-		if Input.is_action_just_released("jump") and velocity.y < -280:
-			velocity.y = -280
+		if Input.is_action_just_released("jump"):
+			jump_hold_timer=0.0
+		jump_hold_timer=maxf(0.0,jump_hold_timer-delta)
+		velocity.y=minf(velocity.y+jump_gravity(Input.is_action_pressed("jump"))*delta,MAX_FALL_SPEED)
 	move_and_slide()
 	if position.y > 810:
 		respawn()

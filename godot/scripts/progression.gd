@@ -29,3 +29,11 @@ static func unlock_changgui_and_jangsan() -> bool:
 		var file := FileAccess.open(SAVE_PATH, FileAccess.WRITE)
 		if file != null: file.store_string(JSON.stringify(profile))
 	return changed
+
+static func default_profile() -> Dictionary:
+	return {"unlocked_hearts":["songaksi","mongdal"],"unlocked_sets":[]}
+
+static func replace_profile(saved: Dictionary) -> void:
+	profile=default_profile()
+	if not saved.is_empty(): profile.merge(saved.duplicate(true),true)
+	if not profile["unlocked_hearts"].has("mongdal"): profile["unlocked_hearts"].append("mongdal")

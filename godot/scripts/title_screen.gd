@@ -9,8 +9,13 @@ const PLAQUE = preload("res://assets/ui/modular/plaque-v1.png")
 const SETTINGS_ICON = preload("res://assets/ui/hud/settings-icon-v1.png")
 const PixelSlider = preload("res://scripts/pixel_slider.gd")
 const Player = preload("res://scripts/player.gd")
+const SaveSlots = preload("res://scripts/save_slots.gd")
 
 var settings_shade: ColorRect
+var slot_shade: ColorRect
+var slot_list: VBoxContainer
+var delete_confirm: ConfirmationDialog
+var pending_delete_slot := 0
 
 func _ready() -> void:
 	set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
@@ -28,7 +33,7 @@ func _ready() -> void:
 	menu.add_theme_constant_override("separation", 12)
 	add_child(menu)
 	var start := title_button("게임 시작")
-	start.pressed.connect(func(): get_tree().change_scene_to_file("res://scenes/village.tscn"))
+	start.pressed.connect(open_slots)
 	menu.add_child(start)
 	if show_mobile_test:
 		var full_test := title_button("전체 장비 테스트")
@@ -38,10 +43,88 @@ func _ready() -> void:
 	settings.pressed.connect(toggle_settings)
 	menu.add_child(settings)
 	build_settings()
+	build_slots()
 
 func start_full_test_run() -> void:
 	get_tree().set_meta("full_test_run_requested", true)
 	get_tree().change_scene_to_file("res://scenes/village.tscn")
+
+func start_slot(slot: int) -> void:
+	get_tree().set_meta("save_slot",clampi(slot,1,SaveSlots.SLOT_COUNT))
+	get_tree().change_scene_to_file("res://scenes/village.tscn")
+
+func heart_name(id: String) -> String:
+	return {"songaksi":"손각시","mongdal":"몽달귀신","changgui":"창귀"}.get(id,"심장 없음")
+
+func slot_text(slot: int) -> String:
+	var info:=SaveSlots.summary(slot)
+	if info["empty"]: return "슬롯 %d  ·  새 게임" % slot
+	var place:="마을" if info["in_village"] else "%d챕터" % info["floor"]
+	return "슬롯 %d  ·  %s\n%s  ·  영혼조각 %d" % [slot,place,heart_name(info["heart"]),info["souls"]]
+
+func build_slots() -> void:
+	slot_shade=ColorRect.new()
+	slot_shade.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	slot_shade.color=Color(0,0,0,.76)
+	add_child(slot_shade)
+	var panel:=PanelContainer.new()
+	panel.position=Vector2(174,38)
+	panel.size=Vector2(420,356)
+	panel.add_theme_stylebox_override("panel",box(PANEL_TEXTURE,28))
+	slot_shade.add_child(panel)
+	var content:=VBoxContainer.new()
+	content.add_theme_constant_override("separation",8)
+	panel.add_child(content)
+	var heading:=Label.new()
+	heading.text="저장 슬롯"
+	heading.horizontal_alignment=HORIZONTAL_ALIGNMENT_CENTER
+	heading.add_theme_font_size_override("font_size",18)
+	content.add_child(heading)
+	slot_list=VBoxContainer.new()
+	slot_list.add_theme_constant_override("separation",7)
+	content.add_child(slot_list)
+	var close_center:=CenterContainer.new()
+	var close:=title_button("닫기")
+	close.custom_minimum_size=Vector2(120,38)
+	close.pressed.connect(func(): slot_shade.hide())
+	close_center.add_child(close)
+	content.add_child(close_center)
+	delete_confirm=ConfirmationDialog.new()
+	delete_confirm.title="저장 데이터 삭제"
+	delete_confirm.dialog_text="이 슬롯의 진행 데이터를 삭제할까요?\n삭제한 데이터는 복구할 수 없습니다."
+	delete_confirm.ok_button_text="삭제"
+	delete_confirm.cancel_button_text="취소"
+	delete_confirm.confirmed.connect(func():
+		if pending_delete_slot>0: SaveSlots.erase(pending_delete_slot)
+		pending_delete_slot=0
+		refresh_slots())
+	add_child(delete_confirm)
+	slot_shade.hide()
+
+func refresh_slots() -> void:
+	for child in slot_list.get_children(): child.queue_free()
+	for slot in range(1,SaveSlots.SLOT_COUNT+1):
+		var row:=HBoxContainer.new()
+		row.add_theme_constant_override("separation",8)
+		var choose:=title_button(slot_text(slot))
+		choose.custom_minimum_size=Vector2(286,62)
+		choose.size_flags_horizontal=Control.SIZE_EXPAND_FILL
+		choose.pressed.connect(start_slot.bind(slot))
+		row.add_child(choose)
+		var remove:=title_button("삭제")
+		remove.custom_minimum_size=Vector2(72,62)
+		remove.disabled=not SaveSlots.exists(slot)
+		remove.pressed.connect(request_slot_delete.bind(slot))
+		row.add_child(remove)
+		slot_list.add_child(row)
+
+func request_slot_delete(slot: int) -> void:
+	pending_delete_slot=slot
+	delete_confirm.popup_centered(Vector2i(380,180))
+
+func open_slots() -> void:
+	refresh_slots()
+	slot_shade.show()
 
 func box(texture: Texture2D, margin: int) -> StyleBoxTexture:
 	var style := StyleBoxTexture.new()
@@ -151,6 +234,10 @@ func toggle_settings() -> void:
 	settings_shade.visible = not settings_shade.visible
 
 func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("ui_cancel") and slot_shade.visible:
+		slot_shade.hide()
+		get_viewport().set_input_as_handled()
+		return
 	if event.is_action_pressed("ui_cancel") and settings_shade.visible:
 		toggle_settings()
 		get_viewport().set_input_as_handled()

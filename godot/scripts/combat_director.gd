@@ -223,7 +223,10 @@ func enter_room(room_data: Dictionary) -> void:
 	if data.get("cleared",false): return
 	var width:=float(world.room.definition["width"])
 	if world.current_id==world.run["goal"]:
-		if world.floor_number>=3:
+		if world.floor_number>=4:
+			spawn_enemy("prison-shaman",safe_ground(width*.52),0)
+			message("귀문옥주 · 창귀 방벽과 동자귀의 반사를 파훼하십시오")
+		elif world.floor_number==3:
 			spawn_enemy("soul-warden",safe_ground(width*.52),0)
 			message("쇄혼대감 · 심장을 봉인하는 집행관을 쓰러뜨리십시오")
 		else:
@@ -241,7 +244,13 @@ func enter_room(room_data: Dictionary) -> void:
 		for i in range(mini(3,candidates.size())):
 			var index:=rng.randi_range(0,candidates.size()-1)
 			var pos: Vector2 = candidates.pop_at(index)
-			if world.floor_number>=3:
+			if world.floor_number>=4:
+				var prison_kinds:=["chain-constable","shield-guard","brazier-ritualist","sealed-lantern-keeper","tracking-hound"]
+				var prison_kind:String=prison_kinds[(world.current_id+i)%prison_kinds.size()]
+				# 위치 강제 적 둘이 한꺼번에 나오면 회피 선택지가 사라진다.
+				if prison_kind=="chain-constable" and i>1: prison_kind="shield-guard"
+				spawn_enemy(prison_kind,pos,i)
+			elif world.floor_number==3:
 				var garrison_kinds:=["exorcist-spearman","exorcist-archer","bell-exorcist","hunting-hawk"]
 				var garrison_kind:String=garrison_kinds[(world.current_id+i)%garrison_kinds.size()]
 				# Two archers plus a hawk creates excessive off-axis pressure.
@@ -450,7 +459,8 @@ func _unhandled_input(event: InputEvent) -> void:
 		hit_warden_orb(world_pos)
 
 func queue_enemy_strike(kind: String,pos: Vector2,delay: float,damage: float,source: Node) -> void:
-	zones.append({"kind":kind,"pos":safe_ground(pos.x),"life":delay+(2.2 if kind=="enemy-seal" else .2),"delay":delay,"tick":0.0,"damage":damage,"source":source,"triggered":false,"hurt_cd":0.0})
+	var active_life:=3.0 if kind=="enemy-brazier-fire" else 2.2 if kind=="enemy-seal" else .2
+	zones.append({"kind":kind,"pos":safe_ground(pos.x),"life":delay+active_life,"delay":delay,"tick":0.0,"damage":damage,"source":source,"triggered":false,"hurt_cd":0.0})
 func enemy_target(enemy: Node) -> Vector2:
 	if enemy.confusion>0:
 		for other in living():
@@ -555,16 +565,49 @@ func keyboard_attack_direction() -> Vector2:
 func attack_input_held() -> bool:
 	return Input.is_action_pressed("attack") or keyboard_attack_direction().length_squared()>.01
 func aim() -> Vector2:
+	var mobile_mode:=OS.has_feature("mobile") or OS.get_cmdline_user_args().has("--touch")
+	# 마우스 공격 중에는 방향키가 눌려 있어도 반드시 커서 쪽을 향한다.
+	if not mobile_mode and DisplayServer.get_name()!="headless" and Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
+		var mouse_difference:Vector2=world.player.get_global_mouse_position()-(world.player.global_position+Vector2(0,-28))
+		return mouse_difference.normalized() if mouse_difference.length_squared()>16 else Vector2(world.player.facing,0)
 	var keyboard_direction:=keyboard_attack_direction()
 	if keyboard_direction.length_squared()>.01: return keyboard_direction.normalized()
-	if OS.has_feature("mobile") or OS.get_cmdline_user_args().has("--touch"):
+	if mobile_mode:
 		var direction:=Vector2(Input.get_axis("move_left","move_right"),Input.get_axis("aim_up","aim_down"))
 		return direction.normalized() if direction.length_squared()>.01 else Vector2(world.player.facing,0)
 	if DisplayServer.get_name()=="headless" or Input.is_physical_key_pressed(KEY_J): return Vector2(world.player.facing,0)
-	var difference: Vector2 =get_global_mouse_position()-(world.player.position+Vector2(0,-28))
+	var difference:Vector2=world.player.get_global_mouse_position()-(world.player.global_position+Vector2(0,-28))
 	return difference.normalized() if difference.length()>4 else Vector2(world.player.facing,0)
 func perform_attack(slot: String) -> void:
 	arsenal.attack(slot)
+func draw_charge_bow() -> void:
+	# pixelfx rig 활 모양: 앞으로 볼록한 나무 활 + 차징할수록 V자로 당겨지는 시위. 충전량은 머리 위 게이지.
+	var ratio:float=clampf(bow_charge/1.2,0.0,1.0)
+	var pp:Vector2=world.player.position
+	var dir:Vector2=bow_direction.normalized() if bow_direction.length_squared()>.01 else Vector2(world.player.facing,0)
+	var center:=pp+Vector2(0,-28)+dir*8
+	var perp:=dir.orthogonal()
+	var wood:=Color("8a5a32"); var wood_dark:=Color("5a3820"); var gold:=Color("b8862a"); var string:=Color("e8edf6")
+	var u:=-1.0
+	while u<=1.0:
+		var q:=center+dir*(6.0*(1.0-u*u)-1.0)+perp*(u*17.0)
+		draw_rect(Rect2(q.round(),Vector2(2,2)),gold if absf(u)>.85 else wood)
+		u+=.05
+	var pull:=ratio*13.0
+	var tip_a:=center-dir*1.0+perp*-17.0
+	var tip_b:=center-dir*1.0+perp*17.0
+	var nock:=center-dir*(1.0+pull)
+	draw_line(tip_a.round(),nock.round(),string,1)
+	draw_line(tip_b.round(),nock.round(),string,1)
+	draw_line(nock.round(),(center+dir*13).round(),wood_dark,1)
+	draw_line((center+dir*9).round(),(center+dir*14).round(),Color.WHITE,2)
+	var gauge:=Rect2(pp+Vector2(-16,-72),Vector2(32,5))
+	draw_rect(gauge.grow(1),Color("05080c"))
+	draw_rect(gauge,Color("1a222c"))
+	var full:=ratio>=1.0
+	var fill:=Color("fff3b0") if full and int(Time.get_ticks_msec()/90)%2==0 else Color("e0b04a")
+	draw_rect(Rect2(gauge.position,Vector2(32.0*ratio,5)),fill)
+	for tick in [.4,.9]: draw_rect(Rect2(gauge.position+Vector2(32.0*tick,0),Vector2(1,5)),Color("05080c"))
 func uses_charge_bow() -> bool:
 	return equipped("main").get("id","")=="someone_bow"
 func tick_charge_bow(delta: float,held: bool) -> void:
@@ -586,7 +629,9 @@ func tick_charge_bow(delta: float,held: bool) -> void:
 		bow_charging=false
 		bow_charge=0.0
 func fire_projectile(pos: Vector2,direction: Vector2,damage: float,friendly: bool,kind: String,source: Node=null,homing:=false) -> void:
-	projectiles.append({"pos":pos,"velocity":direction*(440 if friendly else 220),"damage":damage,"friendly":friendly,"kind":kind,"life":(1.2 if friendly else 2.0),"age":0.0,"hit":[],"source":source,"homing":homing,"wall_piercing":WALL_PIERCING_PROJECTILES.has(kind)})
+	var projectile_speed:=440.0 if friendly else 140.0 if kind=="talisman" else 220.0
+	var projectile_life:=1.2 if friendly else 2.98 if kind=="talisman" else 2.0
+	projectiles.append({"pos":pos,"velocity":direction*projectile_speed,"damage":damage,"friendly":friendly,"kind":kind,"life":projectile_life,"age":0.0,"hit":[],"source":source,"homing":homing,"wall_piercing":WALL_PIERCING_PROJECTILES.has(kind)})
 func use_skill(slot: String) -> void:
 	arsenal.skill(slot)
 func use_heart() -> void:
@@ -1011,6 +1056,7 @@ func refresh_inventory() -> void:
 		var detail_icon_button:=Button.new()
 		apply_inventory_rect(detail_icon_button,"detail_icon")
 		detail_icon_button.mouse_filter=Control.MOUSE_FILTER_IGNORE
+		detail_icon_button.focus_mode=Control.FOCUS_NONE
 		style_movable_slot(detail_icon_button,false)
 		add_slot_icon(detail_icon_button,item,1.0)
 		inv_rows.add_child(detail_icon_button)
@@ -1113,6 +1159,7 @@ func tick_projectiles(delta: float) -> void:
 				if Geometry2D.get_closest_point_to_segment(center,from,to).distance_to(center)<18*enemy.size_factor+6*float(p.get("size",1)):
 					arsenal.hit(enemy,p["damage"],p.get("weapon",""))
 					p["hit"].append(enemy.get_instance_id())
+					if p["kind"]=="piercing_arrow": vfx.emit_arrow_impact(center,Vector2(p["velocity"]).normalized())
 					if p["kind"] not in ["whistle","boomerang","beam","tiger","piercing_arrow"]:
 						if p["kind"] in ["water","poison"]: zones.append({"kind":p["kind"],"weapon":p.get("weapon",""),"pos":safe_ground(to.x),"life":3.0,"tick":0.0})
 						p["life"]=0
@@ -1146,13 +1193,19 @@ func tick_zones(delta: float) -> void:
 			zone["delay"]=float(zone.get("delay",0.0))-delta
 			zone["hurt_cd"]=maxf(0.0,float(zone.get("hurt_cd",0.0))-delta)
 			if float(zone["delay"])<=0:
-				if zone["kind"] in ["enemy-arrow-rain","warden-talisman"] and not bool(zone["triggered"]):
+				if zone["kind"] in ["enemy-arrow-rain","warden-talisman","enemy-lantern-burst"] and not bool(zone["triggered"]):
 					zone["triggered"]=true
-					area_effect(Vector2(zone["pos"])+Vector2(0,-12),34,float(zone["damage"]),zone.get("source"))
+					var radius:=72.0 if zone["kind"]=="enemy-lantern-burst" else 34.0
+					area_effect(Vector2(zone["pos"])+Vector2(0,-12),radius,float(zone["damage"]),zone.get("source"))
 					zone["life"]=minf(float(zone["life"]),.12)
 				elif zone["kind"]=="enemy-seal" and Vector2(zone["pos"]).distance_to(world.player.position)<48 and float(zone["hurt_cd"])<=0:
 					hurt(float(zone["damage"]))
 					zone["hurt_cd"]=.75
+				elif zone["kind"]=="enemy-brazier-fire":
+					zone["triggered"]=true
+					if Vector2(zone["pos"]).distance_to(world.player.position)<76 and float(zone["hurt_cd"])<=0:
+						hurt(float(zone["damage"]))
+						zone["hurt_cd"]=.65
 			if zone["life"]<=0: zones.remove_at(i)
 			continue
 		zone["tick"]-=delta
@@ -1322,22 +1375,20 @@ func _draw() -> void:
 				var side:=direction.orthogonal()
 				draw_polygon(PackedVector2Array([point+direction*10,point-direction*5+side*6,point-direction*5-side*6]),PackedColorArray([Color("e2a78b")]))
 	for p in projectiles:
-		if p["friendly"] and p["kind"]=="piercing_arrow":
-			var arrow_dir:=Vector2(p["velocity"]).normalized()
-			draw_line(p["pos"]-arrow_dir*18,p["pos"]+arrow_dir*7,Color("a89b7c"),2)
-			draw_polyline(PackedVector2Array([p["pos"]+arrow_dir*7+arrow_dir.orthogonal()*4,p["pos"]+arrow_dir*13,p["pos"]+arrow_dir*7-arrow_dir.orthogonal()*4]),Color("d4c7a2"),2)
+		if p["friendly"] and p["kind"]=="piercing_arrow": pass
 		elif not p["friendly"] and p["kind"]!="talisman": draw_line(p["pos"]-Vector2(p["velocity"]).normalized()*10,p["pos"],Color("e1b17c"),3)
-	if bow_charging and is_instance_valid(world.player):
-		var charge_ratio:float=bow_charge/1.2
-		var bow_origin:Vector2=world.player.position+Vector2(0,-28)
-		draw_arc(bow_origin,13+charge_ratio*7,-PI*.5,PI*.5,12,Color(0.66,0.59,0.43,.35+charge_ratio*.55),2)
+	if bow_charging and is_instance_valid(world.player): draw_charge_bow()
 	for zone in zones:
 		if zone["kind"]=="decoy": draw_rect(Rect2(zone["pos"]-Vector2(13,46),Vector2(26,46)),Color(.6,.8,.75,.5))
-		elif zone["kind"] in ["enemy-arrow-rain","warden-talisman"]:
+		elif zone["kind"] in ["enemy-arrow-rain","warden-talisman","enemy-lantern-burst","enemy-brazier-fire"]:
 			var warning_alpha:=.28 if float(zone.get("delay",0.0))>0 else .75
-			var warning_color:=Color(0.45,0.32,0.52,warning_alpha) if zone["kind"]=="warden-talisman" else Color(0.76,0.32,0.24,warning_alpha)
-			draw_line(Vector2(zone["pos"])+Vector2(-24,0),Vector2(zone["pos"])+Vector2(24,0),warning_color,3)
-			draw_line(Vector2(zone["pos"])+Vector2(0,-180),Vector2(zone["pos"])+Vector2(0,-8),warning_color,2)
+			var warning_color:=Color(0.45,0.32,0.52,warning_alpha) if zone["kind"] in ["warden-talisman","enemy-lantern-burst"] else Color(0.76,0.32,0.24,warning_alpha)
+			var half_width:=72.0 if zone["kind"] in ["enemy-lantern-burst","enemy-brazier-fire"] else 24.0
+			draw_line(Vector2(zone["pos"])+Vector2(-half_width,0),Vector2(zone["pos"])+Vector2(half_width,0),warning_color,3)
+			if zone["kind"]!="enemy-brazier-fire": draw_line(Vector2(zone["pos"])+Vector2(0,-180),Vector2(zone["pos"])+Vector2(0,-8),warning_color,2)
+			elif float(zone.get("delay",0.0))<=0:
+				for flame in range(-60,61,20):
+					draw_line(Vector2(zone["pos"])+Vector2(flame,0),Vector2(zone["pos"])+Vector2(flame+6,-18-abs(flame)%17),Color(0.74,0.28,0.12,.72),4)
 		elif zone["kind"]=="warden-stake":
 			var stake_pos:Vector2=zone["pos"]
 			draw_rect(Rect2(stake_pos+Vector2(-7,-58),Vector2(14,58)),Color("26242b"))

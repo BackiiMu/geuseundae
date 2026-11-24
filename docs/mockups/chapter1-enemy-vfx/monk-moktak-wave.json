@@ -1,0 +1,1022 @@
+{
+ "frames": [
+  {
+   "filename": "ch1-monk-moktak-wave 0",
+   "frame": {
+    "x": 0,
+    "y": 0,
+    "w": 244,
+    "h": 144
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 244,
+    "h": 144
+   },
+   "sourceSize": {
+    "w": 244,
+    "h": 144
+   },
+   "duration": 33
+  },
+  {
+   "filename": "ch1-monk-moktak-wave 1",
+   "frame": {
+    "x": 244,
+    "y": 0,
+    "w": 244,
+    "h": 144
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 244,
+    "h": 144
+   },
+   "sourceSize": {
+    "w": 244,
+    "h": 144
+   },
+   "duration": 33
+  },
+  {
+   "filename": "ch1-monk-moktak-wave 2",
+   "frame": {
+    "x": 488,
+    "y": 0,
+    "w": 244,
+    "h": 144
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 244,
+    "h": 144
+   },
+   "sourceSize": {
+    "w": 244,
+    "h": 144
+   },
+   "duration": 33
+  },
+  {
+   "filename": "ch1-monk-moktak-wave 3",
+   "frame": {
+    "x": 732,
+    "y": 0,
+    "w": 244,
+    "h": 144
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 244,
+    "h": 144
+   },
+   "sourceSize": {
+    "w": 244,
+    "h": 144
+   },
+   "duration": 33
+  },
+  {
+   "filename": "ch1-monk-moktak-wave 4",
+   "frame": {
+    "x": 976,
+    "y": 0,
+    "w": 244,
+    "h": 144
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 244,
+    "h": 144
+   },
+   "sourceSize": {
+    "w": 244,
+    "h": 144
+   },
+   "duration": 33
+  },
+  {
+   "filename": "ch1-monk-moktak-wave 5",
+   "frame": {
+    "x": 0,
+    "y": 144,
+    "w": 244,
+    "h": 144
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 244,
+    "h": 144
+   },
+   "sourceSize": {
+    "w": 244,
+    "h": 144
+   },
+   "duration": 33
+  },
+  {
+   "filename": "ch1-monk-moktak-wave 6",
+   "frame": {
+    "x": 244,
+    "y": 144,
+    "w": 244,
+    "h": 144
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 244,
+    "h": 144
+   },
+   "sourceSize": {
+    "w": 244,
+    "h": 144
+   },
+   "duration": 33
+  },
+  {
+   "filename": "ch1-monk-moktak-wave 7",
+   "frame": {
+    "x": 488,
+    "y": 144,
+    "w": 244,
+    "h": 144
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 244,
+    "h": 144
+   },
+   "sourceSize": {
+    "w": 244,
+    "h": 144
+   },
+   "duration": 33
+  },
+  {
+   "filename": "ch1-monk-moktak-wave 8",
+   "frame": {
+    "x": 732,
+    "y": 144,
+    "w": 244,
+    "h": 144
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 244,
+    "h": 144
+   },
+   "sourceSize": {
+    "w": 244,
+    "h": 144
+   },
+   "duration": 33
+  },
+  {
+   "filename": "ch1-monk-moktak-wave 9",
+   "frame": {
+    "x": 976,
+    "y": 144,
+    "w": 244,
+    "h": 144
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 244,
+    "h": 144
+   },
+   "sourceSize": {
+    "w": 244,
+    "h": 144
+   },
+   "duration": 33
+  },
+  {
+   "filename": "ch1-monk-moktak-wave 10",
+   "frame": {
+    "x": 0,
+    "y": 288,
+    "w": 244,
+    "h": 144
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 244,
+    "h": 144
+   },
+   "sourceSize": {
+    "w": 244,
+    "h": 144
+   },
+   "duration": 33
+  },
+  {
+   "filename": "ch1-monk-moktak-wave 11",
+   "frame": {
+    "x": 244,
+    "y": 288,
+    "w": 244,
+    "h": 144
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 244,
+    "h": 144
+   },
+   "sourceSize": {
+    "w": 244,
+    "h": 144
+   },
+   "duration": 33
+  },
+  {
+   "filename": "ch1-monk-moktak-wave 12",
+   "frame": {
+    "x": 488,
+    "y": 288,
+    "w": 244,
+    "h": 144
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 244,
+    "h": 144
+   },
+   "sourceSize": {
+    "w": 244,
+    "h": 144
+   },
+   "duration": 33
+  },
+  {
+   "filename": "ch1-monk-moktak-wave 13",
+   "frame": {
+    "x": 732,
+    "y": 288,
+    "w": 244,
+    "h": 144
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 244,
+    "h": 144
+   },
+   "sourceSize": {
+    "w": 244,
+    "h": 144
+   },
+   "duration": 33
+  },
+  {
+   "filename": "ch1-monk-moktak-wave 14",
+   "frame": {
+    "x": 976,
+    "y": 288,
+    "w": 244,
+    "h": 144
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 244,
+    "h": 144
+   },
+   "sourceSize": {
+    "w": 244,
+    "h": 144
+   },
+   "duration": 33
+  },
+  {
+   "filename": "ch1-monk-moktak-wave 15",
+   "frame": {
+    "x": 0,
+    "y": 432,
+    "w": 244,
+    "h": 144
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 244,
+    "h": 144
+   },
+   "sourceSize": {
+    "w": 244,
+    "h": 144
+   },
+   "duration": 33
+  },
+  {
+   "filename": "ch1-monk-moktak-wave 16",
+   "frame": {
+    "x": 244,
+    "y": 432,
+    "w": 244,
+    "h": 144
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 244,
+    "h": 144
+   },
+   "sourceSize": {
+    "w": 244,
+    "h": 144
+   },
+   "duration": 33
+  },
+  {
+   "filename": "ch1-monk-moktak-wave 17",
+   "frame": {
+    "x": 488,
+    "y": 432,
+    "w": 244,
+    "h": 144
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 244,
+    "h": 144
+   },
+   "sourceSize": {
+    "w": 244,
+    "h": 144
+   },
+   "duration": 33
+  },
+  {
+   "filename": "ch1-monk-moktak-wave 18",
+   "frame": {
+    "x": 732,
+    "y": 432,
+    "w": 244,
+    "h": 144
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 244,
+    "h": 144
+   },
+   "sourceSize": {
+    "w": 244,
+    "h": 144
+   },
+   "duration": 33
+  },
+  {
+   "filename": "ch1-monk-moktak-wave 19",
+   "frame": {
+    "x": 976,
+    "y": 432,
+    "w": 244,
+    "h": 144
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 244,
+    "h": 144
+   },
+   "sourceSize": {
+    "w": 244,
+    "h": 144
+   },
+   "duration": 33
+  },
+  {
+   "filename": "ch1-monk-moktak-wave 20",
+   "frame": {
+    "x": 0,
+    "y": 576,
+    "w": 244,
+    "h": 144
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 244,
+    "h": 144
+   },
+   "sourceSize": {
+    "w": 244,
+    "h": 144
+   },
+   "duration": 33
+  },
+  {
+   "filename": "ch1-monk-moktak-wave 21",
+   "frame": {
+    "x": 244,
+    "y": 576,
+    "w": 244,
+    "h": 144
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 244,
+    "h": 144
+   },
+   "sourceSize": {
+    "w": 244,
+    "h": 144
+   },
+   "duration": 33
+  },
+  {
+   "filename": "ch1-monk-moktak-wave 22",
+   "frame": {
+    "x": 488,
+    "y": 576,
+    "w": 244,
+    "h": 144
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 244,
+    "h": 144
+   },
+   "sourceSize": {
+    "w": 244,
+    "h": 144
+   },
+   "duration": 33
+  },
+  {
+   "filename": "ch1-monk-moktak-wave 23",
+   "frame": {
+    "x": 732,
+    "y": 576,
+    "w": 244,
+    "h": 144
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 244,
+    "h": 144
+   },
+   "sourceSize": {
+    "w": 244,
+    "h": 144
+   },
+   "duration": 33
+  },
+  {
+   "filename": "ch1-monk-moktak-wave 24",
+   "frame": {
+    "x": 976,
+    "y": 576,
+    "w": 244,
+    "h": 144
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 244,
+    "h": 144
+   },
+   "sourceSize": {
+    "w": 244,
+    "h": 144
+   },
+   "duration": 33
+  },
+  {
+   "filename": "ch1-monk-moktak-wave 25",
+   "frame": {
+    "x": 0,
+    "y": 720,
+    "w": 244,
+    "h": 144
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 244,
+    "h": 144
+   },
+   "sourceSize": {
+    "w": 244,
+    "h": 144
+   },
+   "duration": 33
+  },
+  {
+   "filename": "ch1-monk-moktak-wave 26",
+   "frame": {
+    "x": 244,
+    "y": 720,
+    "w": 244,
+    "h": 144
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 244,
+    "h": 144
+   },
+   "sourceSize": {
+    "w": 244,
+    "h": 144
+   },
+   "duration": 33
+  },
+  {
+   "filename": "ch1-monk-moktak-wave 27",
+   "frame": {
+    "x": 488,
+    "y": 720,
+    "w": 244,
+    "h": 144
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 244,
+    "h": 144
+   },
+   "sourceSize": {
+    "w": 244,
+    "h": 144
+   },
+   "duration": 33
+  },
+  {
+   "filename": "ch1-monk-moktak-wave 28",
+   "frame": {
+    "x": 732,
+    "y": 720,
+    "w": 244,
+    "h": 144
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 244,
+    "h": 144
+   },
+   "sourceSize": {
+    "w": 244,
+    "h": 144
+   },
+   "duration": 33
+  },
+  {
+   "filename": "ch1-monk-moktak-wave 29",
+   "frame": {
+    "x": 976,
+    "y": 720,
+    "w": 244,
+    "h": 144
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 244,
+    "h": 144
+   },
+   "sourceSize": {
+    "w": 244,
+    "h": 144
+   },
+   "duration": 33
+  },
+  {
+   "filename": "ch1-monk-moktak-wave 30",
+   "frame": {
+    "x": 0,
+    "y": 864,
+    "w": 244,
+    "h": 144
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 244,
+    "h": 144
+   },
+   "sourceSize": {
+    "w": 244,
+    "h": 144
+   },
+   "duration": 33
+  },
+  {
+   "filename": "ch1-monk-moktak-wave 31",
+   "frame": {
+    "x": 244,
+    "y": 864,
+    "w": 244,
+    "h": 144
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 244,
+    "h": 144
+   },
+   "sourceSize": {
+    "w": 244,
+    "h": 144
+   },
+   "duration": 33
+  },
+  {
+   "filename": "ch1-monk-moktak-wave 32",
+   "frame": {
+    "x": 488,
+    "y": 864,
+    "w": 244,
+    "h": 144
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 244,
+    "h": 144
+   },
+   "sourceSize": {
+    "w": 244,
+    "h": 144
+   },
+   "duration": 33
+  },
+  {
+   "filename": "ch1-monk-moktak-wave 33",
+   "frame": {
+    "x": 732,
+    "y": 864,
+    "w": 244,
+    "h": 144
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 244,
+    "h": 144
+   },
+   "sourceSize": {
+    "w": 244,
+    "h": 144
+   },
+   "duration": 33
+  },
+  {
+   "filename": "ch1-monk-moktak-wave 34",
+   "frame": {
+    "x": 976,
+    "y": 864,
+    "w": 244,
+    "h": 144
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 244,
+    "h": 144
+   },
+   "sourceSize": {
+    "w": 244,
+    "h": 144
+   },
+   "duration": 33
+  },
+  {
+   "filename": "ch1-monk-moktak-wave 35",
+   "frame": {
+    "x": 0,
+    "y": 1008,
+    "w": 244,
+    "h": 144
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 244,
+    "h": 144
+   },
+   "sourceSize": {
+    "w": 244,
+    "h": 144
+   },
+   "duration": 33
+  },
+  {
+   "filename": "ch1-monk-moktak-wave 36",
+   "frame": {
+    "x": 244,
+    "y": 1008,
+    "w": 244,
+    "h": 144
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 244,
+    "h": 144
+   },
+   "sourceSize": {
+    "w": 244,
+    "h": 144
+   },
+   "duration": 33
+  },
+  {
+   "filename": "ch1-monk-moktak-wave 37",
+   "frame": {
+    "x": 488,
+    "y": 1008,
+    "w": 244,
+    "h": 144
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 244,
+    "h": 144
+   },
+   "sourceSize": {
+    "w": 244,
+    "h": 144
+   },
+   "duration": 33
+  },
+  {
+   "filename": "ch1-monk-moktak-wave 38",
+   "frame": {
+    "x": 732,
+    "y": 1008,
+    "w": 244,
+    "h": 144
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 244,
+    "h": 144
+   },
+   "sourceSize": {
+    "w": 244,
+    "h": 144
+   },
+   "duration": 33
+  },
+  {
+   "filename": "ch1-monk-moktak-wave 39",
+   "frame": {
+    "x": 976,
+    "y": 1008,
+    "w": 244,
+    "h": 144
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 244,
+    "h": 144
+   },
+   "sourceSize": {
+    "w": 244,
+    "h": 144
+   },
+   "duration": 33
+  }
+ ],
+ "meta": {
+  "app": "https://github.com/patch-gg/pixelfx",
+  "version": "1",
+  "image": "ch1-monk-moktak-wave.png",
+  "format": "RGBA8888",
+  "size": {
+   "w": 1220,
+   "h": 1152
+  },
+  "scale": "1",
+  "frameTags": [
+   {
+    "name": "ch1-monk-moktak-wave",
+    "from": 0,
+    "to": 39,
+    "direction": "forward"
+   }
+  ],
+  "pixelfx": {
+   "id": "geuseundae/ch1-monk-moktak-wave",
+   "name": "Moktak binding wave",
+   "fps": 30,
+   "loop": false,
+   "frames": 40,
+   "frameSize": [
+    244,
+    144
+   ],
+   "pivot": [
+    80,
+    120
+   ],
+   "columns": 5,
+   "act": {
+    "windup": 0.65,
+    "recovery": 0,
+    "onBody": false,
+    "targets": [
+     68
+    ],
+    "hits": [
+     {
+      "t": 0.18,
+      "freeze": 0.13,
+      "shake": 0.18,
+      "amp": 2,
+      "push": 2.2
+     }
+    ],
+    "poses": [
+     {
+      "t": -0.65,
+      "how": "smooth",
+      "pose": {
+       "crouch": 2,
+       "fx": 6,
+       "fy": -31,
+       "bx": -8,
+       "by": -29,
+       "ffx": 7,
+       "fbx": -7,
+       "weapon": "handle",
+       "two": true,
+       "sa": -1.3,
+       "lean": -2
+      }
+     },
+     {
+      "t": -0.12,
+      "how": "smooth",
+      "pose": {
+       "crouch": 4,
+       "fx": 2,
+       "fy": -34,
+       "bx": -10,
+       "by": -28,
+       "ffx": 7,
+       "fbx": -7,
+       "weapon": "handle",
+       "two": true,
+       "sa": -1.8,
+       "lean": -4
+      }
+     },
+     {
+      "t": 0,
+      "how": "snap",
+      "pose": {
+       "crouch": 6,
+       "fx": 18,
+       "fy": -19,
+       "bx": -4,
+       "by": -20,
+       "ffx": 7,
+       "fbx": -7,
+       "weapon": "handle",
+       "two": true,
+       "sa": 0.45,
+       "lean": 5
+      }
+     },
+     {
+      "t": 0.35,
+      "how": "smooth",
+      "pose": {
+       "crouch": 5,
+       "fx": 8,
+       "fy": -23,
+       "bx": -4,
+       "by": -23,
+       "ffx": 7,
+       "fbx": -7,
+       "weapon": "handle",
+       "two": true,
+       "sa": -0.2,
+       "lean": 3
+      }
+     },
+     {
+      "t": 0.95,
+      "how": "smooth",
+      "pose": {
+       "crouch": 3,
+       "fx": 8,
+       "fy": -23,
+       "bx": -4,
+       "by": -23,
+       "ffx": 7,
+       "fbx": -7,
+       "weapon": "handle",
+       "two": true,
+       "sa": -0.2
+      }
+     }
+    ]
+   }
+  }
+ }
+}

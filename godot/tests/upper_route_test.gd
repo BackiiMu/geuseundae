@@ -12,7 +12,9 @@ func run_checks() -> void:
 	root.add_child(main)
 	await frames(35)
 	main.set_process(false)
+	var requested:=OS.get_environment("UPPER_ROUTE_TEMPLATE")
 	for key in Catalog.templates():
+		if not requested.is_empty() and key!=requested: continue
 		var def: Dictionary = Catalog.templates()[key]
 		main.run = {"version":3,"seed":1,"start":0,"goal":1,"rooms":[{"id":0,"template":key,"links":[1],"grid":[0,1],"decor_seed":1,"visited":false},{"id":1,"template":"gate","links":[0],"grid":[0,0],"decor_seed":1,"visited":false}]}
 		main.change_room(0,-1)
@@ -34,20 +36,23 @@ func run_checks() -> void:
 				await frames(1)
 			Input.action_press("jump")
 			var landed := false
+			var apex_y:float=p.position.y
+			var apex_x:float=p.position.x
 			for tick in range(100):
 				# Several authored upper ledges sit above the 450 jump's physical
 				# apex. Exercise the intended upward dash for those tall steps.
 				if tick==8 and current_y-float(target[1])>145:
 					p.dash_cooldown=0
 					p.dash_charges=maxi(1,p.dash_charges)
-					Input.action_press("aim_up")
-					Input.action_press("dash")
-				if tick==10:
-					Input.action_release("dash")
-					Input.action_release("aim_up")
+					# Input direction selection is covered by dash_test. Exercise the
+					# actual upward movement here without depending on saved settings.
+					p.start_dash(Vector2(1,-1))
 				# Brake inside the destination, without using a dash or another jump.
 				if p.position.x>target[0]+target[2]-35: Input.action_release("move_right")
 				await frames(1)
+				if p.position.y<apex_y:
+					apex_y=p.position.y
+					apex_x=p.position.x
 				if tick>5 and p.is_on_floor():
 					landed = absf(p.position.y-float(target[1]))<3
 					break
@@ -55,7 +60,7 @@ func run_checks() -> void:
 			Input.action_release("move_right")
 			await frames(10)
 			if not landed:
-				fail("Upper route failed "+key+" target "+str(target)+" actual "+str(p.position))
+				fail("Upper route failed "+key+" target "+str(target)+" apex "+str(Vector2(apex_x,apex_y))+" actual "+str(p.position))
 				return
 			current_right=float(target[0]+target[2])
 			current_y=float(target[1])
@@ -79,6 +84,8 @@ func run_checks() -> void:
 			var near_gap := false
 			for gap in def["gaps"]:
 				if p.position.x>gap[0]-72 and p.position.x<gap[0]+gap[1]+28: near_gap=true
+			for wall in def.get("walls",[]):
+				if p.position.x>wall[0]-72 and p.position.x<wall[0]+wall[2]+28: near_gap=true
 			if near_gap: Input.action_press("jump")
 			else: Input.action_release("jump")
 			await frames(1)
@@ -88,7 +95,7 @@ func run_checks() -> void:
 		Input.action_release("jump")
 		await frames(65)
 		if p.position.x<float(def["width"])-110 or not p.is_on_floor() or reset_count>0:
-			fail("Cannot return from upper portal to exit "+key)
+			fail("Cannot return from upper portal to exit "+key+" actual "+str(p.position)+" resets "+str(reset_count))
 			return
 		print("PASS jump/up-dash ascent + return to exit ",key)
 	print("All upper portal routes are reachable with the standard movement kit.")

@@ -22,6 +22,13 @@ var dash_fx_info: Dictionary = {}
 var dash_fx_age := 1.0
 var atlas := true
 var scale_override := 1.0
+# 일부 192×256 원본 셀은 칼날·소매가 이웃 셀까지 넘어가 있다.
+# [시작 X, 읽을 너비]로 원본 픽셀 크기는 유지하면서 경계 누출만 바로잡는다.
+const ATLAS_FRAME_WINDOWS := {
+	"warrior": {20:Vector2i(9,192),21:Vector2i(11,192),22:Vector2i(16,176)},
+	"adept": {29:Vector2i(8,192),30:Vector2i(9,183)},
+	"monk": {21:Vector2i(5,192),22:Vector2i(21,171)}
+}
 var custom_columns := 1
 var custom_rows := 1
 # 네 발 짐승 시트는 192x256 칸 아래쪽이 비어 있어 가로세로를 따로 줄이면 납작해지고 몸이 떠 보인다.
@@ -29,6 +36,22 @@ var custom_rows := 1
 const BEAST_SPRITES := {
 	"mountain-tiger":{"scale":.43,"ground":186.0,"bottoms":[193,193,193,193,193,193,193,193,178,176,164,175,178,178,178,178,186,186,179,157,146,186,186,186,186,186,186,187,187,187,188,188]},
 	"jangsan-shadow":{"scale":.5,"ground":248.0,"bottoms":[248]}
+}
+const CHAPTER3_SOLID_ROLES := {
+	"exorcist-spearman":true,
+	"exorcist-archer":true,
+	"bell-exorcist":true,
+	"hunting-hawk":true,
+	"soul-warden":true
+}
+const CHAPTER4_SINGLE_ROLES := {
+	"prison-shaman":"res://assets/actors/chapter4/boss/prison-shaman-game-v1.png",
+	"dongja-possession":"res://assets/actors/chapter4/boss/dongja-possession-game-v1.png",
+	"chain-constable":"res://assets/actors/chapter4/chain-constable-game-v1.png",
+	"shield-guard":"res://assets/actors/chapter4/shield-guard-game-v1.png",
+	"brazier-ritualist":"res://assets/actors/chapter4/brazier-ritualist-game-v1.png",
+	"sealed-lantern-keeper":"res://assets/actors/chapter4/sealed-lantern-keeper-game-v1.png",
+	"tracking-hound":"res://assets/actors/chapter4/tracking-hound-game-v1.png"
 }
 func _ready() -> void:
 	texture_filter=CanvasItem.TEXTURE_FILTER_NEAREST
@@ -38,18 +61,30 @@ func _ready() -> void:
 		dash_fx_info=vfx_manifest.get("dash-2",{})
 		if not dash_fx_info.is_empty(): dash_fx_texture=load(dash_fx_info["path"])
 	var shader:=Shader.new()
-	shader.code="shader_type canvas_item; uniform float flash=0.; uniform vec4 tint:source_color=vec4(1.); varying vec4 draw_color; void vertex(){draw_color=COLOR;} void fragment(){vec4 p=texture(TEXTURE,UV);if(p.a<0.02){discard;}COLOR=vec4(mix(p.rgb*tint.rgb,vec3(1.),flash),p.a*tint.a)*draw_color;}"
+	shader.code="shader_type canvas_item; uniform float flash=0.; uniform float alpha_boost=1.; uniform vec4 tint:source_color=vec4(1.); varying vec4 draw_color; void vertex(){draw_color=COLOR;} void fragment(){vec4 p=texture(TEXTURE,UV);if(p.a<0.02){discard;}float a=min(1.,p.a*alpha_boost);COLOR=vec4(mix(p.rgb*tint.rgb,vec3(1.),flash),a*tint.a)*draw_color;}"
 	shader_material=ShaderMaterial.new()
 	shader_material.shader=shader
 	material=shader_material
+	update_alpha_boost()
 
 func set_role(value: String) -> void:
 	role=value
 	load_role_texture()
+	update_alpha_boost()
 	queue_redraw()
+
+func update_alpha_boost() -> void:
+	if is_instance_valid(shader_material):
+		shader_material.set_shader_parameter("alpha_boost",2.8 if CHAPTER3_SOLID_ROLES.has(role) else 1.7 if CHAPTER4_SINGLE_ROLES.has(role) else 1.0)
 
 func load_role_texture() -> void:
 	var key: String="warrior" if role=="boss" else role
+	if CHAPTER4_SINGLE_ROLES.has(role):
+		atlas=false
+		custom_columns=1
+		custom_rows=1
+		texture=load(CHAPTER4_SINGLE_ROLES[role])
+		return
 	var chapter3_single:Dictionary={
 		"exorcist-spearman":"res://assets/actors/chapter3/exorcist-spearman-game-v1.png",
 		"soul-warden":"res://assets/actors/chapter3/soul-warden-game-v1.png",
@@ -141,6 +176,13 @@ func draw_size() -> Vector2:
 		"exorcist-archer":Vector2(54,70),
 		"bell-exorcist":Vector2(56,74),
 		"hunting-hawk":Vector2(68,48),
+		"chain-constable":Vector2(66,78),
+		"shield-guard":Vector2(68,76),
+		"brazier-ritualist":Vector2(68,82),
+		"sealed-lantern-keeper":Vector2(66,78),
+		"tracking-hound":Vector2(74,46),
+		"prison-shaman":Vector2(126,118),
+		"dongja-possession":Vector2(132,120),
 		"soul-warden":Vector2(116,106)
 	}.get(role,Vector2(48,64))
 
@@ -185,13 +227,15 @@ func _physics_process(delta: float) -> void:
 		if hurt>.48:
 			animation="hurt"
 			frame_index=30+int(clock*12)%2
-		elif actor.dash_time>0:
-			animation="dash"
-			frame_index=28+int(clock*18)%2
 		elif action_time>0:
+			# 공격이 시작된 뒤에는 실제 이동·점프·대시는 허용하되, 보이는
+			# 캐릭터 모션은 타격 프레임이 끝날 때까지 공격 행을 유지한다.
 			animation=action_mode
 			var phase:=1-action_time/action_duration
 			frame_index=16+(mini(1,int(phase*2)) if action_mode=="windup" else 2+mini(5,int(phase*6)) if action_mode=="release" else mini(7,int(phase*8)))
+		elif actor.dash_time>0:
+			animation="dash"
+			frame_index=28+int(clock*18)%2
 		elif not actor.is_on_floor():
 			# A single tucked-leg silhouette keeps the jump readable and calm.
 			animation="jump"
@@ -248,6 +292,8 @@ func _physics_process(delta: float) -> void:
 		else:
 			animation="idle"
 			frame_index=int(clock*6)%8
+	# 정적 한 장짜리 적은 행동 상태와 관계없이 유효한 첫 프레임을 유지한다.
+	if not atlas and custom_columns==1 and custom_rows==1: frame_index=0
 	shader_material.set_shader_parameter("flash",flash)
 	shader_material.set_shader_parameter("tint",tint)
 	queue_redraw()
@@ -272,6 +318,16 @@ func _draw() -> void:
 	var source_columns:=8 if atlas else custom_columns
 	var source_row:=floori(float(frame_index)/float(source_columns))
 	var source:=Rect2(Vector2(frame_index%source_columns,source_row)*source_size,source_size)
+	if atlas:
+		var atlas_role:String="warrior" if role=="boss" else role
+		if ATLAS_FRAME_WINDOWS.has(atlas_role) and ATLAS_FRAME_WINDOWS[atlas_role].has(frame_index):
+			var window:Vector2i=ATLAS_FRAME_WINDOWS[atlas_role][frame_index]
+			var original_x:float=float(frame_index%source_columns)*source_size.x
+			source.position.x=original_x+float(window.x)
+			source.size.x=float(window.y)
+			var pixel_scale:float=target_size.x/source_size.x
+			target_rect.position.x=(float(window.x)-source_size.x*.5)*pixel_scale
+			target_rect.size.x=float(window.y)*pixel_scale
 	var frame_offset:=Vector2.ZERO
 	var frame_scale:=1.0
 	var pose_rotation:=0.0

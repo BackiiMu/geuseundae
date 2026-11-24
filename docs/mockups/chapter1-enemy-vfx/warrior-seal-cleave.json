@@ -1,0 +1,759 @@
+{
+ "frames": [
+  {
+   "filename": "ch1-warrior-seal-cleave 0",
+   "frame": {
+    "x": 0,
+    "y": 0,
+    "w": 184,
+    "h": 128
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 184,
+    "h": 128
+   },
+   "sourceSize": {
+    "w": 184,
+    "h": 128
+   },
+   "duration": 33
+  },
+  {
+   "filename": "ch1-warrior-seal-cleave 1",
+   "frame": {
+    "x": 184,
+    "y": 0,
+    "w": 184,
+    "h": 128
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 184,
+    "h": 128
+   },
+   "sourceSize": {
+    "w": 184,
+    "h": 128
+   },
+   "duration": 33
+  },
+  {
+   "filename": "ch1-warrior-seal-cleave 2",
+   "frame": {
+    "x": 368,
+    "y": 0,
+    "w": 184,
+    "h": 128
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 184,
+    "h": 128
+   },
+   "sourceSize": {
+    "w": 184,
+    "h": 128
+   },
+   "duration": 33
+  },
+  {
+   "filename": "ch1-warrior-seal-cleave 3",
+   "frame": {
+    "x": 552,
+    "y": 0,
+    "w": 184,
+    "h": 128
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 184,
+    "h": 128
+   },
+   "sourceSize": {
+    "w": 184,
+    "h": 128
+   },
+   "duration": 33
+  },
+  {
+   "filename": "ch1-warrior-seal-cleave 4",
+   "frame": {
+    "x": 736,
+    "y": 0,
+    "w": 184,
+    "h": 128
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 184,
+    "h": 128
+   },
+   "sourceSize": {
+    "w": 184,
+    "h": 128
+   },
+   "duration": 33
+  },
+  {
+   "filename": "ch1-warrior-seal-cleave 5",
+   "frame": {
+    "x": 0,
+    "y": 128,
+    "w": 184,
+    "h": 128
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 184,
+    "h": 128
+   },
+   "sourceSize": {
+    "w": 184,
+    "h": 128
+   },
+   "duration": 33
+  },
+  {
+   "filename": "ch1-warrior-seal-cleave 6",
+   "frame": {
+    "x": 184,
+    "y": 128,
+    "w": 184,
+    "h": 128
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 184,
+    "h": 128
+   },
+   "sourceSize": {
+    "w": 184,
+    "h": 128
+   },
+   "duration": 33
+  },
+  {
+   "filename": "ch1-warrior-seal-cleave 7",
+   "frame": {
+    "x": 368,
+    "y": 128,
+    "w": 184,
+    "h": 128
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 184,
+    "h": 128
+   },
+   "sourceSize": {
+    "w": 184,
+    "h": 128
+   },
+   "duration": 33
+  },
+  {
+   "filename": "ch1-warrior-seal-cleave 8",
+   "frame": {
+    "x": 552,
+    "y": 128,
+    "w": 184,
+    "h": 128
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 184,
+    "h": 128
+   },
+   "sourceSize": {
+    "w": 184,
+    "h": 128
+   },
+   "duration": 33
+  },
+  {
+   "filename": "ch1-warrior-seal-cleave 9",
+   "frame": {
+    "x": 736,
+    "y": 128,
+    "w": 184,
+    "h": 128
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 184,
+    "h": 128
+   },
+   "sourceSize": {
+    "w": 184,
+    "h": 128
+   },
+   "duration": 33
+  },
+  {
+   "filename": "ch1-warrior-seal-cleave 10",
+   "frame": {
+    "x": 0,
+    "y": 256,
+    "w": 184,
+    "h": 128
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 184,
+    "h": 128
+   },
+   "sourceSize": {
+    "w": 184,
+    "h": 128
+   },
+   "duration": 33
+  },
+  {
+   "filename": "ch1-warrior-seal-cleave 11",
+   "frame": {
+    "x": 184,
+    "y": 256,
+    "w": 184,
+    "h": 128
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 184,
+    "h": 128
+   },
+   "sourceSize": {
+    "w": 184,
+    "h": 128
+   },
+   "duration": 33
+  },
+  {
+   "filename": "ch1-warrior-seal-cleave 12",
+   "frame": {
+    "x": 368,
+    "y": 256,
+    "w": 184,
+    "h": 128
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 184,
+    "h": 128
+   },
+   "sourceSize": {
+    "w": 184,
+    "h": 128
+   },
+   "duration": 33
+  },
+  {
+   "filename": "ch1-warrior-seal-cleave 13",
+   "frame": {
+    "x": 552,
+    "y": 256,
+    "w": 184,
+    "h": 128
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 184,
+    "h": 128
+   },
+   "sourceSize": {
+    "w": 184,
+    "h": 128
+   },
+   "duration": 33
+  },
+  {
+   "filename": "ch1-warrior-seal-cleave 14",
+   "frame": {
+    "x": 736,
+    "y": 256,
+    "w": 184,
+    "h": 128
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 184,
+    "h": 128
+   },
+   "sourceSize": {
+    "w": 184,
+    "h": 128
+   },
+   "duration": 33
+  },
+  {
+   "filename": "ch1-warrior-seal-cleave 15",
+   "frame": {
+    "x": 0,
+    "y": 384,
+    "w": 184,
+    "h": 128
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 184,
+    "h": 128
+   },
+   "sourceSize": {
+    "w": 184,
+    "h": 128
+   },
+   "duration": 33
+  },
+  {
+   "filename": "ch1-warrior-seal-cleave 16",
+   "frame": {
+    "x": 184,
+    "y": 384,
+    "w": 184,
+    "h": 128
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 184,
+    "h": 128
+   },
+   "sourceSize": {
+    "w": 184,
+    "h": 128
+   },
+   "duration": 33
+  },
+  {
+   "filename": "ch1-warrior-seal-cleave 17",
+   "frame": {
+    "x": 368,
+    "y": 384,
+    "w": 184,
+    "h": 128
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 184,
+    "h": 128
+   },
+   "sourceSize": {
+    "w": 184,
+    "h": 128
+   },
+   "duration": 33
+  },
+  {
+   "filename": "ch1-warrior-seal-cleave 18",
+   "frame": {
+    "x": 552,
+    "y": 384,
+    "w": 184,
+    "h": 128
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 184,
+    "h": 128
+   },
+   "sourceSize": {
+    "w": 184,
+    "h": 128
+   },
+   "duration": 33
+  },
+  {
+   "filename": "ch1-warrior-seal-cleave 19",
+   "frame": {
+    "x": 736,
+    "y": 384,
+    "w": 184,
+    "h": 128
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 184,
+    "h": 128
+   },
+   "sourceSize": {
+    "w": 184,
+    "h": 128
+   },
+   "duration": 33
+  },
+  {
+   "filename": "ch1-warrior-seal-cleave 20",
+   "frame": {
+    "x": 0,
+    "y": 512,
+    "w": 184,
+    "h": 128
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 184,
+    "h": 128
+   },
+   "sourceSize": {
+    "w": 184,
+    "h": 128
+   },
+   "duration": 33
+  },
+  {
+   "filename": "ch1-warrior-seal-cleave 21",
+   "frame": {
+    "x": 184,
+    "y": 512,
+    "w": 184,
+    "h": 128
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 184,
+    "h": 128
+   },
+   "sourceSize": {
+    "w": 184,
+    "h": 128
+   },
+   "duration": 33
+  },
+  {
+   "filename": "ch1-warrior-seal-cleave 22",
+   "frame": {
+    "x": 368,
+    "y": 512,
+    "w": 184,
+    "h": 128
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 184,
+    "h": 128
+   },
+   "sourceSize": {
+    "w": 184,
+    "h": 128
+   },
+   "duration": 33
+  },
+  {
+   "filename": "ch1-warrior-seal-cleave 23",
+   "frame": {
+    "x": 552,
+    "y": 512,
+    "w": 184,
+    "h": 128
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 184,
+    "h": 128
+   },
+   "sourceSize": {
+    "w": 184,
+    "h": 128
+   },
+   "duration": 33
+  },
+  {
+   "filename": "ch1-warrior-seal-cleave 24",
+   "frame": {
+    "x": 736,
+    "y": 512,
+    "w": 184,
+    "h": 128
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 184,
+    "h": 128
+   },
+   "sourceSize": {
+    "w": 184,
+    "h": 128
+   },
+   "duration": 33
+  },
+  {
+   "filename": "ch1-warrior-seal-cleave 25",
+   "frame": {
+    "x": 0,
+    "y": 640,
+    "w": 184,
+    "h": 128
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 184,
+    "h": 128
+   },
+   "sourceSize": {
+    "w": 184,
+    "h": 128
+   },
+   "duration": 33
+  },
+  {
+   "filename": "ch1-warrior-seal-cleave 26",
+   "frame": {
+    "x": 184,
+    "y": 640,
+    "w": 184,
+    "h": 128
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 184,
+    "h": 128
+   },
+   "sourceSize": {
+    "w": 184,
+    "h": 128
+   },
+   "duration": 33
+  },
+  {
+   "filename": "ch1-warrior-seal-cleave 27",
+   "frame": {
+    "x": 368,
+    "y": 640,
+    "w": 184,
+    "h": 128
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 184,
+    "h": 128
+   },
+   "sourceSize": {
+    "w": 184,
+    "h": 128
+   },
+   "duration": 33
+  }
+ ],
+ "meta": {
+  "app": "https://github.com/patch-gg/pixelfx",
+  "version": "1",
+  "image": "ch1-warrior-seal-cleave.png",
+  "format": "RGBA8888",
+  "size": {
+   "w": 920,
+   "h": 768
+  },
+  "scale": "1",
+  "frameTags": [
+   {
+    "name": "ch1-warrior-seal-cleave",
+    "from": 0,
+    "to": 27,
+    "direction": "forward"
+   }
+  ],
+  "pixelfx": {
+   "id": "geuseundae/ch1-warrior-seal-cleave",
+   "name": "Sealed iron cleave",
+   "fps": 30,
+   "loop": false,
+   "frames": 28,
+   "frameSize": [
+    184,
+    128
+   ],
+   "pivot": [
+    48,
+    108
+   ],
+   "columns": 5,
+   "act": {
+    "windup": 0.48,
+    "recovery": 0,
+    "onBody": false,
+    "targets": [
+     66
+    ],
+    "hits": [
+     {
+      "t": 0.06,
+      "freeze": 0.12,
+      "shake": 0.16,
+      "amp": 2,
+      "push": 2.5
+     }
+    ],
+    "poses": [
+     {
+      "t": -0.48,
+      "how": "smooth",
+      "pose": {
+       "crouch": 3,
+       "fx": -5,
+       "fy": -34,
+       "bx": 8,
+       "by": -24,
+       "ffx": 7,
+       "fbx": -7,
+       "weapon": "sword",
+       "sa": -2.5,
+       "x": -6,
+       "lean": -4,
+       "armsFront": true
+      }
+     },
+     {
+      "t": -0.06,
+      "how": "smooth",
+      "pose": {
+       "crouch": 5,
+       "fx": 12,
+       "fy": -21,
+       "bx": 9,
+       "by": -21,
+       "ffx": 7,
+       "fbx": -7,
+       "weapon": "sword",
+       "sa": -0.8,
+       "x": -2,
+       "lean": -5
+      }
+     },
+     {
+      "t": 0.02,
+      "how": "snap",
+      "pose": {
+       "crouch": 4,
+       "fx": 22,
+       "fy": -18,
+       "bx": -8,
+       "by": -23,
+       "ffx": 7,
+       "fbx": -7,
+       "weapon": "sword",
+       "sa": 0.55,
+       "x": 4,
+       "lean": 6,
+       "ghost": 1
+      }
+     },
+     {
+      "t": 0.32,
+      "how": "smooth",
+      "pose": {
+       "crouch": 6,
+       "fx": 20,
+       "fy": -16,
+       "bx": 9,
+       "by": -21,
+       "ffx": 7,
+       "fbx": -7,
+       "weapon": "sword",
+       "sa": 0.72,
+       "x": 5,
+       "lean": 4
+      }
+     },
+     {
+      "t": 0.75,
+      "how": "smooth",
+      "pose": {
+       "crouch": 3,
+       "fx": 12,
+       "fy": -21,
+       "bx": 9,
+       "by": -21,
+       "ffx": 7,
+       "fbx": -7,
+       "weapon": "sword",
+       "sa": -0.8
+      }
+     }
+    ]
+   }
+  }
+ }
+}

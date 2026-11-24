@@ -37,6 +37,12 @@ func emit(mode: String,tier: int,pos: Vector2,direction := Vector2.RIGHT,size :=
 	if bursts.size()>=40: bursts.pop_front()
 	bursts.append({"key":key,"pos":pos,"angle":direction.angle(),"size":size,"tint":tint,"age":.04,"speed":speed})
 
+const ARROW_SCALE := 0.5
+# pixelfx 화살쏘기(moves/arrow-shot): 0.8초(16프레임)부터가 명중 연출이다. 시트의 명중 지점은 피벗에서 앞쪽 180px.
+func emit_arrow_impact(pos: Vector2,direction: Vector2) -> void:
+	if not manifest.has("arrow-shot"): return
+	if bursts.size()>=40: bursts.pop_front()
+	bursts.append({"key":"arrow-shot","pos":pos-Vector2(180.0*ARROW_SCALE,0).rotated(direction.angle()),"angle":direction.angle(),"size":ARROW_SCALE,"tint":Color.WHITE,"age":.8,"speed":1.0,"duration":1.95})
 func attach_last_to_player() -> void:
 	if bursts.is_empty() or not is_instance_valid(combat) or not is_instance_valid(combat.world.player): return
 	bursts[-1]["follow_player"] = true
@@ -296,7 +302,8 @@ func sheet(key: String,pos: Vector2,age: float,size: float,tint: Color,angle := 
 	draw_set_transform(Vector2.ZERO)
 func draw_projectile(p: Dictionary) -> void:
 	if not p["friendly"]:
-		if p["kind"]=="talisman": monster_sheet("talisman-shot",p["pos"],float(p["age"]),Vector2(p["velocity"]).angle(),1.0,true,true)
+		# 부적은 이동 방향과 무관하게 세로 형태를 유지하고 좌우만 뒤집는다.
+		if p["kind"]=="talisman": monster_sheet("talisman-shot",p["pos"],float(p["age"]),Vector2(p["velocity"]).angle(),1.0,true,false)
 		return
 	var item:Dictionary=combat.DB.get_item(p.get("weapon",""))
 	if PROVIDED_ATTACKS.has(str(item.get("id", ""))): return
@@ -312,7 +319,9 @@ func draw_projectile(p: Dictionary) -> void:
 	if item.get("id","")=="mirror":
 		gear2_sheet("jokduri-shot",pos,float(p["age"]),velocity.angle(),float(p.get("size",1)),true)
 		return
-	if kind=="tiger":
+	if kind=="piercing_arrow":
+		sheet("arrow",pos,fmod(float(p["age"]),.6),ARROW_SCALE,Color.WHITE,velocity.angle())
+	elif kind=="tiger":
 		# 푸른 영혼 호랑이 머리(제공 이미지 v2 기반 12프레임 반복). 80×51 도트를 3배로 그린다.
 		sheet("tiger-spirit",pos,fmod(float(p["age"]),.6),3.0,Color(1,1,1,.6),velocity.angle())
 	elif kind in ["pin","spit","boomerang","whistle"]:

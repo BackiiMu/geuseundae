@@ -1,235 +1,169 @@
 {
  "frames": [
   {
-   "filename": "talisman-shot 0",
+   "filename": "ch1-talisman-projectile 0",
    "frame": {
     "x": 0,
     "y": 0,
-    "w": 28,
-    "h": 14
+    "w": 34,
+    "h": 42
    },
    "rotated": false,
    "trimmed": false,
    "spriteSourceSize": {
     "x": 0,
     "y": 0,
-    "w": 28,
-    "h": 14
+    "w": 34,
+    "h": 42
    },
    "sourceSize": {
-    "w": 28,
-    "h": 14
+    "w": 34,
+    "h": 42
    },
-   "duration": 33
+   "duration": 67
   },
   {
-   "filename": "talisman-shot 1",
+   "filename": "ch1-talisman-projectile 1",
    "frame": {
-    "x": 28,
+    "x": 34,
     "y": 0,
-    "w": 28,
-    "h": 14
+    "w": 34,
+    "h": 42
    },
    "rotated": false,
    "trimmed": false,
    "spriteSourceSize": {
     "x": 0,
     "y": 0,
-    "w": 28,
-    "h": 14
+    "w": 34,
+    "h": 42
    },
    "sourceSize": {
-    "w": 28,
-    "h": 14
+    "w": 34,
+    "h": 42
    },
-   "duration": 33
+   "duration": 67
   },
   {
-   "filename": "talisman-shot 2",
+   "filename": "ch1-talisman-projectile 2",
    "frame": {
-    "x": 56,
+    "x": 68,
     "y": 0,
-    "w": 28,
-    "h": 14
+    "w": 34,
+    "h": 42
    },
    "rotated": false,
    "trimmed": false,
    "spriteSourceSize": {
     "x": 0,
     "y": 0,
-    "w": 28,
-    "h": 14
+    "w": 34,
+    "h": 42
    },
    "sourceSize": {
-    "w": 28,
-    "h": 14
+    "w": 34,
+    "h": 42
    },
-   "duration": 33
+   "duration": 67
   },
   {
-   "filename": "talisman-shot 3",
+   "filename": "ch1-talisman-projectile 3",
    "frame": {
     "x": 0,
-    "y": 14,
-    "w": 28,
-    "h": 14
+    "y": 42,
+    "w": 34,
+    "h": 42
    },
    "rotated": false,
    "trimmed": false,
    "spriteSourceSize": {
     "x": 0,
     "y": 0,
-    "w": 28,
-    "h": 14
+    "w": 34,
+    "h": 42
    },
    "sourceSize": {
-    "w": 28,
-    "h": 14
+    "w": 34,
+    "h": 42
    },
-   "duration": 33
+   "duration": 67
   },
   {
-   "filename": "talisman-shot 4",
+   "filename": "ch1-talisman-projectile 4",
    "frame": {
-    "x": 28,
-    "y": 14,
-    "w": 28,
-    "h": 14
+    "x": 34,
+    "y": 42,
+    "w": 34,
+    "h": 42
    },
    "rotated": false,
    "trimmed": false,
    "spriteSourceSize": {
     "x": 0,
     "y": 0,
-    "w": 28,
-    "h": 14
+    "w": 34,
+    "h": 42
    },
    "sourceSize": {
-    "w": 28,
-    "h": 14
+    "w": 34,
+    "h": 42
    },
-   "duration": 33
+   "duration": 67
   },
   {
-   "filename": "talisman-shot 5",
+   "filename": "ch1-talisman-projectile 5",
    "frame": {
-    "x": 56,
-    "y": 14,
-    "w": 28,
-    "h": 14
+    "x": 68,
+    "y": 42,
+    "w": 34,
+    "h": 42
    },
    "rotated": false,
    "trimmed": false,
    "spriteSourceSize": {
     "x": 0,
     "y": 0,
-    "w": 28,
-    "h": 14
+    "w": 34,
+    "h": 42
    },
    "sourceSize": {
-    "w": 28,
-    "h": 14
+    "w": 34,
+    "h": 42
    },
-   "duration": 33
-  },
-  {
-   "filename": "talisman-shot 6",
-   "frame": {
-    "x": 0,
-    "y": 28,
-    "w": 28,
-    "h": 14
-   },
-   "rotated": false,
-   "trimmed": false,
-   "spriteSourceSize": {
-    "x": 0,
-    "y": 0,
-    "w": 28,
-    "h": 14
-   },
-   "sourceSize": {
-    "w": 28,
-    "h": 14
-   },
-   "duration": 33
-  },
-  {
-   "filename": "talisman-shot 7",
-   "frame": {
-    "x": 28,
-    "y": 28,
-    "w": 28,
-    "h": 14
-   },
-   "rotated": false,
-   "trimmed": false,
-   "spriteSourceSize": {
-    "x": 0,
-    "y": 0,
-    "w": 28,
-    "h": 14
-   },
-   "sourceSize": {
-    "w": 28,
-    "h": 14
-   },
-   "duration": 33
-  },
-  {
-   "filename": "talisman-shot 8",
-   "frame": {
-    "x": 56,
-    "y": 28,
-    "w": 28,
-    "h": 14
-   },
-   "rotated": false,
-   "trimmed": false,
-   "spriteSourceSize": {
-    "x": 0,
-    "y": 0,
-    "w": 28,
-    "h": 14
-   },
-   "sourceSize": {
-    "w": 28,
-    "h": 14
-   },
-   "duration": 33
+   "duration": 67
   }
  ],
  "meta": {
   "app": "https://github.com/patch-gg/pixelfx",
   "version": "1",
-  "image": "talisman-shot.png",
+  "image": "ch1-talisman-projectile.png",
   "format": "RGBA8888",
   "size": {
-   "w": 84,
-   "h": 42
+   "w": 102,
+   "h": 84
   },
   "scale": "1",
   "frameTags": [
    {
-    "name": "talisman-shot",
+    "name": "ch1-talisman-projectile",
     "from": 0,
-    "to": 8,
+    "to": 5,
     "direction": "forward"
    }
   ],
   "pixelfx": {
-   "id": "monsters/talisman-shot",
-   "name": "부적 도사 · 부적",
-   "fps": 30,
+   "id": "geuseundae/ch1-talisman-projectile",
+   "name": "Chapter 1 talisman projectile",
+   "fps": 15,
    "loop": true,
-   "frames": 9,
+   "frames": 6,
    "frameSize": [
-    28,
-    14
+    34,
+    42
    ],
    "pivot": [
-    18,
-    7
+    17,
+    21
    ],
    "columns": 3
   }

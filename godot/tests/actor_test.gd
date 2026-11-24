@@ -47,14 +47,18 @@ func run_checks() -> void:
 	p.move_and_slide()
 	visual._physics_process(.1)
 	if not require(visual.frame_index>=8 and visual.frame_index<16,"Player movement chooses run row"): return
-	p.velocity=Vector2.ZERO
+	p.velocity=Vector2(200,0)
 	visual.play_attack(.25)
 	visual._physics_process(.05)
-	if not require(visual.frame_index>=16 and visual.frame_index<24,"Player attack chooses action row"): return
+	if not require(visual.frame_index>=16 and visual.frame_index<24 and visual.animation=="attack","Player attack overrides the movement animation while velocity continues"): return
+	p.dash_time=.1
+	visual._physics_process(.01)
+	if not require(visual.frame_index>=16 and visual.frame_index<24 and visual.animation=="attack","Player attack also remains visible while a dash moves the body"): return
 	c.hurt_timer=.6
 	visual._physics_process(.01)
 	if not require(visual.frame_index>=30,"Player damage chooses hurt pose"): return
 	c.hurt_timer=0
+	visual.action_time=0
 	p.dash_time=.1
 	visual._physics_process(.01)
 	if not require(visual.frame_index in [28,29],"Eight-direction dash uses its own pose"): return
