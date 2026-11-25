@@ -64,6 +64,9 @@ var game_hud: Control
 var inventory: Control
 var inv_rows: Control
 var confirm: ConfirmationDialog
+var jangsan_dialog: AcceptDialog
+var jangsan_dialog_lines: Array[String] = []
+var jangsan_dialog_index := 0
 var pending_destroy := -1
 var inventory_selection := 0
 var inventory_shade: ColorRect
@@ -166,6 +169,11 @@ func _ready() -> void:
 	confirm.cancel_button_text="취소"
 	confirm.confirmed.connect(destroy_confirmed)
 	ui.add_child(confirm)
+	jangsan_dialog=AcceptDialog.new()
+	jangsan_dialog.title="장산범"
+	jangsan_dialog.ok_button_text="계속"
+	jangsan_dialog.confirmed.connect(advance_jangsan_dialog)
+	ui.add_child(jangsan_dialog)
 func seed_starter() -> void:
 	if not world.wallet.has("starter_given"):
 		# A small explicit starter kit, not a grant of currency or high-tier loot.
@@ -175,6 +183,31 @@ func seed_starter() -> void:
 func message(text: String) -> void:
 	toast.text=text
 	toast_time=3
+
+func start_jangsan_defeat_dialog(newly_unlocked: bool) -> void:
+	jangsan_dialog_lines=[
+		"장산범|제압해 줘서 고맙구나.",
+		"장산범|내가 잡아먹은 영혼 하나를 돌려주마.",
+		("창귀|……속박에서 풀려났다." if newly_unlocked else "창귀|……다시 이 목소리를 듣는구나."),
+		"장산범|더 안쪽에 나를 이렇게 만든 인간이 있다. 조심해라."
+	]
+	jangsan_dialog_index=0
+	show_jangsan_dialog_line()
+
+func show_jangsan_dialog_line() -> void:
+	if jangsan_dialog_index>=jangsan_dialog_lines.size(): return
+	var parts:=jangsan_dialog_lines[jangsan_dialog_index].split("|",true,1)
+	jangsan_dialog.title=parts[0]
+	jangsan_dialog.dialog_text=parts[1]
+	jangsan_dialog.ok_button_text="확인" if jangsan_dialog_index==jangsan_dialog_lines.size()-1 else "계속"
+	jangsan_dialog.popup_centered(Vector2i(430,150))
+
+func advance_jangsan_dialog() -> void:
+	jangsan_dialog_index+=1
+	if jangsan_dialog_index<jangsan_dialog_lines.size():
+		call_deferred("show_jangsan_dialog_line")
+	elif is_instance_valid(world) and world.has_method("reveal_chapter_exit_portal"):
+		world.call_deferred("reveal_chapter_exit_portal")
 func roll_player_damage(amount: float) -> Dictionary:
 	var critical:=crit_rng.randf()<effective_crit_chance()
 	return {"damage":amount*weather.player_damage_scale()*(effective_crit_multiplier() if critical else 1.0),"critical":critical}
@@ -218,12 +251,20 @@ func enter_room(room_data: Dictionary) -> void:
 	data=room_data
 	pickups=data.get("pickups",[]).duplicate(true)
 	weather.roll_for_room()
-	rng.seed=int(world.run["seed"]) ^ (world.current_id*65537+0x424154)
+	# Room generation owns this stream so geometry/decor changes do not silently
+	# reshuffle the encounter. Old saves keep the previous deterministic fallback.
+	rng.seed=int(data.get("spawn_seed",int(world.run["seed"]) ^ (world.current_id*65537+0x424154)))
 	if not enabled or not world.is_combat_room(): return
 	if data.get("cleared",false): return
 	var width:=float(world.room.definition["width"])
 	if world.current_id==world.run["goal"]:
-		if world.floor_number>=4:
+		if world.floor_number>=6:
+			spawn_enemy("grand-exorcist",safe_ground(width*.52),0)
+			message("대퇴마사 · 대신당의 마지막 봉인을 끊으십시오")
+		elif world.floor_number==5:
+			spawn_enemy("royal-exorcist-captain",safe_ground(width*.52),0)
+			message("금위퇴마대장 · 성곽 방진을 무너뜨리십시오")
+		elif world.floor_number==4:
 			spawn_enemy("prison-shaman",safe_ground(width*.52),0)
 			message("귀문옥주 · 창귀 방벽과 동자귀의 반사를 파훼하십시오")
 		elif world.floor_number==3:
@@ -235,16 +276,25 @@ func enter_room(room_data: Dictionary) -> void:
 			message(("장산범" if boss_kind=="jangsanbeom" else "퇴마단 선봉대장")+" · 적을 처치하면 문이 열립니다")
 	else:
 		var candidates: Array = []
-		for x in range(352,int(width)-180,64):
-			var pos:=safe_ground(x)
+		for spawn_data in world.room.definition.get("enemy_spawns",[]):
+			var pos:=Vector2(float(spawn_data[0]),float(spawn_data[1]))
 			var safe:=pos.distance_to(world.player.position)>220
 			for door in world.room.door_positions:
 				if pos.distance_to(door)<180: safe=false
 			if safe: candidates.append(pos)
+		# Compatibility fallback for old saves or hand-authored test rooms.
+		if candidates.is_empty():
+			for x in range(352,int(width)-180,96): candidates.append(safe_ground(x))
 		for i in range(mini(3,candidates.size())):
 			var index:=rng.randi_range(0,candidates.size()-1)
 			var pos: Vector2 = candidates.pop_at(index)
-			if world.floor_number>=4:
+			if world.floor_number>=6:
+				var shrine_kinds:= ["high-shaman","record-scribe","moving-ward-reader","iron-executioner","greater-lantern-keeper"]
+				spawn_enemy(str(shrine_kinds[(world.current_id+i)%shrine_kinds.size()]),pos,i)
+			elif world.floor_number==5:
+				var rampart_kinds:= ["royal-shield","wall-archer","crossbow-exorcist","banner-bearer","ward-reader","elite-hawk"]
+				spawn_enemy(str(rampart_kinds[(world.current_id+i)%rampart_kinds.size()]),pos,i)
+			elif world.floor_number==4:
 				var prison_kinds:=["chain-constable","shield-guard","brazier-ritualist","sealed-lantern-keeper","tracking-hound"]
 				var prison_kind:String=prison_kinds[(world.current_id+i)%prison_kinds.size()]
 				# 위치 강제 적 둘이 한꺼번에 나오면 회피 선택지가 사라진다.
@@ -497,6 +547,8 @@ func hurt(amount: float) -> void:
 func enemy_killed(enemy: Node) -> void:
 	arsenal.killed(enemy)
 	frenzy=3
+	if has_passive("dash_on_kill") and is_instance_valid(world.player):
+		world.player.dash_charges=mini(world.player.dash_max_charges,world.player.dash_charges+1)
 	if enemy.kind=="jangsanbeom":
 		# The Chapter 2 reward pool starts with the finished legendary paw. Keeping
 		# it as an array makes later Jangsan set pieces a drop-in addition.
@@ -505,9 +557,16 @@ func enemy_killed(enemy: Node) -> void:
 		BagUtil.add(world.wallet["bag"],reward)
 		var newly_unlocked := Progression.unlock_changgui_and_jangsan()
 		message("장산범 처치 · "+str(reward["name"])+" 획득"+(" · 장산범 장비·창귀 심장 해금" if newly_unlocked else ""))
+		start_jangsan_defeat_dialog(newly_unlocked)
 	elif enemy.kind=="soul-warden":
 		end_warden_pattern(false)
 		message("쇄혼대감 처치 · 퇴마단 주둔지의 봉인이 무너졌습니다")
+	elif enemy.kind=="prison-shaman":
+		message("귀문옥주 처치 · 도성 성곽으로 향하는 옥문이 열렸습니다")
+	elif enemy.kind=="royal-exorcist-captain":
+		message("금위퇴마대장 처치 · 대신당의 문이 열렸습니다")
+	elif enemy.kind=="grand-exorcist":
+		message("대퇴마사 처치 · 대신당의 마지막 봉인이 무너졌습니다")
 	elif enemy.boss:
 		message("퇴마단 선봉대장 처치 · 안개 낀 산으로 향하는 길이 열렸습니다")
 	if has_passive("heal") and regen_cd<=0:
@@ -608,6 +667,18 @@ func draw_charge_bow() -> void:
 	var fill:=Color("fff3b0") if full and int(Time.get_ticks_msec()/90)%2==0 else Color("e0b04a")
 	draw_rect(Rect2(gauge.position,Vector2(32.0*ratio,5)),fill)
 	for tick in [.4,.9]: draw_rect(Rect2(gauge.position+Vector2(32.0*tick,0),Vector2(1,5)),Color("05080c"))
+func draw_weapon_resource() -> void:
+	if equipped("main").get("combat",{}).get("resource","")!="magazine": return
+	var origin:Vector2=world.player.position+Vector2(-18,-78)
+	draw_rect(Rect2(origin-Vector2(1,1),Vector2(38,7)),Color("08070a"))
+	if tooth_reload>0:
+		var progress:=1.0-clampf(tooth_reload/1.2,0.0,1.0)
+		draw_rect(Rect2(origin,Vector2(36,5)),Color("271921"))
+		draw_rect(Rect2(origin,Vector2(36.0*progress,5)),Color("98634b"))
+		return
+	for i in range(8):
+		var color:=Color("d6c9aa") if i<tooth_ammo else Color("3c3034")
+		draw_rect(Rect2(origin+Vector2(i*4.5,0),Vector2(3,5)),color)
 func uses_charge_bow() -> bool:
 	return equipped("main").get("id","")=="someone_bow"
 func tick_charge_bow(delta: float,held: bool) -> void:
@@ -1067,7 +1138,8 @@ func refresh_inventory() -> void:
 		item_name.add_to_group("inventory_bounded_control")
 		inv_rows.add_child(item_name)
 		var attack_text:=attack_type_label(item).trim_prefix("[").trim_suffix("]")
-		var meta:=inv_label(DB.slot_name(item["slot"])+" · "+str(item.get("tier",1))+"단계\n"+attack_text,9,Color("b99d72"))
+		var handling:=str(item.get("handling",""))
+		var meta:=inv_label(DB.slot_name(item["slot"])+" · "+str(item.get("tier",1))+"단계\n"+attack_text+(" · "+handling if not handling.is_empty() else ""),9,Color("b99d72"))
 		meta.clip_text=true
 		meta.autowrap_mode=TextServer.AUTOWRAP_ARBITRARY
 		meta.max_lines_visible=2
@@ -1290,7 +1362,7 @@ func _physics_process(delta: float) -> void:
 	heart_animation=maxf(0,heart_animation-delta)
 	frenzy=maxf(0,frenzy-delta)
 	regen_cd=maxf(0,regen_cd-delta)
-	tooth_reload=maxf(0,tooth_reload-delta)
+	tooth_reload=maxf(0,tooth_reload-delta*(1.5 if has_passive("rapid_reload") else 1.0))
 	if heart_windup>0:
 		heart_windup=maxf(0,heart_windup-delta)
 		if heart_windup<=0:
@@ -1306,7 +1378,7 @@ func _physics_process(delta: float) -> void:
 	if toast_time<=0: toast.text=""
 	for slot in ["main","off"]:
 		attack_cd[slot]=maxf(0,float(attack_cd[slot])-delta)
-		skill_cd[slot]=maxf(0,float(skill_cd[slot])-delta)
+		skill_cd[slot]=maxf(0,float(skill_cd[slot])-delta*(1.25 if has_passive("skill_haste") else 1.0))
 	var capture_aim_pressed:=Input.is_action_just_pressed("attack") or Input.is_action_just_pressed("attack_left") or Input.is_action_just_pressed("attack_right") or Input.is_action_just_pressed("attack_up") or Input.is_action_just_pressed("attack_down")
 	if bow_charging and not uses_charge_bow():
 		bow_charging=false
@@ -1327,6 +1399,10 @@ func _physics_process(delta: float) -> void:
 		var main:=equipped("main")
 		if main.get("kind","")=="melee":
 			area_effect(world.player.position+world.player.dash_direction*48+Vector2(0,-20),70,float(main.get("damage",0))*.7*(1.5 if has_passive("dash_power") else 1.0))
+		if has_passive("shot_on_dash"):
+			var dash_direction:Vector2=world.player.dash_direction.normalized()
+			fire_projectile(world.player.position+Vector2(0,-28)+dash_direction*18,dash_direction,6.0,true,"shot")
+			projectiles[-1]["weapon"]="swift_talisman"
 		if has_passive("wet_dash"): zones.append({"kind":"water","weapon":"wet_shoes","pos":safe_ground(world.player.position.x),"life":2.0,"tick":0.0})
 	previous_dash=dashing
 	if world.player.is_on_floor() and not previous_floor and has_passive("landing"):
@@ -1359,7 +1435,7 @@ func _physics_process(delta: float) -> void:
 	for enemy in living():
 		if enemy.boss:
 			var phase_text:=" · "+str(enemy.jangsan_phase)+"페이즈" if enemy.kind=="jangsanbeom" else ""
-			var boss_name:="장산범" if enemy.kind=="jangsanbeom" else "쇄혼대감" if enemy.kind=="soul-warden" else "선봉대장"
+			var boss_name:="장산범" if enemy.kind=="jangsanbeom" else "쇄혼대감" if enemy.kind=="soul-warden" else "귀문옥주" if enemy.kind=="prison-shaman" else "금위퇴마대장" if enemy.kind=="royal-exorcist-captain" else "대퇴마사" if enemy.kind=="grand-exorcist" else "선봉대장"
 			hud.text+=boss_name+" "+str(int(enemy.hp))+" / "+str(int(enemy.max_hp))+phase_text
 	queue_redraw()
 func _draw() -> void:
@@ -1378,6 +1454,7 @@ func _draw() -> void:
 		if p["friendly"] and p["kind"]=="piercing_arrow": pass
 		elif not p["friendly"] and p["kind"]!="talisman": draw_line(p["pos"]-Vector2(p["velocity"]).normalized()*10,p["pos"],Color("e1b17c"),3)
 	if bow_charging and is_instance_valid(world.player): draw_charge_bow()
+	if is_instance_valid(world.player): draw_weapon_resource()
 	for zone in zones:
 		if zone["kind"]=="decoy": draw_rect(Rect2(zone["pos"]-Vector2(13,46),Vector2(26,46)),Color(.6,.8,.75,.5))
 		elif zone["kind"] in ["enemy-arrow-rain","warden-talisman","enemy-lantern-burst","enemy-brazier-fire"]:

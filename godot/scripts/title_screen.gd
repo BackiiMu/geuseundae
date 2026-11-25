@@ -14,6 +14,8 @@ const SaveSlots = preload("res://scripts/save_slots.gd")
 var settings_shade: ColorRect
 var slot_shade: ColorRect
 var slot_list: VBoxContainer
+var slot_heading: Label
+var test_slot_mode := false
 var delete_confirm: ConfirmationDialog
 var pending_delete_slot := 0
 
@@ -37,7 +39,7 @@ func _ready() -> void:
 	menu.add_child(start)
 	if show_mobile_test:
 		var full_test := title_button("전체 장비 테스트")
-		full_test.pressed.connect(start_full_test_run)
+		full_test.pressed.connect(open_test_slots)
 		menu.add_child(full_test)
 	var settings := title_button("설정", SETTINGS_ICON)
 	settings.pressed.connect(toggle_settings)
@@ -45,8 +47,9 @@ func _ready() -> void:
 	build_settings()
 	build_slots()
 
-func start_full_test_run() -> void:
+func start_full_test_run(slot: int) -> void:
 	get_tree().set_meta("full_test_run_requested", true)
+	get_tree().set_meta("save_slot",clampi(slot,1,SaveSlots.SLOT_COUNT)+SaveSlots.TEST_SLOT_OFFSET)
 	get_tree().change_scene_to_file("res://scenes/village.tscn")
 
 func start_slot(slot: int) -> void:
@@ -75,11 +78,11 @@ func build_slots() -> void:
 	var content:=VBoxContainer.new()
 	content.add_theme_constant_override("separation",8)
 	panel.add_child(content)
-	var heading:=Label.new()
-	heading.text="저장 슬롯"
-	heading.horizontal_alignment=HORIZONTAL_ALIGNMENT_CENTER
-	heading.add_theme_font_size_override("font_size",18)
-	content.add_child(heading)
+	slot_heading=Label.new()
+	slot_heading.text="저장 슬롯"
+	slot_heading.horizontal_alignment=HORIZONTAL_ALIGNMENT_CENTER
+	slot_heading.add_theme_font_size_override("font_size",18)
+	content.add_child(slot_heading)
 	slot_list=VBoxContainer.new()
 	slot_list.add_theme_constant_override("separation",7)
 	content.add_child(slot_list)
@@ -104,17 +107,19 @@ func build_slots() -> void:
 func refresh_slots() -> void:
 	for child in slot_list.get_children(): child.queue_free()
 	for slot in range(1,SaveSlots.SLOT_COUNT+1):
+		var storage_slot:=slot+SaveSlots.TEST_SLOT_OFFSET if test_slot_mode else slot
 		var row:=HBoxContainer.new()
 		row.add_theme_constant_override("separation",8)
-		var choose:=title_button(slot_text(slot))
+		var choose:=title_button(slot_text(storage_slot).replace("슬롯 %d" % storage_slot,"슬롯 %d" % slot))
 		choose.custom_minimum_size=Vector2(286,62)
 		choose.size_flags_horizontal=Control.SIZE_EXPAND_FILL
-		choose.pressed.connect(start_slot.bind(slot))
+		if test_slot_mode: choose.pressed.connect(start_full_test_run.bind(slot))
+		else: choose.pressed.connect(start_slot.bind(slot))
 		row.add_child(choose)
 		var remove:=title_button("삭제")
 		remove.custom_minimum_size=Vector2(72,62)
-		remove.disabled=not SaveSlots.exists(slot)
-		remove.pressed.connect(request_slot_delete.bind(slot))
+		remove.disabled=not SaveSlots.exists(storage_slot)
+		remove.pressed.connect(request_slot_delete.bind(storage_slot))
 		row.add_child(remove)
 		slot_list.add_child(row)
 
@@ -123,6 +128,14 @@ func request_slot_delete(slot: int) -> void:
 	delete_confirm.popup_centered(Vector2i(380,180))
 
 func open_slots() -> void:
+	test_slot_mode=false
+	slot_heading.text="저장 슬롯"
+	refresh_slots()
+	slot_shade.show()
+
+func open_test_slots() -> void:
+	test_slot_mode=true
+	slot_heading.text="전체 장비 테스트 저장 슬롯"
 	refresh_slots()
 	slot_shade.show()
 

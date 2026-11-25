@@ -303,7 +303,7 @@ func sheet(key: String,pos: Vector2,age: float,size: float,tint: Color,angle := 
 func draw_projectile(p: Dictionary) -> void:
 	if not p["friendly"]:
 		# 부적은 이동 방향과 무관하게 세로 형태를 유지하고 좌우만 뒤집는다.
-		if p["kind"]=="talisman": monster_sheet("talisman-shot",p["pos"],float(p["age"]),Vector2(p["velocity"]).angle(),1.0,true,false)
+		if p["kind"]=="talisman": monster_sheet("talisman-shot",p["pos"],float(p["age"]),Vector2(p["velocity"]).angle(),1.5,true,false)
 		return
 	var item:Dictionary=combat.DB.get_item(p.get("weapon",""))
 	if PROVIDED_ATTACKS.has(str(item.get("id", ""))): return

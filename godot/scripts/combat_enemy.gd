@@ -73,6 +73,11 @@ const JANGSAN_PHASE_HP := [0.0,260.0,450.0,850.0]
 const ATTACK_VFX := {"warrior":"musa-slash","monk":"monk-moktak","changgui-remnant":"changgui-claw","mountain-tiger":"tiger-claw","jangsan-shadow":"shadow-claw","mihokbul":"mihokbul-cast","hosikchong-wraith":"hosikchong-erupt"}
 
 func windup_duration() -> float:
+	if kind=="grand-exorcist": return [.75,1.15,1.0][pattern]
+	if kind=="royal-exorcist-captain": return [.68,1.0,.82][pattern]
+	if kind in ["wall-archer","crossbow-exorcist","ward-reader","record-scribe","moving-ward-reader","greater-lantern-keeper"]: return 1.05
+	if kind in ["banner-bearer","high-shaman"]: return .95
+	if kind in ["royal-shield","iron-executioner"]: return .78
 	if kind=="prison-shaman": return [.72,1.0,.85][pattern]
 	if kind=="chain-constable": return .9
 	if kind=="shield-guard": return .72
@@ -94,6 +99,11 @@ func windup_duration() -> float:
 	return .8
 
 func recovery_duration() -> float:
+	if kind=="grand-exorcist": return [1.05,1.55,1.35][pattern]
+	if kind=="royal-exorcist-captain": return [1.0,1.4,1.2][pattern]
+	if kind in ["wall-archer","crossbow-exorcist","ward-reader","record-scribe","moving-ward-reader","greater-lantern-keeper"]: return 1.55
+	if kind in ["banner-bearer","high-shaman"]: return 1.4
+	if kind in ["royal-shield","iron-executioner"]: return 1.2
 	if kind=="prison-shaman": return [.95,1.45,1.1][pattern]
 	if kind=="chain-constable": return 1.45
 	if kind=="shield-guard": return 1.15
@@ -122,16 +132,16 @@ func begin_attack_vfx() -> void:
 		elif pattern==1: director.vfx.emit_monster("captain-cleave",self,Vector2.ZERO,direction,1.5)
 		else: director.vfx.emit_monster("captain-charge-fx",self,Vector2.ZERO,direction,1.5)
 	# 부적 도사: 시전·명중 이펙트 없이 날아가는 부적만 쓴다.
-	elif kind in ["adept","exorcist-archer","bell-exorcist","hunting-hawk","exorcist-spearman","chain-constable","shield-guard","brazier-ritualist","sealed-lantern-keeper","tracking-hound"]: pass
+	elif kind in ["warrior","adept","exorcist-archer","bell-exorcist","hunting-hawk","exorcist-spearman","chain-constable","shield-guard","brazier-ritualist","sealed-lantern-keeper","tracking-hound","royal-shield","wall-archer","crossbow-exorcist","banner-bearer","ward-reader","elite-hawk","high-shaman","record-scribe","moving-ward-reader","iron-executioner","greater-lantern-keeper"]: pass
 	elif ATTACK_VFX.has(kind): director.vfx.emit_monster(ATTACK_VFX[kind],self,Vector2.ZERO,direction)
 	else: director.vfx.emit_monster("musa-slash",self,Vector2.ZERO,direction)
 func _ready() -> void:
-	boss = kind in ["boss","jangsanbeom","soul-warden","prison-shaman"]
+	boss = kind in ["boss","jangsanbeom","soul-warden","prison-shaman","royal-exorcist-captain","grand-exorcist"]
 	size_factor = 2.0 if kind=="jangsanbeom" else 1.7 if kind=="soul-warden" else 1.5 if boss else 1.25 if kind=="jangsan-shadow" else 1.0
-	max_hp = {"boss":420.0,"prison-shaman":280.0,"soul-warden":760.0,"jangsanbeom":260.0,"jangsan-shadow":150.0,"mountain-tiger":85.0,"changgui-remnant":70.0,"mihokbul":45.0,"hosikchong-wraith":100.0,"monk":60.0,"adept":20.0,"warrior":30.0,"exorcist-spearman":95.0,"exorcist-archer":70.0,"bell-exorcist":80.0,"hunting-hawk":32.0,"chain-constable":105.0,"shield-guard":150.0,"brazier-ritualist":75.0,"sealed-lantern-keeper":85.0,"tracking-hound":48.0}.get(kind,30.0)
+	max_hp = {"grand-exorcist":980.0,"royal-exorcist-captain":720.0,"royal-shield":180.0,"wall-archer":82.0,"crossbow-exorcist":105.0,"banner-bearer":125.0,"ward-reader":95.0,"elite-hawk":52.0,"high-shaman":135.0,"record-scribe":100.0,"moving-ward-reader":115.0,"iron-executioner":210.0,"greater-lantern-keeper":145.0,"boss":420.0,"prison-shaman":280.0,"soul-warden":760.0,"jangsanbeom":260.0,"jangsan-shadow":150.0,"mountain-tiger":85.0,"changgui-remnant":70.0,"mihokbul":45.0,"hosikchong-wraith":100.0,"monk":60.0,"adept":20.0,"warrior":30.0,"exorcist-spearman":95.0,"exorcist-archer":70.0,"bell-exorcist":80.0,"hunting-hawk":32.0,"chain-constable":105.0,"shield-guard":150.0,"brazier-ritualist":75.0,"sealed-lantern-keeper":85.0,"tracking-hound":48.0}.get(kind,30.0)
 	hp = max_hp if hp<0 else hp
-	attack = {"boss":10.0,"prison-shaman":12.0,"soul-warden":12.0,"jangsanbeom":14.0,"jangsan-shadow":11.0,"mountain-tiger":10.0,"changgui-remnant":9.0,"mihokbul":7.0,"hosikchong-wraith":11.0,"monk":12.0,"adept":6.0,"warrior":8.0,"exorcist-spearman":14.0,"exorcist-archer":11.0,"bell-exorcist":7.0,"hunting-hawk":8.0,"chain-constable":12.0,"shield-guard":14.0,"brazier-ritualist":8.0,"sealed-lantern-keeper":10.0,"tracking-hound":8.0}.get(kind,8.0)
-	speed = {"boss":85.0,"soul-warden":72.0,"jangsanbeom":120.0,"jangsan-shadow":145.0,"mountain-tiger":130.0,"changgui-remnant":92.0,"mihokbul":72.0,"hosikchong-wraith":0.0,"monk":65.0,"adept":80.0,"warrior":105.0,"exorcist-spearman":72.0,"exorcist-archer":78.0,"bell-exorcist":52.0,"hunting-hawk":115.0,"chain-constable":68.0,"shield-guard":55.0,"brazier-ritualist":58.0,"sealed-lantern-keeper":52.0,"tracking-hound":145.0}.get(kind,95.0)
+	attack = {"grand-exorcist":18.0,"royal-exorcist-captain":16.0,"royal-shield":15.0,"wall-archer":12.0,"crossbow-exorcist":15.0,"banner-bearer":11.0,"ward-reader":12.0,"elite-hawk":10.0,"high-shaman":14.0,"record-scribe":13.0,"moving-ward-reader":14.0,"iron-executioner":18.0,"greater-lantern-keeper":15.0,"boss":10.0,"prison-shaman":12.0,"soul-warden":12.0,"jangsanbeom":14.0,"jangsan-shadow":11.0,"mountain-tiger":10.0,"changgui-remnant":9.0,"mihokbul":7.0,"hosikchong-wraith":11.0,"monk":12.0,"adept":6.0,"warrior":8.0,"exorcist-spearman":14.0,"exorcist-archer":11.0,"bell-exorcist":7.0,"hunting-hawk":8.0,"chain-constable":12.0,"shield-guard":14.0,"brazier-ritualist":8.0,"sealed-lantern-keeper":10.0,"tracking-hound":8.0}.get(kind,8.0)
+	speed = {"grand-exorcist":76.0,"royal-exorcist-captain":82.0,"royal-shield":52.0,"wall-archer":68.0,"crossbow-exorcist":60.0,"banner-bearer":64.0,"ward-reader":58.0,"elite-hawk":130.0,"high-shaman":60.0,"record-scribe":56.0,"moving-ward-reader":72.0,"iron-executioner":62.0,"greater-lantern-keeper":50.0,"boss":85.0,"soul-warden":72.0,"jangsanbeom":120.0,"jangsan-shadow":145.0,"mountain-tiger":130.0,"changgui-remnant":92.0,"mihokbul":72.0,"hosikchong-wraith":0.0,"monk":65.0,"adept":80.0,"warrior":105.0,"exorcist-spearman":72.0,"exorcist-archer":78.0,"bell-exorcist":52.0,"hunting-hawk":115.0,"chain-constable":68.0,"shield-guard":55.0,"brazier-ritualist":58.0,"sealed-lantern-keeper":52.0,"tracking-hound":145.0}.get(kind,95.0)
 	collision_layer = 4
 	collision_mask = 1
 	var c := CollisionShape2D.new()
@@ -148,7 +158,7 @@ func _ready() -> void:
 	visual.role=kind
 	visual.boss=boss
 	add_child(visual)
-	if kind=="hunting-hawk": hawk_hover_origin=position
+	if kind in ["hunting-hawk","elite-hawk"]: hawk_hover_origin=position
 	if kind=="soul-warden": special_cooldown=director.rng.randf_range(10.0,15.0)
 	if kind=="jangsanbeom": configure_jangsan_phase(1)
 	if kind=="prison-shaman":
@@ -246,7 +256,7 @@ func take_damage(amount: float, ignore_vulnerability := false, number_color := C
 			director.message("창귀 해방 · "+("동자귀가 귀문옥주를 삼켰습니다" if soul_barrier_layers==0 else "방벽이 한 겹 무너졌습니다"))
 		queue_redraw()
 		return
-	if kind=="shield-guard" and not ignore_vulnerability and is_instance_valid(director) and is_instance_valid(director.world.player):
+	if kind in ["shield-guard","royal-shield"] and not ignore_vulnerability and is_instance_valid(director) and is_instance_valid(director.world.player):
 		var player_side:=signf(director.world.player.global_position.x-global_position.x)
 		# 방패가 향한 정면에서 들어온 공격만 크게 줄고, 뒤잡기는 그대로 들어간다.
 		if player_side==facing:
@@ -388,7 +398,7 @@ func _physics_process(delta: float) -> void:
 				velocity=Vector2.ZERO
 				queue_redraw()
 				return
-	if kind=="hunting-hawk":
+	if kind in ["hunting-hawk","elite-hawk"]:
 		tick_hunting_hawk(delta)
 		return
 	velocity.y=minf(1000,velocity.y+1700*delta)
@@ -430,7 +440,7 @@ func _physics_process(delta: float) -> void:
 		var close := absf(difference.x)<(145 if kind=="jangsanbeom" else 95 if boss else 150 if kind in ["mountain-tiger","jangsan-shadow"] else 300 if kind=="chain-constable" else 390 if kind in ["brazier-ritualist","sealed-lantern-keeper"] else 105 if kind=="tracking-hound" else 72 if kind=="shield-guard" else 120 if kind=="hosikchong-wraith" else 80 if kind=="monk" else 52)
 		var can_attack := visible_to_player() and clear_shot(target) and absf(difference.y)<120
 		if boss: can_attack=visible_to_player() and clear_shot(target)
-		if kind in ["adept","mihokbul","exorcist-archer","bell-exorcist","brazier-ritualist","sealed-lantern-keeper"]: close=distance<420
+		if kind in ["adept","mihokbul","exorcist-archer","bell-exorcist","brazier-ritualist","sealed-lantern-keeper","wall-archer","crossbow-exorcist","banner-bearer","ward-reader","high-shaman","record-scribe","moving-ward-reader","greater-lantern-keeper"]: close=distance<440
 		if timer<=0 and can_attack and (close or boss) and director.attack_permission(self):
 			if boss:
 				if kind=="jangsanbeom" and jangsan_phase==1:
@@ -446,8 +456,8 @@ func _physics_process(delta: float) -> void:
 			begin_attack_vfx()
 		else:
 			var direction:=facing
-			if kind in ["adept","mihokbul","exorcist-archer","bell-exorcist","brazier-ritualist","sealed-lantern-keeper"] and distance<200: direction=-facing
-			if kind in ["adept","mihokbul","exorcist-archer","bell-exorcist","brazier-ritualist","sealed-lantern-keeper"] and distance>=220 and distance<=340: direction=0
+			if kind in ["adept","mihokbul","exorcist-archer","bell-exorcist","brazier-ritualist","sealed-lantern-keeper","wall-archer","crossbow-exorcist","banner-bearer","ward-reader","high-shaman","record-scribe","moving-ward-reader","greater-lantern-keeper"] and distance<200: direction=-facing
+			if kind in ["adept","mihokbul","exorcist-archer","bell-exorcist","brazier-ritualist","sealed-lantern-keeper","wall-archer","crossbow-exorcist","banner-bearer","ward-reader","high-shaman","record-scribe","moving-ward-reader","greater-lantern-keeper"] and distance>=220 and distance<=340: direction=0
 			if kind=="hosikchong-wraith": direction=0
 			velocity.x=direction*speed*(.45 if slow>0 else 1.0) if safe_step(direction) and absf(difference.y)<150 else 0
 	move_and_slide()
@@ -508,6 +518,21 @@ func release_attack(target: Vector2) -> void:
 			for angle in [-.34,0.0,.34]: director.fire_projectile(origin,attack_direction.rotated(angle),attack,false,"spirit",self)
 		else:
 			director.area_effect(origin+Vector2(facing*62,5),82,attack,self)
+	elif kind=="grand-exorcist":
+		if pattern==0:
+			director.area_effect(origin+Vector2(facing*72,4),125,attack,self)
+		elif pattern==1:
+			for angle in [-.5,-.25,0.0,.25,.5]: director.fire_projectile(origin,attack_direction.rotated(angle),attack,false,"talisman",self)
+		else:
+			for offset in [-110.0,0.0,110.0]: director.queue_enemy_strike("enemy-seal",target+Vector2(offset,0),.85+absf(offset)*.002,attack,self)
+	elif kind=="royal-exorcist-captain":
+		if pattern==0:
+			director.area_effect(origin+Vector2(facing*65,4),90,attack,self)
+		elif pattern==1:
+			for offset in [-88.0,0.0,88.0]: director.queue_enemy_strike("enemy-arrow-rain",target+Vector2(offset,0),.7+absf(offset)*.002,attack,self)
+		else:
+			charge_remaining=.34
+			velocity.x=facing*430
 	elif kind=="jangsanbeom" and jangsan_phase==1:
 		director.area_effect(origin+Vector2(facing*34,4),46,attack,self)
 	elif kind=="jangsanbeom" and pattern==2:
@@ -528,11 +553,15 @@ func release_attack(target: Vector2) -> void:
 	elif kind=="adept":
 		for angle in ([-.3,0.0,.3] if boss else [0.0]):
 			director.fire_projectile(origin,attack_direction.rotated(angle),6,false,"talisman",self)
+	elif kind=="warrior":
+		# The blade trail begins only when the sword comes down, not during the wind-up.
+		director.vfx.emit_monster("musa-slash",self,Vector2(facing*25,-21),Vector2(facing,0),1.24)
+		director.area_effect(origin+Vector2(facing*28,0),38,attack,self)
 	elif kind=="mihokbul":
 		director.fire_projectile(origin,attack_direction,attack,false,"spirit",self)
 	elif kind=="hosikchong-wraith":
 		director.area_effect(global_position+Vector2(facing*30,-8),92,attack,self)
-	elif kind=="hunting-hawk":
+	elif kind in ["hunting-hawk","elite-hawk"]:
 		hawk_hit=false
 		hawk_dive_remaining=.46
 		velocity=(target-(global_position+Vector2(0,-12))).normalized()*420
@@ -561,6 +590,20 @@ func release_attack(target: Vector2) -> void:
 	elif kind=="tracking-hound":
 		hound_hit=false
 		charge_remaining=.34
+	elif kind in ["royal-shield","iron-executioner"]:
+		director.area_effect(origin+Vector2(facing*48,2),64 if kind=="royal-shield" else 78,attack,self)
+	elif kind=="wall-archer":
+		for offset in [-54.0,0.0,54.0]: director.queue_enemy_strike("enemy-arrow-rain",target+Vector2(offset,0),.72+absf(offset)*.003,attack,self)
+	elif kind=="crossbow-exorcist":
+		director.fire_projectile(origin,attack_direction,attack,false,"wave",self)
+	elif kind in ["ward-reader","record-scribe","moving-ward-reader"]:
+		director.queue_enemy_strike("enemy-seal",target,.8,attack,self)
+	elif kind=="banner-bearer":
+		director.queue_enemy_strike("enemy-brazier-fire",target,.75,attack,self)
+	elif kind=="high-shaman":
+		for angle in [-.28,0.0,.28]: director.fire_projectile(origin,attack_direction.rotated(angle),attack,false,"spirit",self)
+	elif kind=="greater-lantern-keeper":
+		director.queue_enemy_strike("enemy-lantern-burst",target,1.2,attack,self)
 	elif kind in ["mountain-tiger","jangsan-shadow","changgui-remnant"]:
 		charge_remaining=.24 if kind!="changgui-remnant" else .16
 	else:

@@ -1,618 +1,530 @@
 {
  "frames": [
   {
-   "filename": "ch1-warrior-seal-cleave 0",
+   "filename": "sword-slash 0",
    "frame": {
     "x": 0,
     "y": 0,
-    "w": 184,
-    "h": 128
+    "w": 136,
+    "h": 104
    },
    "rotated": false,
    "trimmed": false,
    "spriteSourceSize": {
     "x": 0,
     "y": 0,
-    "w": 184,
-    "h": 128
+    "w": 136,
+    "h": 104
    },
    "sourceSize": {
-    "w": 184,
-    "h": 128
+    "w": 136,
+    "h": 104
    },
    "duration": 33
   },
   {
-   "filename": "ch1-warrior-seal-cleave 1",
+   "filename": "sword-slash 1",
    "frame": {
-    "x": 184,
+    "x": 136,
     "y": 0,
-    "w": 184,
-    "h": 128
+    "w": 136,
+    "h": 104
    },
    "rotated": false,
    "trimmed": false,
    "spriteSourceSize": {
     "x": 0,
     "y": 0,
-    "w": 184,
-    "h": 128
+    "w": 136,
+    "h": 104
    },
    "sourceSize": {
-    "w": 184,
-    "h": 128
+    "w": 136,
+    "h": 104
    },
    "duration": 33
   },
   {
-   "filename": "ch1-warrior-seal-cleave 2",
+   "filename": "sword-slash 2",
    "frame": {
-    "x": 368,
+    "x": 272,
     "y": 0,
-    "w": 184,
-    "h": 128
+    "w": 136,
+    "h": 104
    },
    "rotated": false,
    "trimmed": false,
    "spriteSourceSize": {
     "x": 0,
     "y": 0,
-    "w": 184,
-    "h": 128
+    "w": 136,
+    "h": 104
    },
    "sourceSize": {
-    "w": 184,
-    "h": 128
+    "w": 136,
+    "h": 104
    },
    "duration": 33
   },
   {
-   "filename": "ch1-warrior-seal-cleave 3",
+   "filename": "sword-slash 3",
    "frame": {
-    "x": 552,
+    "x": 408,
     "y": 0,
-    "w": 184,
-    "h": 128
+    "w": 136,
+    "h": 104
    },
    "rotated": false,
    "trimmed": false,
    "spriteSourceSize": {
     "x": 0,
     "y": 0,
-    "w": 184,
-    "h": 128
+    "w": 136,
+    "h": 104
    },
    "sourceSize": {
-    "w": 184,
-    "h": 128
+    "w": 136,
+    "h": 104
    },
    "duration": 33
   },
   {
-   "filename": "ch1-warrior-seal-cleave 4",
+   "filename": "sword-slash 4",
    "frame": {
-    "x": 736,
+    "x": 544,
     "y": 0,
-    "w": 184,
-    "h": 128
+    "w": 136,
+    "h": 104
    },
    "rotated": false,
    "trimmed": false,
    "spriteSourceSize": {
     "x": 0,
     "y": 0,
-    "w": 184,
-    "h": 128
+    "w": 136,
+    "h": 104
    },
    "sourceSize": {
-    "w": 184,
-    "h": 128
+    "w": 136,
+    "h": 104
    },
    "duration": 33
   },
   {
-   "filename": "ch1-warrior-seal-cleave 5",
+   "filename": "sword-slash 5",
    "frame": {
     "x": 0,
-    "y": 128,
-    "w": 184,
-    "h": 128
+    "y": 104,
+    "w": 136,
+    "h": 104
    },
    "rotated": false,
    "trimmed": false,
    "spriteSourceSize": {
     "x": 0,
     "y": 0,
-    "w": 184,
-    "h": 128
+    "w": 136,
+    "h": 104
    },
    "sourceSize": {
-    "w": 184,
-    "h": 128
+    "w": 136,
+    "h": 104
    },
    "duration": 33
   },
   {
-   "filename": "ch1-warrior-seal-cleave 6",
+   "filename": "sword-slash 6",
    "frame": {
-    "x": 184,
-    "y": 128,
-    "w": 184,
-    "h": 128
+    "x": 136,
+    "y": 104,
+    "w": 136,
+    "h": 104
    },
    "rotated": false,
    "trimmed": false,
    "spriteSourceSize": {
     "x": 0,
     "y": 0,
-    "w": 184,
-    "h": 128
+    "w": 136,
+    "h": 104
    },
    "sourceSize": {
-    "w": 184,
-    "h": 128
+    "w": 136,
+    "h": 104
    },
    "duration": 33
   },
   {
-   "filename": "ch1-warrior-seal-cleave 7",
+   "filename": "sword-slash 7",
    "frame": {
-    "x": 368,
-    "y": 128,
-    "w": 184,
-    "h": 128
+    "x": 272,
+    "y": 104,
+    "w": 136,
+    "h": 104
    },
    "rotated": false,
    "trimmed": false,
    "spriteSourceSize": {
     "x": 0,
     "y": 0,
-    "w": 184,
-    "h": 128
+    "w": 136,
+    "h": 104
    },
    "sourceSize": {
-    "w": 184,
-    "h": 128
+    "w": 136,
+    "h": 104
    },
    "duration": 33
   },
   {
-   "filename": "ch1-warrior-seal-cleave 8",
+   "filename": "sword-slash 8",
    "frame": {
-    "x": 552,
-    "y": 128,
-    "w": 184,
-    "h": 128
+    "x": 408,
+    "y": 104,
+    "w": 136,
+    "h": 104
    },
    "rotated": false,
    "trimmed": false,
    "spriteSourceSize": {
     "x": 0,
     "y": 0,
-    "w": 184,
-    "h": 128
+    "w": 136,
+    "h": 104
    },
    "sourceSize": {
-    "w": 184,
-    "h": 128
+    "w": 136,
+    "h": 104
    },
    "duration": 33
   },
   {
-   "filename": "ch1-warrior-seal-cleave 9",
+   "filename": "sword-slash 9",
    "frame": {
-    "x": 736,
-    "y": 128,
-    "w": 184,
-    "h": 128
+    "x": 544,
+    "y": 104,
+    "w": 136,
+    "h": 104
    },
    "rotated": false,
    "trimmed": false,
    "spriteSourceSize": {
     "x": 0,
     "y": 0,
-    "w": 184,
-    "h": 128
+    "w": 136,
+    "h": 104
    },
    "sourceSize": {
-    "w": 184,
-    "h": 128
+    "w": 136,
+    "h": 104
    },
    "duration": 33
   },
   {
-   "filename": "ch1-warrior-seal-cleave 10",
+   "filename": "sword-slash 10",
    "frame": {
     "x": 0,
-    "y": 256,
-    "w": 184,
-    "h": 128
+    "y": 208,
+    "w": 136,
+    "h": 104
    },
    "rotated": false,
    "trimmed": false,
    "spriteSourceSize": {
     "x": 0,
     "y": 0,
-    "w": 184,
-    "h": 128
+    "w": 136,
+    "h": 104
    },
    "sourceSize": {
-    "w": 184,
-    "h": 128
+    "w": 136,
+    "h": 104
    },
    "duration": 33
   },
   {
-   "filename": "ch1-warrior-seal-cleave 11",
+   "filename": "sword-slash 11",
    "frame": {
-    "x": 184,
-    "y": 256,
-    "w": 184,
-    "h": 128
+    "x": 136,
+    "y": 208,
+    "w": 136,
+    "h": 104
    },
    "rotated": false,
    "trimmed": false,
    "spriteSourceSize": {
     "x": 0,
     "y": 0,
-    "w": 184,
-    "h": 128
+    "w": 136,
+    "h": 104
    },
    "sourceSize": {
-    "w": 184,
-    "h": 128
+    "w": 136,
+    "h": 104
    },
    "duration": 33
   },
   {
-   "filename": "ch1-warrior-seal-cleave 12",
+   "filename": "sword-slash 12",
    "frame": {
-    "x": 368,
-    "y": 256,
-    "w": 184,
-    "h": 128
+    "x": 272,
+    "y": 208,
+    "w": 136,
+    "h": 104
    },
    "rotated": false,
    "trimmed": false,
    "spriteSourceSize": {
     "x": 0,
     "y": 0,
-    "w": 184,
-    "h": 128
+    "w": 136,
+    "h": 104
    },
    "sourceSize": {
-    "w": 184,
-    "h": 128
+    "w": 136,
+    "h": 104
    },
    "duration": 33
   },
   {
-   "filename": "ch1-warrior-seal-cleave 13",
+   "filename": "sword-slash 13",
    "frame": {
-    "x": 552,
-    "y": 256,
-    "w": 184,
-    "h": 128
+    "x": 408,
+    "y": 208,
+    "w": 136,
+    "h": 104
    },
    "rotated": false,
    "trimmed": false,
    "spriteSourceSize": {
     "x": 0,
     "y": 0,
-    "w": 184,
-    "h": 128
+    "w": 136,
+    "h": 104
    },
    "sourceSize": {
-    "w": 184,
-    "h": 128
+    "w": 136,
+    "h": 104
    },
    "duration": 33
   },
   {
-   "filename": "ch1-warrior-seal-cleave 14",
+   "filename": "sword-slash 14",
    "frame": {
-    "x": 736,
-    "y": 256,
-    "w": 184,
-    "h": 128
+    "x": 544,
+    "y": 208,
+    "w": 136,
+    "h": 104
    },
    "rotated": false,
    "trimmed": false,
    "spriteSourceSize": {
     "x": 0,
     "y": 0,
-    "w": 184,
-    "h": 128
+    "w": 136,
+    "h": 104
    },
    "sourceSize": {
-    "w": 184,
-    "h": 128
+    "w": 136,
+    "h": 104
    },
    "duration": 33
   },
   {
-   "filename": "ch1-warrior-seal-cleave 15",
+   "filename": "sword-slash 15",
    "frame": {
     "x": 0,
-    "y": 384,
-    "w": 184,
-    "h": 128
+    "y": 312,
+    "w": 136,
+    "h": 104
    },
    "rotated": false,
    "trimmed": false,
    "spriteSourceSize": {
     "x": 0,
     "y": 0,
-    "w": 184,
-    "h": 128
+    "w": 136,
+    "h": 104
    },
    "sourceSize": {
-    "w": 184,
-    "h": 128
+    "w": 136,
+    "h": 104
    },
    "duration": 33
   },
   {
-   "filename": "ch1-warrior-seal-cleave 16",
+   "filename": "sword-slash 16",
    "frame": {
-    "x": 184,
-    "y": 384,
-    "w": 184,
-    "h": 128
+    "x": 136,
+    "y": 312,
+    "w": 136,
+    "h": 104
    },
    "rotated": false,
    "trimmed": false,
    "spriteSourceSize": {
     "x": 0,
     "y": 0,
-    "w": 184,
-    "h": 128
+    "w": 136,
+    "h": 104
    },
    "sourceSize": {
-    "w": 184,
-    "h": 128
+    "w": 136,
+    "h": 104
    },
    "duration": 33
   },
   {
-   "filename": "ch1-warrior-seal-cleave 17",
+   "filename": "sword-slash 17",
    "frame": {
-    "x": 368,
-    "y": 384,
-    "w": 184,
-    "h": 128
+    "x": 272,
+    "y": 312,
+    "w": 136,
+    "h": 104
    },
    "rotated": false,
    "trimmed": false,
    "spriteSourceSize": {
     "x": 0,
     "y": 0,
-    "w": 184,
-    "h": 128
+    "w": 136,
+    "h": 104
    },
    "sourceSize": {
-    "w": 184,
-    "h": 128
+    "w": 136,
+    "h": 104
    },
    "duration": 33
   },
   {
-   "filename": "ch1-warrior-seal-cleave 18",
+   "filename": "sword-slash 18",
    "frame": {
-    "x": 552,
-    "y": 384,
-    "w": 184,
-    "h": 128
+    "x": 408,
+    "y": 312,
+    "w": 136,
+    "h": 104
    },
    "rotated": false,
    "trimmed": false,
    "spriteSourceSize": {
     "x": 0,
     "y": 0,
-    "w": 184,
-    "h": 128
+    "w": 136,
+    "h": 104
    },
    "sourceSize": {
-    "w": 184,
-    "h": 128
+    "w": 136,
+    "h": 104
    },
    "duration": 33
   },
   {
-   "filename": "ch1-warrior-seal-cleave 19",
+   "filename": "sword-slash 19",
    "frame": {
-    "x": 736,
-    "y": 384,
-    "w": 184,
-    "h": 128
+    "x": 544,
+    "y": 312,
+    "w": 136,
+    "h": 104
    },
    "rotated": false,
    "trimmed": false,
    "spriteSourceSize": {
     "x": 0,
     "y": 0,
-    "w": 184,
-    "h": 128
+    "w": 136,
+    "h": 104
    },
    "sourceSize": {
-    "w": 184,
-    "h": 128
+    "w": 136,
+    "h": 104
    },
    "duration": 33
   },
   {
-   "filename": "ch1-warrior-seal-cleave 20",
+   "filename": "sword-slash 20",
    "frame": {
     "x": 0,
-    "y": 512,
-    "w": 184,
-    "h": 128
+    "y": 416,
+    "w": 136,
+    "h": 104
    },
    "rotated": false,
    "trimmed": false,
    "spriteSourceSize": {
     "x": 0,
     "y": 0,
-    "w": 184,
-    "h": 128
+    "w": 136,
+    "h": 104
    },
    "sourceSize": {
-    "w": 184,
-    "h": 128
+    "w": 136,
+    "h": 104
    },
    "duration": 33
   },
   {
-   "filename": "ch1-warrior-seal-cleave 21",
+   "filename": "sword-slash 21",
    "frame": {
-    "x": 184,
-    "y": 512,
-    "w": 184,
-    "h": 128
+    "x": 136,
+    "y": 416,
+    "w": 136,
+    "h": 104
    },
    "rotated": false,
    "trimmed": false,
    "spriteSourceSize": {
     "x": 0,
     "y": 0,
-    "w": 184,
-    "h": 128
+    "w": 136,
+    "h": 104
    },
    "sourceSize": {
-    "w": 184,
-    "h": 128
+    "w": 136,
+    "h": 104
    },
    "duration": 33
   },
   {
-   "filename": "ch1-warrior-seal-cleave 22",
+   "filename": "sword-slash 22",
    "frame": {
-    "x": 368,
-    "y": 512,
-    "w": 184,
-    "h": 128
+    "x": 272,
+    "y": 416,
+    "w": 136,
+    "h": 104
    },
    "rotated": false,
    "trimmed": false,
    "spriteSourceSize": {
     "x": 0,
     "y": 0,
-    "w": 184,
-    "h": 128
+    "w": 136,
+    "h": 104
    },
    "sourceSize": {
-    "w": 184,
-    "h": 128
+    "w": 136,
+    "h": 104
    },
    "duration": 33
   },
   {
-   "filename": "ch1-warrior-seal-cleave 23",
+   "filename": "sword-slash 23",
    "frame": {
-    "x": 552,
-    "y": 512,
-    "w": 184,
-    "h": 128
+    "x": 408,
+    "y": 416,
+    "w": 136,
+    "h": 104
    },
    "rotated": false,
    "trimmed": false,
    "spriteSourceSize": {
     "x": 0,
     "y": 0,
-    "w": 184,
-    "h": 128
+    "w": 136,
+    "h": 104
    },
    "sourceSize": {
-    "w": 184,
-    "h": 128
-   },
-   "duration": 33
-  },
-  {
-   "filename": "ch1-warrior-seal-cleave 24",
-   "frame": {
-    "x": 736,
-    "y": 512,
-    "w": 184,
-    "h": 128
-   },
-   "rotated": false,
-   "trimmed": false,
-   "spriteSourceSize": {
-    "x": 0,
-    "y": 0,
-    "w": 184,
-    "h": 128
-   },
-   "sourceSize": {
-    "w": 184,
-    "h": 128
-   },
-   "duration": 33
-  },
-  {
-   "filename": "ch1-warrior-seal-cleave 25",
-   "frame": {
-    "x": 0,
-    "y": 640,
-    "w": 184,
-    "h": 128
-   },
-   "rotated": false,
-   "trimmed": false,
-   "spriteSourceSize": {
-    "x": 0,
-    "y": 0,
-    "w": 184,
-    "h": 128
-   },
-   "sourceSize": {
-    "w": 184,
-    "h": 128
-   },
-   "duration": 33
-  },
-  {
-   "filename": "ch1-warrior-seal-cleave 26",
-   "frame": {
-    "x": 184,
-    "y": 640,
-    "w": 184,
-    "h": 128
-   },
-   "rotated": false,
-   "trimmed": false,
-   "spriteSourceSize": {
-    "x": 0,
-    "y": 0,
-    "w": 184,
-    "h": 128
-   },
-   "sourceSize": {
-    "w": 184,
-    "h": 128
-   },
-   "duration": 33
-  },
-  {
-   "filename": "ch1-warrior-seal-cleave 27",
-   "frame": {
-    "x": 368,
-    "y": 640,
-    "w": 184,
-    "h": 128
-   },
-   "rotated": false,
-   "trimmed": false,
-   "spriteSourceSize": {
-    "x": 0,
-    "y": 0,
-    "w": 184,
-    "h": 128
-   },
-   "sourceSize": {
-    "w": 184,
-    "h": 128
+    "w": 136,
+    "h": 104
    },
    "duration": 33
   }
@@ -620,125 +532,177 @@
  "meta": {
   "app": "https://github.com/patch-gg/pixelfx",
   "version": "1",
-  "image": "ch1-warrior-seal-cleave.png",
+  "image": "sword-slash.png",
   "format": "RGBA8888",
   "size": {
-   "w": 920,
-   "h": 768
+   "w": 680,
+   "h": 520
   },
   "scale": "1",
   "frameTags": [
    {
-    "name": "ch1-warrior-seal-cleave",
+    "name": "sword-slash",
     "from": 0,
-    "to": 27,
+    "to": 23,
     "direction": "forward"
    }
   ],
   "pixelfx": {
-   "id": "geuseundae/ch1-warrior-seal-cleave",
-   "name": "Sealed iron cleave",
+   "id": "melee/sword-slash",
+   "name": "Sword slash",
    "fps": 30,
    "loop": false,
-   "frames": 28,
+   "frames": 24,
    "frameSize": [
-    184,
-    128
+    136,
+    104
    ],
    "pivot": [
-    48,
-    108
+    44,
+    92
    ],
    "columns": 5,
    "act": {
-    "windup": 0.48,
-    "recovery": 0,
+    "windup": 0.55,
+    "recovery": 0.10999999999999999,
     "onBody": false,
     "targets": [
-     66
+     58
     ],
     "hits": [
      {
       "t": 0.06,
-      "freeze": 0.12,
-      "shake": 0.16,
+      "freeze": 0.14,
+      "shake": 0.18,
       "amp": 2,
-      "push": 2.5
+      "push": 2.8
      }
     ],
     "poses": [
      {
-      "t": -0.48,
+      "t": -0.55,
       "how": "smooth",
       "pose": {
        "crouch": 3,
-       "fx": -5,
-       "fy": -34,
-       "bx": 8,
-       "by": -24,
+       "fx": 12,
+       "fy": -21,
+       "bx": 9,
+       "by": -21,
        "ffx": 7,
        "fbx": -7,
        "weapon": "sword",
-       "sa": -2.5,
-       "x": -6,
+       "sa": -0.85,
+       "x": -8
+      }
+     },
+     {
+      "t": -0.3,
+      "how": "smooth",
+      "pose": {
+       "crouch": 4,
+       "fx": -7,
+       "fy": -35,
+       "bx": 9,
+       "by": -25,
+       "ffx": 9,
+       "fbx": -8,
+       "weapon": "sword",
+       "sa": -2.65,
+       "x": -8,
        "lean": -4,
        "armsFront": true
       }
      },
      {
-      "t": -0.06,
+      "t": -0.08,
       "how": "smooth",
       "pose": {
        "crouch": 5,
-       "fx": 12,
-       "fy": -21,
+       "fx": -7,
+       "fy": -35,
        "bx": 9,
-       "by": -21,
-       "ffx": 7,
-       "fbx": -7,
+       "by": -25,
+       "ffx": 9,
+       "fbx": -8,
        "weapon": "sword",
-       "sa": -0.8,
-       "x": -2,
-       "lean": -5
+       "sa": -2.65,
+       "x": -8,
+       "lean": -5,
+       "armsFront": true
       }
      },
      {
-      "t": 0.02,
+      "t": 0,
       "how": "snap",
       "pose": {
-       "crouch": 4,
-       "fx": 22,
-       "fy": -18,
-       "bx": -8,
-       "by": -23,
-       "ffx": 7,
-       "fbx": -7,
+       "crouch": 2,
+       "fx": 16,
+       "fy": -37,
+       "bx": -7,
+       "by": -24,
+       "ffx": 11,
+       "fbx": -10,
        "weapon": "sword",
-       "sa": 0.55,
-       "x": 4,
-       "lean": 6,
+       "sa": -1.45,
+       "x": 0,
+       "lean": 3,
        "ghost": 1
       }
      },
      {
-      "t": 0.32,
+      "t": 0.06,
+      "how": "snap",
+      "pose": {
+       "crouch": 5,
+       "fx": 20,
+       "fy": -21,
+       "bx": -9,
+       "by": -24,
+       "ffx": 13,
+       "fbx": -10,
+       "weapon": "sword",
+       "sa": 0.62,
+       "x": 2,
+       "lean": 5,
+       "toeB": true
+      }
+     },
+     {
+      "t": 0.3,
       "how": "smooth",
       "pose": {
        "crouch": 6,
        "fx": 20,
-       "fy": -16,
-       "bx": 9,
-       "by": -21,
-       "ffx": 7,
-       "fbx": -7,
+       "fy": -21,
+       "bx": -9,
+       "by": -24,
+       "ffx": 13,
+       "fbx": -10,
        "weapon": "sword",
-       "sa": 0.72,
-       "x": 5,
-       "lean": 4
+       "sa": 0.62,
+       "x": 3,
+       "lean": 5,
+       "toeB": true
       }
      },
      {
-      "t": 0.75,
+      "t": 0.58,
+      "how": "smooth",
+      "pose": {
+       "crouch": 3,
+       "fx": 15,
+       "fy": -21,
+       "bx": -5,
+       "by": -21,
+       "ffx": 9,
+       "fbx": -7,
+       "weapon": "sword",
+       "sa": 0.1,
+       "x": 1
+      }
+     },
+     {
+      "t": 0.86,
       "how": "smooth",
       "pose": {
        "crouch": 3,
@@ -749,7 +713,8 @@
        "ffx": 7,
        "fbx": -7,
        "weapon": "sword",
-       "sa": -0.8
+       "sa": -0.85,
+       "x": -8
       }
      }
     ]

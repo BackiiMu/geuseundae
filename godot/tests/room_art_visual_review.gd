@@ -36,6 +36,9 @@ func run_review() -> void:
 	world.combat_enabled=false
 	root.add_child(world)
 	await frames(24)
+	await stage(world,1,"courtyard","00-walkable-roof-courtyard")
+	await stage(world,1,"hall","00-walkable-roof-hall")
+	await stage(world,1,"servants_quarters","00-walkable-roof-servants")
 	await stage(world,1,"collapsed_house","01-collapsed-house")
 	await stage(world,2,"rotten_bridge","02-rotten-bridge")
 	await stage(world,3,"ritual_yard","03-ritual-yard")

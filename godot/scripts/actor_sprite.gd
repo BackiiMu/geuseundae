@@ -53,6 +53,21 @@ const CHAPTER4_SINGLE_ROLES := {
 	"sealed-lantern-keeper":"res://assets/actors/chapter4/sealed-lantern-keeper-game-v1.png",
 	"tracking-hound":"res://assets/actors/chapter4/tracking-hound-game-v1.png"
 }
+const LATE_CHAPTER_SINGLE_ROLES := {
+	"royal-shield":"res://assets/actors/chapter4/shield-guard-game-v1.png",
+	"wall-archer":"res://assets/actors/chapter3/exorcist-archer-game-v1.png",
+	"crossbow-exorcist":"res://assets/actors/chapter3/exorcist-archer-game-v1.png",
+	"banner-bearer":"res://assets/actors/chapter4/chain-constable-game-v1.png",
+	"ward-reader":"res://assets/actors/chapter3/bell-exorcist-game-v1.png",
+	"elite-hawk":"res://assets/actors/chapter3/hunting-hawk-game-v1.png",
+	"royal-exorcist-captain":"res://assets/actors/chapter4/boss/prison-shaman-game-v1.png",
+	"high-shaman":"res://assets/actors/chapter4/brazier-ritualist-game-v1.png",
+	"record-scribe":"res://assets/actors/chapter3/bell-exorcist-game-v1.png",
+	"moving-ward-reader":"res://assets/actors/chapter4/sealed-lantern-keeper-game-v1.png",
+	"iron-executioner":"res://assets/actors/chapter4/shield-guard-game-v1.png",
+	"greater-lantern-keeper":"res://assets/actors/chapter4/sealed-lantern-keeper-game-v1.png",
+	"grand-exorcist":"res://assets/actors/chapter3/soul-warden-game-v1.png"
+}
 func _ready() -> void:
 	texture_filter=CanvasItem.TEXTURE_FILTER_NEAREST
 	load_role_texture()
@@ -75,7 +90,7 @@ func set_role(value: String) -> void:
 
 func update_alpha_boost() -> void:
 	if is_instance_valid(shader_material):
-		shader_material.set_shader_parameter("alpha_boost",2.8 if CHAPTER3_SOLID_ROLES.has(role) else 1.7 if CHAPTER4_SINGLE_ROLES.has(role) else 1.0)
+		shader_material.set_shader_parameter("alpha_boost",2.8 if CHAPTER3_SOLID_ROLES.has(role) else 1.7 if CHAPTER4_SINGLE_ROLES.has(role) or LATE_CHAPTER_SINGLE_ROLES.has(role) else 1.0)
 
 func load_role_texture() -> void:
 	var key: String="warrior" if role=="boss" else role
@@ -84,6 +99,12 @@ func load_role_texture() -> void:
 		custom_columns=1
 		custom_rows=1
 		texture=load(CHAPTER4_SINGLE_ROLES[role])
+		return
+	if LATE_CHAPTER_SINGLE_ROLES.has(role):
+		atlas=false
+		custom_columns=1
+		custom_rows=1
+		texture=load(LATE_CHAPTER_SINGLE_ROLES[role])
 		return
 	var chapter3_single:Dictionary={
 		"exorcist-spearman":"res://assets/actors/chapter3/exorcist-spearman-game-v1.png",
@@ -183,7 +204,8 @@ func draw_size() -> Vector2:
 		"tracking-hound":Vector2(74,46),
 		"prison-shaman":Vector2(126,118),
 		"dongja-possession":Vector2(132,120),
-		"soul-warden":Vector2(116,106)
+		"soul-warden":Vector2(116,106),
+		"royal-shield":Vector2(72,80),"wall-archer":Vector2(58,74),"crossbow-exorcist":Vector2(60,76),"banner-bearer":Vector2(72,84),"ward-reader":Vector2(62,78),"elite-hawk":Vector2(72,50),"royal-exorcist-captain":Vector2(134,122),"high-shaman":Vector2(72,86),"record-scribe":Vector2(64,80),"moving-ward-reader":Vector2(70,82),"iron-executioner":Vector2(82,90),"greater-lantern-keeper":Vector2(74,86),"grand-exorcist":Vector2(144,132)
 	}.get(role,Vector2(48,64))
 
 func new_heart_frame_metrics(frame: int) -> Vector3:
@@ -251,6 +273,8 @@ func _physics_process(delta: float) -> void:
 			tint.a=.45 if int(clock*20)%2==0 else 1.0
 	else:
 		flash=1.0 if actor.flash>.055 else 0.0
+		if role in ["royal-shield","wall-archer","crossbow-exorcist","banner-bearer","ward-reader","elite-hawk","royal-exorcist-captain"]: tint=Color("9eabc0")
+		elif role in ["high-shaman","record-scribe","moving-ward-reader","iron-executioner","greater-lantern-keeper","grand-exorcist"]: tint=Color("b58f9f")
 		if actor.slow>0: tint=Color("a2cdda")
 		if actor.frozen>0: tint=Color("d4ecff")
 		if actor.vulnerable>0: tint=Color("e2acc4")

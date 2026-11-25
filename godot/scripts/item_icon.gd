@@ -61,6 +61,25 @@ func _draw() -> void:
 		draw_circle(Vector2(21,21),12,Color("e6c24a"))
 		draw_circle(Vector2(21,21),12,Color("7a5a14"),false,2)
 		draw_rect(Rect2(19,12,4,18),Color("15110a"))
+	elif id=="soul_rosary":
+		for i in range(10):
+			var a:=float(i)/10.0*TAU
+			draw_circle(Vector2(21,20)+Vector2(cos(a)*11,sin(a)*11),2.5,Color("756085"))
+		draw_line(Vector2(21,30),Vector2(21,37),Color("ad8cb9"),2)
+	elif id=="swift_talisman":
+		draw_polygon(PackedVector2Array([Vector2(12,6),Vector2(30,6),Vector2(28,36),Vector2(14,36)]),PackedColorArray([Color("c8b78e")]))
+		draw_line(Vector2(17,11),Vector2(25,31),Color("743d43"),2)
+		draw_line(Vector2(25,11),Vector2(17,31),Color("743d43"),2)
+	elif id=="regrowth_bone":
+		draw_line(Vector2(11,31),Vector2(31,11),Color("d8d0ba"),6)
+		for p in [Vector2(10,30),Vector2(32,10)]:
+			draw_circle(p+Vector2(-3,-2),3,Color("d8d0ba")); draw_circle(p+Vector2(3,2),3,Color("d8d0ba"))
+	elif id=="ghost_clock":
+		draw_circle(Vector2(21,22),13,Color("75667e"))
+		draw_circle(Vector2(21,22),10,Color("211a28"))
+		draw_line(Vector2(21,22),Vector2(21,14),Color("d2c0a5"),2)
+		draw_line(Vector2(21,22),Vector2(27,25),Color("d2c0a5"),2)
+		draw_line(Vector2(18,7),Vector2(24,7),Color("8d7a91"),3)
 	elif slot=="accessory":
 		draw_circle(Vector2(21,21),11,c)
 		draw_circle(Vector2(21,21),6,Color("34464e"))

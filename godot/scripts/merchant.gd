@@ -152,6 +152,7 @@ func refresh_detail() -> void:
 	if item.has("damage"):
 		details.add_child(text_label("피해 "+str(item["damage"])+"   /   공격 간격 "+str(item["interval"])+"초",14))
 		details.add_child(text_label("사거리 "+str(item["range"])+"   ·   "+("근접" if item["kind"]=="melee" else "원거리"),15,Color("bfd0c5")))
+		if not str(item.get("handling","")).is_empty(): details.add_child(text_label(str(item["handling"]),13,Color("d1b985")))
 	var effect:=text_label(str(item.get("effect","")),13)
 	effect.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART
 	details.add_child(effect)

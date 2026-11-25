@@ -48,9 +48,15 @@ func mark(origin: Vector2,radius: float,color := Color("a6d4c0"),duration := .24
 	c.effects.append({"pos":origin,"radius":radius,"time":duration,"color":color})
 func hit(enemy: Node,damage: float,id := "") -> float:
 	if enemy.dead: return 0
-	c.vfx.impact(enemy,c.DB.get_item(id) if id!="" else c.equipped("main"))
+	var item:Dictionary=c.DB.get_item(id) if id!="" else c.equipped("main")
+	c.vfx.impact(enemy,item)
 	var before:float=enemy.hp
 	c.damage_enemy(enemy,damage)
+	# 공격 무게에 따라 짧은 적중 정지를 준다. 이동을 막는 후딜이 아니라 타격 순간만 멈춰
+	# 경량 연타·중량 공격·강타가 같은 손맛으로 느껴지지 않게 한다.
+	if item.get("kind","")=="melee":
+		var profile:Dictionary=item.get("combat",{})
+		c.hit_pause=maxf(c.hit_pause,float(profile.get("hit_stop",.025)))
 	if c.has_passive("fox_tail") and not enemy.dead:
 		enemy.apply_burn(3.0,1.0,.5)
 	if id=="nails":
@@ -166,9 +172,14 @@ func attack(slot: String) -> void:
 				elif not enemy.boss: enemy.pull_to(c.world.player.position+direction*35,.25)
 	else:
 		var kind:String={"goose":"boomerang","water_bucket":"water","plague":"poison","whistle":"whistle","pin":"pin","goblin_fire":"goblin","someone_bow":"piercing_arrow"}.get(id,"shot")
+		# 아귀의 이빨은 8발 탄창의 마지막 이빨이 더 크고 강하다. 탄약을 모두 쓰면 기존처럼 재생한다.
+		if id=="tooth" and c.tooth_ammo==1:
+			damage*=1.5
 		if id=="eggshell":
 			for angle in [-.22,0.0,.22]: projectile(origin,direction.rotated(angle),damage,kind,reach,id)
-		else: projectile(origin,direction,damage,kind,reach,id,id=="fox_bead")
+		else:
+			projectile(origin,direction,damage,kind,reach,id,id=="fox_bead")
+			if id=="tooth" and c.tooth_ammo==1: c.projectiles[-1]["size"]=1.5
 		if id=="tooth":
 			c.tooth_ammo-=1
 			if c.tooth_ammo<=0:

@@ -1,6 +1,6 @@
 extends RefCounted
 const Catalog = preload("res://scripts/room_catalog.gd")
-const VERSION := 6
+const VERSION := 7
 const DEFAULT_ROOM_COUNT := 9
 const MIN_PORTALS := 1
 const MAX_PORTALS := 4
@@ -19,7 +19,7 @@ static func generate(run_seed: int, room_count: int = DEFAULT_ROOM_COUNT) -> Dic
 		bag[j] = temp
 	var rooms: Array = []
 	var occupied: Dictionary = {Vector2i.ZERO:0}
-	rooms.append({"id":0,"template":bag[0],"links":[],"grid":[0,0],"decor_seed":rng.randi(),"visited":false})
+	rooms.append({"id":0,"template":bag[0],"links":[],"grid":[0,0],"decor_seed":rng.randi(),"variant":rng.randi_range(0,2),"spawn_seed":rng.randi(),"role":"start","visited":false})
 	var directions := [Vector2i.LEFT,Vector2i.RIGHT,Vector2i.UP,Vector2i.DOWN]
 	while rooms.size()<count:
 		var candidates: Array = []
@@ -33,7 +33,7 @@ static func generate(run_seed: int, room_count: int = DEFAULT_ROOM_COUNT) -> Dic
 		var cell: Vector2i = selected[1]
 		var id := rooms.size()
 		occupied[cell] = id
-		rooms.append({"id":id,"template":bag[id%bag.size()],"links":[],"grid":[cell.x,cell.y],"decor_seed":rng.randi(),"visited":false})
+		rooms.append({"id":id,"template":bag[id%bag.size()],"links":[],"grid":[cell.x,cell.y],"decor_seed":rng.randi(),"variant":rng.randi_range(0,2),"spawn_seed":rng.randi(),"role":"combat","visited":false})
 		connect_rooms(rooms,selected[0],id)
 	# Choose a remote leaf for the stage exit; do not add cycles through it.
 	var distances: Dictionary = {0:0}
@@ -48,6 +48,8 @@ static func generate(run_seed: int, room_count: int = DEFAULT_ROOM_COUNT) -> Dic
 				distances[next] = distances[id]+1
 				pending.append(next)
 	rooms[goal]["template"] = "sanctum"
+	rooms[goal]["variant"] = 0
+	rooms[goal]["role"] = "boss"
 	# Seeded optional loops between neighboring cells, one portal per direction.
 	for room in rooms:
 		var at := Vector2i(room["grid"][0],room["grid"][1])
@@ -66,6 +68,7 @@ static func generate(run_seed: int, room_count: int = DEFAULT_ROOM_COUNT) -> Dic
 	var shop_id: int = shop_candidates[shop_rng.randi_range(0,shop_candidates.size()-1)]
 	for room in rooms:
 		room["peaceful"] = room["id"]==shop_id
+		if room["id"]==shop_id: room["role"]="shop"
 	return {"version":VERSION,"seed":run_seed,"rooms":rooms,"start":0,"goal":goal,"shop_room":shop_id}
 
 static func connect_rooms(rooms: Array,a: int,b: int) -> void:
@@ -73,10 +76,16 @@ static func connect_rooms(rooms: Array,a: int,b: int) -> void:
 	rooms[b]["links"].append(a)
 
 static func validate(run: Dictionary) -> bool:
+	if not run.has("rooms") or not run.has("start") or not run.has("goal"):
+		return false
 	var rooms: Array = run["rooms"]
 	if rooms.size()<2:
 		return false
-	var seen: Array = [run["start"]]
+	var start_id:=int(run["start"])
+	var goal_id:=int(run["goal"])
+	if start_id<0 or start_id>=rooms.size() or goal_id<0 or goal_id>=rooms.size():
+		return false
+	var seen: Array = [start_id]
 	var queue: Array = seen.duplicate()
 	while not queue.is_empty():
 		var id: int = queue.pop_front()
@@ -85,13 +94,22 @@ static func validate(run: Dictionary) -> bool:
 			return false
 		if not Catalog.templates().has(room["template"]):
 			return false
-		for next in room["links"]:
-			if next<0 or next>=rooms.size() or next==id or not rooms[next]["links"].has(id):
+		if int(room.get("variant",-1))<0 or int(room.get("variant",-1))>2:
+			return false
+		if str(room.get("role","")) not in ["start","combat","shop","boss"]:
+			return false
+		for raw_next in room["links"]:
+			var next:=int(raw_next)
+			if next<0 or next>=rooms.size() or next==id:
 				return false
+			var reciprocal:=false
+			for backlink in rooms[next]["links"]:
+				if int(backlink)==id: reciprocal=true
+			if not reciprocal: return false
 			if not seen.has(next):
 				seen.append(next)
 				queue.append(next)
 	var peaceful_count := 0
 	for room in rooms:
 		if bool(room.get("peaceful",false)): peaceful_count+=1
-	return seen.size()==rooms.size() and seen.has(run["goal"]) and peaceful_count==1 and int(run.get("shop_room",-1))>=0 and bool(rooms[int(run["shop_room"])].get("peaceful",false)) and rooms[int(run["goal"])]["template"]=="sanctum"
+	return seen.size()==rooms.size() and seen.has(goal_id) and peaceful_count==1 and int(run.get("shop_room",-1))>=0 and bool(rooms[int(run["shop_room"])].get("peaceful",false)) and rooms[goal_id]["template"]=="sanctum"

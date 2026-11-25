@@ -7,11 +7,14 @@ func check(value: bool,label: String) -> bool:
 
 func _initialize() -> void:
 	SaveSlots.use_test_directory("/tmp/geuseundae-save-slots-test")
-	for slot in range(1,SaveSlots.SLOT_COUNT+1): SaveSlots.erase(slot)
+	for slot in range(1,SaveSlots.TOTAL_SLOT_COUNT+1): SaveSlots.erase(slot)
 	var title=load("res://scenes/title_screen.tscn").instantiate()
 	root.add_child(title); await process_frame
 	title.open_slots()
 	if not check(title.slot_list.get_child_count()==3,"title screen presents exactly three save slots"): return
+	title.open_test_slots()
+	await process_frame
+	if not check(title.test_slot_mode and title.slot_list.get_child_count()==3,"full equipment test presents three separate save slots"): return
 	title.queue_free(); await process_frame
 	var world=load("res://scenes/village.tscn").instantiate()
 	root.add_child(world)
@@ -44,4 +47,24 @@ func _initialize() -> void:
 	if not check(death_save["in_village"] and death_save["equipment"]["heart"]=="" and float(death_save["health"])==1.0,"death autosaves the heartless village state"): return
 	SaveSlots.erase(2)
 	if not check(SaveSlots.summary(2)["empty"],"slot deletion returns it to new game"): return
+	var test_world=load("res://scenes/village.tscn").instantiate()
+	root.add_child(test_world); await process_frame
+	test_world.active_save_slot=SaveSlots.TEST_SLOT_OFFSET+1
+	test_world.start_full_test_run(); await process_frame; await process_frame
+	if not check(test_world.in_village and test_world.full_test_run and test_world.wallet["bag"].size()==test_world.combat.DB.items().size(),"new full equipment save starts in the village with the complete item bag"): return
+	if not check(SaveSlots.exists(SaveSlots.TEST_SLOT_OFFSET+1),"full equipment mode autosaves into its separate test slot"): return
+	var test_saved:=SaveSlots.read(SaveSlots.TEST_SLOT_OFFSET+1)
+	if not check(bool(test_saved.get("full_test_run",false)) and bool(test_saved.get("in_village",false)),"test-mode identity and village state are serialized"): return
+	test_world.new_run(7070); await process_frame
+	if not check(int(SaveSlots.read(SaveSlots.TEST_SLOT_OFFSET+1)["run"]["seed"])==7070,"test mode autosaves on room entry like normal play"): return
+	if not check(test_world.Generator.validate(SaveSlots.read(SaveSlots.TEST_SLOT_OFFSET+1)["run"]),"serialized test run remains valid for resume"): return
+	test_world.queue_free(); await process_frame
+	set_meta("save_slot",SaveSlots.TEST_SLOT_OFFSET+1)
+	var test_restored=load("res://scenes/village.tscn").instantiate()
+	root.add_child(test_restored); await process_frame
+	if not check(test_restored.full_test_run and not test_restored.in_village and int(test_restored.run.get("seed",-1))==7070,"test slot resumes its saved run instead of creating a fresh one: full=%s village=%s seed=%s slot=%s" % [test_restored.full_test_run,test_restored.in_village,test_restored.run.get("seed",-1),test_restored.active_save_slot]): return
+	test_restored.combat_death(); await process_frame; await process_frame
+	var test_death:=SaveSlots.read(SaveSlots.TEST_SLOT_OFFSET+1)
+	if not check(test_death["in_village"] and test_death["equipment"]["heart"]=="" and test_death["wallet"]["bag"].size()==test_restored.combat.DB.items().size(),"test death returns to the village and preserves the full test inventory in autosave"): return
+	SaveSlots.erase(SaveSlots.TEST_SLOT_OFFSET+1)
 	quit()

@@ -38,7 +38,7 @@ func run_checks() -> void:
 	world.toggle_equipment_lab()
 	c=world.combat
 	c.crit_chance=0.0
-	if not check(DB.weapons().size()==36 and DB.items().size()==49 and world.wallet["bag"].size()==49,"All 36 weapons and 13 passive items are available in lab"): return
+	if not check(DB.weapons().size()==36 and DB.items().size()==53 and world.wallet["bag"].size()==53,"All 36 weapons and 17 passive items are available in lab"): return
 	for heart_id in HeartDB.HEARTS:
 		world.set_lab_heart(heart_id)
 		var heart:=HeartDB.get_heart(heart_id)
@@ -54,7 +54,9 @@ func run_checks() -> void:
 	var ids={}
 	for item in DB.items():
 		if not check(not ids.has(item["id"]) and not str(item["effect"]).is_empty(),"Unique item and effect: "+item["name"]): return
+		if item.has("damage") and not check(item.has("combat") and not str(item.get("handling","")).is_empty(),"Weapon has shared combat handling profile: "+item["name"]): return
 		ids[item["id"]]=true
+	if not check(DB.get_item("someone_bow")["combat"]["control"]=="charge" and DB.get_item("tooth")["combat"]["resource"]=="magazine" and DB.get_item("fist")["combat"]["weight"]=="heavy","Charge, magazine and heavy weapon rhythms are classified independently"): return
 	for w in DB.weapons():
 		prepare(w[0])
 		var slot="off" if w[2]=="off" else "main"
@@ -116,8 +118,11 @@ func run_checks() -> void:
 	if not check(bow_targets[0].hp<bow_first_hp and bow_targets[1].hp<bow_second_hp and not c.projectiles.is_empty(),"Someone's bow full charge pierces multiple enemies without disappearing on the first hit"): return
 	world.in_village=true
 	prepare("tooth")
+	var tooth_target=c.living()[0]
+	tooth_target.position=Vector2(900,676)
 	for i in range(8): c.perform_attack("main")
 	var count=c.projectiles.size()
+	if not check(float(c.projectiles[-1]["damage"])==6.0 and float(c.projectiles[-1]["size"])==1.5,"The last tooth in the magazine is larger and deals 1.5x damage"): return
 	c.perform_attack("main")
 	if not check(c.tooth_reload>0 and c.projectiles.size()==count,"Eight teeth then reload blocks firing"): return
 	prepare("mirror")
@@ -199,6 +204,30 @@ func run_checks() -> void:
 	c._physics_process(.016)
 	if not check(c.zones.any(func(z):return z["kind"]=="water"),"Wet shoes leave a slowing trail on dash"): return
 	c.world.player.dash_time=0
+	prepare("hair")
+	c.equipment["a0"]="soul_rosary"
+	c.world.player.dash_charges=0
+	c.living()[0].take_damage(20000)
+	if not check(c.world.player.dash_charges==1,"Soul rosary restores one spent dash on kill"): return
+	prepare("hair")
+	c.equipment["a0"]="swift_talisman"
+	c.previous_dash=false
+	c.world.player.dash_direction=Vector2(1,-.25).normalized()
+	c.world.player.dash_time=.1
+	var dash_shots_before:int=c.projectiles.size()
+	c._physics_process(.016)
+	if not check(c.projectiles.size()==dash_shots_before+1 and c.projectiles[-1].get("weapon","")=="swift_talisman","Swift talisman fires a soul shot along the free-angle dash direction"): return
+	c.world.player.dash_time=0
+	prepare("tooth")
+	c.equipment["a0"]="regrowth_bone"
+	c.tooth_reload=1.2
+	c._physics_process(.2)
+	if not check(is_equal_approx(c.tooth_reload,.9),"Regrowth bone accelerates magazine regeneration by 50 percent"): return
+	prepare("hair")
+	c.equipment["a0"]="ghost_clock"
+	c.skill_cd["main"]=10.0
+	c._physics_process(.2)
+	if not check(is_equal_approx(float(c.skill_cd["main"]),9.75),"Ghost clock accelerates weapon skill cooldown recovery by 25 percent"): return
 	prepare("hair")
 	c.crit_chance=1.0
 	c.crit_rng.seed=1

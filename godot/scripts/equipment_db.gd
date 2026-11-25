@@ -1,5 +1,33 @@
 extends RefCounted
 static var _catalog: Array = []
+# 던전 액션 게임식 전투 문법. 개별 아이템의 이름·외형·효과는 그슨대 고유 설계를 유지한다.
+# control은 입력 리듬, weight는 적중 정지의 무게, resource는 공격 자원 구조를 뜻한다.
+static func weapon_profile(id: String, slot: String, kind: String, interval: float) -> Dictionary:
+	var control := "repeat"
+	var resource := "none"
+	if id=="someone_bow": control="charge"
+	elif id=="gaze": control="channel"
+	elif id=="tooth":
+		control="automatic"
+		resource="magazine"
+	elif interval<=.25: control="automatic"
+	elif id in ["eggshell","mirror"]: control="burst"
+	var weight := "light" if interval<=.35 else "heavy" if interval>=.8 else "medium"
+	if id in ["fist","jangsan_paw","tiger_fang","mouth","well_bucket","belt","club"]: weight="heavy"
+	return {
+		"control":control,
+		"weight":weight,
+		"resource":resource,
+		"grip":"two" if slot=="two" else "off" if slot=="off" else "main",
+		"dash_attack":kind=="melee",
+		"hit_stop":{"light":.018,"medium":.032,"heavy":.055}[weight]
+	}
+
+static func handling_text(profile: Dictionary) -> String:
+	var control_name:String = {"repeat":"연속 입력","automatic":"누르는 동안 연사","charge":"차징 후 발사","channel":"누르는 동안 유지","burst":"한 번에 다단 발사"}.get(profile["control"],"연속 공격")
+	var weight_name:String = {"light":"경량","medium":"중량","heavy":"강타"}.get(profile["weight"],"")
+	var resource_name := " · 탄약 소진 후 재생" if profile["resource"]=="magazine" else ""
+	return control_name+" · "+weight_name+resource_name
 # Prototype numerical tuning; item concepts follow geuseundae_equipment.md.
 static func weapons() -> Array:
 	return [
@@ -43,13 +71,18 @@ static func items() -> Array:
 	if not _catalog.is_empty(): return _catalog.duplicate(true)
 	var result: Array = []
 	for w in weapons():
-		result.append({"id":w[0],"name":w[1],"slot":w[2],"kind":w[3],"tier":w[4],"damage":w[5],"interval":w[6],"range":w[7],"skill":w[8],"set":w[9],"price":[6,12,26,50][w[4]-1],"test":w[9]=="test","effect":description(w[0]),"stats":str(w[5])+" 피해 / "+str(w[6])+"초","cooldown":skill_cooldown(w[8])})
+		var profile:=weapon_profile(w[0],w[2],w[3],w[6])
+		result.append({"id":w[0],"name":w[1],"slot":w[2],"kind":w[3],"tier":w[4],"damage":w[5],"interval":w[6],"range":w[7],"skill":w[8],"set":w[9],"price":[6,12,26,50][w[4]-1],"test":w[9]=="test","effect":description(w[0]),"stats":str(w[5])+" 피해 / "+str(w[6])+"초","handling":handling_text(profile),"combat":profile,"cooldown":skill_cooldown(w[8])})
 	for a in [["wig","헝클어진 가발","head",1,"hair_range"],["duo_head","두??니??의 XX??","head",4,"reach"],["bent_leg","꺾인 다리","legs",1,"speed"],["mongdal_legs","몽달의 다리","legs",2,"frenzy"],["wet_shoes","젖은 꽃신","legs",2,"wet_dash"],["single_shoe","한쪽 꽃신","legs",1,"landing"],["stomach","아귀의 위장","accessory",3,"heal"],["duo_curse","??의 짙은 저주","accessory",3,"dash_power"],["sharp_dagger","날카로운 비수","accessory",3,"critical_dagger"]]:
 		result.append({"id":a[0],"name":a[1],"slot":a[2],"tier":a[3],"passive":a[4],"set":"duo" if a[0].begins_with("duo") else "songaksi" if a[0]=="wig" else "", "price":[6,12,26,50][a[3]-1],"effect":{"hair_range":"머리카락 사거리 20% 증가","reach":"근접 사거리·투사체 크기 1.5배","speed":"이동속도 12% 증가","frenzy":"처치 후 3초간 이동·공격속도 15% 증가","wet_dash":"대시 후 둔화 물자국","landing":"착지 시 근처 적 밀치기","heal":"처치 시 HP 3 회복 (0.6초 간격)","dash_power":"대시 공격 피해 1.5배","critical_dagger":"치명타 확률 +100 · 치명타 대미지 +100"}[a[4]]})
 	result.append({"id":"fox_tail","name":"구미호의 꼬리","slot":"accessory","tier":3,"passive":"fox_tail","set":"fox","price":32,"effect":"공격 적중 시 3초간 화상 · 0.5초마다 피해 1"})
 	result.append({"id":"tiger_hide","name":"범가죽","slot":"accessory","tier":3,"passive":"tiger_hide","set":"changgui","price":26,"effect":"최대 체력 +20 · 받는 피해 20% 감소"})
 	result.append({"id":"tiger_eye","name":"범 눈알","slot":"accessory","tier":2,"passive":"tiger_eye","set":"changgui","price":12,"effect":"공격속도 30% 증가"})
 	result.append({"id":"black_scale","name":"검은비늘","slot":"accessory","tier":4,"passive":"black_scale","set":"","price":50,"effect":"방에 들어설 때마다 무작위 날씨 · 날씨 효과가 방 전체에 적용 (적이 남은 방에서만)"})
+	result.append({"id":"soul_rosary","name":"원혼 염주","slot":"accessory","tier":4,"passive":"dash_on_kill","set":"","price":50,"effect":"적 처치 시 소모한 대시 1회 즉시 회복"})
+	result.append({"id":"swift_talisman","name":"날쌘 부적","slot":"accessory","tier":3,"passive":"shot_on_dash","set":"","price":30,"effect":"대시를 시작할 때 대시 방향으로 피해 6의 원혼탄 발사"})
+	result.append({"id":"regrowth_bone","name":"재생의 뼛조각","slot":"accessory","tier":2,"passive":"rapid_reload","set":"","price":14,"effect":"탄약형 무기의 재생·재장전 속도 50% 증가"})
+	result.append({"id":"ghost_clock","name":"멈춘 혼시계","slot":"accessory","tier":3,"passive":"skill_haste","set":"","price":30,"effect":"주무기·보조무기 스킬 쿨타임 회복 속도 25% 증가"})
 	_catalog=result.duplicate(true)
 	return result
 static func get_item(id: String) -> Dictionary:

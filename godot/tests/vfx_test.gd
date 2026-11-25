@@ -41,7 +41,10 @@ func run_checks() -> void:
 	var warrior=c.living().filter(func(enemy): return enemy.kind=="warrior")[0]
 	fx.clear()
 	warrior.begin_attack_vfx()
+	assert(fx.bursts.is_empty())
+	warrior.release_attack(warrior.position+Vector2.RIGHT*80)
 	assert(fx.bursts[0]["monster"]=="musa-slash" and fx.bursts[0]["owner"]==warrior)
+	assert(Vector2(fx.bursts[0]["offset"]).is_equal_approx(Vector2(warrior.facing*25,-21)) and is_equal_approx(float(fx.bursts[0]["size"]),1.24))
 	fx.clear()
 	var adept=c.living().filter(func(enemy): return enemy.kind=="adept")[0]
 	adept.begin_attack_vfx()

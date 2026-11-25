@@ -65,6 +65,9 @@ var full_test_heart_index := 0
 var session_rng := RandomNumberGenerator.new()
 var complete := false
 var floor_exit_position := Vector2.ZERO
+var floor_exit_prop: Node2D
+var floor_exit_label: Label
+var chapter_exit_revealing := false
 var portal_props: Dictionary = {}
 var well_prop: Node2D
 var well_position := Vector2.ZERO
@@ -112,11 +115,17 @@ func _ready() -> void:
 	village_stock = MerchantStock.roll(session_rng.randi(),1,true)
 	active_save_slot=int(get_tree().get_meta("save_slot",0))
 	if get_tree().has_meta("save_slot"): get_tree().remove_meta("save_slot")
+	var full_test_requested:=bool(get_tree().get_meta("full_test_run_requested",false))
+	if get_tree().has_meta("full_test_run_requested"): get_tree().remove_meta("full_test_run_requested")
+	full_test_run=full_test_requested or active_save_slot>SaveSlots.TEST_SLOT_OFFSET
+	var existing_slot:=active_save_slot>0 and SaveSlots.exists(active_save_slot)
 	if start_in_village:
-		if active_save_slot>0 and SaveSlots.exists(active_save_slot): load_slot(active_save_slot)
+		if existing_slot: load_slot(active_save_slot)
 		else:
-			if active_save_slot>0: Progression.replace_profile({})
-			show_village()
+			if active_save_slot>0:
+				Progression.replace_profile({"unlocked_hearts":["songaksi","mongdal","changgui"],"unlocked_sets":["jangsan"]} if full_test_run else {})
+			if full_test_run: call_deferred("start_full_test_run")
+			else: show_village()
 	else: new_run(initial_seed)
 	if OS.has_feature("mobile") or OS.get_cmdline_user_args().has("--touch"):
 		var layer:=CanvasLayer.new()
@@ -126,9 +135,6 @@ func _ready() -> void:
 		touch.world=self
 		layer.add_child(touch)
 		lab_button.hide()
-	if bool(get_tree().get_meta("full_test_run_requested",false)):
-		get_tree().remove_meta("full_test_run_requested")
-		call_deferred("start_full_test_run")
 
 func new_run(value: int) -> void:
 	in_village = false
@@ -145,6 +151,7 @@ func fresh_seed() -> int:
 
 func save_payload() -> Dictionary:
 	return {
+		"full_test_run":full_test_run,
 		"floor":floor_number,"in_village":in_village,"complete":complete,
 		"run":run.duplicate(true),"current_id":current_id,
 		"wallet":wallet.duplicate(true),
@@ -154,7 +161,7 @@ func save_payload() -> Dictionary:
 	}
 
 func autosave() -> bool:
-	if active_save_slot<=0 or loading_save or autosave_blocked or full_test_run or combat.equipment_lab: return false
+	if active_save_slot<=0 or loading_save or autosave_blocked or combat.equipment_lab: return false
 	return SaveSlots.write(active_save_slot,save_payload())
 
 func load_slot(slot: int) -> bool:
@@ -162,6 +169,7 @@ func load_slot(slot: int) -> bool:
 	if saved.is_empty(): return false
 	loading_save=true
 	active_save_slot=slot
+	full_test_run=bool(saved.get("full_test_run",slot>SaveSlots.TEST_SLOT_OFFSET))
 	Progression.replace_profile(saved.get("profile",{}))
 	wallet=saved.get("wallet",{"souls":0,"bag":[]}).duplicate(true)
 	# Village stock intentionally rerolls on every app session. Floor merchant
@@ -195,7 +203,10 @@ func display_room_name(template: String) -> String:
 
 func chapter_title() -> String:
 	if in_village: return "흉가 마을"
-	if floor_number>=3: return "3챕터 · 퇴마단 주둔지"
+	if floor_number>=6: return "6챕터 · 대신당"
+	if floor_number==5: return "5챕터 · 도성 성곽"
+	if floor_number==4: return "4챕터 · 귀문 수용소"
+	if floor_number==3: return "3챕터 · 퇴마단 주둔지"
 	if floor_number==2: return "2챕터 · 안개 낀 산"
 	return "1챕터 · 흉가"
 
@@ -350,26 +361,25 @@ func add_village_exit_sign() -> void:
 	room.add_child(sign)
 
 func is_combat_room() -> bool:
-	return not in_village and not bool(run["rooms"][current_id].get("peaceful",false))
+	if in_village: return false
+	var data:Dictionary=run["rooms"][current_id]
+	var fallback_role:="shop" if bool(data.get("peaceful",false)) else "combat"
+	return str(data.get("role",fallback_role)) not in ["shop","event"]
 
 func portal_position(source: int, destination: int) -> Vector2:
-	var def: Dictionary = Catalog.templates()[run["rooms"][source]["template"]]
+	var source_data:Dictionary=run["rooms"][source]
+	var def: Dictionary = Catalog.resolve(str(source_data["template"]),int(source_data.get("variant",0)))
 	var grid: Array = run["rooms"][source]["grid"]
 	var other: Array = run["rooms"][destination]["grid"]
 	var width := float(def["width"])
 	if other[0] < grid[0]:
-		return Vector2(96, 704)
+		return Vector2(def["sockets"]["left"][0],def["sockets"]["left"][1])
 	if other[0] > grid[0]:
-		return Vector2(width-96, 704)
+		return Vector2(def["sockets"]["right"][0],def["sockets"]["right"][1])
 	if other[1] < grid[1]:
-		# The upper connection sits on a reachable authored balcony.
-		var top: Array = def["platforms"][0]
-		for platform in def["platforms"]:
-			if platform[1] < top[1]:
-				top = platform
-		return Vector2(top[0]+top[2]/2.0, top[1])
+		return Vector2(def["sockets"]["up"][0],def["sockets"]["up"][1])
 	# The remaining floor connection is well away from both edge doors.
-	var x := width*.70
+	var x := float(def["sockets"]["down"][0])
 	for gap in def["gaps"]:
 		if x > gap[0]-100 and x < gap[0]+gap[1]+100:
 			x = gap[0]-120
@@ -395,12 +405,12 @@ func change_room(id: int, previous: int) -> void:
 	current_id = id
 	var data: Dictionary = run["rooms"][id]
 	data["visited"] = true
-	var def: Dictionary = Catalog.templates()[data["template"]]
+	var def: Dictionary = Catalog.resolve(str(data["template"]),int(data.get("variant",0)))
 	if combat_enabled and not in_village and id==run["goal"]:
-		def=Catalog.templates()["sanctum"]
+		def=Catalog.resolve("sanctum",0)
 		data["template"]="sanctum"
 	room = RoomView.new()
-	room.chapter=clampi(floor_number,1,3) if not in_village else 1
+	room.chapter=clampi(floor_number,1,6) if not in_village else 1
 	room.z_index=-20
 	add_child(room)
 	room.build(def,data["decor_seed"])
@@ -471,12 +481,22 @@ func change_room(id: int, previous: int) -> void:
 			combat.health=combat.max_health
 			combat.message("평화구역 · 도깨비의 쉼터에서 HP 회복")
 	if id == run["goal"]:
-		var exit_label := Label.new()
 		floor_exit_position=Vector2(float(def["width"])*.5,704)
-		exit_label.position = floor_exit_position+Vector2(-65,-96)
-		exit_label.text = "구간 출구"
-		exit_label.add_theme_font_size_override("font_size",14)
-		room.add_child(exit_label)
+		floor_exit_prop=TravelProp.new()
+		floor_exit_prop.position=floor_exit_position
+		floor_exit_prop.play("shadow-portal")
+		room.add_child(floor_exit_prop)
+		floor_exit_label=Label.new()
+		floor_exit_label.position = floor_exit_position+Vector2(-65,-116)
+		floor_exit_label.text = "다음 챕터로 향하는 포탈"
+		floor_exit_label.add_theme_font_size_override("font_size",14)
+		room.add_child(floor_exit_label)
+		var exit_visible:bool=floor_number!=2 or complete
+		floor_exit_prop.visible=exit_visible
+		floor_exit_label.visible=exit_visible
+	else:
+		floor_exit_prop=null
+		floor_exit_label=null
 	title.text = chapter_title()
 	update_chapter_overlay()
 	minimap.visible=not in_village
@@ -563,6 +583,9 @@ func _process(delta: float) -> void:
 		web_status_timer=.2
 	if not is_instance_valid(player):
 		return
+	if chapter_exit_revealing:
+		player.controls_enabled=false
+		return
 	if is_instance_valid(minimap) and minimap.visible and not floor_map_open:
 		minimap.queue_redraw()
 	if traveling:
@@ -573,6 +596,9 @@ func _process(delta: float) -> void:
 		player.controls_enabled=false
 		return
 	if is_instance_valid(songaksi_dialog) and songaksi_dialog.visible:
+		player.controls_enabled=false
+		return
+	if is_instance_valid(combat.jangsan_dialog) and combat.jangsan_dialog.visible:
 		player.controls_enabled=false
 		return
 	if floor_map_open:
@@ -672,14 +698,52 @@ func _process(delta: float) -> void:
 			else: begin_portal_travel(destination)
 		return
 	if current_id==run["goal"] and player.position.distance_to(floor_exit_position)<84:
-		hint.text="E · 다음 층으로 출발" if complete else "E · 구간 탐색 완료"
+		hint.text=("E · 마을로 귀환" if complete else "E · 일반 엔딩") if floor_number>=6 else ("E · 다음 층으로 출발" if complete else "E · 구간 탐색 완료")
 		if Input.is_action_just_pressed("interact"):
 			if complete:
-				floor_number+=1
-				new_run(int(run["seed"])+1009)
-			else: complete=true
+				if floor_number>=6:
+					show_village()
+				else:
+					floor_number+=1
+					new_run(int(run["seed"])+1009)
+			else:
+				complete=true
+				if floor_number>=6:
+					combat.message("일반 엔딩 · 대신당의 봉인이 무너지고 빌린 심장들이 밤길을 되찾았습니다")
+				autosave()
 		return
 	hint.text="E · 상자 열기" if combat_enabled and combat.near_chest() else ""
+
+func reveal_chapter_exit_portal() -> void:
+	if chapter_exit_revealing or floor_number!=2 or current_id!=int(run["goal"]) or not is_instance_valid(floor_exit_prop): return
+	chapter_exit_revealing=true
+	player.controls_enabled=false
+	combat.boss_transitioning=true
+	var camera:Camera2D=player.camera
+	var original_position:=camera.position
+	var original_zoom:=camera.zoom
+	var focus_position:=floor_exit_position+Vector2(0,-76)-player.position
+	var closeup:=create_tween().set_parallel(true)
+	closeup.set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN_OUT)
+	closeup.tween_property(camera,"position",focus_position,.55)
+	closeup.tween_property(camera,"zoom",Vector2(1.35,1.35),.55)
+	await closeup.finished
+	floor_exit_prop.show()
+	floor_exit_label.show()
+	floor_exit_prop.play("shadow-portal",1.45)
+	combat.message("창귀 해방 · 퇴마단 주둔지로 향하는 포탈이 열렸습니다")
+	await get_tree().create_timer(.8).timeout
+	var restore:=create_tween().set_parallel(true)
+	restore.set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN_OUT)
+	restore.tween_property(camera,"position",original_position,.5)
+	restore.tween_property(camera,"zoom",original_zoom,.5)
+	await restore.finished
+	camera.reset_smoothing()
+	complete=true
+	chapter_exit_revealing=false
+	combat.boss_transitioning=false
+	player.controls_enabled=true
+	autosave()
 
 func update_web_status() -> void:
 	if not OS.has_feature("web") or not is_instance_valid(player) or not is_instance_valid(combat): return
@@ -885,14 +949,17 @@ func cycle_lab_heart(step: int) -> void:
 
 func start_full_test_run() -> void:
 	if combat.equipment_lab: toggle_equipment_lab()
+	# F7 entered from a normal run must never overwrite that run's slot.
+	if active_save_slot<=SaveSlots.TEST_SLOT_OFFSET:
+		active_save_slot=SaveSlots.TEST_SLOT_OFFSET+1
 	full_test_run=true
 	full_test_heart_index=0
-	combat.equipment={"heart":"songaksi","main":"songaksi_hand","off":"","head":"","legs":"","internal":"","a0":"","a1":"","a2":"","a3":""}
+	Progression.replace_profile({"unlocked_hearts":["songaksi","mongdal","changgui"],"unlocked_sets":["jangsan"]})
+	combat.equipment={"heart":"","main":"","off":"","head":"","legs":"","internal":"","a0":"","a1":"","a2":"","a3":""}
 	wallet={"souls":9999,"bag":CombatDirector.DB.items()}
 	floor_number=1
-	new_run(fresh_seed())
-	set_lab_heart("songaksi")
-	combat.message("전체 해금 실전 런 · 전 장비 "+str(CombatDirector.DB.items().size())+"종 보유 · , . 캐릭터 전환 · 정상 방·상점·보스 진행")
+	show_village()
+	combat.message("전체 장비 테스트 · 마을 시작 · 전 장비 "+str(CombatDirector.DB.items().size())+"종 보유 · 자동 저장 사용")
 
 func cycle_full_test_heart(step: int) -> void:
 	var hearts:Array=HeartDB.HEARTS.keys()

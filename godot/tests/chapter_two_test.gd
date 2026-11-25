@@ -48,5 +48,18 @@ func run_checks() -> void:
 	var beast_width:float=boss.visual.draw_size().x*boss.visual.scale_override
 	if not check(boss.jangsan_phase==3 and boss.max_hp==850 and boss.hp==850,"Phase 3 refills a separate 850 HP bar"): return
 	if not check(boss.visual.texture.resource_path=="res://assets/actors/source/jangsanbeom-v1.png" and beast_width>=shadow_width*2.9,"The final white-body red-face beast is about three times the shadow's size"): return
+	boss.take_damage(9999)
+	await frames(3)
+	if not check(world.combat.jangsan_dialog.visible and world.combat.jangsan_dialog_lines.size()==4,"Defeating Jangsanbeom opens the four-part liberation dialogue"): return
+	if not check(world.combat.jangsan_dialog_lines[1].contains("잡아먹은 영혼 하나") and world.combat.jangsan_dialog_lines[3].contains("나를 이렇게 만든 인간"),"Dialogue returns one devoured soul and warns about the human deeper inside"): return
+	if not check(not world.floor_exit_prop.visible,"The next-chapter portal stays hidden while the defeat dialogue is open"): return
+	for line in range(4):
+		world.combat.jangsan_dialog.hide()
+		world.combat.advance_jangsan_dialog()
+		await frames(2)
+	world.combat.jangsan_dialog.hide()
+	await frames(130)
+	if not check(world.floor_exit_prop.visible and world.floor_exit_label.visible,"Finishing the dialogue opens the portal at the arena centre"): return
+	if not check(world.complete and not world.chapter_exit_revealing and world.player.controls_enabled,"Close-up returns the camera and controls with the next chapter ready"): return
 	print("Chapter 2 integration checks completed.")
 	quit(0)

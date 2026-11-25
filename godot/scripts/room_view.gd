@@ -1,6 +1,7 @@
 extends Node2D
 
 const RoomWall = preload("res://scripts/room_wall.gd")
+const ArchitectureForeground = preload("res://scripts/room_architecture_foreground.gd")
 
 var definition: Dictionary
 var decor_seed := 0
@@ -35,13 +36,18 @@ func build(data: Dictionary, seed_value: int) -> void:
 		add_body(Rect2(platform[0], platform[1], platform[2], 16), true)
 	for wall in definition.get("walls",[]):
 		add_wall(Rect2(wall[0],wall[1],wall[2],wall[3]))
+	if str(definition.get("architecture",""))=="walkable_roofs":
+		var foreground:=ArchitectureForeground.new()
+		foreground.configure(architecture_platforms())
+		foreground.z_index=30
+		add_child(foreground)
 	add_body(Rect2(-32, -400, 32, 1500), false)
 	add_body(Rect2(width, -400, 32, 1500), false)
 	queue_redraw()
 
 func add_wall(rect: Rect2) -> void:
 	var wall:=RoomWall.new()
-	var material := "plaster" if chapter==1 else "rock" if chapter==2 else "seal"
+	var material := "plaster" if chapter==1 else "rock" if chapter==2 else "seal" if chapter==3 else "prison" if chapter==4 else "rampart" if chapter==5 else "sanctum"
 	wall.setup(rect,material)
 	add_child(wall)
 	solid_walls.append(rect)
@@ -64,6 +70,13 @@ func add_body(rect: Rect2, one_way: bool) -> void:
 		platforms.append(rect)
 	else:
 		rects.append(rect)
+
+func architecture_platforms() -> Array[Rect2]:
+	var result:Array[Rect2]=[]
+	if str(definition.get("architecture",""))!="walkable_roofs": return result
+	var count:=mini(int(definition.get("authored_platform_count",definition["platforms"].size())),platforms.size())
+	for i in range(count): result.append(platforms[i])
+	return result
 
 # Shared atlas, authored against the approved courtyard reference.
 const ART = preload("res://assets/environment/haunted-village-atlas.png")
@@ -115,6 +128,22 @@ func house(x: float, roof_y: float, width: float, floor_level: float) -> void:
 		stamp(6,Rect2(x+column*192-16,eaves-8,32,floor_level-eaves+8))
 	stamp(15,Rect2(x+width*.5-18,eaves+36,36,64))
 
+func walkable_roof_back(rect: Rect2, index: int) -> void:
+	# The roof's visible top and the one-way collision share rect.position.y.
+	# Everything below it belongs to the house rather than to the far backdrop.
+	var body:=Rect2(rect.position+Vector2(12,18),Vector2(rect.size.x-24,floor_y-rect.position.y-18))
+	if body.size.y>8:
+		tile_band(4,body,Vector2(128,128),Color("89959b") if index%2==0 else Color("7f8b91"))
+		for x in range(int(body.position.x)+8,int(body.end.x),96):
+			stamp(6,Rect2(x,body.position.y-4,22,body.size.y+4),Color("8f8984"))
+	# A dark underside makes it obvious that this is nearby playable geometry.
+	paint_fill(Rect2(rect.position+Vector2(-10,10),Vector2(rect.size.x+20,18)),Color("252b34"))
+
+func walkable_roof_surface(rect: Rect2) -> void:
+	# Flat stepped eaves suit platformer movement while retaining the tiled roof.
+	tile_band(3,Rect2(rect.position+Vector2(-16,-2),Vector2(rect.size.x+32,18)),Vector2(96,18),Color("aeb5bb"))
+	paint_fill(Rect2(rect.position+Vector2(-10,15),Vector2(rect.size.x+20,5)),Color("3b3338"))
+
 func collapsed_house_art() -> void:
 	# A bespoke composition for the representative room. Every piece comes from
 	# the shared village atlas, so collision can change without baking a new room.
@@ -153,7 +182,25 @@ func _draw() -> void:
 	var width: int = definition["width"]
 	var theme: String = definition["theme"]
 	paint_fill(Rect2(0,0,width,864),Color("101925"))
-	if chapter==3:
+	if chapter>=4:
+		var sky:=Color("11151c") if chapter==4 else Color("182131") if chapter==5 else Color("140d18")
+		paint_fill(Rect2(0,0,width,704),sky)
+		if chapter==4:
+			for x in range(80,width,220):
+				paint_fill(Rect2(x,170,88,534),Color("252a30"))
+				for bar_x in range(x+10,x+80,14): paint_fill(Rect2(bar_x,250,5,300),Color("0b0d11"))
+		elif chapter==5:
+			paint_fill(Rect2(0,390,width,314),Color("343b48"))
+			for x in range(0,width,240):
+				paint_fill(Rect2(x,280,120,110),Color("292f3b"))
+				paint_fill(Rect2(x+18,235,84,45),Color("252b35"))
+		else:
+			for x in range(64,width,256):
+				paint_fill(Rect2(x,110,70,594),Color("2b1b27"))
+				paint_fill(Rect2(x-14,90,98,24),Color("573541"))
+			paint_fill(Rect2(width*.5-150,410,300,294),Color("351d29"))
+		paint_fill(Rect2(0,560,width,144),Color(0.03,0.02,0.04,.45))
+	elif chapter==3:
 		paint_region(GARRISON_DISTANCE,Rect2(0,0,width,724),Rect2(0,0,GARRISON_DISTANCE.get_width(),GARRISON_DISTANCE.get_height()),Color("b7bdc2"))
 		paint_fill(Rect2(0,570,width,134),Color(0.035,0.045,0.065,.2))
 	elif chapter==2:
@@ -166,7 +213,16 @@ func _draw() -> void:
 		# Reuse the approved image's distant sky only; no painted collision floor.
 		paint_region(DISTANCE,Rect2(0,0,width,440),Rect2(0,0,DISTANCE.get_width(),250),Color("a9b7c2"))
 		tile_band(2,Rect2(0,504,width,200),Vector2(192,192),Color("87929d"))
-	var art_theme := theme if chapter==1 else "mountain"
+	var art_theme := theme if chapter==1 else "mountain" if chapter<=3 else "custom"
+	var roof_architecture:=chapter==1 and str(definition.get("architecture",""))=="walkable_roofs"
+	if roof_architecture:
+		# Only distant silhouettes remain in the backdrop. Playable buildings are
+		# assembled below from the exact collision rectangles.
+		for x in range(40,width,420):
+			stamp(8,Rect2(x,300,300,204),Color(0.36,0.43,0.47,.34))
+		for i in range(architecture_platforms().size()):
+			walkable_roof_back(architecture_platforms()[i],i)
+		art_theme="custom"
 	if chapter==1 and definition.get("name","")=="무너진 안채":
 		collapsed_house_art()
 		art_theme="custom"
@@ -224,12 +280,17 @@ func _draw() -> void:
 	for rect in rects:
 		if rect.position.x < 0 or rect.position.x >= width:
 			continue
-		tile_band(1,rect,Vector2(96,96),Color("6f737b") if chapter==3 else Color("778692") if chapter==2 else Color("b0bac6"))
-		tile_band(0,Rect2(rect.position,Vector2(rect.size.x,64)),Vector2(128,64),Color("8b8279") if chapter==3 else Color("8b9b9b") if chapter==2 else Color.WHITE)
+		var body_tint:=Color("57454f") if chapter==6 else Color("586373") if chapter==5 else Color("4d535a") if chapter==4 else Color("6f737b") if chapter==3 else Color("778692") if chapter==2 else Color("b0bac6")
+		var top_tint:=Color("704451") if chapter==6 else Color("727e91") if chapter==5 else Color("64666a") if chapter==4 else Color("8b8279") if chapter==3 else Color("8b9b9b") if chapter==2 else Color.WHITE
+		tile_band(1,rect,Vector2(96,96),body_tint)
+		tile_band(0,Rect2(rect.position,Vector2(rect.size.x,64)),Vector2(128,64),top_tint)
+	var roof_platforms:Array=architecture_platforms() if roof_architecture else []
 	for rect in platforms:
 		# Tight atlas bounds put the visible plank directly on the collision top.
 		var bridge_surface: bool=chapter==2 and str(definition.get("name",""))=="썩은 나무다리" and is_equal_approx(rect.position.x,224.0) and is_equal_approx(rect.position.y,704.0)
-		if not bridge_surface:
+		if roof_platforms.has(rect):
+			walkable_roof_surface(rect)
+		elif not bridge_surface:
 			tile_band(3,rect,Vector2(96,16))
 	for pos in boss_door_positions:
 		paint_fill(Rect2(pos.x-28,pos.y-102,56,102),Color("0c1520"))

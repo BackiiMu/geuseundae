@@ -2,6 +2,8 @@ extends RefCounted
 
 const VERSION := 1
 const SLOT_COUNT := 3
+const TEST_SLOT_OFFSET := SLOT_COUNT
+const TOTAL_SLOT_COUNT := SLOT_COUNT * 2
 static var test_base_dir := ""
 
 static func use_test_directory(directory: String) -> void:
@@ -9,7 +11,7 @@ static func use_test_directory(directory: String) -> void:
 	if not directory.is_empty(): DirAccess.make_dir_recursive_absolute(directory)
 
 static func path(slot: int) -> String:
-	var filename:="geuseundae_slot_%d.json" % clampi(slot,1,SLOT_COUNT)
+	var filename:="geuseundae_slot_%d.json" % clampi(slot,1,TOTAL_SLOT_COUNT)
 	return test_base_dir.path_join(filename) if not test_base_dir.is_empty() else "user://"+filename
 
 static func backup_path(slot: int) -> String:
@@ -33,7 +35,7 @@ static func read(slot: int) -> Dictionary:
 static func write(slot: int,data: Dictionary) -> bool:
 	var payload:=data.duplicate(true)
 	payload["version"]=VERSION
-	payload["slot"]=clampi(slot,1,SLOT_COUNT)
+	payload["slot"]=clampi(slot,1,TOTAL_SLOT_COUNT)
 	payload["saved_at"]=int(Time.get_unix_time_from_system())
 	var destination:=path(slot)
 	var temporary:=destination+".tmp"

@@ -38,6 +38,12 @@ func _draw() -> void:
 	var mid:=Color("66706d")
 	var edge:=Color("929b91")
 	match wall_material:
+		"prison":
+			dark=Color("171a1e"); mid=Color("454b50"); edge=Color("73797b")
+		"rampart":
+			dark=Color("222936"); mid=Color("596578"); edge=Color("8d99aa")
+		"sanctum":
+			dark=Color("25151f"); mid=Color("57303f"); edge=Color("95606d")
 		"rock":
 			dark=Color("202a30"); mid=Color("46545b"); edge=Color("75848a")
 		"palisade":
